@@ -3,17 +3,29 @@ import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
 
-const bellSrcDir = path.resolve(__dirname, 'public/brass bells');
-const bellDestDir = path.resolve(__dirname, 'public/assets/brass bells');
-if (!fs.existsSync(bellDestDir)) {
-  fs.mkdirSync(bellDestDir, { recursive: true });
-}
-if (fs.existsSync(bellSrcDir)) {
-  fs.readdirSync(bellSrcDir).forEach(f => {
-    if (f !== 'README.md') {
-      fs.copyFileSync(path.join(bellSrcDir, f), path.join(bellDestDir, f));
-    }
-  });
+// Safely sync brass bells assets without crashing Vercel/Linux build environment
+try {
+  const bellSrcDir = path.resolve(__dirname, 'public/brass bells');
+  const bellDestDir = path.resolve(__dirname, 'public/assets/brass bells');
+  if (!fs.existsSync(bellDestDir)) {
+    fs.mkdirSync(bellDestDir, { recursive: true });
+  }
+  if (fs.existsSync(bellSrcDir)) {
+    fs.readdirSync(bellSrcDir).forEach(f => {
+      const srcPath = path.join(bellSrcDir, f);
+      const destPath = path.join(bellDestDir, f);
+      try {
+        const stat = fs.statSync(srcPath);
+        if (stat.isFile() && f !== 'README.md') {
+          fs.copyFileSync(srcPath, destPath);
+        }
+      } catch (err) {
+        // Safely skip any nested directories or unreadable files
+      }
+    });
+  }
+} catch (err) {
+  // Fail-safe wrapper for CI/CD environments like Vercel
 }
 
 export default defineConfig({
