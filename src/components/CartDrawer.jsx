@@ -37,7 +37,7 @@ export const CartDrawer = ({
   const finalTotal = Math.max(0, subtotal - discount);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
+    <div className="fixed inset-0 z-[1000] overflow-hidden">
       {/* Backdrop */}
       <div
         onClick={onClose}

@@ -43,8 +43,8 @@ export function StackedSections({ children }) {
       {React.Children.map(children, (child, index) => {
         if (!child) return null;
 
-        // Ascending z-index so subsequent sections layer over previous ones
-        const zIndex = (index + 1) * 10;
+        // Ascending z-index so subsequent sections layer over previous ones (1, 2, 3...)
+        const zIndex = index + 1;
 
         return (
           <div

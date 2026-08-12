@@ -25,7 +25,7 @@ export const SearchModal = ({
       );
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto flex items-start justify-center p-2 sm:p-6 pt-8 sm:pt-16">
+    <div className="fixed inset-0 z-[1000] overflow-y-auto flex items-start justify-center p-2 sm:p-6 pt-8 sm:pt-16">
       {/* Backdrop */}
       <div
         onClick={onClose}

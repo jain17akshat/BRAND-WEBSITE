@@ -31,7 +31,7 @@ export const MobileBottomNav = ({
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#EAE0CD]"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-[99] bg-[#FBF9F5]/95 backdrop-blur-md border-t border-[#EAE0CD] shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <div className="flex items-center justify-around px-1 py-2">

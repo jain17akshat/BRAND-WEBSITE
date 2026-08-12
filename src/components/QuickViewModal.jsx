@@ -50,7 +50,7 @@ export const QuickViewModal = ({
   };
 
   return (
-    <div data-lenis-prevent className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-2 sm:p-6">
+    <div data-lenis-prevent className="fixed inset-0 z-[1000] overflow-y-auto flex items-center justify-center p-2 sm:p-6">
       {/* Backdrop */}
       <div
         onClick={onClose}

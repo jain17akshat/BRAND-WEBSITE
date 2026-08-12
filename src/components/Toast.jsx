@@ -27,7 +27,7 @@ export const Toast = ({ toast, onClose }) => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 max-w-sm w-full animate-slide-up">
+    <div className="fixed bottom-6 right-6 z-[9999] max-w-sm w-full animate-slide-up">
       <div className="bg-[#2C2623] text-[#F9F5EC] p-4 rounded-lg shadow-2xl border border-[#C5A059]/40 flex items-start gap-3 relative overflow-hidden">
         {/* Accent Bar */}
         <div className="absolute top-0 left-0 bottom-0 w-1 brass-gradient-bg"></div>

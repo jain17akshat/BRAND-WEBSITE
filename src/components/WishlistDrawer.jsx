@@ -12,7 +12,7 @@ export const WishlistDrawer = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
+    <div className="fixed inset-0 z-[1000] overflow-hidden">
       {/* Backdrop */}
       <div
         onClick={onClose}
