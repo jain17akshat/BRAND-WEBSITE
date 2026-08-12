@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Gift, ShieldCheck, Truck, Award, Send, CheckCircle2, Sparkles, Building2, Mail, Phone, User, Package, FileText } from 'lucide-react';
 
 export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
@@ -12,8 +12,12 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
     occasion: 'Diwali Corporate Gifting',
     message: ''
   });
-
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -1,10 +1,10 @@
 export const CATEGORIES = [
   { id: 'all', name: 'All Collections' },
-  { id: 'brass', name: 'Brass Articles', count: 15 },
-  { id: 'copper', name: 'Copper Articles', count: 4 },
+  { id: 'brass', name: 'Brass Articles', count: 17 },
+  { id: 'copper', name: 'Copper Articles', count: 5 },
   { id: 'mandir-essentials', name: 'Mandir Essentials', count: 12 },
   { id: 'incense', name: 'Incense & Dhoop', count: 5 },
-  { id: 'vastu', name: 'Vastu & Pyramids', count: 11 },
+  { id: 'vastu', name: 'Vastu & Spiritual', count: 11 },
   { id: 'kits', name: 'Pooja Kits & Boxes', count: 1 },
   { id: 'yantras', name: 'Custom & Handcrafted', count: 3 }
 ];
@@ -562,6 +562,81 @@ export const PRODUCTS = [
     ]
   },
 
+  // 15B. Brass Kalash Pooja Vessel
+  {
+    id: 'brass-kalash-pooja-vessel',
+    name: 'Sacred Pure Virgin Brass Pooja Kalash Vessel',
+    category: 'brass',
+    categoryName: 'Brass Articles',
+    subcategory: 'Brass Kalash',
+    price: 1390,
+    originalPrice: 1790,
+    rating: 4.98,
+    reviewsCount: 145,
+    tag: 'Pure Brass Kalash',
+    artType: 'kalash',
+    fitMode: 'contain',
+    image: '/assets/brass kalash/kalash1.png',
+    images: [
+      '/assets/brass kalash/kalash1.png',
+      '/assets/brass kalash/kalash2.png',
+      '/assets/brass kalash/kalash3.png',
+      '/assets/brass kalash/kalash4.png'
+    ],
+    weightVariants: [
+      { weight: 'Small (300 ml)', price: 890, originalPrice: 1190 },
+      { weight: 'Medium (500 ml)', price: 1390, originalPrice: 1790, default: true },
+      { weight: 'Large (1 Liter)', price: 1990, originalPrice: 2490 },
+      { weight: 'Royal Heavy (1.5 Liter)', price: 2690, originalPrice: 3290 }
+    ],
+    purity: '100% Pure Virgin Lead-Free Solid Brass',
+    inStock: true,
+    description: 'Handcrafted solid virgin brass Kalash (Purna Kumbha) vessel with smooth radiant luster and heavy weighted body. Designed according to traditional Vedic Shilpa Shastra for Kalash Sthapana, Griha Pravesh, Navratri puja, Varalakshmi vratham, and daily altar water offerings.',
+    specifications: [
+      { label: 'Vessel Type', value: 'Vedic Purna Kumbha Sacred Kalash' },
+      { label: 'Material', value: '100% Virgin Lead-Free Brass' },
+      { label: 'Crafting', value: 'Hand-Molded & Polished Artisanal Finish' },
+      { label: 'Gallery Included', value: '4 High-Resolution Full Angle Views' }
+    ]
+  },
+
+  // 15C. Hand-Engraved Artisanal Brass Design Puja Thali Set
+  {
+    id: 'brass-design-thali-set',
+    name: 'Hand-Engraved Artisanal Pure Virgin Brass Design Puja Thali Set',
+    category: 'brass',
+    categoryName: 'Brass Articles',
+    subcategory: 'Brass Puja Thali',
+    price: 2290,
+    originalPrice: 2890,
+    rating: 4.99,
+    reviewsCount: 152,
+    tag: 'Designer Brass Thali',
+    artType: 'thali',
+    fitMode: 'contain',
+    image: '/assets/brassdesign thali/design1.png',
+    images: [
+      '/assets/brassdesign thali/design1.png',
+      '/assets/brassdesign thali/design 2.png',
+      '/assets/brassdesign thali/design3.png',
+      '/assets/brassdesign thali/design4.png'
+    ],
+    weightVariants: [
+      { weight: '8 Inch Designer Thali', price: 1690, originalPrice: 2190 },
+      { weight: '10 Inch Designer Thali Set', price: 2290, originalPrice: 2890, default: true },
+      { weight: '12 Inch Royal Designer Thali Set', price: 3290, originalPrice: 3990 }
+    ],
+    purity: '100% Pure Virgin Lead-Free Solid Brass',
+    inStock: true,
+    description: 'Exquisitely hand-carved solid virgin brass design Puja Thali set featuring intricate traditional embossed artwork, ornate peacock & floral border etchings, and heavy gauge brass metal. Ideal for festival celebrations, daily mandir rituals, and auspicious Griha Pravesh gifting.',
+    specifications: [
+      { label: 'Thali Style', value: 'Artisanal Hand-Engraved Designer Motif' },
+      { label: 'Material', value: '100% Virgin Lead-Free Heavy Brass' },
+      { label: 'Crafting', value: 'Hand-Chased Precision Metalwork' },
+      { label: 'Gallery Included', value: '4 High-Resolution Full Angle Views' }
+    ]
+  },
+
   // 12. Copper Pitcher Set
   {
     id: 'shraviko-copper-01',
@@ -698,6 +773,44 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Pyre Structure', value: 'Traditional 3-Step Pyramidal Copper Kund' },
       { label: 'Material', value: '99.6% Certified Pure Uncoated Copper' }
+    ]
+  },
+
+  // 15C. Copper Kalash Pooja Vessel
+  {
+    id: 'copper-kalash-pooja-vessel',
+    name: 'Sacred Tamra Hand-Hammered Pure Copper Kalash Vessel',
+    category: 'copper',
+    categoryName: 'Copper Articles',
+    subcategory: 'Copper Kalash',
+    price: 1490,
+    originalPrice: 1890,
+    rating: 4.99,
+    reviewsCount: 168,
+    tag: 'Pure Copper Kalash',
+    artType: 'kalash',
+    fitMode: 'contain',
+    image: '/assets/Copperkalsh/copperkalsh1.png',
+    images: [
+      '/assets/Copperkalsh/copperkalsh1.png',
+      '/assets/Copperkalsh/copperkalash2.png',
+      '/assets/Copperkalsh/copperkalsh3.png',
+      '/assets/Copperkalsh/copperkalsh5.png'
+    ],
+    weightVariants: [
+      { weight: 'Small (300 ml)', price: 990, originalPrice: 1290 },
+      { weight: 'Medium (500 ml)', price: 1490, originalPrice: 1890, default: true },
+      { weight: 'Large (1 Liter)', price: 2190, originalPrice: 2690 },
+      { weight: 'Royal Heavy (1.5 Liter)', price: 2890, originalPrice: 3490 }
+    ],
+    purity: '99.6% Certified Pure Uncoated Copper',
+    inStock: true,
+    description: 'Authentic 99.6% lab-certified pure copper Kalash vessel (Tamra Jal Kumbh). Crafted with traditional hand-hammered finish for sacred altar water storage, Abhishekam rituals, Kalash Sthapana, and daily health-restorative Tamra Jal drinking.',
+    specifications: [
+      { label: 'Vessel Type', value: 'Vedic Tamra Jal Purna Kumbha' },
+      { label: 'Material', value: '99.6% Certified Uncoated Pure Copper' },
+      { label: 'Crafting', value: 'Hand-Hammered Traditional Texture' },
+      { label: 'Gallery Included', value: '4 High-Resolution Full Angle Views' }
     ]
   },
 
@@ -1101,7 +1214,7 @@ export const PRODUCTS = [
     id: 'vastu-ganesh-siddha-yantra',
     name: 'Sacred 24K Gold Plated Shri Ganesh Siddha Yantra Frame',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Yantras',
     price: 1890,
     originalPrice: 2490,
@@ -1136,7 +1249,7 @@ export const PRODUCTS = [
     id: 'vastu-kuber-dhan-prapti-yantra',
     name: 'Sacred 24K Gold Plated Kuber Dhan Prapti Vastu Yantra',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Wealth Yantras',
     price: 1990,
     originalPrice: 2590,
@@ -1172,7 +1285,7 @@ export const PRODUCTS = [
     id: 'vastu-laxmi-siddha-yantra',
     name: 'Sacred 24K Gold Plated Shri Sampoorna Mahalakshmi Siddha Yantra Frame',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Mahalakshmi Yantras',
     price: 2290,
     originalPrice: 2890,
@@ -1208,7 +1321,7 @@ export const PRODUCTS = [
     id: 'vastu-shani-siddha-yantra',
     name: 'Sacred 24K Gold Plated Shri Shani Dev Vastu Siddha Yantra Frame',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Shani Yantras',
     price: 2190,
     originalPrice: 2790,
@@ -1243,7 +1356,7 @@ export const PRODUCTS = [
     id: 'vastu-crystal-glass-yantra',
     name: 'Sacred Crystal Beveled Glass Sri Vastu Yantra Plaque',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Glass Yantras',
     price: 2190,
     originalPrice: 2790,
@@ -1278,7 +1391,7 @@ export const PRODUCTS = [
     id: 'vastu-brass-pyramid-multitier',
     name: 'Sacred Vastu Multi-Grid Pure Brass Energy Pyramid',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Pyramids',
     price: 2490,
     originalPrice: 3190,
@@ -1313,7 +1426,7 @@ export const PRODUCTS = [
     id: 'vastu-crystal-glass-turtle',
     name: 'Sacred Crystal Glass Vastu Tortoise (Kurma Yantra) with Plate',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
     price: 1490,
     originalPrice: 1890,
@@ -1348,7 +1461,7 @@ export const PRODUCTS = [
     id: 'mandir-dakshinavarti-shankh',
     name: 'Sacred Natural Lakshmi Dakshinavarti Shankh (Right-Handed Conch)',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Sacred Conch Shells',
     price: 3490,
     originalPrice: 4290,
@@ -1384,7 +1497,7 @@ export const PRODUCTS = [
     id: 'mandir-vamavarti-shankh',
     name: 'Sacred Blowing Vamavarti Shankha (Left-Handed Ritual Conch)',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Sacred Conch Shells',
     price: 1890,
     originalPrice: 2490,
@@ -1556,7 +1669,7 @@ export const PRODUCTS = [
     id: 'vastu-crystal-glass-shivling',
     name: 'Sacred Optical Crystal Glass Shivling with Jaladhari Nandi Base',
     category: 'vastu',
-    categoryName: 'Vastu & Pyramids',
+    categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
     price: 1690,
     originalPrice: 2190,

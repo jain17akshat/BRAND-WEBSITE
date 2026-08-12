@@ -127,8 +127,8 @@ export function App() {
     },
     vastu: {
       id: 'vastu',
-      title: 'Vastu & Pyramids',
-      name: 'Vastu & Pyramids',
+      title: 'Vastu & Spiritual',
+      name: 'Vastu & Spiritual',
       image: '/assets/luxmiyantra/laxmi1.png',
       // Yantra is a square design — center perfectly on both
       mobilePosition: 'center center',
@@ -235,32 +235,39 @@ export function App() {
 
   const wishlistProducts = PRODUCTS.filter((p) => wishlistIds.includes(p.id));
 
-  // Navigation handlers for Multi-page view
+  // Navigation handlers for Multi-page view — Jump instantly to top (0,0) so footer doesn't flash
+  const resetScrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    resetScrollToTop();
+  }, [currentPage, selectedProduct?.id, selectedCategoryId]);
+
   const handleSelectCategory = (catId) => {
     if (catId === 'all') {
       setCurrentPage('home');
       setActiveCategory('all');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (catId === 'kits' || catId === 'gifting') {
       setCurrentPage('gifting');
       setSelectedCategoryId('kits');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setSelectedCategoryId(catId);
       setCurrentPage('category');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    resetScrollToTop();
   };
 
   const handleSelectProduct = (product) => {
     setSelectedProduct(product);
     setCurrentPage('product');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    resetScrollToTop();
   };
 
   const handleGoHome = () => {
     setCurrentPage('home');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    resetScrollToTop();
   };
 
   return (

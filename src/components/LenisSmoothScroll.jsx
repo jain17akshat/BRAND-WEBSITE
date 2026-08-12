@@ -20,15 +20,15 @@ export const LenisProvider = ({ children, options = {} }) => {
   const animFrameRef = useRef(null);
 
   useEffect(() => {
+    // Disable browser default scroll restoration to avoid starting at bottom on navigation
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     // Add official Lenis HTML classes
     document.documentElement.classList.add('lenis', 'lenis-smooth');
 
-    // Cubic Ease-Out: (t) => 1 - Math.pow(1 - t, 3)
-    const easing = options.easing || ((t) => 1 - Math.pow(1 - t, 3));
-    const duration = options.duration || 1.0;
     const lerpFactor = 0.1; // Optimal responsiveness without lag
-
-    let lastTime = performance.now();
 
     const onWheel = (e) => {
       // Ignore nested scrollable containers (modals, drawers, dropdowns)
@@ -54,7 +54,17 @@ export const LenisProvider = ({ children, options = {} }) => {
       }
     };
 
-    const updateScroll = (now) => {
+    // Track native window scroll (e.g. window.scrollTo(0,0) or programmatic page jumps)
+    const onNativeScroll = () => {
+      const actualY = window.scrollY;
+      // If external code reset scroll (e.g. to 0 on page change)
+      if (Math.abs(actualY - scrollRef.current.current) > 30) {
+        scrollRef.current.current = actualY;
+        scrollRef.current.target = actualY;
+      }
+    };
+
+    const updateScroll = () => {
       const current = scrollRef.current.current;
       const target = scrollRef.current.target;
       const diff = target - current;
@@ -81,8 +91,8 @@ export const LenisProvider = ({ children, options = {} }) => {
       animFrameRef.current = requestAnimationFrame(updateScroll);
     };
 
-    // Attach wheel listener only for smooth wheel scrolling
     window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('scroll', onNativeScroll, { passive: true });
     animFrameRef.current = requestAnimationFrame(updateScroll);
 
     // Smooth Anchor Link Handling (#section)
@@ -106,12 +116,13 @@ export const LenisProvider = ({ children, options = {} }) => {
     return () => {
       document.documentElement.classList.remove('lenis', 'lenis-smooth');
       window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('scroll', onNativeScroll);
       document.removeEventListener('click', onAnchorClick);
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, []);
+  }, [options.smoothWheel]);
 
-  const scrollTo = (target) => {
+  const scrollTo = (target, opts = {}) => {
     let top = 0;
     if (typeof target === 'number') {
       top = target;
@@ -122,7 +133,13 @@ export const LenisProvider = ({ children, options = {} }) => {
       top = target.getBoundingClientRect().top + window.scrollY;
     }
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    scrollRef.current.target = Math.min(Math.max(top, 0), maxScroll);
+    const finalTop = Math.min(Math.max(top, 0), Math.max(maxScroll, 0));
+
+    scrollRef.current.target = finalTop;
+    if (opts.immediate) {
+      scrollRef.current.current = finalTop;
+      window.scrollTo(0, finalTop);
+    }
   };
 
   return (

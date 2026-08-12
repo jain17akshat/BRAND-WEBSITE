@@ -16,6 +16,11 @@ export const CategoryPage = ({
   const [selectedSubcategory, setSelectedSubcategory] = useState('all');
   const [sortBy, setSortBy] = useState('featured');
 
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
+  }, [category?.id]);
+
   // Filter products by category
   const categoryProducts = products.filter(
     (p) => p.category === category.id ||
@@ -115,6 +120,39 @@ export const CategoryPage = ({
       subcatKey: 'Brass Bells',
       image: '/assets/brass bells/garduda 1.png',
       badge: '4 Masterpiece Types'
+    },
+    {
+      id: 'brass-kalash',
+      title: 'Sacred Brass Kalash',
+      subtitle: 'Handcrafted Virgin Brass Kalash Vessel',
+      subcatKey: 'Brass Kalash',
+      image: '/assets/brass kalash/kalash1.png',
+      badge: 'Pooja Vessel'
+    },
+    {
+      id: 'brass-design-thali',
+      title: 'Designer Brass Thali',
+      subtitle: 'Hand-Engraved Artisanal Design Thali',
+      subcatKey: 'Brass Puja Thali',
+      image: '/assets/brassdesign thali/design1.png',
+      badge: 'Designer Thali'
+    }
+  ] : category.id === 'copper' ? [
+    {
+      id: 'all',
+      title: 'All Copper Articles',
+      subtitle: '99.6% Certified Pure Copper Collection',
+      subcatKey: 'all',
+      image: '/assets/Copper cover.png',
+      badge: 'Full Collection'
+    },
+    {
+      id: 'copper-kalash',
+      title: 'Sacred Copper Kalash',
+      subtitle: 'Hand-Hammered Tamra Kalash Vessel',
+      subcatKey: 'Copper Kalash',
+      image: '/assets/Copperkalsh/copperkalsh1.png',
+      badge: 'Pooja Vessel'
     }
   ] : category.id === 'mandir-essentials' ? [
     {

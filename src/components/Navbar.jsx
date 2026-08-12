@@ -45,7 +45,7 @@ export const Navbar = ({
     { label: 'Copper', category: 'copper' },
     { label: 'Mandir Essentials', category: 'mandir-essentials' },
     { label: 'Incense & Dhoop', category: 'incense' },
-    { label: 'Vastu & Pyramids', category: 'vastu' },
+    { label: 'Vastu & Spiritual', category: 'vastu' },
     { label: 'Corporate Gifting', category: 'kits' },
     { label: 'Custom Craft', category: 'yantras' },
   ];
