@@ -1,0 +1,19 @@
+{
+  "name": "shraviko-backend",
+  "version": "1.0.0",
+  "description": "Shraviko Sacred Living — Express backend with Razorpay & Shiprocket",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.3.1",
+    "razorpay": "^2.9.2"
+  }
+}

@@ -21,10 +21,11 @@ import { LenisProvider } from './components/LenisSmoothScroll';
 import { MandirFeature } from './components/MandirFeature';
 import { VisualGallery } from './components/VisualGallery';
 import { MobileBottomNav } from './components/MobileBottomNav';
+import { TrackOrderPage } from './components/TrackOrderPage';
 
 export function App() {
   // Page Routing & Active Category State
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'category' | 'gifting' | 'product'
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'category' | 'gifting' | 'product' | 'support'
   const [selectedCategoryId, setSelectedCategoryId] = useState('incense');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
@@ -270,6 +271,11 @@ export function App() {
     resetScrollToTop();
   };
 
+  const handleGoSupport = () => {
+    setCurrentPage('support');
+    resetScrollToTop();
+  };
+
   return (
     <LenisProvider options={{ duration: 1.0, easing: (t) => 1 - Math.pow(1 - t, 3), smoothWheel: true, syncTouch: true, touchMultiplier: 1.5 }}>
       <div className="min-h-screen flex flex-col bg-[#FBF9F5] text-[#2C2623]">
@@ -291,7 +297,10 @@ export function App() {
 
         {/* Main Content Pages */}
         <main className="flex-1">
-          {currentPage === 'product' ? (
+          {currentPage === 'support' ? (
+            /* Order Support — Track Order, Returns & FAQ */
+            <TrackOrderPage onBackToHome={handleGoHome} />
+          ) : currentPage === 'product' ? (
             /* Dedicated Product Details Page View */
             <ProductDetailPage
               product={selectedProduct}
@@ -456,7 +465,7 @@ export function App() {
 
         {/* Footer with bottom padding on mobile for sticky nav */}
         <div className="pb-16 md:pb-0">
-          <Footer onSelectCategory={handleSelectCategory} />
+          <Footer onSelectCategory={handleSelectCategory} onGoSupport={handleGoSupport} />
         </div>
 
         {/* Mobile Sticky Bottom Navigation Bar */}

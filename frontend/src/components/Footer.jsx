@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowUp, Instagram, Facebook, Share2, Mail, Phone, MapPin } from 'lucide-react';
 
-export const Footer = ({ onSelectCategory }) => {
+export const Footer = ({ onSelectCategory, onGoSupport }) => {
   const revealPanelRef = useRef(null);
   const brandTextRef = useRef(null);
   const tagTextRef = useRef(null);
@@ -146,18 +146,27 @@ export const Footer = ({ onSelectCategory }) => {
               </ul>
             </div>
 
-            {/* Col 3: Heritage */}
+            {/* Col 3: Help & Policies */}
             <div className="space-y-3">
               <h4 className="font-cinzel text-[10px] sm:text-xs font-semibold text-[#E5C378] tracking-widest uppercase">
-                Heritage
+                Help & Policies
               </h4>
               <ul className="space-y-2 text-xs text-gray-400 font-light">
+                <li>
+                  <button onClick={onGoSupport} className="hover:text-[#C5A059] transition-colors text-left">
+                    Track My Order
+                  </button>
+                </li>
+                <li>
+                  <button onClick={onGoSupport} className="hover:text-[#C5A059] transition-colors text-left">
+                    Returns & Refunds
+                  </button>
+                </li>
                 {[
                   { label: 'Our Artisan Story', href: '#brand-story' },
                   { label: 'Brass & Copper Care', href: '#' },
                   { label: 'Temple Flower Upcycling', href: '#' },
                   { label: 'Vedic Ritual Journal', href: '#' },
-                  { label: 'Corporate Gifting', href: '#' },
                 ].map(({ label, href }) => (
                   <li key={label}>
                     <a href={href} className="hover:text-[#C5A059] transition-colors">{label}</a>

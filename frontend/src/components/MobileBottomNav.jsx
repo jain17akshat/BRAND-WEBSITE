@@ -11,9 +11,9 @@ export const MobileBottomNav = ({
   onOpenCart,
 }) => {
   const items = [
-    { label: 'Home', icon: Home, onClick: onGoHome },
-    { label: 'Categories', icon: Grid2x2, onClick: onOpenCategories },
-    { label: 'Search', icon: Search, onClick: onOpenSearch },
+    { label: 'Home', onClick: onGoHome, icon: Home },
+    { label: 'Categories', onClick: onOpenCategories, icon: Grid2x2 },
+    { label: 'Search', onClick: onOpenSearch, icon: Search },
     {
       label: 'Wishlist',
       icon: Heart,

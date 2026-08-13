@@ -512,10 +512,6 @@ const CategoryProductCard = ({
           </div>
         )}
 
-        <p className="text-[11px] sm:text-xs text-[#5C5450] line-clamp-2 font-light leading-relaxed hidden sm:block">
-          {product.description}
-        </p>
-
         {/* Rating Stars */}
         <div className="flex items-center gap-1 text-[11px] sm:text-xs">
           <div className="flex items-center text-[#D4AF37]">

@@ -307,56 +307,116 @@ export const ProductDetailPage = ({
               </div>
             </div>
 
-            {/* Accordion Tabs */}
+            {/* Accordion & Info Tabs */}
             <div className="border-t border-[#EAE0CD] pt-6 space-y-4">
-              <div className="flex border-b border-[#EAE0CD] overflow-x-auto scrollbar-none">
+              <div className="flex border-b border-[#EAE0CD] overflow-x-auto scrollbar-none gap-1 sm:gap-2">
                 <button
                   onClick={() => setActiveTab('description')}
-                  className={`pb-3 px-3 sm:px-4 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
+                  className={`pb-3 px-3 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
                     activeTab === 'description'
                       ? 'border-[#C5A059] text-[#2C2623]'
                       : 'border-transparent text-gray-400 hover:text-[#2C2623]'
                   }`}
                 >
-                  Description & Significance
+                  Description & Features
                 </button>
                 <button
                   onClick={() => setActiveTab('specs')}
-                  className={`pb-3 px-3 sm:px-4 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
+                  className={`pb-3 px-3 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
                     activeTab === 'specs'
                       ? 'border-[#C5A059] text-[#2C2623]'
                       : 'border-transparent text-gray-400 hover:text-[#2C2623]'
                   }`}
                 >
-                  Specifications & Craft
+                  Specifications
                 </button>
+                {product.careInstructions && (
+                  <button
+                    onClick={() => setActiveTab('care')}
+                    className={`pb-3 px-3 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
+                      activeTab === 'care'
+                        ? 'border-[#C5A059] text-[#2C2623]'
+                        : 'border-transparent text-gray-400 hover:text-[#2C2623]'
+                    }`}
+                  >
+                    Care & Maintenance
+                  </button>
+                )}
+                {product.faqs && (
+                  <button
+                    onClick={() => setActiveTab('faqs')}
+                    className={`pb-3 px-3 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
+                      activeTab === 'faqs'
+                        ? 'border-[#C5A059] text-[#2C2623]'
+                        : 'border-transparent text-gray-400 hover:text-[#2C2623]'
+                    }`}
+                  >
+                    FAQs
+                  </button>
+                )}
               </div>
 
-              {activeTab === 'description' ? (
-                <div className="text-xs text-[#5C5450] font-light leading-relaxed space-y-3">
-                  <p>{product.description}</p>
-                  <p>
-                    Hand-crafted according to ancient Shilpa Shastra guidelines using traditional sand-casting techniques. The precision-tuned clapper creates high-frequency acoustic vibrations that purify the surrounding environment during morning and evening pooja.
-                  </p>
+              {activeTab === 'description' && (
+                <div className="text-xs text-[#5C5450] font-light leading-relaxed space-y-4">
+                  <p className="text-sm font-sans text-[#2C2623]">{product.description}</p>
+                  
+                  {product.keyFeatures && (
+                    <div className="space-y-2 pt-2">
+                      <span className="font-cinzel text-xs font-bold text-[#8C6929] uppercase tracking-wider block">
+                        Key Features & Highlights
+                      </span>
+                      <ul className="space-y-1.5 list-disc list-inside text-xs text-[#4A4441]">
+                        {product.keyFeatures.map((feat, i) => (
+                          <li key={i} className="leading-normal">{feat}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
-              ) : (
+              )}
+
+              {activeTab === 'specs' && (
                 <div className="space-y-2 text-xs">
                   {product.specifications ? (
                     product.specifications.map((spec, i) => (
-                      <div key={i} className="flex justify-between py-1.5 border-b border-[#EAE0CD]/60">
-                        <span className="text-gray-500 font-cinzel">{spec.label}:</span>
-                        <span className="font-bold text-[#2C2623]">{spec.value}</span>
+                      <div key={i} className="flex justify-between py-2 border-b border-[#EAE0CD]/60">
+                        <span className="text-gray-500 font-cinzel font-medium">{spec.label}:</span>
+                        <span className="font-bold text-[#2C2623] text-right ml-4">{spec.value}</span>
                       </div>
                     ))
                   ) : (
                     <div className="py-2 text-gray-500">Standard Vedic brassware specifications apply.</div>
                   )}
                   {selectedVariant && (
-                    <div className="flex justify-between py-1.5 border-b border-[#EAE0CD]/60">
-                      <span className="text-gray-500 font-cinzel">Selected Weight Variant:</span>
+                    <div className="flex justify-between py-2 border-b border-[#EAE0CD]/60">
+                      <span className="text-gray-500 font-cinzel font-medium">Selected Variant:</span>
                       <span className="font-bold text-[#C5A059]">{selectedVariant.weight}</span>
                     </div>
                   )}
+                </div>
+              )}
+
+              {activeTab === 'care' && product.careInstructions && (
+                <div className="space-y-2 text-xs text-[#4A4441]">
+                  <span className="font-cinzel text-xs font-bold text-[#8C6929] uppercase tracking-wider block mb-2">
+                    Brass Care Guidelines
+                  </span>
+                  <ul className="space-y-2 list-disc list-inside font-sans leading-relaxed">
+                    {product.careInstructions.map((step, i) => (
+                      <li key={i}>{step}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {activeTab === 'faqs' && product.faqs && (
+                <div className="space-y-3 text-xs">
+                  {product.faqs.map((faq, i) => (
+                    <div key={i} className="p-3 bg-[#FAF0D9]/50 rounded-xl border border-[#EAD7AF]">
+                      <h4 className="font-cinzel font-bold text-[#2C2623] mb-1">Q: {faq.q}</h4>
+                      <p className="text-[#5C5450] font-sans font-light leading-relaxed">A: {faq.a}</p>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

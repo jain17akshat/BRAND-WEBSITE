@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, ShieldCheck, Lock, ArrowRight, Loader2, AlertCircle, RefreshCw, CreditCard, QrCode, Building2, Banknote } from 'lucide-react';
+import { createRazorpayOrder, verifyPayment } from '../services/api';
 
 export const CheckoutModal = ({
   isOpen,
@@ -24,6 +25,16 @@ export const CheckoutModal = ({
   });
 
   if (!isOpen) return null;
+
+  // Load Razorpay checkout.js script once
+  useEffect(() => {
+    if (document.getElementById('razorpay-script')) return;
+    const script = document.createElement('script');
+    script.id  = 'razorpay-script';
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const shipping = subtotal >= 2999 || subtotal === 0 ? 0 : 99;
@@ -58,29 +69,83 @@ export const CheckoutModal = ({
     },
   ];
 
-  const handleExecutePayment = (e) => {
+  const handleExecutePayment = async (e) => {
     if (e) e.preventDefault();
     if (isProcessing) return;
 
     setIsProcessing(true);
     setPaymentError(false);
 
-    // Simulate backend server-side verification and payment gateway flow
-    setTimeout(() => {
-      // 95% success rate for simulation
-      const isSuccess = Math.random() > 0.05;
+    try {
+      // 1. Create order on backend
+      const receipt = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
+      const { order, key_id, _mock } = await createRazorpayOrder({
+        amount: grandTotal,   // in ₹ — server converts to paise
+        receipt,
+      });
 
-      if (isSuccess) {
-        const generatedId = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
-        setOrderId(generatedId);
+      // 2a. Mock mode — skip modal, go straight to verify
+      if (_mock) {
+        const verified = await verifyPayment({
+          razorpay_order_id:   order.id,
+          razorpay_payment_id: `pay_MOCK${Date.now()}`,
+          razorpay_signature:  'mock_signature',
+          cart: cartItems,
+          customer: formData,
+        });
+        setOrderId(verified.internal_order_id || receipt);
         setOrderComplete(true);
         setIsProcessing(false);
         onClearCart();
-      } else {
-        setIsProcessing(false);
-        setPaymentError(true);
+        return;
       }
-    }, 1400);
+
+      // 2b. Live mode — open Razorpay modal
+      const options = {
+        key:         key_id,
+        amount:      order.amount,
+        currency:    order.currency,
+        name:        'Shraviko Sacred Living',
+        description: 'Sacred & Artisan Products',
+        order_id:    order.id,
+        prefill: {
+          name:    formData.name,
+          email:   formData.email,
+          contact: formData.phone,
+        },
+        theme:   { color: '#C5A059' },
+        modal:   { ondismiss: () => setIsProcessing(false) },
+        handler: async (response) => {
+          try {
+            // 3. Verify payment signature on server
+            const verified = await verifyPayment({
+              razorpay_order_id:   response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature:  response.razorpay_signature,
+              cart: cartItems,
+              customer: formData,
+            });
+            setOrderId(verified.internal_order_id || receipt);
+            setOrderComplete(true);
+            setIsProcessing(false);
+            onClearCart();
+          } catch {
+            setPaymentError(true);
+            setIsProcessing(false);
+          }
+        },
+      };
+
+      if (!window.Razorpay) {
+        throw new Error('Razorpay script not loaded. Please refresh and try again.');
+      }
+      new window.Razorpay(options).open();
+
+    } catch (err) {
+      console.error('Payment error:', err);
+      setPaymentError(true);
+      setIsProcessing(false);
+    }
   };
 
   const handleResetCheckout = () => {
