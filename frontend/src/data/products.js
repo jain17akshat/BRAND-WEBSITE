@@ -2,7 +2,7 @@ export const CATEGORIES = [
   { id: 'all', name: 'All Collections' },
   { id: 'brass', name: 'Brass Articles', count: 17 },
   { id: 'copper', name: 'Copper Articles', count: 5 },
-  { id: 'mandir-essentials', name: 'Mandir Essentials', count: 12 },
+  { id: 'mandir-essentials', name: 'Mandir Essentials', count: 13 },
   { id: 'incense', name: 'Incense & Dhoop', count: 5 },
   { id: 'vastu', name: 'Vastu & Spiritual', count: 11 },
   { id: 'kits', name: 'Pooja Kits & Boxes', count: 1 },
@@ -669,8 +669,7 @@ export const PRODUCTS = [
     images: [
       '/assets/Trishul with damru/trishul with damru1.png',
       '/assets/Trishul with damru/trishul with damru2.png',
-      '/assets/Trishul/trishul 2.png',
-      '/assets/Trishul/trishul 4.png'
+      '/assets/Trishul with damru/trishul with damru3.png'
     ],
     weightVariants: [
       { weight: '6 Inch Classic', price: 1490, originalPrice: 1890 },
@@ -1586,10 +1585,10 @@ export const PRODUCTS = [
     tag: 'Pooja Chowki',
     artType: 'chowki',
     fitMode: 'contain',
-    image: '/assets/Wooden Choki/chowki4.jpg',
+    image: '/assets/Wooden Choki/chowki1.png',
     images: [
-      '/assets/Wooden Choki/chowki4.jpg',
       '/assets/Wooden Choki/chowki1.png',
+      '/assets/Wooden Choki/chowki4.jpg',
       '/assets/Wooden Choki/chowki 2.png',
       '/assets/Wooden Choki/chowki5.jpg',
       '/assets/Wooden Choki/chowki6.png'
@@ -1714,10 +1713,10 @@ export const PRODUCTS = [
     tag: 'Sacred Chawar',
     artType: 'chawar',
     fitMode: 'contain',
-    image: '/assets/chawar/chawar 1.jpg',
+    image: '/assets/chawar/Chawar.jpg',
     images: [
-      '/assets/chawar/chawar 1.jpg',
       '/assets/chawar/Chawar.jpg',
+      '/assets/chawar/chawar 1.jpg',
       '/assets/chawar/chawar 2.jpg',
       '/assets/chawar/chawar 3.jpg',
       '/assets/chawar/chawr 4.png'
@@ -1963,35 +1962,64 @@ export const PRODUCTS = [
   // 27. Velvet Pooja Asan Mat
   {
     id: 'mandir-royal-velvet-asan-mat',
-    name: 'Sacred Royal Velvet Deity Pooja Asan Mat Cloth',
+    name: 'Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Asan Mats',
-    price: 390,
-    originalPrice: 590,
+    price: 590,
+    originalPrice: 890,
     rating: 4.97,
     reviewsCount: 142,
     tag: 'Velvet Asan',
     artType: 'asan',
     fitMode: 'contain',
-    image: '/assets/Velvet asan/asan 1.png',
+    image: '/assets/Velvet asan/asan1.png',
     images: [
-      '/assets/Velvet asan/asan 1.png',
-      '/assets/Velvet asan/asan 2.png',
-      '/assets/Velvet asan/asan 3.png',
-      '/assets/Velvet asan/asan 4.png'
+      '/assets/Velvet asan/asan1.png',
+      '/assets/Velvet asan/asan2.jpg',
+      '/assets/Velvet asan/asan3.png',
+      '/assets/Velvet asan/asan4.png',
+      '/assets/Velvet asan/asan5.jpg'
     ],
     weightVariants: [
-      { weight: '8 x 8 Inch Mat', price: 390, originalPrice: 590, default: true },
-      { weight: '12 x 12 Inch Mat', price: 690, originalPrice: 990 },
-      { weight: '18 x 18 Inch Mat', price: 1190, originalPrice: 1590 }
+      { weight: 'Pack of 3 (14 × 26 Inch)', price: 590, originalPrice: 890, default: true },
+      { weight: 'Pack of 6 (14 × 26 Inch)', price: 1090, originalPrice: 1590 }
     ],
-    purity: 'Heavy Micro-Velvet & Zari Embroidery',
+    purity: 'Soft Micro-Velvet & Golden Lace Border',
     inStock: true,
-    description: 'Sacred royal velvet deity mat with golden zari brocade lace border. Designed as an auspicious pedestal cloth for idols, chowkis, and thalis.',
+    description: 'Bring a traditional and elegant touch to your home temple with our Red Velvet Pooja Aasan Cloth. Made from soft velvet fabric and finished with a decorative golden lace border, this aasan is designed for placing God idols on chowkis, temple platforms, pooja shelves and other sacred spaces. The rich red color and traditional golden border complement the beauty of your mandir while creating a neat and graceful setting for daily pooja and festive occasions. Its 14 × 26 inch rectangular size provides ample space for a variety of idols and pooja arrangements. The pack of 3 makes it convenient to use across multiple idols or different areas of your home temple. The cloth is washable, reusable and suitable for regular use.',
+    shortDescription: 'Red Velvet Pooja Aasan Cloth with decorative golden lace border (Pack of 3, Size 14 × 26 inch). Soft, washable, and reusable pedestal cloth for God idols, chowkis, and home mandirs.',
+    seoTitle: 'Red Velvet Pooja Aasan Cloth with Golden Border (Pack of 3) | Shraviko',
+    metaDescription: 'Shop Red Velvet Pooja Aasan Cloth with Golden Border (Pack of 3). Soft washable velvet mat for God idols, chowkis, mandir shelves, and festive setups. Size 14x26 inch.',
     specifications: [
-      { label: 'Brocade Work', value: 'Golden Zari Lace & Sequin Embroidery' },
-      { label: 'Usage', value: 'Idol Throne Mat, Chowki Base, Mandir Altar' }
+      { label: 'Product', value: 'Red Velvet Pooja Aasan Cloth' },
+      { label: 'Fabric Material', value: 'Soft Micro-Velvet' },
+      { label: 'Border Detail', value: 'Decorative Golden Lace Border' },
+      { label: 'Color', value: 'Rich Devotional Red' },
+      { label: 'Dimensions', value: '14 × 26 Inches' },
+      { label: 'Pack Quantity', value: 'Pack of 3 Aasan Cloths' },
+      { label: 'Maintenance', value: 'Washable & Reusable' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '3 × Red Velvet Pooja Aasan Cloths' }
+    ],
+    keyFeatures: [
+      'Soft and Elegant Velvet Fabric – Premium micro-velvet material with a luxurious texture.',
+      'Decorative Golden Lace Border – Intricate golden zari lace lining that enhances your mandir aesthetics.',
+      'Generous 14 × 26 Inch Size – Spacious rectangular dimensions suitable for chowkis, platforms, and large idols.',
+      'Convenient Pack of 3 – Comes in a set of 3 to accommodate multiple deities and altar spaces.',
+      'Washable & Reusable – Durable fabric easy to clean, maintain, and reuse for regular worship.',
+      'Versatile Devotional Decor – Ideal for home mandirs, Ganesh Baithak, festive decorations, and religious rituals.'
+    ],
+    careInstructions: [
+      'Gently hand wash in cold water using mild detergent when required.',
+      'Do not bleach or scrub the golden lace border vigorously.',
+      'Air dry flat in shade and iron lightly on low heat from the reverse side if needed.'
+    ],
+    faqs: [
+      { q: 'What is the size of each aasan cloth?', a: 'Each red velvet aasan cloth measures 14 × 26 inches.' },
+      { q: 'How many aasan cloths are included in the pack?', a: 'This product comes as a Pack of 3 aasan cloths.' },
+      { q: 'Is the velvet cloth washable?', a: 'Yes, the fabric is gentle hand-washable and reusable for regular worship.' },
+      { q: 'What can this aasan cloth be used for?', a: 'It is ideal for placing God idols, decorating chowkis, lining temple shelves, Ganesh Baithak, and festive altar setups.' }
     ]
   },
 
@@ -2475,12 +2503,12 @@ export const PRODUCTS = [
   // 33. Vastu Brass Pyramid
   {
     id: 'vastu-brass-pyramid-multitier',
-    name: 'Sacred Vastu Multi-Grid Pure Brass Energy Pyramid',
+    name: 'Shraviko Premium Brass Vastu Pyramid',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Pyramids',
-    price: 2490,
-    originalPrice: 3190,
+    price: 1490,
+    originalPrice: 1890,
     rating: 4.98,
     reviewsCount: 148,
     tag: 'Vastu Energy',
@@ -2494,23 +2522,50 @@ export const PRODUCTS = [
       '/assets/pyramid/pyramid 3.png'
     ],
     weightVariants: [
-      { weight: '3 x 3 Inch', price: 1490, originalPrice: 1890 },
-      { weight: '4 x 4 Inch', price: 2490, originalPrice: 3190, default: true },
-      { weight: '6 x 6 Inch', price: 3890, originalPrice: 4690 }
+      { weight: 'Pack of 1', price: 690, originalPrice: 890 },
+      { weight: 'Pack of 2', price: 1290, originalPrice: 1690 },
+      { weight: 'Pack of 3', price: 1790, originalPrice: 2390, default: true },
+      { weight: 'Pack of 4', price: 2290, originalPrice: 2990 }
     ],
     purity: '100% Solid Heavy Virgin Brass',
     inStock: true,
-    description: 'Precision-engineered multi-grid Vastu brass pyramid designed according to sacred geometric proportions to neutralize directional doshas.',
+    description: 'Bring a touch of traditional Indian craftsmanship to your space with the Shraviko Premium Brass Vastu Pyramid. Crafted from brass with a refined golden finish, this compact three-layer pyramid combines traditional design with an elegant decorative appeal. Its distinctive pyramid structure makes it suitable for pooja rooms, home temples, study tables, office desks, shop counters, shelves, and meditation spaces. The compact form allows it to fit naturally into both traditional and contemporary interiors. Made from brass and finished with attention to detail, this pyramid is designed to complement your spiritual and decorative surroundings. Its classic golden appearance adds a subtle traditional character to your space without being overly elaborate.',
+    shortDescription: 'Shraviko Premium Brass Vastu Pyramid with a refined golden finish and 3-layer design. Crafted for pooja rooms, home temples, office desks, study tables, and meditation spaces. Available in single and multi-packs.',
+    seoTitle: 'Shraviko Premium Brass Vastu Pyramid (3-Layer Golden Finish) | Shraviko',
+    metaDescription: 'Shop Shraviko Premium Brass Vastu Pyramid. Crafted from pure brass with a golden polished finish for pooja rooms, home mandirs, office desks and study tables. Available in Packs of 1, 2, 3 and 4.',
     specifications: [
-      { label: 'Geometry', value: 'Vedic 9-Grid Pyramid Yantra' },
-      { label: 'Material', value: '100% Solid Virgin Brass' }
+      { label: 'Product Type', value: 'Vastu Brass Pyramid' },
+      { label: 'Material', value: '100% Solid Virgin Brass' },
+      { label: 'Design Structure', value: '3-Layer Pyramid' },
+      { label: 'Finish', value: 'Golden / Polished' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'Usage', value: 'Pooja, Mandir Decor, Office Desks & Meditation' },
+      { label: 'Available Packs', value: 'Pack of 1, 2, 3, and 4' }
+    ],
+    keyFeatures: [
+      'Pure Brass Construction – Crafted from solid high-grade brass with a refined golden polish.',
+      '3-Layer Pyramid Design – Classic three-tiered geometric structure for traditional and spiritual appeal.',
+      'Compact & Versatile Placement – Fits easily in home mandirs, pooja rooms, study tables, office desks, and shop counters.',
+      'Thoughtful Gifting Choice – Suitable for housewarming ceremonies, Diwali, festivals, and office inaugurations.',
+      'Complements All Interiors – Blends naturally into both traditional and contemporary decor styles.'
+    ],
+    careInstructions: [
+      'Wipe with a soft, dry cloth after regular use to remove dust.',
+      'Periodically polish with a brass cleaner to retain its golden luster.',
+      'Avoid harsh chemicals or abrasive scrubbers that may scratch the surface.'
+    ],
+    faqs: [
+      { q: 'Where can I place the Brass Vastu Pyramid?', a: 'It can be placed in pooja rooms, home temples, office desks, study tables, shop counters, shelves, or meditation spaces.' },
+      { q: 'What material is the pyramid made of?', a: 'It is crafted from solid brass with a golden polished finish.' },
+      { q: 'What pack options are available?', a: 'It is available in Packs of 1, 2, 3, and 4.' },
+      { q: 'Is it suitable for gifting?', a: 'Yes, it makes an ideal gift for housewarming, Diwali, festivals, and office inaugurations.' }
     ]
   },
 
   // 34. Crystal Glass Vastu Turtle
   {
     id: 'vastu-crystal-glass-turtle',
-    name: 'Sacred Crystal Glass Vastu Tortoise (Kurma Yantra) with Plate',
+    name: 'Shraviko Crystal Turtle with Glass Plate',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
@@ -2535,17 +2590,43 @@ export const PRODUCTS = [
     ],
     purity: 'High-Transmission Beveled Optical Crystal Glass',
     inStock: true,
-    description: 'Consecrated high-clarity crystal glass Vastu tortoise (Kurma) set with decorative glass water plate for stability, longevity, and wealth.',
+    description: 'Add an elegant touch of traditional symbolism to your space with the Shraviko Crystal Turtle with Glass Plate. Crafted with a clear, polished crystal finish and presented on a matching glass plate, this decorative piece combines refined aesthetics with the timeless symbolism of the turtle. The turtle has long been regarded in Feng Shui and Vastu traditions as a symbol associated with stability, longevity, protection, and balance. This piece is designed for those who appreciate these traditional practices while looking for a sophisticated decorative accent for their surroundings. The transparent finish allows light to reflect beautifully across the surface, giving the turtle a clean and refined appearance. The accompanying glass plate provides an elevated presentation and a dedicated base for display.',
+    shortDescription: 'Shraviko Crystal Turtle with matching glass plate crafted from polished optical crystal glass. Associated with stability, longevity, and wealth in Feng Shui and Vastu traditions.',
+    seoTitle: 'Shraviko Crystal Turtle with Glass Plate | Vastu & Feng Shui Tortoise | Shraviko',
+    metaDescription: 'Shop Shraviko Crystal Turtle with Glass Plate. Crafted from polished optical crystal glass for home decor, office desks, living rooms, and spiritual spaces.',
     specifications: [
-      { label: 'Vastu Symbol', value: 'Kurma Dev / Stability & Abundance' },
-      { label: 'Material', value: 'Optical Grade Beveled Crystal Glass' }
+      { label: 'Product', value: 'Crystal Turtle with Glass Plate' },
+      { label: 'Material', value: 'High-Purity Optical Crystal Glass & Glass Plate' },
+      { label: 'Color & Finish', value: 'Transparent / High-Clarity Polished' },
+      { label: 'Design Motif', value: 'Sacred Kurma / Tortoise' },
+      { label: 'Usage', value: 'Home Décor, Office Décor, Vastu & Traditional Display' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '1 × Crystal Turtle, 1 × Matching Glass Display Plate' }
+    ],
+    keyFeatures: [
+      'Elegant Crystal Craftsmanship – Crafted from clear, high-clarity optical glass with light-reflecting facets.',
+      'Matching Glass Plate Base – Comes with a dedicated transparent glass plate for elevated display.',
+      'Symbol of Stability & Longevity – Rooted in Feng Shui and Vastu traditions for balance, protection, and harmony.',
+      'Versatile Placement – Suitable for living room shelves, office desks, study tables, mandirs, and reception counters.',
+      'Meaningful Gifting Choice – Ideal gift for housewarming ceremonies, weddings, festivals, and office inaugurations.'
+    ],
+    careInstructions: [
+      'Handle with care as it is crafted from optical glass.',
+      'Clean regularly with a soft, lint-free cloth or dry microfiber cloth to remove dust and fingerprints.',
+      'Avoid abrasive scrubbers, harsh chemicals, or dropping on hard surfaces.'
+    ],
+    faqs: [
+      { q: 'What is included in the package?', a: 'The package includes one polished crystal turtle and one matching glass display plate.' },
+      { q: 'Where should the Crystal Turtle be placed?', a: 'It can be placed in living rooms, display shelves, office desks, study tables, home temples, or reception counters.' },
+      { q: 'What material is the turtle made of?', a: 'It is crafted from high-clarity polished optical crystal glass.' },
+      { q: 'Is it suitable for gifting?', a: 'Yes, its elegant presentation makes it a popular choice for housewarmings, festivals, corporate gifting, and weddings.' }
     ]
   },
 
   // 35. Dakshinavarti Shankh
   {
     id: 'mandir-dakshinavarti-shankh',
-    name: 'Sacred Natural Lakshmi Dakshinavarti Shankh (Right-Handed Conch)',
+    name: 'Shraviko Natural Dakshinavarti Shankh',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Sacred Conch Shells',
@@ -2571,17 +2652,44 @@ export const PRODUCTS = [
     ],
     purity: '100% Natural Consecrated Sea Conch Shell',
     inStock: true,
-    description: 'Consecrated right-handed Valampuri Dakshinavarti Shankh associated with Goddess Lakshmi and Lord Vishnu. Attracts wealth and neutralizes Vastu flaws.',
+    description: 'Bring a revered symbol of Indian spiritual tradition into your sacred space with the Shraviko Natural Dakshinavarti Shankh. This naturally formed right-handed conch shell is carefully selected for its traditional form, natural appearance, and suitability for pooja and devotional spaces. Known traditionally as a Dakshinavarti Shankh, its opening curves towards the right when viewed from the front. In Hindu tradition, the Dakshinavarti Shankh holds special significance and is commonly kept in home temples and used as part of devotional practices. Each Shankh is naturally formed, giving every piece its own subtle variations in shape, markings, texture, and size. Our shells are carefully selected for their overall appearance and traditional form before being prepared for your sacred space.',
+    shortDescription: 'Shraviko Natural Dakshinavarti Shankh (right-handed non-blowable conch shell) carefully selected for home mandirs, daily puja, Abhishek, and sacred rituals.',
+    seoTitle: 'Shraviko Natural Dakshinavarti Shankh (Right-Handed Conch Shell) | Shraviko',
+    metaDescription: 'Shop Shraviko Natural Dakshinavarti Shankh. Authentic right-handed ocean conch shell for home temples, daily pooja, Abhishek, Diwali and housewarming gifting.',
     specifications: [
-      { label: 'Conch Type', value: 'Valampuri Dakshinavarti (Right-Handed Spiral)' },
-      { label: 'Material', value: '100% Natural Ocean Shell' }
+      { label: 'Product', value: 'Natural Dakshinavarti Shankh' },
+      { label: 'Type', value: 'Right-Handed Conch Shell (Non-Blowable)' },
+      { label: 'Material', value: '100% Natural Ocean Conch Shell' },
+      { label: 'Color', value: 'Natural Off-White / Cream' },
+      { label: 'Size Range', value: 'Approximately 3.5–5 inches (Variations apply)' },
+      { label: 'Usage', value: 'Pooja, Devotional Display, Abhishek & Rituals' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '1 × Natural Dakshinavarti Shankh' }
+    ],
+    keyFeatures: [
+      'Authentic Right-Handed Spiral – Naturally formed shell opening towards the right, sacred to Goddess Lakshmi & Lord Vishnu.',
+      'Carefully Selected Natural Shells – Handpicked for traditional shape, natural texture, and aesthetic grace.',
+      'Ideal for Pooja & Abhishek – Perfect for home altars, mandirs, temple display, and holding ritual offerings.',
+      'Non-Blowable Worship Shankh – Traditionally placed in altars for devotional presence and prosperity blessings.',
+      'Meaningful Traditional Gift – Thoughtful choice for housewarmings, Diwali, Navratri, weddings, and temple ceremonies.'
+    ],
+    careInstructions: [
+      'Clean gently with plain water or Gangajal and dry with a soft cloth.',
+      'Do not expose to harsh chemicals, strong detergents, or boiling hot liquids.',
+      'Place securely on a soft fabric asan, stand, or brass base to prevent accidental rolling.'
+    ],
+    faqs: [
+      { q: 'Is this Dakshinavarti Shankh blowable?', a: 'No, Dakshinavarti (right-handed) Shankhs are non-blowable worship shells kept in altars for devotional rituals.' },
+      { q: 'What makes a Dakshinavarti Shankh special?', a: 'It features a natural right-turning spiral, which is traditionally associated with Goddess Lakshmi and Lord Vishnu.' },
+      { q: 'Are all pieces identical?', a: 'No, as each shell is naturally formed by nature, subtle variations in size, shape, color, and texture make each piece unique.' },
+      { q: 'Can it be used for Abhishek?', a: 'Yes, it can be used during traditional pooja and Abhishek practices according to your family customs.' }
     ]
   },
 
   // 36. Vamavarti Shankha
   {
     id: 'mandir-vamavarti-shankh',
-    name: 'Sacred Blowing Vamavarti Shankha (Left-Handed Ritual Conch)',
+    name: 'Shraviko Vamavarti Blowing Shankh',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Sacred Conch Shells',
@@ -2606,17 +2714,45 @@ export const PRODUCTS = [
     ],
     purity: '100% Natural High-Resonance Blowing Conch',
     inStock: true,
-    description: 'Authentic left-handed Vamavarti Shankh engineered with smooth natural mouthpiece for easy blowing. Emits deep cosmic Om sound frequency.',
+    description: 'Bring a timeless element of Indian devotional tradition into your sacred space with the Shraviko Vamavarti Blowing Shankh. Naturally formed and selected for its traditional appearance, this white conch shell is suitable for pooja, aarti, devotional ceremonies, and home temple display. The Shankh holds an important place in Hindu worship and is traditionally blown during various religious rituals and ceremonies. Its distinctive natural form also makes it a beautiful addition to a home mandir or spiritual space. Every conch shell is naturally formed, so each piece has its own character. Natural variations in shape, size, texture, colour, markings, and surface appearance are expected and make each Shankh unique.',
+    shortDescription: 'Shraviko Vamavarti Blowing Shankh naturally formed for smooth blowing during daily pooja, Aarti, and religious ceremonies. Approx. 5-inch natural white conch shell.',
+    seoTitle: 'Shraviko Vamavarti Blowing Shankh (Natural White Conch Shell) | Shraviko',
+    metaDescription: 'Shop Shraviko Vamavarti Blowing Shankh. Authentic left-handed blowable ocean conch shell for home temples, daily pooja, Aarti, festive worship, and gifting.',
     specifications: [
-      { label: 'Conch Type', value: 'Blowing Vamavarti (Left-Handed Spiral)' },
-      { label: 'Sound Resonance', value: 'High-Pitch Om Frequency Sound' }
+      { label: 'Product', value: 'Vamavarti Blowing Shankh' },
+      { label: 'Type', value: 'Vamavarti (Left-Handed Spiral)' },
+      { label: 'Blowable', value: 'Yes (Blowing Conch Shell)' },
+      { label: 'Material', value: 'Natural Ocean Conch Shell' },
+      { label: 'Colour', value: 'Natural White' },
+      { label: 'Approximate Size', value: '5 inches' },
+      { label: 'Usage', value: 'Pooja, Aarti & Devotional Practices' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '1 × Natural Vamavarti Blowing Shankh' }
+    ],
+    keyFeatures: [
+      'Authentic Blowable Shankh – Features a smooth natural mouthpiece suitable for traditional ritual blowing.',
+      'Naturally Formed Shell – Unique natural white conch shell with distinctive organic contours and textures.',
+      'Essential for Pooja & Aarti – Traditionally blown during morning/evening Aarti, auspicious ceremonies, and festivals.',
+      'Devotional Mandir Decor – Makes a beautiful sacred centerpiece when displayed on altars and mandir shelves.',
+      'Thoughtful Spiritual Gift – Ideal for housewarmings, Diwali, Navratri, weddings, and temple inaugurations.'
+    ],
+    careInstructions: [
+      'Clean gently with plain water after blowing or ritual use and allow to dry thoroughly.',
+      'Store upright or on a soft fabric cushion/asan to protect the natural mouthpiece.',
+      'Do not use harsh chemical cleaners, bleach, or boiling water.'
+    ],
+    faqs: [
+      { q: 'Is this Vamavarti Shankh blowable?', a: 'Yes, this Vamavarti Shankh is naturally formed with a mouthpiece suitable for blowing during Aarti and rituals.' },
+      { q: 'What sound does the blowing Shankh produce?', a: 'When blown correctly, it produces a clear, deep resonant chime traditionally associated with divine cosmic vibrations.' },
+      { q: 'Are all shells identical in shape and color?', a: 'No, because each shell is naturally formed in the ocean, subtle variations in size, shape, markings, and texture are natural.' },
+      { q: 'How should I clean the Shankh after blowing?', a: 'Rinse with clean water, wipe gently with a soft cloth, and let it dry completely in a clean space.' }
     ]
   },
 
   // 37. Kamdhenu Cow & Calf
   {
     id: 'brass-kamdhenu-cow-statue',
-    name: 'Sacred Handcrafted Pure Virgin Brass Kamdhenu Cow & Calf Idol',
+    name: 'Shraviko Brass Kamdhenu Cow with Calf Idol',
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
@@ -2635,23 +2771,52 @@ export const PRODUCTS = [
       '/assets/kamdhenu/kamdhenu 4.jpg'
     ],
     weightVariants: [
-      { weight: 'Small (250 G - 3.5 Inch)', price: 1490, originalPrice: 1890 },
+      { weight: 'Compact (7 × 3 × 5 cm - 70 G)', price: 1490, originalPrice: 1890 },
       { weight: 'Medium (450 G - 5 Inch)', price: 2490, originalPrice: 3190, default: true },
       { weight: 'Royal Large (850 G - 7 Inch)', price: 3890, originalPrice: 4790 }
     ],
-    purity: '100% Solid Virgin Lead-Free Brass',
+    purity: '100% Solid Heavy Virgin Brass',
     inStock: true,
-    description: 'Hand-carved pure virgin brass Kamdhenu Cow and Calf (Gau Mata) idol. Symbolizes wish fulfillment, maternal protection, and Vastu harmony.',
+    description: 'Bring a timeless symbol of Indian tradition into your sacred space with the Shraviko Brass Kamdhenu Cow with Calf Idol. Crafted in brass with a traditional finish, this beautifully detailed figurine features Kamdhenu with her calf and adds a meaningful devotional presence to your home or workspace. In Hindu tradition, Kamdhenu is revered as a sacred cow and is associated with nurturing, abundance, care, and maternal protection. The cow and calf together represent the enduring bond of care and nourishment, making this figurine a meaningful addition to traditional spaces. The brass construction gives the idol a warm, timeless appearance that complements both traditional and contemporary interiors.',
+    shortDescription: 'Shraviko Brass Kamdhenu Cow with Calf Idol with traditional brass finish (~7 × 3 × 5 cm, 70g weight). Symbol of nurturing, abundance, and Vastu harmony for home & office.',
+    seoTitle: 'Shraviko Brass Kamdhenu Cow with Calf Idol (Gau Mata Figurine) | Shraviko',
+    metaDescription: 'Shop Shraviko Brass Kamdhenu Cow with Calf Idol. Handcrafted traditional brass Gau Mata figurine for home mandirs, living room shelves, office desks, and housewarming gifting.',
     specifications: [
-      { label: 'Deity Motif', value: 'Kamdhenu Sacred Wish-Fulfilling Cow & Calf' },
-      { label: 'Material', value: '100% Solid Heavy Virgin Brass' }
+      { label: 'Product', value: 'Kamdhenu Cow with Calf Idol' },
+      { label: 'Material', value: '100% Solid Heavy Virgin Brass' },
+      { label: 'Finish', value: 'Traditional Brass Polish' },
+      { label: 'Color', value: 'Brass / Golden' },
+      { label: 'Design Motif', value: 'Kamdhenu Cow with Calf' },
+      { label: 'Dimensions', value: 'Approximately 7 × 3 × 5 cm' },
+      { label: 'Weight', value: 'Approximately 70 g' },
+      { label: 'Usage', value: 'Pooja & Home Décor' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '1 × Brass Kamdhenu Cow with Calf Idol' }
+    ],
+    keyFeatures: [
+      'Authentic Brass Craftsmanship – Solid brass figurine with intricate detailing of Gau Mata and her calf.',
+      'Symbol of Abundance & Nurturing – Kamdhenu revered in Vastu and Hindu traditions for prosperity and maternal protection.',
+      'Compact & Versatile Size – Dimensions approx. 7 × 3 × 5 cm (70g), ideal for home mandirs, desks, and shelves.',
+      'Complements All Interiors – Warm golden brass luster fits both classic and modern interior themes.',
+      'Meaningful Gifting Choice – Thoughtful traditional gift for housewarmings, Diwali, weddings, and office inaugurations.'
+    ],
+    careInstructions: [
+      'Wipe gently with a soft, dry cloth to remove dust.',
+      'Avoid prolonged exposure to water and harsh chemical cleaners.',
+      'Use standard brass polish periodically if you wish to restore original shine.'
+    ],
+    faqs: [
+      { q: 'What material is the Kamdhenu Cow idol made of?', a: 'It is crafted from solid brass with a traditional golden polish.' },
+      { q: 'What are the dimensions and weight of the figurine?', a: 'It measures approximately 7 × 3 × 5 cm and weighs around 70 grams.' },
+      { q: 'Where can I place the Kamdhenu Cow with Calf idol?', a: 'It can be placed in home mandirs, living room shelves, office desks, study tables, or reception counters.' },
+      { q: 'What is the significance of Kamdhenu Cow with Calf in Vastu?', a: 'Kamdhenu with her calf symbolizes abundance, maternal care, peace, and positive energy harmony in home and workplace.' }
     ]
   },
 
   // 38. Siddhi Vinayak Ganesh Ji
   {
     id: 'brass-ganesh-ji-statue',
-    name: 'Sacred Handcrafted Pure Virgin Brass Siddhi Vinayak Ganesh Idol',
+    name: 'Shraviko Pure Brass Lord Ganesha Idol',
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
@@ -2671,23 +2836,51 @@ export const PRODUCTS = [
       '/assets/ganeshji/brassganesh5.png'
     ],
     weightVariants: [
-      { weight: 'Small (200 G - 3 Inch)', price: 1390, originalPrice: 1790 },
-      { weight: 'Medium (400 G - 4.5 Inch)', price: 2290, originalPrice: 2890, default: true },
-      { weight: 'Royal Large (750 G - 6.5 Inch)', price: 3690, originalPrice: 4590 }
+      { weight: 'Compact (5.5 cm - 84 G)', price: 990, originalPrice: 1390 },
+      { weight: 'Medium (4.5 Inch - 400 G)', price: 2290, originalPrice: 2890, default: true },
+      { weight: 'Royal Large (6.5 Inch - 750 G)', price: 3690, originalPrice: 4590 }
     ],
-    purity: '100% Pure Virgin Lead-Free Brass',
+    purity: '100% Solid Heavy Golden Brass',
     inStock: true,
-    description: 'Handcrafted solid virgin brass Lord Siddhi Vinayak Ganesha idol with detailed trunk, halo aura, and bowl of modaks for obstacle removal.',
+    description: 'Bring timeless craftsmanship and devotional beauty to your sacred space with the Shraviko Pure Brass Lord Ganesha Idol. Crafted in brass with a refined polished finish, this traditional Ganesh Murti is designed for home temples, pooja rooms, offices, and other spaces where you wish to keep a revered symbol of Lord Ganesha. Lord Ganesha is traditionally worshipped as the deity associated with wisdom, auspicious beginnings, and the removal of obstacles. This idol is suitable for daily worship as well as festive and devotional occasions. The idol is crafted in brass and finished to highlight the intricate features of Lord Ganesha. Its warm golden appearance complements both traditional pooja spaces and contemporary interiors.',
+    shortDescription: 'Shraviko Pure Brass Lord Ganesha Idol with golden polished finish (~5.5 cm height, 84g weight). Ideal for home mandirs, office desks, study tables, and Ganesh Chaturthi gifting.',
+    seoTitle: 'Shraviko Pure Brass Lord Ganesha Idol (Golden Polished Murti) | Shraviko',
+    metaDescription: 'Shop Shraviko Pure Brass Lord Ganesha Idol. Handcrafted golden brass Ganesh murti for home temples, office desks, car dashboards, and Ganesh Chaturthi gifting.',
     specifications: [
-      { label: 'Deity Motif', value: 'Lord Siddhi Vinayak Ganesha' },
-      { label: 'Material', value: '100% Solid Heavy Lead-Free Virgin Brass' }
+      { label: 'Product', value: 'Lord Ganesha Idol' },
+      { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Finish', value: 'Polished Golden Brass' },
+      { label: 'Height', value: 'Approximately 5.5 cm' },
+      { label: 'Weight', value: 'Approximately 84 g' },
+      { label: 'Usage', value: 'Pooja & Home Décor' },
+      { label: 'Suitable For', value: 'Home, Office & Sacred Spaces' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '1 × Pure Brass Lord Ganesha Idol' }
+    ],
+    keyFeatures: [
+      'Pure Brass Craftsmanship – Crafted from solid brass with a warm, polished golden finish.',
+      'Symbol of Wisdom & Good Fortune – Lord Ganesha revered for auspicious beginnings and obstacle removal.',
+      'Compact & Versatile Size – Height approx. 5.5 cm, weight 84g, perfect for mandirs, office desks, and car dashboards.',
+      'Intricate Handcrafted Detail – Sculpts traditional facial features, trunk, and devotional aura.',
+      'Thoughtful Auspicious Gift – Ideal choice for Ganesh Chaturthi, housewarming, office inauguration, and Diwali.'
+    ],
+    careInstructions: [
+      'Wipe gently with a soft, dry cloth to remove dust.',
+      'Avoid prolonged exposure to moisture and harsh chemical cleaners.',
+      'Use standard brass polish periodically if you wish to restore intense luster.'
+    ],
+    faqs: [
+      { q: 'What is the material and finish of this Ganesha idol?', a: 'It is crafted from solid brass with a polished golden finish.' },
+      { q: 'What are the dimensions and weight of the idol?', a: 'It stands approximately 5.5 cm high and weighs about 84 grams.' },
+      { q: 'Where can I place this brass Ganesha idol?', a: 'It can be placed in home mandirs, office desks, study tables, reception counters, or securely on car dashboards.' },
+      { q: 'Is this idol suitable for Ganesh Chaturthi and housewarming gifting?', a: 'Yes, it makes a meaningful traditional gift for auspicious occasions, housewarmings, and festivals.' }
     ]
   },
 
   // 39. Radha Krishna Divine Idol
   {
     id: 'brass-radha-krishna-statue',
-    name: 'Sacred Handcrafted Pure Virgin Brass Radha Krishna Divine Idol',
+    name: 'Shraviko Pure Brass Radha Krishna Idol',
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
@@ -2706,16 +2899,45 @@ export const PRODUCTS = [
       '/assets/radhakrishna/krishna4.png'
     ],
     weightVariants: [
-      { weight: 'Small (300 G - 3.5 Inch)', price: 1790, originalPrice: 2290 },
-      { weight: 'Medium (550 G - 5.5 Inch)', price: 2890, originalPrice: 3690, default: true },
-      { weight: 'Royal Large (950 G - 7.5 Inch)', price: 4490, originalPrice: 5490 }
+      { weight: 'Compact (8.8 cm - 310 G)', price: 1790, originalPrice: 2290 },
+      { weight: 'Medium (5.5 Inch - 550 G)', price: 2890, originalPrice: 3690, default: true },
+      { weight: 'Royal Large (7.5 Inch - 950 G)', price: 4490, originalPrice: 5490 }
     ],
-    purity: '100% Pure Virgin Lead-Free Solid Brass',
+    purity: '100% Solid Heavy Polished Brass',
     inStock: true,
-    description: 'Exquisitely hand-carved pure virgin brass Radha Krishna divine love idol with detailed flute, peacock feather, and ornate traditional garments.',
+    description: 'Bring the timeless beauty of Radha and Krishna into your sacred space with the Shraviko Pure Brass Radha Krishna Idol. Crafted in brass with a refined polished finish, this traditional murti represents the enduring bond of Radha and Krishna and adds an elegant devotional presence to your home. In Hindu tradition, Radha and Krishna are revered as symbols of divine love, devotion, harmony, and spiritual connection. This idol is suitable for daily worship as well as traditional home décor. Made from brass and finished to highlight the intricate details of Radha and Krishna, the idol combines traditional artistry with a warm golden appearance. Its compact form makes it easy to incorporate into both traditional and contemporary spaces.',
+    shortDescription: 'Shraviko Pure Brass Radha Krishna Idol with golden polished finish (~8.8 cm height, 310g weight). Symbol of divine love & harmony for home mandirs and wedding/Janmashtami gifting.',
+    seoTitle: 'Shraviko Pure Brass Radha Krishna Idol (Golden Polished Murti) | Shraviko',
+    metaDescription: 'Shop Shraviko Pure Brass Radha Krishna Idol. Handcrafted golden brass Radha Krishna murti for home temples, living room decor, Janmashtami, weddings and anniversaries.',
     specifications: [
-      { label: 'Deity Motif', value: 'Divine Radha Krishna Pair' },
-      { label: 'Material', value: '100% Solid Heavy Virgin Brass' }
+      { label: 'Product', value: 'Radha Krishna Idol' },
+      { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Finish', value: 'Polished Golden Brass' },
+      { label: 'Height', value: 'Approximately 8.8 cm' },
+      { label: 'Dimensions', value: 'Approximately 5.5 × 3.5 × 8.8 cm' },
+      { label: 'Weight', value: 'Approximately 310 g' },
+      { label: 'Usage', value: 'Pooja & Home Décor' },
+      { label: 'Suitable For', value: 'Home, Office & Sacred Spaces' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '1 × Pure Brass Radha Krishna Idol' }
+    ],
+    keyFeatures: [
+      'Pure Brass Craftsmanship – Solid brass construction with an elegant polished golden finish.',
+      'Symbol of Divine Love & Harmony – Revered representation of the eternal bond of Radha and Krishna.',
+      'Compact & Elegant Size – Dimensions 5.5 × 3.5 × 8.8 cm (310g), ideal for home mandirs and living room altars.',
+      'Intricate Sculpted Artistry – Detailed facial features, flute motif, and traditional divine adornments.',
+      'Ideal Auspicious Gift – Perfect choice for Janmashtami, weddings, anniversaries, housewarming, and Diwali.'
+    ],
+    careInstructions: [
+      'Clean gently with a soft, dry cloth to remove dust.',
+      'Avoid prolonged exposure to moisture and harsh chemical cleaners.',
+      'Use standard brass polish periodically if you wish to maintain its original luster.'
+    ],
+    faqs: [
+      { q: 'What is the material and finish of the Radha Krishna idol?', a: 'It is crafted from solid brass with a polished golden finish.' },
+      { q: 'What are the exact dimensions and weight?', a: 'It stands approximately 8.8 cm high, measures 5.5 × 3.5 × 8.8 cm, and weighs about 310 grams.' },
+      { q: 'Where can I place this brass idol?', a: 'It can be placed in home mandirs, living room display shelves, office desks, meditation corners, or spiritual display areas.' },
+      { q: 'Is it suitable for wedding and anniversary gifting?', a: 'Yes, as a symbol of divine love and harmony, it makes an exceptional gift for weddings, anniversaries, Janmashtami, and housewarmings.' }
     ]
   },
 
@@ -2753,7 +2975,7 @@ export const PRODUCTS = [
   // 41. Glass Shivling
   {
     id: 'vastu-crystal-glass-shivling',
-    name: 'Sacred Optical Crystal Glass Shivling with Jaladhari Nandi Base',
+    name: 'Shraviko Natural Sphatik Shivling',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
@@ -2761,7 +2983,7 @@ export const PRODUCTS = [
     originalPrice: 2190,
     rating: 4.99,
     reviewsCount: 175,
-    tag: 'Glass Shivling',
+    tag: 'Sphatik Shivling',
     artType: 'shivling',
     fitMode: 'contain',
     image: '/assets/glass shivling/Glass shivling 1.jpg',
@@ -2773,17 +2995,44 @@ export const PRODUCTS = [
       '/assets/glass shivling/shivling 5.jpg'
     ],
     weightVariants: [
-      { weight: 'Small (3 Inch - 200 G)', price: 990, originalPrice: 1290 },
-      { weight: 'Medium (4.5 Inch - 450 G)', price: 1690, originalPrice: 2190, default: true },
-      { weight: 'Royal Large (6 Inch - 850 G)', price: 2690, originalPrice: 3290 }
+      { weight: 'Small (2.5 cm - Compact)', price: 990, originalPrice: 1290 },
+      { weight: 'Medium (4.5 cm - Standard)', price: 1690, originalPrice: 2190, default: true },
+      { weight: 'Royal Large (6 cm - Master)', price: 2690, originalPrice: 3290 }
     ],
-    purity: 'High-Transmission Beveled Optical Crystal Glass',
+    purity: 'Natural Sphatik / Clear Quartz Crystal',
     inStock: true,
-    description: 'Sacred optical-grade crystal glass Shivling featuring a precision-polished Jaladhari pedestal. Radiates divine cosmic light energy, neutralizes Vastu doshas, and brings peace, purity, and spiritual elevation to home altars.',
+    description: 'Bring a timeless symbol of devotion into your sacred space with the Shraviko Natural Sphatik Shivling. Crafted from Sphatik (clear quartz) with a smooth polished finish, this compact Shivling is designed for traditional worship, meditation, and devotional spaces. In Hindu tradition, the Shivling is a revered representation of Lord Shiva and holds an important place in daily worship and spiritual practices. Sphatik Shivlings are traditionally valued for their clear, natural appearance and are commonly placed in home temples and pooja spaces. The transparent appearance of Sphatik gives the Shivling a distinctive and elegant look. Its smooth polished surface highlights the natural character of the crystal while maintaining the traditional form of the Shivling.',
+    shortDescription: 'Shraviko Natural Sphatik Shivling crafted from clear quartz crystal with a smooth polished finish. Ideal for home mandirs, daily puja, meditation, and Mahashivratri gifting.',
+    seoTitle: 'Shraviko Natural Sphatik Shivling (Clear Quartz) | Shraviko',
+    metaDescription: 'Shop Shraviko Natural Sphatik Shivling. Crafted from clear quartz crystal with a polished finish for home mandirs, daily puja, meditation, and Mahashivratri worship.',
     specifications: [
-      { label: 'Material', value: 'High-Purity Optical Beveled Crystal Glass' },
-      { label: 'Ritual Function', value: 'Vastu Energy Harmonizer & Shivling Abhishekam' },
-      { label: 'Gallery Included', value: '5 High-Resolution Full Angle Views' }
+      { label: 'Product', value: 'Sphatik Shivling' },
+      { label: 'Material', value: 'Natural Sphatik / Clear Quartz' },
+      { label: 'Finish', value: 'Smooth Polished' },
+      { label: 'Color', value: 'Transparent' },
+      { label: 'Height', value: 'Approximately 2.5 cm' },
+      { label: 'Design', value: 'Traditional Sacred Shivling' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'Usage', value: 'Pooja, Devotional Practices & Meditation' },
+      { label: 'What\'s Included', value: '1 × Natural Sphatik Shivling' }
+    ],
+    keyFeatures: [
+      'Natural Sphatik / Clear Quartz – Handcrafted from natural clear quartz crystal with light-reflecting transparency.',
+      'Smooth Polished Finish – Crafted with smooth polished surfaces highlighting the natural character of the crystal.',
+      'Compact for Everyday Worship – Approx. 2.5 cm height, perfect for home mandirs, pooja thalis, and prayer altars.',
+      'Symbol of Lord Shiva – Revered representation of Shiva energy for Rudrabhishek, meditation, and daily puja.',
+      'Meaningful Devotional Gift – Thoughtful choice for Mahashivratri, Shravan, housewarming ceremonies, and festivals.'
+    ],
+    careInstructions: [
+      'Handle gently with care as Sphatik crystal is a natural mineral material.',
+      'Clean softly using plain water or Gangajal and dry with a soft cloth.',
+      'Avoid harsh chemical detergents, boiling hot water, or dropping on hard surfaces.'
+    ],
+    faqs: [
+      { q: 'Is this Shivling made of natural Sphatik crystal?', a: 'Yes, it is crafted from natural Sphatik (clear quartz) with natural crystal inclusions.' },
+      { q: 'What is the height of the Sphatik Shivling?', a: 'The compact size features a height of approximately 2.5 cm.' },
+      { q: 'Where can I place the Sphatik Shivling?', a: 'It can be placed in home mandirs, pooja thalis, meditation rooms, study tables, or personal altar spaces.' },
+      { q: 'Is it suitable for Abhishek?', a: 'Yes, natural Sphatik Shivling can be used for ritual Abhishek with water, Gangajal, milk, or Panchamrit.' }
     ]
   },
 
@@ -3115,6 +3364,69 @@ export const PRODUCTS = [
       { q: 'Can the mala be worn?', a: 'Yes. It can be used during spiritual practices or worn as a traditional wooden spiritual accessory.' },
       { q: 'How should I care for the mala?', a: 'Keep it away from prolonged moisture, perfumes and harsh chemicals. Store it in a dry place and wipe it gently with a soft cloth.' },
       { q: 'Does every mala look exactly the same?', a: 'No. Natural wood can have slight variations in colour, grain and texture, which adds to the natural character of each piece.' }
+    ]
+  },
+
+  // 47. Shraviko Wooden Damru
+  {
+    id: 'mandir-wooden-damru-shiva',
+    name: 'Shraviko Wooden Damru',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Devotional Instruments',
+    price: 790,
+    originalPrice: 1090,
+    rating: 4.98,
+    reviewsCount: 164,
+    tag: 'Wooden Damru',
+    artType: 'damru',
+    fitMode: 'contain',
+    image: '/assets/Damru/damru1.jpg',
+    images: [
+      '/assets/Damru/damru1.jpg',
+      '/assets/Damru/damru2.jpg',
+      '/assets/Damru/damru3.jpg',
+      '/assets/Damru/Damru4.jpg',
+      '/assets/Damru/Wooden Damru.png'
+    ],
+    weightVariants: [
+      { weight: 'Standard 6 Inch Damru', price: 790, originalPrice: 1090, default: true },
+      { weight: 'Pack of 2 Wooden Damrus', price: 1490, originalPrice: 1990 }
+    ],
+    purity: '100% Natural Wood & Leather',
+    inStock: true,
+    description: 'Celebrate the timeless tradition associated with Lord Shiva with the Shraviko Wooden Damru. Crafted from natural wood with leather drum heads, this traditional handheld percussion instrument is designed for pooja, devotional singing, cultural occasions, and spiritual spaces. The Damru, also known as Damaru or Damroo, holds a special place in Hindu tradition and is traditionally associated with Lord Shiva. Its distinctive shape and rhythmic sound make it an integral part of many devotional and cultural practices. Made with a natural wooden body and leather drum heads, the Damru retains the simple character of a traditional Indian percussion instrument. When rotated by its handle, the attached beaters strike the drum heads to create the characteristic rhythmic sound of a Damru.',
+    shortDescription: 'Shraviko Wooden Damru (6-inch handheld traditional percussion instrument) crafted from natural wood and leather drum heads for Shiva Puja, Aarti, Bhajan, and Kirtan.',
+    seoTitle: 'Shraviko Wooden Damru (6-Inch Traditional Handheld Instrument) | Shraviko',
+    metaDescription: 'Shop Shraviko Wooden Damru. Traditional handheld percussion instrument crafted from natural wood and leather for Shiva Puja, Mahashivratri, Sawan, Bhajan and Kirtan.',
+    specifications: [
+      { label: 'Product', value: 'Wooden Damru / Damaru' },
+      { label: 'Material', value: 'Natural Wood & Leather Drum Heads' },
+      { label: 'Colour', value: 'Natural Brown' },
+      { label: 'Finish', value: 'Natural Handcrafted Polish' },
+      { label: 'Size', value: 'Approximately 6 inches' },
+      { label: 'Instrument Type', value: 'Handheld Traditional Percussion Instrument' },
+      { label: 'Usage', value: 'Pooja, Bhajan, Kirtan, Mahashivratri & Cultural Activities' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '1 × Shraviko Wooden Damru with Attached Beaters' }
+    ],
+    keyFeatures: [
+      'Traditional Handcrafted Construction – Natural wooden body with authentic leather drum heads.',
+      'Rhythmic Traditional Sound – Hand-rotation mechanism with dual beaters creates rhythmic devotional sound.',
+      'Lord Shiva Devotional Symbolism – Sacred instrument associated with Lord Shiva, ideal for Mahashivratri and Sawan worship.',
+      'Compact & Easy to Hold – 6-inch ergonomic form easy for children and adults to hold during Bhajans and Kirtans.',
+      'Versatile Devotional Decor – Suitable for home altars, temple decor, meditation spaces, and cultural performances.'
+    ],
+    careInstructions: [
+      'Keep the Damru away from prolonged moisture and direct exposure to water.',
+      'Store in a clean, dry place when not in use.',
+      'Wipe the wooden body gently with a soft dry cloth.'
+    ],
+    faqs: [
+      { q: 'Is this Damru made of natural wood and leather?', a: 'Yes, it is crafted from natural wood with authentic leather drum heads.' },
+      { q: 'What is the size of the Damru?', a: 'It measures approximately 6 inches in height.' },
+      { q: 'How does the Damru produce sound?', a: 'Rotating the handle back and forth causes the attached string beaters to strike the dual drum heads, producing rhythmic sound.' },
+      { q: 'What occasions is the Wooden Damru suitable for?', a: 'It is ideal for Shiva Puja, Mahashivratri, Sawan, Rudrabhishek, Bhajan, Kirtan, and traditional home decor.' }
     ]
   }
 ];

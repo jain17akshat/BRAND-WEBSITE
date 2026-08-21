@@ -54,6 +54,7 @@ export const Bestsellers = ({
                 >
                   <ProductImage
                     src={product.image}
+                    images={product.images}
                     alt={product.name}
                     artType={product.artType}
                     fitMode={product.fitMode}
@@ -69,14 +70,28 @@ export const Bestsellers = ({
                     <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-[#A63A2B] text-[#A63A2B]' : ''}`} />
                   </button>
 
-                  {/* Quick view on hover */}
-                  <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex justify-center">
+                  {/* Hover Quick Add Overlay */}
+                  <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-2 z-10">
                     <button
-                      onClick={(e) => { e.stopPropagation(); if (onOpenQuickView) onOpenQuickView(product); }}
-                      className="px-3 py-1.5 bg-white text-[#2C2623] text-[10px] font-cinzel uppercase tracking-wider rounded hover:bg-[#FAF0D9] transition-colors flex items-center gap-1.5 shadow"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAddToCart(product);
+                      }}
+                      className="flex-1 py-1.5 px-2.5 rounded-lg bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] text-[11px] font-semibold shadow-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95 border border-[#E5C378]/30"
+                    >
+                      <ShoppingBag className="w-3.5 h-3.5" />
+                      <span>Quick Add</span>
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (onOpenQuickView) onOpenQuickView(product);
+                      }}
+                      className="p-1.5 rounded-lg bg-white/90 hover:bg-white text-[#2C2623] text-xs font-medium shadow-lg transition-transform active:scale-95"
+                      title="Quick View"
                     >
                       <Eye className="w-3.5 h-3.5" />
-                      Quick View
                     </button>
                   </div>
                 </div>
@@ -84,28 +99,18 @@ export const Bestsellers = ({
                 {/* Info */}
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
-                    {/* Rating */}
-                    <div className="flex items-center gap-1 mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-3 h-3 ${i < Math.round(product.rating) ? 'fill-[#D97706] text-[#D97706]' : 'text-gray-200 fill-gray-200'}`}
-                        />
-                      ))}
-                      <span className="text-[10px] text-gray-400 ml-1">({product.reviewsCount})</span>
-                    </div>
 
-                    {/* Name */}
+                    {/* Single Clean Name */}
                     <h3
                       onClick={() => handleCardClick(product)}
-                      className="font-cinzel text-xs sm:text-sm font-semibold text-[#2C2623] hover:text-[#9B7E52] transition-colors line-clamp-2 cursor-pointer leading-snug mb-3"
+                      className="font-sans text-xs sm:text-sm font-semibold text-[#2C2623] hover:text-[#9B7E52] transition-colors line-clamp-2 cursor-pointer leading-snug mb-3"
                     >
                       {product.name}
                     </h3>
                   </div>
 
                   {/* Price + Add to Cart */}
-                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#F0E8DC]">
+                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#F0E8DC] gap-2">
                     <div>
                       <span className="text-sm font-cinzel font-bold text-[#2C2623]">
                         ₹{product.price.toLocaleString('en-IN')}
@@ -118,10 +123,11 @@ export const Bestsellers = ({
                     </div>
                     <button
                       onClick={() => onAddToCart(product)}
-                      className="p-2 rounded-lg bg-[#2C1F06] text-[#E5C378] hover:bg-[#3D2B0A] transition-all active:scale-95 shadow-sm"
+                      className="px-3 py-1.5 rounded-lg bg-[#2C1F06] text-[#E5C378] hover:bg-[#3D2B0A] transition-all active:scale-95 shadow-sm text-xs font-medium flex items-center gap-1.5 border border-[#E5C378]/20"
                       title="Add to cart"
                     >
-                      <ShoppingBag className="w-4 h-4" />
+                      <ShoppingBag className="w-3.5 h-3.5" />
+                      <span>Add</span>
                     </button>
                   </div>
                 </div>

@@ -203,6 +203,7 @@ export function App() {
     });
 
     showToast('Added to Cart', `${product.name} added to your sacred cart.`, 'cart');
+    setCartOpen(true);
   };
 
   const handleUpdateQuantity = (id, newQty) => {

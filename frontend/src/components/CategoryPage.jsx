@@ -438,9 +438,33 @@ const CategoryProductCard = ({
     }
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  const cardImages = React.useMemo(() => {
+    if (product.images && product.images.length > 0) return product.images;
+    return [product.image || category.image || '/assets/Incense cover.jpg'];
+  }, [product, category]);
+
+  React.useEffect(() => {
+    let timer;
+    if (isHovered && cardImages.length > 1) {
+      timer = setInterval(() => {
+        setActiveImageIndex((prev) => (prev + 1) % cardImages.length);
+      }, 1200);
+    } else {
+      setActiveImageIndex(0);
+    }
+    return () => clearInterval(timer);
+  }, [isHovered, cardImages]);
+
   return (
-    <div className="group relative bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-      {/* Image Header */}
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group relative bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+    >
+      {/* Image Header with Hover Quick Add Overlay */}
       <div
         className={`relative aspect-[4/3] overflow-hidden cursor-pointer ${product.fitMode === 'contain' || (product.image && product.image.includes('brass bells'))
           ? 'bg-[#F9F6F0]'
@@ -448,21 +472,40 @@ const CategoryProductCard = ({
           }`}
         onClick={handleClickCard}
       >
-        <img
-          src={product.image || category.image || '/assets/Incense cover.jpg'}
-          alt={product.name}
-          onError={(e) => {
-            if (e.target.src !== '/assets/Incense cover.jpg') {
-              e.target.src = '/assets/Incense cover.jpg';
-            }
-          }}
-          className={`w-full h-full transform group-hover:scale-105 transition-transform duration-500 ${product.fitMode === 'contain' || (product.image && product.image.includes('brass bells'))
-            ? 'object-contain p-3'
-            : 'object-cover'
-            }`}
-        />
+        {cardImages.map((imgSrc, idx) => (
+          <img
+            key={imgSrc + idx}
+            src={imgSrc}
+            alt={`${product.name} view ${idx + 1}`}
+            onError={(e) => {
+              if (e.target.src !== '/assets/Incense cover.jpg') {
+                e.target.src = '/assets/Incense cover.jpg';
+              }
+            }}
+            className={`w-full h-full transform transition-all duration-700 ${
+              idx === activeImageIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100 absolute inset-0'
+            } ${product.fitMode === 'contain' || (product.image && product.image.includes('brass bells'))
+              ? 'object-contain p-3'
+              : 'object-cover'
+              }`}
+          />
+        ))}
 
-        {/* Quick Action Overlay Buttons */}
+        {/* Slide Indicator Dots on Hover */}
+        {cardImages.length > 1 && isHovered && (
+          <div className="absolute top-3 left-3 flex gap-1 z-10">
+            {cardImages.map((_, dotIdx) => (
+              <span
+                key={dotIdx}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  dotIdx === activeImageIndex ? 'w-4 bg-[#C5A059]' : 'w-1.5 bg-black/40'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Top Right Wishlist & Quick View Buttons */}
         <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
           <button
             onClick={(e) => {
@@ -477,14 +520,28 @@ const CategoryProductCard = ({
           >
             <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
           </button>
+        </div>
+
+        {/* Hover Quick Add Action Bar Overlay */}
+        <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-2 z-10">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onAddToCart && onAddToCart(product);
+            }}
+            className="flex-1 py-2 px-3 rounded-lg bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] text-xs font-semibold shadow-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95 border border-[#E5C378]/30"
+          >
+            <ShoppingBag className="w-3.5 h-3.5" />
+            <span>Quick Add</span>
+          </button>
 
           <button
             onClick={(e) => {
               e.stopPropagation();
               onOpenQuickView && onOpenQuickView(product);
             }}
-            className="w-8 h-8 rounded-full bg-white/80 hover:bg-white text-[#2C2623] flex items-center justify-center shadow-md backdrop-blur-md transition-all opacity-0 group-hover:opacity-100"
-            aria-label="Quick View"
+            className="p-2 rounded-lg bg-white/90 hover:bg-white text-[#2C2623] text-xs font-medium shadow-lg transition-transform active:scale-95"
+            title="Quick View"
           >
             <Eye className="w-4 h-4" />
           </button>
@@ -494,38 +551,22 @@ const CategoryProductCard = ({
       {/* Body Details */}
       <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
         <div>
-          <span className="text-[9px] sm:text-[10px] font-cinzel uppercase tracking-[0.15em] text-[#C5A059] block font-semibold truncate">
-            {product.tag || product.subcategory || product.categoryName || 'Sacred Collection'}
-          </span>
+          {/* Single, Clean Product Title */}
           <h3
             onClick={handleClickCard}
-            className="text-xs sm:text-base font-cinzel font-bold text-[#2C2623] hover:text-[#C5A059] transition-colors cursor-pointer line-clamp-2 mt-0.5 sm:mt-1 leading-snug"
+            className="text-xs sm:text-base font-sans font-semibold text-[#1C1715] hover:text-[#9B7E52] transition-colors cursor-pointer line-clamp-2 leading-snug"
           >
             {product.name}
           </h3>
         </div>
 
-        {/* Weight / Size Variants Tag Pill */}
-        {product.weightVariants && product.weightVariants.length > 0 && (
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-[#FAF0D9] border border-[#EAD7AF] text-[9px] sm:text-[10px] font-cinzel font-bold text-[#755722] w-fit">
-            <span>{product.weightVariants.length} Options ({product.weightVariants[0].weight} – {product.weightVariants[product.weightVariants.length - 1].weight})</span>
-          </div>
-        )}
 
-        {/* Rating Stars */}
-        <div className="flex items-center gap-1 text-[11px] sm:text-xs">
-          <div className="flex items-center text-[#D4AF37]">
-            <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
-          </div>
-          <span className="font-semibold text-[#2C2623]">{product.rating || 4.9}</span>
-          <span className="text-gray-400 text-[9px] sm:text-[10px]">(Verified)</span>
-        </div>
 
-        {/* Price & Action Footer */}
-        <div className="pt-2 border-t border-[#F0EA99]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-0">
+        {/* Price & Add to Cart Footer */}
+        <div className="pt-2 border-t border-[#F0EA99]/40 flex items-center justify-between gap-2">
           <div>
             <div className="text-sm sm:text-lg font-cinzel font-bold text-[#2C2623]">
-              {product.weightVariants ? `From ₹${product.weightVariants[0].price}` : `₹${product.price.toLocaleString('en-IN')}`}
+              {product.weightVariants ? `From ₹${product.weightVariants[0].price.toLocaleString('en-IN')}` : `₹${product.price.toLocaleString('en-IN')}`}
             </div>
             {product.originalPrice && (
               <span className="text-[10px] sm:text-xs text-gray-400 line-through">
@@ -535,11 +576,15 @@ const CategoryProductCard = ({
           </div>
 
           <button
-            onClick={handleClickCard}
-            className="w-full sm:w-auto px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-[10px] sm:text-xs uppercase font-bold tracking-wider transition-all shadow-md flex items-center justify-center gap-1 sm:gap-1.5 active:scale-95"
+            onClick={(e) => {
+              e.stopPropagation();
+              onAddToCart && onAddToCart(product);
+            }}
+            className="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] font-medium text-[11px] sm:text-xs tracking-wide transition-all shadow-md flex items-center justify-center gap-1.5 active:scale-95 border border-[#E5C378]/20"
           >
-            <span>Details</span>
-            <span>→</span>
+            <ShoppingBag className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Add to Cart</span>
+            <span className="sm:hidden">Add</span>
           </button>
         </div>
 

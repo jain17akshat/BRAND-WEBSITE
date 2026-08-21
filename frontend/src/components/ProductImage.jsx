@@ -1,25 +1,66 @@
 import React, { useState } from 'react';
 import { Sparkles, Image as ImageIcon } from 'lucide-react';
 
-export const ProductImage = ({ src, alt, artType = 'brass', className = '', aspect = 'aspect-square', fitMode }) => {
+export const ProductImage = ({ src, hoverSrc, images, alt, artType = 'brass', className = '', aspect = 'aspect-square', fitMode }) => {
   const [imgError, setImgError] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const isContain = fitMode === 'contain' || (src && (src.includes('brass bells') || src.includes('brass%20bells') || src.includes('garud bell') || src.includes('garud%20bell') || src.includes('nandi bell') || src.includes('nandi%20bell') || src.includes('simple bell') || src.includes('simple%20bell') || src.includes('commonbell') || src.includes('Wooden Choki') || src.includes('Wooden%20Choki') || src.includes('pyramid') || src.includes('pyramid%20') || src.includes('Trishul') || src.includes('trishul') || src.includes('Brass aarti') || src.includes('Brass%20aarti') || src.includes('aarti') || src.includes('akhand jyot') || src.includes('akhand%20jyot') || src.includes('Cup jyot') || src.includes('Cup%20jyot') || src.includes('cup') || src.includes('kamandal') || src.includes('Brass kamandal') || src.includes('Brass%20kamandal') || src.includes('pancpatra') || src.includes('pancpatra set') || src.includes('pancpatra%20set') || src.includes('patra') || src.includes('thali') || src.includes('Brass thali') || src.includes('Brass%20thali') || src.includes('Copper thali') || src.includes('Copper%20thali') || src.includes('gomukhi') || src.includes('shringi') || src.includes('singhasan') || src.includes('sighasan') || src.includes('hawankund') || src.includes('kund') || src.includes('chawar') || src.includes('chawr') || src.includes('Jap Bag') || src.includes('Jap%20Bag') || src.includes('bag') || src.includes('mala counter') || src.includes('mala%20counter') || src.includes('counter') || src.includes('Pooja box') || src.includes('Pooja%20box') || src.includes('poobjabox') || src.includes('poojabox') || src.includes('Shankh') || src.includes('shankh') || src.includes('Velvet asan') || src.includes('Velvet%20asan') || src.includes('asan') || src.includes('Ganeshyantra') || src.includes('Ganesh') || src.includes('Glassyantra') || src.includes('glass') || src.includes('Kuber yantra') || src.includes('kuber') || src.includes('laxmi') || src.includes('luxmiyantra') || src.includes('luxmi') || src.includes('shani') || src.includes('ladoo') || src.includes('gopal') || src.includes('kamdhenu') || src.includes('ganeshji') || src.includes('radhakrishna') || src.includes('krishna') || src.includes('glassturtle') || src.includes('turtle') || src.includes('dhoop dani') || src.includes('dhoopdani') || src.includes('glass shivling') || src.includes('shivling') || src.includes('rudraksh') || src.includes('sphatik') || src.includes('tulsi') || src.includes('vaijanti') || src.includes('karungali') || src.includes('mala')));
+  const imageList = React.useMemo(() => {
+    if (images && images.length > 0) return images;
+    if (hoverSrc && hoverSrc !== src) return [src, hoverSrc];
+    return [src];
+  }, [src, hoverSrc, images]);
+
+  React.useEffect(() => {
+    let timer;
+    if (isHovered && imageList.length > 1) {
+      timer = setInterval(() => {
+        setActiveIndex((prev) => (prev + 1) % imageList.length);
+      }, 1200);
+    } else {
+      setActiveIndex(0);
+    }
+    return () => clearInterval(timer);
+  }, [isHovered, imageList]);
+
+  const isContain = fitMode === 'contain' || (src && (src.includes('brass bells') || src.includes('brass%20bells') || src.includes('garud bell') || src.includes('garud%20bell') || src.includes('nandi bell') || src.includes('nandi%20bell') || src.includes('simple bell') || src.includes('simple%20bell') || src.includes('commonbell') || src.includes('Wooden Choki') || src.includes('Wooden%20Choki') || src.includes('pyramid') || src.includes('pyramid%20') || src.includes('Trishul') || src.includes('trishul') || src.includes('Brass aarti') || src.includes('Brass%20aarti') || src.includes('aarti') || src.includes('akhand jyot') || src.includes('akhand%20jyot') || src.includes('Cup jyot') || src.includes('Cup%20jyot') || src.includes('cup') || src.includes('kamandal') || src.includes('Brass kamandal') || src.includes('Brass%20kamandal') || src.includes('pancpatra') || src.includes('pancpatra set') || src.includes('pancpatra%20set') || src.includes('patra') || src.includes('thali') || src.includes('Brass thali') || src.includes('Brass%20thali') || src.includes('Copper thali') || src.includes('Copper%20thali') || src.includes('gomukhi') || src.includes('shringi') || src.includes('singhasan') || src.includes('sighasan') || src.includes('hawankund') || src.includes('kund') || src.includes('chawar') || src.includes('chawr') || src.includes('Jap Bag') || src.includes('Jap%20Bag') || src.includes('bag') || src.includes('mala counter') || src.includes('mala%20counter') || src.includes('counter') || src.includes('Pooja box') || src.includes('Pooja%20box') || src.includes('poobjabox') || src.includes('poojabox') || src.includes('Shankh') || src.includes('shankh') || src.includes('Velvet asan') || src.includes('Velvet%20asan') || src.includes('asan') || src.includes('Ganeshyantra') || src.includes('Ganesh') || src.includes('Glassyantra') || src.includes('glass') || src.includes('Kuber yantra') || src.includes('kuber') || src.includes('laxmi') || src.includes('luxmiyantra') || src.includes('luxmi') || src.includes('shani') || src.includes('ladoo') || src.includes('gopal') || src.includes('kamdhenu') || src.includes('ganeshji') || src.includes('radhakrishna') || src.includes('krishna') || src.includes('glassturtle') || src.includes('turtle') || src.includes('dhoop dani') || src.includes('dhoopdani') || src.includes('glass shivling') || src.includes('shivling') || src.includes('rudraksh') || src.includes('sphatik') || src.includes('tulsi') || src.includes('vaijanti') || src.includes('karungali') || src.includes('Damru') || src.includes('damru') || src.includes('mala')));
 
   // If source image exists and hasn't errored
   if (src && !imgError) {
     return (
-      <div className={`relative overflow-hidden ${aspect} ${className} ${isContain ? 'bg-[#F9F6F0]' : ''}`}>
-        <img
-          src={src}
-          alt={alt || 'Shraviko Sacred Product'}
-          loading="lazy"
-          decoding="async"
-          onError={() => setImgError(true)}
-          className={`w-full h-full transition-transform duration-700 hover:scale-105 ${
-            isContain ? 'object-contain p-2 sm:p-3' : 'object-cover'
-          }`}
-        />
+      <div
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`relative overflow-hidden ${aspect} ${className} ${isContain ? 'bg-[#F9F6F0]' : ''}`}
+      >
+        {imageList.map((imgSrc, idx) => (
+          <img
+            key={imgSrc + idx}
+            src={imgSrc}
+            alt={alt || 'Shraviko Sacred Product'}
+            loading="lazy"
+            decoding="async"
+            onError={() => setImgError(true)}
+            className={`w-full h-full transition-all duration-700 ${
+              idx === activeIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100 absolute inset-0'
+            } ${isContain ? 'object-contain p-2 sm:p-3' : 'object-cover'}`}
+          />
+        ))}
+
+        {/* Slide Indicator Dots on Hover */}
+        {imageList.length > 1 && isHovered && (
+          <div className="absolute top-2.5 left-2.5 flex gap-1 z-10">
+            {imageList.map((_, dotIdx) => (
+              <span
+                key={dotIdx}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  dotIdx === activeIndex ? 'w-3.5 bg-[#C5A059]' : 'w-1.5 bg-black/40'
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     );
   }

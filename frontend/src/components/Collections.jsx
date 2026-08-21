@@ -8,8 +8,8 @@ export const Collections = ({ onSelectCategory }) => {
       image: '/brasshero.png',
       mobileImage: '/brassmobileview.png',
       fallback: '/assets/brasscover.png',
-      mobilePosition: 'center 55%',
-      desktopPosition: 'center 60%',
+      mobilePosition: 'right 80%',
+      desktopPosition: 'right 75%',
     },
     {
       id: 'copper',
@@ -17,8 +17,8 @@ export const Collections = ({ onSelectCategory }) => {
       image: '/copperhero.png',
       mobileImage: '/coppermobileview.png',
       fallback: '/assets/Copper cover.png',
-      mobilePosition: 'center 40%',
-      desktopPosition: 'center 40%',
+      mobilePosition: 'center 50%',
+      desktopPosition: 'center 50%',
     },
     {
       id: 'mandir-essentials',
@@ -26,8 +26,8 @@ export const Collections = ({ onSelectCategory }) => {
       image: '/essentialhero.png',
       mobileImage: '/mandiressentialmobileview.png',
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
-      mobilePosition: 'center 35%',
-      desktopPosition: 'center 40%',
+      mobilePosition: 'center 45%',
+      desktopPosition: 'center 45%',
     },
     {
       id: 'kits',
@@ -58,9 +58,7 @@ export const Collections = ({ onSelectCategory }) => {
             <div
               key={col.id}
               onClick={() => onSelectCategory && onSelectCategory(col.id)}
-              className="group relative overflow-hidden rounded-xl cursor-pointer bg-[#1C1715]"
-              /* Mobile: 4:5 portrait ratio — shows product well. Desktop: 3:2 landscape */
-              style={{ aspectRatio: window.innerWidth < 640 ? '4/5' : '4/5' }}
+              className="group relative overflow-hidden rounded-xl cursor-pointer bg-[#1C1715] aspect-[4/3] sm:aspect-[16/10]"
             >
               {/* Mobile image */}
               <img
