@@ -111,19 +111,7 @@ export const ProductDetailPage = ({
                 className="w-full h-full"
               />
 
-              {/* Badges */}
-              <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-                {product.tag && (
-                  <span className="px-3 py-1 rounded-md bg-[#231E1C]/90 text-[#E5C378] text-xs font-cinzel font-bold uppercase tracking-wider backdrop-blur-md shadow-md border border-[#C5A059]/40">
-                    {product.tag}
-                  </span>
-                )}
-                {discountPercent && (
-                  <span className="px-3 py-1 rounded-md bg-[#8B0000] text-white text-xs font-cinzel font-bold uppercase tracking-wider shadow-md">
-                    {discountPercent}% OFF
-                  </span>
-                )}
-              </div>
+
 
               {/* Wishlist Button */}
               <button

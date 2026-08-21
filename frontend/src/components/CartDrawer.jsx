@@ -1,7 +1,159 @@
-import React, { useState } from 'react';
-import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, ShieldCheck, Tag } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, ShieldCheck, Tag, Check, Gift, Package, Sparkles, Truck } from 'lucide-react';
 import { ProductImage } from './ProductImage';
 
+/* ─── Milestone definitions ──────────────────────────────────────────── */
+const MILESTONES = [
+  {
+    id: 'start',
+    threshold: 0,
+    icon: ShoppingBag,
+    label: 'Cart',
+    reward: '',
+    chipLabel: '',
+  },
+  {
+    id: 'shipping',
+    threshold: 2999,
+    icon: Truck,
+    label: 'Free Shipping',
+    reward: 'Free Express Delivery',
+    chipLabel: '✦ Free Shipping Unlocked',
+  },
+  {
+    id: 'gift',
+    threshold: 4999,
+    icon: Gift,
+    label: 'Free Gift',
+    reward: 'Free Brass Diya',
+    chipLabel: '✦ Free Brass Diya Added',
+  },
+  {
+    id: 'mystery',
+    threshold: 7499,
+    icon: Sparkles,
+    label: 'Mystery Box',
+    reward: 'Mystery Sacred Box',
+    chipLabel: '✦ Mystery Sacred Box Unlocked',
+  },
+];
+
+/* ─── CartProgressBar sub-component ────────────────────────────────── */
+const CartProgressBar = ({ subtotal }) => {
+  const unlockedBefore = useRef(new Set());
+
+  const maxThreshold = MILESTONES[MILESTONES.length - 1].threshold;
+  const allUnlocked = subtotal >= maxThreshold;
+  const progressPercent = Math.min(100, (subtotal / maxThreshold) * 100);
+  const nextMilestone = MILESTONES.find((m) => m.threshold > 0 && subtotal < m.threshold);
+  const amountNeeded = nextMilestone ? nextMilestone.threshold - subtotal : 0;
+
+  MILESTONES.forEach((m) => {
+    if (m.threshold > 0 && subtotal >= m.threshold && !unlockedBefore.current.has(m.id)) {
+      unlockedBefore.current.add(m.id);
+    }
+  });
+
+  const milestoneClass = (m) => {
+    if (subtotal >= m.threshold) return 'cart-milestone unlocked';
+    if (nextMilestone?.id === m.id) return 'cart-milestone next-target';
+    return 'cart-milestone';
+  };
+
+  return (
+    <div className="bg-[#FAF0D9] px-3 sm:px-5 pt-3.5 pb-3 border-b border-[#EAD7AF]">
+
+      {/* Dynamic message */}
+      <p className="text-[11px] font-sans text-center text-[#755722] mb-3 leading-snug">
+        {allUnlocked ? (
+          <span className="font-cinzel font-bold text-emerald-800 flex items-center justify-center gap-1">
+            ✨ All rewards unlocked — thank you for your sacred order!
+          </span>
+        ) : (
+          <>
+            Add{' '}
+            <span className="font-bold text-[#2C2623]">
+              ₹{amountNeeded.toLocaleString('en-IN')}
+            </span>{' '}
+            more to unlock{' '}
+            <span className="font-semibold text-[#8C6929]">
+              {nextMilestone?.reward}
+            </span>
+            !
+          </>
+        )}
+      </p>
+
+      {/* Track + Dots Container */}
+      <div className="relative mx-5 mt-1">
+        {/* Track background */}
+        <div className="absolute left-0 right-0 top-[11px] h-1.5 bg-[#E8DDC6] rounded-full overflow-hidden">
+          <div
+            className="cart-progress-fill"
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
+
+        {/* Milestone dots */}
+        {MILESTONES.map((m) => {
+          const posPercent = (m.threshold / maxThreshold) * 100;
+          const IconComp = m.icon;
+          const isUnlocked = subtotal >= m.threshold;
+
+          return (
+            <div
+              key={m.id}
+              className="absolute z-10 flex flex-col items-center -translate-x-1/2"
+              style={{
+                left: `${posPercent}%`,
+                top: 0,
+              }}
+            >
+              <div className={milestoneClass(m)}>
+                {isUnlocked && m.threshold > 0 ? (
+                  <Check className="w-3 h-3 text-white milestone-check" strokeWidth={3} />
+                ) : (
+                  <IconComp className={`w-3 h-3 ${isUnlocked ? 'text-white' : 'text-[#8C6929]'}`} />
+                )}
+              </div>
+              {/* Centered label under dot */}
+              <span
+                className={`mt-1 text-[9px] font-sans font-semibold leading-tight text-center whitespace-nowrap ${
+                  isUnlocked ? 'text-[#8C6929]' : 'text-[#A89070]'
+                }`}
+              >
+                {m.label}
+              </span>
+              <span
+                className={`text-[8px] font-sans leading-none text-center ${
+                  isUnlocked ? 'text-emerald-700 font-medium' : 'text-[#C0A87A]'
+                }`}
+              >
+                ₹{m.threshold.toLocaleString('en-IN')}
+              </span>
+            </div>
+          );
+        })}
+
+        {/* Spacer height for dot + text labels */}
+        <div className="h-[54px]" />
+      </div>
+
+      {/* Gift unlock chips */}
+      {MILESTONES.filter((m) => m.chipLabel && subtotal >= m.threshold).length > 0 && (
+        <div className="flex flex-wrap items-center justify-center gap-1.5 mt-2">
+          {MILESTONES.filter((m) => m.chipLabel && subtotal >= m.threshold).map((m) => (
+            <span key={m.id} className="gift-unlock-chip">
+              {m.chipLabel}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+/* ─── CartDrawer ────────────────────────────────────────────────────── */
 export const CartDrawer = ({
   isOpen,
   onClose,
@@ -18,8 +170,6 @@ export const CartDrawer = ({
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const freeShippingThreshold = 2999;
-  const progressPercent = Math.min(100, (subtotal / freeShippingThreshold) * 100);
-  const amountForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
 
   const applyPromo = (e) => {
     e.preventDefault();
@@ -52,7 +202,7 @@ export const CartDrawer = ({
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-5 h-5 text-[#C5A059]" />
               <h3 className="font-cinzel text-base font-semibold tracking-wider text-[#F9F5EC]">
-                Your Sacred Cart ({cartItems.reduce((a, b) => a + b.quantity, 0)})
+                Your Sacred Cart
               </h3>
             </div>
             <button
@@ -63,24 +213,8 @@ export const CartDrawer = ({
             </button>
           </div>
 
-          {/* Free Shipping Meter */}
-          <div className="bg-[#FAF0D9] p-3.5 border-b border-[#EAD7AF] text-center">
-            {amountForFreeShipping > 0 ? (
-              <p className="text-xs font-sans text-[#755722]">
-                Add <span className="font-bold text-[#2C2623]">₹{amountForFreeShipping.toLocaleString('en-IN')}</span> more for <span className="font-semibold text-[#8C6929]">Free Express Delivery</span>!
-              </p>
-            ) : (
-              <p className="text-xs font-cinzel font-semibold text-emerald-800 flex items-center justify-center gap-1">
-                <span>✨ You unlocked FREE Pan-India Shipping!</span>
-              </p>
-            )}
-            <div className="w-full bg-[#E8DDC6] h-1.5 rounded-full mt-2 overflow-hidden">
-              <div
-                className="brass-gradient-bg h-full transition-all duration-500 rounded-full"
-                style={{ width: `${progressPercent}%` }}
-              />
-            </div>
-          </div>
+          {/* ── 3-Tier Progress Bar ── */}
+          <CartProgressBar subtotal={subtotal} />
 
           {/* Cart Items List */}
           <div data-lenis-prevent className="flex-1 overflow-y-auto p-6 space-y-4">
@@ -222,7 +356,7 @@ export const CartDrawer = ({
 
               <div className="flex items-center justify-center gap-1.5 text-[10px] text-gray-500">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
-                <span>100% Encrypted & Insured Checkout</span>
+                <span>100% Encrypted &amp; Insured Checkout</span>
               </div>
             </div>
           )}
@@ -232,3 +366,4 @@ export const CartDrawer = ({
     </div>
   );
 };
+

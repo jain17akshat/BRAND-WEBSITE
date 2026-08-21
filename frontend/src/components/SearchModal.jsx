@@ -89,7 +89,7 @@ export const SearchModal = ({
           ) : (
             <div className="space-y-3">
               <span className="text-xs font-cinzel text-[#8C6929] uppercase tracking-wider block font-semibold">
-                Found {results.length} Sacred Items
+                Matching Sacred Items
               </span>
               {results.map((product) => (
                 <div

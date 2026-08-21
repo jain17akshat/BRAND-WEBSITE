@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, ShoppingBag, Heart, Eye } from 'lucide-react';
+import { Star, ShoppingBag, Heart, Eye, ArrowRight } from 'lucide-react';
 import { ProductImage } from './ProductImage';
 
 export const Bestsellers = ({
@@ -109,7 +109,7 @@ export const Bestsellers = ({
                     </h3>
                   </div>
 
-                  {/* Price + Add to Cart */}
+                  {/* Price + View Details */}
                   <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#F0E8DC] gap-2">
                     <div>
                       <span className="text-sm font-cinzel font-bold text-[#2C2623]">
@@ -122,12 +122,15 @@ export const Bestsellers = ({
                       )}
                     </div>
                     <button
-                      onClick={() => onAddToCart(product)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCardClick(product);
+                      }}
                       className="px-3 py-1.5 rounded-lg bg-[#2C1F06] text-[#E5C378] hover:bg-[#3D2B0A] transition-all active:scale-95 shadow-sm text-xs font-medium flex items-center gap-1.5 border border-[#E5C378]/20"
-                      title="Add to cart"
+                      title="View product details"
                     >
-                      <ShoppingBag className="w-3.5 h-3.5" />
-                      <span>Add</span>
+                      <span>Details</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>

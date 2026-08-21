@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ShoppingBag, Heart, Eye, Check, Star, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ShoppingBag, Heart, Eye, Check, Star, Sparkles } from 'lucide-react';
 import { IncenseShowcase } from './IncenseShowcase';
 
 export const CategoryPage = ({
@@ -372,7 +372,7 @@ export const CategoryPage = ({
 
             <div className="flex items-center gap-2">
               <span className="text-xs font-cinzel font-bold text-[#2C2623] uppercase tracking-wider">
-                Showing: <span className="text-[#C5A059] font-bold">{selectedSubcategory === 'all' ? 'All Items' : selectedSubcategory}</span> ({filteredProducts.length} Items)
+                Showing: <span className="text-[#C5A059] font-bold">{selectedSubcategory === 'all' ? 'All Items' : selectedSubcategory}</span>
               </span>
             </div>
 
@@ -578,13 +578,13 @@ const CategoryProductCard = ({
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onAddToCart && onAddToCart(product);
+              handleClickCard();
             }}
             className="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] font-medium text-[11px] sm:text-xs tracking-wide transition-all shadow-md flex items-center justify-center gap-1.5 active:scale-95 border border-[#E5C378]/20"
+            title="View product details"
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Add to Cart</span>
-            <span className="sm:hidden">Add</span>
+            <span>Details</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 

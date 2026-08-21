@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Star, ShoppingBag, Heart, ShieldCheck, Sparkles, Check } from 'lucide-react';
+import { X, ShoppingBag, Heart, ShieldCheck, Check } from 'lucide-react';
 import { ProductImage } from './ProductImage';
 
 export const QuickViewModal = ({
@@ -103,25 +103,17 @@ export const QuickViewModal = ({
           {/* Product Info & Actions */}
           <div className="p-6 sm:p-8 flex flex-col justify-between space-y-5">
             <div>
-              <div className="flex items-center justify-between text-xs mb-1">
+              <div className="mb-1">
                 <span className="text-[10px] font-cinzel uppercase tracking-widest text-[#8C6929] font-medium">
                   {product.categoryName}
                 </span>
-                <div className="flex items-center gap-1 text-[#D97706]">
-                  <Star className="w-3.5 h-3.5 fill-[#D97706]" />
-                  <span className="font-semibold text-xs text-[#2C2623]">{product.rating}</span>
-                  <span className="text-[10px] text-gray-500">({product.reviewsCount} reviews)</span>
-                </div>
               </div>
 
               <h2 className="font-cinzel text-xl font-bold text-[#2C2623] leading-snug">
                 {product.name}
               </h2>
 
-              <p className="text-xs text-[#755722] font-sans mt-1 flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-                <span>{product.purity}</span>
-              </p>
+
 
               {/* Price */}
               <div className="mt-3 flex items-baseline gap-3">
@@ -135,68 +127,9 @@ export const QuickViewModal = ({
                 )}
               </div>
 
-              {/* Weight Child Listing Pills */}
-              {product.weightVariants && product.weightVariants.length > 0 && (
-                <div className="mt-4 p-3.5 rounded-xl bg-[#FAF0D9]/70 border border-[#EAD7AF] space-y-2">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-cinzel text-[11px] uppercase font-bold text-[#755722]">
-                      Select Heavy-Gauge Weight (Grams):
-                    </span>
-                    <span className="text-[10px] text-[#8C6929] font-bold">
-                      {selectedVariant?.weight || '300 G'}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {product.weightVariants.map((variant) => {
-                      const isSelected = selectedVariant?.weight === variant.weight;
-                      return (
-                        <button
-                          key={variant.weight}
-                          onClick={() => setSelectedVariant(variant)}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-cinzel font-bold tracking-wider transition-all border ${
-                            isSelected
-                              ? 'bg-[#231E1C] text-[#E5C378] border-[#C5A059] shadow-md scale-105'
-                              : 'bg-white text-[#4A4441] border-[#EAE0CD] hover:bg-[#F6F1E7]'
-                          }`}
-                        >
-                          {variant.weight}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
 
-              {/* Description */}
-              <p className="text-xs text-[#4A4441] font-sans font-light mt-3 leading-relaxed">
-                {product.description}
-              </p>
 
-              {/* Fragrance Notes if incense */}
-              {product.fragranceNotes && (
-                <div className="mt-4 p-3 rounded-lg bg-[#FAF0D9] border border-[#EAD7AF] text-xs">
-                  <h4 className="font-cinzel text-[10px] uppercase font-bold text-[#755722] mb-1">
-                    Fragrance Profile
-                  </h4>
-                  <div className="text-[11px] text-[#4A4441] space-y-0.5 font-sans">
-                    <div><span className="font-medium text-[#2C2623]">Top:</span> {product.fragranceNotes.top}</div>
-                    <div><span className="font-medium text-[#2C2623]">Heart:</span> {product.fragranceNotes.heart}</div>
-                    <div><span className="font-medium text-[#2C2623]">Base:</span> {product.fragranceNotes.base}</div>
-                  </div>
-                </div>
-              )}
 
-              {/* Specifications */}
-              {product.specifications && (
-                <div className="mt-4 space-y-1 text-[11px] text-[#4A4441] font-sans border-t border-[#EAE0CD] pt-3">
-                  {product.specifications.slice(0, 3).map((spec, i) => (
-                    <div key={i} className="flex justify-between">
-                      <span className="text-gray-500">{spec.label}:</span>
-                      <span className="font-medium text-[#2C2623]">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* Actions */}

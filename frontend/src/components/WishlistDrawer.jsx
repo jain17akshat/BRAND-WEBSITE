@@ -27,7 +27,7 @@ export const WishlistDrawer = ({
             <div className="flex items-center gap-2">
               <Heart className="w-5 h-5 text-[#A63A2B] fill-[#A63A2B]" />
               <h3 className="font-cinzel text-base font-semibold tracking-wider text-[#F9F5EC]">
-                Saved Ritual Items ({wishlistProducts.length})
+                Saved Ritual Items
               </h3>
             </div>
             <button

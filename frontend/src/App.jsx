@@ -237,7 +237,41 @@ export function App() {
 
   const wishlistProducts = PRODUCTS.filter((p) => wishlistIds.includes(p.id));
 
-  // Navigation handlers for Multi-page view — Jump instantly to top (0,0) so footer doesn't flash
+  // Hash-based URL Routing & Deep Link Sync
+  useEffect(() => {
+    const parseHash = () => {
+      const hash = window.location.hash.replace(/^#\/?/, '');
+      if (!hash || hash === 'home') {
+        setCurrentPage('home');
+        return;
+      }
+
+      if (hash.startsWith('category/')) {
+        const catId = hash.split('/')[1];
+        if (catId) {
+          setSelectedCategoryId(catId);
+          setCurrentPage('category');
+        }
+      } else if (hash.startsWith('product/')) {
+        const prodId = hash.split('/')[1];
+        const prod = PRODUCTS.find((p) => String(p.id) === String(prodId));
+        if (prod) {
+          setSelectedProduct(prod);
+          setCurrentPage('product');
+        }
+      } else if (hash === 'gifting') {
+        setCurrentPage('gifting');
+      } else if (hash === 'track-order' || hash === 'support') {
+        setCurrentPage('support');
+      }
+    };
+
+    parseHash();
+    window.addEventListener('hashchange', parseHash);
+    return () => window.removeEventListener('hashchange', parseHash);
+  }, []);
+
+  // Navigation handlers for Multi-page view — Jump instantly to top (0,0)
   const resetScrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     window.scrollTo(0, 0);
@@ -251,12 +285,15 @@ export function App() {
     if (catId === 'all') {
       setCurrentPage('home');
       setActiveCategory('all');
+      window.location.hash = '#/home';
     } else if (catId === 'kits' || catId === 'gifting') {
       setCurrentPage('gifting');
       setSelectedCategoryId('kits');
+      window.location.hash = '#/gifting';
     } else {
       setSelectedCategoryId(catId);
       setCurrentPage('category');
+      window.location.hash = `#/category/${catId}`;
     }
     resetScrollToTop();
   };
@@ -264,16 +301,19 @@ export function App() {
   const handleSelectProduct = (product) => {
     setSelectedProduct(product);
     setCurrentPage('product');
+    window.location.hash = `#/product/${product.id}`;
     resetScrollToTop();
   };
 
   const handleGoHome = () => {
     setCurrentPage('home');
+    window.location.hash = '#/home';
     resetScrollToTop();
   };
 
   const handleGoSupport = () => {
     setCurrentPage('support');
+    window.location.hash = '#/track-order';
     resetScrollToTop();
   };
 
