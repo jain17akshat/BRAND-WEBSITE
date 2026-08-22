@@ -304,68 +304,7 @@ export const CategoryPage = ({
       ) : (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
 
-          {/* Visual Subcategory Image Cards Grid */}
-          {subcategoryVisualCards.length > 0 && (
-            <div className="mb-10 space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-xs font-cinzel tracking-[0.25em] text-[#C5A059] uppercase font-bold block">
-                    Interactive Collection Varieties
-                  </span>
-                  <h2 className="text-2xl sm:text-3xl font-cinzel font-bold text-[#2C2623]">
-                    Select {category.title || category.name} Variety
-                  </h2>
-                </div>
-                <span className="text-xs font-cinzel text-gray-500 hidden sm:inline">
-                  Click any variety to view all items below
-                </span>
-              </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                {subcategoryVisualCards.map((card) => {
-                  const isActive = selectedSubcategory === card.subcatKey;
-
-                  return (
-                    <div
-                      key={card.id}
-                      onClick={() => setSelectedSubcategory(card.subcatKey)}
-                      className={`group relative cursor-pointer rounded-xl overflow-hidden shadow-sm transition-all duration-300 aspect-[4/3] sm:aspect-[1/1] flex flex-col justify-end border ${isActive
-                        ? 'border-[#C5A059] ring-2 ring-[#C5A059]/60 scale-105 shadow-xl'
-                        : 'border-[#EAE0CD] hover:border-[#C5A059]/50 hover:scale-102'
-                        }`}
-                    >
-                      <img
-                        src={card.image}
-                        alt={card.title}
-                        className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className={`absolute inset-0 bg-gradient-to-t transition-opacity ${isActive ? 'from-black/95 via-black/50 to-black/20' : 'from-black/85 via-black/40 to-transparent'
-                        }`}></div>
-
-                      {/* Active Checkmark Pill */}
-                      {isActive && (
-                        <div className="absolute top-2 right-2 z-10 w-5 h-5 rounded-full bg-[#C5A059] text-[#171312] flex items-center justify-center shadow">
-                          <Check className="w-3.5 h-3.5 stroke-[3]" />
-                        </div>
-                      )}
-
-                      <div className="relative z-10 p-3 flex flex-col justify-end text-left">
-                        <span className="text-[9px] font-cinzel uppercase font-bold text-[#E5C378] tracking-wider block">
-                          {card.badge}
-                        </span>
-                        <h3 className="text-xs sm:text-sm font-cinzel font-bold text-white leading-snug group-hover:text-[#E5C378] transition-colors">
-                          {card.title}
-                        </h3>
-                        <span className="text-[10px] text-gray-300 font-sans font-light mt-0.5 block">
-                          {card.subtitle}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
 
           {/* Filter and Sort Toolbar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#EAE0CD]">
@@ -549,27 +488,40 @@ const CategoryProductCard = ({
       </div>
 
       {/* Body Details */}
-      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
+      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between space-y-2.5">
         <div>
-          {/* Single, Clean Product Title */}
+          {/* Subtle Category/Art Tag if available */}
+          {product.categoryName && (
+            <p className="text-[9px] sm:text-[10px] font-cinzel tracking-[0.25em] text-[#9B7E52] uppercase mb-1 font-medium">
+              {product.categoryName}
+            </p>
+          )}
+          {/* Elegant Product Title */}
           <h3
             onClick={handleClickCard}
-            className="text-xs sm:text-base font-sans font-semibold text-[#1C1715] hover:text-[#9B7E52] transition-colors cursor-pointer line-clamp-2 leading-snug"
+            className="font-cinzel font-semibold text-xs sm:text-[15px] text-[#2C2623] hover:text-[#C5A059] transition-colors cursor-pointer line-clamp-2 leading-snug tracking-tight"
           >
             {product.name}
           </h3>
         </div>
 
-
-
         {/* Price & Add to Cart Footer */}
-        <div className="pt-2 border-t border-[#F0EA99]/40 flex items-center justify-between gap-2">
-          <div>
-            <div className="text-sm sm:text-lg font-cinzel font-bold text-[#2C2623]">
-              {product.weightVariants ? `From ₹${product.weightVariants[0].price.toLocaleString('en-IN')}` : `₹${product.price.toLocaleString('en-IN')}`}
-            </div>
+        <div className="pt-2.5 border-t border-[#EAE0CD] flex items-center justify-between gap-2">
+          <div className="flex items-baseline gap-1.5 flex-wrap">
+            {product.weightVariants ? (
+              <div className="flex items-baseline gap-1">
+                <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+                <span className="text-sm sm:text-base font-cinzel font-bold text-[#2C2623]">
+                  ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
+                </span>
+              </div>
+            ) : (
+              <span className="text-sm sm:text-base font-cinzel font-bold text-[#2C2623]">
+                ₹{product.price.toLocaleString('en-IN')}
+              </span>
+            )}
             {product.originalPrice && (
-              <span className="text-[10px] sm:text-xs text-gray-400 line-through">
+              <span className="text-[10px] sm:text-xs text-[#A09484] line-through font-sans">
                 ₹{product.originalPrice.toLocaleString('en-IN')}
               </span>
             )}

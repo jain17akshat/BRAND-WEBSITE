@@ -21,12 +21,15 @@ import { LenisProvider } from './components/LenisSmoothScroll';
 import { MandirFeature } from './components/MandirFeature';
 import { VisualGallery } from './components/VisualGallery';
 import { MobileBottomNav } from './components/MobileBottomNav';
-import { TrackOrderPage } from './components/TrackOrderPage';
+import { MyOrdersPage } from './components/MyOrdersPage';
 import { VideoShowcase } from './components/VideoShowcase';
 import { QuickTrackSection } from './components/QuickTrackSection';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import { RefundPolicyPage } from './components/RefundPolicyPage';
 import { TermsPage } from './components/TermsPage';
+import { HomePageDecorations } from './components/HomePageDecorations';
+import { AboutUsPage } from './components/AboutUsPage';
+import { AllCollectionsPage } from './components/AllCollectionsPage';
 
 export function App() {
   // Page Routing & Active Category State
@@ -374,9 +377,24 @@ export function App() {
           ) : currentPage === 'refund-policy' ? (
             /* Dedicated Refund & Cancellation Policy Page */
             <RefundPolicyPage onBackToHome={handleGoHome} />
-          ) : currentPage === 'support' ? (
-            /* Order Support — Track Order, Returns & FAQ */
-            <TrackOrderPage onBackToHome={handleGoHome} />
+          ) : currentPage === 'about' ? (
+            /* Dedicated About Us Page */
+            <AboutUsPage onBackToHome={handleGoHome} />
+          ) : currentPage === 'all-collections' ? (
+            /* All Products — Category-wise listing */
+            <AllCollectionsPage
+              products={PRODUCTS}
+              categories={CATEGORIES}
+              onBackToHome={handleGoHome}
+              onAddToCart={handleAddToCart}
+              onToggleWishlist={handleToggleWishlist}
+              wishlistIds={wishlistIds}
+              onSelectProduct={handleSelectProduct}
+              onSelectCategory={handleSelectCategory}
+            />
+          ) : currentPage === 'support' || currentPage === 'my-orders' ? (
+            /* Dedicated My Orders & Returns Portal */
+            <MyOrdersPage onBackToHome={handleGoHome} />
           ) : currentPage === 'product' ? (
             /* Dedicated Product Details Page View */
             <ProductDetailPage
@@ -418,9 +436,13 @@ export function App() {
             <>
               {/* 1. Hero — full-width image carousel with minimal text */}
               <Hero
-                onExploreClick={() => handleSelectCategory('brass')}
+                onExploreClick={() => {
+                  setCurrentPage('all-collections');
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
                 onRitualsClick={() => handleSelectCategory('mandir-essentials')}
               />
+
 
               {/* 2. Trust Strip — immediately below hero */}
               <ValueProps />
@@ -430,10 +452,12 @@ export function App() {
                 <Collections onSelectCategory={handleSelectCategory} />
               </div>
 
-              {/* 4. Most Loved Products — top 4 by rating */}
+              {/* 4. Most Loved Products — Glass Shivling, Nandi Bell, Brass Pyramid, Copper Kalash */}
               <div className="smooth-reveal">
                 <Bestsellers
-                  products={[...PRODUCTS].sort((a, b) => b.rating - a.rating)}
+                  products={['vastu-crystal-glass-shivling', 'brass-bell-nandi', 'vastu-brass-pyramid-multitier', 'copper-kalash-pooja-vessel']
+                    .map(id => PRODUCTS.find(p => p.id === id))
+                    .filter(Boolean)}
                   heading="Most Loved"
                   limit={4}
                   onAddToCart={handleAddToCart}
@@ -446,31 +470,18 @@ export function App() {
 
               {/* 5. Mandir Essentials Editorial Feature */}
               <div className="smooth-reveal">
-                <MandirFeature onExplore={() => handleSelectCategory('mandir-essentials')} />
-              </div>
-
-              {/* 6. New Arrivals — last 4 products */}
-              <div className="smooth-reveal">
-                <Bestsellers
-                  products={PRODUCTS.slice(-8)}
-                  heading="New Arrivals"
-                  limit={4}
-                  onAddToCart={handleAddToCart}
-                  onToggleWishlist={handleToggleWishlist}
-                  wishlistIds={wishlistIds}
-                  onOpenQuickView={(product) => setQuickViewProduct(product)}
+                <MandirFeature
+                  onExplore={() => handleSelectCategory('mandir-essentials')}
                   onSelectProduct={handleSelectProduct}
+                  onAddToCart={handleAddToCart}
                 />
               </div>
+
+
 
               {/* 7. Brand Story */}
               <div id="brand-story" className="smooth-reveal">
                 <BrandStory onDiscover={() => { }} />
-              </div>
-
-              {/* 8. Video Reels — all 5 videos */}
-              <div className="smooth-reveal">
-                <VideoShowcase />
               </div>
 
               {/* 8. Corporate Gifting Section */}
@@ -597,31 +608,25 @@ export function App() {
                       />
                     </div>
 
-                    {/* CENTER — Brand Name + Tagline (bold, large) */}
-                    <div className="flex-1 text-center px-2 sm:px-6">
+                    {/* CENTER — Big & Bold Message (Guaranteed 2 Lines) */}
+                    <div className="flex-1 text-center px-1 sm:px-4">
                       <h2
-                        className="font-cinzel font-extrabold text-white leading-tight tracking-wide drop-shadow-lg"
+                        className="font-cinzel font-extrabold text-white leading-tight tracking-wider uppercase drop-shadow-lg sm:whitespace-nowrap"
                         style={{
-                          fontSize: 'clamp(1.2rem, 4.5vw, 3.2rem)',
-                          textShadow: '2px 3px 8px rgba(100,50,0,0.35)',
+                          fontSize: 'clamp(0.85rem, 2.7vw, 2.2rem)',
+                          textShadow: '2px 4px 10px rgba(80,35,0,0.45)',
                         }}
                       >
-                        SHRAVIKO
+                        From Daily Pooja to Festive Rituals
                       </h2>
                       <p
-                        className="font-cinzel font-bold text-white/90 tracking-[0.22em] uppercase mt-1"
+                        className="font-cinzel font-black text-[#FFF8E7] tracking-[0.25em] uppercase mt-1 sm:mt-2 drop-shadow-md sm:whitespace-nowrap"
                         style={{
-                          fontSize: 'clamp(0.5rem, 1.6vw, 0.95rem)',
-                          textShadow: '1px 2px 4px rgba(100,50,0,0.3)',
+                          fontSize: 'clamp(0.95rem, 3.2vw, 2.4rem)',
+                          textShadow: '2px 4px 12px rgba(80,35,0,0.55)',
                         }}
                       >
-                        Pooja Samagri &amp; Vidhi
-                      </p>
-                      <p
-                        className="font-serif italic text-white/80 mt-2 hidden sm:block"
-                        style={{ fontSize: 'clamp(0.6rem, 1.2vw, 0.8rem)' }}
-                      >
-                        "Bringing Vedic Purity &amp; Timeless Heritage to Modern Homes"
+                        WE HAVE IT ALL
                       </p>
                     </div>
 
@@ -637,30 +642,15 @@ export function App() {
                 </section>
               </div>
 
-
-              {/* 10. Final CTA */}
+              {/* 10. Video Reels — Artisan Stories & Craft in Motion */}
               <div className="smooth-reveal">
-                <section className="py-16 sm:py-24 bg-[#F8F3EC] text-center">
-                  <div className="max-w-2xl mx-auto px-6">
-                    <p className="text-[10px] font-cinzel tracking-[0.3em] text-[#9B7E52] uppercase mb-4">Begin Your Journey</p>
-                    <h2 className="font-cinzel font-bold text-[#2C2623] leading-tight mb-8" style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}>
-                      Bring Timeless Tradition Home
-                    </h2>
-                    <button
-                      onClick={() => handleSelectCategory('brass')}
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-[#2C1F06] text-[#E5C378] text-xs font-cinzel font-bold tracking-widest uppercase rounded hover:bg-[#3D2B0A] transition-all duration-300 active:scale-95 group shadow-lg"
-                    >
-                      Explore Shraviko
-                      <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                    </button>
-                  </div>
-                </section>
+                <VideoShowcase />
               </div>
 
-              {/* 11. Live Shiprocket Track Order Section */}
-              <div className="smooth-reveal">
-                <QuickTrackSection onGoSupport={handleGoSupport} />
-              </div>
+
+
+
+
             </>
           )}
         </main>
@@ -673,6 +663,7 @@ export function App() {
             onGoPrivacy={handleGoPrivacy}
             onGoRefundPolicy={handleGoRefundPolicy}
             onGoTerms={handleGoTerms}
+            onGoAbout={() => setCurrentPage('about')}
           />
         </div>
 

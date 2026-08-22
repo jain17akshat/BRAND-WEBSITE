@@ -1,11 +1,10 @@
 export const CATEGORIES = [
   { id: 'all', name: 'All Collections' },
   { id: 'brass', name: 'Brass Articles', count: 17 },
-  { id: 'copper', name: 'Copper Articles', count: 5 },
+  { id: 'copper', name: 'Copper Articles', count: 4 },
   { id: 'mandir-essentials', name: 'Mandir Essentials', count: 13 },
   { id: 'incense', name: 'Incense & Dhoop', count: 5 },
-  { id: 'vastu', name: 'Vastu & Spiritual', count: 11 },
-  { id: 'kits', name: 'Pooja Kits & Boxes', count: 1 },
+  { id: 'vastu', name: 'Vastu & Spiritual', count: 9 },
   { id: 'yantras', name: 'Custom & Handcrafted', count: 3 }
 ];
 
@@ -1120,35 +1119,6 @@ export const PRODUCTS = [
     ]
   },
 
-  // 12. Copper Pitcher Set
-  {
-    id: 'shraviko-copper-01',
-    name: 'Tamra Jal Hand-Hammered Pure Copper Pitcher & Glass Set',
-    category: 'copper',
-    categoryName: 'Copper Articles',
-    subcategory: 'Copper Vessels',
-    price: 2850,
-    originalPrice: 3400,
-    rating: 4.97,
-    reviewsCount: 88,
-    tag: 'Pure Copper',
-    image: '/assets/Copper cover.png',
-    images: [
-      '/assets/Copper cover.png'
-    ],
-    weightVariants: [
-      { weight: '1.5L Pitcher + 2 Glasses', price: 2850, originalPrice: 3400, default: true },
-      { weight: '1.5L Pitcher + 4 Glasses', price: 3650, originalPrice: 4400 }
-    ],
-    purity: '99.6% Certified Pure Copper',
-    inStock: true,
-    description: 'Hand-hammered pure copper pitcher (1.5L capacity) with two matching copper tumblers. Overnight water storage in copper promotes natural alkalinity and digestive harmony.',
-    specifications: [
-      { label: 'Purity Level', value: '99.6% Lab-Certified Virgin Copper' },
-      { label: 'Capacity', value: 'Pitcher 1.5 Liters, Tumbler 300ml each' }
-    ]
-  },
-
   // 13. Copper Panchpatra Set
   {
     id: 'copper-panchpatra-pali-set',
@@ -1907,8 +1877,9 @@ export const PRODUCTS = [
     tag: '7-in-1 Pooja Box',
     artType: 'box',
     fitMode: 'contain',
-    image: '/assets/Pooja box/poojabox1.jpg',
+    image: '/assets/Pooja box/Poojafront.png',
     images: [
+      '/assets/Pooja box/Poojafront.png',
       '/assets/Pooja box/poojabox1.jpg',
       '/assets/Pooja box/poobjabox2.png',
       '/assets/Pooja box/Pooja box.jpg',
@@ -2296,141 +2267,6 @@ export const PRODUCTS = [
       { q: 'Where can the Shani Yantra be placed?', a: 'It can be placed in home temples, pooja rooms, office desks, or meditation spaces.' },
       { q: 'How do I clean and maintain the copper Shani Yantra?', a: 'Gently wipe with a soft cloth and polish periodically with lemon/salt or copper cleaner. Avoid harsh abrasives.' },
       { q: 'Is this yantra suitable for daily worship?', a: 'Yes, it is suitable for daily pooja, Saturday prayers, meditation, and devotional practices.' }
-    ]
-  },
-
-  // 31A. Copper Navgrah Yantra
-  {
-    id: 'vastu-navgrah-yantra',
-    name: 'Copper Navgrah Yantra',
-    category: 'vastu',
-    categoryName: 'Vastu & Spiritual',
-    subcategory: 'Vastu Yantras',
-    price: 990,
-    originalPrice: 1290,
-    rating: 5.0,
-    reviewsCount: 184,
-    tag: 'Navgrah Yantra',
-    artType: 'yantra',
-    fitMode: 'contain',
-    image: '/assets/Ganeshyantra/Ganesh 1.png',
-    images: [
-      '/assets/Ganeshyantra/Ganesh 1.png',
-      '/assets/Ganeshyantra/Ganesh2.png'
-    ],
-    weightVariants: [
-      { weight: '3 × 3 Inches (Pure Copper)', price: 990, originalPrice: 1290, default: true },
-      { weight: 'Pack of 2 Yantras', price: 1790, originalPrice: 2390 }
-    ],
-    purity: '100% Pure Copper Sheet',
-    inStock: true,
-    description: 'The Copper Navgrah Yantra is a traditional devotional symbol associated with the nine Navgrahas (planetary deities) in Hindu traditions. Crafted from copper and featuring a detailed traditional design, this yantra is suitable for incorporation into pooja, Navgraha-related rituals, meditation and other devotional practices. Its compact 3 × 3 inch square format makes it convenient to place on a pooja altar, temple shelf, office desk or dedicated spiritual space.',
-    shortDescription: 'Bring a traditional devotional element to your pooja space with this Copper Navgrah Yantra, featuring a traditional design representing the nine planetary deities in Hindu traditions. Its compact 3 × 3 inch format makes it suitable for home temples, pooja rooms, offices and meditation spaces.',
-    seoTitle: 'Copper Navgrah Yantra | 3 × 3 Inch Nine-Planet Yantra | Shraviko',
-    metaDescription: 'Shop Copper Navgrah Yantra with traditional nine-planet design. Compact 3 × 3 inch yantra for home temple, pooja room, meditation, office and devotional spaces.',
-    specifications: [
-      { label: 'Product Name', value: 'Navgrah Yantra' },
-      { label: 'Product Type', value: 'Copper Yantra' },
-      { label: 'Material', value: 'Pure Copper' },
-      { label: 'Design', value: 'Navgrah / Nine Planets' },
-      { label: 'Shape', value: 'Square' },
-      { label: 'Size', value: '3 × 3 Inches' },
-      { label: 'Finish', value: 'Natural / Engraved' },
-      { label: 'Colour', value: 'Copper' },
-      { label: 'Quantity', value: '1 Piece' },
-      { label: 'Usage', value: 'Pooja & Devotional Practices' },
-      { label: 'Suitable For', value: 'Home, Temple, Office & Meditation Spaces' },
-      { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Copper Navgrah Yantra' }
-    ],
-    keyFeatures: [
-      'Traditional Navgrah Yantra Design – Sacred nine-planet representation formatted in traditional geometric grids.',
-      'Nine-Planet Representation – Represents the nine Navgrahas (Surya, Chandra, Mangal, Budh, Guru, Shukra, Shani, Rahu, Ketu).',
-      'Pure Copper Construction – Made from quality copper with fine detailed engraving.',
-      'Compact 3 × 3 Inch Size – Square plate design fitting conveniently on mandir altars, office desks, and meditation corners.',
-      'Suitable for Pooja & Navgraha Rituals – Ideal for daily worship, Navgraha shanti poojas, and devotional practices.',
-      'Made in India – Authentic traditional Indian devotional craftsmanship.'
-    ],
-    careInstructions: [
-      'Wipe the yantra gently with a soft, dry cloth to remove dust and fingerprints.',
-      'Copper may naturally develop a patina over time due to oxidation.',
-      'If you prefer to maintain its brighter appearance, use a suitable copper-cleaning method and avoid abrasive materials that may damage the engraved surface.',
-      'Store in a clean, dry place when not in use.'
-    ],
-    faqs: [
-      { q: 'What is a Navgrah Yantra?', a: 'A Navgrah Yantra is a traditional devotional symbol representing the nine planetary deities (Navgrahas) used in Hindu worship.' },
-      { q: 'What material and dimensions are used for this yantra?', a: 'It is crafted from pure copper with an engraved finish and measures 3 × 3 inches.' },
-      { q: 'Where can the Navgrah Yantra be placed?', a: 'It can be placed in a home temple, pooja room, office desk, or meditation space.' },
-      { q: 'What rituals is this yantra suitable for?', a: 'It is suitable for daily pooja, Navgraha-related rituals, meditation, and religious ceremonies.' },
-      { q: 'How do I clean and maintain the copper Navgrah yantra?', a: 'Gently wipe with a soft dry cloth and polish periodically with lemon/salt or copper polish. Avoid harsh abrasives.' }
-    ]
-  },
-
-  // 31B. Copper Saraswati Yantra
-  {
-    id: 'vastu-saraswati-yantra',
-    name: 'Copper Saraswati Yantra',
-    category: 'vastu',
-    categoryName: 'Vastu & Spiritual',
-    subcategory: 'Vastu Yantras',
-    price: 990,
-    originalPrice: 1290,
-    rating: 4.99,
-    reviewsCount: 165,
-    tag: 'Saraswati Yantra',
-    artType: 'yantra',
-    fitMode: 'contain',
-    image: '/assets/Ganeshyantra/Ganesh 1.png',
-    images: [
-      '/assets/Ganeshyantra/Ganesh 1.png',
-      '/assets/Ganeshyantra/Ganesh2.png',
-      '/assets/Ganeshyantra/ganesh 3.png'
-    ],
-    weightVariants: [
-      { weight: '3 × 3 Inches (Pure Copper)', price: 990, originalPrice: 1290, default: true },
-      { weight: 'Pack of 2 Yantras', price: 1790, originalPrice: 2390 }
-    ],
-    purity: '100% Pure Copper Sheet',
-    inStock: true,
-    description: 'Bring traditional Indian craftsmanship into your devotional or study space with this Copper Saraswati Yantra. The Saraswati Yantra is a traditional sacred symbol associated with Goddess Saraswati, who is revered in Hindu traditions in connection with knowledge, learning, wisdom, music and the arts. Crafted from copper with a detailed traditional design, the yantra features geometric patterns and devotional elements associated with Saraswati worship. Its compact 3 × 3 inch square format makes it easy to place on a study table, pooja altar, home mandir, office desk or meditation space.',
-    shortDescription: 'Add a traditional devotional element to your study or spiritual space with this Copper Saraswati Yantra, featuring a traditional design associated with Goddess Saraswati. Its compact 3 × 3 inch size is suitable for home temples, study tables, offices and meditation spaces.',
-    seoTitle: 'Copper Saraswati Yantra | 3 × 3 Inch Pooja & Study Yantra | Shraviko',
-    metaDescription: 'Shop Copper Saraswati Yantra with traditional engraved design. Compact 3 × 3 inch yantra for pooja room, study table, home temple, office and meditation spaces.',
-    specifications: [
-      { label: 'Product Name', value: 'Saraswati Yantra' },
-      { label: 'Product Type', value: 'Copper Yantra' },
-      { label: 'Material', value: 'Pure Copper' },
-      { label: 'Design', value: 'Saraswati Yantra' },
-      { label: 'Shape', value: 'Square' },
-      { label: 'Size', value: '3 × 3 Inches' },
-      { label: 'Finish', value: 'Natural / Engraved Copper' },
-      { label: 'Colour', value: 'Copper' },
-      { label: 'Quantity', value: '1 Piece' },
-      { label: 'Usage', value: 'Pooja, Meditation & Devotional Display' },
-      { label: 'Suitable For', value: 'Home, Study Room, Office, Temple' },
-      { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Copper Saraswati Yantra' }
-    ],
-    keyFeatures: [
-      'Traditional Saraswati Yantra Design – Sacred geometric patterns associated with Goddess Saraswati.',
-      'Pure Copper Construction – Made from high-grade copper with detailed traditional engraving.',
-      'Compact 3 × 3 Inch Size – Fits conveniently on study tables, mandir altars, office desks, and meditation rooms.',
-      'Associated with Knowledge & Arts – Revered for learning, wisdom, music, and artistic endeavors.',
-      'Ideal for Students & Teachers – Thoughtful devotional gift for students, educators, artists, and professionals.',
-      'Made in India – Authentic traditional Indian devotional craftsmanship.'
-    ],
-    careInstructions: [
-      'Wipe gently with a soft, dry cloth to remove dust and fingerprints.',
-      'Copper can naturally develop a patina over time due to oxidation.',
-      'If you want to maintain its brighter appearance, use an appropriate copper-cleaning method and avoid abrasive materials that could damage the engraving.',
-      'Store in a clean, dry place when not in use.'
-    ],
-    faqs: [
-      { q: 'What is a Saraswati Yantra?', a: 'A Saraswati Yantra is a traditional sacred geometric design associated with Goddess Saraswati, revered for knowledge, learning, wisdom, music, and arts.' },
-      { q: 'What material and size is this yantra?', a: 'It is crafted from pure copper with an engraved finish and measures 3 × 3 inches.' },
-      { q: 'Where can the Saraswati Yantra be placed?', a: 'It can be placed on a study table, home mandir altar, pooja room shelf, office desk, or meditation space.' },
-      { q: 'Who is this yantra suitable for?', a: 'It is ideal for students, teachers, artists, musicians, professionals, and devotees.' },
-      { q: 'How do I clean and maintain the copper Saraswati Yantra?', a: 'Wipe gently with a soft dry cloth and polish periodically with lemon/salt or copper cleaner. Avoid harsh abrasives.' }
     ]
   },
 
@@ -2938,37 +2774,6 @@ export const PRODUCTS = [
       { q: 'What are the exact dimensions and weight?', a: 'It stands approximately 8.8 cm high, measures 5.5 × 3.5 × 8.8 cm, and weighs about 310 grams.' },
       { q: 'Where can I place this brass idol?', a: 'It can be placed in home mandirs, living room display shelves, office desks, meditation corners, or spiritual display areas.' },
       { q: 'Is it suitable for wedding and anniversary gifting?', a: 'Yes, as a symbol of divine love and harmony, it makes an exceptional gift for weddings, anniversaries, Janmashtami, and housewarmings.' }
-    ]
-  },
-
-  // 40. Griha Pravesh Pooja Kit
-  {
-    id: 'shraviko-kit-01',
-    name: 'Griha Pravesh & Shubh Aarambh Luxury Pooja Hamper',
-    category: 'kits',
-    categoryName: 'Pooja Kits',
-    price: 5900,
-    originalPrice: 7200,
-    rating: 5.0,
-    reviewsCount: 76,
-    tag: 'Luxury Gift Box',
-    artType: 'kit',
-    image: '/assets/Pooja box/poojabox 1.png',
-    images: [
-      '/assets/Pooja box/poojabox 1.png',
-      '/assets/Pooja box/poojabox 2.png',
-      '/assets/Pooja box/poojabox 3.png',
-      '/assets/Pooja box/poobjabox 4.png'
-    ],
-    weightVariants: [
-      { weight: 'Standard Luxury Hamper', price: 5900, originalPrice: 7200, default: true },
-      { weight: 'Royal Grand Hamper Set', price: 8500, originalPrice: 9900 }
-    ],
-    purity: 'Curated Heritage Collection',
-    inStock: true,
-    description: 'An auspicious ritual box designed for new home blessings, weddings, and milestones. Housed in an ivory & gold rigid velvet box with personalized gift card.',
-    specifications: [
-      { label: 'Contents', value: 'Brass Diya, Silver-Plated Bell, Organic Kumkum, Camphor, Incense Box, Brass Kalash, Cotton Wicks, Sacred Thread' }
     ]
   },
 

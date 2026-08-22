@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hero button floating animation */
+@keyframes heroFloat {
+  0%,  100% { transform: translateY(0px);   }
+  50%        { transform: translateY(-8px);  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

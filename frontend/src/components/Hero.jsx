@@ -5,12 +5,22 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
 
   const heroImages = [
     {
+      id: 'hero-launch',
+      mobileImage: '/assets/Launchmobile.png',
+      desktopImage: '/assets/Launch.png',
+      fallback: '/assets/Pooja.png',
+      mobilePosition: 'center center',
+      desktopPosition: 'center center',
+      duration: 9000, // Stay longer (9 seconds) for the launch banner slide!
+    },
+    {
       id: 'hero-pooja',
       mobileImage: '/assets/Poojamobile.png',
       desktopImage: '/assets/Pooja.png',
       fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
+      duration: 4500,
     },
     {
       id: 'hero-candel',
@@ -19,6 +29,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
       fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
+      duration: 4500,
     },
     {
       id: 'hero-calm',
@@ -27,6 +38,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
       fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
+      duration: 4500,
     },
     {
       id: 'hero-4',
@@ -35,6 +47,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
       fallback: '/assets/Hero4.jpg',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
+      duration: 4500,
     },
     {
       id: 'hero-1',
@@ -43,6 +56,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
       fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
+      duration: 4500,
     },
     {
       id: 'hero-2',
@@ -51,6 +65,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
       fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
+      duration: 4500,
     },
     {
       id: 'hero-3',
@@ -59,6 +74,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
       fallback: '/assets/HERO2.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
+      duration: 4500,
     },
     {
       id: 'hero-copper',
@@ -67,23 +83,29 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
       fallback: '/assets/Copper cover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
+      duration: 4500,
     },
   ];
 
+  // Preload images silently in background
   useEffect(() => {
-    // Preload remaining hero slide images silently in memory
     heroImages.forEach((img) => {
       const desktop = new Image();
       desktop.src = img.desktopImage;
       const mobile = new Image();
       mobile.src = img.mobileImage;
     });
+  }, []);
 
-    const timer = setInterval(() => {
+  // Per-slide custom display duration timer
+  useEffect(() => {
+    const currentDuration = heroImages[activeSlide]?.duration || 4500;
+    const timer = setTimeout(() => {
       setActiveSlide((prev) => (prev + 1) % heroImages.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [heroImages.length]);
+    }, currentDuration);
+
+    return () => clearTimeout(timer);
+  }, [activeSlide, heroImages.length]);
 
   return (
     <section
@@ -155,56 +177,52 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
         "
       />
 
-      {/* HERO CONTENT — Clean Shop Collection button only */}
-      <div
-        className="
-          absolute inset-0 z-10
-          flex items-end justify-between
-          px-5
-          sm:px-12
-          lg:px-20
-          pb-10
-          sm:pb-14
-          lg:pb-20
-        "
-      >
-        <div>
-          <button
-            onClick={onExploreClick}
-            className="
-              min-h-[44px]
-              rounded
-              bg-white
-              px-6 py-3.5
-              text-xs
-              font-cinzel
-              font-bold
-              tracking-widest
-              uppercase
-              text-[#2C1F06]
-              shadow-xl
-              transition-all
-              duration-300
-              hover:bg-[#FAF0D9]
-              active:scale-95
-            "
-          >
-            Shop Collection
-          </button>
-        </div>
+      {/* HERO CONTENT — Centered floating Shop Collection button */}
+      <div className="absolute inset-0 z-10 flex items-end justify-center pb-12 sm:pb-16 lg:pb-20">
+        <button
+          onClick={onExploreClick}
+          style={{
+            animation: 'heroFloat 3s ease-in-out infinite',
+          }}
+          className="
+            min-h-[48px]
+            rounded-full
+            bg-white/90
+            backdrop-blur-sm
+            px-8 py-3.5
+            text-xs
+            font-cinzel
+            font-bold
+            tracking-[0.2em]
+            uppercase
+            text-[#2C1F06]
+            shadow-2xl
+            border border-white/60
+            transition-all
+            duration-300
+            hover:bg-white
+            hover:scale-105
+            hover:shadow-[0_8px_40px_rgba(197,160,89,0.4)]
+            active:scale-95
+          "
+        >
+          Shop Collection
+        </button>
+      </div>
 
-        {/* Netflix-style Slide Indicators */}
-        <div className="flex items-center gap-2">
-          {heroImages.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveSlide(idx)}
-              className={`h-1.5 rounded-full transition-all duration-500 ${idx === activeSlide ? 'w-8 bg-[#E5C378]' : 'w-2.5 bg-white/40 hover:bg-white/70'
-                }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
+      {/* SLIDE INDICATORS (DOTS) */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+        {heroImages.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveSlide(idx)}
+            className={`transition-all duration-300 rounded-full ${idx === activeSlide
+                ? 'w-6 h-1.5 bg-[#E5C378]'
+                : 'w-1.5 h-1.5 bg-white/50 hover:bg-white/80'
+              }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
       </div>
     </section>
   );

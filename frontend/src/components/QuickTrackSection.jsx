@@ -107,7 +107,7 @@ export function QuickTrackSection({ onGoSupport }) {
               onClick={onGoSupport}
               className="text-[#B8860B] hover:underline font-semibold font-cinzel uppercase tracking-wider text-[11px] inline-flex items-center gap-1"
             >
-              <span>Full Support Portal</span>
+              <span>My Orders &amp; Returns Portal</span>
               <ArrowRight className="w-3 h-3" />
             </button>
           </div>

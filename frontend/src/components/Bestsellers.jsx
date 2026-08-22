@@ -99,24 +99,37 @@ export const Bestsellers = ({
                 {/* Info */}
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
-
-                    {/* Single Clean Name */}
+                    {product.categoryName && (
+                      <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#9B7E52] uppercase mb-1 font-medium">
+                        {product.categoryName}
+                      </p>
+                    )}
+                    {/* Elegant Product Title */}
                     <h3
                       onClick={() => handleCardClick(product)}
-                      className="font-sans text-xs sm:text-sm font-semibold text-[#2C2623] hover:text-[#9B7E52] transition-colors line-clamp-2 cursor-pointer leading-snug mb-3"
+                      className="font-cinzel font-semibold text-xs sm:text-sm text-[#2C2623] hover:text-[#C5A059] transition-colors line-clamp-2 cursor-pointer leading-snug tracking-tight mb-3"
                     >
                       {product.name}
                     </h3>
                   </div>
 
                   {/* Price + View Details */}
-                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#F0E8DC] gap-2">
-                    <div>
-                      <span className="text-sm font-cinzel font-bold text-[#2C2623]">
-                        ₹{product.price.toLocaleString('en-IN')}
-                      </span>
+                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#EAE0CD] gap-2">
+                    <div className="flex items-baseline gap-1">
+                      {product.weightVariants ? (
+                        <>
+                          <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+                          <span className="text-sm font-cinzel font-bold text-[#2C2623]">
+                            ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
+                          </span>
+                        </>
+                      ) : (
+                        <span className="text-sm font-cinzel font-bold text-[#2C2623]">
+                          ₹{product.price.toLocaleString('en-IN')}
+                        </span>
+                      )}
                       {product.originalPrice && (
-                        <span className="text-[10px] text-gray-400 line-through ml-1.5">
+                        <span className="text-[10px] text-[#A09484] line-through font-sans ml-1">
                           ₹{product.originalPrice.toLocaleString('en-IN')}
                         </span>
                       )}

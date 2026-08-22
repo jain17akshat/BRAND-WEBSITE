@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { ArrowUp, Instagram, Facebook, Share2, Mail, Phone, MapPin } from 'lucide-react';
 import { PaymentLogos } from './PaymentLogos';
 
-export const Footer = ({ onSelectCategory, onGoSupport, onGoPrivacy, onGoRefundPolicy, onGoTerms }) => {
+export const Footer = ({ onSelectCategory, onGoSupport, onGoPrivacy, onGoRefundPolicy, onGoTerms, onGoAbout }) => {
   const revealPanelRef = useRef(null);
   const brandTextRef = useRef(null);
   const tagTextRef = useRef(null);
@@ -108,18 +108,6 @@ export const Footer = ({ onSelectCategory, onGoSupport, onGoPrivacy, onGoRefundP
 
             {/* Col 1: Brand Block */}
             <div className="col-span-2 lg:col-span-2 space-y-4 relative">
-              {/* Rotating Sacred Lotus Mandala behind Logo */}
-              <div className="absolute -top-6 -left-6 pointer-events-none opacity-20 animate-spin-slow">
-                <svg className="w-[180px] h-[180px] text-[#C5A059]" viewBox="0 0 200 200" fill="currentColor">
-                  <g transform="translate(100,100)">
-                    <circle r="90" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
-                    <circle r="78" fill="none" stroke="currentColor" strokeWidth="1" />
-                    {[...Array(12)].map((_, i) => (
-                      <path key={i} d="M 0,-65 Q 12,-40 0,-15 Q -12,-40 0,-65" fill="none" stroke="currentColor" strokeWidth="1" transform={`rotate(${i * 30})`} />
-                    ))}
-                  </g>
-                </svg>
-              </div>
 
               <div className="flex flex-col items-start gap-2 relative z-10">
                 <img
@@ -167,9 +155,9 @@ export const Footer = ({ onSelectCategory, onGoSupport, onGoPrivacy, onGoRefundP
                   { label: 'Brass Pooja Items', cat: 'brass' },
                   { label: 'Pure Copper Vessels', cat: 'copper' },
                   { label: 'Incense & Dhoop', cat: 'incense' },
-                  { label: 'Pooja Hampers', cat: 'kits' },
+                  { label: 'Vastu & Spiritual', cat: 'vastu' },
                   { label: 'Yantras & Idols', cat: 'yantras' },
-                  { label: 'Daily Puja Samagri', cat: 'essentials' },
+                  { label: 'Mandir Essentials', cat: 'mandir-essentials' },
                 ].map(({ label, cat }) => (
                   <li key={cat}>
                     <button onClick={() => onSelectCategory(cat)} className="hover:text-[#C5A059] transition-colors text-left">
@@ -187,8 +175,13 @@ export const Footer = ({ onSelectCategory, onGoSupport, onGoPrivacy, onGoRefundP
               </h4>
               <ul className="space-y-2 text-xs text-gray-400 font-light">
                 <li>
-                  <button onClick={onGoSupport} className="hover:text-[#C5A059] transition-colors text-left">
-                    Track My Order
+                  <button onClick={onGoAbout} className="hover:text-[#C5A059] transition-colors text-left font-medium text-[#E5C378]">
+                    About Us
+                  </button>
+                </li>
+                <li>
+                  <button onClick={onGoSupport} className="hover:text-[#C5A059] transition-colors text-left font-medium">
+                    My Orders &amp; Tracking
                   </button>
                 </li>
                 <li>
