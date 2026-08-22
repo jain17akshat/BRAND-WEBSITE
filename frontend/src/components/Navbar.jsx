@@ -117,12 +117,12 @@ export const Navbar = ({
               })}
             </nav>
 
-            {/* RIGHT — Action Buttons (Track Order, Search, Wishlist, Cart) */}
+            {/* RIGHT — Action Buttons (Desktop: Track Order, Search, Wishlist, Cart | Mobile: Cart only) */}
             <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
               {onGoSupport && (
                 <button
                   onClick={onGoSupport}
-                  className="p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 group"
+                  className="hidden sm:flex p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 group"
                   title="Track Order"
                 >
                   <Truck className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
@@ -132,7 +132,7 @@ export const Navbar = ({
 
               <button
                 onClick={onOpenSearch}
-                className="p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 group"
+                className="hidden sm:flex p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 group"
                 title="Search Products"
               >
                 <Search className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
@@ -141,7 +141,7 @@ export const Navbar = ({
 
               <button
                 onClick={onOpenWishlist}
-                className="p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 relative"
+                className="hidden sm:flex p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 relative"
                 title="Saved Items"
               >
                 <Heart className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
@@ -154,7 +154,7 @@ export const Navbar = ({
 
               <button
                 onClick={onOpenCart}
-                className="p-2.5 rounded-full bg-[#3D2B1F] hover:bg-[#2C1F06] text-[#E5C378] border border-[#3D2B1F] transition-all shadow-sm active:scale-95 relative group"
+                className="p-2 sm:p-2.5 rounded-full bg-[#3D2B1F] hover:bg-[#2C1F06] text-[#E5C378] border border-[#3D2B1F] transition-all shadow-sm active:scale-95 relative group"
                 title="Shopping Cart"
               >
                 <ShoppingBag className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
@@ -186,6 +186,21 @@ export const Navbar = ({
                     <span className="text-xs text-[#B8860B]">→</span>
                   </button>
                 ))}
+                {onGoSupport && (
+                  <button
+                    onClick={() => {
+                      onGoSupport();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="text-left text-sm tracking-wider uppercase font-cinzel py-2.5 border-b border-[#DAB97B]/20 flex items-center justify-between transition-colors text-[#B8860B] font-bold"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Truck className="w-4 h-4 text-[#B8860B]" />
+                      Track Order & Support
+                    </span>
+                    <span className="text-xs text-[#B8860B]">→</span>
+                  </button>
+                )}
                 <div className="pt-3 text-xs font-serif text-[#B8860B] italic text-center">
                   “Bringing Vedic Purity &amp; Timeless Heritage to Modern Homes”
                 </div>
