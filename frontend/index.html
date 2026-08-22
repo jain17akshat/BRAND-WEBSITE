@@ -16,10 +16,11 @@
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
 
-  <!-- Preload first hero image for faster LCP -->
-  <link rel="preload" as="image" href="/assets/HERO 3.png" fetchpriority="high" />
-  <!-- Preload logo -->
-  <link rel="preload" as="image" href="/assets/Logo/FINAL LOGO.png" />
+  <!-- Preload lead hero images for instant First Contentful Paint (LCP) -->
+  <link rel="preload" as="image" href="/assets/Poojamobile.png" media="(max-width: 639px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/Pooja.png" media="(min-width: 640px)" fetchpriority="high" />
+  <!-- Preload official logo -->
+  <link rel="preload" as="image" href="/assets/Logo/CURRENT LOGO.png" />
   <!-- DNS prefetch for any external resources -->
   <link rel="dns-prefetch" href="https://images.unsplash.com" />
 </head>

@@ -71,6 +71,14 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
   ];
 
   useEffect(() => {
+    // Preload remaining hero slide images silently in memory
+    heroImages.forEach((img) => {
+      const desktop = new Image();
+      desktop.src = img.desktopImage;
+      const mobile = new Image();
+      mobile.src = img.mobileImage;
+    });
+
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % heroImages.length);
     }, 4500);
@@ -114,6 +122,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
                 src={slide.desktopImage}
                 alt="Shraviko Sacred Collection"
                 loading={idx === 0 ? 'eager' : 'lazy'}
+                decoding="async"
                 fetchPriority={idx === 0 ? 'high' : 'low'}
                 onError={(e) => {
                   if (e.currentTarget.src !== slide.fallback) {
