@@ -103,7 +103,7 @@ export function PrivacyPolicyPage({ onBackToHome }) {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#B8860B]" />
-                <span>Phone: +91 (0141) 289-4020</span>
+                <span>Phone: +91 7742320607</span>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#B8860B] shrink-0 mt-0.5" />

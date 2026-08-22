@@ -231,7 +231,7 @@ export const Footer = ({ onSelectCategory, onGoSupport, onGoPrivacy, onGoRefundP
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <span>+91 (0141) 289-4020</span>
+                  <span>+91 7742320607</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-[#C5A059] shrink-0" />

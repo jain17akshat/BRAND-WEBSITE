@@ -95,7 +95,7 @@ async function sendOrderConfirmationEmail({ to, customerName, orderId, items, to
         <!-- Footer -->
         <div style="text-align: center; font-size: 12px; color: #7A6859; padding-top: 20px; border-top: 1px solid #E8DFC7;">
           <p style="margin-bottom: 5px;">Have questions about your order?</p>
-          <p style="margin: 0;">Write to us at <a href="mailto:info@shraviko.com" style="color: #C5A059; text-decoration: none;">info@shraviko.com</a> or call <strong>+91 (0141) 289-4020</strong>.</p>
+          <p style="margin: 0;">Write to us at <a href="mailto:info@shraviko.com" style="color: #C5A059; text-decoration: none;">info@shraviko.com</a> or call <strong>+91 7742320607</strong>.</p>
         </div>
 
       </div>
@@ -177,7 +177,7 @@ async function sendRefundConfirmationEmail({ to, customerName, refundId, payment
         <!-- Footer -->
         <div style="text-align: center; font-size: 12px; color: #7A6859; padding-top: 20px; border-top: 1px solid #E8DFC7;">
           <p style="margin-bottom: 5px;">Need further assistance?</p>
-          <p style="margin: 0;">Write to us at <a href="mailto:info@shraviko.com" style="color: #C5A059; text-decoration: none;">info@shraviko.com</a> or call <strong>+91 (0141) 289-4020</strong>.</p>
+          <p style="margin: 0;">Write to us at <a href="mailto:info@shraviko.com" style="color: #C5A059; text-decoration: none;">info@shraviko.com</a> or call <strong>+91 7742320607</strong>.</p>
         </div>
 
       </div>

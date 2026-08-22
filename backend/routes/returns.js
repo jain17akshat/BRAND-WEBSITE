@@ -57,7 +57,7 @@ router.post('/request', validateBody({
       pickup_pincode: '',
       pickup_country: 'India',
       shipping_customer_name: 'Shraviko Sacred Living',
-      shipping_phone:  '01412894020',
+      shipping_phone:  '7742320607',
       shipping_address:'Civil Lines',
       shipping_city:   'Jaipur',
       shipping_state:  'Rajasthan',

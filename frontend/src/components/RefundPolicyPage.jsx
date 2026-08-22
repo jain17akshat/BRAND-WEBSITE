@@ -120,7 +120,7 @@ export function RefundPolicyPage({ onBackToHome }) {
               5. Order Cancellation Policy
             </h2>
             <p>
-              You may cancel your order within <strong>2 hours of placement</strong> before it enters warehouse processing by contacting <a href="mailto:info@shraviko.com" className="text-[#B8860B] underline font-semibold">info@shraviko.com</a> or calling <strong>+91 (0141) 289-4020</strong>. Once shipped, orders cannot be cancelled; however, you can initiate a return upon delivery.
+              You may cancel your order within <strong>2 hours of placement</strong> before it enters warehouse processing by contacting <a href="mailto:info@shraviko.com" className="text-[#B8860B] underline font-semibold">info@shraviko.com</a> or calling <strong>+91 7742320607</strong>. Once shipped, orders cannot be cancelled; however, you can initiate a return upon delivery.
             </p>
           </section>
 

@@ -70,7 +70,7 @@ const FAQS = [
   { q: 'How are refunds processed?', a: 'Refunds are initiated within 2 business days of receiving the returned item at our warehouse. The amount is credited back to your original payment method within 5–7 banking days.' },
   { q: 'What if my item arrives damaged?', a: 'Please photograph the damaged product and packaging immediately and write to info@shraviko.com with your order ID within 48 hours of delivery. We will arrange a replacement or full refund at no extra cost.' },
   { q: 'Are customised orders eligible for refund?', a: 'Bespoke and personalised items (engravings, custom yantras, custom packaging) are non-refundable unless they arrive with a manufacturing defect.' },
-  { q: 'How do I cancel my order?', a: 'Orders can be cancelled within 2 hours of placement by calling +91 (0141) 289-4020 or writing to info@shraviko.com. Once shipped, cancellations are not possible; you may initiate a return instead.' },
+  { q: 'How do I cancel my order?', a: 'Orders can be cancelled within 2 hours of placement by calling +91 7742320607 or writing to info@shraviko.com. Once shipped, cancellations are not possible; you may initiate a return instead.' },
 ];
 
 function StatusBadge({ status }) {
@@ -654,7 +654,7 @@ export function TrackOrderPage({ onBackToHome }) {
                 <p className="text-xs text-white/50 mb-6 max-w-xs mx-auto">Our sacred care team is available Mon–Sat, 9 AM – 7 PM IST, and will respond within 4 business hours.</p>
                 <div className="flex flex-wrap gap-3 justify-center">
                   <a href="mailto:info@shraviko.com" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A059] text-white text-xs font-cinzel tracking-widest uppercase rounded-xl hover:bg-[#E5C378] hover:text-[#1C1715] transition-all duration-300 active:scale-95">Email Us</a>
-                  <a href="tel:+911412894020" className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059]/40 text-[#C5A059] text-xs font-cinzel tracking-widest uppercase rounded-xl hover:border-[#C5A059] hover:bg-[#C5A059]/10 transition-all duration-300 active:scale-95">Call Us</a>
+                  <a href="tel:+917742320607" className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059]/40 text-[#C5A059] text-xs font-cinzel tracking-widest uppercase rounded-xl hover:border-[#C5A059] hover:bg-[#C5A059]/10 transition-all duration-300 active:scale-95">Call Us</a>
                 </div>
               </div>
             </div>
