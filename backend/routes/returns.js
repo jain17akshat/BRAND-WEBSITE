@@ -21,7 +21,17 @@ router.post('/request', validateBody({
     const { order_id, phone, reason, refund_type = 'original', details = '' } = req.body;
 
     // Log the return request always
-    console.log('📦 Return request received:', { order_id, phone, reason, refund_type });
+    console.log('📦 Return request received:', { order_id, phone, reason, refund_type, details });
+
+    // Send immediate email alert to merchant (info@shraviko.com) with customer bank details
+    const { sendReturnNotificationToAdmin } = require('../services/emailService');
+    sendReturnNotificationToAdmin({
+      orderId: order_id,
+      phone,
+      reason,
+      refundType: refund_type,
+      details,
+    }).catch(err => console.error('Failed to notify admin of return:', err));
 
     if (req.mock.shiprocket) {
       return res.json({

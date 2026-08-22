@@ -9,6 +9,7 @@ export const VideoShowcase = () => {
     { id: 'v1', title: 'Handcrafted 24K Gold Yantra Creation', videoUrl: '/assets/Video1.mp4' },
     { id: 'v2', title: 'Pure Vedic Brass Aarti Diya Rituals', videoUrl: '/assets/Video2.mp4' },
     { id: 'v3', title: '100% Organic Charcoal-Free Incense', videoUrl: '/assets/Video 3.mp4' },
+    { id: 'v4', title: 'Corporate Sacred Gifting Collections', videoUrl: '/assets/Video4.mp4' },
     { id: 'v5', title: 'Authentic Vastu Energy Alignment', videoUrl: '/assets/Video5.mp4' }
   ];
 
@@ -63,14 +64,14 @@ export const VideoShowcase = () => {
           {/* Ultra-Smooth Horizontal Scroll Container */}
           <div
             ref={sliderRef}
-            className="flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-6 py-4 px-2 sm:px-4 scrollbar-none scroll-smooth"
+            className="flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-6 py-4 px-2 sm:px-4 scrollbar-none scroll-smooth -webkit-overflow-scrolling-touch"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {reelList.map((reel) => (
               <div
                 key={reel.id}
                 onClick={() => setPopupVideo(reel)}
-                className="group/card relative flex-none w-[210px] sm:w-[250px] md:w-[270px] aspect-[9/16] rounded-2xl overflow-hidden bg-black border border-[#EAE0CD] hover:border-[#C5A059] shadow-md hover:shadow-2xl transition-all duration-500 snap-start cursor-pointer transform hover:-translate-y-1.5"
+                className="group/card relative flex-none w-[160px] xs:w-[185px] sm:w-[250px] md:w-[270px] aspect-[9/16] rounded-2xl overflow-hidden bg-black border border-[#EAE0CD] hover:border-[#C5A059] shadow-md hover:shadow-2xl transition-all duration-500 snap-start cursor-pointer transform hover:-translate-y-1.5"
               >
                 {/* HTML5 Autoplaying Video */}
                 <video

@@ -105,8 +105,20 @@ router.post(
       // Generate internal order ID
       const internalOrderId = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
 
-      // TODO: persist order to DB here
-      console.log('✅ Payment verified:', {
+      // Send instant order confirmation email (Zero-Cost Notification)
+      if (customer?.email) {
+        const { sendOrderConfirmationEmail } = require('../services/emailService');
+        sendOrderConfirmationEmail({
+          to: customer.email,
+          customerName: customer.name,
+          orderId: internalOrderId,
+          items: cart || [],
+          totalAmount: (cart || []).reduce((s, i) => s + (i.price * (i.quantity || 1)), 0),
+          shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
+        }).catch(err => console.error('Failed to send confirmation email:', err));
+      }
+
+      console.log('✅ Payment verified & Confirmation Email triggered:', {
         razorpay_order_id,
         razorpay_payment_id,
         internalOrderId,
@@ -184,6 +196,19 @@ router.post(
         amount: amountInPaise,
         notes:  { reason },
       });
+
+      // Send branded refund email trigger if email present
+      if (req.body.email) {
+        const { sendRefundConfirmationEmail } = require('../services/emailService');
+        sendRefundConfirmationEmail({
+          to: req.body.email,
+          customerName: req.body.customerName || 'Valued Customer',
+          refundId: refund.id || `rfnd_${Date.now()}`,
+          paymentId: payment_id,
+          amount,
+          reason,
+        }).catch(err => console.error('Failed to send refund email:', err));
+      }
 
       res.json({ success: true, refund });
     } catch (err) {

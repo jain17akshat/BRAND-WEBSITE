@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowUp, Instagram, Facebook, Share2, Mail, Phone, MapPin } from 'lucide-react';
+import { PaymentLogos } from './PaymentLogos';
 
-export const Footer = ({ onSelectCategory, onGoSupport }) => {
+export const Footer = ({ onSelectCategory, onGoSupport, onGoPrivacy, onGoRefundPolicy, onGoTerms }) => {
   const revealPanelRef = useRef(null);
   const brandTextRef = useRef(null);
   const tagTextRef = useRef(null);
@@ -75,37 +76,70 @@ export const Footer = ({ onSelectCategory, onGoSupport }) => {
     return cleanup;
   }, []);
 
-
-
-
-
   return (
     <footer className="relative bg-[#090807] text-[#EAE0CD]">
 
       {/* ── 1. Main Footer Info Grid ── */}
-      <div className="relative z-20 bg-[#171312] border-t border-[#C5A059]/30 pt-14 pb-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 bg-[#171312] border-t border-[#C5A059]/30 pt-14 pb-10 overflow-hidden">
+        {/* Moving Background Pattern Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none animate-bg-pan-slow"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3Ccircle cx='40' cy='40' r='12' stroke='%23ffffff' stroke-width='1' fill='none'/%3E%3Ccircle cx='40' cy='40' r='22' stroke='%23ffffff' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='40' cy='40' r='34' stroke='%23ffffff' stroke-width='0.3' fill='none'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '80px 80px',
+          }}
+        />
+
+        {/* Sweeping Light Sheen Beam */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="w-1/3 h-[200%] absolute -top-1/2 left-0 bg-gradient-to-r from-transparent via-[#C5A059]/15 to-transparent blur-xl animate-golden-shimmer-sweep pointer-events-none" />
+        </div>
+
+        {/* Floating Sparkles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-[15%] left-[10%] w-2 h-2 bg-[#E5C378]/70 rounded-full blur-[1px] animate-float-sparkle-1" />
+          <div className="absolute top-[60%] left-[45%] w-2.5 h-2.5 bg-[#C5A059]/80 rounded-full blur-[1px] animate-float-sparkle-2" />
+          <div className="absolute top-[25%] left-[80%] w-2 h-2 bg-[#E5C378]/60 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '2s' }} />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 pb-10 border-b border-[#2D2623]">
 
             {/* Col 1: Brand Block */}
-            <div className="col-span-2 lg:col-span-2 space-y-4">
-              <div className="flex flex-col items-start gap-0.5">
-                <span className="text-xl sm:text-2xl font-cinzel font-bold tracking-[0.2em] text-[#F9F5EC]">
-                  SHRAVIKO
-                </span>
+            <div className="col-span-2 lg:col-span-2 space-y-4 relative">
+              {/* Rotating Sacred Lotus Mandala behind Logo */}
+              <div className="absolute -top-6 -left-6 pointer-events-none opacity-20 animate-spin-slow">
+                <svg className="w-[180px] h-[180px] text-[#C5A059]" viewBox="0 0 200 200" fill="currentColor">
+                  <g transform="translate(100,100)">
+                    <circle r="90" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
+                    <circle r="78" fill="none" stroke="currentColor" strokeWidth="1" />
+                    {[...Array(12)].map((_, i) => (
+                      <path key={i} d="M 0,-65 Q 12,-40 0,-15 Q -12,-40 0,-65" fill="none" stroke="currentColor" strokeWidth="1" transform={`rotate(${i * 30})`} />
+                    ))}
+                  </g>
+                </svg>
+              </div>
+
+              <div className="flex flex-col items-start gap-2 relative z-10">
+                <img
+                  src="/assets/Logo/CURRENT LOGO.png"
+                  alt="Shraviko Sacred Living"
+                  className="h-28 w-28 object-contain rounded-full drop-shadow-lg transition-transform duration-500 hover:scale-105"
+                  style={{ aspectRatio: '1 / 1' }}
+                />
                 <span className="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] font-cinzel uppercase text-[#C5A059] font-medium">
                   Awaken Within • Sacred Living
                 </span>
               </div>
 
-              <p className="text-xs text-gray-400 font-light leading-relaxed max-w-xs">
+              <p className="text-xs text-gray-400 font-light leading-relaxed max-w-xs relative z-10">
                 Shraviko Sacred Living bridges age-old Vedic metalcraft with clean, contemporary
                 Indian design — heirloom brass, heavy copper vessels, and organic flower incense
                 for peaceful modern homes.
               </p>
 
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2.5 relative z-10">
                 {[
                   { Icon: Instagram, label: 'Instagram' },
                   { Icon: Facebook, label: 'Facebook' },
@@ -158,8 +192,18 @@ export const Footer = ({ onSelectCategory, onGoSupport }) => {
                   </button>
                 </li>
                 <li>
-                  <button onClick={onGoSupport} className="hover:text-[#C5A059] transition-colors text-left">
-                    Returns & Refunds
+                  <button onClick={onGoRefundPolicy || onGoSupport} className="hover:text-[#C5A059] transition-colors text-left">
+                    Cancellation & Refund Policy
+                  </button>
+                </li>
+                <li>
+                  <button onClick={onGoPrivacy || onGoSupport} className="hover:text-[#C5A059] transition-colors text-left">
+                    Privacy Policy
+                  </button>
+                </li>
+                <li>
+                  <button onClick={onGoTerms || onGoSupport} className="hover:text-[#C5A059] transition-colors text-left">
+                    Terms & Conditions
                   </button>
                 </li>
                 {[
@@ -191,7 +235,7 @@ export const Footer = ({ onSelectCategory, onGoSupport }) => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <span>care@shraviko.com</span>
+                  <span>info@shraviko.com</span>
                 </div>
               </div>
             </div>
@@ -199,15 +243,34 @@ export const Footer = ({ onSelectCategory, onGoSupport }) => {
           </div>
 
           {/* Bottom bar */}
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] sm:text-[11px] text-gray-500 font-light">
-            <span className="text-center sm:text-left">
-              © {new Date().getFullYear()} Shraviko Sacred Living Pvt Ltd. All rights reserved.
-            </span>
-            <div className="flex flex-wrap justify-center items-center gap-1.5">
-              {['UPI', 'VISA', 'Mastercard', 'RuPay', 'Net Banking'].map((m) => (
-                <span key={m} className="bg-[#231E1C] px-2 py-0.5 rounded border border-[#3A3431] text-[10px]">{m}</span>
-              ))}
+          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] sm:text-[11px] text-gray-500 font-light">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 text-center sm:text-left">
+              <span>© {new Date().getFullYear()} Shraviko Sacred Living Pvt Ltd. All rights reserved.</span>
+              <span className="hidden sm:inline text-gray-600">•</span>
+              <button
+                onClick={onGoPrivacy || onGoSupport}
+                className="hover:text-[#C5A059] transition-colors underline font-medium"
+              >
+                Privacy Policy
+              </button>
+              <span className="text-gray-600">•</span>
+              <button
+                onClick={onGoRefundPolicy || onGoSupport}
+                className="hover:text-[#C5A059] transition-colors underline font-medium"
+              >
+                Cancellation & Refund Policy
+              </button>
+              <span className="text-gray-600">•</span>
+              <button
+                onClick={onGoTerms || onGoSupport}
+                className="hover:text-[#C5A059] transition-colors underline font-medium"
+              >
+                Terms & Conditions
+              </button>
             </div>
+
+            <PaymentLogos />
+
             <button onClick={scrollToTop} className="flex items-center gap-1 text-[#C5A059] hover:text-[#E5C378] transition-colors font-cinzel text-[10px] sm:text-xs uppercase tracking-widest">
               Back to Top <ArrowUp className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </button>
@@ -216,7 +279,7 @@ export const Footer = ({ onSelectCategory, onGoSupport }) => {
         </div>
       </div>
 
-      {/* ── 2. SHRAVIKO Reveal Panel ── */}
+      {/* ── 2. SHRAVIKO Reveal Panel — Animated Sacred Aura ── */}
       <div
         ref={revealPanelRef}
         className="relative bg-[#0A0807] border-t border-[#C5A059]/20 overflow-hidden select-none"
@@ -230,6 +293,44 @@ export const Footer = ({ onSelectCategory, onGoSupport }) => {
             background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(197,160,89,0.25) 0%, transparent 70%)',
           }}
         />
+
+        {/* Moving Background Pattern Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none animate-bg-pan-slow"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3Ccircle cx='40' cy='40' r='12' stroke='%23ffffff' stroke-width='1' fill='none'/%3E%3Ccircle cx='40' cy='40' r='22' stroke='%23ffffff' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='40' cy='40' r='34' stroke='%23ffffff' stroke-width='0.3' fill='none'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '80px 80px',
+          }}
+        />
+
+        {/* Sweeping Light Sheen */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="w-1/3 h-[200%] absolute -top-1/2 left-0 bg-gradient-to-r from-transparent via-[#E5C378]/20 to-transparent blur-xl animate-golden-shimmer-sweep pointer-events-none" />
+        </div>
+
+        {/* Floating Sparkles in Reveal Panel */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-[20%] left-[20%] w-3 h-3 bg-[#FAF0D9]/70 rounded-full blur-[1px] animate-float-sparkle-1" />
+          <div className="absolute top-[70%] left-[75%] w-2.5 h-2.5 bg-[#D4AF62]/80 rounded-full blur-[1px] animate-float-sparkle-2" />
+        </div>
+
+        {/* Giant Rotating Sacred Mandala Aura behind SHRAVIKO text */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-15 animate-spin-slow">
+          <svg className="w-[320px] h-[320px] sm:w-[480px] sm:h-[480px] lg:w-[600px] lg:h-[600px] text-[#C5A059]" viewBox="0 0 200 200" fill="currentColor">
+            <g transform="translate(100,100)">
+              <circle r="95" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
+              <circle r="82" fill="none" stroke="currentColor" strokeWidth="1" />
+              <circle r="68" fill="none" stroke="currentColor" strokeWidth="0.5" />
+              {[...Array(16)].map((_, i) => (
+                <path key={i} d="M 0,-68 Q 14,-42 0,-16 Q -14,-42 0,-68" fill="none" stroke="currentColor" strokeWidth="1" transform={`rotate(${i * 22.5})`} />
+              ))}
+              {[...Array(32)].map((_, i) => (
+                <circle key={i} cx={82 * Math.cos((i * 11.25 * Math.PI) / 180)} cy={82 * Math.sin((i * 11.25 * Math.PI) / 180)} r="1.5" fill="currentColor" />
+              ))}
+            </g>
+          </svg>
+        </div>
+
         {/* Vignette overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#171312]/60 via-transparent to-[#050404] pointer-events-none" />
 
@@ -237,7 +338,7 @@ export const Footer = ({ onSelectCategory, onGoSupport }) => {
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
           <h2
             ref={brandTextRef}
-            className="footer-wordmark font-cinzel font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FAF0D9] via-[#D4AF62] to-[#7A5E28] w-full text-center"
+            className="footer-wordmark font-cinzel font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FAF0D9] via-[#D4AF62] to-[#7A5E28] w-full text-center drop-shadow-2xl"
             style={{
               fontSize: 'clamp(1.75rem, 14vw, 6.875rem)',
               letterSpacing: '0.1em',

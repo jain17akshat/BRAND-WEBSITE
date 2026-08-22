@@ -22,13 +22,17 @@ import { MandirFeature } from './components/MandirFeature';
 import { VisualGallery } from './components/VisualGallery';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { TrackOrderPage } from './components/TrackOrderPage';
+import { VideoShowcase } from './components/VideoShowcase';
+import { QuickTrackSection } from './components/QuickTrackSection';
+import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
+import { RefundPolicyPage } from './components/RefundPolicyPage';
+import { TermsPage } from './components/TermsPage';
 
 export function App() {
   // Page Routing & Active Category State
   const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'category' | 'gifting' | 'product' | 'support'
   const [selectedCategoryId, setSelectedCategoryId] = useState('incense');
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('all');
 
   // Scroll Progress — direct DOM update (no setState = no re-render on every scroll)
   const progressBarRef = useRef(null);
@@ -162,7 +166,7 @@ export function App() {
     }
   ]);
   const [wishlistIds, setWishlistIds] = useState(['incense-no-bamboo-80', 'dhoop-cone-regular-40-pack2']);
-  
+
   // Modals & Drawers State
   const [cartOpen, setCartOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
@@ -284,7 +288,6 @@ export function App() {
   const handleSelectCategory = (catId) => {
     if (catId === 'all') {
       setCurrentPage('home');
-      setActiveCategory('all');
       window.location.hash = '#/home';
     } else if (catId === 'kits' || catId === 'gifting') {
       setCurrentPage('gifting');
@@ -317,10 +320,28 @@ export function App() {
     resetScrollToTop();
   };
 
+  const handleGoPrivacy = () => {
+    setCurrentPage('privacy');
+    window.location.hash = '#/privacy-policy';
+    resetScrollToTop();
+  };
+
+  const handleGoRefundPolicy = () => {
+    setCurrentPage('refund-policy');
+    window.location.hash = '#/refund-policy';
+    resetScrollToTop();
+  };
+
+  const handleGoTerms = () => {
+    setCurrentPage('terms');
+    window.location.hash = '#/terms-and-conditions';
+    resetScrollToTop();
+  };
+
   return (
     <LenisProvider options={{ duration: 1.0, easing: (t) => 1 - Math.pow(1 - t, 3), smoothWheel: true, syncTouch: true, touchMultiplier: 1.5 }}>
       <div className="min-h-screen flex flex-col bg-[#FBF9F5] text-[#2C2623]">
-        
+
         {/* Golden Top Scroll Progress Indicator */}
         <div ref={progressBarRef} className="scroll-progress-bar" style={{ width: '0%' }} />
 
@@ -331,14 +352,29 @@ export function App() {
           onOpenCart={() => setCartOpen(true)}
           onOpenWishlist={() => setWishlistOpen(true)}
           onOpenSearch={() => setSearchOpen(true)}
-          activeCategory={selectedCategoryId}
+          activeCategory={
+            currentPage === 'home' ? 'all'
+              : currentPage === 'gifting' ? 'kits'
+                : currentPage === 'category' ? selectedCategoryId
+                  : 'all'
+          }
           onSelectCategory={handleSelectCategory}
           onGoHome={handleGoHome}
+          onGoSupport={handleGoSupport}
         />
 
         {/* Main Content Pages */}
         <main className="flex-1">
-          {currentPage === 'support' ? (
+          {currentPage === 'terms' ? (
+            /* Dedicated Terms & Conditions Page */
+            <TermsPage onBackToHome={handleGoHome} />
+          ) : currentPage === 'privacy' ? (
+            /* Dedicated Privacy Policy Page */
+            <PrivacyPolicyPage onBackToHome={handleGoHome} />
+          ) : currentPage === 'refund-policy' ? (
+            /* Dedicated Refund & Cancellation Policy Page */
+            <RefundPolicyPage onBackToHome={handleGoHome} />
+          ) : currentPage === 'support' ? (
             /* Order Support — Track Order, Returns & FAQ */
             <TrackOrderPage onBackToHome={handleGoHome} />
           ) : currentPage === 'product' ? (
@@ -429,7 +465,12 @@ export function App() {
 
               {/* 7. Brand Story */}
               <div id="brand-story" className="smooth-reveal">
-                <BrandStory onDiscover={() => {}} />
+                <BrandStory onDiscover={() => { }} />
+              </div>
+
+              {/* 8. Video Reels — all 5 videos */}
+              <div className="smooth-reveal">
+                <VideoShowcase />
               </div>
 
               {/* 8. Corporate Gifting Section */}
@@ -477,10 +518,125 @@ export function App() {
                 </section>
               </div>
 
-              {/* 9. Visual Gallery */}
+              {/* 9. Brand Landscape Banner — Animated Sacred Aura & Dynamic Elements */}
               <div className="smooth-reveal">
-                <VisualGallery />
+                <section
+                  className="relative w-full overflow-hidden select-none"
+                  style={{
+                    background: 'linear-gradient(135deg, #B87A08 0%, #D89218 30%, #F5BA28 55%, #E59F12 80%, #C4820A 100%)',
+                    minHeight: 'clamp(160px, 25vw, 260px)',
+                  }}
+                >
+                  {/* 1. Moving Background Pattern (Continuous Slow Pan) */}
+                  <div
+                    className="absolute inset-0 opacity-[0.09] pointer-events-none animate-bg-pan-slow"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3Ccircle cx='40' cy='40' r='12' stroke='%23ffffff' stroke-width='1' fill='none'/%3E%3Ccircle cx='40' cy='40' r='22' stroke='%23ffffff' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='40' cy='40' r='34' stroke='%23ffffff' stroke-width='0.3' fill='none'/%3E%3C/g%3E%3C/svg%3E")`,
+                      backgroundSize: '80px 80px',
+                    }}
+                  />
+
+                  {/* 2. Sweeping Light Sheen (Shimmer Beam across banner) */}
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    <div className="w-1/3 h-[200%] absolute -top-1/2 left-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-lg animate-golden-shimmer-sweep pointer-events-none" />
+                  </div>
+
+                  {/* 3. Floating Golden Dust Particles */}
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    <div className="absolute top-[20%] left-[12%] w-2.5 h-2.5 bg-white/70 rounded-full blur-[1px] animate-float-sparkle-1" />
+                    <div className="absolute top-[65%] left-[30%] w-2 h-2 bg-yellow-100/80 rounded-full blur-[1px] animate-float-sparkle-2" />
+                    <div className="absolute top-[25%] left-[55%] w-3 h-3 bg-white/60 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '1.5s' }} />
+                    <div className="absolute top-[70%] left-[78%] w-2 h-2 bg-amber-100/90 rounded-full blur-[1px] animate-float-sparkle-2" style={{ animationDelay: '2.5s' }} />
+                    <div className="absolute top-[15%] left-[88%] w-2.5 h-2.5 bg-white/75 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '3.2s' }} />
+                  </div>
+
+                  {/* 4. Rotating Sacred Sun Mandala (Aura behind the Logo) */}
+                  <div className="absolute left-[2%] sm:left-[4%] lg:left-[6%] top-1/2 -translate-y-1/2 pointer-events-none opacity-25 animate-spin-slow">
+                    <svg className="w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px] text-white" viewBox="0 0 200 200" fill="currentColor">
+                      <g transform="translate(100,100)">
+                        <circle r="90" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
+                        <circle r="78" fill="none" stroke="currentColor" strokeWidth="1" />
+                        <circle r="65" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                        {[...Array(12)].map((_, i) => (
+                          <path key={i} d="M 0,-65 Q 12,-40 0,-15 Q -12,-40 0,-65" fill="none" stroke="currentColor" strokeWidth="1" transform={`rotate(${i * 30})`} />
+                        ))}
+                        {[...Array(24)].map((_, i) => (
+                          <circle key={i} cx={78 * Math.cos((i * 15 * Math.PI) / 180)} cy={78 * Math.sin((i * 15 * Math.PI) / 180)} r="2" fill="currentColor" />
+                        ))}
+                      </g>
+                    </svg>
+                  </div>
+
+                  {/* 5. Rotating Sacred Mandala (Aura behind OM Symbol on Right) */}
+                  <div className="absolute right-[2%] sm:right-[5%] lg:right-[8%] top-1/2 -translate-y-1/2 pointer-events-none opacity-20 animate-spin-reverse-slow hidden sm:block">
+                    <svg className="w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] lg:w-[290px] lg:h-[290px] text-white" viewBox="0 0 200 200" fill="currentColor">
+                      <g transform="translate(100,100)">
+                        <circle r="85" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
+                        <circle r="70" fill="none" stroke="currentColor" strokeWidth="0.8" />
+                        {[...Array(16)].map((_, i) => (
+                          <path key={i} d="M 0,-70 C 10,-50 10,-30 0,-10 C -10,-30 -10,-50 0,-70" fill="none" stroke="currentColor" strokeWidth="0.9" transform={`rotate(${i * 22.5})`} />
+                        ))}
+                      </g>
+                    </svg>
+                  </div>
+
+                  {/* Inner layout — logo left, text center, deco right */}
+                  <div className="relative z-10 flex items-center justify-between h-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 gap-4">
+
+                    {/* LEFT — Clean logo without any border or background wrapper */}
+                    <div className="flex-shrink-0 flex items-center relative">
+                      <img
+                        src="/assets/Logo/CURRENT LOGO.png"
+                        alt="Shraviko Sacred Living"
+                        className="rounded-full object-contain drop-shadow-xl relative z-10 transition-transform duration-500 hover:scale-105"
+                        style={{
+                          width: 'clamp(120px, 18vw, 220px)',
+                          height: 'clamp(120px, 18vw, 220px)',
+                          aspectRatio: '1 / 1',
+                        }}
+                      />
+                    </div>
+
+                    {/* CENTER — Brand Name + Tagline (bold, large) */}
+                    <div className="flex-1 text-center px-2 sm:px-6">
+                      <h2
+                        className="font-cinzel font-extrabold text-white leading-tight tracking-wide drop-shadow-lg"
+                        style={{
+                          fontSize: 'clamp(1.2rem, 4.5vw, 3.2rem)',
+                          textShadow: '2px 3px 8px rgba(100,50,0,0.35)',
+                        }}
+                      >
+                        SHRAVIKO
+                      </h2>
+                      <p
+                        className="font-cinzel font-bold text-white/90 tracking-[0.22em] uppercase mt-1"
+                        style={{
+                          fontSize: 'clamp(0.5rem, 1.6vw, 0.95rem)',
+                          textShadow: '1px 2px 4px rgba(100,50,0,0.3)',
+                        }}
+                      >
+                        Pooja Samagri &amp; Vidhi
+                      </p>
+                      <p
+                        className="font-serif italic text-white/80 mt-2 hidden sm:block"
+                        style={{ fontSize: 'clamp(0.6rem, 1.2vw, 0.8rem)' }}
+                      >
+                        "Bringing Vedic Purity &amp; Timeless Heritage to Modern Homes"
+                      </p>
+                    </div>
+
+                    {/* RIGHT — Decorative OM / Sacred symbol with breathing pulse animation */}
+                    <div
+                      className="flex-shrink-0 flex items-center justify-center text-white/40 font-serif select-none hidden sm:flex animate-sacred-om-pulse"
+                      style={{ fontSize: 'clamp(48px, 10vw, 110px)', lineHeight: 1 }}
+                    >
+                      ॐ
+                    </div>
+
+                  </div>
+                </section>
               </div>
+
 
               {/* 10. Final CTA */}
               <div className="smooth-reveal">
@@ -500,13 +656,24 @@ export function App() {
                   </div>
                 </section>
               </div>
+
+              {/* 11. Live Shiprocket Track Order Section */}
+              <div className="smooth-reveal">
+                <QuickTrackSection onGoSupport={handleGoSupport} />
+              </div>
             </>
           )}
         </main>
 
         {/* Footer with bottom padding on mobile for sticky nav */}
         <div className="pb-16 md:pb-0">
-          <Footer onSelectCategory={handleSelectCategory} onGoSupport={handleGoSupport} />
+          <Footer
+            onSelectCategory={handleSelectCategory}
+            onGoSupport={handleGoSupport}
+            onGoPrivacy={handleGoPrivacy}
+            onGoRefundPolicy={handleGoRefundPolicy}
+            onGoTerms={handleGoTerms}
+          />
         </div>
 
         {/* Mobile Sticky Bottom Navigation Bar */}

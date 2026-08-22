@@ -68,9 +68,9 @@ const FAQS = [
   { q: 'How long does delivery take?', a: 'Standard delivery across India takes 4–7 business days. Metro cities like Delhi, Mumbai, Bangalore, and Jaipur typically receive orders within 2–4 business days.' },
   { q: 'Can I return an item?', a: 'We accept returns within 7 days of delivery for unused, undamaged items in original packaging. Customised or engraved items are non-returnable unless there is a manufacturing defect.' },
   { q: 'How are refunds processed?', a: 'Refunds are initiated within 2 business days of receiving the returned item at our warehouse. The amount is credited back to your original payment method within 5–7 banking days.' },
-  { q: 'What if my item arrives damaged?', a: 'Please photograph the damaged product and packaging immediately and write to care@shraviko.com with your order ID within 48 hours of delivery. We will arrange a replacement or full refund at no extra cost.' },
+  { q: 'What if my item arrives damaged?', a: 'Please photograph the damaged product and packaging immediately and write to info@shraviko.com with your order ID within 48 hours of delivery. We will arrange a replacement or full refund at no extra cost.' },
   { q: 'Are customised orders eligible for refund?', a: 'Bespoke and personalised items (engravings, custom yantras, custom packaging) are non-refundable unless they arrive with a manufacturing defect.' },
-  { q: 'How do I cancel my order?', a: 'Orders can be cancelled within 2 hours of placement by calling +91 (0141) 289-4020 or writing to care@shraviko.com. Once shipped, cancellations are not possible; you may initiate a return instead.' },
+  { q: 'How do I cancel my order?', a: 'Orders can be cancelled within 2 hours of placement by calling +91 (0141) 289-4020 or writing to info@shraviko.com. Once shipped, cancellations are not possible; you may initiate a return instead.' },
 ];
 
 function StatusBadge({ status }) {
@@ -139,6 +139,11 @@ export function TrackOrderPage({ onBackToHome }) {
   const [refundStep, setRefundStep] = useState(1);
   const [refundOrderId, setRefundOrderId] = useState('');
   const [refundSubmitted, setRefundSubmitted] = useState(false);
+  const [refundType, setRefundType] = useState('original');
+  const [upiId, setUpiId] = useState('');
+  const [accountNumber, setAccountNumber] = useState('');
+  const [ifscCode, setIfscCode] = useState('');
+  const [accountHolderName, setAccountHolderName] = useState('');
 
   const handleTrack = async (e) => {
     e.preventDefault();
@@ -172,7 +177,13 @@ export function TrackOrderPage({ onBackToHome }) {
         order_id:    refundOrderId || 'UNKNOWN',
         phone:       phone || '',
         reason:      'Customer requested return',
-        refund_type: 'original',
+        refund_type: refundType,
+        details: {
+          upi_id:              upiId,
+          account_number:      accountNumber,
+          ifsc_code:           ifscCode,
+          account_holder_name: accountHolderName,
+        },
       });
       setRefundSubmitted(true);
     } catch {
@@ -282,8 +293,8 @@ export function TrackOrderPage({ onBackToHome }) {
                   </p>
                   <p className="text-xs text-red-500 mt-1">
                     {result === 'error'
-                      ? 'Could not reach our servers. Please try again in a moment or contact care@shraviko.com.'
-                      : "We couldn't find an order matching this combination. Please double-check your details or contact care@shraviko.com."}
+                      ? 'Could not reach our servers. Please try again in a moment or contact info@shraviko.com.'
+                      : "We couldn't find an order matching this combination. Please double-check your details or contact info@shraviko.com."}
                   </p>
                 </div>
               </div>
@@ -436,7 +447,7 @@ export function TrackOrderPage({ onBackToHome }) {
                     <CheckCircle2 className="w-7 h-7 text-emerald-500" />
                   </div>
                   <h4 className="font-cinzel font-bold text-[#2C2623] text-base mb-2">Request Submitted!</h4>
-                  <p className="text-sm text-gray-500 max-w-sm mx-auto">Your return request has been logged. Our care team will email you at <strong>care@shraviko.com</strong> within 24 hours with the next steps and a prepaid return label.</p>
+                  <p className="text-sm text-gray-500 max-w-sm mx-auto">Your return request has been logged. Our care team will email you at <strong>info@shraviko.com</strong> within 24 hours with the next steps and a prepaid return label.</p>
                   <button onClick={() => { setRefundSubmitted(false); setRefundStep(1); setRefundOrderId(''); }}
                     className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 bg-[#2C1F06] text-[#E5C378] text-xs font-cinzel tracking-widest uppercase rounded-xl hover:bg-[#3D2B0A] transition-all duration-300 active:scale-95">
                     Submit Another
@@ -512,29 +523,106 @@ export function TrackOrderPage({ onBackToHome }) {
 
                   {refundStep === 3 && (
                     <div className="space-y-4">
-                      <h4 className="font-cinzel text-sm font-semibold text-[#2C2623]">Step 3: Refund Preference</h4>
+                      <h4 className="font-cinzel text-sm font-semibold text-[#2C2623]">Step 3: Refund Preference & Account Details</h4>
                       <div>
                         <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] mb-3">How would you like your refund?</label>
-                        <div className="grid sm:grid-cols-3 gap-3">
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
                           {[
-                            { id: 'original', label: 'Original Payment Method', desc: '5–7 banking days' },
-                            { id: 'upi', label: 'UPI Transfer', desc: 'Within 24 hours' },
-                            { id: 'store', label: 'Store Credit', desc: 'Instant — bonus 5% extra' },
+                            { id: 'original', label: 'Original Payment', desc: '5–7 banking days' },
+                            { id: 'upi', label: 'UPI Instant', desc: 'GPay / PhonePe / Paytm' },
+                            { id: 'bank', label: 'Bank Transfer', desc: 'Ideal for COD Orders' },
+                            { id: 'store', label: 'Store Credit', desc: 'Instant + 5% Extra' },
                           ].map(opt => (
-                            <label key={opt.id} className="cursor-pointer border border-[#E8DFC7] rounded-xl px-4 py-3 hover:border-[#C5A059] has-[:checked]:border-[#C5A059] has-[:checked]:bg-[#FBF5E8] transition-all">
-                              <input type="radio" name="refund-type" value={opt.id} defaultChecked={opt.id === 'original'} className="sr-only" />
+                            <label
+                              key={opt.id}
+                              onClick={() => setRefundType(opt.id)}
+                              className={`cursor-pointer border rounded-xl px-4 py-3 transition-all ${
+                                refundType === opt.id
+                                  ? 'border-[#C5A059] bg-[#FBF5E8] shadow-sm'
+                                  : 'border-[#E8DFC7] hover:border-[#C5A059]'
+                              }`}
+                            >
+                              <input
+                                type="radio"
+                                name="refund-type"
+                                value={opt.id}
+                                checked={refundType === opt.id}
+                                onChange={() => setRefundType(opt.id)}
+                                className="sr-only"
+                              />
                               <p className="text-xs font-semibold text-[#2C2623]">{opt.label}</p>
                               <p className="text-[10px] text-[#C5A059] mt-0.5">{opt.desc}</p>
                             </label>
                           ))}
                         </div>
                       </div>
-                      <div className="flex gap-3">
+
+                      {/* Dynamic Input Fields based on Refund Type */}
+                      {refundType === 'upi' && (
+                        <div className="p-4 rounded-xl bg-[#FDFBF7] border border-[#E8DFC7] space-y-2 animate-fade-in">
+                          <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52]">
+                            Enter VPA / UPI ID *
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="e.g. mobile@upi, username@okaxis"
+                            value={upiId}
+                            onChange={(e) => setUpiId(e.target.value)}
+                            required
+                            className="w-full px-4 py-2.5 border border-[#E0D5C0] rounded-xl text-sm focus:outline-none focus:border-[#C5A059] bg-white"
+                          />
+                        </div>
+                      )}
+
+                      {refundType === 'bank' && (
+                        <div className="p-4 rounded-xl bg-[#FDFBF7] border border-[#E8DFC7] space-y-3 animate-fade-in">
+                          <p className="text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] font-semibold">
+                            Enter Bank Account Details for Refund
+                          </p>
+                          <div className="grid sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-[11px] text-gray-600 mb-1">Account Holder Name *</label>
+                              <input
+                                type="text"
+                                placeholder="As per bank passbook"
+                                value={accountHolderName}
+                                onChange={(e) => setAccountHolderName(e.target.value)}
+                                required
+                                className="w-full px-3.5 py-2 border border-[#E0D5C0] rounded-lg text-xs focus:outline-none focus:border-[#C5A059] bg-white"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-[11px] text-gray-600 mb-1">Bank Account Number *</label>
+                              <input
+                                type="text"
+                                placeholder="9-18 digit account number"
+                                value={accountNumber}
+                                onChange={(e) => setAccountNumber(e.target.value)}
+                                required
+                                className="w-full px-3.5 py-2 border border-[#E0D5C0] rounded-lg text-xs focus:outline-none focus:border-[#C5A059] bg-white"
+                              />
+                            </div>
+                            <div className="sm:col-span-2">
+                              <label className="block text-[11px] text-gray-600 mb-1">IFSC Code *</label>
+                              <input
+                                type="text"
+                                placeholder="e.g. SBIN0001234"
+                                value={ifscCode}
+                                onChange={(e) => setIfscCode(e.target.value.toUpperCase())}
+                                required
+                                className="w-full px-3.5 py-2 border border-[#E0D5C0] rounded-lg text-xs uppercase focus:outline-none focus:border-[#C5A059] bg-white"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex gap-3 pt-2">
                         <button type="button" onClick={() => setRefundStep(2)}
                           className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#D9C7A5] text-[#9B7E52] text-xs font-cinzel tracking-widest uppercase rounded-xl hover:bg-[#F5EDD9] transition-all">← Back</button>
                         <button type="submit" disabled={loading}
                           className="inline-flex items-center gap-2 px-8 py-2.5 bg-[#C5A059] text-white text-xs font-cinzel tracking-widest uppercase rounded-xl hover:bg-[#B08A40] disabled:opacity-60 transition-all duration-300 active:scale-95 shadow-sm">
-                          {loading ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" />Submitting…</> : <>Submit Request ✓</>}
+                          {loading ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" />Submitting…</> : <>Submit Return Request ✓</>}
                         </button>
                       </div>
                     </div>
@@ -565,7 +653,7 @@ export function TrackOrderPage({ onBackToHome }) {
                 <h3 className="font-cinzel font-bold text-white text-base mb-2">Still need help?</h3>
                 <p className="text-xs text-white/50 mb-6 max-w-xs mx-auto">Our sacred care team is available Mon–Sat, 9 AM – 7 PM IST, and will respond within 4 business hours.</p>
                 <div className="flex flex-wrap gap-3 justify-center">
-                  <a href="mailto:care@shraviko.com" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A059] text-white text-xs font-cinzel tracking-widest uppercase rounded-xl hover:bg-[#E5C378] hover:text-[#1C1715] transition-all duration-300 active:scale-95">Email Us</a>
+                  <a href="mailto:info@shraviko.com" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A059] text-white text-xs font-cinzel tracking-widest uppercase rounded-xl hover:bg-[#E5C378] hover:text-[#1C1715] transition-all duration-300 active:scale-95">Email Us</a>
                   <a href="tel:+911412894020" className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059]/40 text-[#C5A059] text-xs font-cinzel tracking-widest uppercase rounded-xl hover:border-[#C5A059] hover:bg-[#C5A059]/10 transition-all duration-300 active:scale-95">Call Us</a>
                 </div>
               </div>

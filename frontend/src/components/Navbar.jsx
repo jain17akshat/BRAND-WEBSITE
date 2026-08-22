@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu, X, Truck } from 'lucide-react';
+
+const logoUrl = '/assets/Logo/CURRENT LOGO.png';
 
 export const Navbar = ({
   cartCount,
@@ -9,7 +11,8 @@ export const Navbar = ({
   onOpenSearch,
   activeCategory,
   onSelectCategory,
-  onGoHome
+  onGoHome,
+  onGoSupport
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,19 +22,17 @@ export const Navbar = ({
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
-      setIsScrolled(currentY > 30);
+      setIsScrolled(currentY > 10);
 
-      // Auto-hide when scrolling down past 100px, reveal when scrolling up
       if (currentY > 100) {
         if (currentY > lastScrollY.current + 5) {
-          setIsVisible(false); // scrolling down -> hide navbar so it doesn't block view
+          setIsVisible(false);
         } else if (currentY < lastScrollY.current - 5) {
-          setIsVisible(true);  // scrolling up -> reveal navbar
+          setIsVisible(true);
         }
       } else {
-        setIsVisible(true);    // near top -> show navbar
+        setIsVisible(true);
       }
-
       lastScrollY.current = currentY;
     };
 
@@ -52,26 +53,23 @@ export const Navbar = ({
 
   return (
     <>
-      {/* ── 1. Smart Auto-Hiding Floating Navigation Bar ── */}
+      {/* ── Solid Premium Luxury Header with Curved Corners (100% Non-Transparent) ── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 lg:px-8 pt-2 sm:pt-4 transition-all duration-500 ease-in-out pointer-events-none bg-transparent ${
-          isVisible ? 'translate-y-0 opacity-100' : '-translate-y-36 opacity-0'
-        }`}
-      >
-        {/* Curved Floating Glass Island Navbar Container */}
-        <div
-          className={`pointer-events-auto max-w-7xl mx-auto rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-300 ${
-            isScrolled ? 'skeu-navbar-scrolled shadow-2xl' : 'skeu-navbar shadow-xl'
+        className={`fixed top-2 sm:top-3.5 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
           }`}
-        >
-          {/* Main Navbar Inner Bar — Clean Category Navigation */}
-          <div className="px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-            
-            {/* Left: Mobile Menu Toggle & Brand Logo */}
-            <div className="flex items-center gap-3">
+      >
+        {/* Solid White Floating Capsule with Curved Corners */}
+        <div className={`max-w-7xl mx-auto bg-white rounded-2xl sm:rounded-full border border-stone-200/80 overflow-hidden transition-all duration-300 ${isScrolled ? 'shadow-xl' : 'shadow-md'
+          }`}>
+
+          {/* ── Top bar: 52px Logo | Category Links | Action Buttons ── */}
+          <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-between" style={{ height: '68px' }}>
+
+            {/* LEFT — Mobile Toggle & Standalone Logo */}
+            <div className="flex items-center gap-3 flex-shrink-0">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 rounded-full bg-[#F5F0E8] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all"
+                className="lg:hidden p-2 text-[#3D2B1F] hover:text-[#B8860B] transition-colors rounded-full hover:bg-[#F5F0E8]"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -79,58 +77,90 @@ export const Navbar = ({
 
               <button
                 onClick={onGoHome}
-                className="flex items-center gap-2 group text-left py-1"
+                className="flex items-center group focus:outline-none"
                 title="Shraviko Sacred Living - Home"
               >
-                <span className="font-cinzel font-bold text-base sm:text-lg tracking-widest text-[#B8860B] group-hover:text-[#8B6914] transition-all">
-                  SHRAVIKO
-                </span>
+                <img
+                  src={logoUrl}
+                  alt="Shraviko Sacred Living"
+                  style={{
+                    height: '52px',
+                    width: '52px',
+                    aspectRatio: '1 / 1',
+                    objectFit: 'contain',
+                    display: 'block',
+                  }}
+                  className="rounded-full transition-transform duration-300 group-hover:scale-105"
+                />
               </button>
             </div>
 
-            {/* Center: Desktop Category Navigation Links */}
-            <nav className="hidden lg:flex items-center justify-center gap-3.5 lg:gap-4 xl:gap-6 flex-1">
+            {/* CENTER — Spacious Category Navigation Links */}
+            <nav className="hidden lg:flex items-center justify-center gap-3 lg:gap-4.5 xl:gap-6 mx-3">
               {navLinks.map((link) => {
                 const isActive = activeCategory === link.category;
                 return (
                   <button
                     key={link.category}
                     onClick={() => onSelectCategory(link.category)}
-                    className={`text-[11px] xl:text-xs tracking-wider uppercase font-cinzel transition-all relative py-1.5 whitespace-nowrap ${
-                      isActive
-                        ? 'text-[#B8860B] font-bold'
-                        : 'text-[#3D2B1F] hover:text-[#B8860B] font-semibold'
-                    }`}
+                    className={`text-[11px] xl:text-xs tracking-[0.1em] uppercase font-cinzel transition-all relative py-1.5 whitespace-nowrap ${isActive
+                      ? 'text-[#B8860B] font-bold'
+                      : 'text-[#3D2B1F] hover:text-[#B8860B] font-semibold'
+                      }`}
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#B8860B] to-transparent animate-fade-in" />
+                      <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#B8860B] via-[#E5C378] to-[#B8860B] rounded-full animate-fade-in" />
                     )}
                   </button>
                 );
               })}
             </nav>
 
-            {/* Right: Quick Triggers (Search & Wishlist) */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            {/* RIGHT — Action Buttons (Track Order, Search, Wishlist, Cart) */}
+            <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+              {onGoSupport && (
+                <button
+                  onClick={onGoSupport}
+                  className="p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 group"
+                  title="Track Order"
+                >
+                  <Truck className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                  <span className="sr-only">Track Order</span>
+                </button>
+              )}
+
               <button
                 onClick={onOpenSearch}
-                className="p-2 sm:p-2.5 rounded-full bg-[#F5F0E8] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 hover:border-[#B8860B]/60 transition-all shadow-sm active:scale-95 group"
+                className="p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 group"
                 title="Search Products"
               >
-                <Search className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Search className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                 <span className="sr-only">Search</span>
               </button>
 
               <button
                 onClick={onOpenWishlist}
-                className="p-2 sm:p-2.5 rounded-full bg-[#F5F0E8] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 hover:border-[#B8860B]/60 transition-all shadow-sm active:scale-95 relative"
+                className="p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 relative"
                 title="Saved Items"
               >
-                <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Heart className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#A63A2B] text-white text-[10px] font-bold rounded-full flex items-center justify-center border border-white/30 shadow-md animate-pulse">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#A63A2B] text-white text-[10px] font-bold rounded-full flex items-center justify-center border border-white shadow-md animate-pulse">
                     {wishlistCount}
+                  </span>
+                )}
+              </button>
+
+              <button
+                onClick={onOpenCart}
+                className="p-2.5 rounded-full bg-[#3D2B1F] hover:bg-[#2C1F06] text-[#E5C378] border border-[#3D2B1F] transition-all shadow-sm active:scale-95 relative group"
+                title="Shopping Cart"
+              >
+                <ShoppingBag className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4.5 h-4.5 bg-[#B8860B] text-white text-[10px] font-bold rounded-full flex items-center justify-center border border-white shadow-md">
+                    {cartCount}
                   </span>
                 )}
               </button>
@@ -138,7 +168,7 @@ export const Navbar = ({
 
           </div>
 
-          {/* Mobile Dropdown Menu (Glassmorphism) */}
+          {/* Mobile Dropdown Menu (Solid White) */}
           {mobileMenuOpen && (
             <div className="lg:hidden border-t border-[#DAB97B]/30 px-6 py-6 animate-fade-in bg-white">
               <div className="flex flex-col gap-3">
@@ -149,16 +179,15 @@ export const Navbar = ({
                       onSelectCategory(link.category);
                       setMobileMenuOpen(false);
                     }}
-                    className={`text-left text-sm tracking-wider uppercase font-cinzel py-2.5 border-b border-[#DAB97B]/20 flex items-center justify-between transition-colors ${
-                      activeCategory === link.category ? 'text-[#B8860B] font-bold' : 'text-[#3D2B1F] hover:text-[#B8860B]'
-                    }`}
+                    className={`text-left text-sm tracking-wider uppercase font-cinzel py-2.5 border-b border-[#DAB97B]/20 flex items-center justify-between transition-colors ${activeCategory === link.category ? 'text-[#B8860B] font-bold' : 'text-[#3D2B1F] hover:text-[#B8860B]'
+                      }`}
                   >
                     <span>{link.label}</span>
                     <span className="text-xs text-[#B8860B]">→</span>
                   </button>
                 ))}
                 <div className="pt-3 text-xs font-serif text-[#B8860B] italic text-center">
-                  “Bringing Vedic Purity & Timeless Heritage to Modern Homes”
+                  “Bringing Vedic Purity &amp; Timeless Heritage to Modern Homes”
                 </div>
               </div>
             </div>
