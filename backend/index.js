@@ -14,23 +14,23 @@
  */
 
 require('dotenv').config();
-const express        = require('express');
-const cors           = require('cors');
-const config         = require('./config');
+const express = require('express');
+const cors = require('cors');
+const config = require('./config');
 
 // ── Middleware imports ─────────────────────────────────────
-const requestLogger  = require('./middleware/requestLogger');
-const mockMode       = require('./middleware/mockMode');
-const rateLimiter    = require('./middleware/rateLimiter');
-const rawBody        = require('./middleware/rawBody');
+const requestLogger = require('./middleware/requestLogger');
+const mockMode = require('./middleware/mockMode');
+const rateLimiter = require('./middleware/rateLimiter');
+const rawBody = require('./middleware/rawBody');
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 
 // ── Route imports ──────────────────────────────────────────
-const paymentsRouter  = require('./routes/payments');
-const trackRouter     = require('./routes/track');
-const ordersRouter    = require('./routes/orders');
-const returnsRouter   = require('./routes/returns');
-const ratesRouter     = require('./routes/rates');
+const paymentsRouter = require('./routes/payments');
+const trackRouter = require('./routes/track');
+const ordersRouter = require('./routes/orders');
+const returnsRouter = require('./routes/returns');
+const ratesRouter = require('./routes/rates');
 const enquiriesRouter = require('./routes/enquiries');
 const shiprocketWebhookRouter = require('./routes/shiprocketWebhook');
 
@@ -78,25 +78,25 @@ app.use('/api', rateLimiter.global);
 // ── Health check (no auth, no rate limit) ─────────────────
 app.get('/api/health', (req, res) => {
   res.json({
-    status:      'ok',
-    service:     'Shraviko API',
-    timestamp:   new Date().toISOString(),
+    status: 'ok',
+    service: 'Shraviko API',
+    timestamp: new Date().toISOString(),
     mode: {
-      razorpay:   config.razorpay.isMock  ? 'mock' : 'live',
+      razorpay: config.razorpay.isMock ? 'mock' : 'live',
       shiprocket: config.shiprocket.isMock ? 'mock' : 'live',
     },
   });
 });
 
 // ── Routes ────────────────────────────────────────────────
-app.use('/api/payments',  rateLimiter.payments, paymentsRouter);
-app.use('/api/track',     rateLimiter.track,    trackRouter);
-app.use('/api/orders',                          ordersRouter);
-app.use('/api/returns',   rateLimiter.returns,  returnsRouter);
-app.use('/api/rates',                           ratesRouter);
-app.use('/api/enquiries',                       enquiriesRouter);
-app.use('/api/fulfillment-updates',            shiprocketWebhookRouter);
-app.use('/fulfillment-updates',                shiprocketWebhookRouter);
+app.use('/api/payments', rateLimiter.payments, paymentsRouter);
+app.use('/api/track', rateLimiter.track, trackRouter);
+app.use('/api/orders', ordersRouter);
+app.use('/api/returns', rateLimiter.returns, returnsRouter);
+app.use('/api/rates', ratesRouter);
+app.use('/api/enquiries', enquiriesRouter);
+app.use('/api/fulfillment-updates', shiprocketWebhookRouter);
+app.use('/fulfillment-updates', shiprocketWebhookRouter);
 
 // ── 404 handler ───────────────────────────────────────────
 app.use(notFoundHandler);
