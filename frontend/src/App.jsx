@@ -203,8 +203,8 @@ export function App() {
       ];
     });
 
-    showToast('Added to Cart', `${product.name} added to your sacred cart.`, 'cart');
     setCartOpen(true);
+    setToast(null);
   };
 
   const handleUpdateQuantity = (id, newQty) => {
@@ -594,7 +594,7 @@ export function App() {
                     <div className="flex-shrink-0 flex items-center relative">
                       <img
                         src="/assets/Logo/CURRENT LOGO.png"
-                        alt="Shraviko Sacred Living"
+                        alt="Shraviko"
                         className="rounded-full object-contain drop-shadow-xl relative z-10 transition-transform duration-500 hover:scale-105"
                         style={{
                           width: 'clamp(120px, 18vw, 220px)',

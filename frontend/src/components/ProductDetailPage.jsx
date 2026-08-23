@@ -12,16 +12,14 @@ export const ProductDetailPage = ({
   isWishlisted,
   showToast
 }) => {
-  if (!product) return null;
-
   const [isLoading, setIsLoading] = useState(true);
 
   // Selected Gallery Image State
-  const initialImg = product.image || (product.images && product.images[0]) || '';
+  const initialImg = product?.image || (product?.images && product?.images[0]) || '';
   const [activeImg, setActiveImg] = useState(initialImg);
 
   // Selected Weight Variant State
-  const defaultVariant = product.weightVariants
+  const defaultVariant = product?.weightVariants
     ? (product.weightVariants.find((v) => v.default) || product.weightVariants[0])
     : null;
 
@@ -46,6 +44,7 @@ export const ProductDetailPage = ({
     }
   }, [product?.id]);
 
+  if (!product) return null;
   if (isLoading) return <ProductDetailSkeleton />;
 
   const currentPrice = selectedVariant ? selectedVariant.price : product.price;

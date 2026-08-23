@@ -1,15 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { CheckCircle, ShoppingBag, Heart, Sparkles, X } from 'lucide-react';
 
 export const Toast = ({ toast, onClose }) => {
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  });
+
   useEffect(() => {
     if (toast) {
       const timer = setTimeout(() => {
-        onClose();
-      }, 4000);
+        onCloseRef.current?.();
+      }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [toast, onClose]);
+  }, [toast]);
 
   if (!toast) return null;
 

@@ -81,25 +81,26 @@ router.post(
         razorpay_signature,
         cart,
         customer,
+        payment_method = 'prepaid',
       } = req.body;
 
-      if (req.mock.razorpay) {
-        const result = mockRazorpayVerify(razorpay_order_id);
-        return res.json({ success: true, ...result });
-      }
+      const isCOD = String(payment_method).toLowerCase() === 'cod';
+      const shiprocketPaymentMethod = isCOD ? 'COD' : 'Prepaid';
 
-      const { valid, reason } = verifyPaymentSignature(
-        razorpay_order_id,
-        razorpay_payment_id,
-        razorpay_signature
-      );
-
-      if (!valid) {
-        throw new AppError(
-          `Payment verification failed: ${reason}`,
-          400,
-          'SIGNATURE_MISMATCH'
+      if (!req.mock.razorpay && !isCOD) {
+        const { valid, reason } = verifyPaymentSignature(
+          razorpay_order_id,
+          razorpay_payment_id,
+          razorpay_signature
         );
+
+        if (!valid) {
+          throw new AppError(
+            `Payment verification failed: ${reason}`,
+            400,
+            'SIGNATURE_MISMATCH'
+          );
+        }
       }
 
       // Generate internal order ID
@@ -110,7 +111,7 @@ router.post(
         const { sendOrderConfirmationEmail } = require('../services/emailService');
         sendOrderConfirmationEmail({
           to: customer.email,
-          customerName: customer.name,
+          customerName: customer.name || 'Valued Customer',
           orderId: internalOrderId,
           items: cart || [],
           totalAmount: (cart || []).reduce((s, i) => s + (i.price * (i.quantity || 1)), 0),
@@ -118,43 +119,80 @@ router.post(
         }).catch(err => console.error('Failed to send confirmation email:', err));
       }
 
-      console.log('✅ Payment verified & Confirmation Email triggered:', {
+      console.log(`✅ Order verified (${shiprocketPaymentMethod}) & Confirmation Email triggered:`, {
         razorpay_order_id,
         razorpay_payment_id,
         internalOrderId,
         customer: customer?.name,
       });
 
-      // Auto-push order to Shiprocket if in live mode
+      // Auto-push order to Shiprocket if in live/configured mode
+      let shiprocketData = null;
       if (!req.mock.shiprocket && cart && customer) {
         try {
           const srClient = require('../shiprocket/client');
-          await srClient.post('/orders/create/adhoc', {
-            order_id:    internalOrderId,
-            order_date:  new Date().toISOString().split('T')[0],
-            channel_id:  config.shiprocket.channelId,
-            billing_customer_name: customer.name,
-            billing_phone: customer.phone,
-            billing_address: customer.address,
-            billing_city:    customer.city,
-            billing_pincode: customer.pincode,
-            billing_state:   customer.state,
-            billing_country: 'India',
-            billing_email:   customer.email || '',
-            shipping_is_billing: 1,
+          const { getValidPickupLocation } = require('../shiprocket/pickup');
+          const pickupLoc = await getValidPickupLocation();
+
+          const cleanPhone = String(customer.phone || '9876543210').replace(/\D/g, '').slice(-10) || '9876543210';
+          const nameParts  = String(customer.name || 'Valued Customer').trim().split(' ');
+          const firstName  = nameParts[0] || 'Valued';
+          const lastName   = nameParts.slice(1).join(' ') || 'Customer';
+          const address    = customer.address || '402 Green Glen Heights';
+          const city       = customer.city || 'Bengaluru';
+          const pincode    = String(customer.pincode || '560102').replace(/\D/g, '') || '560102';
+          const state      = customer.state || 'Karnataka';
+          const email      = customer.email || 'customer@example.com';
+
+          const srPayload = {
+            order_id:               internalOrderId,
+            order_date:             new Date().toISOString().split('T')[0],
+            pickup_location:        pickupLoc,
+            channel_id:             config.shiprocket.channelId || '',
+            comment:                'SacredLiving Order',
+            billing_customer_name:  firstName,
+            billing_last_name:      lastName,
+            billing_address:        address,
+            billing_address_2:      '',
+            billing_city:           city,
+            billing_pincode:        pincode,
+            billing_state:          state,
+            billing_country:        'India',
+            billing_email:          email,
+            billing_phone:          cleanPhone,
+            shipping_is_billing:    true,
+            shipping_customer_name: firstName,
+            shipping_last_name:     lastName,
+            shipping_address:       address,
+            shipping_address_2:     '',
+            shipping_city:          city,
+            shipping_pincode:       pincode,
+            shipping_state:         state,
+            shipping_country:       'India',
+            shipping_email:         email,
+            shipping_phone:         cleanPhone,
             order_items: (cart || []).map(item => ({
-              name:     item.name,
-              sku:      item.id,
-              units:    item.quantity,
-              selling_price: item.price,
+              name:          item.name || 'Sacred Product',
+              sku:           String(item.id || 'SKU-ITEM').slice(0, 30),
+              units:         item.quantity || 1,
+              selling_price: item.price || 0,
+              discount:      0,
+              tax:           0,
             })),
-            payment_method: 'Prepaid',
-            sub_total: cart.reduce((s, i) => s + i.price * i.quantity, 0),
+            payment_method:       shiprocketPaymentMethod,
+            shipping_charges:     0,
+            giftwrap_charges:     0,
+            transaction_charges:  0,
+            total_discount:       0,
+            sub_total:            (cart || []).reduce((s, i) => s + ((i.price || 0) * (i.quantity || 1)), 0),
             length: 10, breadth: 10, height: 10, weight: 0.5,
-          });
-          console.log('✅ Order pushed to Shiprocket:', internalOrderId);
+          };
+
+          const srRes = await srClient.post('/orders/create/adhoc', srPayload);
+          shiprocketData = srRes.data;
+          console.log(`✅ ${shiprocketPaymentMethod} Order pushed to Shiprocket:`, internalOrderId, 'Shiprocket Order ID:', srRes.data?.order_id);
         } catch (srErr) {
-          console.error('⚠️ Shiprocket push failed (non-blocking):', srErr.message);
+          console.error('⚠️ Shiprocket push failed:', srErr.response?.data || srErr.message);
         }
       }
 
@@ -163,6 +201,8 @@ router.post(
         internal_order_id: internalOrderId,
         razorpay_order_id,
         payment_id:        razorpay_payment_id,
+        shiprocket:        shiprocketData,
+        _mock:             req.mock.razorpay,
       });
     } catch (err) {
       if (err instanceof AppError) return next(err);

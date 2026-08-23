@@ -32,9 +32,16 @@ const ordersRouter    = require('./routes/orders');
 const returnsRouter   = require('./routes/returns');
 const ratesRouter     = require('./routes/rates');
 const enquiriesRouter = require('./routes/enquiries');
+const shiprocketWebhookRouter = require('./routes/shiprocketWebhook');
 
 // ─────────────────────────────────────────────────────────
 const app = express();
+
+// Bypass ngrok warning page for external webhooks
+app.use((req, res, next) => {
+  res.setHeader('ngrok-skip-browser-warning', 'true');
+  next();
+});
 
 // 1. Raw body — must be before express.json()
 app.use(rawBody);
@@ -88,6 +95,8 @@ app.use('/api/orders',                          ordersRouter);
 app.use('/api/returns',   rateLimiter.returns,  returnsRouter);
 app.use('/api/rates',                           ratesRouter);
 app.use('/api/enquiries',                       enquiriesRouter);
+app.use('/api/fulfillment-updates',            shiprocketWebhookRouter);
+app.use('/fulfillment-updates',                shiprocketWebhookRouter);
 
 // ── 404 handler ───────────────────────────────────────────
 app.use(notFoundHandler);
@@ -97,10 +106,15 @@ app.use(errorHandler);
 
 // ─────────────────────────────────────────────────────────
 const PORT = config.port;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`\n🚀 Shraviko server running on http://localhost:${PORT}`);
   console.log(`   Environment: ${config.nodeEnv}`);
   console.log(`   Frontend:    ${config.frontendUrl}\n`);
+
+  if (!config.shiprocket.isMock) {
+    const { getValidPickupLocation } = require('./shiprocket/pickup');
+    await getValidPickupLocation();
+  }
 });
 
 module.exports = app;

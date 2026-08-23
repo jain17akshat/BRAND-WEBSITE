@@ -29,7 +29,7 @@ export function PrivacyPolicyPage({ onBackToHome }) {
             Privacy Policy
           </h1>
           <p className="text-xs sm:text-sm text-[#7A6859] font-light max-w-lg mx-auto leading-relaxed">
-            Last Updated: August 2026 · Shraviko Sacred Living respects your privacy and is committed to protecting your personal data.
+            Last Updated: August 2026 · Shraviko respects your privacy and is committed to protecting your personal data.
           </p>
         </div>
 

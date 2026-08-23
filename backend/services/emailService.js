@@ -61,7 +61,7 @@ async function sendOrderConfirmationEmail({ to, customerName, orderId, items, to
         <!-- Header Logo -->
         <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid #C5A059;">
           <h1 style="color: #3D2B1F; margin: 0; font-size: 26px; letter-spacing: 3px; font-weight: normal;">SHRAVIKO</h1>
-          <p style="color: #C5A059; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;">Sacred Living · Handcrafted in India</p>
+          <p style="color: #C5A059; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;">Handcrafted in India</p>
         </div>
 
         <!-- Greeting -->
@@ -112,9 +112,9 @@ async function sendOrderConfirmationEmail({ to, customerName, orderId, items, to
 
   try {
     const info = await transporter.sendMail({
-      from: `"Shraviko Sacred Living" <${process.env.EMAIL_USER}>`,
+      from: `"Shraviko" <${process.env.EMAIL_USER}>`,
       to,
-      subject: `Order Confirmed #${orderId} — Shraviko Sacred Living`,
+      subject: `Order Confirmed #${orderId} — Shraviko`,
       html: htmlTemplate,
     });
     console.log(`✅ Confirmation email sent to ${to}: ${info.messageId}`);
@@ -144,7 +144,7 @@ async function sendRefundConfirmationEmail({ to, customerName, refundId, payment
         <!-- Header Logo -->
         <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid #C5A059;">
           <h1 style="color: #3D2B1F; margin: 0; font-size: 26px; letter-spacing: 3px; font-weight: normal;">SHRAVIKO</h1>
-          <p style="color: #C5A059; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;">Sacred Living · Handcrafted in India</p>
+          <p style="color: #C5A059; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;">Handcrafted in India</p>
         </div>
 
         <!-- Greeting -->
@@ -193,9 +193,9 @@ async function sendRefundConfirmationEmail({ to, customerName, refundId, payment
 
   try {
     const info = await transporter.sendMail({
-      from: `"Shraviko Sacred Living" <${process.env.EMAIL_USER}>`,
+      from: `"Shraviko" <${process.env.EMAIL_USER}>`,
       to,
-      subject: `Refund Processed (${refundId}) — Shraviko Sacred Living`,
+      subject: `Refund Processed (${refundId}) — Shraviko`,
       html: htmlTemplate,
     });
     console.log(`✅ Refund email sent to ${to}: ${info.messageId}`);
@@ -331,9 +331,97 @@ async function sendCorporateEnquiryNotificationToAdmin({ id, enquiryId, fullName
   }
 }
 
+/**
+ * sendOrderCancellationEmail — sends instant branded cancellation notification to customer
+ */
+async function sendOrderCancellationEmail({ to, customerName, orderId, reason }) {
+  const transporter = getTransporter();
+
+  const htmlTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Order Cancelled — SHRAVIKO</title>
+    </head>
+    <body style="font-family: 'Georgia', serif; background-color: #FBF9F5; margin: 0; padding: 20px; color: #2C2623;">
+      <div style="max-w: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; padding: 30px; border: 1px solid #E8DFC7;">
+        
+        <!-- Header Logo -->
+        <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid #C5A059;">
+          <h1 style="color: #3D2B1F; margin: 0; font-size: 26px; letter-spacing: 3px; font-weight: normal;">SHRAVIKO</h1>
+          <p style="color: #C5A059; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;">Handcrafted in India</p>
+        </div>
+
+        <!-- Greeting -->
+        <div style="padding: 25px 0;">
+          <h2 style="color: #2C1F06; font-size: 18px; margin-bottom: 10px;">Namaste ${customerName || 'Valued Customer'},</h2>
+          <p style="font-size: 14px; color: #5C4A3E; line-height: 1.6; margin: 0;">
+            Your order <strong>#${orderId}</strong> has been cancelled.
+          </p>
+        </div>
+
+        <!-- Cancellation Box -->
+        <div style="background-color: #FDFBF7; border: 1px solid #E8DFC7; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+          <h3 style="margin: 0 0 15px 0; font-size: 14px; color: #8C6D27; text-transform: uppercase; letter-spacing: 1px;">Cancellation Details</h3>
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #7A6859;">Order ID</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #2C1F06; font-weight: bold; text-align: right;">${orderId}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #7A6859;">Order Status</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #A63A2B; font-weight: bold; text-align: right;">Cancelled</td>
+            </tr>
+            ${reason ? `
+            <tr>
+              <td style="padding: 8px 0; color: #7A6859;">Cancellation Reason</td>
+              <td style="padding: 8px 0; color: #2C1F06; text-align: right;">${reason}</td>
+            </tr>
+            ` : ''}
+          </table>
+        </div>
+
+        <div style="background-color: #FAF0D9; border-radius: 8px; padding: 15px; text-align: center; margin-bottom: 20px; font-size: 12px; color: #755722;">
+          If a prepaid payment was made for this order, your refund will be automatically processed within 5–7 business days to your original payment method.
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; font-size: 12px; color: #7A6859; padding-top: 20px; border-top: 1px solid #E8DFC7;">
+          <p style="margin-bottom: 5px;">Have questions regarding this cancellation?</p>
+          <p style="margin: 0;">Write to us at <a href="mailto:shraviko@gmail.com" style="color: #C5A059; text-decoration: none;">shraviko@gmail.com</a> or call <strong>+91 7742320607</strong>.</p>
+        </div>
+
+      </div>
+    </body>
+    </html>
+  `;
+
+  if (!transporter) {
+    console.log(`\n📧 [EMAIL MOCK] Cancellation Email generated for ${to}:`);
+    console.log(`   Order ID: ${orderId} | Reason: ${reason || 'Fulfillment cancellation'}\n`);
+    return { success: true, mock: true };
+  }
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"Shraviko" <${process.env.EMAIL_USER}>`,
+      to,
+      subject: `Order Cancelled #${orderId} — Shraviko`,
+      html: htmlTemplate,
+    });
+    console.log(`✅ Order cancellation email sent to ${to}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err) {
+    console.error(`❌ Cancellation email send failed: ${err.message}`);
+    return { success: false, error: err.message };
+  }
+}
+
 module.exports = {
   sendOrderConfirmationEmail,
   sendRefundConfirmationEmail,
+  sendOrderCancellationEmail,
   sendReturnNotificationToAdmin,
   sendCorporateEnquiryNotificationToAdmin,
 };

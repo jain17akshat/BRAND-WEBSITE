@@ -81,9 +81,9 @@ export const Newsletter = ({ onSubscribe }) => {
               </h3>
             </div>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/shraviko/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="text-xs font-cinzel uppercase tracking-wider text-[#C5A059] hover:text-[#967433] font-semibold flex items-center gap-1.5"
             >
               <Instagram className="w-4 h-4" />
@@ -93,7 +93,13 @@ export const Newsletter = ({ onSubscribe }) => {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {instaPosts.map((post, idx) => (
-              <div key={idx} className="group relative rounded-xl overflow-hidden shadow-sm border border-[#EAE0CD] cursor-pointer">
+              <a
+                key={idx}
+                href="https://www.instagram.com/shraviko/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative rounded-xl overflow-hidden shadow-sm border border-[#EAE0CD] cursor-pointer block"
+              >
                 <ProductImage
                   src=""
                   alt={post.title}
@@ -104,7 +110,7 @@ export const Newsletter = ({ onSubscribe }) => {
                   <Instagram className="w-6 h-6 text-[#E5C378] mb-1" />
                   <span className="text-xs font-cinzel text-[#F9F5EC]">{post.title}</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

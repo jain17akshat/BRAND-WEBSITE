@@ -216,7 +216,7 @@ export function AboutUsPage({ onBackToHome }) {
 
               <div className="flex items-center gap-3 pt-2">
                 <div className="w-10 h-[2px] bg-[#C5A059]" />
-                <span className="text-[10px] font-cinzel tracking-[0.3em] text-[#9B7E52] uppercase">Shraviko Sacred Living</span>
+                <span className="text-[10px] font-cinzel tracking-[0.3em] text-[#9B7E52] uppercase">Shraviko</span>
               </div>
             </div>
           </div>

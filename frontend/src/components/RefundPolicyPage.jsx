@@ -29,7 +29,7 @@ export function RefundPolicyPage({ onBackToHome }) {
             Cancellation & Refund Policy
           </h1>
           <p className="text-xs sm:text-sm text-[#7A6859] font-light max-w-lg mx-auto leading-relaxed">
-            At Shraviko Sacred Living, we stand behind the quality and purity of our metalcraft, diyas, and incense products.
+            At Shraviko, we stand behind the quality and purity of our metalcraft, diyas, and incense products.
           </p>
         </div>
 

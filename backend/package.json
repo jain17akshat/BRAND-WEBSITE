@@ -1,7 +1,7 @@
 {
   "name": "shraviko-backend",
   "version": "1.0.0",
-  "description": "Shraviko Sacred Living — Express backend with Razorpay & Shiprocket",
+  "description": "Shraviko — Express backend with Razorpay & Shiprocket",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {

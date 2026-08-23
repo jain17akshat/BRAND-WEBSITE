@@ -16,16 +16,14 @@ export const CheckoutModal = ({
   const [orderId, setOrderId] = useState('');
 
   const [formData, setFormData] = useState({
-    name: 'Aarav Sharma',
-    email: 'aarav.sharma@example.com',
-    phone: '+91 98765 43210',
-    address: '402, Green Glen Heights, HSR Layout Sector 2',
-    city: 'Bengaluru',
-    state: 'Karnataka',
-    pincode: '560102'
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    pincode: ''
   });
-
-  if (!isOpen) return null;
 
   // Load Razorpay checkout.js script once
   useEffect(() => {
@@ -36,6 +34,8 @@ export const CheckoutModal = ({
     script.async = true;
     document.body.appendChild(script);
   }, []);
+
+  if (!isOpen) return null;
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const shipping = subtotal >= 999 || subtotal === 0 ? 0 : 99;
@@ -79,8 +79,27 @@ export const CheckoutModal = ({
     setPaymentError(false);
 
     try {
-      // 1. Create order on backend
+      // 1. Generate receipt ID
       const receipt = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
+
+      // 2. COD (Cash on Delivery) Order Path
+      if (paymentMethod === 'cod') {
+        const verified = await verifyPayment({
+          razorpay_order_id:   `order_COD_${Date.now()}`,
+          razorpay_payment_id: `pay_COD_${Date.now()}`,
+          razorpay_signature:  'cod_signature',
+          cart: cartItems,
+          customer: formData,
+          payment_method: 'cod',
+        });
+        setOrderId(verified.internal_order_id || receipt);
+        setOrderComplete(true);
+        setIsProcessing(false);
+        onClearCart();
+        return;
+      }
+
+      // 3. Online Payment (Razorpay) Path
       const { order, key_id, _mock } = await createRazorpayOrder({
         amount: grandTotal,   // in ₹ — server converts to paise
         receipt,
@@ -111,7 +130,7 @@ export const CheckoutModal = ({
         key:         key_id,
         amount:      order.amount,
         currency:    order.currency,
-        name:        'Shraviko Sacred Living',
+        name:        'Shraviko',
         description: 'Sacred & Artisan Products',
         order_id:    order.id,
         prefill: {
@@ -288,17 +307,27 @@ export const CheckoutModal = ({
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Full Name"
+                      placeholder="Full Name *"
                       required
                       className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
                     />
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="Phone Number"
+                      placeholder="10-Digit Phone Number *"
+                      required
+                      className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="Email Address *"
                       required
                       className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
                     />
@@ -308,7 +337,27 @@ export const CheckoutModal = ({
                       type="text"
                       value={formData.address}
                       onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                      placeholder="Address"
+                      placeholder="Flat / House No. / Building / Street Address *"
+                      required
+                      className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      value={formData.city}
+                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                      placeholder="City *"
+                      required
+                      className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      value={formData.pincode}
+                      onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
+                      placeholder="Pincode *"
                       required
                       className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
                     />
@@ -405,12 +454,12 @@ export const CheckoutModal = ({
                   {isProcessing ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      <span>PROCESSING PAYMENT...</span>
+                      <span>{paymentMethod === 'cod' ? 'PLACING COD ORDER...' : 'PROCESSING PAYMENT...'}</span>
                     </>
                   ) : (
                     <>
                       <Lock className="w-4 h-4" />
-                      <span>PAY ₹{grandTotal.toLocaleString('en-IN')}</span>
+                      <span>{paymentMethod === 'cod' ? `CONFIRM COD ORDER — ₹${grandTotal.toLocaleString('en-IN')}` : `PAY ₹${grandTotal.toLocaleString('en-IN')}`}</span>
                     </>
                   )}
                 </button>

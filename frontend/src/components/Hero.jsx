@@ -145,7 +145,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
                 alt="Shraviko Sacred Collection"
                 loading={idx === 0 ? 'eager' : 'lazy'}
                 decoding="async"
-                fetchPriority={idx === 0 ? 'high' : 'low'}
+                fetchpriority={idx === 0 ? 'high' : 'low'}
                 onError={(e) => {
                   if (e.currentTarget.src !== slide.fallback) {
                     e.currentTarget.src = slide.fallback;

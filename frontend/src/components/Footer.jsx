@@ -61,7 +61,7 @@ export const Footer = ({
               <div className="flex items-center gap-3">
                 <img
                   src="/assets/Logo/CURRENT LOGO.png"
-                  alt="Shraviko Sacred Living"
+                  alt="Shraviko"
                   className="h-20 w-20 object-contain rounded-full border border-[#D4AF37]/30 p-1 bg-[#1C1715] shadow-md"
                   style={{ aspectRatio: '1 / 1' }}
                 />
@@ -70,7 +70,7 @@ export const Footer = ({
                     Shraviko
                   </h3>
                   <span className="text-[9px] sm:text-[10px] tracking-[0.2em] font-cinzel uppercase text-[#C5A059] font-medium block mt-0.5">
-                    Awaken Within • Sacred Living
+                    Awaken Within
                   </span>
                 </div>
               </div>
@@ -83,13 +83,14 @@ export const Footer = ({
               {/* Social Icons */}
               <div className="flex items-center gap-3 pt-1">
                 {[
-                  { Icon: Instagram, label: 'Instagram', href: '#' },
-                  { Icon: Facebook, label: 'Facebook', href: '#' },
-                  { Icon: Share2, label: 'Share', href: '#' },
+                  { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/shraviko/' },
+                  { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61593917600311' },
                 ].map(({ Icon, label, href }) => (
                   <a
                     key={label}
                     href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={label}
                     className="w-8 h-8 rounded-full bg-[#231E1C] border border-[#3E342F] flex items-center justify-center text-[#B5A895] hover:text-[#E5C378] hover:border-[#E5C378] transition-all"
                   >
@@ -187,7 +188,7 @@ export const Footer = ({
           {/* Bottom Copyright Bar */}
           <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#8C7E6C]">
             <p className="text-center md:text-left font-light">
-              © {new Date().getFullYear()} Shraviko Sacred Living Pvt Ltd. All rights reserved.
+              © {new Date().getFullYear()} Shraviko. All rights reserved.
             </p>
 
             <PaymentLogos />
@@ -232,7 +233,7 @@ export const Footer = ({
             ref={tagTextRef}
             className="font-cinzel font-semibold uppercase text-[#C5A059] text-center mt-3 tracking-[0.35em] text-[10px] sm:text-xs"
           >
-            AWAKEN WITHIN • SACRED LIVING
+            AWAKEN WITHIN
           </p>
         </div>
       </div>

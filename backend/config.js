@@ -16,6 +16,7 @@ const config = {
     email: process.env.SHIPROCKET_EMAIL || '',
     password: process.env.SHIPROCKET_PASSWORD || '',
     channelId: process.env.SHIPROCKET_CHANNEL_ID || '',
+    pickupLocation: process.env.SHIPROCKET_PICKUP_LOCATION || 'work',
     isMock: !process.env.SHIPROCKET_EMAIL || !process.env.SHIPROCKET_PASSWORD,
   },
 };

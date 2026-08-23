@@ -42,7 +42,7 @@ export function TermsPage({ onBackToHome }) {
               1. Acceptance of Terms
             </h2>
             <p>
-              By accessing, browsing, or purchasing products from <strong>Shraviko Sacred Living Pvt. Ltd.</strong> ("Shraviko", "we", "us"), you agree to be bound by these Terms & Conditions. If you do not agree to all terms, you may not access the website.
+              By accessing, browsing, or purchasing products from <strong>Shraviko Pvt. Ltd.</strong> ("Shraviko", "we", "us"), you agree to be bound by these Terms & Conditions. If you do not agree to all terms, you may not access the website.
             </p>
           </section>
 
@@ -74,7 +74,7 @@ export function TermsPage({ onBackToHome }) {
               4. Intellectual Property
             </h2>
             <p>
-              All content on Shraviko.com — including brand trademarks, high-resolution photography, product designs, copy text, logos, and UI elements — is the exclusive property of Shraviko Sacred Living Pvt. Ltd. Unauthorized reproduction or commercial use is strictly prohibited.
+              All content on Shraviko.com — including brand trademarks, high-resolution photography, product designs, copy text, logos, and UI elements — is the exclusive property of Shraviko Pvt. Ltd. Unauthorized reproduction or commercial use is strictly prohibited.
             </p>
           </section>
 

@@ -77,11 +77,11 @@ export const Navbar = ({
               <button
                 onClick={onGoHome}
                 className="flex items-center group focus:outline-none"
-                title="Shraviko Sacred Living - Home"
+                title="Shraviko - Home"
               >
                 <img
                   src={logoUrl}
-                  alt="Shraviko Sacred Living"
+                  alt="Shraviko"
                   style={{
                     height: '52px',
                     width: '52px',
