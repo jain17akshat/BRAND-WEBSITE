@@ -111,6 +111,9 @@ app.listen(PORT, async () => {
   console.log(`   Environment: ${config.nodeEnv}`);
   console.log(`   Frontend:    ${config.frontendUrl}\n`);
 
+  const { initDatabase } = require('./database/db');
+  await initDatabase();
+
   if (!config.shiprocket.isMock) {
     const { getValidPickupLocation } = require('./shiprocket/pickup');
     await getValidPickupLocation();

@@ -126,6 +126,22 @@ router.post(
         customer: customer?.name,
       });
 
+      // Save order to Hostinger MySQL Database (if configured)
+      const { saveOrder } = require('../database/db');
+      await saveOrder({
+        order_id: internalOrderId,
+        customer_name: customer?.name,
+        customer_email: customer?.email,
+        customer_phone: customer?.phone,
+        total_amount: totalAmount,
+        payment_method: shiprocketPaymentMethod,
+        payment_status: 'PAID',
+        shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
+        city: customer?.city,
+        pincode: customer?.pincode,
+        items: cart,
+      });
+
       // Auto-push order to Shiprocket if in live/configured mode
       let shiprocketData = null;
       if (!req.mock.shiprocket && cart && customer) {

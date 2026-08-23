@@ -33,6 +33,24 @@ router.post('/request', validateBody({
       details,
     }).catch(err => console.error('Failed to notify admin of return:', err));
 
+    const returnId = `RET_${Date.now()}`;
+    const { saveReturnRequest } = require('../database/db');
+    await saveReturnRequest({
+      return_id: returnId,
+      order_id,
+      customer_name: customer_name || 'Valued Customer',
+      customer_email: email,
+      customer_phone: phone,
+      reason,
+      bank_details: {
+        refund_type,
+        account_number: bank_account_number,
+        ifsc_code,
+        account_holder_name,
+        upi_id,
+      },
+    });
+
     if (req.mock.shiprocket) {
       return res.json({
         success:   true,
