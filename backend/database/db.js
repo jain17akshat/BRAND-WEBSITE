@@ -4,12 +4,20 @@
  * Hostinger MySQL Database Manager & Table Auto-Initializer.
  */
 
-const mysql = require('mysql2/promise');
+let mysql = null;
+try {
+  mysql = require('mysql2/promise');
+} catch (err) {
+  // mysql2 module not installed locally yet
+}
 
 let pool = null;
 
 function getPool() {
   if (pool) return pool;
+  if (!mysql) {
+    return null;
+  }
 
   const dbHost = process.env.DB_HOST || 'localhost';
   const dbUser = process.env.DB_USER || '';

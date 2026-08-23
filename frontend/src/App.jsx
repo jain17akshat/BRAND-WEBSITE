@@ -31,6 +31,7 @@ import { HomePageDecorations } from './components/HomePageDecorations';
 import { AboutUsPage } from './components/AboutUsPage';
 import { AllCollectionsPage } from './components/AllCollectionsPage';
 import { LaunchBanner } from './components/LaunchBanner';
+import { WelcomeOfferModal } from './components/WelcomeOfferModal';
 
 export function App() {
   // Page Routing & Active Category State
@@ -437,12 +438,6 @@ export function App() {
                 onRitualsClick={() => handleSelectCategory('mandir-essentials')}
               />
 
-              {/* 2. Launch Day Offer Banner — immediately below hero */}
-              <LaunchBanner />
-
-              {/* 3. Trust Strip */}
-              <ValueProps />
-
               {/* 3. Shop by Collection — 4 large visual cards */}
               <div className="smooth-reveal">
                 <Collections onSelectCategory={handleSelectCategory} />
@@ -732,6 +727,14 @@ export function App() {
           cartItems={cartItems}
           onClearCart={handleClearCart}
           appliedPromo={appliedPromo}
+        />
+
+        {/* Welcome Offer Popup Modal */}
+        <WelcomeOfferModal
+          onApplyCoupon={(code) => {
+            setAppliedPromo({ code, discountPercent: 10 });
+            showToast('🎉 WELCOME10 applied! 10% OFF added to your checkout.');
+          }}
         />
 
         {/* Toast Notification Container */}

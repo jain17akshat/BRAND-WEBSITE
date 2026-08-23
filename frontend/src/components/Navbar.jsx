@@ -62,10 +62,10 @@ export const Navbar = ({
           }`}>
 
           {/* ── Top bar: 52px Logo | Category Links | Action Buttons ── */}
-          <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-between" style={{ height: '68px' }}>
+          <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-between relative" style={{ height: '68px' }}>
 
-            {/* LEFT — Mobile Toggle & Standalone Logo */}
-            <div className="flex items-center gap-3 flex-shrink-0">
+            {/* LEFT — Mobile Toggle & Desktop Logo */}
+            <div className="flex items-center gap-3 flex-shrink-0 z-10">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="lg:hidden p-2 text-[#3D2B1F] hover:text-[#B8860B] transition-colors rounded-full hover:bg-[#F5F0E8]"
@@ -76,7 +76,7 @@ export const Navbar = ({
 
               <button
                 onClick={onGoHome}
-                className="flex items-center group focus:outline-none"
+                className="hidden lg:flex items-center group focus:outline-none"
                 title="Shraviko - Home"
               >
                 <img
@@ -93,6 +93,26 @@ export const Navbar = ({
                 />
               </button>
             </div>
+
+            {/* CENTER (MOBILE ONLY) — Perfectly Centered Mobile Logo */}
+            <button
+              onClick={onGoHome}
+              className="lg:hidden absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center focus:outline-none z-10"
+              title="Shraviko - Home"
+            >
+              <img
+                src={logoUrl}
+                alt="Shraviko"
+                style={{
+                  height: '48px',
+                  width: '48px',
+                  aspectRatio: '1 / 1',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+                className="rounded-full transition-transform duration-300 active:scale-95 shadow-sm"
+              />
+            </button>
 
             {/* CENTER — Spacious Category Navigation Links */}
             <nav className="hidden lg:flex items-center justify-center gap-3 lg:gap-4.5 xl:gap-6 mx-3">

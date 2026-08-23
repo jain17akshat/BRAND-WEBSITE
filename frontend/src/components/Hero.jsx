@@ -6,10 +6,10 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
   const heroImages = [
     {
       id: 'hero-launch',
-      mobileImage: '/assets/Launch2mobile.png',
+      mobileImage: '/assets/launch3.png',
       desktopImage: '/assets/Launch2.png',
       fallback: '/assets/Pooja.png',
-      mobilePosition: 'center center',
+      mobilePosition: 'center top',
       desktopPosition: 'center center',
       duration: 9000, // Stay longer (9 seconds) for the launch banner slide!
     },
@@ -113,10 +113,12 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
         relative w-full overflow-hidden
         bg-[#1C1715]
         select-none
-        h-[560px]
-        sm:h-[620px]
+        h-[700px]
+        sm:h-[760px]
         lg:h-[680px]
         xl:h-[720px]
+        pt-[84px]
+        lg:pt-0
       "
     >
       {/* IMAGE SLIDES */}
@@ -142,7 +144,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
 
               <img
                 src={slide.desktopImage}
-                alt="Shraviko Sacred Collection"
+                alt="Shraviko Collection"
                 loading={idx === 0 ? 'eager' : 'lazy'}
                 decoding="async"
                 fetchpriority={idx === 0 ? 'high' : 'low'}
@@ -157,7 +159,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
                   object-cover
                 "
                 style={{
-                  objectPosition: slide.desktopPosition,
+                  objectPosition: slide.mobilePosition || 'center top',
                 }}
               />
             </picture>
@@ -177,38 +179,40 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
         "
       />
 
-      {/* HERO CONTENT — Centered floating Shop Collection button */}
-      <div className="absolute inset-0 z-10 flex items-end justify-center pb-12 sm:pb-16 lg:pb-20">
-        <button
-          onClick={onExploreClick}
-          style={{
-            animation: 'heroFloat 3s ease-in-out infinite',
-          }}
-          className="
-            min-h-[48px]
-            rounded-full
-            bg-white/90
-            backdrop-blur-sm
-            px-8 py-3.5
-            text-xs
-            font-cinzel
-            font-bold
-            tracking-[0.2em]
-            uppercase
-            text-[#2C1F06]
-            shadow-2xl
-            border border-white/60
-            transition-all
-            duration-300
-            hover:bg-white
-            hover:scale-105
-            hover:shadow-[0_8px_40px_rgba(197,160,89,0.4)]
-            active:scale-95
-          "
-        >
-          Shop Collection
-        </button>
-      </div>
+      {/* HERO CONTENT — Centered floating Shop Collection button (Hidden on hero-launch slide) */}
+      {heroImages[activeSlide]?.id !== 'hero-launch' && (
+        <div className="absolute inset-0 z-10 flex items-end justify-center pb-12 sm:pb-16 lg:pb-20">
+          <button
+            onClick={onExploreClick}
+            style={{
+              animation: 'heroFloat 3s ease-in-out infinite',
+            }}
+            className="
+              min-h-[48px]
+              rounded-full
+              bg-white/90
+              backdrop-blur-sm
+              px-8 py-3.5
+              text-xs
+              font-cinzel
+              font-bold
+              tracking-[0.2em]
+              uppercase
+              text-[#2C1F06]
+              shadow-2xl
+              border border-white/60
+              transition-all
+              duration-300
+              hover:bg-white
+              hover:scale-105
+              hover:shadow-[0_8px_40px_rgba(197,160,89,0.4)]
+              active:scale-95
+            "
+          >
+            Shop Collection
+          </button>
+        </div>
+      )}
 
       {/* SLIDE INDICATORS (DOTS) */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
