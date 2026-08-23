@@ -282,13 +282,26 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
                       name="quantity"
                       value={formData.quantity}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-[#EAE0CD] rounded-xl text-xs text-[#2C2623] focus:outline-none focus:border-[#C5A059] bg-[#FBF9F5]"
+                      className="w-full px-4 py-3 border border-[#EAE0CD] rounded-xl text-xs text-[#2C2623] focus:outline-none focus:border-[#C5A059] bg-[#FBF9F5] font-medium"
                     >
-                      <option value="25-50">25 - 50 Units</option>
-                      <option value="50-100">50 - 100 Units</option>
-                      <option value="100-500">100 - 500 Units</option>
-                      <option value="500+">500+ Units (Mega Wholesale)</option>
+                      <option value="25 - 50 Units">25 - 50 Units</option>
+                      <option value="50 - 100 Units">50 - 100 Units</option>
+                      <option value="100 - 500 Units">100 - 500 Units</option>
+                      <option value="500+ Units (Mega Wholesale)">500+ Units (Mega Wholesale)</option>
+                      <option value="custom">✏️ Custom Quantity (Enter Specific Number)</option>
                     </select>
+
+                    {formData.quantity === 'custom' && (
+                      <input
+                        type="text"
+                        name="customQuantity"
+                        required
+                        value={formData.customQuantity}
+                        onChange={handleChange}
+                        placeholder="e.g. 75 Units or 1,250 Boxes"
+                        className="w-full px-4 py-2.5 border border-[#C5A059] rounded-xl text-xs text-[#2C2623] focus:outline-none bg-white animate-fade-in mt-2 font-medium"
+                      />
+                    )}
                   </div>
 
                   {/* Budget Per Gift */}
@@ -300,13 +313,26 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-[#EAE0CD] rounded-xl text-xs text-[#2C2623] focus:outline-none focus:border-[#C5A059] bg-[#FBF9F5]"
+                      className="w-full px-4 py-3 border border-[#EAE0CD] rounded-xl text-xs text-[#2C2623] focus:outline-none focus:border-[#C5A059] bg-[#FBF9F5] font-medium"
                     >
-                      <option value="500-1000">₹500 - ₹1,000 per gift</option>
-                      <option value="1000-2500">₹1,000 - ₹2,500 per gift</option>
-                      <option value="2500-5000">₹2,500 - ₹5,000 per gift</option>
-                      <option value="5000+">₹5,000+ Luxury Hamper</option>
+                      <option value="₹500 - ₹1,000 per gift">₹500 - ₹1,000 per gift</option>
+                      <option value="₹1,000 - ₹2,500 per gift">₹1,000 - ₹2,500 per gift</option>
+                      <option value="₹2,500 - ₹5,000 per gift">₹2,500 - ₹5,000 per gift</option>
+                      <option value="₹5,000+ Luxury Hamper">₹5,000+ Luxury Hamper</option>
+                      <option value="custom">✏️ Custom Budget (Enter Specific Amount)</option>
                     </select>
+
+                    {formData.budget === 'custom' && (
+                      <input
+                        type="text"
+                        name="customBudget"
+                        required
+                        value={formData.customBudget}
+                        onChange={handleChange}
+                        placeholder="e.g. ₹850 per gift or ₹1.5 Lakh Total"
+                        className="w-full px-4 py-2.5 border border-[#C5A059] rounded-xl text-xs text-[#2C2623] focus:outline-none bg-white animate-fade-in mt-2 font-medium"
+                      />
+                    )}
                   </div>
 
                 </div>
