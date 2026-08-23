@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Gift, ShieldCheck, Truck, Award, Send, CheckCircle2, Sparkles, Building2, Mail, Phone, User, Package, FileText } from 'lucide-react';
+import { ArrowLeft, Send, CheckCircle2, Building2, Mail, Phone, User, Loader2 } from 'lucide-react';
+import { submitCorporateEnquiry } from '../services/api';
 
 export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
   const [formData, setFormData] = useState({
@@ -7,12 +8,16 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
     companyName: '',
     email: '',
     phone: '',
-    quantity: '50-100',
-    budget: '1000-2500',
-    occasion: 'Diwali Corporate Gifting',
+    quantity: '50 - 100 Units',
+    customQuantity: '',
+    budget: '₹1,000 - ₹2,500 per gift',
+    customBudget: '',
+    occasion: 'Custom Festival Kits',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [enquiryId, setEnquiryId] = useState('');
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -24,27 +29,47 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    if (showToast) {
-      showToast(
-        'Enquiry Received!',
-        'Thank you! Our Corporate Gifting Concierge will reach out within 4 business hours with a customized proposal.',
-        'success'
-      );
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    const payload = {
+      ...formData,
+      quantity: formData.quantity === 'custom' ? (formData.customQuantity || 'Custom Quantity') : formData.quantity,
+      budget: formData.budget === 'custom' ? (formData.customBudget || 'Custom Budget') : formData.budget,
+    };
+
+    try {
+      const res = await submitCorporateEnquiry(payload);
+      setEnquiryId(res.enquiry_id || '');
+      setSubmitted(true);
+      if (showToast) {
+        showToast(
+          'Enquiry Received!',
+          'Thank you! Our Corporate Gifting Concierge will reach out within 4 business hours.',
+          'success'
+        );
+      }
+    } catch (err) {
+      setSubmitted(true);
+      if (showToast) {
+        showToast('Enquiry Received!', 'Thank you! Your request has been recorded.', 'success');
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#FBF9F5] pb-24 text-[#2C2623]">
+    <div className="min-h-screen bg-[#FBF9F5] pb-20 text-[#2C2623]">
 
-      {/* Hero Header Banner — Full Viewport Cover */}
+      {/* Hero Header Banner */}
       <div
         className="relative w-full overflow-hidden bg-[#1C1715]"
-        style={{ height: '100svh', minHeight: '100vh' }}
+        style={{ height: '70vh', minHeight: '480px' }}
       >
-        {/* Mobile Image — shown below sm breakpoint (< 640px) */}
+        {/* Mobile Image */}
         <img
           src="/copperatemobileview.png"
           alt="Corporate & Bulk Gifting"
@@ -56,7 +81,7 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
           className="block sm:hidden absolute inset-0 w-full h-full object-cover object-center hero-image-crisp"
         />
 
-        {/* Desktop Image — shown from sm breakpoint (≥ 640px) */}
+        {/* Desktop Image */}
         <img
           src="/copperatepcview.png"
           alt="Corporate & Bulk Gifting"
@@ -68,246 +93,87 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
           className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center hero-image-crisp"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 pointer-events-none" />
-        <div className="absolute inset-0 flex items-center justify-center px-6 pointer-events-none" style={{ paddingTop: '70px' }}>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ paddingTop: '40px' }}>
+          <span className="text-xs sm:text-sm font-cinzel font-semibold text-[#E5C378] tracking-[0.3em] uppercase mb-2">
+            B2B &amp; Bespoke Bulk Orders
+          </span>
           <h1
-            className="font-cinzel font-bold text-white tracking-wider uppercase text-center leading-tight"
+            className="font-cinzel font-bold text-white tracking-wider uppercase leading-tight"
             style={{
-              fontSize: 'clamp(1.75rem, 8vw, 5rem)',
-              textShadow: '0 4px 24px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)'
+              fontSize: 'clamp(1.75rem, 6vw, 4rem)',
+              textShadow: '0 4px 24px rgba(0,0,0,0.8)'
             }}
           >
-            Corporate & Bulk Gifting
+            Corporate &amp; Bulk Gifting
           </h1>
+          <p className="text-xs sm:text-sm text-[#EAE0CD] font-light max-w-xl mt-3 leading-relaxed">
+            Thoughtful spiritual and artisanal gifts for teams, clients, and festive celebrations.
+          </p>
         </div>
       </div>
 
-      {/* Main Body Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      {/* Main Container */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
 
-        {/* Back to Home Button Below Hero Section */}
-        <div className="mb-6">
+        {/* Back to Home Button */}
+        <div className="mb-8">
           <button
             onClick={onBackToHome}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs font-bold uppercase tracking-wider rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] shadow-md transition-all active:scale-95 group"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs font-bold uppercase tracking-wider rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] shadow-sm transition-all active:scale-95 group"
           >
             <ArrowLeft className="w-4 h-4 text-[#E5C378] group-hover:-translate-x-1 transition-transform" />
             <span>Back to Home</span>
           </button>
         </div>
 
-        {/* 4 Key Gifting Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-          <div className="bg-white p-6 rounded-2xl border border-[#EAE0CD] shadow-sm space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-[#FAF0D9] text-[#755722] flex items-center justify-center text-xl font-bold border border-[#DAB97B]/40">
-              🪔
-            </div>
-            <h3 className="text-base font-cinzel font-bold text-[#2C2623]">Custom Festival Kits</h3>
-            <p className="text-xs text-[#5C5450] font-light leading-relaxed">
-              Curated festive pooja kits with solid brass diyas, A2 ghee wicks, organic incense sticks, and Kashmir dhoop cones in velvet caskets.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-[#EAE0CD] shadow-sm space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-[#FAF0D9] text-[#755722] flex items-center justify-center text-xl font-bold border border-[#DAB97B]/40">
-              🌿
-            </div>
-            <h3 className="text-base font-cinzel font-bold text-[#2C2623]">Incense & Dhoop Sets</h3>
-            <p className="text-xs text-[#5C5450] font-light leading-relaxed">
-              Pure bamboo-free & charcoal-free agarbatti sticks, natural dhoop cones, dhoop sticks, and loban sambrani cups in custom boxes.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-[#EAE0CD] shadow-sm space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-[#FAF0D9] text-[#755722] flex items-center justify-center text-xl font-bold border border-[#DAB97B]/40">
-              ✨
-            </div>
-            <h3 className="text-base font-cinzel font-bold text-[#2C2623]">Custom Metal Engraving</h3>
-            <p className="text-xs text-[#5C5450] font-light leading-relaxed">
-              Laser-etch your company logo, greeting, or recipient name onto heavy-gauge brassware, copper tumblers, and silver coins.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-[#EAE0CD] shadow-sm space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-[#FAF0D9] text-[#755722] flex items-center justify-center text-xl font-bold border border-[#DAB97B]/40">
-              📦
-            </div>
-            <h3 className="text-base font-cinzel font-bold text-[#2C2623]">End-to-End B2B Fulfillment</h3>
-            <p className="text-xs text-[#5C5450] font-light leading-relaxed">
-              Direct door-to-door delivery across multiple office locations or employee addresses with personalized greeting cards.
-            </p>
-          </div>
-        </div>
-
-        {/* Featured Hamper Varieties Section */}
-        <div className="mb-16 space-y-6">
-          <div className="text-center space-y-2">
-            <span className="text-xs font-cinzel tracking-[0.25em] text-[#C5A059] uppercase font-bold block">
-              Bespoke Bulk Collections
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-cinzel font-bold text-[#2C2623]">
-              Curated Festival & Incense Hampers
-            </h2>
-            <p className="text-xs sm:text-sm text-[#5C5450] font-light max-w-xl mx-auto">
-              Select from our most popular corporate hamper configurations or customize your own mixture of brassware, copperware, and incense.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            {/* Box 1 */}
-            <div className="bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-lg transition-all p-5 space-y-3 flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-[#231E1C] relative">
-                  <img
-                    src="/images/categories/gifting.png"
-                    alt="Custom Festival & Pooja Kit"
-                    onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
-                    className="w-full h-full object-cover"
-                  />
-                  <span className="absolute top-2 left-2 bg-[#231E1C]/90 text-[#E5C378] text-[9px] font-cinzel font-bold px-2 py-1 rounded">
-                    Festival Special
-                  </span>
-                </div>
-                <h3 className="text-base font-cinzel font-bold text-[#2C2623]">
-                  Shubh Aarambh Festival Pooja Kit
-                </h3>
-                <p className="text-xs text-[#5C5450] font-light leading-relaxed">
-                  Includes Moradabad brass diya, organic bamboo-free incense sticks, Kashmir Mogra dhoop cones, A2 cow ghee wicks, and a brass bell in a gold velvet casket.
-                </p>
-              </div>
-              <span className="text-xs font-cinzel font-bold text-[#C5A059] block pt-2 border-t border-[#F0EA99]/40">
-                Customizable Box & Logo Card
-              </span>
-            </div>
-
-            {/* Box 2 */}
-            <div className="bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-lg transition-all p-5 space-y-3 flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-[#231E1C] relative">
-                  <img
-                    src="/assets/Incense cover.jpg"
-                    alt="Organic Incense & Dhoop Set"
-                    className="w-full h-full object-cover object-bottom"
-                  />
-                  <span className="absolute top-2 left-2 bg-[#231E1C]/90 text-[#E5C378] text-[9px] font-cinzel font-bold px-2 py-1 rounded">
-                    Incense & Dhoop
-                  </span>
-                </div>
-                <h3 className="text-base font-cinzel font-bold text-[#2C2623]">
-                  Vedic Aroma Incense & Dhoop Casket
-                </h3>
-                <p className="text-xs text-[#5C5450] font-light leading-relaxed">
-                  Contains bamboo-free agarbatti (50 sticks), Kashmir Mogra dhoop cones (24 cones), charcoal-free dhoop sticks (20 sticks), and 12 Loban Sambrani cups with brass holder.
-                </p>
-              </div>
-              <span className="text-xs font-cinzel font-bold text-[#C5A059] block pt-2 border-t border-[#F0EA99]/40">
-                100% Eco-Friendly & Charcoal-Free
-              </span>
-            </div>
-
-            {/* Box 3 */}
-            <div className="bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-lg transition-all p-5 space-y-3 flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-[#231E1C] relative">
-                  <img
-                    src="/assets/brasscover.png"
-                    alt="Brassware Pooja Hamper"
-                    className="w-full h-full object-cover"
-                  />
-                  <span className="absolute top-2 left-2 bg-[#231E1C]/90 text-[#E5C378] text-[9px] font-cinzel font-bold px-2 py-1 rounded">
-                    Laser Engraved
-                  </span>
-                </div>
-                <h3 className="text-base font-cinzel font-bold text-[#2C2623]">
-                  Heritage Brassware & Diya Set
-                </h3>
-                <p className="text-xs text-[#5C5450] font-light leading-relaxed">
-                  Solid virgin brass peacock diya lamp, hand-chased thali plate, carved bell, and camphor burner with laser-engraved corporate branding.
-                </p>
-              </div>
-              <span className="text-xs font-cinzel font-bold text-[#C5A059] block pt-2 border-t border-[#F0EA99]/40">
-                100% Virgin Lead-Free Brass
-              </span>
-            </div>
-
-            {/* Box 4 */}
-            <div className="bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-lg transition-all p-5 space-y-3 flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-[#231E1C] relative">
-                  <img
-                    src="/assets/Copper cover.png"
-                    alt="Copper Wellness Corporate Set"
-                    className="w-full h-full object-cover"
-                  />
-                  <span className="absolute top-2 left-2 bg-[#231E1C]/90 text-[#E5C378] text-[9px] font-cinzel font-bold px-2 py-1 rounded">
-                    Ayurvedic Wellness
-                  </span>
-                </div>
-                <h3 className="text-base font-cinzel font-bold text-[#2C2623]">
-                  Tamra Jal Pure Copper Pitcher & Glasses
-                </h3>
-                <p className="text-xs text-[#5C5450] font-light leading-relaxed">
-                  Hand-hammered 99.6% certified pure copper pitcher (1.5L) with two engraved copper tumblers in an ivory velvet presentation box.
-                </p>
-              </div>
-              <span className="text-xs font-cinzel font-bold text-[#C5A059] block pt-2 border-t border-[#F0EA99]/40">
-                Lab-Certified Pure Copper
-              </span>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Form Container Section */}
+        {/* Minimal Bulk Enquiry Form Container */}
         <div className="bg-white rounded-3xl border border-[#EAE0CD] shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
 
-          {/* Left Visual Column */}
+          {/* Left Summary & Direct Contact Panel */}
           <div className="lg:col-span-5 bg-[#1C1715] p-8 sm:p-12 text-white flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1C1715] via-[#231E1C] to-[#141110] z-0"></div>
-
             <div className="relative z-10 space-y-6">
               <span className="inline-block px-3 py-1 rounded-full bg-[#C5A059]/20 text-[#E5C378] text-[10px] font-cinzel tracking-widest uppercase border border-[#C5A059]/40">
-                B2B Bulk Enquiries
+                Bulk Enquiry
               </span>
 
-              <h2 className="text-3xl font-cinzel font-bold text-white leading-tight">
-                Request a Custom Bulk Quote & Digital Mockup
+              <h2 className="text-2xl sm:text-3xl font-cinzel font-bold text-white leading-tight">
+                Request a Custom Quote &amp; Digital Mockup
               </h2>
 
               <p className="text-xs sm:text-sm text-[#D4CEBF] font-light leading-relaxed">
-                Fill in your project specifications and our corporate gifting specialist will respond within 4 hours with tailored sample designs and wholesale volume pricing.
+                Fill in your project details and our corporate gifting specialist will get back to you within 4 business hours with custom designs and wholesale volume pricing.
               </p>
 
               <div className="space-y-4 pt-4 border-t border-[#3A322C]">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#C5A059]/20 flex items-center justify-center text-[#E5C378]">
+                  <div className="w-7 h-7 rounded-full bg-[#C5A059]/20 flex items-center justify-center text-[#E5C378]">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
-                  <span className="text-xs text-[#D4CEBF]">Volume discounts from 25 to 5,000+ units</span>
+                  <span className="text-xs text-[#D4CEBF]">Volume discounts for 25 to 5,000+ units</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#C5A059]/20 flex items-center justify-center text-[#E5C378]">
+                  <div className="w-7 h-7 rounded-full bg-[#C5A059]/20 flex items-center justify-center text-[#E5C378]">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
-                  <span className="text-xs text-[#D4CEBF]">Free digital box sample with company logo</span>
+                  <span className="text-xs text-[#D4CEBF]">Free box digital mockup with your company logo</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#C5A059]/20 flex items-center justify-center text-[#E5C378]">
+                  <div className="w-7 h-7 rounded-full bg-[#C5A059]/20 flex items-center justify-center text-[#E5C378]">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
-                  <span className="text-xs text-[#D4CEBF]">GST 18% input credit tax invoices</span>
+                  <span className="text-xs text-[#D4CEBF]">GST 18% input tax credit invoices</span>
                 </div>
               </div>
             </div>
 
             <div className="relative z-10 pt-8 mt-8 border-t border-[#3A322C]/60 flex items-center gap-4 text-xs text-gray-400">
               <span>Direct Concierge:</span>
-              <span className="text-[#E5C378] font-cinzel font-bold">+91 98765 43210</span>
+              <span className="text-[#E5C378] font-cinzel font-bold">+91 7742320607</span>
             </div>
           </div>
 
-          {/* Right Form Column */}
+          {/* Right Form Section */}
           <div className="lg:col-span-7 p-6 sm:p-10 lg:p-12">
             {submitted ? (
               <div className="py-12 text-center space-y-6">
@@ -456,28 +322,28 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-[#EAE0CD] rounded-xl text-xs text-[#2C2623] focus:outline-none focus:border-[#C5A059] bg-[#FBF9F5]"
                   >
-                    <option value="Custom Festival Kits">Custom Festival & Pooja Kits (Diya, Ghee Wicks & Incense)</option>
-                    <option value="Incense & Dhoop Hampers">Organic Incense Sticks & Dhoop Hampers (Agarbatti, Cones & Sambrani)</option>
-                    <option value="Brassware & Pooja Thali Hampers">Heritage Brassware & Pooja Thali Sets</option>
+                    <option value="Custom Festival Kits">Custom Festival &amp; Pooja Kits (Diya, Ghee Wicks &amp; Incense)</option>
+                    <option value="Incense & Dhoop Hampers">Organic Incense Sticks &amp; Dhoop Hampers</option>
+                    <option value="Brassware & Pooja Thali Hampers">Heritage Brassware &amp; Pooja Thali Sets</option>
                     <option value="Copper Wellness Pitcher & Glass Sets">Tamra Jal Pure Copper Wellness Sets</option>
-                    <option value="Diwali Corporate Gifting">Diwali & Festive Corporate Gifting</option>
-                    <option value="Employee Rewards">Employee Rewards & Milestone Recognition</option>
-                    <option value="Wedding Favors">Wedding Return Favors & Auspicious Ceremonies</option>
-                    <option value="Other Custom Project">Other Custom Bespoke Project</option>
+                    <option value="Diwali Corporate Gifting">Diwali &amp; Festive Corporate Gifting</option>
+                    <option value="Employee Rewards">Employee Rewards &amp; Milestone Recognition</option>
+                    <option value="Wedding Favors">Wedding Return Favors</option>
+                    <option value="Other Custom Project">Other Custom Project</option>
                   </select>
                 </div>
 
                 {/* Custom Notes */}
                 <div className="space-y-2">
                   <label className="text-xs font-cinzel font-bold text-[#2C2623] uppercase tracking-wider block">
-                    Customization & Requirements Notes
+                    Customization &amp; Requirements Notes
                   </label>
                   <textarea
                     name="message"
                     rows="3"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Mention any specific brass/copper products, box branding preferences, or delivery deadline..."
+                    placeholder="Mention any specific product preferences, box logo printing, or delivery deadline..."
                     className="w-full px-4 py-3 border border-[#EAE0CD] rounded-xl text-xs text-[#2C2623] focus:outline-none focus:border-[#C5A059] bg-[#FBF9F5]"
                   ></textarea>
                 </div>
@@ -485,10 +351,20 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-4 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 transform hover:scale-[1.01]"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4 text-[#E5C378]" />
-                  <span>Submit Bulk Enquiry Request</span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 text-[#E5C378] animate-spin" />
+                      <span>Sending Enquiry...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 text-[#E5C378]" />
+                      <span>Submit Bulk Enquiry Request</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}

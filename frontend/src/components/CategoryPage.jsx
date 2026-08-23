@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ArrowRight, ShoppingBag, Heart, Eye, Check, Star, Sparkles } from 'lucide-react';
 import { IncenseShowcase } from './IncenseShowcase';
+import { CategoryPageSkeleton } from './Skeleton';
 
 export const CategoryPage = ({
   category,
@@ -15,11 +16,15 @@ export const CategoryPage = ({
 }) => {
   const [selectedSubcategory, setSelectedSubcategory] = useState('all');
   const [sortBy, setSortBy] = useState('featured');
+  const [isLoading, setIsLoading] = useState(false);
 
   React.useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     window.scrollTo(0, 0);
-  }, [category?.id]);
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 250);
+    return () => clearTimeout(timer);
+  }, [category?.id, selectedSubcategory, sortBy]);
 
   // Filter products by category
   const categoryProducts = products.filter(
@@ -333,19 +338,25 @@ export const CategoryPage = ({
           </div>
 
           {/* Product Grid - 2 columns on mobile, 3 on tablet, 4 on desktop */}
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
-            {sortedProducts.map((product) => (
-              <CategoryProductCard
-                key={product.id}
-                product={product}
-                category={category}
-                isWishlisted={wishlistIds.includes(product.id)}
-                onAddToCart={onAddToCart}
-                onToggleWishlist={onToggleWishlist}
-                onOpenQuickView={onOpenQuickView}
-                onSelectProduct={onSelectProduct}
-              />
-            ))}
+          <div className="mt-8">
+            {isLoading ? (
+              <CategoryPageSkeleton count={8} />
+            ) : (
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
+                {sortedProducts.map((product) => (
+                  <CategoryProductCard
+                    key={product.id}
+                    product={product}
+                    category={category}
+                    isWishlisted={wishlistIds.includes(product.id)}
+                    onAddToCart={onAddToCart}
+                    onToggleWishlist={onToggleWishlist}
+                    onOpenQuickView={onOpenQuickView}
+                    onSelectProduct={onSelectProduct}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
         </div>

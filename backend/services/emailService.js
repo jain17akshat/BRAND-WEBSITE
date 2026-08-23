@@ -95,7 +95,7 @@ async function sendOrderConfirmationEmail({ to, customerName, orderId, items, to
         <!-- Footer -->
         <div style="text-align: center; font-size: 12px; color: #7A6859; padding-top: 20px; border-top: 1px solid #E8DFC7;">
           <p style="margin-bottom: 5px;">Have questions about your order?</p>
-          <p style="margin: 0;">Write to us at <a href="mailto:info@shraviko.com" style="color: #C5A059; text-decoration: none;">info@shraviko.com</a> or call <strong>+91 7742320607</strong>.</p>
+          <p style="margin: 0;">Write to us at <a href="mailto:shraviko@gmail.com" style="color: #C5A059; text-decoration: none;">shraviko@gmail.com</a> or call <strong>+91 7742320607</strong>.</p>
         </div>
 
       </div>
@@ -177,7 +177,7 @@ async function sendRefundConfirmationEmail({ to, customerName, refundId, payment
         <!-- Footer -->
         <div style="text-align: center; font-size: 12px; color: #7A6859; padding-top: 20px; border-top: 1px solid #E8DFC7;">
           <p style="margin-bottom: 5px;">Need further assistance?</p>
-          <p style="margin: 0;">Write to us at <a href="mailto:info@shraviko.com" style="color: #C5A059; text-decoration: none;">info@shraviko.com</a> or call <strong>+91 7742320607</strong>.</p>
+          <p style="margin: 0;">Write to us at <a href="mailto:shraviko@gmail.com" style="color: #C5A059; text-decoration: none;">shraviko@gmail.com</a> or call <strong>+91 7742320607</strong>.</p>
         </div>
 
       </div>
@@ -207,11 +207,11 @@ async function sendRefundConfirmationEmail({ to, customerName, refundId, payment
 }
 
 /**
- * sendReturnNotificationToAdmin — alerts merchant at info@shraviko.com about customer returns
+ * sendReturnNotificationToAdmin — alerts merchant at shraviko@gmail.com about customer returns
  */
 async function sendReturnNotificationToAdmin({ orderId, phone, reason, refundType, details }) {
   const transporter = getTransporter();
-  const adminEmail = process.env.ADMIN_EMAIL || 'info@shraviko.com';
+  const adminEmail = process.env.ADMIN_EMAIL || 'shraviko@gmail.com';
 
   const detailsHtml = typeof details === 'object' ? Object.entries(details).map(([k, v]) => v ? `<li><strong>${k}:</strong> ${v}</li>` : '').join('') : details;
 
@@ -263,8 +263,77 @@ async function sendReturnNotificationToAdmin({ orderId, phone, reason, refundTyp
   }
 }
 
+/**
+ * sendCorporateEnquiryNotificationToAdmin — sends corporate bulk lead to shraviko@gmail.com
+ */
+async function sendCorporateEnquiryNotificationToAdmin({ id, enquiryId, fullName, companyName, email, phone, quantity, budget, occasion, message }) {
+  const transporter = getTransporter();
+  const adminEmail = process.env.ADMIN_EMAIL || 'shraviko@gmail.com';
+  const refCode = enquiryId || id || `ENQ_${Date.now()}`;
+
+  const htmlTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: Arial, sans-serif; padding: 20px; color: #2C2623; background-color: #FBF9F5;">
+      <div style="max-width: 600px; margin: 0 auto; border: 1px solid #E8DFC7; padding: 25px; border-radius: 12px; background-color: #ffffff;">
+        <h2 style="color: #8C6D27; border-bottom: 2px solid #C5A059; padding-bottom: 10px; margin-top: 0;">
+          💼 New B2B Corporate Bulk Enquiry
+        </h2>
+        <p style="font-size: 14px;">A new bulk enquiry has been submitted on <strong>Shraviko.com</strong>:</p>
+        
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 13px;">
+          <tr><td style="padding: 6px; font-weight: bold; width: 35%;">Enquiry ID:</td><td style="padding: 6px; font-weight: bold; color: #8C6D27;">${refCode}</td></tr>
+          <tr><td style="padding: 6px; font-weight: bold;">Full Name:</td><td style="padding: 6px;">${fullName}</td></tr>
+          <tr><td style="padding: 6px; font-weight: bold;">Company:</td><td style="padding: 6px; font-weight: bold; color: #8C6D27;">${companyName}</td></tr>
+          <tr><td style="padding: 6px; font-weight: bold;">Work Email:</td><td style="padding: 6px;"><a href="mailto:${email}">${email}</a></td></tr>
+          <tr><td style="padding: 6px; font-weight: bold;">Phone / WhatsApp:</td><td style="padding: 6px;"><a href="tel:${phone}">${phone}</a></td></tr>
+          <tr><td style="padding: 6px; font-weight: bold;">Est. Quantity:</td><td style="padding: 6px;">${quantity} Units</td></tr>
+          <tr><td style="padding: 6px; font-weight: bold;">Target Budget:</td><td style="padding: 6px;">${budget}</td></tr>
+          <tr><td style="padding: 6px; font-weight: bold;">Occasion / Type:</td><td style="padding: 6px;">${occasion}</td></tr>
+        </table>
+
+        ${message ? `
+        <div style="background: #FDFBF7; padding: 15px; border-radius: 6px; border: 1px solid #E8DFC7; margin: 15px 0;">
+          <h4 style="margin: 0 0 8px 0; color: #8C6D27;">Customization Notes:</h4>
+          <p style="margin: 0; font-size: 13px; color: #5C4A3E; line-height: 1.5;">${message}</p>
+        </div>
+        ` : ''}
+
+        <p style="font-size: 12px; color: #7A6859; margin-top: 20px; border-top: 1px solid #E8DFC7; padding-top: 10px;">
+          Reach out to the client via WhatsApp at <strong>${phone}</strong> or email <strong>${email}</strong> with custom sample proposals.
+        </p>
+      </div>
+    </body>
+    </html>
+  `;
+
+  if (!transporter) {
+    console.log(`\n💼 [CORPORATE ENQUIRY EMAIL MOCK] Sent to ${adminEmail}:`);
+    console.log(`   Client: ${fullName} (${companyName}) | Email: ${email} | Phone: ${phone}`);
+    console.log(`   Quantity: ${quantity} | Budget: ${budget} | Occasion: ${occasion}`);
+    console.log(`   Notes: ${message}\n`);
+    return { success: true, mock: true };
+  }
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"Shraviko Corporate" <${process.env.EMAIL_USER}>`,
+      to: adminEmail,
+      subject: `💼 [CORPORATE BULK ENQUIRY] ${companyName} — ${fullName} (${quantity} Units)`,
+      html: htmlTemplate,
+    });
+    console.log(`✅ Corporate enquiry alert sent to ${adminEmail}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err) {
+    console.error(`❌ Corporate enquiry email failed: ${err.message}`);
+    return { success: false, error: err.message };
+  }
+}
+
 module.exports = {
   sendOrderConfirmationEmail,
   sendRefundConfirmationEmail,
   sendReturnNotificationToAdmin,
+  sendCorporateEnquiryNotificationToAdmin,
 };

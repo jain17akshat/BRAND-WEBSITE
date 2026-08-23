@@ -834,4 +834,37 @@ button, a {
   animation: sacred-om-pulse 4s ease-in-out infinite;
 }
 
+/* ── Skeleton Shimmer Loaders ── */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #F3EDE0 25%,
+    #E8DCBE 37%,
+    #F3EDE0 63%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+.skeleton-shimmer-dark {
+  background: linear-gradient(
+    90deg,
+    #231E1C 25%,
+    #362E2B 37%,
+    #231E1C 63%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+
 

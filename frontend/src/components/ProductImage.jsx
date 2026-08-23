@@ -5,6 +5,7 @@ export const ProductImage = ({ src, hoverSrc, images, alt, artType = 'brass', cl
   const [imgError, setImgError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const imageList = React.useMemo(() => {
     if (images && images.length > 0) return images;
@@ -34,6 +35,8 @@ export const ProductImage = ({ src, hoverSrc, images, alt, artType = 'brass', cl
         onMouseLeave={() => setIsHovered(false)}
         className={`relative overflow-hidden ${aspect} ${className} ${isContain ? 'bg-[#F9F6F0]' : ''}`}
       >
+        {!isLoaded && <div className="absolute inset-0 skeleton-shimmer z-0" />}
+
         {imageList.map((imgSrc, idx) => (
           <img
             key={imgSrc + idx}
@@ -41,9 +44,12 @@ export const ProductImage = ({ src, hoverSrc, images, alt, artType = 'brass', cl
             alt={alt || 'Shraviko Sacred Product'}
             loading="lazy"
             decoding="async"
+            onLoad={() => setIsLoaded(true)}
             onError={() => setImgError(true)}
-            className={`w-full h-full transition-all duration-700 ${
-              idx === activeIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100 absolute inset-0'
+            className={`w-full h-full transition-all duration-700 relative z-10 ${
+              isLoaded ? 'opacity-100' : 'opacity-0'
+            } ${
+              idx === activeIndex ? 'scale-105' : 'scale-100 absolute inset-0'
             } ${isContain ? 'object-contain p-2 sm:p-3' : 'object-cover'}`}
           />
         ))}

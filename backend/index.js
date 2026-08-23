@@ -26,11 +26,12 @@ const rawBody        = require('./middleware/rawBody');
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 
 // ── Route imports ──────────────────────────────────────────
-const paymentsRouter = require('./routes/payments');
-const trackRouter    = require('./routes/track');
-const ordersRouter   = require('./routes/orders');
-const returnsRouter  = require('./routes/returns');
-const ratesRouter    = require('./routes/rates');
+const paymentsRouter  = require('./routes/payments');
+const trackRouter     = require('./routes/track');
+const ordersRouter    = require('./routes/orders');
+const returnsRouter   = require('./routes/returns');
+const ratesRouter     = require('./routes/rates');
+const enquiriesRouter = require('./routes/enquiries');
 
 // ─────────────────────────────────────────────────────────
 const app = express();
@@ -81,11 +82,12 @@ app.get('/api/health', (req, res) => {
 });
 
 // ── Routes ────────────────────────────────────────────────
-app.use('/api/payments', rateLimiter.payments, paymentsRouter);
-app.use('/api/track',    rateLimiter.track,    trackRouter);
-app.use('/api/orders',                         ordersRouter);
-app.use('/api/returns',  rateLimiter.returns,  returnsRouter);
-app.use('/api/rates',                          ratesRouter);
+app.use('/api/payments',  rateLimiter.payments, paymentsRouter);
+app.use('/api/track',     rateLimiter.track,    trackRouter);
+app.use('/api/orders',                          ordersRouter);
+app.use('/api/returns',   rateLimiter.returns,  returnsRouter);
+app.use('/api/rates',                           ratesRouter);
+app.use('/api/enquiries',                       enquiriesRouter);
 
 // ── 404 handler ───────────────────────────────────────────
 app.use(notFoundHandler);

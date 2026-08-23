@@ -14,7 +14,7 @@ const MILESTONES = [
   },
   {
     id: 'shipping',
-    threshold: 2999,
+    threshold: 999,
     icon: Truck,
     label: 'Free Shipping',
     reward: 'Free Express Delivery',
@@ -22,15 +22,15 @@ const MILESTONES = [
   },
   {
     id: 'gift',
-    threshold: 4999,
+    threshold: 2499,
     icon: Gift,
-    label: 'Free Gift',
-    reward: 'Free Brass Diya',
-    chipLabel: '✦ Free Brass Diya Added',
+    label: 'Special Gift',
+    reward: 'Free Sacred Gift',
+    chipLabel: '✦ Special Gift Added',
   },
   {
     id: 'mystery',
-    threshold: 7499,
+    threshold: 4999,
     icon: Sparkles,
     label: 'Mystery Box',
     reward: 'Mystery Sacred Box',
@@ -160,27 +160,32 @@ export const CartDrawer = ({
   cartItems,
   onUpdateQuantity,
   onRemoveItem,
-  onProceedToCheckout
+  onProceedToCheckout,
+  appliedPromo,
+  onApplyPromo,
+  onRemovePromo
 }) => {
-  const [promoCode, setPromoCode] = useState('');
-  const [discount, setDiscount] = useState(0);
-  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoInput, setPromoInput] = useState('');
+  const [promoError, setPromoError] = useState('');
 
   if (!isOpen) return null;
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const freeShippingThreshold = 2999;
+  const freeShippingThreshold = 999;
 
-  const applyPromo = (e) => {
+  // Calculate discount dynamically if WELCOME10 is applied
+  const isWelcomeApplied = appliedPromo?.code === 'WELCOME10';
+  const discount = isWelcomeApplied ? Math.round(subtotal * 0.10) : (appliedPromo?.discount || 0);
+
+  const handleApply = (e) => {
     e.preventDefault();
-    if (promoCode.trim().toUpperCase() === 'SACRED10') {
-      setDiscount(subtotal * 0.1);
-      setPromoApplied(true);
-    } else if (promoCode.trim().toUpperCase() === 'SHRAVIKO200' || promoCode.trim().toUpperCase() === 'ARKA200') {
-      setDiscount(200);
-      setPromoApplied(true);
+    const cleaned = promoInput.trim().toUpperCase();
+    if (cleaned === 'WELCOME10') {
+      onApplyPromo({ code: 'WELCOME10', discountPercent: 10 });
+      setPromoInput('');
+      setPromoError('');
     } else {
-      alert('Invalid promo code. Try SACRED10 or SHRAVIKO200');
+      setPromoError('Invalid code. Use code WELCOME10 for 10% OFF!');
     }
   };
 
@@ -301,29 +306,53 @@ export const CartDrawer = ({
             <div className="p-6 bg-[#F6F1E7] border-t border-[#EAE0CD] space-y-4">
               
               {/* Promo Input */}
-              <form onSubmit={applyPromo} className="flex gap-2">
-                <div className="relative flex-1">
-                  <Tag className="w-3.5 h-3.5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    value={promoCode}
-                    onChange={(e) => setPromoCode(e.target.value)}
-                    placeholder="Promo code (e.g. SACRED10)"
-                    className="w-full pl-8 pr-3 py-2 bg-white text-xs text-[#2C2623] border border-[#DAB97B]/60 rounded focus:outline-none uppercase"
-                  />
+              {appliedPromo ? (
+                <div className="flex items-center justify-between bg-[#EBF7EE] border border-[#A6E2B8] p-2.5 rounded text-xs">
+                  <div className="flex items-center gap-2 text-emerald-800">
+                    <Tag className="w-4 h-4 text-emerald-600" />
+                    <div>
+                      <p className="font-bold font-cinzel tracking-wider">CODE: {appliedPromo.code}</p>
+                      <p className="text-[10px] text-emerald-700">10% Launch Discount Applied</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-emerald-800 text-sm">-₹{discount.toLocaleString('en-IN')}</span>
+                    <button
+                      type="button"
+                      onClick={onRemovePromo}
+                      className="p-1 hover:bg-emerald-100 rounded text-emerald-700 hover:text-emerald-900 transition-colors"
+                      title="Remove promo code"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-[#231E1C] text-[#E5C378] text-xs font-cinzel uppercase font-semibold rounded hover:bg-[#3A3431]"
-                >
-                  Apply
-                </button>
-              </form>
-
-              {promoApplied && (
-                <div className="flex justify-between text-xs text-emerald-700 bg-emerald-50 p-2 rounded border border-emerald-200">
-                  <span>Promo Applied (SACRED10)</span>
-                  <span className="font-bold">-₹{discount.toLocaleString('en-IN')}</span>
+              ) : (
+                <div className="space-y-1.5">
+                  <form onSubmit={handleApply} className="flex gap-2">
+                    <div className="relative flex-1">
+                      <Tag className="w-3.5 h-3.5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                      <input
+                        type="text"
+                        value={promoInput}
+                        onChange={(e) => {
+                          setPromoInput(e.target.value);
+                          if (promoError) setPromoError('');
+                        }}
+                        placeholder="Promo code (e.g. WELCOME10)"
+                        className="w-full pl-8 pr-3 py-2 bg-white text-xs text-[#2C2623] border border-[#DAB97B]/60 rounded focus:outline-none uppercase font-medium placeholder:normal-case"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="px-4 py-2 bg-[#231E1C] text-[#E5C378] text-xs font-cinzel uppercase font-semibold rounded hover:bg-[#3A3431] transition-colors"
+                    >
+                      Apply
+                    </button>
+                  </form>
+                  {promoError && (
+                    <p className="text-[11px] text-red-600 font-medium pl-1">{promoError}</p>
+                  )}
                 </div>
               )}
 
@@ -333,6 +362,12 @@ export const CartDrawer = ({
                   <span>Subtotal</span>
                   <span className="font-semibold text-[#2C2623]">₹{subtotal.toLocaleString('en-IN')}</span>
                 </div>
+                {discount > 0 && (
+                  <div className="flex justify-between text-emerald-700 font-medium">
+                    <span>Discount ({appliedPromo?.code || 'WELCOME10'})</span>
+                    <span className="font-bold">-₹{discount.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <span>Shipping</span>
                   <span className="text-emerald-700 font-semibold">

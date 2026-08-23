@@ -196,9 +196,11 @@ export const Navbar = ({
           <span className="text-xs font-cinzel tracking-wider font-bold text-[#2C1F06]">
             CART
           </span>
-          <span className="w-6 h-6 bg-[#2C1F06] text-[#E5C378] text-xs font-bold rounded-full flex items-center justify-center shadow-inner">
-            {cartCount}
-          </span>
+          {cartCount > 0 && (
+            <span className="w-6 h-6 bg-[#2C1F06] text-[#E5C378] text-xs font-bold rounded-full flex items-center justify-center shadow-inner">
+              {cartCount}
+            </span>
+          )}
         </button>
       </div>
     </>

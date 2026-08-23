@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Star, Heart, ShoppingBag, ShieldCheck, Truck, RotateCcw, Sparkles, Check, ChevronRight } from 'lucide-react';
 import { ProductImage } from './ProductImage';
+import { ProductDetailSkeleton } from './Skeleton';
 
 export const ProductDetailPage = ({
   product,
@@ -12,6 +13,8 @@ export const ProductDetailPage = ({
   showToast
 }) => {
   if (!product) return null;
+
+  const [isLoading, setIsLoading] = useState(true);
 
   // Selected Gallery Image State
   const initialImg = product.image || (product.images && product.images[0]) || '';
@@ -28,6 +31,7 @@ export const ProductDetailPage = ({
 
   useEffect(() => {
     if (product) {
+      setIsLoading(true);
       setActiveImg(product.image || (product.images && product.images[0]) || '');
       if (product.weightVariants) {
         setSelectedVariant(product.weightVariants.find((v) => v.default) || product.weightVariants[0]);
@@ -36,8 +40,13 @@ export const ProductDetailPage = ({
       }
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       window.scrollTo(0, 0);
+
+      const timer = setTimeout(() => setIsLoading(false), 200);
+      return () => clearTimeout(timer);
     }
-  }, [product]);
+  }, [product?.id]);
+
+  if (isLoading) return <ProductDetailSkeleton />;
 
   const currentPrice = selectedVariant ? selectedVariant.price : product.price;
   const currentOrigPrice = selectedVariant ? selectedVariant.originalPrice : product.originalPrice;

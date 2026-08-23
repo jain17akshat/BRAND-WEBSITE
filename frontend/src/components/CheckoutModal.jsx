@@ -6,7 +6,8 @@ export const CheckoutModal = ({
   isOpen,
   onClose,
   cartItems,
-  onClearCart
+  onClearCart,
+  appliedPromo
 }) => {
   const [paymentMethod, setPaymentMethod] = useState('upi');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -37,9 +38,10 @@ export const CheckoutModal = ({
   }, []);
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const shipping = subtotal >= 2999 || subtotal === 0 ? 0 : 99;
-  const discount = 0;
-  const grandTotal = subtotal + shipping - discount;
+  const shipping = subtotal >= 999 || subtotal === 0 ? 0 : 99;
+  const isWelcomeApplied = appliedPromo?.code === 'WELCOME10';
+  const discount = isWelcomeApplied ? Math.round(subtotal * 0.10) : (appliedPromo?.discount || 0);
+  const grandTotal = Math.max(0, subtotal + shipping - discount);
 
   const paymentOptions = [
     {
@@ -82,6 +84,10 @@ export const CheckoutModal = ({
       const { order, key_id, _mock } = await createRazorpayOrder({
         amount: grandTotal,   // in ₹ — server converts to paise
         receipt,
+        notes: {
+          promo_code: appliedPromo?.code || 'NONE',
+          discount_amount: discount
+        }
       });
 
       // 2a. Mock mode — skip modal, go straight to verify
@@ -378,9 +384,9 @@ export const CheckoutModal = ({
                   <span>{shipping === 0 ? <span className="text-emerald-700 font-bold uppercase text-[10px]">FREE</span> : `₹${shipping}`}</span>
                 </div>
                 {discount > 0 && (
-                  <div className="flex justify-between text-emerald-700 font-sans">
-                    <span>Discount</span>
-                    <span>-₹{discount}</span>
+                  <div className="flex justify-between text-emerald-700 font-sans font-medium">
+                    <span>Discount ({appliedPromo?.code || 'WELCOME10'})</span>
+                    <span className="font-bold">-₹{discount.toLocaleString('en-IN')}</span>
                   </div>
                 )}
                 <div className="border-t border-[#F0E8DC] pt-2 mt-2 flex justify-between items-center font-cinzel font-bold text-sm text-[#2C2623]">

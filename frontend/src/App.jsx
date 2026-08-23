@@ -30,6 +30,7 @@ import { TermsPage } from './components/TermsPage';
 import { HomePageDecorations } from './components/HomePageDecorations';
 import { AboutUsPage } from './components/AboutUsPage';
 import { AllCollectionsPage } from './components/AllCollectionsPage';
+import { LaunchBanner } from './components/LaunchBanner';
 
 export function App() {
   // Page Routing & Active Category State
@@ -157,18 +158,11 @@ export function App() {
     }
   };
 
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 'incense-no-bamboo-50',
-      name: 'Agarbatti(without bamboo)(50 sticks)',
-      price: 149,
-      quantity: 2,
-      purity: '100% Bamboo-Free & Charcoal-Free',
-      image: '/assets/Incense cover.jpg',
-      artType: 'incense'
-    }
-  ]);
-  const [wishlistIds, setWishlistIds] = useState(['incense-no-bamboo-80', 'dhoop-cone-regular-40-pack2']);
+  const [cartItems, setCartItems] = useState([]);
+  const [wishlistIds, setWishlistIds] = useState([]);
+
+  // Promo Code State — WELCOME10 active by default for Launch Day
+  const [appliedPromo, setAppliedPromo] = useState({ code: 'WELCOME10', discountPercent: 10 });
 
   // Modals & Drawers State
   const [cartOpen, setCartOpen] = useState(false);
@@ -367,7 +361,7 @@ export function App() {
         />
 
         {/* Main Content Pages */}
-        <main className="flex-1">
+        <main className={`flex-1 ${currentPage === 'home' ? '' : 'pt-20 sm:pt-24'}`}>
           {currentPage === 'terms' ? (
             /* Dedicated Terms & Conditions Page */
             <TermsPage onBackToHome={handleGoHome} />
@@ -443,8 +437,10 @@ export function App() {
                 onRitualsClick={() => handleSelectCategory('mandir-essentials')}
               />
 
+              {/* 2. Launch Day Offer Banner — immediately below hero */}
+              <LaunchBanner />
 
-              {/* 2. Trust Strip — immediately below hero */}
+              {/* 3. Trust Strip */}
               <ValueProps />
 
               {/* 3. Shop by Collection — 4 large visual cards */}
@@ -691,6 +687,15 @@ export function App() {
             setCartOpen(false);
             setCheckoutOpen(true);
           }}
+          appliedPromo={appliedPromo}
+          onApplyPromo={(promo) => {
+            setAppliedPromo(promo);
+            showToast('Promo Applied', `${promo.code} applied! 10% launch discount added.`, 'success');
+          }}
+          onRemovePromo={() => {
+            setAppliedPromo(null);
+            showToast('Promo Removed', 'Discount code removed from cart.', 'info');
+          }}
         />
 
         {/* Wishlist Drawer */}
@@ -726,6 +731,7 @@ export function App() {
           onClose={() => setCheckoutOpen(false)}
           cartItems={cartItems}
           onClearCart={handleClearCart}
+          appliedPromo={appliedPromo}
         />
 
         {/* Toast Notification Container */}

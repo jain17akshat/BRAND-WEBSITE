@@ -83,6 +83,14 @@ export async function submitRefund({ payment_id, amount, reason }) {
   });
 }
 
+// ── Corporate Bulk Enquiry ────────────────────────────────
+export async function submitCorporateEnquiry(data) {
+  return request('/enquiries/corporate', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
 // ── Health Check ──────────────────────────────────────────
 export async function healthCheck() {
   return request('/health');

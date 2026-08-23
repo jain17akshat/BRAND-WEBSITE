@@ -6,8 +6,8 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
   const heroImages = [
     {
       id: 'hero-launch',
-      mobileImage: '/assets/Launchmobile.png',
-      desktopImage: '/assets/Launch.png',
+      mobileImage: '/assets/Launch2mobile.png',
+      desktopImage: '/assets/Launch2.png',
       fallback: '/assets/Pooja.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
