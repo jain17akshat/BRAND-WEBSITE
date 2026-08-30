@@ -390,11 +390,24 @@ const CategoryProductCard = ({
 
   const [isHovered, setIsHovered] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [loadedMap, setLoadedMap] = useState({});
 
   const cardImages = React.useMemo(() => {
     if (product.images && product.images.length > 0) return product.images;
     return [product.image || category.image || '/assets/Incense cover.jpg'];
   }, [product, category]);
+
+  // Preload secondary hover images in background for zero flicker
+  React.useEffect(() => {
+    if (cardImages.length > 1) {
+      cardImages.slice(1).forEach((imgUrl) => {
+        if (imgUrl) {
+          const img = new Image();
+          img.src = imgUrl;
+        }
+      });
+    }
+  }, [cardImages]);
 
   React.useEffect(() => {
     let timer;
@@ -407,6 +420,12 @@ const CategoryProductCard = ({
     }
     return () => clearInterval(timer);
   }, [isHovered, cardImages]);
+
+  const handleImageLoad = (idx) => {
+    setLoadedMap((prev) => ({ ...prev, [idx]: true }));
+  };
+
+  const isPrimaryLoaded = !!loadedMap[0];
 
   return (
     <div
@@ -422,24 +441,34 @@ const CategoryProductCard = ({
           }`}
         onClick={handleClickCard}
       >
-        {cardImages.map((imgSrc, idx) => (
-          <img
-            key={imgSrc + idx}
-            src={imgSrc}
-            alt={`${product.name} view ${idx + 1}`}
-            onError={(e) => {
-              if (e.target.src !== '/assets/Incense cover.jpg') {
-                e.target.src = '/assets/Incense cover.jpg';
-              }
-            }}
-            className={`w-full h-full transform transition-all duration-700 ${
-              idx === activeImageIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100 absolute inset-0'
-            } ${product.fitMode === 'contain' || (product.image && product.image.includes('brass bells'))
-              ? 'object-contain p-3'
-              : 'object-cover'
-              }`}
-          />
-        ))}
+        {!isPrimaryLoaded && <div className="absolute inset-0 skeleton-shimmer z-0" />}
+
+        {cardImages.map((imgSrc, idx) => {
+          const isThisLoaded = !!loadedMap[idx];
+          return (
+            <img
+              key={imgSrc + idx}
+              src={imgSrc}
+              alt={`${product.name} view ${idx + 1}`}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => handleImageLoad(idx)}
+              onError={(e) => {
+                if (e.target.src !== '/assets/Incense cover.jpg') {
+                  e.target.src = '/assets/Incense cover.jpg';
+                }
+              }}
+              className={`w-full h-full transform transition-all duration-700 relative z-10 ${
+                isThisLoaded ? 'opacity-100' : 'opacity-0'
+              } ${
+                idx === activeImageIndex ? 'scale-105' : 'scale-100 absolute inset-0'
+              } ${product.fitMode === 'contain' || (product.image && product.image.includes('brass bells'))
+                ? 'object-contain p-3'
+                : 'object-cover'
+                }`}
+            />
+          );
+        })}
 
         {/* Slide Indicator Dots on Hover */}
         {cardImages.length > 1 && isHovered && (

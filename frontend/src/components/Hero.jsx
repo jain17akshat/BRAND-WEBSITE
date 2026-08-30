@@ -214,20 +214,6 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
         </div>
       )}
 
-      {/* SLIDE INDICATORS (DOTS) */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
-        {heroImages.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setActiveSlide(idx)}
-            className={`transition-all duration-300 rounded-full ${idx === activeSlide
-                ? 'w-6 h-1.5 bg-[#E5C378]'
-                : 'w-1.5 h-1.5 bg-white/50 hover:bg-white/80'
-              }`}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
-      </div>
     </section>
   );
 };

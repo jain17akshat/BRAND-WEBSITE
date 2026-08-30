@@ -6,6 +6,7 @@ import { Collections } from './components/Collections';
 import { Bestsellers } from './components/Bestsellers';
 import { BrandStory } from './components/BrandStory';
 import { ValueProps } from './components/ValueProps';
+import { MustTryProducts } from './components/MustTryProducts';
 import { Testimonials } from './components/Testimonials';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
@@ -525,7 +526,9 @@ export function App() {
                 <section
                   className="relative w-full overflow-hidden select-none"
                   style={{
-                    background: 'linear-gradient(135deg, #B87A08 0%, #D89218 30%, #F5BA28 55%, #E59F12 80%, #C4820A 100%)',
+                    background: 'linear-gradient(135deg, #4A0E17 0%, #681521 30%, #851C2A 55%, #681521 80%, #3B0A11 100%)',
+                    borderTop: '1px solid rgba(229, 195, 120, 0.35)',
+                    borderBottom: '1px solid rgba(229, 195, 120, 0.35)',
                     minHeight: 'clamp(160px, 25vw, 260px)',
                   }}
                 >
@@ -540,21 +543,21 @@ export function App() {
 
                   {/* 2. Sweeping Light Sheen (Shimmer Beam across banner) */}
                   <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <div className="w-1/3 h-[200%] absolute -top-1/2 left-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-lg animate-golden-shimmer-sweep pointer-events-none" />
+                    <div className="w-1/3 h-[200%] absolute -top-1/2 left-0 bg-gradient-to-r from-transparent via-amber-200/25 to-transparent blur-lg animate-golden-shimmer-sweep pointer-events-none" />
                   </div>
 
                   {/* 3. Floating Golden Dust Particles */}
                   <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <div className="absolute top-[20%] left-[12%] w-2.5 h-2.5 bg-white/70 rounded-full blur-[1px] animate-float-sparkle-1" />
+                    <div className="absolute top-[20%] left-[12%] w-2.5 h-2.5 bg-amber-200/70 rounded-full blur-[1px] animate-float-sparkle-1" />
                     <div className="absolute top-[65%] left-[30%] w-2 h-2 bg-yellow-100/80 rounded-full blur-[1px] animate-float-sparkle-2" />
-                    <div className="absolute top-[25%] left-[55%] w-3 h-3 bg-white/60 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '1.5s' }} />
-                    <div className="absolute top-[70%] left-[78%] w-2 h-2 bg-amber-100/90 rounded-full blur-[1px] animate-float-sparkle-2" style={{ animationDelay: '2.5s' }} />
-                    <div className="absolute top-[15%] left-[88%] w-2.5 h-2.5 bg-white/75 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '3.2s' }} />
+                    <div className="absolute top-[25%] left-[55%] w-3 h-3 bg-amber-100/60 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '1.5s' }} />
+                    <div className="absolute top-[70%] left-[78%] w-2 h-2 bg-amber-200/90 rounded-full blur-[1px] animate-float-sparkle-2" style={{ animationDelay: '2.5s' }} />
+                    <div className="absolute top-[15%] left-[88%] w-2.5 h-2.5 bg-amber-100/75 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '3.2s' }} />
                   </div>
 
                   {/* 4. Rotating Sacred Sun Mandala (Aura behind the Logo) */}
                   <div className="absolute left-[2%] sm:left-[4%] lg:left-[6%] top-1/2 -translate-y-1/2 pointer-events-none opacity-25 animate-spin-slow">
-                    <svg className="w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px] text-white" viewBox="0 0 200 200" fill="currentColor">
+                    <svg className="w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px] text-[#E5C378]" viewBox="0 0 200 200" fill="currentColor">
                       <g transform="translate(100,100)">
                         <circle r="90" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
                         <circle r="78" fill="none" stroke="currentColor" strokeWidth="1" />
@@ -571,7 +574,7 @@ export function App() {
 
                   {/* 5. Rotating Sacred Mandala (Aura behind OM Symbol on Right) */}
                   <div className="absolute right-[2%] sm:right-[5%] lg:right-[8%] top-1/2 -translate-y-1/2 pointer-events-none opacity-20 animate-spin-reverse-slow hidden sm:block">
-                    <svg className="w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] lg:w-[290px] lg:h-[290px] text-white" viewBox="0 0 200 200" fill="currentColor">
+                    <svg className="w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] lg:w-[290px] lg:h-[290px] text-[#E5C378]" viewBox="0 0 200 200" fill="currentColor">
                       <g transform="translate(100,100)">
                         <circle r="85" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
                         <circle r="70" fill="none" stroke="currentColor" strokeWidth="0.8" />
@@ -590,7 +593,7 @@ export function App() {
                       <img
                         src="/assets/Logo/CURRENT LOGO.png"
                         alt="Shraviko"
-                        className="rounded-full object-contain drop-shadow-xl relative z-10 transition-transform duration-500 hover:scale-105"
+                        className="rounded-full object-contain drop-shadow-2xl relative z-10 transition-transform duration-500 hover:scale-105"
                         style={{
                           width: 'clamp(120px, 18vw, 220px)',
                           height: 'clamp(120px, 18vw, 220px)',
@@ -602,19 +605,19 @@ export function App() {
                     {/* CENTER — Big & Bold Message (Guaranteed 2 Lines) */}
                     <div className="flex-1 text-center px-1 sm:px-4">
                       <h2
-                        className="font-cinzel font-extrabold text-white leading-tight tracking-wider uppercase drop-shadow-lg sm:whitespace-nowrap"
+                        className="font-cinzel font-extrabold text-[#FFFDF8] leading-tight tracking-wider uppercase drop-shadow-lg sm:whitespace-nowrap"
                         style={{
                           fontSize: 'clamp(0.85rem, 2.7vw, 2.2rem)',
-                          textShadow: '2px 4px 10px rgba(80,35,0,0.45)',
+                          textShadow: '2px 4px 12px rgba(20,4,6,0.85)',
                         }}
                       >
                         From Daily Pooja to Festive Rituals
                       </h2>
                       <p
-                        className="font-cinzel font-black text-[#FFF8E7] tracking-[0.25em] uppercase mt-1 sm:mt-2 drop-shadow-md sm:whitespace-nowrap"
+                        className="font-cinzel font-black text-[#F5D899] tracking-[0.25em] uppercase mt-1 sm:mt-2 drop-shadow-md sm:whitespace-nowrap"
                         style={{
                           fontSize: 'clamp(0.95rem, 3.2vw, 2.4rem)',
-                          textShadow: '2px 4px 12px rgba(80,35,0,0.55)',
+                          textShadow: '2px 4px 14px rgba(20,4,6,0.95)',
                         }}
                       >
                         WE HAVE IT ALL
@@ -623,7 +626,7 @@ export function App() {
 
                     {/* RIGHT — Decorative OM / Sacred symbol with breathing pulse animation */}
                     <div
-                      className="flex-shrink-0 flex items-center justify-center text-white/40 font-serif select-none hidden sm:flex animate-sacred-om-pulse"
+                      className="flex-shrink-0 flex items-center justify-center text-[#E5C378]/45 font-serif select-none hidden sm:flex animate-sacred-om-pulse"
                       style={{ fontSize: 'clamp(48px, 10vw, 110px)', lineHeight: 1 }}
                     >
                       ॐ
@@ -631,6 +634,18 @@ export function App() {
 
                   </div>
                 </section>
+              </div>
+
+              {/* 9.5. Must-Try Products — Infinite Right-to-Left Sliding Marquee Carousel */}
+              <div className="smooth-reveal">
+                <MustTryProducts
+                  products={PRODUCTS}
+                  onAddToCart={handleAddToCart}
+                  onSelectProduct={(p) => setSelectedProduct(p)}
+                  onOpenQuickView={(p) => setQuickViewProduct(p)}
+                  onToggleWishlist={handleToggleWishlist}
+                  wishlistIds={wishlistIds}
+                />
               </div>
 
               {/* 10. Video Reels — Artisan Stories & Craft in Motion */}

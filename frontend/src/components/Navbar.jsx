@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Heart, ShoppingBag, Menu, X, Truck } from 'lucide-react';
+import { Search, Heart, ShoppingBag, ShoppingCart, Menu, X, Truck } from 'lucide-react';
 
 const logoUrl = '/assets/Logo/CURRENT LOGO.png';
 
@@ -212,7 +212,7 @@ export const Navbar = ({
           className="skeu-btn-gold px-4 py-3 rounded-full flex items-center gap-2.5 shadow-2xl transition-all duration-300 hover:scale-105 group"
           title="Open Shopping Cart"
         >
-          <ShoppingBag className="w-5 h-5 text-[#2C1F06]" />
+          <ShoppingCart className="w-5 h-5 text-[#2C1F06]" />
           <span className="text-xs font-cinzel tracking-wider font-bold text-[#2C1F06]">
             CART
           </span>

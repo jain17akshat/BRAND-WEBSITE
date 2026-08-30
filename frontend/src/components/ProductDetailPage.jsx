@@ -39,6 +39,16 @@ export const ProductDetailPage = ({
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       window.scrollTo(0, 0);
 
+      // Preload all gallery images in background for instant thumbnail switching
+      if (product.images && product.images.length > 0) {
+        product.images.forEach((imgUrl) => {
+          if (imgUrl) {
+            const img = new Image();
+            img.src = imgUrl;
+          }
+        });
+      }
+
       const timer = setTimeout(() => setIsLoading(false), 200);
       return () => clearTimeout(timer);
     }
@@ -153,7 +163,13 @@ export const ProductDetailPage = ({
                             : 'border-[#EAE0CD] opacity-70 hover:opacity-100'
                         }`}
                       >
-                        <img src={img} alt={`View ${idx + 1}`} className="w-full h-full object-contain" />
+                        <img
+                          src={img}
+                          alt={`View ${idx + 1}`}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-contain"
+                        />
                       </button>
                     );
                   })}

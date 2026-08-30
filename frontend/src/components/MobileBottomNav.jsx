@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Grid2x2, Search, Heart, ShoppingBag } from 'lucide-react';
+import { Home, Grid2x2, Search, Heart, ShoppingCart } from 'lucide-react';
 
 export const MobileBottomNav = ({
   cartCount = 0,
@@ -22,7 +22,7 @@ export const MobileBottomNav = ({
     },
     {
       label: 'Cart',
-      icon: ShoppingBag,
+      icon: ShoppingCart,
       onClick: onOpenCart,
       badge: cartCount > 0 ? cartCount : null,
       highlight: true,

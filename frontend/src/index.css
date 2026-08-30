@@ -866,5 +866,26 @@ button, a {
   animation: skeleton-shimmer 1.6s ease-in-out infinite;
 }
 
+/* ── Infinite Right to Left Marquee Slider ── */
+@keyframes marquee-scroll-rtl {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-rtl 38s linear infinite;
+}
+
+.animate-marquee-rtl:hover {
+  animation-play-state: paused;
+}
+
+
 
 

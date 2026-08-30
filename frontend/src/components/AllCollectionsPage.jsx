@@ -11,6 +11,7 @@ const CATEGORY_META = {
 };
 
 function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSelectProduct }) {
+  const [isLoaded, setIsLoaded] = useState(false);
   const isWishlisted = wishlistIds?.includes(product.id);
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -27,11 +28,17 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
         style={{ aspectRatio: '1/1' }}
         onClick={() => onSelectProduct(product)}
       >
+        {!isLoaded && <div className="absolute inset-0 skeleton-shimmer z-0" />}
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
-          onError={e => { e.target.src = '/assets/Incense cover.jpg'; }}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          className={`w-full h-full object-contain p-3 group-hover:scale-105 transition-all duration-500 relative z-10 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onError={e => { e.target.src = '/assets/Incense cover.jpg'; setIsLoaded(true); }}
         />
         {discount > 0 && (
           <span className="absolute top-2 left-2 bg-[#C5A059] text-white text-[10px] font-cinzel font-bold px-2 py-0.5 rounded-full">
