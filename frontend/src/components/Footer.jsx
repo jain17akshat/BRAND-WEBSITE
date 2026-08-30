@@ -75,9 +75,8 @@ export const Footer = ({
                 </div>
               </div>
 
-              <p className="text-xs text-[#B5A895] font-light leading-relaxed max-w-sm">
-                Bridging age-old Indian metalcraft with clean, contemporary design — heirloom brassware, 
-                pure copper vessels, and organic flower incense for peaceful modern homes.
+              <p className="text-xs text-[#B5A895] font-light leading-relaxed max-w-sm italic border-l-2 border-[#C5A059]/50 pl-3">
+                "Where devotion meets craftsmanship — every piece carries the soul of a tradition that has burned bright for centuries."
               </p>
 
               {/* Social Icons */}
@@ -168,7 +167,7 @@ export const Footer = ({
               <div className="space-y-3 text-xs text-[#B5A895] font-light leading-relaxed">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
-                  <span>Shraviko Sacred Atelier, Civil Lines, Jaipur 302006, India</span>
+                  <span>Udaipur, Rajasthan 313001, India</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
@@ -176,8 +175,8 @@ export const Footer = ({
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Mail className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <a href="mailto:shraviko@gmail.com" className="hover:text-[#E5C378] transition-colors">
-                    shraviko@gmail.com
+                  <a href="mailto:info@shraviko.com" className="hover:text-[#E5C378] transition-colors">
+                    info@shraviko.com
                   </a>
                 </div>
               </div>
