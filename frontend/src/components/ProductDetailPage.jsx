@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Star, Heart, ShoppingBag, ShieldCheck, Truck, RotateCcw, Sparkles, Check, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { ArrowLeft, Star, Heart, ShoppingBag, ShieldCheck, Truck, RotateCcw, Sparkles, Check, ChevronRight, Flame, Clock, Eye, Zap } from 'lucide-react';
 import { ProductImage } from './ProductImage';
 import { ProductDetailSkeleton } from './Skeleton';
+import { PRODUCTS } from '../data/products';
 
 export const ProductDetailPage = ({
   product,
@@ -26,6 +27,25 @@ export const ProductDetailPage = ({
   const [selectedVariant, setSelectedVariant] = useState(defaultVariant);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
+
+  // Urgency: random stock left + viewer count (stable per product load)
+  const urgencyData = useMemo(() => ({
+    stockLeft: Math.floor(Math.random() * 5) + 2,   // 2–6
+    viewers:   Math.floor(Math.random() * 12) + 8,  // 8–19
+  }), [product?.id]);
+
+  // Countdown: 23-min rolling timer synced to current time
+  const getCountdownSeconds = () => {
+    const now = new Date();
+    return (23 - (now.getMinutes() % 23)) * 60 - now.getSeconds();
+  };
+  const [countdown, setCountdown] = useState(getCountdownSeconds);
+  useEffect(() => {
+    const t = setInterval(() => setCountdown(s => s <= 1 ? getCountdownSeconds() : s - 1), 1000);
+    return () => clearInterval(t);
+  }, []);
+  const mm = String(Math.floor(countdown / 60)).padStart(2, '0');
+  const ss = String(countdown % 60).padStart(2, '0');
 
   useEffect(() => {
     if (product) {
@@ -287,6 +307,61 @@ export const ProductDetailPage = ({
               </div>
             )}
 
+            {/* ── Delivery Timeline + Urgency (Above the Fold, above Add to Cart) ── */}
+            <div className="space-y-2.5">
+
+              {/* Delivery Timeline */}
+              <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                  <Truck className="w-4 h-4 text-emerald-700" />
+                </div>
+                <div>
+                  <span className="text-xs font-cinzel font-bold text-emerald-800 block">
+                    Estimated Delivery: 3–5 Business Days
+                  </span>
+                  <span className="text-[10px] text-emerald-700 font-sans">
+                    Free shipping on orders above ₹999 · Pan-India Express Delivery
+                  </span>
+                </div>
+              </div>
+
+              {/* Urgency Row — Stock + Viewers */}
+              <div className="grid grid-cols-2 gap-2">
+                {/* Stock Left */}
+                <div className="flex items-center gap-2 p-2.5 bg-red-50 rounded-xl border border-red-200">
+                  <Flame className="w-4 h-4 text-red-600 shrink-0 animate-pulse" />
+                  <div>
+                    <span className="text-[10px] font-cinzel font-bold text-red-700 block uppercase tracking-wide">
+                      Only {urgencyData.stockLeft} Left!
+                    </span>
+                    <span className="text-[9px] text-red-600 font-sans">Selling fast today</span>
+                  </div>
+                </div>
+                {/* Viewer Count */}
+                <div className="flex items-center gap-2 p-2.5 bg-amber-50 rounded-xl border border-amber-200">
+                  <Eye className="w-4 h-4 text-amber-600 shrink-0" />
+                  <div>
+                    <span className="text-[10px] font-cinzel font-bold text-amber-700 block uppercase tracking-wide">
+                      {urgencyData.viewers} Viewing Now
+                    </span>
+                    <span className="text-[9px] text-amber-600 font-sans">High demand</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Countdown Timer */}
+              <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF0D9] rounded-xl border border-[#E0CEAA]">
+                <Clock className="w-4 h-4 text-[#8C6929] shrink-0" />
+                <span className="text-[11px] font-cinzel font-bold text-[#5A3E10] uppercase tracking-wide">
+                  Special Price Ends In:
+                </span>
+                <span className="ml-auto font-mono text-sm font-bold text-[#8C0000] bg-white px-2.5 py-0.5 rounded-lg border border-red-200 shadow-sm">
+                  {mm}:{ss}
+                </span>
+              </div>
+
+            </div>
+
             {/* Quantity Selector & Add to Cart Actions */}
             <div className="space-y-4 pt-2">
               <div className="flex items-center gap-4">
@@ -438,6 +513,17 @@ export const ProductDetailPage = ({
         </div>
       </div>
 
+      {/* ── Related Products Section ── */}
+      <RelatedProducts
+        currentProduct={product}
+        allProducts={PRODUCTS}
+        onSelectProduct={(p) => {
+          // Navigate via hash — App.jsx parseHash handles it
+          window.location.hash = `#/product/${p.id}`;
+        }}
+        onAddToCart={onAddToCart}
+      />
+
       {/* Mobile Sticky Bottom Purchase Bar */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-[#1C1715] border-t border-[#C5A059]/40 z-30 shadow-2xl flex items-center justify-between gap-3 backdrop-blur-md">
         <div>
@@ -453,5 +539,113 @@ export const ProductDetailPage = ({
         </button>
       </div>
     </div>
+  );
+};
+
+/* ─── Related Products Sub-Component ───────────────────────────────────── */
+const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddToCart }) => {
+  const [added, setAdded] = useState(null);
+
+  const related = useMemo(() => {
+    if (!currentProduct || !allProducts) return [];
+    return allProducts
+      .filter((p) => p.category === currentProduct.category && p.id !== currentProduct.id)
+      .slice(0, 4);
+  }, [currentProduct?.id, allProducts]);
+
+  if (related.length === 0) return null;
+
+  return (
+    <section className="bg-[#F4EFE6] border-t border-[#EAE0CD] py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF0D9] border border-[#E0CEAA] mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-[#B8860B]" />
+            <span className="text-[11px] font-cinzel font-bold text-[#755722] uppercase tracking-[0.2em]">
+              You May Also Like
+            </span>
+          </div>
+          <h2 className="font-cinzel font-bold text-xl sm:text-2xl text-[#2C1F06] uppercase tracking-wide">
+            Complete Your Sacred Collection
+          </h2>
+        </div>
+
+        {/* Product Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5">
+          {related.map((product) => {
+            const discount = product.originalPrice
+              ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+              : null;
+            const isAdded = added === product.id;
+
+            return (
+              <div
+                key={product.id}
+                onClick={() => onSelectProduct(product)}
+                className="bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#C5A059]/60 transition-all duration-300 cursor-pointer group flex flex-col"
+              >
+                {/* Image */}
+                <div className="relative aspect-square bg-[#F9F6F0] overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    loading="lazy"
+                    className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
+                  />
+                  {discount && (
+                    <span className="absolute top-2 right-2 bg-[#8B0000] text-white text-[9px] font-cinzel font-bold px-2 py-0.5 rounded-full">
+                      -{discount}%
+                    </span>
+                  )}
+                </div>
+
+                {/* Info */}
+                <div className="p-3 flex flex-col flex-1 justify-between gap-2">
+                  <div>
+                    <span className="text-[9px] font-cinzel font-bold text-[#C5A059] uppercase tracking-wider block mb-0.5">
+                      {product.categoryName || product.category}
+                    </span>
+                    <h3 className="font-cinzel font-semibold text-xs text-[#2C1F06] line-clamp-2 leading-snug group-hover:text-[#B8860B] transition-colors">
+                      {product.name}
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2 border-t border-[#F0E8DC]">
+                    <div>
+                      <span className="text-xs font-bold text-[#2C1F06]">
+                        ₹{product.price?.toLocaleString('en-IN')}
+                      </span>
+                      {product.originalPrice && (
+                        <span className="text-[10px] text-gray-400 line-through ml-1">
+                          ₹{product.originalPrice?.toLocaleString('en-IN')}
+                        </span>
+                      )}
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAddToCart(product, 1);
+                        setAdded(product.id);
+                        setTimeout(() => setAdded(null), 1500);
+                      }}
+                      className={`px-2.5 py-1.5 rounded-lg text-[10px] font-cinzel font-bold uppercase tracking-wide transition-all flex items-center gap-1 active:scale-95 ${
+                        isAdded
+                          ? 'bg-emerald-600 text-white'
+                          : 'bg-[#FAF5EB] text-[#755722] hover:bg-[#C5A059] hover:text-white border border-[#E0CEAA]'
+                      }`}
+                    >
+                      {isAdded ? <Check className="w-3 h-3" /> : <ShoppingBag className="w-3 h-3" />}
+                      {isAdded ? 'Added' : 'Add'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 };

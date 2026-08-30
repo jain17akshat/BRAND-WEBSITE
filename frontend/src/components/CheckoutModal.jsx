@@ -41,7 +41,11 @@ export const CheckoutModal = ({
   const shipping = subtotal >= 999 || subtotal === 0 ? 0 : 99;
   const isWelcomeApplied = appliedPromo?.code === 'WELCOME10';
   const discount = isWelcomeApplied ? Math.round(subtotal * 0.10) : (appliedPromo?.discount || 0);
-  const grandTotal = Math.max(0, subtotal + shipping - discount);
+  // ₹50 prepaid incentive for online payments
+  const PREPAID_INCENTIVE = 50;
+  const isPrepaidMethod = paymentMethod !== 'cod';
+  const prepaidSaving = isPrepaidMethod ? PREPAID_INCENTIVE : 0;
+  const grandTotal = Math.max(0, subtotal + shipping - discount - prepaidSaving);
 
   const paymentOptions = [
     {
@@ -50,23 +54,26 @@ export const CheckoutModal = ({
       subtitle: 'GPay, PhonePe, Paytm, BHIM (Fast & secure)',
       icon: QrCode,
       popular: true,
+      prepaidSave: true,
     },
     {
       id: 'card',
       name: 'Credit / Debit Card',
       subtitle: 'Visa, Mastercard, RuPay, Diners',
       icon: CreditCard,
+      prepaidSave: true,
     },
     {
       id: 'netbanking',
       name: 'Net Banking',
       subtitle: 'All major Indian banks supported',
       icon: Building2,
+      prepaidSave: true,
     },
     {
       id: 'cod',
       name: 'Cash on Delivery',
-      subtitle: 'Pay via cash or UPI upon delivery',
+      subtitle: 'Pay via cash or UPI upon delivery · ₹50 extra savings available online',
       icon: Banknote,
     },
   ];
@@ -374,6 +381,14 @@ export const CheckoutModal = ({
                   <span className="text-[10px] text-gray-500 font-sans">Select one option</span>
                 </div>
 
+                {/* Prepaid Incentive Banner */}
+                <div className="flex items-center gap-2 p-2.5 bg-emerald-50 rounded-xl border border-emerald-200">
+                  <span className="text-base">💸</span>
+                  <span className="text-[11px] font-cinzel font-bold text-emerald-800 uppercase tracking-wide">
+                    Save ₹{PREPAID_INCENTIVE} — Pay Online Instead of COD
+                  </span>
+                </div>
+
                 <div className="space-y-2">
                   {paymentOptions.map((opt) => {
                     const isSelected = paymentMethod === opt.id;
@@ -397,7 +412,7 @@ export const CheckoutModal = ({
                           </div>
 
                           <div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 flex-wrap">
                               <span className="font-cinzel text-xs font-bold tracking-wide">
                                 {opt.name}
                               </span>
@@ -406,6 +421,13 @@ export const CheckoutModal = ({
                                   isSelected ? 'bg-[#B8860B] text-white' : 'bg-emerald-100 text-emerald-800'
                                 }`}>
                                   RECOMMENDED
+                                </span>
+                              )}
+                              {opt.prepaidSave && (
+                                <span className={`text-[9px] px-2 py-0.5 rounded-full font-sans font-bold uppercase tracking-wider ${
+                                  isSelected ? 'bg-emerald-700 text-white' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                }`}>
+                                  SAVE ₹{PREPAID_INCENTIVE}
                                 </span>
                               )}
                             </div>
@@ -436,6 +458,12 @@ export const CheckoutModal = ({
                   <div className="flex justify-between text-emerald-700 font-sans font-medium">
                     <span>Discount ({appliedPromo?.code || 'WELCOME10'})</span>
                     <span className="font-bold">-₹{discount.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
+                {prepaidSaving > 0 && (
+                  <div className="flex justify-between text-emerald-700 font-sans font-medium">
+                    <span>Prepaid Saving 💸</span>
+                    <span className="font-bold">-₹{prepaidSaving}</span>
                   </div>
                 )}
                 <div className="border-t border-[#F0E8DC] pt-2 mt-2 flex justify-between items-center font-cinzel font-bold text-sm text-[#2C2623]">

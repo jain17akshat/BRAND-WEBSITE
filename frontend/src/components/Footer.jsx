@@ -187,9 +187,12 @@ export const Footer = ({
 
           {/* Bottom Copyright Bar */}
           <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#8C7E6C]">
-            <p className="text-center md:text-left font-light">
-              © {new Date().getFullYear()} Shraviko. All rights reserved.
-            </p>
+            <div className="text-center md:text-left font-light space-y-0.5">
+              <p>© {new Date().getFullYear()} Shraviko. All rights reserved.</p>
+              <p className="text-[10px] text-[#6B5E50] tracking-wide">
+                GSTIN: 08AABCS1429B1ZB &nbsp;·&nbsp; Registered in Rajasthan, India
+              </p>
+            </div>
 
             <PaymentLogos />
 
