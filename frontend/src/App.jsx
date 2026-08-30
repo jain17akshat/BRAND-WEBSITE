@@ -624,13 +624,7 @@ export function App() {
                       </p>
                     </div>
 
-                    {/* RIGHT — Decorative OM / Sacred symbol with breathing pulse animation */}
-                    <div
-                      className="flex-shrink-0 flex items-center justify-center text-[#E5C378]/45 font-serif select-none hidden sm:flex animate-sacred-om-pulse"
-                      style={{ fontSize: 'clamp(48px, 10vw, 110px)', lineHeight: 1 }}
-                    >
-                      ॐ
-                    </div>
+
 
                   </div>
                 </section>
