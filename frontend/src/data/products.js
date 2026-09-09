@@ -346,41 +346,6 @@ export const PRODUCTS = [
     ]
   },
 
-  // 3. Peacock Brass Diya
-  {
-    id: 'saanjh-peacock-brass-diya',
-    name: 'Saanjh Hand-Carved Peacock Pure Virgin Brass Diya',
-    category: 'brass',
-    categoryName: 'Brass Articles',
-    subcategory: 'Brass Diyas',
-    price: 1890,
-    originalPrice: 2250,
-    rating: 4.95,
-    reviewsCount: 94,
-    tag: 'Peacock Diya',
-    artType: 'diya',
-    fitMode: 'contain',
-    image: '/assets/Brass aarti/Brass aarti 1.png',
-    images: [
-      '/assets/Brass aarti/Brass aarti 1.png',
-      '/assets/Brass aarti/brass aarti 2.png',
-      '/assets/Brass aarti/brass aarti 3.png',
-      '/assets/Brass aarti/brass aarti 4.png'
-    ],
-    weightVariants: [
-      { weight: 'Single Peacock Diya', price: 1890, originalPrice: 2250, default: true },
-      { weight: 'Pair of Peacock Diyas', price: 3490, originalPrice: 4200 }
-    ],
-    purity: 'Lead-Free Pure Brass',
-    inStock: true,
-    description: 'An exquisite single-wick oil lamp featuring a sculpted royal peacock handle. Emits a warm, radiant flame that creates serene meditative shadows.',
-    specifications: [
-      { label: 'Material', value: 'Pure Brass (Lead-Free & Unadulterated)' },
-      { label: 'Oil Capacity', value: '45 ml (approx. 4 hours burn time)' },
-      { label: 'Weight', value: '680 grams' }
-    ]
-  },
-
   // 4. Brass Kapoor Aarti Diya
   {
     id: 'brass-aarti-kapoor-diya',
