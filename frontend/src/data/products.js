@@ -3,6 +3,7 @@ export const CATEGORIES = [
   { id: 'brass', name: 'Brass Articles', count: 17 },
   { id: 'copper', name: 'Copper Articles', count: 4 },
   { id: 'mandir-essentials', name: 'Mandir Essentials', count: 13 },
+  { id: 'energy-stones', name: 'Energy Stones', count: 39, isComingSoon: true },
   { id: 'incense', name: 'Incense & Dhoop', count: 5 },
   { id: 'vastu', name: 'Vastu & Spiritual', count: 9 },
   { id: 'yantras', name: 'Custom & Handcrafted', count: 3 }
@@ -16,8 +17,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
-    price: 1490,
-    originalPrice: 1890,
+    price: 650,
+    originalPrice: 1250,
     rating: 4.98,
     reviewsCount: 148,
     tag: 'Garuda Finial',
@@ -31,11 +32,11 @@ export const PRODUCTS = [
       '/assets/garud bell/garuda 4.png'
     ],
     weightVariants: [
-      { weight: '100 G', price: 490, originalPrice: 650 },
-      { weight: '150 G', price: 690, originalPrice: 890 },
-      { weight: '200 G', price: 890, originalPrice: 1150 },
-      { weight: '250 G', price: 1190, originalPrice: 1490 },
-      { weight: '300 G', price: 1490, originalPrice: 1890, default: true },
+      { weight: '100 G', price: 650, originalPrice: 1250, default: true },
+      { weight: '150 G', price: 850, originalPrice: 1450 },
+      { weight: '200 G', price: 1050, originalPrice: 1650 },
+      { weight: '250 G', price: 1250, originalPrice: 1850 },
+      { weight: '300 G', price: 1450, originalPrice: 2050 },
       { weight: '400 G', price: 1890, originalPrice: 2290 },
       { weight: '500 G', price: 2390, originalPrice: 2890 }
     ],
@@ -45,6 +46,7 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Garud Headed Brass Pooja Bell' },
       { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Size', value: '4 Inch' },
       { label: 'Handle Motif', value: 'Detailed Garud-Inspired Handle' },
       { label: 'Sound Quality', value: 'Clear & Resonant Ringing Chime' },
       { label: 'Suitable For', value: 'Daily Puja, Aarti, Temple Rituals, Bhajan, Meditation & Festive Ceremonies' },
@@ -81,8 +83,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
-    price: 1390,
-    originalPrice: 1750,
+    price: 650,
+    originalPrice: 1250,
     rating: 4.96,
     reviewsCount: 132,
     tag: 'Nandi Finial',
@@ -97,11 +99,11 @@ export const PRODUCTS = [
       '/assets/nandi bell/nandi 5.png'
     ],
     weightVariants: [
-      { weight: '100 G', price: 450, originalPrice: 600 },
-      { weight: '150 G', price: 650, originalPrice: 850 },
-      { weight: '200 G', price: 850, originalPrice: 1100 },
-      { weight: '250 G', price: 1090, originalPrice: 1390 },
-      { weight: '300 G', price: 1390, originalPrice: 1750, default: true },
+      { weight: '100 G', price: 650, originalPrice: 1250, default: true },
+      { weight: '150 G', price: 850, originalPrice: 1450 },
+      { weight: '200 G', price: 1050, originalPrice: 1650 },
+      { weight: '250 G', price: 1250, originalPrice: 1850 },
+      { weight: '300 G', price: 1450, originalPrice: 2050 },
       { weight: '400 G', price: 1790, originalPrice: 2190 },
       { weight: '500 G', price: 2250, originalPrice: 2690 }
     ],
@@ -111,6 +113,7 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Nandi Headed Brass Pooja Bell' },
       { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Size', value: '4 Inch' },
       { label: 'Handle Motif', value: 'Traditional Nandi-Inspired Handle' },
       { label: 'Sound Quality', value: 'Clear & Resonant Ringing Chime' },
       { label: 'Suitable For', value: 'Daily Puja, Aarti, Temple Rituals, Bhajan & Festive Worship' },
@@ -147,8 +150,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
-    price: 990,
-    originalPrice: 1290,
+    price: 650,
+    originalPrice: 1250,
     rating: 4.92,
     reviewsCount: 165,
     tag: 'Classic Design',
@@ -162,13 +165,13 @@ export const PRODUCTS = [
       '/assets/simple bell/simple bell 1.jpg'
     ],
     weightVariants: [
-      { weight: '100 G', price: 350, originalPrice: 490 },
-      { weight: '150 G', price: 490, originalPrice: 650 },
-      { weight: '200 G', price: 650, originalPrice: 850 },
-      { weight: '250 G', price: 850, originalPrice: 1090 },
-      { weight: '300 G', price: 990, originalPrice: 1290, default: true },
-      { weight: '400 G', price: 1390, originalPrice: 1690 },
-      { weight: '500 G', price: 1790, originalPrice: 2190 }
+      { weight: '100 G', price: 650, originalPrice: 1250, default: true },
+      { weight: '150 G', price: 850, originalPrice: 1450 },
+      { weight: '200 G', price: 1050, originalPrice: 1650 },
+      { weight: '250 G', price: 1250, originalPrice: 1850 },
+      { weight: '300 G', price: 1450, originalPrice: 2050 },
+      { weight: '400 G', price: 1790, originalPrice: 2190 },
+      { weight: '500 G', price: 2190, originalPrice: 2590 }
     ],
     purity: '100% Solid Brass',
     inStock: true,
@@ -176,6 +179,7 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Traditional Brass Pooja Bell' },
       { label: 'Material', value: '100% Solid Brass' },
+      { label: 'Size', value: '4 Inch' },
       { label: 'Design', value: 'Classic Smooth Dome Bell Form' },
       { label: 'Sound Quality', value: 'Clear & Resonant Ringing Chime' },
       { label: 'Suitable For', value: 'Daily Puja, Aarti, Bhajan, Meditation & Temple Ceremonies' },
@@ -212,8 +216,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
-    price: 1690,
-    originalPrice: 2150,
+    price: 650,
+    originalPrice: 1250,
     rating: 4.99,
     reviewsCount: 190,
     tag: 'Ganesh Finial',
@@ -228,11 +232,11 @@ export const PRODUCTS = [
       '/assets/commonbell/brassbell 5.png'
     ],
     weightVariants: [
-      { weight: '100 G', price: 550, originalPrice: 750 },
-      { weight: '150 G', price: 790, originalPrice: 990 },
-      { weight: '200 G', price: 1090, originalPrice: 1350 },
-      { weight: '250 G', price: 1390, originalPrice: 1750 },
-      { weight: '300 G', price: 1690, originalPrice: 2150, default: true },
+      { weight: '100 G', price: 650, originalPrice: 1250, default: true },
+      { weight: '150 G', price: 850, originalPrice: 1450 },
+      { weight: '200 G', price: 1050, originalPrice: 1650 },
+      { weight: '250 G', price: 1250, originalPrice: 1850 },
+      { weight: '300 G', price: 1450, originalPrice: 2050 },
       { weight: '400 G', price: 2190, originalPrice: 2650 },
       { weight: '500 G', price: 2690, originalPrice: 3250 }
     ],
@@ -242,6 +246,7 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Brass Ganesh Ghanti' },
       { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Size', value: '4 Inch' },
       { label: 'Handle Motif', value: 'Distinctive Ganesh-Inspired Design' },
       { label: 'Sound Quality', value: 'Clear & Resonant Ringing Sound' },
       { label: 'Suitable For', value: 'Daily Puja, Aarti, Bhajan, Meditation & Religious Ceremonies' },
@@ -2001,8 +2006,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Yantras',
-    price: 990,
-    originalPrice: 1290,
+    price: 349,
+    originalPrice: 990,
     rating: 4.99,
     reviewsCount: 185,
     tag: 'Ganesh Yantra',
@@ -2016,8 +2021,7 @@ export const PRODUCTS = [
       '/assets/Ganeshyantra/gNESH4.png'
     ],
     weightVariants: [
-      { weight: '3 x 3 Inches (Pure Copper)', price: 990, originalPrice: 1290, default: true },
-      { weight: 'Pack of 2 Yantras', price: 1790, originalPrice: 2390 }
+      { weight: '3 × 3 Inches (Pure Copper)', price: 349, originalPrice: 990, default: true }
     ],
     purity: '100% Pure Copper Sheet',
     inStock: true,
@@ -2068,8 +2072,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Wealth Yantras',
-    price: 990,
-    originalPrice: 1290,
+    price: 349,
+    originalPrice: 990,
     rating: 5.0,
     reviewsCount: 230,
     tag: 'Kuber Yantra',
@@ -2084,8 +2088,7 @@ export const PRODUCTS = [
       '/assets/Kuber yantra/laxmi 4.jpg'
     ],
     weightVariants: [
-      { weight: '5 × 5 cm (Pure Copper Plate)', price: 990, originalPrice: 1290, default: true },
-      { weight: 'Pack of 2 Yantras', price: 1790, originalPrice: 2390 }
+      { weight: '3 × 3 Inches (Pure Copper)', price: 349, originalPrice: 990, default: true }
     ],
     purity: '100% Pure Copper Sheet',
     inStock: true,
@@ -2099,7 +2102,7 @@ export const PRODUCTS = [
       { label: 'Material', value: 'Pure Copper' },
       { label: 'Design', value: 'Kuber Yantra' },
       { label: 'Shape', value: 'Square' },
-      { label: 'Size', value: '5 × 5 cm' },
+      { label: 'Size', value: '3 × 3 Inches' },
       { label: 'Finish', value: 'Polished / Engraved' },
       { label: 'Colour', value: 'Copper' },
       { label: 'Quantity', value: '1 Piece' },
@@ -2138,8 +2141,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Mahalakshmi Yantras',
-    price: 990,
-    originalPrice: 1290,
+    price: 349,
+    originalPrice: 990,
     rating: 5.0,
     reviewsCount: 214,
     tag: 'Mahalakshmi Yantra',
@@ -2154,8 +2157,7 @@ export const PRODUCTS = [
       '/assets/luxmiyantra/laxmi5.png'
     ],
     weightVariants: [
-      { weight: '5 × 5 cm (Pure Copper Plate)', price: 990, originalPrice: 1290, default: true },
-      { weight: 'Pack of 2 Yantras', price: 1790, originalPrice: 2390 }
+      { weight: '3 × 3 Inches (Pure Copper)', price: 349, originalPrice: 990, default: true }
     ],
     purity: '100% Pure Copper Sheet',
     inStock: true,
@@ -2169,7 +2171,7 @@ export const PRODUCTS = [
       { label: 'Material', value: 'Pure Copper' },
       { label: 'Design', value: 'Lakshmi Kuber' },
       { label: 'Shape', value: 'Square' },
-      { label: 'Size', value: '5 × 5 cm' },
+      { label: 'Size', value: '3 × 3 Inches' },
       { label: 'Finish', value: 'Polished / Engraved' },
       { label: 'Colour', value: 'Copper' },
       { label: 'Quantity', value: '1 Piece' },
@@ -2208,8 +2210,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Shani Yantras',
-    price: 990,
-    originalPrice: 1290,
+    price: 349,
+    originalPrice: 990,
     rating: 5.0,
     reviewsCount: 184,
     tag: 'Shani Yantra',
@@ -2223,8 +2225,7 @@ export const PRODUCTS = [
       '/assets/shani yantra/laxmi 4.jpg'
     ],
     weightVariants: [
-      { weight: '3 × 3 Inches (Pure Copper)', price: 990, originalPrice: 1290, default: true },
-      { weight: 'Pack of 2 Yantras', price: 1790, originalPrice: 2390 }
+      { weight: '3 × 3 Inches (Pure Copper)', price: 349, originalPrice: 990, default: true }
     ],
     purity: '100% Pure Copper Sheet',
     inStock: true,
@@ -2343,8 +2344,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Pyramids',
-    price: 1490,
-    originalPrice: 1890,
+    price: 399,
+    originalPrice: 899,
     rating: 4.98,
     reviewsCount: 148,
     tag: 'Vastu Energy',
@@ -2358,10 +2359,10 @@ export const PRODUCTS = [
       '/assets/pyramid/pyramid 3.png'
     ],
     weightVariants: [
-      { weight: 'Pack of 1', price: 690, originalPrice: 890 },
-      { weight: 'Pack of 2', price: 1290, originalPrice: 1690 },
-      { weight: 'Pack of 3', price: 1790, originalPrice: 2390, default: true },
-      { weight: 'Pack of 4', price: 2290, originalPrice: 2990 }
+      { weight: 'Pack of 1', price: 399, originalPrice: 899, default: true },
+      { weight: 'Pack of 2', price: 750, originalPrice: 1699 },
+      { weight: 'Pack of 3', price: 1099, originalPrice: 2499 },
+      { weight: 'Pack of 4', price: 1399, originalPrice: 3299 }
     ],
     purity: '100% Solid Heavy Virgin Brass',
     inStock: true,
@@ -2374,6 +2375,10 @@ export const PRODUCTS = [
       { label: 'Material', value: '100% Solid Virgin Brass' },
       { label: 'Design Structure', value: '3-Layer Pyramid' },
       { label: 'Finish', value: 'Golden / Polished' },
+      { label: 'Width', value: '10.2 cm' },
+      { label: 'Depth', value: '2 cm' },
+      { label: 'Height', value: '5 cm' },
+      { label: 'Weight', value: '100 g' },
       { label: 'Country of Origin', value: 'Made in India' },
       { label: 'Usage', value: 'Pooja, Mandir Decor, Office Desks & Meditation' },
       { label: 'Available Packs', value: 'Pack of 1, 2, 3, and 4' }
@@ -2784,8 +2789,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
-    price: 1690,
-    originalPrice: 2190,
+    price: 370,
+    originalPrice: 899,
     rating: 4.99,
     reviewsCount: 175,
     tag: 'Sphatik Shivling',
@@ -2800,9 +2805,9 @@ export const PRODUCTS = [
       '/assets/glass shivling/shivling 5.jpg'
     ],
     weightVariants: [
-      { weight: 'Small (2.5 cm - Compact)', price: 990, originalPrice: 1290 },
-      { weight: 'Medium (4.5 cm - Standard)', price: 1690, originalPrice: 2190, default: true },
-      { weight: 'Royal Large (6 cm - Master)', price: 2690, originalPrice: 3290 }
+      { weight: 'Small (2.5 cm - Compact)', price: 370, originalPrice: 899 },
+      { weight: 'Medium (4.5 cm - Standard)', price: 370, originalPrice: 899, default: true },
+      { weight: 'Royal Large (6 cm - Master)', price: 790, originalPrice: 1490 }
     ],
     purity: 'Natural Sphatik / Clear Quartz Crystal',
     inStock: true,

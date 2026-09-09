@@ -133,7 +133,8 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
               transition-opacity
               duration-1000
               ease-in-out
-              ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+              img-reveal-scale
+              ${isActive ? 'opacity-100 is-visible' : 'opacity-0 pointer-events-none'}
             `}
           >
             <picture>
@@ -204,7 +205,7 @@ export const Hero = ({ onExploreClick, onRitualsClick }) => {
               transition-all
               duration-300
               hover:bg-white
-              hover:scale-105
+              magnetic-hover
               hover:shadow-[0_8px_40px_rgba(197,160,89,0.4)]
               active:scale-95
             "

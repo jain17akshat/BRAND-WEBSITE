@@ -79,4 +79,43 @@ router.get('/corporate', (req, res) => {
   });
 });
 
+// In-memory list of VIP Energy Stones Launch Subscribers
+const energySubscribers = [];
+
+// POST /api/enquiries/subscribe — Subscribe to Energy Stones launch list
+router.post('/subscribe', (req, res, next) => {
+  try {
+    const { email, purpose = 'General Energy Stones' } = req.body;
+    if (!email || !email.includes('@')) {
+      return res.status(400).json({ success: false, error: 'Valid email address is required.' });
+    }
+
+    const subscriber = {
+      id: `SUB_${Date.now()}`,
+      email: email.trim().toLowerCase(),
+      purpose,
+      createdAt: new Date().toISOString()
+    };
+
+    energySubscribers.push(subscriber);
+    console.log('✨ New Energy Stones VIP Launch Subscriber:', subscriber);
+
+    res.json({
+      success: true,
+      message: 'Successfully subscribed to Energy Stones launch access.'
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/enquiries/subscribers — View subscribers list
+router.get('/subscribers', (req, res) => {
+  res.json({
+    success: true,
+    total: energySubscribers.length,
+    subscribers: energySubscribers
+  });
+});
+
 module.exports = router;

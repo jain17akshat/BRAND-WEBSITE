@@ -189,7 +189,7 @@ export const Footer = ({
             <div className="text-center md:text-left font-light space-y-0.5">
               <p>© {new Date().getFullYear()} Shraviko. All rights reserved.</p>
               <p className="text-[10px] text-[#6B5E50] tracking-wide">
-                GSTIN: 08AABCS1429B1ZB &nbsp;·&nbsp; Registered in Rajasthan, India
+                GSTIN: 08CODPJ2489F1ZT &nbsp;·&nbsp; Registered in Rajasthan, India
               </p>
             </div>
 

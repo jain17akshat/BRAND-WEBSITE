@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Heart, ShoppingBag, ShoppingCart, Menu, X, Truck } from 'lucide-react';
+import { Search, Heart, ShoppingBag, ShoppingCart, Menu, X, Truck, Sparkles } from 'lucide-react';
 
 const logoUrl = '/assets/Logo/CURRENT LOGO.png';
 
@@ -45,6 +45,7 @@ export const Navbar = ({
     { label: 'Brass', category: 'brass' },
     { label: 'Copper', category: 'copper' },
     { label: 'Mandir Essentials', category: 'mandir-essentials' },
+    { label: 'Energy Stones', category: 'energy-stones' },
     { label: 'Incense & Dhoop', category: 'incense' },
     { label: 'Vastu & Spiritual', category: 'vastu' },
     { label: 'Corporate Gifting', category: 'kits' },
@@ -140,21 +141,21 @@ export const Navbar = ({
             <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
               <button
                 onClick={onOpenSearch}
-                className="hidden sm:flex p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 group"
+                className="hidden sm:flex p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm magnetic-hover group"
                 title="Search Products"
               >
-                <Search className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                <Search className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover:scale-110" />
                 <span className="sr-only">Search</span>
               </button>
 
               <button
                 onClick={onOpenWishlist}
-                className="p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm active:scale-95 relative"
+                className="p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm magnetic-hover relative group"
                 title="Saved Items"
               >
-                <Heart className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                <Heart className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover:scale-110 text-[#3D2B1F] group-hover:text-[#A63A2B]" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#A63A2B] text-white text-[10px] font-bold rounded-full flex items-center justify-center border border-white shadow-md animate-pulse">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#A63A2B] text-white text-[10px] font-bold rounded-full flex items-center justify-center border border-white shadow-md cart-badge-bounce">
                     {wishlistCount}
                   </span>
                 )}
@@ -162,48 +163,74 @@ export const Navbar = ({
             </div>
 
           </div>
+        </div>
+      </header>
 
-          {/* Mobile Dropdown Menu (Solid White) */}
-          {mobileMenuOpen && (
-            <div className="lg:hidden border-t border-[#DAB97B]/30 px-6 py-6 animate-fade-in bg-white">
-              <div className="flex flex-col gap-3">
-                {navLinks.map((link) => (
+      {/* ── Mobile Menu Backdrop & Drawer Modal ── */}
+      {mobileMenuOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="fixed top-20 left-3 right-3 sm:left-6 sm:right-6 max-w-lg mx-auto z-50 lg:hidden bg-white/95 backdrop-blur-md rounded-2xl border border-[#DAB97B]/40 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-3 duration-200">
+            <div className="p-4 border-b border-[#DAB97B]/20 bg-[#FAF7F2] flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#B8860B]" />
+                <span className="font-cinzel font-bold text-xs uppercase tracking-widest text-[#3D2B1F]">Quick Menu</span>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-1.5 rounded-full text-[#3D2B1F] hover:bg-[#EDE4D0] transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-4 space-y-1.5 max-h-[70vh] overflow-y-auto">
+              {navLinks.map((link) => {
+                const isActive = activeCategory === link.category;
+                return (
                   <button
                     key={link.category}
                     onClick={() => {
                       onSelectCategory(link.category);
                       setMobileMenuOpen(false);
                     }}
-                    className={`text-left text-sm tracking-wider uppercase font-cinzel py-2.5 border-b border-[#DAB97B]/20 flex items-center justify-between transition-colors ${activeCategory === link.category ? 'text-[#B8860B] font-bold' : 'text-[#3D2B1F] hover:text-[#B8860B]'
-                      }`}
+                    className={`w-full text-left text-xs tracking-widest uppercase font-cinzel p-3 rounded-xl flex items-center justify-between transition-all ${
+                      isActive
+                        ? 'bg-[#2C2623] text-[#D4AF37] font-bold shadow-sm'
+                        : 'text-[#3D2B1F] hover:bg-[#FAF7F2] hover:text-[#B8860B] font-semibold'
+                    }`}
                   >
                     <span>{link.label}</span>
-                    <span className="text-xs text-[#B8860B]">→</span>
+                    <span className={`text-xs ${isActive ? 'text-[#D4AF37]' : 'text-[#B8860B]'}`}>→</span>
                   </button>
-                ))}
-                {onGoSupport && (
-                  <button
-                    onClick={() => {
-                      onGoSupport();
-                      setMobileMenuOpen(false);
-                    }}
-                    className="text-left text-sm tracking-wider uppercase font-cinzel py-2.5 border-b border-[#DAB97B]/20 flex items-center justify-between transition-colors text-[#B8860B] font-bold"
-                  >
-                    <span className="flex items-center gap-2">
-                      <Truck className="w-4 h-4 text-[#B8860B]" />
-                      My Orders &amp; Returns
-                    </span>
-                    <span className="text-xs text-[#B8860B]">→</span>
-                  </button>
-                )}
-                <div className="pt-3 text-xs font-serif text-[#B8860B] italic text-center">
-                  “Bringing Vedic Purity &amp; Timeless Heritage to Modern Homes”
-                </div>
+                );
+              })}
+              {onGoSupport && (
+                <button
+                  onClick={() => {
+                    onGoSupport();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left text-xs tracking-widest uppercase font-cinzel p-3 rounded-xl flex items-center justify-between transition-all bg-[#FAF3E8] text-[#B8860B] font-bold border border-[#EAD7AF]/80 mt-2"
+                >
+                  <span className="flex items-center gap-2">
+                    <Truck className="w-4 h-4 text-[#B8860B]" />
+                    My Orders &amp; Returns
+                  </span>
+                  <span className="text-xs text-[#B8860B]">→</span>
+                </button>
+              )}
+              <div className="pt-3 text-[11px] font-serif text-[#B8860B] italic text-center">
+                “Bringing Vedic Purity &amp; Timeless Heritage to Modern Homes”
               </div>
             </div>
-          )}
-        </div>
-      </header>
+          </div>
+        </>
+      )}
 
       {/* ── 2. Dedicated Floating Cart Quick Action Trigger (Bottom-Right, Desktop only) ── */}
       <div className="hidden md:block fixed bottom-6 right-6 z-40">

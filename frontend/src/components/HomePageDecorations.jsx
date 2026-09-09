@@ -2,11 +2,11 @@ import React from 'react';
 
 /* ── Keyframes injected once ─────────────────────────────────────────────── */
 const STYLE = `
-  @keyframes cw  { to { transform: rotate(360deg);  } }
-  @keyframes ccw { to { transform: rotate(-360deg); } }
+  @keyframes cw  { to { transform: rotate(360deg) translateZ(0);  } }
+  @keyframes ccw { to { transform: rotate(-360deg) translateZ(0); } }
   @keyframes bob {
-    0%,100% { transform: translateY(0px) rotate(0deg); }
-    50%      { transform: translateY(-10px) rotate(180deg); }
+    0%,100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50%      { transform: translate3d(0, -10px, 0) rotate(180deg); }
   }
 `;
 

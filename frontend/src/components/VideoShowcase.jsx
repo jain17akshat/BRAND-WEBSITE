@@ -93,12 +93,7 @@ export const VideoShowcase = () => {
                   </div>
                 </div>
 
-                {/* Reel Title Caption */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <p className="text-xs font-cinzel text-white font-medium line-clamp-2 drop-shadow-md">
-                    {reel.title}
-                  </p>
-                </div>
+
               </div>
             ))}
           </div>

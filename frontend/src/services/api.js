@@ -91,6 +91,14 @@ export async function submitCorporateEnquiry(data) {
   });
 }
 
+// ── Energy Stones Launch Subscription ─────────────────────
+export async function subscribeToLaunch({ email, purpose }) {
+  return request('/enquiries/subscribe', {
+    method: 'POST',
+    body: JSON.stringify({ email, purpose }),
+  });
+}
+
 // ── Health Check ──────────────────────────────────────────
 export async function healthCheck() {
   return request('/health');

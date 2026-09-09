@@ -28,9 +28,9 @@ export const Bestsellers = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-8 sm:mb-12 scroll-reveal-up">
           <p className="text-[10px] font-cinzel tracking-[0.3em] text-[#9B7E52] uppercase mb-2">Our Selection</p>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-cinzel font-bold text-[#2C2623] tracking-wide">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-cinzel font-bold text-[#2C2623] tracking-wide heading-gold-line">
             {heading}
           </h2>
           {subheading && (
@@ -40,12 +40,13 @@ export const Bestsellers = ({
 
         {/* Product Grid — 4-col desktop, 2-col tablet, horizontal scroll on mobile */}
         <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4 sm:gap-6 scrollbar-none">
-          {displayProducts.map((product) => {
+          {displayProducts.map((product, idx) => {
             const isWishlisted = wishlistIds.includes(product.id);
             return (
               <div
                 key={product.id}
-                className="group flex-none w-[72vw] sm:w-auto snap-start rounded-xl overflow-hidden bg-[#FDFAF7] border border-[#EAE0CD] hover:border-[#C5A059]/60 hover:shadow-lg transition-all duration-300 flex flex-col"
+                style={{ '--stagger-index': idx }}
+                className="group flex-none w-[72vw] sm:w-auto snap-start rounded-xl overflow-hidden bg-[#FDFAF7] border border-[#EAE0CD] hover:border-[#C5A059]/60 hover:shadow-lg transition-all duration-300 flex flex-col stagger-grid-item brass-hover-shimmer"
               >
                 {/* Image */}
                 <div
@@ -64,10 +65,10 @@ export const Bestsellers = ({
                   {/* Wishlist */}
                   <button
                     onClick={(e) => { e.stopPropagation(); onToggleWishlist(product); }}
-                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 text-[#2C2623] hover:text-[#A63A2B] flex items-center justify-center transition-colors shadow-sm"
+                    className={`absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 text-[#2C2623] hover:text-[#A63A2B] flex items-center justify-center transition-colors shadow-sm magnetic-hover ${isWishlisted ? 'wishlist-heart-pop' : ''}`}
                     title={isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
                   >
-                    <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-[#A63A2B] text-[#A63A2B]' : ''}`} />
+                    <Heart className={`w-4 h-4 transition-transform duration-300 ${isWishlisted ? 'fill-[#A63A2B] text-[#A63A2B]' : ''}`} />
                   </button>
 
                   {/* Hover Quick Add Overlay */}

@@ -5,7 +5,6 @@ const CATEGORY_META = {
   brass:             { label: 'Brass Articles',         emoji: '🪔', color: '#B8860B', bg: '#FBF5E6' },
   copper:            { label: 'Copper Articles',        emoji: '🫗', color: '#B05C2E', bg: '#FBF0EA' },
   'mandir-essentials': { label: 'Mandir Essentials',   emoji: '📿', color: '#7B6B3A', bg: '#F5F0E6' },
-  incense:           { label: 'Incense & Dhoop',        emoji: '🌿', color: '#4A7C59', bg: '#EDF5EF' },
   vastu:             { label: 'Vastu & Spiritual',      emoji: '🔯', color: '#6B4E9B', bg: '#F2EFF8' },
   yantras:           { label: 'Custom & Handcrafted',   emoji: '✨', color: '#7B5E3A', bg: '#F5F0EB' },
 };
@@ -40,16 +39,8 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
           }`}
           onError={e => { e.target.src = '/assets/Incense cover.jpg'; setIsLoaded(true); }}
         />
-        {discount > 0 && (
-          <span className="absolute top-2 left-2 bg-[#C5A059] text-white text-[10px] font-cinzel font-bold px-2 py-0.5 rounded-full">
-            -{discount}%
-          </span>
-        )}
-        {product.tag && (
-          <span className="absolute top-2 right-2 bg-white/90 border border-[#EAE0CD] text-[#9B7E52] text-[9px] font-cinzel tracking-wide px-2 py-0.5 rounded-full">
-            {product.tag}
-          </span>
-        )}
+
+
         {/* Hover actions */}
         <div className="absolute inset-x-0 bottom-0 flex gap-1 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <button
@@ -203,15 +194,14 @@ export function AllCollectionsPage({
             >
               All
             </button>
-            {Object.entries(CATEGORY_META).map(([id, { label, emoji }]) =>
+            {Object.entries(CATEGORY_META).map(([id, { label }]) =>
               grouped[id] ? (
                 <button
                   key={id}
                   onClick={() => setActiveFilter(id)}
-                  className={`flex-shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full font-cinzel text-[10px] tracking-wide border transition-all ${activeFilter === id ? 'bg-[#C5A059] text-white border-[#C5A059]' : 'bg-white text-[#6B5840] border-[#EAE0CD] hover:border-[#C5A059]'}`}
+                  className={`flex-shrink-0 px-3 py-1.5 rounded-full font-cinzel text-[10px] tracking-wide border transition-all ${activeFilter === id ? 'bg-[#1C140F] text-white border-[#1C140F]' : 'bg-white text-[#2C2623] border-[#2C2623]/40 hover:border-[#1C140F] hover:text-[#1C140F] font-semibold'}`}
                 >
-                  <span>{emoji}</span>
-                  <span className="hidden sm:inline">{label}</span>
+                  {label}
                 </button>
               ) : null
             )}
@@ -247,12 +237,6 @@ export function AllCollectionsPage({
               {/* Category heading */}
               <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#EAE0CD]">
                 <div className="flex items-center gap-3">
-                  <span
-                    className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
-                    style={{ background: meta.bg }}
-                  >
-                    {meta.emoji}
-                  </span>
                   <div>
                     <h2 className="font-cinzel font-bold text-[#2C2623]" style={{ fontSize: 'clamp(1rem, 2vw, 1.3rem)' }}>
                       {meta.label}
@@ -280,7 +264,7 @@ export function AllCollectionsPage({
               {isExpanded && (
                 <>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
-                    {prods.slice(0, PREVIEW).map(product => (
+                    {prods.slice(0, PREVIEW).filter(product => product.image).map(product => (
                       <ProductCard
                         key={product.id}
                         product={product}

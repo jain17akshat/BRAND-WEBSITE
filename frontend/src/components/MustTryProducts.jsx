@@ -136,12 +136,6 @@ const MustTryCard = ({
           MUST TRY
         </span>
 
-        {/* Discount Badge */}
-        {discountPercent > 0 && (
-          <span className="absolute top-2.5 right-2.5 z-20 bg-[#A63A2B] text-white text-[9px] font-cinzel font-bold px-2 py-0.5 rounded-full shadow-sm">
-            -{discountPercent}%
-          </span>
-        )}
 
         {/* Wishlist Button */}
         <button

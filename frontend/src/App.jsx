@@ -33,6 +33,7 @@ import { AboutUsPage } from './components/AboutUsPage';
 import { AllCollectionsPage } from './components/AllCollectionsPage';
 import { LaunchBanner } from './components/LaunchBanner';
 import { WelcomeOfferModal } from './components/WelcomeOfferModal';
+import { EnergyStonesPage } from './components/EnergyStonesPage';
 
 export function App() {
   // Page Routing & Active Category State
@@ -72,7 +73,7 @@ export function App() {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-    const elements = document.querySelectorAll('.smooth-reveal, .scroll-reveal');
+    const elements = document.querySelectorAll('.smooth-reveal, .scroll-reveal, .scroll-reveal-up, .scroll-reveal-scale, .scroll-reveal-left, .scroll-reveal-right, .img-reveal-curtain, .img-reveal-scale, .stagger-grid-item, .typography-reveal, .heading-gold-line');
     elements.forEach((el) => observer.observe(el));
 
     // Mobile fallback timer: ensure all elements become visible
@@ -264,6 +265,8 @@ export function App() {
         }
       } else if (hash === 'gifting') {
         setCurrentPage('gifting');
+      } else if (hash === 'energy-stones') {
+        setCurrentPage('energy-stones');
       } else if (hash === 'track-order' || hash === 'support') {
         setCurrentPage('support');
       }
@@ -288,6 +291,11 @@ export function App() {
     if (catId === 'all') {
       setCurrentPage('home');
       window.location.hash = '#/home';
+    } else if (catId === 'energy-stones') {
+      setCurrentPage('energy-stones');
+      window.location.hash = '#/energy-stones';
+      resetScrollToTop();
+      return;
     } else if (catId === 'kits' || catId === 'gifting') {
       setCurrentPage('gifting');
       setSelectedCategoryId('kits');
@@ -408,6 +416,15 @@ export function App() {
               onBackToHome={handleGoHome}
               showToast={showToast}
             />
+          ) : currentPage === 'energy-stones' ? (
+            /* Dedicated Energy Stones & Accessories Collection Page View */
+            <EnergyStonesPage
+              onBackToHome={handleGoHome}
+              onAddToCart={handleAddToCart}
+              onToggleWishlist={handleToggleWishlist}
+              wishlistIds={wishlistIds}
+              onOpenQuickView={(product) => setQuickViewProduct(product)}
+            />
           ) : currentPage === 'category' ? (
             /* Dedicated Category Page View */
             <CategoryPage
@@ -526,7 +543,7 @@ export function App() {
                 <section
                   className="relative w-full overflow-hidden select-none"
                   style={{
-                    background: 'linear-gradient(135deg, #4A0E17 0%, #681521 30%, #851C2A 55%, #681521 80%, #3B0A11 100%)',
+                    background: '#ffffff',
                     borderTop: '1px solid rgba(229, 195, 120, 0.35)',
                     borderBottom: '1px solid rgba(229, 195, 120, 0.35)',
                     minHeight: 'clamp(160px, 25vw, 260px)',
@@ -534,9 +551,9 @@ export function App() {
                 >
                   {/* 1. Moving Background Pattern (Continuous Slow Pan) */}
                   <div
-                    className="absolute inset-0 opacity-[0.09] pointer-events-none animate-bg-pan-slow"
+                    className="absolute inset-0 opacity-[0.12] pointer-events-none animate-bg-pan-slow"
                     style={{
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3Ccircle cx='40' cy='40' r='12' stroke='%23ffffff' stroke-width='1' fill='none'/%3E%3Ccircle cx='40' cy='40' r='22' stroke='%23ffffff' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='40' cy='40' r='34' stroke='%23ffffff' stroke-width='0.3' fill='none'/%3E%3C/g%3E%3C/svg%3E")`,
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23681521' fill-opacity='1'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3Ccircle cx='40' cy='40' r='12' stroke='%23681521' stroke-width='1' fill='none'/%3E%3Ccircle cx='40' cy='40' r='22' stroke='%23681521' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='40' cy='40' r='34' stroke='%23681521' stroke-width='0.3' fill='none'/%3E%3C/g%3E%3C/svg%3E")`,
                       backgroundSize: '80px 80px',
                     }}
                   />
@@ -548,16 +565,16 @@ export function App() {
 
                   {/* 3. Floating Golden Dust Particles */}
                   <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <div className="absolute top-[20%] left-[12%] w-2.5 h-2.5 bg-amber-200/70 rounded-full blur-[1px] animate-float-sparkle-1" />
-                    <div className="absolute top-[65%] left-[30%] w-2 h-2 bg-yellow-100/80 rounded-full blur-[1px] animate-float-sparkle-2" />
-                    <div className="absolute top-[25%] left-[55%] w-3 h-3 bg-amber-100/60 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '1.5s' }} />
-                    <div className="absolute top-[70%] left-[78%] w-2 h-2 bg-amber-200/90 rounded-full blur-[1px] animate-float-sparkle-2" style={{ animationDelay: '2.5s' }} />
-                    <div className="absolute top-[15%] left-[88%] w-2.5 h-2.5 bg-amber-100/75 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '3.2s' }} />
+                    <div className="absolute top-[20%] left-[12%] w-2.5 h-2.5 bg-amber-500/50 rounded-full blur-[1px] animate-float-sparkle-1" />
+                    <div className="absolute top-[65%] left-[30%] w-2 h-2 bg-amber-400/60 rounded-full blur-[1px] animate-float-sparkle-2" />
+                    <div className="absolute top-[25%] left-[55%] w-3 h-3 bg-amber-500/40 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '1.5s' }} />
+                    <div className="absolute top-[70%] left-[78%] w-2 h-2 bg-amber-500/70 rounded-full blur-[1px] animate-float-sparkle-2" style={{ animationDelay: '2.5s' }} />
+                    <div className="absolute top-[15%] left-[88%] w-2.5 h-2.5 bg-amber-400/55 rounded-full blur-[1px] animate-float-sparkle-1" style={{ animationDelay: '3.2s' }} />
                   </div>
 
                   {/* 4. Rotating Sacred Sun Mandala (Aura behind the Logo) */}
-                  <div className="absolute left-[2%] sm:left-[4%] lg:left-[6%] top-1/2 -translate-y-1/2 pointer-events-none opacity-25 animate-spin-slow">
-                    <svg className="w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px] text-[#E5C378]" viewBox="0 0 200 200" fill="currentColor">
+                  <div className="absolute left-[2%] sm:left-[4%] lg:left-[6%] top-1/2 -translate-y-1/2 pointer-events-none opacity-30 animate-spin-slow">
+                    <svg className="w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px] text-[#8C1E2E]" viewBox="0 0 200 200" fill="currentColor">
                       <g transform="translate(100,100)">
                         <circle r="90" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
                         <circle r="78" fill="none" stroke="currentColor" strokeWidth="1" />
@@ -573,8 +590,8 @@ export function App() {
                   </div>
 
                   {/* 5. Rotating Sacred Mandala (Aura behind OM Symbol on Right) */}
-                  <div className="absolute right-[2%] sm:right-[5%] lg:right-[8%] top-1/2 -translate-y-1/2 pointer-events-none opacity-20 animate-spin-reverse-slow hidden sm:block">
-                    <svg className="w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] lg:w-[290px] lg:h-[290px] text-[#E5C378]" viewBox="0 0 200 200" fill="currentColor">
+                  <div className="absolute right-[2%] sm:right-[5%] lg:right-[8%] top-1/2 -translate-y-1/2 pointer-events-none opacity-25 animate-spin-reverse-slow hidden sm:block">
+                    <svg className="w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] lg:w-[290px] lg:h-[290px] text-[#8C1E2E]" viewBox="0 0 200 200" fill="currentColor">
                       <g transform="translate(100,100)">
                         <circle r="85" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
                         <circle r="70" fill="none" stroke="currentColor" strokeWidth="0.8" />
@@ -585,46 +602,43 @@ export function App() {
                     </svg>
                   </div>
 
-                  {/* Inner layout — logo left, text center, deco right */}
+                  {/* Inner layout — GIF left, text center */}
                   <div className="relative z-10 flex items-center justify-between h-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 gap-4">
 
-                    {/* LEFT — Clean logo without any border or background wrapper */}
+                    {/* LEFT — Animated GIF */}
                     <div className="flex-shrink-0 flex items-center relative">
                       <img
-                        src="/assets/Logo/CURRENT LOGO.png"
-                        alt="Shraviko"
-                        className="rounded-full object-contain drop-shadow-2xl relative z-10 transition-transform duration-500 hover:scale-105"
+                        src="/assets/shraviko-anim.gif"
+                        alt="Sacred Ritual Animation"
+                        className="object-contain relative z-10"
                         style={{
-                          width: 'clamp(120px, 18vw, 220px)',
-                          height: 'clamp(120px, 18vw, 220px)',
-                          aspectRatio: '1 / 1',
+                          width: 'clamp(160px, 24vw, 300px)',
+                          height: 'clamp(160px, 24vw, 300px)',
                         }}
                       />
                     </div>
 
-                    {/* CENTER — Big & Bold Message (Guaranteed 2 Lines) */}
+                    {/* CENTER — Big & Bold Message */}
                     <div className="flex-1 text-center px-1 sm:px-4">
                       <h2
-                        className="font-cinzel font-extrabold text-[#FFFDF8] leading-tight tracking-wider uppercase drop-shadow-lg sm:whitespace-nowrap"
+                        className="font-cinzel font-extrabold text-[#6B1420] leading-tight tracking-wider uppercase sm:whitespace-nowrap"
                         style={{
                           fontSize: 'clamp(0.85rem, 2.7vw, 2.2rem)',
-                          textShadow: '2px 4px 12px rgba(20,4,6,0.85)',
+                          textShadow: '1px 2px 6px rgba(107,20,32,0.15)',
                         }}
                       >
                         From Daily Pooja to Festive Rituals
                       </h2>
                       <p
-                        className="font-cinzel font-black text-[#F5D899] tracking-[0.25em] uppercase mt-1 sm:mt-2 drop-shadow-md sm:whitespace-nowrap"
+                        className="font-cinzel font-black text-[#8C6929] tracking-[0.25em] uppercase mt-1 sm:mt-2 sm:whitespace-nowrap"
                         style={{
                           fontSize: 'clamp(0.95rem, 3.2vw, 2.4rem)',
-                          textShadow: '2px 4px 14px rgba(20,4,6,0.95)',
+                          textShadow: '1px 2px 6px rgba(140,105,41,0.2)',
                         }}
                       >
                         WE HAVE IT ALL
                       </p>
                     </div>
-
-
 
                   </div>
                 </section>

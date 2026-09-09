@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ArrowLeft, Star, Heart, ShoppingBag, ShieldCheck, Truck, RotateCcw, Sparkles, Check, ChevronRight, Flame, Clock, Eye, Zap } from 'lucide-react';
+import { ArrowLeft, Star, Heart, ShoppingBag, ShieldCheck, Truck, RotateCcw, Sparkles, Check, ChevronRight, Flame, Clock, Eye, Zap, FileText, Sliders, Shield, HelpCircle, CheckCircle2, Info } from 'lucide-react';
 import { ProductImage } from './ProductImage';
 import { ProductDetailSkeleton } from './Skeleton';
 import { PRODUCTS } from '../data/products';
@@ -259,53 +259,9 @@ export const ProductDetailPage = ({
                   )}
                 </div>
               </div>
-              {discountPercent && (
-                <span className="px-3.5 py-1.5 rounded-full bg-[#8B0000] text-white text-xs font-cinzel font-bold uppercase tracking-wider shadow">
-                  Save {discountPercent}%
-                </span>
-              )}
+
             </div>
 
-            {/* Child Listing Weight Selection Container */}
-            {product.weightVariants && product.weightVariants.length > 0 && (
-              <div className="p-5 bg-white rounded-2xl border-2 border-[#C5A059]/40 shadow-sm space-y-3">
-                <div className="flex items-center justify-between border-b border-[#EAE0CD] pb-2">
-                  <div>
-                    <span className="text-xs font-cinzel font-bold text-[#2C2623] uppercase tracking-wider block">
-                      Select Heavy-Gauge Weight Option *
-                    </span>
-                    <span className="text-[11px] text-gray-500 font-sans font-light">
-                      Choose desired weight variant for custom thickness & sound resonance
-                    </span>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-[#231E1C] text-[#E5C378] text-xs font-cinzel font-bold">
-                    Selected: {selectedVariant?.weight || '300 G'}
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-4 lg:grid-cols-7 gap-1.5 sm:gap-2 pt-1">
-                  {product.weightVariants.map((variant) => {
-                    const isSelected = selectedVariant?.weight === variant.weight;
-                    return (
-                      <button
-                        key={variant.weight}
-                        onClick={() => setSelectedVariant(variant)}
-                        className={`py-2.5 sm:py-3 px-1.5 sm:px-2 rounded-xl text-center transition-all border flex flex-col items-center justify-center ${
-                          isSelected
-                            ? 'bg-[#231E1C] text-[#E5C378] border-[#C5A059] ring-2 ring-[#C5A059]/60 shadow-md scale-105'
-                            : 'bg-[#FBF9F5] text-[#2C2623] border-[#EAE0CD] hover:bg-[#F6F1E7] hover:border-[#C5A059]/40'
-                        }`}
-                      >
-                        <span className="text-[11px] sm:text-xs font-cinzel font-bold block">{variant.weight}</span>
-                        <span className={`text-[9px] sm:text-[10px] mt-0.5 block font-semibold ${isSelected ? 'text-[#E5C378]' : 'text-[#755722]'}`}>
-                          ₹{variant.price}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
 
             {/* ── Delivery Timeline + Urgency (Above the Fold, above Add to Cart) ── */}
             <div className="space-y-2.5">
@@ -396,116 +352,166 @@ export const ProductDetailPage = ({
 
             {/* Accordion & Info Tabs */}
             <div className="border-t border-[#EAE0CD] pt-6 space-y-4">
-              <div className="flex border-b border-[#EAE0CD] overflow-x-auto scrollbar-none gap-1 sm:gap-2">
+              {/* Tab Navigation */}
+              <div className="bg-[#FAF7F2] p-1.5 rounded-2xl border border-[#EAE0CD]/80 shadow-inner flex flex-wrap sm:flex-nowrap gap-1.5">
                 <button
                   onClick={() => setActiveTab('description')}
-                  className={`pb-3 px-3 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
+                  className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                     activeTab === 'description'
-                      ? 'border-[#C5A059] text-[#2C2623]'
-                      : 'border-transparent text-gray-400 hover:text-[#2C2623]'
+                      ? 'bg-[#2C2623] text-[#D4AF37] shadow-md scale-[1.01]'
+                      : 'text-[#6E645E] hover:text-[#2C2623] hover:bg-white/70'
                   }`}
                 >
-                  Description & Features
+                  <FileText className={`w-3.5 h-3.5 ${activeTab === 'description' ? 'text-[#D4AF37]' : 'text-[#8C6929]'}`} />
+                  <span>Overview</span>
                 </button>
+
                 <button
                   onClick={() => setActiveTab('specs')}
-                  className={`pb-3 px-3 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
+                  className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                     activeTab === 'specs'
-                      ? 'border-[#C5A059] text-[#2C2623]'
-                      : 'border-transparent text-gray-400 hover:text-[#2C2623]'
+                      ? 'bg-[#2C2623] text-[#D4AF37] shadow-md scale-[1.01]'
+                      : 'text-[#6E645E] hover:text-[#2C2623] hover:bg-white/70'
                   }`}
                 >
-                  Specifications
+                  <Sliders className={`w-3.5 h-3.5 ${activeTab === 'specs' ? 'text-[#D4AF37]' : 'text-[#8C6929]'}`} />
+                  <span>Specs</span>
                 </button>
+
                 {product.careInstructions && (
                   <button
                     onClick={() => setActiveTab('care')}
-                    className={`pb-3 px-3 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
+                    className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                       activeTab === 'care'
-                        ? 'border-[#C5A059] text-[#2C2623]'
-                        : 'border-transparent text-gray-400 hover:text-[#2C2623]'
+                        ? 'bg-[#2C2623] text-[#D4AF37] shadow-md scale-[1.01]'
+                        : 'text-[#6E645E] hover:text-[#2C2623] hover:bg-white/70'
                     }`}
                   >
-                    Care & Maintenance
+                    <Shield className={`w-3.5 h-3.5 ${activeTab === 'care' ? 'text-[#D4AF37]' : 'text-[#8C6929]'}`} />
+                    <span>Care</span>
                   </button>
                 )}
+
                 {product.faqs && (
                   <button
                     onClick={() => setActiveTab('faqs')}
-                    className={`pb-3 px-3 font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-colors border-b-2 whitespace-nowrap ${
+                    className={`flex-1 min-w-[100px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                       activeTab === 'faqs'
-                        ? 'border-[#C5A059] text-[#2C2623]'
-                        : 'border-transparent text-gray-400 hover:text-[#2C2623]'
+                        ? 'bg-[#2C2623] text-[#D4AF37] shadow-md scale-[1.01]'
+                        : 'text-[#6E645E] hover:text-[#2C2623] hover:bg-white/70'
                     }`}
                   >
-                    FAQs
+                    <HelpCircle className={`w-3.5 h-3.5 ${activeTab === 'faqs' ? 'text-[#D4AF37]' : 'text-[#8C6929]'}`} />
+                    <span>FAQs</span>
                   </button>
                 )}
               </div>
 
-              {activeTab === 'description' && (
-                <div className="text-xs text-[#5C5450] font-light leading-relaxed space-y-4">
-                  <p className="text-sm font-sans text-[#2C2623]">{product.description}</p>
-                  
-                  {product.keyFeatures && (
-                    <div className="space-y-2 pt-2">
-                      <span className="font-cinzel text-xs font-bold text-[#8C6929] uppercase tracking-wider block">
-                        Key Features & Highlights
-                      </span>
-                      <ul className="space-y-1.5 list-disc list-inside text-xs text-[#4A4441]">
-                        {product.keyFeatures.map((feat, i) => (
-                          <li key={i} className="leading-normal">{feat}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              )}
+              {/* Tab Contents Card */}
+              <div className="p-5 sm:p-6 bg-gradient-to-b from-[#FAF7F2]/60 to-white rounded-2xl border border-[#EAE0CD]/80 shadow-sm transition-all duration-300">
+                {activeTab === 'description' && (
+                  <div className="space-y-5 animate-fadeIn">
+                    <p className="text-sm font-sans text-[#3D3531] leading-relaxed border-l-2 border-[#C5A059] pl-3.5 py-0.5 italic bg-[#FAF3E8]/50 rounded-r-lg">
+                      {product.description}
+                    </p>
 
-              {activeTab === 'specs' && (
-                <div className="space-y-2 text-xs">
-                  {product.specifications ? (
-                    product.specifications.map((spec, i) => (
-                      <div key={i} className="flex justify-between py-2 border-b border-[#EAE0CD]/60">
-                        <span className="text-gray-500 font-cinzel font-medium">{spec.label}:</span>
-                        <span className="font-bold text-[#2C2623] text-right ml-4">{spec.value}</span>
+                    {product.keyFeatures && (
+                      <div className="space-y-3 pt-2">
+                        <div className="flex items-center gap-2">
+                          <Sparkles className="w-4 h-4 text-[#8C6929]" />
+                          <span className="font-cinzel text-xs font-bold text-[#8C6929] uppercase tracking-wider">
+                            Key Features & Highlights
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {product.keyFeatures.map((feat, i) => (
+                            <div 
+                              key={i} 
+                              className="p-3 rounded-xl bg-white border border-[#EAE0CD]/90 shadow-xs hover:border-[#C5A059]/50 transition-all flex items-start gap-2.5 group"
+                            >
+                              <div className="w-5 h-5 rounded-full bg-[#FAF3E8] text-[#8C6929] flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#8C6929] group-hover:text-white transition-colors">
+                                <CheckCircle2 className="w-3.5 h-3.5" />
+                              </div>
+                              <span className="text-xs text-[#3D3531] font-sans leading-snug">{feat}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    ))
-                  ) : (
-                    <div className="py-2 text-gray-500">Standard Vedic brassware specifications apply.</div>
-                  )}
-                  {selectedVariant && (
-                    <div className="flex justify-between py-2 border-b border-[#EAE0CD]/60">
-                      <span className="text-gray-500 font-cinzel font-medium">Selected Variant:</span>
-                      <span className="font-bold text-[#C5A059]">{selectedVariant.weight}</span>
-                    </div>
-                  )}
-                </div>
-              )}
+                    )}
+                  </div>
+                )}
 
-              {activeTab === 'care' && product.careInstructions && (
-                <div className="space-y-2 text-xs text-[#4A4441]">
-                  <span className="font-cinzel text-xs font-bold text-[#8C6929] uppercase tracking-wider block mb-2">
-                    Brass Care Guidelines
-                  </span>
-                  <ul className="space-y-2 list-disc list-inside font-sans leading-relaxed">
-                    {product.careInstructions.map((step, i) => (
-                      <li key={i}>{step}</li>
+                {activeTab === 'specs' && (
+                  <div className="space-y-3 animate-fadeIn">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {product.specifications ? (
+                        product.specifications.map((spec, i) => (
+                          <div 
+                            key={i} 
+                            className="p-3.5 rounded-xl bg-white border border-[#EAE0CD]/90 shadow-xs flex items-center justify-between gap-3"
+                          >
+                            <span className="text-[11px] text-gray-500 font-cinzel font-semibold uppercase tracking-wider">{spec.label}</span>
+                            <span className="font-bold text-[#2C2623] text-xs font-sans bg-[#FAF3E8] px-2.5 py-1 rounded-lg border border-[#EAD7AF]/50">{spec.value}</span>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="col-span-2 py-4 text-center text-xs text-gray-500 italic">
+                          Standard Sacred Vedic brassware specifications apply.
+                        </div>
+                      )}
+                      {selectedVariant && (
+                        <div className="p-3.5 rounded-xl bg-[#FAF3E8] border border-[#EAD7AF] shadow-xs flex items-center justify-between gap-3 col-span-1 sm:col-span-2">
+                          <span className="text-[11px] text-[#8C6929] font-cinzel font-bold uppercase tracking-wider">Selected Option</span>
+                          <span className="font-bold text-[#2C2623] text-xs">{selectedVariant.weight}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'care' && product.careInstructions && (
+                  <div className="space-y-4 animate-fadeIn">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Shield className="w-4 h-4 text-[#8C6929]" />
+                      <span className="font-cinzel text-xs font-bold text-[#8C6929] uppercase tracking-wider">
+                        Sacred Maintenance Guidelines
+                      </span>
+                    </div>
+                    <div className="space-y-2.5">
+                      {product.careInstructions.map((step, i) => (
+                        <div 
+                          key={i} 
+                          className="p-3 rounded-xl bg-white border border-[#EAE0CD]/90 shadow-xs flex items-start gap-3"
+                        >
+                          <div className="w-6 h-6 rounded-lg bg-[#2C2623] text-[#D4AF37] font-cinzel font-bold text-[11px] flex items-center justify-center shrink-0 shadow-xs">
+                            {String(i + 1).padStart(2, '0')}
+                          </div>
+                          <p className="text-xs text-[#3D3531] font-sans leading-relaxed pt-0.5">{step}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'faqs' && product.faqs && (
+                  <div className="space-y-3 animate-fadeIn">
+                    {product.faqs.map((faq, i) => (
+                      <div 
+                        key={i} 
+                        className="p-4 bg-white rounded-xl border border-[#EAE0CD] shadow-xs space-y-2 hover:border-[#C5A059]/40 transition-all"
+                      >
+                        <h4 className="font-cinzel font-bold text-[#2C2623] text-xs flex items-center gap-2">
+                          <span className="w-5 h-5 rounded-full bg-[#8C6929]/15 text-[#8C6929] font-bold text-[10px] flex items-center justify-center shrink-0">Q</span>
+                          {faq.q}
+                        </h4>
+                        <p className="text-[#5C5450] font-sans text-xs leading-relaxed pl-7 border-l-2 border-[#FAF0D9]">
+                          {faq.a}
+                        </p>
+                      </div>
                     ))}
-                  </ul>
-                </div>
-              )}
-
-              {activeTab === 'faqs' && product.faqs && (
-                <div className="space-y-3 text-xs">
-                  {product.faqs.map((faq, i) => (
-                    <div key={i} className="p-3 bg-[#FAF0D9]/50 rounded-xl border border-[#EAD7AF]">
-                      <h4 className="font-cinzel font-bold text-[#2C2623] mb-1">Q: {faq.q}</h4>
-                      <p className="text-[#5C5450] font-sans font-light leading-relaxed">A: {faq.a}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
+                  </div>
+                )}
+              </div>
             </div>
 
           </div>
@@ -556,7 +562,7 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
   if (related.length === 0) return null;
 
   return (
-    <section className="bg-[#F4EFE6] border-t border-[#EAE0CD] py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#FBF9F5] border-t border-[#EAE0CD] py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -594,11 +600,7 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
                     className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
                   />
-                  {discount && (
-                    <span className="absolute top-2 right-2 bg-[#8B0000] text-white text-[9px] font-cinzel font-bold px-2 py-0.5 rounded-full">
-                      -{discount}%
-                    </span>
-                  )}
+
                 </div>
 
                 {/* Info */}

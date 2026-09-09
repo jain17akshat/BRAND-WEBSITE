@@ -99,11 +99,7 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
                     className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
                   />
-                  {product.tag && (
-                    <span className="absolute top-2 left-2 bg-[#1C140F]/85 text-[#E5C378] text-[9px] font-cinzel tracking-wider px-2 py-0.5 rounded-full border border-[#C5A059]/30">
-                      {product.tag}
-                    </span>
-                  )}
+
                 </div>
 
                 {/* Info */}
