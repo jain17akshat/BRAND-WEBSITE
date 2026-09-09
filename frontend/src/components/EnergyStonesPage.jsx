@@ -111,8 +111,6 @@ export const PURPOSES = [
 export const EnergyStonesPage = ({ onBackToHome }) => {
   const [selectedPurposes, setSelectedPurposes] = useState([]);
   const [purposeSearchQuery, setPurposeSearchQuery] = useState('');
-  const [emailNotify, setEmailNotify] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Filter 8 purposes list in sidebar search box
@@ -139,26 +137,6 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
   const handleResetFilters = () => {
     setSelectedPurposes([]);
     setPurposeSearchQuery('');
-  };
-
-  const handleNotifySubmit = async (e) => {
-    e.preventDefault();
-    const cleanEmail = emailNotify.trim();
-    if (cleanEmail) {
-      try {
-        await subscribeToLaunch({
-          email: cleanEmail,
-          purpose: selectedPurposes.length > 0 ? selectedPurposes.join(', ') : 'General Energy Stones'
-        });
-      } catch (err) {
-        console.warn('Backend subscription logged:', err.message);
-      }
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setEmailNotify('');
-      }, 4000);
-    }
   };
 
   // Get details of active selected purpose(s)
@@ -261,35 +239,12 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
                 We are hand-selecting 100% authentic gemstones, crystal bracelets, orgone pyramids, and sacred Japa malas purified with Ganga Jal and consecrated with Vedic mantras.
               </p>
 
-              {/* Form Notification Box */}
-              <div className="pt-6 border-t border-[#E5C378]/30 max-w-md mx-auto">
-                {isSubmitted ? (
-                  <div className="p-4 rounded-2xl bg-[#E8F5E9] border border-emerald-400 text-emerald-900 text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                    <span>Thank you! You are registered for updates on Launch Day.</span>
-                  </div>
-                ) : (
-                  <form onSubmit={handleNotifySubmit} className="flex flex-col sm:flex-row gap-2">
-                    <input
-                      type="email"
-                      required
-                      placeholder="Enter your email to get notified..."
-                      value={emailNotify}
-                      onChange={(e) => setEmailNotify(e.target.value)}
-                      className="flex-1 px-4 py-3 rounded-xl bg-white/95 text-xs text-[#2C2623] placeholder-[#8C8070] focus:outline-none focus:ring-2 focus:ring-[#E5C378] shadow-inner"
-                    />
-                    <button
-                      type="submit"
-                      className="px-6 py-3 rounded-xl bg-[#E5C378] hover:bg-[#F3D693] text-[#2C1F06] text-xs font-cinzel font-bold uppercase tracking-widest shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap"
-                    >
-                      <Bell className="w-4 h-4" />
-                      <span>Notify Me</span>
-                    </button>
-                  </form>
-                )}
-                <p className="text-[10px] text-[#B59D72] mt-2 font-light">
-                  ✦ Be the first to be notified 1 hour before official release ✦
-                </p>
+              {/* Coming Soon Badge */}
+              <div className="pt-6 border-t border-[#E5C378]/30 max-w-md mx-auto flex justify-center">
+                <div className="px-6 py-2.5 rounded-full bg-[#E5C378]/15 border border-[#E5C378]/50 text-[#E5C378] font-cinzel font-bold text-xs sm:text-sm uppercase tracking-[0.25em] shadow-lg flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-[#E5C378]" />
+                  <span>Coming Soon</span>
+                </div>
               </div>
 
             </div>

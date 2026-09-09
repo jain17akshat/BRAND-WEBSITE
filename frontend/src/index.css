@@ -50,9 +50,24 @@
     font-size: clamp(0.95rem, 0.85rem + 0.8vw, 1.25rem);
   }
 
+  /* Reserved EXCLUSIVELY for Shraviko Brand Wordmark */
+  .font-brand, .font-shraviko {
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
+    letter-spacing: 0.08em;
+  }
+
+  /* Simple & Clean standard headings */
   .font-cinzel {
     font-family: 'Cinzel', serif;
     letter-spacing: 0.03em;
+  }
+
+  .font-playfair {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-prata {
+    font-family: 'Prata', Georgia, serif;
   }
 
   .font-cormorant {

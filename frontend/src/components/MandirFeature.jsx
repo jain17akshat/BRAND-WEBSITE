@@ -2,8 +2,17 @@ import React from 'react';
 import { PRODUCTS } from '../data/products';
 import { ArrowRight } from 'lucide-react';
 
+// Products to hide from the moving catalog
+const EXCLUDED_IDS = [
+  'essentials-brass-chawar-whisk',
+  'mandir-jap-bag-gaumukhi',
+  'mandir-royal-velvet-asan-mat',
+];
+
 export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
-  const essentialsProducts = PRODUCTS.filter(p => p.category === 'mandir-essentials');
+  const essentialsProducts = PRODUCTS.filter(
+    p => p.category === 'mandir-essentials' && !EXCLUDED_IDS.includes(p.id) && !p.isComingSoon
+  );
   // Duplicate array 3x for seamless infinite marquee loop
   const marqueeItems = [...essentialsProducts, ...essentialsProducts, ...essentialsProducts];
 
@@ -60,7 +69,7 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
               Mandir Essentials
             </h2>
             <p className="text-xs sm:text-sm text-[#D4C3A3]/90 font-light leading-relaxed mb-6 max-w-xl">
-              Thoughtfully curated sacred essentials for everyday prayer, meditation & devotion — handcrafted malas, mala counters, gaumukhi bags, wooden chowkis & brass dhoopdanis.
+              Thoughtfully curated sacred essentials for everyday prayer, meditation &amp; devotion — handcrafted malas, mala counters, gaumukhi bags, wooden chowkis &amp; brass dhoopdanis.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -107,7 +116,6 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
                     className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
                   />
-
                 </div>
 
                 {/* Info */}
@@ -117,18 +125,10 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
                   </h4>
                   <div className="flex items-center justify-between pt-2 border-t border-[#EAE0CD]">
                     <div className="flex items-baseline gap-1">
-                      {product.isComingSoon ? (
-                        <span className="text-[10px] font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
-                          Coming Soon
-                        </span>
-                      ) : (
-                        <>
-                          <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
-                          <span className="text-xs font-cinzel font-bold text-[#2C2623]">
-                            ₹{(product.price || product.weightVariants?.[0]?.price || 0).toLocaleString('en-IN')}
-                          </span>
-                        </>
-                      )}
+                      <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+                      <span className="text-xs font-cinzel font-bold text-[#2C2623]">
+                        ₹{(product.price || product.weightVariants?.[0]?.price || 0).toLocaleString('en-IN')}
+                      </span>
                     </div>
                     <span className="text-[10px] font-cinzel font-bold text-[#C5A059] uppercase tracking-widest group-hover:translate-x-0.5 transition-transform">
                       View →

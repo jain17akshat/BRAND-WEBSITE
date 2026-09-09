@@ -387,9 +387,10 @@ export function App() {
           onOpenSearch={() => setSearchOpen(true)}
           activeCategory={
             currentPage === 'home' ? 'all'
-              : currentPage === 'gifting' ? 'kits'
-                : currentPage === 'category' ? selectedCategoryId
-                  : 'all'
+              : currentPage === 'energy-stones' ? 'energy-stones'
+                : currentPage === 'gifting' ? 'kits'
+                  : currentPage === 'category' ? selectedCategoryId
+                    : 'all'
           }
           onSelectCategory={handleSelectCategory}
           onGoHome={handleGoHome}
@@ -670,18 +671,6 @@ export function App() {
 
                   </div>
                 </section>
-              </div>
-
-              {/* 9.5. Must-Try Products — Infinite Right-to-Left Sliding Marquee Carousel */}
-              <div className="smooth-reveal">
-                <MustTryProducts
-                  products={PRODUCTS}
-                  onAddToCart={handleAddToCart}
-                  onSelectProduct={(p) => setSelectedProduct(p)}
-                  onOpenQuickView={(p) => setQuickViewProduct(p)}
-                  onToggleWishlist={handleToggleWishlist}
-                  wishlistIds={wishlistIds}
-                />
               </div>
 
               {/* 10. Video Reels — Artisan Stories & Craft in Motion */}

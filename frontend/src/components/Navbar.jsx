@@ -53,28 +53,26 @@ export const Navbar = ({
 
   return (
     <>
-      {/* Shimmer animation for brand text */}
+      {/* Premium Luxury Aura & Styling for brand text */}
       <style>{`
-        @keyframes navShimmer {
-          0%, 20% { background-position: 200% center; }
-          80%, 100% { background-position: -200% center; }
+        @keyframes goldAuraPulse {
+          0%, 100% {
+            text-shadow: 0 0 8px rgba(197, 160, 89, 0.25), 0 0 16px rgba(197, 160, 89, 0.1);
+          }
+          50% {
+            text-shadow: 0 0 14px rgba(197, 160, 89, 0.45), 0 0 24px rgba(197, 160, 89, 0.2);
+          }
         }
-        .nav-brand-shimmer {
-          background: linear-gradient(
-            90deg,
-            #8C6D2D 0%,
-            #8C6D2D 35%,
-            #C5A059 42%,
-            #FFF8E7 50%,
-            #C5A059 58%,
-            #8C6D2D 65%,
-            #8C6D2D 100%
-          );
-          background-size: 250% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: navShimmer 5s ease-in-out infinite;
+        .nav-brand-effect {
+          font-family: 'Cinzel Decorative', 'Cinzel', serif;
+          color: #2C1F06;
+          transition: all 0.4s ease;
+          animation: goldAuraPulse 4s ease-in-out infinite;
+        }
+        .group:hover .nav-brand-effect,
+        .nav-brand-effect:hover {
+          color: #8C6D2D;
+          text-shadow: 0 0 16px rgba(197, 160, 89, 0.6), 0 0 28px rgba(212, 175, 55, 0.35);
         }
       `}</style>
       {/* ── Solid Premium Luxury Header with Curved Corners (100% Non-Transparent) ── */}
@@ -102,30 +100,30 @@ export const Navbar = ({
 
               <button
                 onClick={onGoHome}
-                className="hidden lg:flex items-center group focus:outline-none"
+                className="hidden lg:flex items-center group focus:outline-none py-1"
                 title="Shraviko - Home"
               >
-                <span
-                  className="nav-brand-shimmer font-cinzel font-bold tracking-[0.15em] uppercase transition-all duration-300 group-hover:scale-105"
-                  style={{ fontSize: '1.35rem' }}
-                >
-                  Shraviko
-                </span>
+                <img
+                  src="/trasnparwtnt bg.png"
+                  alt="Shraviko"
+                  className="transition-transform duration-300 group-hover:scale-105 object-contain"
+                  style={{ height: '52px', width: 'auto', filter: 'drop-shadow(0 2px 6px rgba(120,80,0,0.18))' }}
+                />
               </button>
             </div>
 
             {/* CENTER (MOBILE ONLY) — Perfectly Centered Mobile Logo */}
             <button
               onClick={onGoHome}
-              className="lg:hidden absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center focus:outline-none z-10"
+              className="lg:hidden absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center focus:outline-none z-10 active:scale-95 transition-transform duration-200"
               title="Shraviko - Home"
             >
-              <span
-                className="nav-brand-shimmer font-cinzel font-bold tracking-[0.12em] uppercase transition-transform duration-300 active:scale-95"
-                style={{ fontSize: '1.15rem' }}
-              >
-                Shraviko
-              </span>
+              <img
+                src="/trasnparwtnt bg.png"
+                alt="Shraviko"
+                className="object-contain"
+                style={{ height: '44px', width: 'auto', filter: 'drop-shadow(0 2px 4px rgba(120,80,0,0.18))' }}
+              />
             </button>
 
             {/* CENTER — Spacious Category Navigation Links */}
@@ -136,7 +134,7 @@ export const Navbar = ({
                   <button
                     key={link.category}
                     onClick={() => onSelectCategory(link.category)}
-                    className={`text-[11px] xl:text-xs tracking-[0.1em] uppercase font-cinzel transition-all relative py-1.5 whitespace-nowrap ${isActive
+                    className={`text-[11px] xl:text-xs tracking-[0.1em] uppercase font-sans transition-all relative py-1.5 whitespace-nowrap ${isActive
                       ? 'text-[#B8860B] font-bold'
                       : 'text-[#3D2B1F] hover:text-[#B8860B] font-semibold'
                       }`}
@@ -190,7 +188,7 @@ export const Navbar = ({
             <div className="p-4 border-b border-[#DAB97B]/20 bg-[#FAF7F2] flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#B8860B]" />
-                <span className="font-cinzel font-bold text-xs uppercase tracking-widest text-[#3D2B1F]">Quick Menu</span>
+                <span className="font-sans font-bold text-xs uppercase tracking-widest text-[#3D2B1F]">Quick Menu</span>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
@@ -211,11 +209,10 @@ export const Navbar = ({
                       onSelectCategory(link.category);
                       setMobileMenuOpen(false);
                     }}
-                    className={`w-full text-left text-xs tracking-widest uppercase font-cinzel p-3 rounded-xl flex items-center justify-between transition-all ${
-                      isActive
+                    className={`w-full text-left text-xs tracking-widest uppercase font-sans p-3 rounded-xl flex items-center justify-between transition-all ${isActive
                         ? 'bg-[#2C2623] text-[#D4AF37] font-bold shadow-sm'
                         : 'text-[#3D2B1F] hover:bg-[#FAF7F2] hover:text-[#B8860B] font-semibold'
-                    }`}
+                      }`}
                   >
                     <span>{link.label}</span>
                     <span className={`text-xs ${isActive ? 'text-[#D4AF37]' : 'text-[#B8860B]'}`}>→</span>
@@ -228,7 +225,7 @@ export const Navbar = ({
                     onGoSupport();
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full text-left text-xs tracking-widest uppercase font-cinzel p-3 rounded-xl flex items-center justify-between transition-all bg-[#FAF3E8] text-[#B8860B] font-bold border border-[#EAD7AF]/80 mt-2"
+                  className="w-full text-left text-xs tracking-widest uppercase font-sans p-3 rounded-xl flex items-center justify-between transition-all bg-[#FAF3E8] text-[#B8860B] font-bold border border-[#EAD7AF]/80 mt-2"
                 >
                   <span className="flex items-center gap-2">
                     <Truck className="w-4 h-4 text-[#B8860B]" />
@@ -237,7 +234,7 @@ export const Navbar = ({
                   <span className="text-xs text-[#B8860B]">→</span>
                 </button>
               )}
-              <div className="pt-3 text-[11px] font-serif text-[#B8860B] italic text-center">
+              <div className="pt-3 text-[11px] font-sans text-[#B8860B] italic text-center opacity-80">
                 “Bringing Vedic Purity &amp; Timeless Heritage to Modern Homes”
               </div>
             </div>
@@ -253,7 +250,7 @@ export const Navbar = ({
           title="Open Shopping Cart"
         >
           <ShoppingCart className="w-5 h-5 text-[#2C1F06]" />
-          <span className="text-xs font-cinzel tracking-wider font-bold text-[#2C1F06]">
+          <span className="text-xs font-sans tracking-wider font-bold text-[#2C1F06]">
             CART
           </span>
           {cartCount > 0 && (

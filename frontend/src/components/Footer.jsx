@@ -53,9 +53,9 @@ export const Footer = ({
       {/* ── 1. Main Luxury Footer Section ── */}
       <div className="relative z-20 bg-[#161211] border-t border-[#382E29] pt-14 pb-10">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-[#2C2420]">
-            
+
             {/* Col 1: Brand Block (Span 2 on desktop) */}
             <div className="sm:col-span-2 space-y-4">
               <div className="flex items-center gap-3">
@@ -66,12 +66,9 @@ export const Footer = ({
                   style={{ aspectRatio: '1 / 1' }}
                 />
                 <div>
-                  <h3 className="font-cinzel text-base sm:text-lg font-bold text-[#F5EAD4] tracking-wider uppercase">
+                  <h3 className="font-brand text-lg sm:text-xl font-bold text-[#F5EAD4] tracking-widest uppercase">
                     Shraviko
                   </h3>
-                  <span className="text-[9px] sm:text-[10px] tracking-[0.2em] font-cinzel uppercase text-[#C5A059] font-medium block mt-0.5">
-                    Awaken Within
-                  </span>
                 </div>
               </div>
 
@@ -206,6 +203,60 @@ export const Footer = ({
         </div>
       </div>
 
+      {/* ── Also Available On: Amazon & Flipkart ── */}
+      <div className="bg-[#0E0C0B] border-t border-[#2C2420] py-10 px-4">
+        <div className="max-w-3xl mx-auto flex flex-col items-center gap-6">
+
+          {/* Label with side dividers */}
+          <div className="flex items-center gap-4 w-full max-w-xs">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#3E342F]" />
+            <p className="text-[9px] font-sans tracking-[0.35em] text-[#6B5E50] uppercase whitespace-nowrap">Also Available On</p>
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#3E342F]" />
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
+
+            {/* ── Amazon ── */}
+            <a
+              href="https://www.amazon.in/s?k=shraviko"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Shop Shraviko on Amazon India"
+              className="group flex items-center gap-2.5 px-6 py-3.5 rounded-2xl border border-[#FF9900]/20 bg-[#19140F] hover:bg-[#231A0B] hover:border-[#FF9900]/50 transition-all duration-300 shadow-lg hover:shadow-[0_0_24px_rgba(255,153,0,0.12)] active:scale-95"
+            >
+              <svg width="90" height="30" viewBox="0 0 90 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="0" y="21" fontFamily="'Arial Black', Arial, sans-serif" fontWeight="900" fontSize="21" fill="#FF9900" letterSpacing="-0.5">amazon</text>
+                <path d="M5 27 Q 45 36 85 24" stroke="#FF9900" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+                <path d="M77 21 L85 24 L80 30" stroke="#FF9900" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              </svg>
+              <span style={{ fontFamily: 'Arial, sans-serif', fontSize: '0.6rem', color: '#FF9900', opacity: 0.65, fontWeight: 700, marginLeft: '-4px', marginTop: '8px' }}>.in</span>
+            </a>
+
+            <span className="w-1.5 h-1.5 rounded-full bg-[#3E342F] hidden sm:block" />
+
+            {/* ── Flipkart ── */}
+            <a
+              href="https://www.flipkart.com/search?q=shraviko"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Shop Shraviko on Flipkart"
+              className="group flex items-center gap-3 px-6 py-3.5 rounded-2xl border border-[#2874F0]/20 bg-[#0F1219] hover:bg-[#111827] hover:border-[#2874F0]/50 transition-all duration-300 shadow-lg hover:shadow-[0_0_24px_rgba(40,116,240,0.12)] active:scale-95"
+            >
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="28" height="28" rx="5" fill="#2874F0"/>
+                <rect x="8" y="8" width="10" height="2.5" rx="1.25" fill="white"/>
+                <rect x="8" y="12.75" width="7.5" height="2.5" rx="1.25" fill="white"/>
+                <rect x="8" y="8" width="2.5" height="13" rx="1.25" fill="white"/>
+              </svg>
+              <span style={{ fontFamily: "'Arial Black', 'Helvetica Neue', Arial, sans-serif", fontWeight: 900, fontSize: '1.1rem', color: '#2874F0', letterSpacing: '-0.02em' }}>
+                Flipkart
+              </span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
       {/* ── 2. SHRAVIKO Grand Metallic Wordmark Panel ── */}
       <div
         ref={revealPanelRef}
@@ -222,20 +273,13 @@ export const Footer = ({
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
           <h2
             ref={brandTextRef}
-            className="font-cinzel font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FAF0D9] via-[#D4AF62] to-[#6B5020] w-full text-center drop-shadow-xl"
+            className="font-brand font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FAF0D9] via-[#D4AF62] to-[#6B5020] w-full text-center drop-shadow-2xl tracking-[0.14em]"
             style={{
-              fontSize: 'clamp(2rem, 13vw, 6.5rem)',
-              letterSpacing: '0.12em',
+              fontSize: 'clamp(2.2rem, 13vw, 6.5rem)',
             }}
           >
             SHRAVIKO
           </h2>
-          <p
-            ref={tagTextRef}
-            className="font-cinzel font-semibold uppercase text-[#C5A059] text-center mt-3 tracking-[0.35em] text-[10px] sm:text-xs"
-          >
-            AWAKEN WITHIN
-          </p>
         </div>
       </div>
     </footer>

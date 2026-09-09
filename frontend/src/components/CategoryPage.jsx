@@ -47,25 +47,23 @@ export const CategoryPage = ({
     (p.artType === 'yantra' || p.subcategory?.includes('Yantra') || p.name?.toLowerCase().includes('yantra')) &&
     !p.id?.includes('turtle');
 
-  // Sort products
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    // Coming soon items always go to the bottom
-    if (a.isComingSoon && !b.isComingSoon) return 1;
-    if (!a.isComingSoon && b.isComingSoon) return -1;
+  // Sort products — exclude Coming Soon items entirely
+  const sortedProducts = [...filteredProducts]
+    .filter((p) => !p.isComingSoon && p.tag !== 'Coming Soon')
+    .sort((a, b) => {
+      if (sortBy === 'price-low') return a.price - b.price;
+      if (sortBy === 'price-high') return b.price - a.price;
+      if (sortBy === 'rating') return b.rating - a.rating;
 
-    if (sortBy === 'price-low') return a.price - b.price;
-    if (sortBy === 'price-high') return b.price - a.price;
-    if (sortBy === 'rating') return b.rating - a.rating;
-
-    // Featured default order: For Vastu category, show Yantras first then other products
-    if (category.id === 'vastu') {
-      const aIsYantra = isYantraPlate(a);
-      const bIsYantra = isYantraPlate(b);
-      if (aIsYantra && !bIsYantra) return -1;
-      if (!aIsYantra && bIsYantra) return 1;
-    }
-    return 0; // featured default order
-  });
+      // Featured default order: For Vastu category, show Yantras first then other products
+      if (category.id === 'vastu') {
+        const aIsYantra = isYantraPlate(a);
+        const bIsYantra = isYantraPlate(b);
+        if (aIsYantra && !bIsYantra) return -1;
+        if (!aIsYantra && bIsYantra) return 1;
+      }
+      return 0; // featured default order
+    });
 
   // Visual Subcategory Image Cards for rich category navigation
   const subcategoryVisualCards = category.id === 'metalware' ? [

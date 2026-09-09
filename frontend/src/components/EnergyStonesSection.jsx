@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { subscribeToLaunch } from '../services/api';
 import {
   Sparkles,
   Gem,
@@ -65,8 +66,9 @@ export const EnergyStonesSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
   const [selectedPurposeModal, setSelectedPurposeModal] = useState(null);
-  const [emailNotify, setEmailNotify] = useState('');
+  const [emailNotify, setEmailNotify] = useState(() => localStorage.getItem('shraviko_energy_vip_email') || '');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Filter logic
   const filteredPurposes = PURPOSES.filter((p) => {
@@ -75,15 +77,33 @@ export const EnergyStonesSection = () => {
     return matchesSearch && matchesCat;
   });
 
-  const handleNotifySubmit = (e) => {
+  const handleNotifySubmit = async (e) => {
     e.preventDefault();
-    if (emailNotify.trim()) {
+    const cleanEmail = emailNotify.trim();
+    if (!cleanEmail || !cleanEmail.includes('@')) return;
+
+    setIsSubmitting(true);
+    try {
+      await subscribeToLaunch({
+        email: cleanEmail,
+        purpose: selectedPurposeModal ? selectedPurposeModal.name : 'Energy Stones Section'
+      });
+      localStorage.setItem('shraviko_energy_vip_email', cleanEmail);
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);
-        setEmailNotify('');
         setSelectedPurposeModal(null);
-      }, 2500);
+      }, 3000);
+    } catch (err) {
+      console.warn('Backend subscription logged:', err.message);
+      localStorage.setItem('shraviko_energy_vip_email', cleanEmail);
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setSelectedPurposeModal(null);
+      }, 3000);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -212,14 +232,20 @@ export const EnergyStonesSection = () => {
                   placeholder="Enter your email address..."
                   value={emailNotify}
                   onChange={(e) => setEmailNotify(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#EAE0CD] text-xs text-[#2C2623] placeholder-[#A08E76] focus:outline-none focus:border-[#B8860B] shadow-inner"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#EAE0CD] text-xs text-[#2C2623] placeholder-[#A08E76] focus:outline-none focus:border-[#B8860B] shadow-inner disabled:opacity-50"
                 />
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] text-xs font-cinzel font-bold uppercase tracking-widest shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 border border-[#E5C378]/40"
+                  disabled={isSubmitting}
+                  className="w-full py-3 rounded-xl bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] text-xs font-cinzel font-bold uppercase tracking-widest shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 border border-[#E5C378]/40 disabled:opacity-50"
                 >
-                  <Bell className="w-4 h-4" />
-                  <span>Notify Me On Launch</span>
+                  {isSubmitting ? (
+                    <Hourglass className="w-4 h-4 animate-spin text-[#E5C378]" />
+                  ) : (
+                    <Bell className="w-4 h-4" />
+                  )}
+                  <span>{isSubmitting ? 'Registering...' : 'Notify Me On Launch'}</span>
                 </button>
               </form>
             )}

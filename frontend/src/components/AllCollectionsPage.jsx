@@ -166,11 +166,11 @@ export function AllCollectionsPage({
   const [sortBy, setSortBy] = useState('default');
   const [expandedCats, setExpandedCats] = useState({});
 
-  // Group products by category
+  // Group products by category — exclude Coming Soon items
   const grouped = useMemo(() => {
     const cats = Object.keys(CATEGORY_META);
     return cats.reduce((acc, cat) => {
-      const prods = products.filter(p => p.category === cat);
+      const prods = products.filter(p => p.category === cat && !p.isComingSoon && p.tag !== 'Coming Soon');
       if (prods.length > 0) acc[cat] = prods;
       return acc;
     }, {});
@@ -178,8 +178,6 @@ export function AllCollectionsPage({
 
   const sortProducts = (prods) => {
     return [...prods].sort((a, b) => {
-      if (a.isComingSoon && !b.isComingSoon) return 1;
-      if (!a.isComingSoon && b.isComingSoon) return -1;
       if (sortBy === 'price-asc')  return a.price - b.price;
       if (sortBy === 'price-desc') return b.price - a.price;
       if (sortBy === 'rating')     return (b.rating || 0) - (a.rating || 0);
