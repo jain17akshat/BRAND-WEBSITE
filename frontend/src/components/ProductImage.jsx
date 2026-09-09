@@ -28,16 +28,19 @@ export const ProductImage = ({ src, hoverSrc, images, alt, artType = 'brass', cl
   React.useEffect(() => {
     let timer;
     if (isHovered && imageList.length > 1) {
-      timer = setInterval(() => {
-        setActiveIndex((prev) => (prev + 1) % imageList.length);
-      }, 1200);
+      setActiveIndex(1);
+      if (imageList.length > 2) {
+        timer = setInterval(() => {
+          setActiveIndex((prev) => (prev + 1) % imageList.length);
+        }, 1400);
+      }
     } else {
       setActiveIndex(0);
     }
     return () => clearInterval(timer);
   }, [isHovered, imageList]);
 
-  const isContain = fitMode === 'contain' || (src && (src.includes('brass bells') || src.includes('brass%20bells') || src.includes('garud bell') || src.includes('garud%20bell') || src.includes('nandi bell') || src.includes('nandi%20bell') || src.includes('simple bell') || src.includes('simple%20bell') || src.includes('commonbell') || src.includes('Wooden Choki') || src.includes('Wooden%20Choki') || src.includes('pyramid') || src.includes('pyramid%20') || src.includes('Trishul') || src.includes('trishul') || src.includes('Brass aarti') || src.includes('Brass%20aarti') || src.includes('aarti') || src.includes('akhand jyot') || src.includes('akhand%20jyot') || src.includes('Cup jyot') || src.includes('Cup%20jyot') || src.includes('cup') || src.includes('kamandal') || src.includes('Brass kamandal') || src.includes('Brass%20kamandal') || src.includes('pancpatra') || src.includes('pancpatra set') || src.includes('pancpatra%20set') || src.includes('patra') || src.includes('thali') || src.includes('Brass thali') || src.includes('Brass%20thali') || src.includes('Copper thali') || src.includes('Copper%20thali') || src.includes('gomukhi') || src.includes('shringi') || src.includes('singhasan') || src.includes('sighasan') || src.includes('hawankund') || src.includes('kund') || src.includes('chawar') || src.includes('chawr') || src.includes('Jap Bag') || src.includes('Jap%20Bag') || src.includes('bag') || src.includes('mala counter') || src.includes('mala%20counter') || src.includes('counter') || src.includes('Pooja box') || src.includes('Pooja%20box') || src.includes('poobjabox') || src.includes('poojabox') || src.includes('Shankh') || src.includes('shankh') || src.includes('Velvet asan') || src.includes('Velvet%20asan') || src.includes('asan') || src.includes('Ganeshyantra') || src.includes('Ganesh') || src.includes('Glassyantra') || src.includes('glass') || src.includes('Kuber yantra') || src.includes('kuber') || src.includes('laxmi') || src.includes('luxmiyantra') || src.includes('luxmi') || src.includes('shani') || src.includes('ladoo') || src.includes('gopal') || src.includes('kamdhenu') || src.includes('ganeshji') || src.includes('radhakrishna') || src.includes('krishna') || src.includes('glassturtle') || src.includes('turtle') || src.includes('dhoop dani') || src.includes('dhoopdani') || src.includes('glass shivling') || src.includes('shivling') || src.includes('rudraksh') || src.includes('sphatik') || src.includes('tulsi') || src.includes('vaijanti') || src.includes('karungali') || src.includes('Damru') || src.includes('damru') || src.includes('mala')));
+  const isContain = fitMode === 'contain' || (src && (src.includes('brass bells') || src.includes('brass%20bells') || src.includes('garud bell') || src.includes('garud%20bell') || src.includes('nandi bell') || src.includes('nandi%20bell') || src.includes('simple bell') || src.includes('simple%20bell') || src.includes('commonbell') || src.includes('Wooden Choki') || src.includes('Wooden%20Choki') || src.includes('WoodenChowki') || src.includes('WoodenChowki%20Large') || src.includes('pyramid') || src.includes('pyramid%20') || src.includes('Trishul') || src.includes('trishul') || src.includes('Brass aarti') || src.includes('Brass%20aarti') || src.includes('aarti') || src.includes('akhand jyot') || src.includes('akhand%20jyot') || src.includes('Cup jyot') || src.includes('Cup%20jyot') || src.includes('cup') || src.includes('kamandal') || src.includes('Brass kamandal') || src.includes('Brass%20kamandal') || src.includes('pancpatra') || src.includes('pancpatra set') || src.includes('pancpatra%20set') || src.includes('patra') || src.includes('thali') || src.includes('Brass thali') || src.includes('Brass%20thali') || src.includes('Copper thali') || src.includes('Copper%20thali') || src.includes('gomukhi') || src.includes('shringi') || src.includes('singhasan') || src.includes('sighasan') || src.includes('hawankund') || src.includes('kund') || src.includes('chawar') || src.includes('chawr') || src.includes('Jap Bag') || src.includes('Jap%20Bag') || src.includes('bag') || src.includes('mala counter') || src.includes('mala%20counter') || src.includes('counter') || src.includes('Pooja box') || src.includes('Pooja%20box') || src.includes('poobjabox') || src.includes('poojabox') || src.includes('Shankh') || src.includes('shankh') || src.includes('Velvet asan') || src.includes('Velvet%20asan') || src.includes('asan') || src.includes('Ganeshyantra') || src.includes('Ganesh') || src.includes('Glassyantra') || src.includes('glass') || src.includes('Kuber yantra') || src.includes('kuber') || src.includes('laxmi') || src.includes('luxmiyantra') || src.includes('luxmi') || src.includes('shani') || src.includes('ladoo') || src.includes('gopal') || src.includes('kamdhenu') || src.includes('ganeshji') || src.includes('radhakrishna') || src.includes('krishna') || src.includes('glassturtle') || src.includes('turtle') || src.includes('dhoop dani') || src.includes('dhoopdani') || src.includes('glass shivling') || src.includes('shivling') || src.includes('rudraksh') || src.includes('sphatik') || src.includes('tulsi') || src.includes('vaijanti') || src.includes('karungali') || src.includes('Damru') || src.includes('damru') || src.includes('mala')));
 
   const handleImageLoad = (idx) => {
     setLoadedMap((prev) => ({ ...prev, [idx]: true }));
@@ -57,6 +60,7 @@ export const ProductImage = ({ src, hoverSrc, images, alt, artType = 'brass', cl
 
         {imageList.map((imgSrc, idx) => {
           const isThisLoaded = !!loadedMap[idx];
+          const isCurrent = idx === activeIndex;
           return (
             <img
               key={imgSrc + idx}
@@ -67,10 +71,10 @@ export const ProductImage = ({ src, hoverSrc, images, alt, artType = 'brass', cl
               fetchpriority={priority && idx === 0 ? 'high' : undefined}
               onLoad={() => handleImageLoad(idx)}
               onError={() => setImgError(true)}
-              className={`w-full h-full transition-all duration-700 relative z-10 ${
-                isThisLoaded ? 'opacity-100' : 'opacity-0'
+              className={`w-full h-full transition-all duration-500 ${
+                idx === 0 ? 'relative' : 'absolute inset-0'
               } ${
-                idx === activeIndex ? 'scale-105' : 'scale-100 absolute inset-0'
+                isCurrent ? 'opacity-100 scale-105 z-10' : 'opacity-0 scale-100 z-0 pointer-events-none'
               } ${isContain ? 'object-contain p-2 sm:p-3' : 'object-cover'}`}
             />
           );

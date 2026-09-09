@@ -3,22 +3,13 @@ import React from 'react';
 export const Collections = ({ onSelectCategory }) => {
   const collections = [
     {
-      id: 'brass',
-      title: 'Brass',
-      image: '/brasshero.png',
-      mobileImage: '/brassmobileview.png',
+      id: 'metalware',
+      title: 'Metalware (Brass & Copper)',
+      image: '/METALWARE.png',
+      mobileImage: '/Metalwaremobile.png',
       fallback: '/assets/brasscover.png',
-      mobilePosition: 'right 80%',
-      desktopPosition: 'right 75%',
-    },
-    {
-      id: 'copper',
-      title: 'Copper',
-      image: '/copperhero.png',
-      mobileImage: '/coppermobileview.png',
-      fallback: '/assets/Copper cover.png',
-      mobilePosition: 'center 50%',
-      desktopPosition: 'center 50%',
+      mobilePosition: 'center center',
+      desktopPosition: 'center center',
     },
     {
       id: 'mandir-essentials',
@@ -28,6 +19,15 @@ export const Collections = ({ onSelectCategory }) => {
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       mobilePosition: 'center 45%',
       desktopPosition: 'center 45%',
+    },
+    {
+      id: 'incense',
+      title: 'Incense & Dhoop',
+      image: '/assets/Incense cover.jpg',
+      mobileImage: '/assets/Incense cover.jpg',
+      fallback: '/assets/Incense cover.jpg',
+      mobilePosition: 'center center',
+      desktopPosition: 'center center',
     },
     {
       id: 'kits',

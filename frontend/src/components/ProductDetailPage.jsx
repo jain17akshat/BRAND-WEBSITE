@@ -448,10 +448,14 @@ export const ProductDetailPage = ({
                         product.specifications.map((spec, i) => (
                           <div 
                             key={i} 
-                            className="p-3.5 rounded-xl bg-white border border-[#EAE0CD]/90 shadow-xs flex items-center justify-between gap-3"
+                            className="p-3.5 rounded-xl bg-white border border-[#EAE0CD]/90 shadow-xs flex items-center justify-between gap-3 hover:border-[#C5A059]/40 transition-colors h-full"
                           >
-                            <span className="text-[11px] text-gray-500 font-cinzel font-semibold uppercase tracking-wider">{spec.label}</span>
-                            <span className="font-bold text-[#2C2623] text-xs font-sans bg-[#FAF3E8] px-2.5 py-1 rounded-lg border border-[#EAD7AF]/50">{spec.value}</span>
+                            <span className="text-[11px] text-[#7A6B63] font-cinzel font-bold uppercase tracking-wider shrink-0 w-28 sm:w-32 leading-snug">
+                              {spec.label}
+                            </span>
+                            <span className="font-bold text-[#2C2623] text-xs font-sans bg-[#FAF3E8] px-3 py-1.5 rounded-lg border border-[#EAD7AF]/60 text-right shrink break-words max-w-[60%] sm:max-w-[65%]">
+                              {spec.value}
+                            </span>
                           </div>
                         ))
                       ) : (
@@ -461,8 +465,8 @@ export const ProductDetailPage = ({
                       )}
                       {selectedVariant && (
                         <div className="p-3.5 rounded-xl bg-[#FAF3E8] border border-[#EAD7AF] shadow-xs flex items-center justify-between gap-3 col-span-1 sm:col-span-2">
-                          <span className="text-[11px] text-[#8C6929] font-cinzel font-bold uppercase tracking-wider">Selected Option</span>
-                          <span className="font-bold text-[#2C2623] text-xs">{selectedVariant.weight}</span>
+                          <span className="text-[11px] text-[#8C6929] font-cinzel font-bold uppercase tracking-wider shrink-0 w-28 sm:w-32 leading-snug">Selected Option</span>
+                          <span className="font-bold text-[#2C2623] text-xs bg-white px-3 py-1.5 rounded-lg border border-[#EAD7AF]/60 text-right">{selectedVariant.weight}</span>
                         </div>
                       )}
                     </div>

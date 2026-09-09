@@ -88,6 +88,17 @@ export function App() {
   }, [currentPage]);
 
   const categoryDetailsMap = {
+    metalware: {
+      id: 'metalware',
+      title: 'Metalware Collection',
+      name: 'Metalware Collection',
+      image: '/METALWARE.png',
+      mobileImage: '/Metalwaremobile.png',
+      fallbackImage: '/assets/brasscover.png',
+      mobilePosition: 'center center',
+      desktopPosition: 'center center',
+      description: 'Explore our complete artisanal collection of 100% solid brass and pure copper articles — handcrafted pooja bells, thali sets, kalash vessels, diyas, hawankunds, and panchpatra sets.'
+    },
     incense: {
       id: 'incense',
       title: 'Incense & Dhoop',
@@ -687,7 +698,7 @@ export function App() {
           wishlistCount={wishlistIds.length}
           onGoHome={handleGoHome}
           onOpenCategories={() => {
-            handleSelectCategory('brass');
+            handleSelectCategory('metalware');
           }}
           onOpenSearch={() => setSearchOpen(true)}
           onOpenWishlist={() => setWishlistOpen(true)}

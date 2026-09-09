@@ -5,10 +5,7 @@ import {
   Sparkles,
   Gem,
   Heart,
-  Zap,
   Shield,
-  Sun,
-  Flame,
   Moon,
   Compass,
   Leaf,
@@ -21,69 +18,114 @@ import {
   Filter,
   Check,
   RotateCcw,
-  Lock,
-  Star
+  Eye,
+  TrendingUp,
+  Coins,
+  GraduationCap
 } from 'lucide-react';
 
-// The 39 purposes extracted from the user's reference image
+// The 8 Core Purposes matching GemsMantra reference image
 export const PURPOSES = [
-  { id: 'abundance', name: 'Abundance', category: 'wealth', icon: Sun, color: '#D4AF37', description: 'Attracts prosperity, financial growth, and infinite divine blessings.' },
-  { id: 'anger', name: 'Anger', category: 'peace', icon: Flame, color: '#E05A47', description: 'Cools volatile emotions, releases frustration, and instills deep emotional balance.' },
-  { id: 'anxiety', name: 'Anxiety', category: 'peace', icon: Moon, color: '#5B76C7', description: 'Soothes restless minds, relieves panic, and radiates tranquil inner harmony.' },
-  { id: 'calm', name: 'Calm', category: 'peace', icon: Leaf, color: '#3B9A82', description: 'Encourages serene mental clarity and peaceful relaxation.' },
-  { id: 'concentration', name: 'Concentration', category: 'growth', icon: Compass, color: '#2B8BB8', description: 'Sharpens attention span, clears brain fog, and aids dedicated focus.' },
-  { id: 'communication-skills', name: 'Communication Skills', category: 'growth', icon: Zap, color: '#3B82F6', description: 'Unblocks Throat Chakra for confident, articulate, and truthful expression.' },
-  { id: 'confidence', name: 'Confidence', category: 'growth', icon: Shield, color: '#D97706', description: 'Builds self-worth, overcomes self-doubt, and awakens inner radiance.' },
-  { id: 'courage', name: 'Courage', category: 'growth', icon: Flame, color: '#DC2626', description: 'Instills warrior-like bravery to conquer fears and difficult decisions.' },
-  { id: 'creativity', name: 'Creativity', category: 'growth', icon: Sparkles, color: '#9333EA', description: 'Inspires artistic expression, innovative ideas, and passionate drive.' },
-  { id: 'depression', name: 'Depression', category: 'peace', icon: Sun, color: '#EAB308', description: 'Disperses heavy dark energies and fills the aura with uplifting golden light.' },
-  { id: 'education', name: 'Education', category: 'growth', icon: Compass, color: '#0284C7', description: 'Enhances memory retention, academic success, and love for knowledge.' },
-  { id: 'focus', name: 'Focus', category: 'growth', icon: Compass, color: '#059669', description: 'Keeps thoughts aligned toward goals without distraction.' },
-  { id: 'fortune', name: 'Fortune', category: 'wealth', icon: Gem, color: '#B45309', description: 'Opens doors to sudden luck, windfall opportunities, and auspicious timing.' },
-  { id: 'good-luck', name: 'Good Luck', category: 'wealth', icon: Sparkles, color: '#16A34A', description: 'Magnifies positive synchronicities and favorable outcomes.' },
-  { id: 'growth', name: 'Growth', category: 'growth', icon: Leaf, color: '#15803D', description: 'Encourages continuous personal, spiritual, and professional evolution.' },
-  { id: 'happiness', name: 'Happiness', category: 'peace', icon: Sun, color: '#F59E0B', description: 'Evokes genuine joy, laughter, and lighthearted emotional wellbeing.' },
-  { id: 'healing', name: 'Healing', category: 'health', icon: Heart, color: '#10B981', description: 'Restores energetic alignment, vital health, and cellular rejuvenation.' },
-  { id: 'health', name: 'Health', category: 'health', icon: Heart, color: '#059669', description: 'Promotes physical stamina, immunity, and overall body vitality.' },
-  { id: 'joy', name: 'Joy', category: 'peace', icon: Sun, color: '#F59E0B', description: 'Awakens bliss, optimism, and appreciation for life’s moments.' },
-  { id: 'love', name: 'Love', category: 'peace', icon: Heart, color: '#E11D48', description: 'Attracts soulful relationships, self-compassion, and heart chakra harmony.' },
-  { id: 'luck', name: 'Luck', category: 'wealth', icon: Gem, color: '#D97706', description: 'Turns the tide of fortune in your favor.' },
-  { id: 'meditation', name: 'Meditation', category: 'peace', icon: Moon, color: '#7C3AED', description: 'Deepens spiritual awareness, Third Eye insight, and silent stillness.' },
-  { id: 'money', name: 'Money', category: 'wealth', icon: Gem, color: '#047857', description: 'Magnifies cash flow, business revenue, and financial stability.' },
-  { id: 'motivation', name: 'Motivation', category: 'growth', icon: Zap, color: '#EA580C', description: 'Ignites drive, overcomes laziness, and fuels goal achievement.' },
-  { id: 'negativity', name: 'Negativity', category: 'protection', icon: Shield, color: '#44403C', description: 'Absorbs and transmutes harmful environmental or evil-eye vibrations.' },
-  { id: 'opportunity', name: 'Opportunity', category: 'wealth', icon: Sun, color: '#CA8A04', description: 'Attracts new career doors, partnerships, and prosperous deals.' },
-  { id: 'peace', name: 'Peace', category: 'peace', icon: Moon, color: '#0284C7', description: 'Fosters deep tranquility and harmony in home and spirit.' },
-  { id: 'positivity', name: 'Positivity', category: 'peace', icon: Sun, color: '#EAB308', description: 'Clears pessimistic aura and replaces it with optimistic light.' },
-  { id: 'power', name: 'Power', category: 'growth', icon: Zap, color: '#B45309', description: 'Strengthens personal authority, leadership, and energetic aura.' },
-  { id: 'pregnancy', name: 'Pregnancy', category: 'health', icon: Heart, color: '#DB2777', description: 'Provides nurturing feminine energy, motherly peace, and protective warmth.' },
-  { id: 'progress', name: 'Progress', category: 'growth', icon: Compass, color: '#0D9488', description: 'Breaks through stagnant barriers to propel continuous advancement.' },
-  { id: 'prosperity', name: 'Prosperity', category: 'wealth', icon: Gem, color: '#D97706', description: 'Ensures long-term wealth, comfort, and luxury living.' },
-  { id: 'protection', name: 'Protection', category: 'protection', icon: Shield, color: '#27272A', description: 'Forms a formidable psychic shield against negative forces and jealousy.' },
-  { id: 'stability', name: 'Stability', category: 'protection', icon: Shield, color: '#78350F', description: 'Grounds Root Chakra energy for emotional and financial security.' },
-  { id: 'strength', name: 'Strength', category: 'growth', icon: Shield, color: '#991B1B', description: 'Provides physical endurance and mental fortitude during tough times.' },
-  { id: 'success', name: 'Success', category: 'wealth', icon: Gem, color: '#CA8A04', description: 'Ensures victory in endeavors, exams, ventures, and career goals.' },
-  { id: 'wealth', name: 'Wealth', category: 'wealth', icon: Gem, color: '#B45309', description: 'Builds permanent riches, asset accumulation, and luxury abundance.' },
-  { id: 'will-power', name: 'Will Power', category: 'growth', icon: Flame, color: '#C2410C', description: 'Empowers disciplined habits, determination, and unshakeable focus.' },
-  { id: 'wisdom', name: 'Wisdom', category: 'growth', icon: Moon, color: '#4F46E5', description: 'Expands spiritual intuition, wise decision-making, and ancient knowledge.' },
+  {
+    id: 'wealth-prosperity',
+    name: 'Wealth & Prosperity',
+    subtext: 'Dhan & samriddhi',
+    category: 'wealth',
+    icon: Coins,
+    color: '#D4AF37',
+    description: 'Attracts financial abundance, business prosperity, cash flow, and permanent dhan & samriddhi.',
+    keywords: ['money', 'wealth', 'prosperity', 'abundance', 'fortune', 'luck', 'opportunity', 'dhan', 'samriddhi']
+  },
+  {
+    id: 'career-success',
+    name: 'Career & Success',
+    subtext: 'Naukri, business & growth',
+    category: 'growth',
+    icon: TrendingUp,
+    color: '#2563EB',
+    description: 'Promotes career promotions, job growth, business victories, and professional success.',
+    keywords: ['career', 'success', 'growth', 'progress', 'power', 'motivation', 'courage', 'confidence', 'naukri', 'business']
+  },
+  {
+    id: 'love-marriage',
+    name: 'Love & Marriage',
+    subtext: 'Prem & vivah',
+    category: 'peace',
+    icon: Heart,
+    color: '#E11D48',
+    description: 'Fosters romantic harmony, attracts soulful life partners, heals relationships, and awakens prem & vivah yoga.',
+    keywords: ['love', 'marriage', 'happiness', 'joy', 'pregnancy', 'harmony', 'relationship', 'prem', 'vivah']
+  },
+  {
+    id: 'protection',
+    name: 'Protection',
+    subtext: 'Suraksha kavach',
+    category: 'protection',
+    icon: Shield,
+    color: '#475569',
+    description: 'Creates a formidable spiritual suraksha kavach guarding against unseen harms, fear, and obstacles.',
+    keywords: ['protection', 'stability', 'strength', 'courage', 'will power', 'suraksha', 'kavach']
+  },
+  {
+    id: 'health-healing',
+    name: 'Health & Healing',
+    subtext: 'Aarogya & shakti',
+    category: 'health',
+    icon: Leaf,
+    color: '#10B981',
+    description: 'Restores vital physical stamina, emotional vitality, cellular healing, and aarogya shakti.',
+    keywords: ['health', 'healing', 'pregnancy', 'vitality', 'strength', 'positivity', 'aarogya', 'shakti']
+  },
+  {
+    id: 'peace-of-mind',
+    name: 'Peace of Mind',
+    subtext: 'Shanti & santulan',
+    category: 'peace',
+    icon: Moon,
+    color: '#6366F1',
+    description: 'Soothes anger, quiets racing thoughts, relieves anxiety, and restores deep shanti & santulan.',
+    keywords: ['peace', 'anger', 'anxiety', 'calm', 'depression', 'meditation', 'positivity', 'shanti', 'santulan']
+  },
+  {
+    id: 'education-focus',
+    name: 'Education & Focus',
+    subtext: 'Vidya & ekagrata',
+    category: 'growth',
+    icon: GraduationCap,
+    color: '#0284C7',
+    description: 'Enhances memory retention, academic concentration, exam success, and vidya & ekagrata.',
+    keywords: ['education', 'focus', 'concentration', 'wisdom', 'communication skills', 'creativity', 'vidya', 'ekagrata']
+  },
+  {
+    id: 'negativity-removal',
+    name: 'Negativity Removal',
+    subtext: 'Nazar & vastu dosh',
+    category: 'protection',
+    icon: Eye,
+    color: '#78350F',
+    description: 'Disperses evil eye (nazar), clears home Vastu dosh, and purifies stagnant environmental vibrations.',
+    keywords: ['negativity', 'nazar', 'vastu', 'protection', 'shield', 'cleansing', 'dosh']
+  }
 ];
 
 export const EnergyStonesPage = ({ onBackToHome }) => {
   const [selectedPurposes, setSelectedPurposes] = useState([]);
   const [purposeSearchQuery, setPurposeSearchQuery] = useState('');
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
   const [emailNotify, setEmailNotify] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
-  // Filter 39 purposes list in the sidebar search box
+  // Filter 8 purposes list in sidebar search box
   const filteredSidebarPurposes = useMemo(() => {
+    if (!purposeSearchQuery.trim()) return PURPOSES;
+    const q = purposeSearchQuery.toLowerCase();
     return PURPOSES.filter((p) => {
-      const matchesSearch = p.name.toLowerCase().includes(purposeSearchQuery.toLowerCase());
-      const matchesCat = activeCategoryFilter === 'all' || p.category === activeCategoryFilter;
-      return matchesSearch && matchesCat;
+      const matchesName = p.name.toLowerCase().includes(q);
+      const matchesSubtext = p.subtext.toLowerCase().includes(q);
+      const matchesKeywords = p.keywords.some(k => k.includes(q));
+      return matchesName || matchesSubtext || matchesKeywords;
     });
-  }, [purposeSearchQuery, activeCategoryFilter]);
+  }, [purposeSearchQuery]);
 
   // Toggle purpose selection in sidebar
   const handleTogglePurpose = (purposeName) => {
@@ -97,7 +139,6 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
   const handleResetFilters = () => {
     setSelectedPurposes([]);
     setPurposeSearchQuery('');
-    setActiveCategoryFilter('all');
   };
 
   const handleNotifySubmit = async (e) => {
@@ -107,7 +148,7 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
       try {
         await subscribeToLaunch({
           email: cleanEmail,
-          purpose: activePurposeObj ? activePurposeObj.name : selectedPurposes.join(', ') || 'General'
+          purpose: selectedPurposes.length > 0 ? selectedPurposes.join(', ') : 'General Energy Stones'
         });
       } catch (err) {
         console.warn('Backend subscription logged:', err.message);
@@ -246,71 +287,60 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
                 <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#9B7E52]" />
                 <input
                   type="text"
-                  placeholder="Search purpose (Anger, Money...)"
+                  placeholder="Search purpose (Dhan, Health, Nazar...)"
                   value={purposeSearchQuery}
                   onChange={(e) => setPurposeSearchQuery(e.target.value)}
-                  className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-[#FBF9F5] border border-[#EAE0CD] text-xs text-[#2C2623] placeholder-[#A08E76] focus:outline-none focus:border-[#B8860B]"
+                  className="w-full pl-8 pr-3 py-2 rounded-lg bg-[#FBF9F5] border border-[#EAE0CD] text-xs text-[#2C2623] placeholder-[#A08E76] focus:outline-none focus:border-[#B8860B]"
                 />
               </div>
 
-              {/* Category Quick Tabs */}
-              <div className="flex flex-wrap gap-1.5">
-                {[
-                  { id: 'all', label: 'All (39)' },
-                  { id: 'wealth', label: 'Wealth' },
-                  { id: 'health', label: 'Health' },
-                  { id: 'peace', label: 'Peace' },
-                  { id: 'growth', label: 'Growth' },
-                  { id: 'protection', label: 'Shield' },
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveCategoryFilter(tab.id)}
-                    className={`px-2.5 py-1 rounded-md text-[10px] font-cinzel font-bold tracking-wider transition-colors ${
-                      activeCategoryFilter === tab.id
-                        ? 'bg-[#2C1F06] text-[#E5C378]'
-                        : 'bg-[#F7F2E8] text-[#6B5840] hover:bg-[#EFE7D6]'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* 39 Purpose Checkbox List */}
-              <div className="space-y-1 max-h-[420px] overflow-y-auto pr-1 scrollbar-thin">
+              {/* 8 Main Purpose Checkbox List matching GemsMantra reference */}
+              <div className="space-y-2.5">
                 {filteredSidebarPurposes.map((item) => {
                   const isChecked = selectedPurposes.includes(item.name);
                   const IconComp = item.icon;
 
                   return (
-                    <label
+                    <div
                       key={item.id}
                       onClick={() => handleTogglePurpose(item.name)}
-                      className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs cursor-pointer transition-all ${
+                      className={`group flex items-start gap-3 p-3 rounded-xl cursor-pointer transition-all border ${
                         isChecked
-                          ? 'bg-[#F5EEDC] text-[#2C1F06] font-bold border border-[#DAB97B]/60 shadow-sm'
-                          : 'hover:bg-[#FDFBF7] text-[#5C4B38]'
+                          ? 'bg-[#F5EEDC] border-[#DAB97B] shadow-sm'
+                          : 'bg-[#FDFBF7] border-[#EAE0CD] hover:border-[#C5A059] hover:bg-white'
                       }`}
                     >
-                      <div className="flex items-center gap-2.5">
-                        <div
-                          className={`w-4 h-4 rounded flex items-center justify-center border transition-colors ${
-                            isChecked ? 'bg-[#2C1F06] border-[#2C1F06] text-[#E5C378]' : 'border-[#D1C2A5] bg-white'
-                          }`}
-                        >
-                          {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
-                        </div>
-                        <span className="font-cinzel">{item.name}</span>
+                      {/* Checkbox */}
+                      <div
+                        className={`w-4 h-4 mt-0.5 rounded flex items-center justify-center border transition-colors flex-shrink-0 ${
+                          isChecked ? 'bg-[#2C1F06] border-[#2C1F06] text-[#E5C378]' : 'border-[#D1C2A5] bg-white'
+                        }`}
+                      >
+                        {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                       </div>
 
-                      <div className="flex items-center gap-1">
-                        <IconComp className="w-3 h-3 opacity-60" style={{ color: item.color }} />
+                      {/* Purpose Name + Subtext */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-1">
+                          <h4 className="font-cinzel font-bold text-xs text-[#2C2623] group-hover:text-[#8C6D2D] transition-colors leading-tight truncate">
+                            {item.name}
+                          </h4>
+                          <IconComp className="w-4 h-4 flex-shrink-0" style={{ color: item.color }} />
+                        </div>
+                        <p className="text-[11px] text-[#8C7A65] font-light mt-0.5 capitalize">
+                          {item.subtext}
+                        </p>
                       </div>
-                    </label>
+                    </div>
                   );
                 })}
               </div>
+
+              {filteredSidebarPurposes.length === 0 && (
+                <p className="text-center text-xs text-[#7A6750] py-4">
+                  No purpose matches "{purposeSearchQuery}".
+                </p>
+              )}
 
             </div>
           </aside>
@@ -389,7 +419,9 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
 
                 {/* Description */}
                 <p className="text-xs sm:text-base text-[#D9C49E] font-light leading-relaxed">
-                  {activePurposeObj ? activePurposeObj.description : (
+                  {activePurposeObj ? (
+                    <>{activePurposeObj.description} <br/><span className="text-[#E5C378] font-semibold mt-1 inline-block">({activePurposeObj.subtext})</span></>
+                  ) : (
                     "We are hand-selecting 100% authentic gemstones, crystal bracelets, orgone pyramids, and sacred Japa malas purified with Ganga Jal and consecrated with Vedic mantras for your selected purpose."
                   )}
                 </p>
@@ -428,42 +460,55 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
               </div>
             </div>
 
-            {/* Purpose Highlights Grid (Overview of benefits) */}
+            {/* Visual Purpose Grid Cards (Overview of the 8 purposes matching screenshot) */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#EAE0CD] shadow-sm">
-              <h3 className="text-base sm:text-lg font-cinzel font-bold text-[#2C2623] mb-6 text-center">
-                Why Shraviko Energy Stones & Accessories?
-              </h3>
+              <div className="mb-6 text-center">
+                <span className="text-[10px] font-cinzel font-bold tracking-[0.2em] text-[#9B7E52] uppercase">
+                  Intentional Gemstone Pairings
+                </span>
+                <h3 className="text-xl sm:text-2xl font-cinzel font-bold text-[#2C2623] mt-1">
+                  Browse Purposes
+                </h3>
+              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-                <div className="p-4 rounded-2xl bg-[#FDFAF5] border border-[#EAE0CD]">
-                  <div className="w-10 h-10 mx-auto rounded-full bg-[#F5EEDC] text-[#B8860B] flex items-center justify-center mb-3">
-                    <Gem className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-cinzel font-bold text-xs text-[#2C2623] mb-1">100% Certified Natural</h4>
-                  <p className="text-[11px] text-[#7A6750] font-light">
-                    Unheated, untreated Grade-A natural gemstones sourced directly from sacred origin mines.
-                  </p>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {PURPOSES.map((item) => {
+                  const IconComp = item.icon;
+                  const isChecked = selectedPurposes.includes(item.name);
 
-                <div className="p-4 rounded-2xl bg-[#FDFAF5] border border-[#EAE0CD]">
-                  <div className="w-10 h-10 mx-auto rounded-full bg-[#F5EEDC] text-[#B8860B] flex items-center justify-center mb-3">
-                    <Sparkles className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-cinzel font-bold text-xs text-[#2C2623] mb-1">Vedic Consecration</h4>
-                  <p className="text-[11px] text-[#7A6750] font-light">
-                    Purified with holy Ganga Jal and infused with intention-specific Vedic mantras prior to dispatch.
-                  </p>
-                </div>
+                  return (
+                    <div
+                      key={item.id}
+                      onClick={() => handleTogglePurpose(item.name)}
+                      className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between magnetic-hover ${
+                        isChecked
+                          ? 'bg-[#F5EEDC] border-[#B8860B] shadow-md'
+                          : 'bg-[#FDFBF7] border-[#EAE0CD] hover:border-[#C5A059] hover:bg-white'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-3">
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-[#E5D7BE] shadow-sm"
+                          style={{ color: item.color }}
+                        >
+                          <IconComp className="w-5 h-5" />
+                        </div>
+                        <span className="text-[9px] font-cinzel font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#F5EEDC] text-[#7A5A1B]">
+                          Soon
+                        </span>
+                      </div>
 
-                <div className="p-4 rounded-2xl bg-[#FDFAF5] border border-[#EAE0CD]">
-                  <div className="w-10 h-10 mx-auto rounded-full bg-[#F5EEDC] text-[#B8860B] flex items-center justify-center mb-3">
-                    <Shield className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-cinzel font-bold text-xs text-[#2C2623] mb-1">Intention Aligned</h4>
-                  <p className="text-[11px] text-[#7A6750] font-light">
-                    Tailored for specific life goals — Wealth, Peace, Anxiety Relief, Health & Spiritual Growth.
-                  </p>
-                </div>
+                      <div>
+                        <h4 className="font-cinzel font-bold text-xs sm:text-sm text-[#2C2623]">
+                          {item.name}
+                        </h4>
+                        <p className="text-[11px] text-[#8C7A65] font-light mt-0.5">
+                          {item.subtext}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 

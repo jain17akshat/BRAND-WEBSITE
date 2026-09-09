@@ -1,10 +1,11 @@
 export const CATEGORIES = [
   { id: 'all', name: 'All Collections' },
+  { id: 'metalware', name: 'Metalware', count: 21 },
   { id: 'brass', name: 'Brass Articles', count: 17 },
   { id: 'copper', name: 'Copper Articles', count: 4 },
-  { id: 'mandir-essentials', name: 'Mandir Essentials', count: 13 },
+  { id: 'mandir-essentials', name: 'Mandir Essentials', count: 14 },
   { id: 'energy-stones', name: 'Energy Stones', count: 39, isComingSoon: true },
-  { id: 'incense', name: 'Incense & Dhoop', count: 5 },
+  { id: 'incense', name: 'Incense & Dhoop', count: 5, isComingSoon: true },
   { id: 'vastu', name: 'Vastu & Spiritual', count: 9 },
   { id: 'yantras', name: 'Custom & Handcrafted', count: 3 }
 ];
@@ -284,25 +285,23 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Puja Thali',
-    price: 2190,
-    originalPrice: 2790,
+    price: 499,
+    originalPrice: 799,
     rating: 4.99,
     reviewsCount: 195,
     tag: 'Engraved Floral',
     artType: 'thali',
     fitMode: 'contain',
-    image: '/assets/Brass thali/thali 1.jpg',
+    image: '/assets/Brass thali/thali 2.jpg',
     images: [
-      '/assets/Brass thali/thali 1.jpg',
       '/assets/Brass thali/thali 2.jpg',
+      '/assets/Brass thali/thali 1.jpg',
       '/assets/Brass thali/Brass thali.jpg',
       '/assets/Brass thali/thali 3.jpg',
       '/assets/Brass thali/thali 4.jpg'
     ],
     weightVariants: [
-      { weight: '8 Inch Thali', price: 1490, originalPrice: 1890 },
-      { weight: '10 Inch Thali', price: 2190, originalPrice: 2790, default: true },
-      { weight: '12 Inch Royal Thali', price: 3290, originalPrice: 3990 }
+      { weight: '6 Inch (80 g)', price: 499, originalPrice: 799, default: true }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -404,9 +403,7 @@ export const PRODUCTS = [
       '/assets/Brass aarti/aarti 4.jpg'
     ],
     weightVariants: [
-      { weight: 'Single Wick', price: 990, originalPrice: 1290 },
-      { weight: '5-Wick Panchmukhi', price: 1690, originalPrice: 2190, default: true },
-      { weight: '7-Wick Royal Aarti', price: 2490, originalPrice: 3190 }
+      { weight: 'L 14 cm × B 12 cm × H 6 Inch (150 g)', price: 1690, originalPrice: 2190, default: true }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -414,6 +411,8 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Panchmukhi Aarti Diya' },
       { label: 'Material', value: 'Pure Brass / Solid Brass' },
+      { label: 'Dimensions', value: '14 cm (L) × 12 cm (B) × Height 6 Inch' },
+      { label: 'Weight', value: '150 g' },
       { label: 'Design', value: 'Panchmukhi (5-Wick)' },
       { label: 'Wick Holders', value: '5 Dedicated Holders' },
       { label: 'Handle', value: 'Sturdy Integrated Handle' },
@@ -456,8 +455,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
-    price: 1890,
-    originalPrice: 2490,
+    price: 450,
+    originalPrice: 799,
     rating: 4.99,
     reviewsCount: 178,
     tag: 'Akhand Jyot',
@@ -471,9 +470,7 @@ export const PRODUCTS = [
       '/assets/akhand jyot/akhand jyot  size.png'
     ],
     weightVariants: [
-      { weight: 'Small (Standard)', price: 1290, originalPrice: 1690 },
-      { weight: 'Medium (Akhand)', price: 1890, originalPrice: 2490, default: true },
-      { weight: 'Large (Royal)', price: 2690, originalPrice: 3290 }
+      { weight: 'L 13 cm × B 24 cm × H 13 cm (120 g)', price: 450, originalPrice: 799, default: true }
     ],
     purity: 'Premium Brass Construction with Om Finial',
     inStock: true,
@@ -481,6 +478,8 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Brass Akhand Jyot Diya with Protective Cover' },
       { label: 'Material', value: 'Premium Solid Brass' },
+      { label: 'Dimensions', value: '13 cm (L) × 24 cm (B) × 13 cm (H)' },
+      { label: 'Weight', value: '120 g' },
       { label: 'Design Element', value: 'Elegant Om Finial & Detailed Cutwork' },
       { label: 'Flame Cover', value: 'Protective Decorative Cover Around Flame' },
       { label: 'Base', value: 'Stable Heavy Brass Base' },
@@ -520,8 +519,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
-    price: 1490,
-    originalPrice: 1990,
+    price: 450,
+    originalPrice: 799,
     rating: 4.96,
     reviewsCount: 122,
     tag: 'Akhand Deepak',
@@ -534,9 +533,7 @@ export const PRODUCTS = [
       '/assets/Cup jyot/cup 3.png'
     ],
     weightVariants: [
-      { weight: 'Small Deepak', price: 990, originalPrice: 1290 },
-      { weight: 'Medium Deepak', price: 1490, originalPrice: 1990, default: true },
-      { weight: 'Large Royal Deepak', price: 2190, originalPrice: 2790 }
+      { weight: 'L 13 cm × B 24 cm × H 13 cm (120 g)', price: 450, originalPrice: 799, default: true }
     ],
     purity: '100% Solid Brass with Traditional Polished Finish',
     inStock: true,
@@ -547,6 +544,8 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Brass Akhand Jyot Deepak' },
       { label: 'Material', value: '100% Solid Brass' },
+      { label: 'Dimensions', value: '13 cm (L) × 24 cm (B) × 13 cm (H)' },
+      { label: 'Weight', value: '120 g' },
       { label: 'Design', value: 'Traditional Deepak Form with Dedicated Wick Holder' },
       { label: 'Finish', value: 'Polished Traditional Brass' },
       { label: 'Base', value: 'Stable Heavy Brass Base' },
@@ -676,9 +675,7 @@ export const PRODUCTS = [
       '/assets/Trishul with damru/trishul with damru3.png'
     ],
     weightVariants: [
-      { weight: '6 Inch Classic', price: 1490, originalPrice: 1890 },
-      { weight: '9 Inch with Damru', price: 2890, originalPrice: 3590, default: true },
-      { weight: '12 Inch Ornate Royal', price: 4290, originalPrice: 5190 }
+      { weight: 'L 20 cm × B 6 cm × H 20 cm (90 g)', price: 2890, originalPrice: 3590, default: true }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -686,6 +683,8 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Brass Trishul with Damru & Stand' },
       { label: 'Material', value: '100% Pure Solid Brass' },
+      { label: 'Dimensions', value: '20 cm (L) × 6 cm (B) × 20 cm (H)' },
+      { label: 'Weight', value: '90 g' },
       { label: 'Symbolism', value: 'Lord Shiva Sacred Trishul Trident & Damru' },
       { label: 'Structure', value: 'Integrated Stable Brass Display Stand' },
       { label: 'Suitable For', value: 'Home Mandir, Pooja Ghar, Meditation Space, Office Desk & Car Dashboard' },
@@ -868,9 +867,7 @@ export const PRODUCTS = [
       '/assets/singhasan/singhasan 3.png'
     ],
     weightVariants: [
-      { weight: 'Small (4 Inch Idol Base)', price: 1890, originalPrice: 2390 },
-      { weight: 'Medium (6 Inch Idol Base)', price: 2890, originalPrice: 3690, default: true },
-      { weight: 'Royal Large (8 Inch Base)', price: 4290, originalPrice: 5190 }
+      { weight: 'L 18 cm × B 13 cm × H 23 cm (280 g)', price: 2890, originalPrice: 3690, default: true }
     ],
     purity: '100% Solid Brass with Polished Finish',
     inStock: true,
@@ -882,6 +879,8 @@ export const PRODUCTS = [
       { label: 'Brand', value: 'Shraviko' },
       { label: 'Product Type', value: 'God Singhasan / Pooja Chowki' },
       { label: 'Material', value: '100% Solid Brass' },
+      { label: 'Dimensions', value: '18 cm (L) × 13 cm (B) × 23 cm (H)' },
+      { label: 'Weight', value: '280 g' },
       { label: 'Finish', value: 'Polished Brass / Gold Tone' },
       { label: 'Shape', value: 'Rectangle Platform' },
       { label: 'Suitable For', value: 'Laddu Gopal, Krishna, Laxmi & Ganesh Idols' },
@@ -922,8 +921,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Idols',
-    price: 1890,
-    originalPrice: 2490,
+    price: 1800,
+    originalPrice: 2599,
     rating: 4.99,
     reviewsCount: 192,
     tag: 'Laddu Gopal Idol',
@@ -938,13 +937,7 @@ export const PRODUCTS = [
       '/assets/ladoo gopal/ladoo5.png'
     ],
     weightVariants: [
-      { weight: 'Size 0 (6 cm)', price: 690, originalPrice: 890 },
-      { weight: 'Size 1 (7 cm)', price: 990, originalPrice: 1290 },
-      { weight: 'Size 2 (8 cm)', price: 1490, originalPrice: 1890, default: true },
-      { weight: 'Size 3 (10 cm)', price: 1890, originalPrice: 2490 },
-      { weight: 'Size 4 (12 cm)', price: 2590, originalPrice: 3290 },
-      { weight: 'Size 5 (14 cm)', price: 3490, originalPrice: 4290 },
-      { weight: 'Size 6 (18 cm)', price: 4890, originalPrice: 5990 }
+      { weight: 'L 13 cm × B 13 cm × H 10 cm (800 g)', price: 1800, originalPrice: 2599, default: true }
     ],
     purity: '100% Solid Brass with Traditional Finish',
     inStock: true,
@@ -956,10 +949,11 @@ export const PRODUCTS = [
       { label: 'Material', value: '100% Solid Brass' },
       { label: 'Deity', value: 'Laddu Gopal / Bal Gopal / Krishna Ji' },
       { label: 'Product Type', value: 'Devotional Idol' },
+      { label: 'Dimensions', value: '13 cm (L) × 13 cm (B) × 10 cm (H)' },
+      { label: 'Weight', value: '800 g' },
       { label: 'Colour / Tone', value: 'Golden / Brass Tone' },
       { label: 'Finish', value: 'Traditional Polished' },
       { label: 'Pack Quantity', value: '1 Piece' },
-      { label: 'Available Sizes', value: '6 cm, 7 cm, 8 cm, 10 cm, 12 cm, 14 cm, 18 cm' },
       { label: 'Suitable For', value: 'Home Mandir, Pooja Room & Temple' },
       { label: 'Country of Origin', value: 'India' },
       { label: 'What\'s Included', value: '1 × Shraviko Brass Laddu Gopal Idol' }
@@ -1009,10 +1003,7 @@ export const PRODUCTS = [
       '/assets/brass kalash/kalash4.png'
     ],
     weightVariants: [
-      { weight: 'Small (300 ml)', price: 890, originalPrice: 1190 },
-      { weight: 'Medium (500 ml)', price: 1390, originalPrice: 1790, default: true },
-      { weight: 'Large (1 Liter)', price: 1990, originalPrice: 2490 },
-      { weight: 'Royal Heavy (1.5 Liter)', price: 2690, originalPrice: 3290 }
+      { weight: 'Size 4 Inch (100 g)', price: 1390, originalPrice: 1790, default: true }
     ],
     purity: '100% Solid Brass with Polished Finish',
     inStock: true,
@@ -1023,6 +1014,8 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Material', value: '100% Solid Brass' },
       { label: 'Product Type', value: 'Pooja Kalash Lota' },
+      { label: 'Size', value: '4 Inch' },
+      { label: 'Weight', value: '100 g' },
       { label: 'Colour / Tone', value: 'Brass / Golden' },
       { label: 'Shape', value: 'Round' },
       { label: 'Usage', value: 'Pooja, Abhishek & Religious Rituals' },
@@ -1060,8 +1053,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Puja Thali',
-    price: 2290,
-    originalPrice: 2890,
+    price: 550,
+    originalPrice: 899,
     rating: 4.99,
     reviewsCount: 152,
     tag: 'Peacock Thali',
@@ -1075,10 +1068,7 @@ export const PRODUCTS = [
       '/assets/brassdesign thali/design4.png'
     ],
     weightVariants: [
-      { weight: '6 Inch Peacock Thali', price: 1190, originalPrice: 1490 },
-      { weight: '8 Inch Peacock Thali', price: 1690, originalPrice: 2190 },
-      { weight: '10 Inch Peacock Thali', price: 2290, originalPrice: 2890, default: true },
-      { weight: '12 Inch Royal Peacock Thali', price: 3290, originalPrice: 3990 }
+      { weight: '19 × 19 × 19 cm (10 g)', price: 550, originalPrice: 899, default: true }
     ],
     purity: '100% Solid Brass with Traditional Polish',
     inStock: true,
@@ -1090,13 +1080,14 @@ export const PRODUCTS = [
       { label: 'Brand', value: 'Shraviko' },
       { label: 'Product Name', value: 'Brass Peacock Pooja Thali' },
       { label: 'Material', value: '100% Solid Brass' },
+      { label: 'Dimensions', value: '19 cm (L) × 19 cm (B) × 19 cm (H)' },
+      { label: 'Weight', value: '10 g' },
       { label: 'Design Motif', value: 'Traditional Peacock Detailing' },
       { label: 'Shape', value: 'Round' },
       { label: 'Finish', value: 'Traditional Brass Finish' },
       { label: 'Colour / Tone', value: 'Brass / Golden' },
       { label: 'Usage', value: 'Pooja, Aarti, Bhog, Tilak & Prasad' },
       { label: 'Suitable For', value: 'Home Temple, Pooja Room & Mandir' },
-      { label: 'Available Sizes', value: '6 Inch, 8 Inch, 10 Inch, 12 Inch' },
       { label: 'Country of Origin', value: 'India' },
       { label: 'What\'s Included', value: '1 × Shraviko Brass Peacock Pooja Thali' }
     ],
@@ -1131,8 +1122,8 @@ export const PRODUCTS = [
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Vessels',
-    price: 1290,
-    originalPrice: 1690,
+    price: 300,
+    originalPrice: 499,
     rating: 4.99,
     reviewsCount: 184,
     tag: 'Panchpatra Set',
@@ -1147,9 +1138,7 @@ export const PRODUCTS = [
       '/assets/pancpatra set/patra 4.png'
     ],
     weightVariants: [
-      { weight: 'Standard Set (70g / 150 ml)', price: 890, originalPrice: 1190 },
-      { weight: 'Medium Set (250 ml)', price: 1290, originalPrice: 1690, default: true },
-      { weight: 'Royal Heavy Set (400 ml)', price: 1890, originalPrice: 2390 }
+      { weight: 'L 10 cm × B 10 cm × H 10 cm (20 g)', price: 300, originalPrice: 499, default: true }
     ],
     purity: '100% Pure Copper with Hammered Finish',
     inStock: true,
@@ -1161,11 +1150,12 @@ export const PRODUCTS = [
       { label: 'Brand', value: 'Shraviko' },
       { label: 'Product Name', value: 'Pure Copper Panchpatra Udharini Set' },
       { label: 'Material', value: '100% Pure Copper' },
+      { label: 'Dimensions', value: '10 cm (L) × 10 cm (B) × 10 cm (H)' },
+      { label: 'Weight', value: '20 g' },
       { label: 'Set Includes', value: '1 × Copper Panchpatra + 1 × Snake Head Udharini Spoon' },
       { label: 'Spoon Motif', value: 'Traditional Snake Head Design' },
       { label: 'Finish', value: 'Hammered & Polished Finish' },
       { label: 'Usage', value: 'Daily Pooja, Gangajal, Charanamrit & Panchamrit' },
-      { label: 'Dimensions', value: 'Height 6.4 cm × Diameter 6.6 cm (Approx. 70g)' },
       { label: 'Suitable For', value: 'Home Temple, Mandir & Pooja Room' },
       { label: 'Country of Origin', value: 'India' },
       { label: 'What\'s Included', value: '1 × Copper Panchpatra, 1 × Copper Snake Head Udharini Spoon' }
@@ -1201,8 +1191,8 @@ export const PRODUCTS = [
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Puja Thali',
-    price: 1790,
-    originalPrice: 2290,
+    price: 1200,
+    originalPrice: 1700,
     rating: 4.98,
     reviewsCount: 164,
     tag: 'Pure Copper Thali',
@@ -1218,9 +1208,7 @@ export const PRODUCTS = [
       '/assets/Copper thali/copper thali  5.png'
     ],
     weightVariants: [
-      { weight: '6 Inch Copper Thali', price: 1190, originalPrice: 1490 },
-      { weight: '8 Inch Copper Thali', price: 1790, originalPrice: 2290, default: true },
-      { weight: '10 Inch Royal Copper Thali', price: 2490, originalPrice: 3190 }
+      { weight: '11 Inch (360 g)', price: 1200, originalPrice: 1700, default: true }
     ],
     purity: '100% Pure Copper with Traditional Finish',
     inStock: true,
@@ -1232,9 +1220,10 @@ export const PRODUCTS = [
       { label: 'Brand', value: 'Shraviko' },
       { label: 'Product Name', value: 'Pure Copper Pooja Thali' },
       { label: 'Material', value: '100% Pure Copper' },
+      { label: 'Size', value: '11 Inch' },
+      { label: 'Weight', value: '360 g' },
       { label: 'Product Type', value: 'Pooja Thali / Aarti Plate' },
       { label: 'Shape', value: 'Round' },
-      { label: 'Available Sizes', value: '6 Inch, 8 Inch, 10 Inch' },
       { label: 'Finish', value: 'Traditional / Polished' },
       { label: 'Usage', value: 'Daily Pooja, Aarti & Religious Ceremonies' },
       { label: 'Suitable For', value: 'Home Temple, Mandir & Pooja Room' },
@@ -1272,8 +1261,8 @@ export const PRODUCTS = [
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Sacred Homa Vessels',
-    price: 2490,
-    originalPrice: 3190,
+    price: 2200,
+    originalPrice: 2999,
     rating: 4.99,
     reviewsCount: 172,
     tag: 'Copper Hawan Kund',
@@ -1287,11 +1276,7 @@ export const PRODUCTS = [
       '/assets/hawankund/kund 4.png'
     ],
     weightVariants: [
-      { weight: '4 Inch (Compact)', price: 990, originalPrice: 1290 },
-      { weight: '5.5 Inch (Home Use)', price: 1590, originalPrice: 1990 },
-      { weight: '7 Inch (Family Havan)', price: 2490, originalPrice: 3190, default: true },
-      { weight: '8.5 Inch (Large Ritual)', price: 3490, originalPrice: 4290 },
-      { weight: '13 Inch (Temple Ceremony)', price: 5490, originalPrice: 6890 }
+      { weight: 'L 25 cm × B 25 cm × H 10 cm (540 g)', price: 2200, originalPrice: 2999, default: true }
     ],
     purity: '100% Solid Pure Copper',
     inStock: true,
@@ -1303,10 +1288,11 @@ export const PRODUCTS = [
       { label: 'Brand', value: 'Shraviko' },
       { label: 'Product Name', value: 'Pure Copper Hawan Kund' },
       { label: 'Material', value: '100% Pure Copper' },
+      { label: 'Dimensions', value: '25 cm (L) × 25 cm (B) × 10 cm (H)' },
+      { label: 'Weight', value: '540 g' },
       { label: 'Shape', value: 'Square Pyramidal' },
       { label: 'Handles', value: 'Dual Side Ring Handles' },
       { label: 'Finish', value: 'Traditional / Polished' },
-      { label: 'Available Sizes', value: '4 Inch, 5.5 Inch, 7 Inch, 8.5 Inch, 13 Inch' },
       { label: 'Usage', value: 'Havan, Yagya, Homam, Agnihotra & Religious Rituals' },
       { label: 'Suitable For', value: 'Home, Temple & Religious Ceremonies' },
       { label: 'Country of Origin', value: 'India' },
@@ -1553,8 +1539,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Wooden Chowki',
-    price: 1890,
-    originalPrice: 2490,
+    price: 499,
+    originalPrice: 999,
     rating: 4.98,
     reviewsCount: 124,
     tag: 'Pooja Chowki',
@@ -1563,13 +1549,12 @@ export const PRODUCTS = [
     image: '/assets/Wooden Choki/chowki1.png',
     images: [
       '/assets/Wooden Choki/chowki1.png',
-      '/assets/Wooden Choki/chowki4.jpg',
       '/assets/Wooden Choki/chowki 2.png',
-      '/assets/Wooden Choki/chowki5.jpg',
+      '/assets/Wooden Choki/chowki333.png',
       '/assets/Wooden Choki/chowki6.png'
     ],
     weightVariants: [
-      { weight: '12 x 8 Inch Hand-Painted', price: 1890, originalPrice: 2490, default: true }
+      { weight: 'L 38 cm × B 12 cm × H 5 cm (350 g)', price: 499, originalPrice: 999, default: true }
     ],
     purity: 'Handcrafted Wood with Traditional Painting',
     inStock: true,
@@ -1580,11 +1565,11 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product Type', value: 'Wooden Pooja Chowki' },
       { label: 'Material', value: 'Wood' },
+      { label: 'Dimensions', value: '38 cm (L) × 12 cm (B) × 5 cm (H)' },
+      { label: 'Weight', value: '350 g' },
       { label: 'Finish', value: 'Hand Painted' },
       { label: 'Colour', value: 'Multicolor' },
       { label: 'Shape', value: 'Rectangle' },
-      { label: 'Size', value: '12 × 8 Inch' },
-      { label: 'Weight', value: 'Approx. 350 g' },
       { label: 'Mounting', value: 'Tabletop' },
       { label: 'Handmade', value: 'Yes' },
       { label: 'Country of Origin', value: 'India' },
@@ -1610,6 +1595,69 @@ export const PRODUCTS = [
     ]
   },
 
+  // 21B. Large Hand-Painted Wooden Chowki (15x15 Inch)
+  {
+    id: 'wooden-chowki-large-15x15',
+    name: 'Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Wooden Chowki',
+    price: 1350,
+    originalPrice: 1899,
+    rating: 4.99,
+    reviewsCount: 156,
+    tag: '15×15" Large Bajot',
+    artType: 'chowki',
+    fitMode: 'contain',
+    image: '/assets/WoodenChowki Large/chowki4.jpg',
+    images: [
+      '/assets/WoodenChowki Large/chowki4.jpg',
+      '/assets/WoodenChowki Large/chowki5.jpg',
+      '/assets/WoodenChowki Large/chowki444.png',
+      '/assets/WoodenChowki Large/sizechowki.png',
+      '/assets/WoodenChowki Large/chowki6.png'
+    ],
+    weightVariants: [
+      { weight: '15 × 15 Inch Large (2 kg)', price: 1350, originalPrice: 1899, default: true }
+    ],
+    purity: 'Seasoned Solid Wood with Hand-Painted Art & 2 kg Heavy Weight',
+    inStock: true,
+    description: 'The Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch) is a premium, heavy-duty traditional platform designed for home temples, mandir altars, god idol seating, and grand festive ceremonies. Crafted from seasoned solid wood and weighing 2 kg, this large square Bajot features vibrant traditional Indian hand-painted artwork with intricate floral circular mandala motifs and golden foil accent borders. With generous dimensions of 15 inches length, 15 inches width, and 5 inches height, it provides an elevated and stable surface for seating larger deity idols, Kalash sthapana, brass pooja thalis, diwali mandap setups, and religious ceremonies.',
+    shortDescription: 'Grand 15×15 inch handcrafted Wooden Pooja Chowki weighing 2 kg with intricate hand-painted floral artwork and 5-inch sturdy legs. Designed for home temples, god idols, Kalash sthapana, and festive worship.',
+    seoTitle: 'Large Hand-Painted Wooden Pooja Chowki 15x15 Inch (2 kg Heavy Bajot) | Shraviko',
+    metaDescription: 'Shop Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch, 5 Inch Height, 2 kg weight). Handcrafted wooden bajot for home mandir, deity idols, and pooja thalis.',
+    specifications: [
+      { label: 'Product Type', value: 'Large Wooden Pooja Chowki / Bajot' },
+      { label: 'Material', value: 'Seasoned Solid Wood' },
+      { label: 'Finish', value: 'Traditional Hand-Painted Floral Art with Gold Accents' },
+      { label: 'Dimensions', value: '15 Inch (L) × 15 Inch (W) × 5 Inch (H)' },
+      { label: 'Weight', value: '2.0 kg (Heavy Solid Wood)' },
+      { label: 'Shape', value: 'Square' },
+      { label: 'Height / Elevation', value: '5 Inches' },
+      { label: 'Country of Origin', value: 'India' },
+      { label: 'What\'s Included', value: '1 × Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)' }
+    ],
+    keyFeatures: [
+      'Generous 15×15 Inch Square Surface – Provides ample room for large god idols, thalis, Kalash sthapana, and pooja arrangements.',
+      '2 kg Heavy-Duty Solid Wood – Robust 2 kg weight structure ensuring complete stability and longevity.',
+      '5 Inch Elevated Legs – Sturdy 4-leg support raising sacred items 5 inches above floor level.',
+      'Intricate Hand-Painted Art – Vibrant traditional floral mandala artwork and decorated side legs.',
+      'Ideal for Daily & Festive Worship – Perfect for Diwali, Navratri, Janmashtami, Ganesh Chaturthi, and Griha Pravesh.',
+      'Made in India – Authentic traditional Indian devotional woodwork.'
+    ],
+    careInstructions: [
+      'Wipe gently with a soft, dry cloth.',
+      'Keep away from direct water, prolonged moisture, and direct flame.',
+      'Store in a clean, dry area to protect the hand-painted finish.'
+    ],
+    faqs: [
+      { q: 'What are the exact dimensions and weight of this Large Chowki?', a: 'It measures 15 inches in length, 15 inches in width, 5 inches in height, and weighs 2 kg.' },
+      { q: 'What items can be placed on this 15×15 inch chowki?', a: 'It is ideal for large deity idols (Laddu Gopal, Ganesh, Laxmi), Kalash sthapana, heavy brass pooja thalis, and festive mandap setups.' },
+      { q: 'How do I clean and maintain the hand-painted surface?', a: 'Wipe gently with a soft dry cloth. Avoid water wash or abrasive scrubbers to preserve the painted artwork and gold foil.' },
+      { q: 'Is it suitable for housewarmings and gifting?', a: 'Yes, it makes an exquisite luxury devotional gift for Griha Pravesh, Diwali, weddings, and festivals.' }
+    ]
+  },
+
   // 22. Brass Dhoopdani
   {
     id: 'brass-dhoopdani-burner',
@@ -1617,8 +1665,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Puja Accessories',
-    price: 1290,
-    originalPrice: 1690,
+    price: 499,
+    originalPrice: 999,
     rating: 4.96,
     reviewsCount: 185,
     tag: 'Dhoop Dani',
@@ -1632,7 +1680,7 @@ export const PRODUCTS = [
       '/assets/dhoop dani/dhoop dani 5.jpg'
     ],
     weightVariants: [
-      { weight: 'Standard Gold (370 g - 25x11x16 cm)', price: 1290, originalPrice: 1690, default: true }
+      { weight: 'L 25 cm × B 12 cm × H 16 cm (300 g)', price: 499, originalPrice: 999, default: true }
     ],
     purity: 'Polished Metal with Gold Finish',
     inStock: true,
@@ -1643,12 +1691,12 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product Type', value: 'Metal Dhoop Dani' },
       { label: 'Material', value: 'Metal' },
+      { label: 'Dimensions', value: '25 cm (L) × 12 cm (B) × 16 cm (H)' },
+      { label: 'Weight', value: '300 g' },
       { label: 'Colour', value: 'Gold' },
       { label: 'Finish', value: 'Polished' },
       { label: 'Shape', value: 'Round' },
       { label: 'Handle', value: 'Yes (Insulated Grip)' },
-      { label: 'Weight', value: 'Approx. 370 g' },
-      { label: 'Dimensions', value: '25 × 11 × 16 cm' },
       { label: 'Reusable', value: 'Yes' },
       { label: 'Country of Origin', value: 'India' },
       { label: 'What\'s Included', value: '1 × Metal Dhoop Dani' }
@@ -1674,68 +1722,7 @@ export const PRODUCTS = [
     ]
   },
 
-  // 23. Brass Chawar Whisk
-  {
-    id: 'essentials-brass-chawar-whisk',
-    name: 'Premium Temple Chawar Sahib',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Mandir Essentials',
-    price: 1490,
-    originalPrice: 1890,
-    rating: 4.99,
-    reviewsCount: 168,
-    tag: 'Sacred Chawar',
-    artType: 'chawar',
-    fitMode: 'contain',
-    image: '/assets/chawar/Chawar.jpg',
-    images: [
-      '/assets/chawar/Chawar.jpg',
-      '/assets/chawar/chawar 1.jpg',
-      '/assets/chawar/chawar 2.jpg',
-      '/assets/chawar/chawar 3.jpg',
-      '/assets/chawar/chawr 4.png'
-    ],
-    weightVariants: [
-      { weight: 'Small (12 Inch)', price: 990, originalPrice: 1290 },
-      { weight: 'Medium (18 Inch)', price: 1490, originalPrice: 1890, default: true },
-      { weight: 'Royal Large (24 Inch)', price: 2190, originalPrice: 2690 }
-    ],
-    purity: 'Metal Handle & Soft Synthetic Hair',
-    inStock: true,
-    description: 'The Shraviko Temple Chawar Sahib is a traditional ceremonial accessory designed for devotional and religious settings. It features soft white synthetic fibers paired with a durable metal handle, offering a comfortable grip and an elegant appearance during ceremonial use. Also known as Chaur Sahib, Chawar, Chavar, Chanwara or Temple Fly Whisk, it can be used as part of traditional worship and seva in Mandirs, Gurudwaras, home temples and devotional spaces. Its classic design makes it suitable for Laddu Gopal seva, Krishna worship, pooja ceremonies, festivals and religious occasions.',
-    shortDescription: 'Bring a traditional ceremonial touch to your pooja space with this Premium Temple Chawar Sahib, featuring soft white synthetic fibers and a sturdy metal handle. Suitable for Mandir, Gurudwara, home temple and devotional ceremonies.',
-    seoTitle: 'Premium Temple Chawar Sahib | Chaur Sahib for Mandir & Gurudwara | Shraviko',
-    metaDescription: 'Shop Shraviko Premium Temple Chawar Sahib with soft white synthetic fibers and durable metal handle. Ideal for Mandir, Gurudwara, Laddu Gopal seva and home temple worship.',
-    specifications: [
-      { label: 'Product Type', value: 'Temple Chawar Sahib' },
-      { label: 'Material', value: 'Soft Synthetic Hair / Fibers' },
-      { label: 'Hair Colour', value: 'White' },
-      { label: 'Handle Material', value: 'Durable Metal' },
-      { label: 'Available Sizes', value: 'Small / Medium / Large' },
-      { label: 'Usage', value: 'Mandir, Gurudwara & Home Pooja' },
-      { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Temple Chawar Sahib' }
-    ],
-    keyFeatures: [
-      'Soft White Synthetic Fibers – Premium silky-soft white fibers crafted for gentle and respectful deity Seva.',
-      'Durable Metal Handle – Sturdy metal handle with an ergonomic comfortable grip for ceremonial use.',
-      'Multi-Faith Ceremonial Use – Suitable for Mandirs, Gurudwaras, home temples, and sacred devotional spaces.',
-      'Laddu Gopal & Krishna Seva – Ideal for Laddu Gopal seva, Krishna worship, Aarti, and religious festivals.',
-      'Available in Multiple Sizes – Choose from Small, Medium, and Large variants to fit your mandir setup.',
-      'Made in India – Traditional Indian devotional craftsmanship.'
-    ],
-    careInstructions: [
-      'Store the Chawar Sahib in a clean, dry place when not in use.',
-      'Gently remove dust from the fibers and avoid excessive moisture or harsh cleaning agents to maintain the appearance and softness of the fibers.'
-    ],
-    faqs: [
-      { q: 'What is this Chawar Sahib used for?', a: 'It is a traditional ceremonial fly whisk used in Mandirs, Gurudwaras, and home temples for deity Seva (such as Laddu Gopal & Krishna worship) and Aarti.' },
-      { q: 'What materials are used in this Chawar Sahib?', a: 'It features premium soft white synthetic hair fibers attached to a durable metal handle.' },
-      { q: 'What sizes are available?', a: 'Available in Small, Medium, and Large size options.' },
-      { q: 'How do I clean and store the Chawar Sahib?', a: 'Gently brush dust from the fibers, avoid moisture or harsh detergents, and store in a clean, dry location.' }
-    ]
-  },
+
 
   // 24. Jap Bag Gaumukhi
   {
@@ -1811,25 +1798,22 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Mala Counters',
-    price: 390,
-    originalPrice: 590,
+    price: 349,
+    originalPrice: 799,
     rating: 4.98,
     reviewsCount: 182,
     tag: 'Digital Counter',
     artType: 'counter',
     fitMode: 'contain',
-    image: '/assets/mala counter/malacover.png',
+    image: '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.png',
     images: [
-      '/assets/mala counter/malacover.png',
-      '/assets/mala counter/mala counter 1.jpg',
-      '/assets/mala counter/mala counter 2.jpg',
-      '/assets/mala counter/mala counter 3.jpg',
-      '/assets/mala counter/mala counter 4.png'
+      '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.png',
+      '/assets/mala counter/72e9e401-501c-4c66-af99-33c2e75f835b.png',
+      '/assets/mala counter/6723a7bc-a812-4ce3-92b7-134c3b0490e6.png',
+      '/assets/mala counter/a2759320-ade5-4ca3-96b4-304fd2022217.png'
     ],
     weightVariants: [
-      { weight: 'Single Pack (1 Pc)', price: 390, originalPrice: 590, default: true },
-      { weight: 'Pack of 2 Counters', price: 690, originalPrice: 990 },
-      { weight: 'Pack of 5 Counters', price: 1490, originalPrice: 1990 }
+      { weight: 'L 10 cm × B 10 cm × H 10 cm (25 g)', price: 349, originalPrice: 799, default: true }
     ],
     purity: 'Digital LCD Finger Tally Counter',
     inStock: true,
@@ -1839,11 +1823,12 @@ export const PRODUCTS = [
     metaDescription: 'Shop Shraviko Digital Japa Counter for Mantra Jaap, Naam Jaap, Mala counting, meditation and prayer. Compact finger tally counter with LCD display.',
     specifications: [
       { label: 'Product Type', value: 'Digital Japa Counter' },
+      { label: 'Dimensions', value: '10 cm (L) × 10 cm (B) × 10 cm (H)' },
+      { label: 'Weight', value: '25 g' },
       { label: 'Display', value: 'Clear Digital LCD' },
       { label: 'Operation', value: 'Finger Click Button' },
       { label: 'Design', value: 'Ergonomic Finger Counter / Tally Ring' },
       { label: 'Power Source', value: 'Button Cell Battery Included' },
-      { label: 'Weight', value: 'Approx. 20–30 g' },
       { label: 'Country of Origin', value: 'India' },
       { label: 'What\'s Included', value: '1 × Digital Japa Counter' }
     ],
@@ -1875,8 +1860,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Storage & Chests',
-    price: 990,
-    originalPrice: 1290,
+    price: 450,
+    originalPrice: 799,
     rating: 4.99,
     reviewsCount: 196,
     tag: '7-in-1 Pooja Box',
@@ -1892,8 +1877,7 @@ export const PRODUCTS = [
       '/assets/Pooja box/pooja box 4.png'
     ],
     weightVariants: [
-      { weight: 'Standard 7-in-1 Set (11x4 cm)', price: 990, originalPrice: 1290, default: true },
-      { weight: 'Pack of 2 Sets', price: 1790, originalPrice: 2390 }
+      { weight: 'L 15 cm × B 15 cm × H 2 cm (300 g)', price: 450, originalPrice: 799, default: true }
     ],
     purity: 'Premium Stainless Steel with 7 Removable Cups',
     inStock: true,
@@ -1904,11 +1888,11 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product Type', value: 'Stainless Steel Pooja Box' },
       { label: 'Material', value: 'Durable Stainless Steel' },
+      { label: 'Dimensions', value: '15 cm (L) × 15 cm (B) × 2 cm (H)' },
+      { label: 'Weight', value: '300 g' },
       { label: 'Colour', value: 'Polished Silver' },
       { label: 'Shape', value: 'Round' },
       { label: 'Number of Containers', value: '7 Removable Containers' },
-      { label: 'Approx. Diameter', value: '11 cm' },
-      { label: 'Approx. Height', value: '4 cm' },
       { label: 'Lid Type', value: 'Lift-Off Lid' },
       { label: 'Usage', value: 'Pooja, Mandir, Travel & Gifting' },
       { label: 'Country of Origin', value: 'India' },
@@ -2021,9 +2005,9 @@ export const PRODUCTS = [
       '/assets/Ganeshyantra/gNESH4.png'
     ],
     weightVariants: [
-      { weight: '3 × 3 Inches (Pure Copper)', price: 349, originalPrice: 990, default: true }
+      { weight: '3 × 3 Inches (20 g)', price: 349, originalPrice: 990, default: true }
     ],
-    purity: '100% Pure Copper Sheet',
+    purity: '100% Pure Copper Sheet (20 g)',
     inStock: true,
     description: 'Add a traditional touch to your devotional space with this Pure Copper Ganesh Yantra, featuring an intricately engraved design associated with Lord Ganesha. The yantra is crafted from copper and features traditional geometric patterns, sacred symbols and detailed engraving that reflect the traditional character of Indian devotional art. Its compact design makes it convenient to place in a home temple, pooja room, office, shop, study area or other devotional spaces. Lord Ganesha is traditionally revered in Hindu culture and associated with wisdom, auspicious beginnings and the removal of obstacles.',
     shortDescription: 'Bring a traditional devotional element to your space with this Shree Ganesh Yantra, crafted in copper with detailed traditional engraving. Ideal for pooja rooms, home temples, offices, shops and religious gifting.',
@@ -2035,6 +2019,7 @@ export const PRODUCTS = [
       { label: 'Material', value: 'Pure Copper' },
       { label: 'Shape', value: 'Square' },
       { label: 'Size', value: '3 × 3 Inches' },
+      { label: 'Weight', value: '20 g' },
       { label: 'Design', value: 'Shree Ganesh Yantra' },
       { label: 'Finish', value: 'Traditional Engraved' },
       { label: 'Colour', value: 'Copper' },
@@ -2088,14 +2073,14 @@ export const PRODUCTS = [
       '/assets/Kuber yantra/laxmi 4.jpg'
     ],
     weightVariants: [
-      { weight: '3 × 3 Inches (Pure Copper)', price: 349, originalPrice: 990, default: true }
+      { weight: '3 × 3 Inches (20 g)', price: 349, originalPrice: 990, default: true }
     ],
-    purity: '100% Pure Copper Sheet',
+    purity: '100% Pure Copper Sheet (20 g)',
     inStock: true,
-    description: 'Add a traditional touch to your devotional space with this Pure Copper Kuber Yantra, crafted with an engraved sacred design traditionally associated with Lord Kubera. Made from copper with a traditional polished finish, the yantra features detailed geometric patterns and inscriptions that give it an authentic devotional appearance. Its compact 5 × 5 cm square design makes it easy to place on a pooja altar, shelf, office desk, shop counter or other suitable devotional space. The Kuber Yantra is traditionally incorporated into pooja and devotional practices, particularly during occasions such as Diwali, Dhanteras, housewarming ceremonies and business inaugurations.',
-    shortDescription: 'Bring a traditional devotional element to your space with this Pure Copper Kuber Yantra, featuring an intricately engraved design associated with Lord Kubera. Its compact 5 × 5 cm size makes it convenient for home temples, pooja rooms, offices and shops.',
-    seoTitle: 'Pure Copper Kuber Yantra | 5 × 5 cm Kubera Yantram | Shraviko',
-    metaDescription: 'Shop Pure Copper Kuber Yantra with traditional engraved design. Compact 5 × 5 cm Kubera Yantram for home temple, pooja room, office, shop and religious gifting.',
+    description: 'Add a traditional touch to your devotional space with this Pure Copper Kuber Yantra, crafted with an engraved sacred design traditionally associated with Lord Kubera. Made from copper with a traditional polished finish, the yantra features detailed geometric patterns and inscriptions that give it an authentic devotional appearance. Its compact 3 × 3 inch square design makes it easy to place on a pooja altar, shelf, office desk, shop counter or other suitable devotional space. The Kuber Yantra is traditionally incorporated into pooja and devotional practices, particularly during occasions such as Diwali, Dhanteras, housewarming ceremonies and business inaugurations.',
+    shortDescription: 'Bring a traditional devotional element to your space with this Pure Copper Kuber Yantra, featuring an intricately engraved design associated with Lord Kubera. Its compact 3 × 3 inch size makes it convenient for home temples, pooja rooms, offices and shops.',
+    seoTitle: 'Pure Copper Kuber Yantra | 3 × 3 Inch Kubera Yantram | Shraviko',
+    metaDescription: 'Shop Pure Copper Kuber Yantra with traditional engraved design. Compact 3 × 3 inch (20 g) Kubera Yantram for home temple, pooja room, office, shop and religious gifting.',
     specifications: [
       { label: 'Product Name', value: 'Kuber Yantra' },
       { label: 'Product Type', value: 'Copper Yantra' },
@@ -2103,6 +2088,7 @@ export const PRODUCTS = [
       { label: 'Design', value: 'Kuber Yantra' },
       { label: 'Shape', value: 'Square' },
       { label: 'Size', value: '3 × 3 Inches' },
+      { label: 'Weight', value: '20 g' },
       { label: 'Finish', value: 'Polished / Engraved' },
       { label: 'Colour', value: 'Copper' },
       { label: 'Quantity', value: '1 Piece' },
@@ -2157,14 +2143,14 @@ export const PRODUCTS = [
       '/assets/luxmiyantra/laxmi5.png'
     ],
     weightVariants: [
-      { weight: '3 × 3 Inches (Pure Copper)', price: 349, originalPrice: 990, default: true }
+      { weight: '3 × 3 Inches (20 g)', price: 349, originalPrice: 990, default: true }
     ],
-    purity: '100% Pure Copper Sheet',
+    purity: '100% Pure Copper Sheet (20 g)',
     inStock: true,
-    description: 'Bring traditional craftsmanship and devotional design to your spiritual space with this Pure Copper Shree Lakshmi Kuber Yantra. Crafted from copper and finished with a detailed traditional engraving, this yantra features sacred geometric patterns associated with Goddess Lakshmi and Lord Kubera in Hindu devotional traditions. The compact 5 × 5 cm square design makes it convenient to place on a pooja altar, temple shelf, office desk, shop counter, locker or other suitable devotional space. It can be incorporated into daily pooja and traditional worship practices and is especially suitable for occasions such as Diwali, Dhanteras, housewarming ceremonies and business inaugurations.',
-    shortDescription: 'Add a traditional devotional element to your space with this Pure Copper Lakshmi Kuber Yantra, featuring an engraved design associated with Goddess Lakshmi and Lord Kubera. Its compact 5 × 5 cm format is suitable for home temples, pooja rooms, offices, shops and devotional displays.',
-    seoTitle: 'Pure Copper Lakshmi Kuber Yantra | 5 × 5 cm | Shraviko',
-    metaDescription: 'Shop Pure Copper Lakshmi Kuber Yantra with traditional engraved design. Compact 5 × 5 cm yantra for home temple, pooja room, office, shop and religious gifting.',
+    description: 'Bring traditional craftsmanship and devotional design to your spiritual space with this Pure Copper Shree Lakshmi Kuber Yantra. Crafted from copper and finished with a detailed traditional engraving, this yantra features sacred geometric patterns associated with Goddess Lakshmi and Lord Kubera in Hindu devotional traditions. The compact 3 × 3 inch square design makes it convenient to place on a pooja altar, temple shelf, office desk, shop counter, locker or other suitable devotional space. It can be incorporated into daily pooja and traditional worship practices and is especially suitable for occasions such as Diwali, Dhanteras, housewarming ceremonies and business inaugurations.',
+    shortDescription: 'Add a traditional devotional element to your space with this Pure Copper Lakshmi Kuber Yantra, featuring an engraved design associated with Goddess Lakshmi and Lord Kubera. Its compact 3 × 3 inch format is suitable for home temples, pooja rooms, offices, shops and devotional displays.',
+    seoTitle: 'Pure Copper Lakshmi Kuber Yantra | 3 × 3 Inches | Shraviko',
+    metaDescription: 'Shop Pure Copper Lakshmi Kuber Yantra with traditional engraved design. Compact 3 × 3 inch (20 g) yantra for home temple, pooja room, office, shop and religious gifting.',
     specifications: [
       { label: 'Product Name', value: 'Lakshmi Kuber Yantra' },
       { label: 'Product Type', value: 'Copper Yantra' },
@@ -2172,6 +2158,7 @@ export const PRODUCTS = [
       { label: 'Design', value: 'Lakshmi Kuber' },
       { label: 'Shape', value: 'Square' },
       { label: 'Size', value: '3 × 3 Inches' },
+      { label: 'Weight', value: '20 g' },
       { label: 'Finish', value: 'Polished / Engraved' },
       { label: 'Colour', value: 'Copper' },
       { label: 'Quantity', value: '1 Piece' },
@@ -2225,20 +2212,21 @@ export const PRODUCTS = [
       '/assets/shani yantra/laxmi 4.jpg'
     ],
     weightVariants: [
-      { weight: '3 × 3 Inches (Pure Copper)', price: 349, originalPrice: 990, default: true }
+      { weight: '3 × 3 Inches (20 g)', price: 349, originalPrice: 990, default: true }
     ],
-    purity: '100% Pure Copper Sheet',
+    purity: '100% Pure Copper Sheet (20 g)',
     inStock: true,
     description: 'The Shree Shani Yantra is a traditional Vedic yantra dedicated to Lord Shani (Saturn), who is associated in Hindu traditions with discipline, responsibility, patience, justice and karma. Crafted from copper with a detailed traditional engraving, this yantra features the geometric design associated with Shani worship. Its compact 3 × 3 inch square format makes it convenient to place on a pooja altar, home temple, office desk, meditation area or other dedicated spiritual space. The yantra can be incorporated into daily pooja, prayer, meditation and devotional practices according to individual beliefs and traditions.',
     shortDescription: 'Bring a traditional devotional element to your pooja space with this Shree Shani Yantra, crafted from copper and featuring a traditional engraved design associated with Lord Shani. Its compact 3 × 3 inch size makes it suitable for home temples, pooja rooms, offices and meditation spaces.',
-    seoTitle: 'Shree Shani Yantra | Pure Copper 3 × 3 Inch Yantra | Shraviko',
-    metaDescription: 'Shop Shree Shani Yantra crafted from copper with traditional engraving. 3 × 3 inch devotional yantra for home temple, pooja room, office and spiritual spaces.',
+    seoTitle: 'Shree Shree Shani Yantra | Pure Copper 3 × 3 Inch (20 g) Yantra | Shraviko',
+    metaDescription: 'Shop Shree Shani Yantra crafted from copper with traditional engraving. 3 × 3 inch (20 g) devotional yantra for home temple, pooja room, office and spiritual spaces.',
     specifications: [
       { label: 'Product Name', value: 'Shree Shani Yantra' },
       { label: 'Product Type', value: 'Shani Yantra' },
       { label: 'Material', value: 'Pure Copper' },
       { label: 'Shape', value: 'Square' },
       { label: 'Size', value: '3 × 3 Inches' },
+      { label: 'Weight', value: '20 g' },
       { label: 'Design', value: 'Shani Yantra' },
       { label: 'Finish', value: 'Engraved / Natural Copper' },
       { label: 'Colour', value: 'Copper' },
@@ -2293,27 +2281,27 @@ export const PRODUCTS = [
       '/assets/Glassyantra/glass4.png'
     ],
     weightVariants: [
-      { weight: 'Standard 4 cm Cone (Boxed)', price: 1590, originalPrice: 1990, default: true },
-      { weight: 'Pack of 2 Cones (Gift Pack)', price: 2890, originalPrice: 3690 }
+      { weight: '5 × 4 × 5 cm (70 g Meru)', price: 1590, originalPrice: 1990, default: true }
     ],
-    purity: 'High-Clarity Sphatik Crystal Glass',
+    purity: 'High-Clarity Sphatik Crystal Glass (70 g)',
     inStock: true,
-    description: 'Bring a traditional devotional element to your pooja space with this Shree Yantra Cone, featuring a compact cone-shaped design inspired by the traditional Shree Yantra. The Shree Yantra is a revered geometric symbol in Hindu spiritual traditions and is commonly incorporated into pooja, prayer and meditation practices. Its compact form makes it convenient for placement in a home temple, pooja room, office, meditation area or devotional display. With an approximate 4 cm size, the cone occupies minimal space while adding a distinctive traditional element to your spiritual setup. It comes securely packed in a box, making it suitable for personal use as well as religious gifting.',
-    shortDescription: 'A compact and elegant Shree Yantra cone designed for devotional spaces, pooja rooms and meditation areas. Its traditional geometric design and approximately 4 cm size make it easy to place on a pooja altar, shelf or dedicated spiritual space.',
-    seoTitle: 'Sphatik Shree Yantra Cone | 4 cm Pooja & Meditation Yantra | Shraviko',
-    metaDescription: 'Shop a traditional Shree Yantra Cone for pooja, meditation and home temple décor. Compact 4 cm design with box packaging, ideal for devotional spaces and gifting.',
+    description: 'Bring a traditional devotional element to your pooja space with this Sphatik Shree Yantra Cone (Meru), featuring a compact design inspired by the traditional Shree Yantra Meru. The Shree Yantra is a revered geometric symbol in Hindu spiritual traditions and is commonly incorporated into pooja, prayer and meditation practices. Its compact 5 × 4 × 5 cm form makes it convenient for placement in a home temple, pooja room, office, meditation area or devotional display.',
+    shortDescription: 'A compact and elegant Sphatik Shree Yantra Meru (5 × 4 × 5 cm, 70 g) designed for devotional spaces, pooja rooms and meditation areas.',
+    seoTitle: 'Sphatik Shree Yantra Cone Meru | 5 × 4 × 5 cm (70 g) | Shraviko',
+    metaDescription: 'Shop a traditional Sphatik Shree Yantra Cone Meru for pooja, meditation and home temple décor. Compact 5 × 4 × 5 cm (70 g) design with box packaging.',
     specifications: [
-      { label: 'Product Name', value: 'Shree Yantra Cone' },
-      { label: 'Product Type', value: 'Cone-Shaped Yantra' },
+      { label: 'Product Name', value: 'Shree Yantra Cone Meru' },
+      { label: 'Product Type', value: 'Cone-Shaped Meru Yantra' },
       { label: 'Material', value: 'Sphatik / Crystal' },
       { label: 'Colour', value: 'Clear / Transparent' },
-      { label: 'Size', value: 'Approx. 4 cm' },
+      { label: 'Dimensions', value: '5 cm (L) × 4 cm (B) × 5 cm (H)' },
+      { label: 'Weight', value: '70 g' },
       { label: 'Quantity', value: '1 Piece' },
       { label: 'Packaging', value: 'Protective Box' },
       { label: 'Usage', value: 'Pooja, Prayer, Meditation & Devotional Display' },
       { label: 'Suitable For', value: 'Home Temple, Pooja Room, Office' },
       { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Shree Yantra Cone, 1 × Protective Box' }
+      { label: 'What\'s Included', value: '1 × Shree Yantra Cone Meru, 1 × Protective Box' }
     ],
     keyFeatures: [
       'Traditional Shree Yantra Design – Revered sacred geometric pyramid/cone symbol for pooja and meditation.',
@@ -2359,10 +2347,7 @@ export const PRODUCTS = [
       '/assets/pyramid/pyramid 3.png'
     ],
     weightVariants: [
-      { weight: 'Pack of 1', price: 399, originalPrice: 899, default: true },
-      { weight: 'Pack of 2', price: 750, originalPrice: 1699 },
-      { weight: 'Pack of 3', price: 1099, originalPrice: 2499 },
-      { weight: 'Pack of 4', price: 1399, originalPrice: 3299 }
+      { weight: 'L 10 cm × B 10 cm × H 8 cm (15 g)', price: 399, originalPrice: 899, default: true }
     ],
     purity: '100% Solid Heavy Virgin Brass',
     inStock: true,
@@ -2373,15 +2358,12 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product Type', value: 'Vastu Brass Pyramid' },
       { label: 'Material', value: '100% Solid Virgin Brass' },
+      { label: 'Dimensions', value: '10 cm (L) × 10 cm (B) × 8 cm (H)' },
+      { label: 'Weight', value: '15 g' },
       { label: 'Design Structure', value: '3-Layer Pyramid' },
       { label: 'Finish', value: 'Golden / Polished' },
-      { label: 'Width', value: '10.2 cm' },
-      { label: 'Depth', value: '2 cm' },
-      { label: 'Height', value: '5 cm' },
-      { label: 'Weight', value: '100 g' },
       { label: 'Country of Origin', value: 'Made in India' },
-      { label: 'Usage', value: 'Pooja, Mandir Decor, Office Desks & Meditation' },
-      { label: 'Available Packs', value: 'Pack of 1, 2, 3, and 4' }
+      { label: 'Usage', value: 'Pooja, Mandir Decor, Office Desks & Meditation' }
     ],
     keyFeatures: [
       'Pure Brass Construction – Crafted from solid high-grade brass with a refined golden polish.',
@@ -2410,8 +2392,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
-    price: 1490,
-    originalPrice: 1890,
+    price: 349,
+    originalPrice: 699,
     rating: 4.97,
     reviewsCount: 178,
     tag: 'Vastu Kurma',
@@ -2425,9 +2407,7 @@ export const PRODUCTS = [
       '/assets/glassturtle/turtle4.jpg'
     ],
     weightVariants: [
-      { weight: 'Small (3.5 Inch Glass Plate Set)', price: 990, originalPrice: 1290 },
-      { weight: 'Medium (5 Inch Crystal Glass Set)', price: 1490, originalPrice: 1890, default: true },
-      { weight: 'Royal Large (7 Inch Heavy Crystal Set)', price: 2390, originalPrice: 2990 }
+      { weight: 'L 35 cm × B 15 cm × H 15 cm (300 g)', price: 349, originalPrice: 699, default: true }
     ],
     purity: 'High-Transmission Beveled Optical Crystal Glass',
     inStock: true,
@@ -2438,6 +2418,8 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Crystal Turtle with Glass Plate' },
       { label: 'Material', value: 'High-Purity Optical Crystal Glass & Glass Plate' },
+      { label: 'Dimensions', value: '35 cm (L) × 15 cm (B) × 15 cm (H)' },
+      { label: 'Weight', value: '300 g' },
       { label: 'Color & Finish', value: 'Transparent / High-Clarity Polished' },
       { label: 'Design Motif', value: 'Sacred Kurma / Tortoise' },
       { label: 'Usage', value: 'Home Décor, Office Décor, Vastu & Traditional Display' },
@@ -2677,9 +2659,7 @@ export const PRODUCTS = [
       '/assets/ganeshji/brassganesh5.png'
     ],
     weightVariants: [
-      { weight: 'Compact (5.5 cm - 84 G)', price: 990, originalPrice: 1390 },
-      { weight: 'Medium (4.5 Inch - 400 G)', price: 2290, originalPrice: 2890, default: true },
-      { weight: 'Royal Large (6.5 Inch - 750 G)', price: 3690, originalPrice: 4590 }
+      { weight: 'L 8 cm × B 5 cm × H 7 cm (130 g)', price: 2290, originalPrice: 2890, default: true }
     ],
     purity: '100% Solid Heavy Golden Brass',
     inStock: true,
@@ -2690,9 +2670,9 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Lord Ganesha Idol' },
       { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Dimensions', value: '8 cm (L) × 5 cm (B) × 7 cm (H)' },
+      { label: 'Weight', value: '130 g' },
       { label: 'Finish', value: 'Polished Golden Brass' },
-      { label: 'Height', value: 'Approximately 5.5 cm' },
-      { label: 'Weight', value: 'Approximately 84 g' },
       { label: 'Usage', value: 'Pooja & Home Décor' },
       { label: 'Suitable For', value: 'Home, Office & Sacred Spaces' },
       { label: 'Country of Origin', value: 'Made in India' },
@@ -2740,9 +2720,7 @@ export const PRODUCTS = [
       '/assets/radhakrishna/krishna4.png'
     ],
     weightVariants: [
-      { weight: 'Compact (8.8 cm - 310 G)', price: 1790, originalPrice: 2290 },
-      { weight: 'Medium (5.5 Inch - 550 G)', price: 2890, originalPrice: 3690, default: true },
-      { weight: 'Royal Large (7.5 Inch - 950 G)', price: 4490, originalPrice: 5490 }
+      { weight: 'L 8 cm × B 5 cm × H 8 cm (130 g)', price: 2890, originalPrice: 3690, default: true }
     ],
     purity: '100% Solid Heavy Polished Brass',
     inStock: true,
@@ -2753,10 +2731,9 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Radha Krishna Idol' },
       { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Dimensions', value: '8 cm (L) × 5 cm (B) × 8 cm (H)' },
+      { label: 'Weight', value: '130 g' },
       { label: 'Finish', value: 'Polished Golden Brass' },
-      { label: 'Height', value: 'Approximately 8.8 cm' },
-      { label: 'Dimensions', value: 'Approximately 5.5 × 3.5 × 8.8 cm' },
-      { label: 'Weight', value: 'Approximately 310 g' },
       { label: 'Usage', value: 'Pooja & Home Décor' },
       { label: 'Suitable For', value: 'Home, Office & Sacred Spaces' },
       { label: 'Country of Origin', value: 'Made in India' },
@@ -2805,9 +2782,7 @@ export const PRODUCTS = [
       '/assets/glass shivling/shivling 5.jpg'
     ],
     weightVariants: [
-      { weight: 'Small (2.5 cm - Compact)', price: 370, originalPrice: 899 },
-      { weight: 'Medium (4.5 cm - Standard)', price: 370, originalPrice: 899, default: true },
-      { weight: 'Royal Large (6 cm - Master)', price: 790, originalPrice: 1490 }
+      { weight: 'L 6 cm × B 6 cm × H 6 cm (90 g)', price: 370, originalPrice: 899, default: true }
     ],
     purity: 'Natural Sphatik / Clear Quartz Crystal',
     inStock: true,
@@ -2818,9 +2793,10 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Sphatik Shivling' },
       { label: 'Material', value: 'Natural Sphatik / Clear Quartz' },
+      { label: 'Dimensions', value: '6 cm (L) × 6 cm (B) × 6 cm (H)' },
+      { label: 'Weight', value: '90 g' },
       { label: 'Finish', value: 'Smooth Polished' },
       { label: 'Color', value: 'Transparent' },
-      { label: 'Height', value: 'Approximately 2.5 cm' },
       { label: 'Design', value: 'Traditional Sacred Shivling' },
       { label: 'Country of Origin', value: 'Made in India' },
       { label: 'Usage', value: 'Pooja, Devotional Practices & Meditation' },
@@ -2849,12 +2825,12 @@ export const PRODUCTS = [
   // 42. Panchmukhi Himalayan Rudraksha Mala
   {
     id: 'mandir-rudraksh-mala',
-    name: '5 Mukhi Rudraksha Mala with Gomukhi Bag',
+    name: '5 Mukhi Rudraksh Mala',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 1290,
-    originalPrice: 1690,
+    price: 699,
+    originalPrice: 999,
     rating: 4.99,
     reviewsCount: 245,
     tag: 'Rudraksha Mala',
@@ -2868,8 +2844,7 @@ export const PRODUCTS = [
       '/assets/Rudraksh Mala/rudraksh mala 4.png'
     ],
     weightVariants: [
-      { weight: '7–8 mm (108+1 Beads with Gomukhi Bag)', price: 1290, originalPrice: 1690, default: true },
-      { weight: 'Pack of 2 Malas with Bags', price: 2390, originalPrice: 3190 }
+      { weight: 'Length 12 cm (20 g)', price: 699, originalPrice: 999, default: true }
     ],
     purity: 'Natural 5 Mukhi Rudraksha Beads with Gomukhi Bag',
     inStock: true,
@@ -2880,6 +2855,8 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product Type', value: 'Rudraksha Jaap Mala' },
       { label: 'Rudraksha Type', value: '5 Mukhi (Panchmukhi)' },
+      { label: 'Length', value: '12 cm' },
+      { label: 'Weight', value: '20 g' },
       { label: 'Bead Count', value: '108 + 1 Sumeru Guru Bead' },
       { label: 'Bead Size', value: '7–8 mm' },
       { label: 'Bead Material', value: 'Natural Rudraksha' },
@@ -2917,8 +2894,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 1490,
-    originalPrice: 1890,
+    price: 1699,
+    originalPrice: 1999,
     rating: 4.98,
     reviewsCount: 198,
     tag: 'Sphatik Mala',
@@ -2934,8 +2911,7 @@ export const PRODUCTS = [
       '/assets/Sphatik mala/sphatik 6.png'
     ],
     weightVariants: [
-      { weight: '7–8 mm Smooth Round (108+1)', price: 1490, originalPrice: 1890, default: true },
-      { weight: 'Pack of 2 Sphatik Malas', price: 2690, originalPrice: 3490 }
+      { weight: 'Length 34 cm (30 g)', price: 1699, originalPrice: 1999, default: true }
     ],
     purity: 'Natural Crystal Quartz (Sphatik) Beads',
     inStock: true,
@@ -2946,6 +2922,8 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product Type', value: 'Sphatik Jaap Mala' },
       { label: 'Material', value: 'Natural Crystal / Sphatik' },
+      { label: 'Length', value: '34 cm' },
+      { label: 'Weight', value: '30 g' },
       { label: 'Bead Count', value: '108 + 1 Sumeru' },
       { label: 'Bead Size', value: '7–8 mm' },
       { label: 'Colour', value: 'Transparent / Clear' },
@@ -2982,8 +2960,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 690,
-    originalPrice: 990,
+    price: 250,
+    originalPrice: 399,
     rating: 5.0,
     reviewsCount: 310,
     tag: 'Tulsi Mala',
@@ -2998,8 +2976,7 @@ export const PRODUCTS = [
       '/assets/Tulsi mala/tulsi 5.png'
     ],
     weightVariants: [
-      { weight: '108 Beads (7 mm Natural Wood)', price: 690, originalPrice: 990, default: true },
-      { weight: 'Pack of 2 Tulsi Malas', price: 1190, originalPrice: 1690 }
+      { weight: 'Length 40 cm (20 g)', price: 250, originalPrice: 399, default: true }
     ],
     purity: 'Natural Organic Tulsi Wood',
     inStock: true,
@@ -3010,6 +2987,8 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product Type', value: 'Tulsi Jaap Mala' },
       { label: 'Material', value: 'Natural Tulsi Wood' },
+      { label: 'Length', value: '40 cm' },
+      { label: 'Weight', value: '20 g' },
       { label: 'Number of Beads', value: '108 Beads' },
       { label: 'Bead Size', value: '7 mm' },
       { label: 'Bead Shape', value: 'Round' },
@@ -3048,8 +3027,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 890,
-    originalPrice: 1190,
+    price: 250,
+    originalPrice: 499,
     rating: 4.97,
     reviewsCount: 162,
     tag: 'Vaijanti Mala',
@@ -3063,8 +3042,7 @@ export const PRODUCTS = [
       '/assets/Vaijanti mala/vajainti 5.png'
     ],
     weightVariants: [
-      { weight: 'Standard 108+1 Seed Mala (with Rudraksha)', price: 890, originalPrice: 1190, default: true },
-      { weight: 'Pack of 2 Vaijanti Malas', price: 1590, originalPrice: 2190 }
+      { weight: 'Length 32 cm (30 g)', price: 250, originalPrice: 499, default: true }
     ],
     purity: 'Natural Vaijanti Seeds with Rudraksha Sumeru Bead',
     inStock: true,
@@ -3075,13 +3053,12 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product Type', value: 'Vaijanti Jaap Mala' },
       { label: 'Material', value: 'Natural Vaijanti Seeds' },
+      { label: 'Length', value: '32 cm' },
+      { label: 'Weight', value: '30 g' },
       { label: 'Sumeru Bead', value: 'Rudraksha' },
       { label: 'Bead Count', value: '108 + 1' },
       { label: 'Bead Shape', value: 'Natural / Oval' },
-      { label: 'Bead Size', value: '8–11 mm' },
       { label: 'Colour', value: 'Natural Off-White' },
-      { label: 'Length', value: 'Approx. 36 Inches' },
-      { label: 'Weight', value: 'Approx. 60 g' },
       { label: 'Suitable For', value: 'Men & Women' },
       { label: 'Country of Origin', value: 'India' },
       { label: 'What\'s Included', value: '1 × Original Vaijanti Mala with Rudraksha Sumeru' }
@@ -3115,8 +3092,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 1590,
-    originalPrice: 2190,
+    price: 250,
+    originalPrice: 499,
     rating: 4.99,
     reviewsCount: 215,
     tag: 'Karungali Mala',
@@ -3130,8 +3107,7 @@ export const PRODUCTS = [
       '/assets/Karungali mala/karungali 6.png'
     ],
     weightVariants: [
-      { weight: '8 mm (108 Beads - Natural Black Ebony)', price: 1590, originalPrice: 2190, default: true },
-      { weight: 'Pack of 2 Karungali Malas', price: 2890, originalPrice: 3890 }
+      { weight: 'Length 42 cm (26 g)', price: 250, originalPrice: 499, default: true }
     ],
     purity: 'Natural Karungali (Black Ebony Wood)',
     inStock: true,
@@ -3142,13 +3118,13 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product Type', value: 'Karungali Jaap Mala' },
       { label: 'Material', value: 'Natural Karungali / Black Ebony Wood' },
+      { label: 'Length', value: '42 cm' },
+      { label: 'Weight', value: '26 g' },
       { label: 'Number of Beads', value: '108 Beads' },
       { label: 'Bead Size', value: '8 mm' },
       { label: 'Bead Shape', value: 'Round' },
       { label: 'Finish', value: 'Natural / Unpolished' },
       { label: 'Colour', value: 'Natural Black' },
-      { label: 'Weight', value: 'Approx. 35 g' },
-      { label: 'Length', value: 'Approx. 38 cm' },
       { label: 'Suitable For', value: 'Men & Women' },
       { label: 'Country of Origin', value: 'India' },
       { label: 'What\'s Included', value: '1 × Original Natural Karungali Mala — 108 Beads' }
@@ -3184,8 +3160,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Devotional Instruments',
-    price: 790,
-    originalPrice: 1090,
+    price: 250,
+    originalPrice: 499,
     rating: 4.98,
     reviewsCount: 164,
     tag: 'Wooden Damru',
@@ -3200,8 +3176,7 @@ export const PRODUCTS = [
       '/assets/Damru/Wooden Damru.png'
     ],
     weightVariants: [
-      { weight: 'Standard 6 Inch Damru', price: 790, originalPrice: 1090, default: true },
-      { weight: 'Pack of 2 Wooden Damrus', price: 1490, originalPrice: 1990 }
+      { weight: 'Size 5 Inch (60 g)', price: 250, originalPrice: 499, default: true }
     ],
     purity: '100% Natural Wood & Leather',
     inStock: true,
@@ -3212,9 +3187,10 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Wooden Damru / Damaru' },
       { label: 'Material', value: 'Natural Wood & Leather Drum Heads' },
+      { label: 'Size', value: '5 Inch' },
+      { label: 'Weight', value: '60 g' },
       { label: 'Colour', value: 'Natural Brown' },
       { label: 'Finish', value: 'Natural Handcrafted Polish' },
-      { label: 'Size', value: 'Approximately 6 inches' },
       { label: 'Instrument Type', value: 'Handheld Traditional Percussion Instrument' },
       { label: 'Usage', value: 'Pooja, Bhajan, Kirtan, Mahashivratri & Cultural Activities' },
       { label: 'Country of Origin', value: 'Made in India' },
@@ -3237,6 +3213,70 @@ export const PRODUCTS = [
       { q: 'What is the size of the Damru?', a: 'It measures approximately 6 inches in height.' },
       { q: 'How does the Damru produce sound?', a: 'Rotating the handle back and forth causes the attached string beaters to strike the dual drum heads, producing rhythmic sound.' },
       { q: 'What occasions is the Wooden Damru suitable for?', a: 'It is ideal for Shiva Puja, Mahashivratri, Sawan, Rudrabhishek, Bhajan, Kirtan, and traditional home decor.' }
+    ]
+  },
+
+  // Coming Soon Item - Temple Chawar Sahib
+  {
+    id: 'essentials-brass-chawar-whisk',
+    name: 'Premium Temple Chawar Sahib',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Mandir Essentials',
+    price: 1490,
+    originalPrice: 1890,
+    rating: 4.99,
+    reviewsCount: 168,
+    tag: 'Coming Soon',
+    isComingSoon: true,
+    artType: 'chawar',
+    fitMode: 'contain',
+    image: '/assets/chawar/Chawar.jpg',
+    images: [
+      '/assets/chawar/Chawar.jpg',
+      '/assets/chawar/chawar 1.jpg',
+      '/assets/chawar/chawar 2.jpg',
+      '/assets/chawar/chawar 3.jpg',
+      '/assets/chawar/chawr 4.png'
+    ],
+    weightVariants: [
+      { weight: 'Small (12 Inch)', price: 990, originalPrice: 1290 },
+      { weight: 'Medium (18 Inch)', price: 1490, originalPrice: 1890, default: true },
+      { weight: 'Royal Large (24 Inch)', price: 2190, originalPrice: 2690 }
+    ],
+    purity: 'Metal Handle & Soft Synthetic Hair',
+    inStock: true,
+    description: 'The Shraviko Temple Chawar Sahib is a traditional ceremonial accessory designed for devotional and religious settings. It features soft white synthetic fibers paired with a durable metal handle, offering a comfortable grip and an elegant appearance during ceremonial use. Also known as Chaur Sahib, Chawar, Chavar, Chanwara or Temple Fly Whisk, it can be used as part of traditional worship and seva in Mandirs, Gurudwaras, home temples and devotional spaces. Its classic design makes it suitable for Laddu Gopal seva, Krishna worship, pooja ceremonies, festivals and religious occasions.',
+    shortDescription: 'Bring a traditional ceremonial touch to your pooja space with this Premium Temple Chawar Sahib, featuring soft white synthetic fibers and a sturdy metal handle. Suitable for Mandir, Gurudwara, home temple and devotional ceremonies.',
+    seoTitle: 'Premium Temple Chaur Sahib | Chaur Sahib for Mandir & Gurudwara | Shraviko',
+    metaDescription: 'Shop Shraviko Premium Temple Chawar Sahib with soft white synthetic fibers and durable metal handle. Ideal for Mandir, Gurudwara, Laddu Gopal seva and home temple worship.',
+    specifications: [
+      { label: 'Product Type', value: 'Temple Chawar Sahib' },
+      { label: 'Material', value: 'Soft Synthetic Hair / Fibers' },
+      { label: 'Hair Colour', value: 'White' },
+      { label: 'Handle Material', value: 'Durable Metal' },
+      { label: 'Available Sizes', value: 'Small / Medium / Large' },
+      { label: 'Usage', value: 'Mandir, Gurudwara & Home Pooja' },
+      { label: 'Country of Origin', value: 'India' },
+      { label: 'What\'s Included', value: '1 × Temple Chawar Sahib' }
+    ],
+    keyFeatures: [
+      'Soft White Synthetic Fibers – Premium silky-soft white fibers crafted for gentle and respectful deity Seva.',
+      'Durable Metal Handle – Sturdy metal handle with an ergonomic comfortable grip for ceremonial use.',
+      'Multi-Faith Ceremonial Use – Suitable for Mandirs, Gurudwaras, home temples, and sacred devotional spaces.',
+      'Laddu Gopal & Krishna Seva – Ideal for Laddu Gopal seva, Krishna worship, Aarti, and religious festivals.',
+      'Available in Multiple Sizes – Choose from Small, Medium, and Large variants to fit your mandir setup.',
+      'Made in India – Traditional Indian devotional craftsmanship.'
+    ],
+    careInstructions: [
+      'Store the Chawar Sahib in a clean, dry place when not in use.',
+      'Gently remove dust from the fibers and avoid excessive moisture or harsh cleaning agents to maintain the appearance and softness of the fibers.'
+    ],
+    faqs: [
+      { q: 'What is this Chawar Sahib used for?', a: 'It is a traditional ceremonial fly whisk used in Mandirs, Gurudwaras, and home temples for deity Seva (such as Laddu Gopal & Krishna worship) and Aarti.' },
+      { q: 'What materials are used in this Chawar Sahib?', a: 'It features premium soft white synthetic hair fibers attached to a durable metal handle.' },
+      { q: 'What sizes are available?', a: 'Available in Small, Medium, and Large size options.' },
+      { q: 'How do I clean and store the Chawar Sahib?', a: 'Gently brush dust from the fibers, avoid moisture or harsh detergents, and store in a clean, dry location.' }
     ]
   }
 ];

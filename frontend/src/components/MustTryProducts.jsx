@@ -89,8 +89,30 @@ const MustTryCard = ({
   onOpenQuickView,
   onToggleWishlist
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [loadedMap, setLoadedMap] = useState({});
   const [addedToast, setAddedToast] = useState(false);
+
+  const cardImages = React.useMemo(() => {
+    if (product.images && product.images.length > 0) return product.images;
+    return [product.image || '/assets/Incense cover.jpg'];
+  }, [product]);
+
+  React.useEffect(() => {
+    let timer;
+    if (isHovered && cardImages.length > 1) {
+      setActiveImageIndex(1);
+      if (cardImages.length > 2) {
+        timer = setInterval(() => {
+          setActiveImageIndex((prev) => (prev + 1) % cardImages.length);
+        }, 1400);
+      }
+    } else {
+      setActiveImageIndex(0);
+    }
+    return () => clearInterval(timer);
+  }, [isHovered, cardImages]);
 
   const handleQuickAdd = (e) => {
     e.stopPropagation();
@@ -107,29 +129,38 @@ const MustTryCard = ({
 
   return (
     <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       onClick={() => (onSelectProduct ? onSelectProduct(product) : onOpenQuickView && onOpenQuickView(product))}
       className="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#C5A059]/60 transition-all duration-300 group cursor-pointer flex flex-col justify-between"
     >
       {/* Product Image Area */}
       <div className="relative aspect-square overflow-hidden bg-[#F9F6F0]">
-        {!isLoaded && <div className="absolute inset-0 skeleton-shimmer z-0" />}
+        {!loadedMap[0] && <div className="absolute inset-0 skeleton-shimmer z-0" />}
 
-        <img
-          src={product.image || '/assets/Incense cover.jpg'}
-          alt={product.name}
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setIsLoaded(true)}
-          onError={(e) => {
-            if (e.target.src !== '/assets/Incense cover.jpg') {
-              e.target.src = '/assets/Incense cover.jpg';
-            }
-            setIsLoaded(true);
-          }}
-          className={`w-full h-full object-contain p-4 group-hover:scale-108 transition-all duration-500 relative z-10 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
+        {cardImages.map((imgSrc, idx) => {
+          const isCurrent = idx === activeImageIndex;
+          return (
+            <img
+              key={imgSrc + idx}
+              src={imgSrc}
+              alt={product.name}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setLoadedMap((prev) => ({ ...prev, [idx]: true }))}
+              onError={(e) => {
+                if (e.target.src !== '/assets/Incense cover.jpg') {
+                  e.target.src = '/assets/Incense cover.jpg';
+                }
+              }}
+              className={`w-full h-full object-contain p-4 transition-all duration-500 ${
+                idx === 0 ? 'relative' : 'absolute inset-0'
+              } ${
+                isCurrent ? 'opacity-100 scale-108 z-10' : 'opacity-0 scale-100 z-0 pointer-events-none'
+              }`}
+            />
+          );
+        })}
 
         {/* MUST TRY Badge */}
         <span className="absolute top-2.5 left-2.5 z-20 bg-[#2C1F06] text-[#E5C378] text-[9px] font-cinzel font-bold tracking-widest uppercase px-2.5 py-1 rounded-full border border-[#C5A059]/40 shadow-sm">

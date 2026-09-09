@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { ArrowLeft, Heart, ShoppingBag, Eye, ChevronDown, ChevronUp, SlidersHorizontal } from 'lucide-react';
 
 const CATEGORY_META = {
+  metalware:         { label: 'Metalware (Brass & Copper)', emoji: '🪔', color: '#B8860B', bg: '#FBF5E6' },
   brass:             { label: 'Brass Articles',         emoji: '🪔', color: '#B8860B', bg: '#FBF5E6' },
   copper:            { label: 'Copper Articles',        emoji: '🫗', color: '#B05C2E', bg: '#FBF0EA' },
   'mandir-essentials': { label: 'Mandir Essentials',   emoji: '📿', color: '#7B6B3A', bg: '#F5F0E6' },
@@ -10,16 +11,40 @@ const CATEGORY_META = {
 };
 
 function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSelectProduct }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [loadedMap, setLoadedMap] = useState({});
+
   const isWishlisted = wishlistIds?.includes(product.id);
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
+  const cardImages = React.useMemo(() => {
+    if (product.images && product.images.length > 0) return product.images;
+    return [product.image || '/assets/Incense cover.jpg'];
+  }, [product]);
+
+  React.useEffect(() => {
+    let timer;
+    if (isHovered && cardImages.length > 1) {
+      setActiveImageIndex(1);
+      if (cardImages.length > 2) {
+        timer = setInterval(() => {
+          setActiveImageIndex((prev) => (prev + 1) % cardImages.length);
+        }, 1400);
+      }
+    } else {
+      setActiveImageIndex(0);
+    }
+    return () => clearInterval(timer);
+  }, [isHovered, cardImages]);
+
   return (
     <div
-      className="bg-white rounded-2xl overflow-hidden border border-[#EAE0CD] hover:border-[#C5A059]/50 hover:shadow-lg transition-all duration-300 group flex flex-col"
-      style={{ cursor: 'pointer' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="bg-white rounded-2xl overflow-hidden border border-[#EAE0CD] hover:border-[#C5A059]/50 hover:shadow-lg transition-all duration-300 group flex flex-col cursor-pointer"
     >
       {/* Image */}
       <div
@@ -27,19 +52,34 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
         style={{ aspectRatio: '1/1' }}
         onClick={() => onSelectProduct(product)}
       >
-        {!isLoaded && <div className="absolute inset-0 skeleton-shimmer z-0" />}
-        <img
-          src={product.image}
-          alt={product.name}
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setIsLoaded(true)}
-          className={`w-full h-full object-contain p-3 group-hover:scale-105 transition-all duration-500 relative z-10 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onError={e => { e.target.src = '/assets/Incense cover.jpg'; setIsLoaded(true); }}
-        />
+        {!loadedMap[0] && <div className="absolute inset-0 skeleton-shimmer z-0" />}
+        {cardImages.map((imgSrc, idx) => {
+          const isCurrent = idx === activeImageIndex;
+          return (
+            <img
+              key={imgSrc + idx}
+              src={imgSrc}
+              alt={product.name}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setLoadedMap(prev => ({ ...prev, [idx]: true }))}
+              onError={e => { e.target.src = '/assets/Incense cover.jpg'; }}
+              className={`w-full h-full object-contain p-3 transition-all duration-500 ${
+                idx === 0 ? 'relative' : 'absolute inset-0'
+              } ${
+                isCurrent ? 'opacity-100 scale-105 z-10' : 'opacity-0 scale-100 z-0 pointer-events-none'
+              }`}
+            />
+          );
+        })}
 
+
+        {/* Top Left Badge if Coming Soon */}
+        {product.isComingSoon && (
+          <div className="absolute top-2.5 left-2.5 z-10 bg-[#2C1F06]/90 text-[#E5C378] text-[9px] font-cinzel font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border border-[#E5C378]/40 shadow-md backdrop-blur-md">
+            Coming Soon
+          </div>
+        )}
 
         {/* Hover actions */}
         <div className="absolute inset-x-0 bottom-0 flex gap-1 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -92,13 +132,19 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
             </span>
           )}
         </div>
-        <button
-          onClick={() => onAddToCart(product)}
-          className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl bg-[#1C140F] text-white text-[10px] font-cinzel font-bold tracking-widest uppercase hover:bg-[#C5A059] transition-all duration-300 active:scale-95"
-        >
-          <ShoppingBag className="w-3 h-3" />
-          Add to Cart
-        </button>
+        {product.isComingSoon ? (
+          <div className="w-full text-center py-2 rounded-xl bg-[#C5A059]/15 text-[#9B7E52] text-[10px] font-cinzel font-bold tracking-widest uppercase border border-[#C5A059]/30">
+            Coming Soon
+          </div>
+        ) : (
+          <button
+            onClick={() => onAddToCart(product)}
+            className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl bg-[#1C140F] text-white text-[10px] font-cinzel font-bold tracking-widest uppercase hover:bg-[#C5A059] transition-all duration-300 active:scale-95"
+          >
+            <ShoppingBag className="w-3 h-3" />
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );
@@ -129,10 +175,14 @@ export function AllCollectionsPage({
   }, [products]);
 
   const sortProducts = (prods) => {
-    if (sortBy === 'price-asc')  return [...prods].sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-desc') return [...prods].sort((a, b) => b.price - a.price);
-    if (sortBy === 'rating')     return [...prods].sort((a, b) => (b.rating || 0) - (a.rating || 0));
-    return prods;
+    return [...prods].sort((a, b) => {
+      if (a.isComingSoon && !b.isComingSoon) return 1;
+      if (!a.isComingSoon && b.isComingSoon) return -1;
+      if (sortBy === 'price-asc')  return a.price - b.price;
+      if (sortBy === 'price-desc') return b.price - a.price;
+      if (sortBy === 'rating')     return (b.rating || 0) - (a.rating || 0);
+      return 0;
+    });
   };
 
   const toggleCat = (cat) => setExpandedCats(prev => ({ ...prev, [cat]: !prev[cat] }));

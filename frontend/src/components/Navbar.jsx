@@ -42,8 +42,7 @@ export const Navbar = ({
 
   const navLinks = [
     { label: 'Home', category: 'all' },
-    { label: 'Brass', category: 'brass' },
-    { label: 'Copper', category: 'copper' },
+    { label: 'Metalware', category: 'metalware' },
     { label: 'Mandir Essentials', category: 'mandir-essentials' },
     { label: 'Energy Stones', category: 'energy-stones' },
     { label: 'Incense & Dhoop', category: 'incense' },
