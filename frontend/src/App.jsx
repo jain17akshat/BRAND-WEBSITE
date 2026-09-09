@@ -134,7 +134,8 @@ export function App() {
       id: 'kits',
       title: 'Corporate & Bulk Gifting',
       name: 'Corporate & Bulk Gifting',
-      image: '/images/categories/gifting.png',
+      image: '/essentialhero.png',
+      mobileImage: '/mandiressentialmobileview.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       description: 'Auspicious festive hampers, wedding favor caskets, and corporate gift hampers.'
@@ -162,13 +163,24 @@ export function App() {
       id: 'mandir-essentials',
       title: 'Mandir Essentials',
       name: 'Mandir Essentials',
-      image: '/essentialhero.png',
-      mobileImage: '/mandiressentialmobileview.png',
+      image: '/mandiressentials.png',
+      mobileImage: '/mandirphone view.png',
       fallbackImage: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       // Mandir image — key items in center, show slightly higher on mobile
       mobilePosition: 'center 35%',
       desktopPosition: 'center 40%',
       description: 'Sacred Himalayan Rudraksha, Sphatik, Vrindavan Tulsi, Vaijanti & Karungali Japa Malas, wooden chowkis, brass dhoopdani, and puja accessories.'
+    },
+    'energy-stones': {
+      id: 'energy-stones',
+      title: 'Energy Stones & Bracelets',
+      name: 'Energy Stones & Bracelets',
+      image: '/braclet desktopview.png',
+      mobileImage: '/energystones mobile view.png',
+      fallbackImage: '/assets/handcrafted cover.jpg',
+      mobilePosition: 'center center',
+      desktopPosition: 'center center',
+      description: '100% Authentic Natural Gemstones, Orgone Healing Pyramids, Crystal Bracelets & Sacred Japa Malas — Consecrated & Energized for Specific Intentions.'
     }
   };
 
@@ -184,6 +196,9 @@ export function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
+
+  // Hero Video Slide Active — hides navbar when video is playing
+  const [heroVideoPlaying, setHeroVideoPlaying] = useState(true);
 
   // Toast Notification
   const [toast, setToast] = useState(null);
@@ -379,6 +394,7 @@ export function App() {
           onSelectCategory={handleSelectCategory}
           onGoHome={handleGoHome}
           onGoSupport={handleGoSupport}
+          hideNavbar={currentPage === 'home' && heroVideoPlaying}
         />
 
         {/* Main Content Pages */}
@@ -465,6 +481,7 @@ export function App() {
                   window.scrollTo({ top: 0, behavior: 'instant' });
                 }}
                 onRitualsClick={() => handleSelectCategory('mandir-essentials')}
+                onVideoSlideChange={(isVideoSlide) => setHeroVideoPlaying(isVideoSlide)}
               />
 
               {/* 3. Shop by Collection — 4 large visual cards */}
@@ -509,13 +526,13 @@ export function App() {
                 <section className="py-14 sm:py-20 bg-[#1C1715] text-white relative overflow-hidden">
                   {/* Background image */}
                   <img
-                    src="/copperatepcview.png"
+                    src="/mandiressentialmobileview.png"
                     alt="Corporate Gifting"
                     className="block sm:hidden absolute inset-0 w-full h-full object-cover opacity-25 hero-image-crisp"
                     style={{ objectPosition: 'center center' }}
                   />
                   <img
-                    src="/copperatepcview.png"
+                    src="/essentialhero.png"
                     alt="Corporate Gifting"
                     className="hidden sm:block absolute inset-0 w-full h-full object-cover opacity-20 hero-image-crisp"
                     style={{ objectPosition: 'center center' }}

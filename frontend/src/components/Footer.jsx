@@ -106,7 +106,7 @@ export const Footer = ({
               </h4>
               <ul className="space-y-2.5 text-xs text-[#B5A895] font-light">
                 {[
-                  { label: 'Metalware (Brass & Copper)', cat: 'metalware' },
+                  { label: 'Metalware', cat: 'metalware' },
                   { label: 'Incense & Dhoop', cat: 'incense' },
                   { label: 'Vastu & Spiritual', cat: 'vastu' },
                   { label: 'Mandir Essentials', cat: 'mandir-essentials' },

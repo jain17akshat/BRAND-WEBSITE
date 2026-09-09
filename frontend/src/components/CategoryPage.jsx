@@ -626,25 +626,31 @@ const CategoryProductCard = ({
 
         {/* Price & Add to Cart Footer */}
         <div className="pt-2.5 border-t border-[#EAE0CD] flex items-center justify-between gap-2">
-          <div className="flex items-baseline gap-1.5 flex-wrap">
-            {product.weightVariants ? (
-              <div className="flex items-baseline gap-1">
-                <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+          {!product.isComingSoon ? (
+            <div className="flex items-baseline gap-1.5 flex-wrap">
+              {product.weightVariants && product.weightVariants[0]?.price ? (
+                <div className="flex items-baseline gap-1">
+                  <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+                  <span className="text-sm sm:text-base font-cinzel font-bold text-[#2C2623]">
+                    ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
+                  </span>
+                </div>
+              ) : product.price ? (
                 <span className="text-sm sm:text-base font-cinzel font-bold text-[#2C2623]">
-                  ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
+                  ₹{product.price.toLocaleString('en-IN')}
                 </span>
-              </div>
-            ) : (
-              <span className="text-sm sm:text-base font-cinzel font-bold text-[#2C2623]">
-                ₹{product.price.toLocaleString('en-IN')}
-              </span>
-            )}
-            {product.originalPrice && (
-              <span className="text-[10px] sm:text-xs text-[#A09484] line-through font-sans">
-                ₹{product.originalPrice.toLocaleString('en-IN')}
-              </span>
-            )}
-          </div>
+              ) : null}
+              {product.originalPrice && (
+                <span className="text-[10px] sm:text-xs text-[#A09484] line-through font-sans">
+                  ₹{product.originalPrice.toLocaleString('en-IN')}
+                </span>
+              )}
+            </div>
+          ) : (
+            <span className="text-xs sm:text-sm font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
+              Launching Soon
+            </span>
+          )}
 
           {product.isComingSoon ? (
             <span className="px-2.5 py-1.5 rounded-lg bg-[#C5A059]/15 text-[#9B7E52] font-cinzel font-bold text-[10px] sm:text-xs tracking-wider uppercase border border-[#C5A059]/30">

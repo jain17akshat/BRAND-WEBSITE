@@ -15,7 +15,7 @@ export const VisualGallery = () => {
       position: 'center 40%',
     },
     {
-      src: '/essentialhero.png',
+      src: '/mandiressentials.png',
       alt: 'Mandir Essentials Setup',
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       position: 'center 35%',

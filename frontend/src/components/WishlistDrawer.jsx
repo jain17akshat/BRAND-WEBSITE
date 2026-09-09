@@ -84,20 +84,28 @@ export const WishlistDrawer = ({
                     </div>
 
                     <div className="flex items-center justify-between mt-2">
-                      <span className="font-cinzel text-xs font-bold text-[#2C2623]">
-                        ₹{product.price.toLocaleString('en-IN')}
-                      </span>
+                      {product.isComingSoon ? (
+                        <span className="text-[10px] font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
+                          Coming Soon
+                        </span>
+                      ) : (
+                        <span className="font-cinzel text-xs font-bold text-[#2C2623]">
+                          ₹{(product.price || product.weightVariants?.[0]?.price || 0).toLocaleString('en-IN')}
+                        </span>
+                      )}
 
-                      <button
-                        onClick={() => {
-                          onAddToCart(product);
-                          onRemoveFromWishlist(product.id);
-                        }}
-                        className="px-3 py-1.5 bg-[#231E1C] text-[#E5C378] text-[11px] font-cinzel uppercase font-semibold rounded hover:bg-[#3A3431] flex items-center gap-1"
-                      >
-                        <ShoppingBag className="w-3 h-3 text-[#C5A059]" />
-                        <span>Move to Cart</span>
-                      </button>
+                      {!product.isComingSoon && (
+                        <button
+                          onClick={() => {
+                            onAddToCart(product);
+                            onRemoveFromWishlist(product.id);
+                          }}
+                          className="px-2.5 py-1 bg-[#231E1C] text-[#E5C378] text-[10px] font-cinzel uppercase font-semibold rounded hover:bg-[#3A3431] flex items-center gap-1"
+                        >
+                          <ShoppingBag className="w-3 h-3" />
+                          Add
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>

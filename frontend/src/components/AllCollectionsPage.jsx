@@ -113,25 +113,27 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
         >
           {product.name}
         </h3>
-        <div className="flex items-baseline gap-1.5 mt-auto pt-2 border-t border-[#EAE0CD]">
-          {product.weightVariants ? (
-            <div className="flex items-baseline gap-1">
-              <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+        {!product.isComingSoon && (
+          <div className="flex items-baseline gap-1.5 mt-auto pt-2 border-t border-[#EAE0CD]">
+            {product.weightVariants && product.weightVariants[0]?.price ? (
+              <div className="flex items-baseline gap-1">
+                <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+                <span className="font-cinzel font-bold text-[#2C2623] text-xs sm:text-sm">
+                  ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
+                </span>
+              </div>
+            ) : product.price ? (
               <span className="font-cinzel font-bold text-[#2C2623] text-xs sm:text-sm">
-                ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
+                ₹{product.price.toLocaleString('en-IN')}
               </span>
-            </div>
-          ) : (
-            <span className="font-cinzel font-bold text-[#2C2623] text-xs sm:text-sm">
-              ₹{product.price.toLocaleString('en-IN')}
-            </span>
-          )}
-          {product.originalPrice && (
-            <span className="text-[10px] text-[#A09484] line-through font-sans">
-              ₹{product.originalPrice.toLocaleString('en-IN')}
-            </span>
-          )}
-        </div>
+            ) : null}
+            {product.originalPrice && (
+              <span className="text-[10px] text-[#A09484] line-through font-sans">
+                ₹{product.originalPrice.toLocaleString('en-IN')}
+              </span>
+            )}
+          </div>
+        )}
         {product.isComingSoon ? (
           <div className="w-full text-center py-2 rounded-xl bg-[#C5A059]/15 text-[#9B7E52] text-[10px] font-cinzel font-bold tracking-widest uppercase border border-[#C5A059]/30">
             Coming Soon

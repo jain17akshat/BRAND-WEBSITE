@@ -71,7 +71,7 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
       >
         {/* Mobile Image */}
         <img
-          src="/copperatemobileview.png"
+          src="/mandiressentialmobileview.png"
           alt="Corporate & Bulk Gifting"
           onError={(e) => {
             if (e.target.src !== '/assets/handcrafted cover.jpg') {
@@ -83,7 +83,7 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
 
         {/* Desktop Image */}
         <img
-          src="/copperatepcview.png"
+          src="/essentialhero.png"
           alt="Corporate & Bulk Gifting"
           onError={(e) => {
             if (e.target.src !== '/assets/HERO2.png') {

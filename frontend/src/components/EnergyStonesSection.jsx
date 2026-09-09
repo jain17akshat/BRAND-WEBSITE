@@ -126,6 +126,37 @@ export const EnergyStonesSection = () => {
           </p>
         </div>
 
+        {/* ── HERO SHOWCASE BANNER ── */}
+        <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#EAE0CD] bg-[#1C1715] mb-10 h-[220px] sm:h-[300px] lg:h-[340px]">
+          {/* Mobile View Image */}
+          <img
+            src="/energystones mobile view.png"
+            alt="Energy Stones & Crystal Bracelets"
+            className="block sm:hidden absolute inset-0 w-full h-full object-cover object-center hero-image-crisp transform hover:scale-105 transition-transform duration-1000"
+          />
+          {/* Desktop View Image */}
+          <img
+            src="/braclet desktopview.png"
+            alt="Energy Stones & Crystal Bracelets"
+            className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center hero-image-crisp transform hover:scale-105 transition-transform duration-1000"
+          />
+          {/* Dark Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1C1715]/90 via-[#1C1715]/60 to-transparent sm:w-2/3" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1C1715]/80 via-transparent to-transparent" />
+          
+          <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 text-white z-10 max-w-xl">
+            <span className="text-[10px] sm:text-xs font-cinzel tracking-[0.3em] text-[#C5A059] uppercase font-bold mb-2">
+              Sacred Gemstones & Bracelets
+            </span>
+            <h3 className="font-cinzel font-bold text-white text-xl sm:text-3xl lg:text-4xl leading-tight mb-2 drop-shadow">
+              Crystal Bracelets & Mala Stones
+            </h3>
+            <p className="text-xs sm:text-sm text-[#E5D7C0] font-light leading-relaxed hidden sm:block">
+              Consecrated natural crystals, healing orgone pyramids, and 100% authentic gemstone japa malas purified for your personal intention.
+            </p>
+          </div>
+        </div>
+
         {/* ── SUBSECTION: SHOP BY PURPOSE ── */}
         <div className="bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-[#EAE0CD] shadow-xl relative overflow-hidden">
           

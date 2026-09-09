@@ -244,111 +244,129 @@ export const ProductDetailPage = ({
               </p>
             </div>
 
-            {/* Price Showcase */}
-            <div className="p-4 bg-white rounded-2xl border border-[#EAE0CD] flex items-baseline justify-between shadow-sm">
-              <div>
-                <span className="text-xs text-gray-500 font-cinzel block mb-0.5">Special Price</span>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-3xl sm:text-4xl font-cinzel font-bold text-[#2C2623]">
-                    ₹{currentPrice.toLocaleString('en-IN')}
-                  </span>
-                  {currentOrigPrice && (
-                    <span className="text-base text-gray-400 line-through">
-                      ₹{currentOrigPrice.toLocaleString('en-IN')}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-            </div>
-
-
-            {/* ── Delivery Timeline + Urgency (Above the Fold, above Add to Cart) ── */}
-            <div className="space-y-2.5">
-
-              {/* Delivery Timeline */}
-              <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-xl border border-emerald-200">
-                <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                  <Truck className="w-4 h-4 text-emerald-700" />
-                </div>
+            {/* Price Showcase / Coming Soon */}
+            <div className="p-4 bg-white rounded-2xl border border-[#EAE0CD] flex items-center justify-between shadow-sm">
+              {product.isComingSoon ? (
                 <div>
-                  <span className="text-xs font-cinzel font-bold text-emerald-800 block">
-                    Estimated Delivery: 3–5 Business Days
-                  </span>
-                  <span className="text-[10px] text-emerald-700 font-sans">
-                    Free shipping on orders above ₹999 · Pan-India Express Delivery
+                  <span className="text-xs text-gray-500 font-cinzel block mb-0.5">Availability</span>
+                  <span className="text-xl sm:text-2xl font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
+                    Coming Soon
                   </span>
                 </div>
-              </div>
-
-              {/* Urgency Row — Stock + Viewers */}
-              <div className="grid grid-cols-2 gap-2">
-                {/* Stock Left */}
-                <div className="flex items-center gap-2 p-2.5 bg-red-50 rounded-xl border border-red-200">
-                  <Flame className="w-4 h-4 text-red-600 shrink-0 animate-pulse" />
-                  <div>
-                    <span className="text-[10px] font-cinzel font-bold text-red-700 block uppercase tracking-wide">
-                      Only {urgencyData.stockLeft} Left!
+              ) : (
+                <div>
+                  <span className="text-xs text-gray-500 font-cinzel block mb-0.5">Special Price</span>
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-3xl sm:text-4xl font-cinzel font-bold text-[#2C2623]">
+                      ₹{(currentPrice || 0).toLocaleString('en-IN')}
                     </span>
-                    <span className="text-[9px] text-red-600 font-sans">Selling fast today</span>
+                    {currentOrigPrice && (
+                      <span className="text-base text-gray-400 line-through">
+                        ₹{currentOrigPrice.toLocaleString('en-IN')}
+                      </span>
+                    )}
                   </div>
                 </div>
-                {/* Viewer Count */}
-                <div className="flex items-center gap-2 p-2.5 bg-amber-50 rounded-xl border border-amber-200">
-                  <Eye className="w-4 h-4 text-amber-600 shrink-0" />
-                  <div>
-                    <span className="text-[10px] font-cinzel font-bold text-amber-700 block uppercase tracking-wide">
-                      {urgencyData.viewers} Viewing Now
-                    </span>
-                    <span className="text-[9px] text-amber-600 font-sans">High demand</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Countdown Timer */}
-              <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF0D9] rounded-xl border border-[#E0CEAA]">
-                <Clock className="w-4 h-4 text-[#8C6929] shrink-0" />
-                <span className="text-[11px] font-cinzel font-bold text-[#5A3E10] uppercase tracking-wide">
-                  Special Price Ends In:
-                </span>
-                <span className="ml-auto font-mono text-sm font-bold text-[#8C0000] bg-white px-2.5 py-0.5 rounded-lg border border-red-200 shadow-sm">
-                  {mm}:{ss}
-                </span>
-              </div>
-
+              )}
             </div>
+
+            {/* ── Delivery Timeline + Urgency (Above the Fold) ── */}
+            {!product.isComingSoon && (
+              <div className="space-y-2.5">
+                {/* Delivery Timeline */}
+                <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                  <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                    <Truck className="w-4 h-4 text-emerald-700" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-cinzel font-bold text-emerald-800 block">
+                      Estimated Delivery: 3–5 Business Days
+                    </span>
+                    <span className="text-[10px] text-emerald-700 font-sans">
+                      Free shipping on orders above ₹999 · Pan-India Express Delivery
+                    </span>
+                  </div>
+                </div>
+
+                {/* Urgency Row — Stock + Viewers */}
+                <div className="grid grid-cols-2 gap-2">
+                  {/* Stock Left */}
+                  <div className="flex items-center gap-2 p-2.5 bg-red-50 rounded-xl border border-red-200">
+                    <Flame className="w-4 h-4 text-red-600 shrink-0 animate-pulse" />
+                    <div>
+                      <span className="text-[10px] font-cinzel font-bold text-red-700 block uppercase tracking-wide">
+                        Only {urgencyData.stockLeft} Left!
+                      </span>
+                      <span className="text-[9px] text-red-600 font-sans">Selling fast today</span>
+                    </div>
+                  </div>
+                  {/* Viewer Count */}
+                  <div className="flex items-center gap-2 p-2.5 bg-amber-50 rounded-xl border border-amber-200">
+                    <Eye className="w-4 h-4 text-amber-600 shrink-0" />
+                    <div>
+                      <span className="text-[10px] font-cinzel font-bold text-amber-700 block uppercase tracking-wide">
+                        {urgencyData.viewers} Viewing Now
+                      </span>
+                      <span className="text-[9px] text-amber-600 font-sans">High demand</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Countdown Timer */}
+                <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF0D9] rounded-xl border border-[#E0CEAA]">
+                  <Clock className="w-4 h-4 text-[#8C6929] shrink-0" />
+                  <span className="text-[11px] font-cinzel font-bold text-[#5A3E10] uppercase tracking-wide">
+                    Special Price Ends In:
+                  </span>
+                  <span className="ml-auto font-mono text-sm font-bold text-[#8C0000] bg-white px-2.5 py-0.5 rounded-lg border border-red-200 shadow-sm">
+                    {mm}:{ss}
+                  </span>
+                </div>
+              </div>
+            )}
 
             {/* Quantity Selector & Add to Cart Actions */}
-            <div className="space-y-4 pt-2">
-              <div className="flex items-center gap-4">
-                <span className="text-xs font-cinzel font-bold text-[#2C2623] uppercase tracking-wider">Quantity:</span>
-                <div className="flex items-center border border-[#EAE0CD] rounded-xl bg-white p-1">
+            {product.isComingSoon ? (
+              <div className="pt-2">
+                <button
+                  disabled
+                  className="w-full py-4 bg-[#C5A059]/20 text-[#8C6D2D] font-cinzel text-xs sm:text-sm uppercase font-bold tracking-widest rounded-xl border border-[#C5A059]/40 cursor-not-allowed text-center shadow-inner"
+                >
+                  Collection Launching Soon
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-4 pt-2">
+                <div className="flex items-center gap-4">
+                  <span className="text-xs font-cinzel font-bold text-[#2C2623] uppercase tracking-wider">Quantity:</span>
+                  <div className="flex items-center border border-[#EAE0CD] rounded-xl bg-white p-1">
+                    <button
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="w-9 h-9 rounded-lg bg-[#F6F1E7] text-[#2C2623] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
+                    >
+                      -
+                    </button>
+                    <span className="px-4 text-sm font-cinzel font-bold text-[#2C2623]">{quantity}</span>
+                    <button
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="w-9 h-9 rounded-lg bg-[#F6F1E7] text-[#2C2623] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-9 h-9 rounded-lg bg-[#F6F1E7] text-[#2C2623] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
+                    onClick={handleAddToCart}
+                    className="flex-1 py-3.5 sm:py-4 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40 transform hover:scale-[1.01] active:scale-95"
                   >
-                    -
-                  </button>
-                  <span className="px-4 text-sm font-cinzel font-bold text-[#2C2623]">{quantity}</span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-9 h-9 rounded-lg bg-[#F6F1E7] text-[#2C2623] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
-                  >
-                    +
+                    <ShoppingBag className="w-4 h-4 text-[#C5A059]" />
+                    <span>Add to Sacred Cart — ₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
                   </button>
                 </div>
               </div>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={handleAddToCart}
-                  className="flex-1 py-3.5 sm:py-4 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40 transform hover:scale-[1.01] active:scale-95"
-                >
-                  <ShoppingBag className="w-4 h-4 text-[#C5A059]" />
-                  <span>Add to Sacred Cart — ₹{(currentPrice * quantity).toLocaleString('en-IN')}</span>
-                </button>
-              </div>
-            </div>
+            )}
 
             {/* Accordion & Info Tabs */}
             <div className="border-t border-[#EAE0CD] pt-6 space-y-4">
@@ -535,19 +553,21 @@ export const ProductDetailPage = ({
       />
 
       {/* Mobile Sticky Bottom Purchase Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-[#1C1715] border-t border-[#C5A059]/40 z-30 shadow-2xl flex items-center justify-between gap-3 backdrop-blur-md">
-        <div>
-          <span className="text-[10px] font-cinzel text-[#C5A059] uppercase block font-semibold">Total Price</span>
-          <span className="text-base font-cinzel font-bold text-white">₹{(currentPrice * quantity).toLocaleString('en-IN')}</span>
+      {!product.isComingSoon && (
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-[#1C1715] border-t border-[#C5A059]/40 z-30 shadow-2xl flex items-center justify-between gap-3 backdrop-blur-md">
+          <div>
+            <span className="text-[10px] font-cinzel text-[#C5A059] uppercase block font-semibold">Total Price</span>
+            <span className="text-base font-cinzel font-bold text-white">₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="flex-1 py-2.5 px-4 bg-[#C5A059] hover:bg-[#B58F47] text-[#171312] font-cinzel text-xs uppercase font-bold tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"
+          >
+            <ShoppingBag className="w-4 h-4" />
+            <span>Add to Cart</span>
+          </button>
         </div>
-        <button
-          onClick={handleAddToCart}
-          className="flex-1 py-2.5 px-4 bg-[#C5A059] hover:bg-[#B58F47] text-[#171312] font-cinzel text-xs uppercase font-bold tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"
-        >
-          <ShoppingBag className="w-4 h-4" />
-          <span>Add to Cart</span>
-        </button>
-      </div>
+      )}
     </div>
   );
 };

@@ -14,8 +14,8 @@ export const Collections = ({ onSelectCategory }) => {
     {
       id: 'mandir-essentials',
       title: 'Mandir Essentials',
-      image: '/essentialhero.png',
-      mobileImage: '/mandiressentialmobileview.png',
+      image: '/mandiressentials.png',
+      mobileImage: '/mandirphone view.png',
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       mobilePosition: 'center 45%',
       desktopPosition: 'center 45%',
@@ -23,8 +23,8 @@ export const Collections = ({ onSelectCategory }) => {
     {
       id: 'incense',
       title: 'Incense & Dhoop',
-      image: '/assets/Incense cover.jpg',
-      mobileImage: '/assets/Incense cover.jpg',
+      image: '/incesne hero.png',
+      mobileImage: '/incesne hero.png',
       fallback: '/assets/Incense cover.jpg',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
@@ -32,8 +32,8 @@ export const Collections = ({ onSelectCategory }) => {
     {
       id: 'kits',
       title: 'Corporate Gifting',
-      image: '/copperatepcview.png',
-      mobileImage: '/copperatemobileview.png',
+      image: '/essentialhero.png',
+      mobileImage: '/mandiressentialmobileview.png',
       fallback: '/assets/handcrafted cover.jpg',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
@@ -60,24 +60,40 @@ export const Collections = ({ onSelectCategory }) => {
               onClick={() => onSelectCategory && onSelectCategory(col.id)}
               className="group relative overflow-hidden rounded-xl cursor-pointer bg-[#1C1715] aspect-[4/3] sm:aspect-[16/10]"
             >
-              {/* Mobile image */}
-              <img
-                src={col.mobileImage || col.image}
-                alt={col.title}
-                loading="lazy"
-                onError={(e) => { if (e.target.src !== col.fallback) e.target.src = col.fallback; }}
-                className="block sm:hidden absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hero-image-crisp"
-                style={{ objectPosition: col.mobilePosition }}
-              />
-              {/* Desktop image */}
-              <img
-                src={col.image}
-                alt={col.title}
-                loading="lazy"
-                onError={(e) => { if (e.target.src !== col.fallback) e.target.src = col.fallback; }}
-                className="hidden sm:block absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hero-image-crisp"
-                style={{ objectPosition: col.desktopPosition }}
-              />
+              {/* Video background (if available) */}
+              {col.video ? (
+                <video
+                  src={col.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: 'center center' }}
+                />
+              ) : (
+                <>
+                  {/* Mobile image */}
+                  <img
+                    src={col.mobileImage || col.image}
+                    alt={col.title}
+                    loading="lazy"
+                    onError={(e) => { if (e.target.src !== col.fallback) e.target.src = col.fallback; }}
+                    className="block sm:hidden absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hero-image-crisp"
+                    style={{ objectPosition: col.mobilePosition }}
+                  />
+                  {/* Desktop image */}
+                  <img
+                    src={col.image}
+                    alt={col.title}
+                    loading="lazy"
+                    onError={(e) => { if (e.target.src !== col.fallback) e.target.src = col.fallback; }}
+                    className="hidden sm:block absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hero-image-crisp"
+                    style={{ objectPosition: col.desktopPosition }}
+                  />
+                </>
+              )}
 
               {/* Bottom gradient for text */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />

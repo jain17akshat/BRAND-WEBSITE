@@ -172,16 +172,29 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
   return (
     <div className="min-h-screen bg-[#FDFAF5] pt-24 pb-20 text-[#2C2623] select-none">
       
-      {/* ── Top Header Banner ── */}
-      <div className="bg-[#FAF5EC] border-b border-[#EAE0CD] py-8 sm:py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Subtle Glow background */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
+"      {/* ── Top Header Banner with Desktop & Mobile Hero Images ── */}
+      <div className="relative w-full overflow-hidden bg-[#1C1715] border-b border-[#EAE0CD] py-10 sm:py-16 px-4 sm:px-6 lg:px-8 shadow-2xl">
+        {/* Mobile View Image */}
+        <img
+          src="/energystones mobile view.png"
+          alt="Energy Stones & Crystal Bracelets"
+          className="block sm:hidden absolute inset-0 w-full h-full object-cover object-center hero-image-crisp opacity-50"
+        />
+        {/* Desktop View Image */}
+        <img
+          src="/braclet desktopview.png"
+          alt="Energy Stones & Crystal Bracelets"
+          className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center hero-image-crisp opacity-50"
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1C1715]/95 via-[#1C1715]/80 to-[#1C1715]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1715] via-transparent to-transparent" />
 
-        <div className="max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto">
           {/* Back Button */}
           <button
             onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-xs font-cinzel font-semibold text-[#8C6D2D] hover:text-[#2C1F06] transition-colors mb-4 group"
+            className="inline-flex items-center gap-2 text-xs font-cinzel font-semibold text-[#E5C378] hover:text-white transition-colors mb-4 group"
           >
             <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
             <span>Back to Home</span>
@@ -189,29 +202,29 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5EEDC] border border-[#DAB97B]/50 text-[#8C6D2D] text-[10px] sm:text-xs font-cinzel font-bold tracking-widest uppercase mb-3">
-                <Gem className="w-3.5 h-3.5 text-[#B8860B] animate-pulse" />
-                <span>Sacred Gemstone Collection</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C1715]/80 border border-[#DAB97B]/50 text-[#E5C378] text-[10px] sm:text-xs font-cinzel font-bold tracking-widest uppercase mb-3 backdrop-blur-sm">
+                <Gem className="w-3.5 h-3.5 text-[#E5C378] animate-pulse" />
+                <span>Sacred Gemstone & Bracelet Collection</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-cinzel font-bold text-[#2C2623] tracking-wide heading-gold-line">
-                Energy Stones & Accessories
+              <h1 className="text-3xl sm:text-5xl font-cinzel font-bold text-white tracking-wide heading-gold-line drop-shadow-md">
+                Energy Stones & Bracelets
               </h1>
               
-              <p className="mt-3 text-xs sm:text-sm text-[#6B5840] font-light max-w-2xl leading-relaxed">
-                100% Authentic Natural Gemstones, Orgone Healing Pyramids, Crystal Bracelets & Sacred Japa Malas — Consecrated & Energized for Specific Intentions.
+              <p className="mt-3 text-xs sm:text-sm text-[#E5D7C0] font-light max-w-2xl leading-relaxed">
+                100% Authentic Natural Gemstones, Crystal Bracelets, Orgone Healing Pyramids & Sacred Japa Malas — Consecrated & Energized for Specific Intentions.
               </p>
             </div>
 
             {/* Launch Status Pill */}
-            <div className="flex items-center gap-2.5 bg-white border border-[#E5C378] px-4 py-2.5 rounded-2xl shadow-md flex-shrink-0">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#B8860B] animate-ping" />
+            <div className="flex items-center gap-2.5 bg-black/50 backdrop-blur-md border border-[#E5C378]/60 px-4 py-2.5 rounded-2xl shadow-xl flex-shrink-0">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#E5C378] animate-ping" />
               <div>
-                <p className="text-[10px] font-cinzel font-bold text-[#8C6D2D] uppercase tracking-widest">
+                <p className="text-[10px] font-cinzel font-bold text-[#E5C378] uppercase tracking-widest">
                   Collection Launching Soon
                 </p>
-                <p className="text-[11px] text-[#5C4B38] font-medium">
-                  Stay Tuned • VIP Early Access
+                <p className="text-[11px] text-white/80 font-medium">
+                  Stay Tuned
                 </p>
               </div>
             </div>
@@ -431,14 +444,14 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
                   {isSubmitted ? (
                     <div className="p-4 rounded-2xl bg-[#E8F5E9] border border-emerald-400 text-emerald-900 text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
                       <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                      <span>Thank you! You are registered for VIP Early Access on Launch Day.</span>
+                      <span>Thank you! You are registered for updates on Launch Day.</span>
                     </div>
                   ) : (
                     <form onSubmit={handleNotifySubmit} className="flex flex-col sm:flex-row gap-2">
                       <input
                         type="email"
                         required
-                        placeholder="Enter your email for early access..."
+                        placeholder="Enter your email to get notified..."
                         value={emailNotify}
                         onChange={(e) => setEmailNotify(e.target.value)}
                         className="flex-1 px-4 py-3 rounded-xl bg-white/95 text-xs text-[#2C2623] placeholder-[#8C8070] focus:outline-none focus:ring-2 focus:ring-[#E5C378] shadow-inner"

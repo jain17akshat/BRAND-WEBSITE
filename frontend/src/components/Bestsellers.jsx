@@ -117,19 +117,23 @@ export const Bestsellers = ({
                   {/* Price + View Details */}
                   <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#EAE0CD] gap-2">
                     <div className="flex items-baseline gap-1">
-                      {product.weightVariants ? (
+                      {product.isComingSoon ? (
+                        <span className="text-xs font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
+                          Coming Soon
+                        </span>
+                      ) : product.weightVariants && product.weightVariants[0]?.price ? (
                         <>
                           <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
                           <span className="text-sm font-cinzel font-bold text-[#2C2623]">
                             ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
                           </span>
                         </>
-                      ) : (
+                      ) : product.price ? (
                         <span className="text-sm font-cinzel font-bold text-[#2C2623]">
                           ₹{product.price.toLocaleString('en-IN')}
                         </span>
-                      )}
-                      {product.originalPrice && (
+                      ) : null}
+                      {!product.isComingSoon && product.originalPrice && (
                         <span className="text-[10px] text-[#A09484] line-through font-sans ml-1">
                           ₹{product.originalPrice.toLocaleString('en-IN')}
                         </span>

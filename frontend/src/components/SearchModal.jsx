@@ -116,20 +116,26 @@ export const SearchModal = ({
                         {product.name}
                       </h4>
                       <span className="text-[10px] text-[#8C6929] font-sans block">
-                        {product.purity} • ₹{product.price.toLocaleString('en-IN')}
+                        {product.purity} {product.isComingSoon ? '• Coming Soon' : (product.price || product.weightVariants?.[0]?.price) ? `• ₹${(product.price || product.weightVariants?.[0]?.price).toLocaleString('en-IN')}` : ''}
                       </span>
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => {
-                      onAddToCart(product);
-                      onClose();
-                    }}
-                    className="px-3 py-1.5 bg-[#231E1C] text-[#E5C378] text-[11px] font-cinzel uppercase font-semibold rounded hover:bg-[#3A3431] shrink-0"
-                  >
-                    Add
-                  </button>
+                  {product.isComingSoon ? (
+                    <span className="px-2.5 py-1 rounded bg-[#C5A059]/15 text-[#9B7E52] text-[10px] font-cinzel font-bold uppercase shrink-0">
+                      Coming Soon
+                    </span>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        onAddToCart(product);
+                        onClose();
+                      }}
+                      className="px-3 py-1.5 bg-[#231E1C] text-[#E5C378] text-[11px] font-cinzel uppercase font-semibold rounded hover:bg-[#3A3431] shrink-0"
+                    >
+                      + Add
+                    </button>
+                  )}
                 </div>
               ))}
             </div>

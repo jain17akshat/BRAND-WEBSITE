@@ -117,13 +117,21 @@ export const QuickViewModal = ({
 
               {/* Price */}
               <div className="mt-3 flex items-baseline gap-3">
-                <span className="text-2xl font-cinzel font-bold text-[#2C2623]">
-                  ₹{currentPrice.toLocaleString('en-IN')}
-                </span>
-                {currentOrigPrice && (
-                  <span className="text-sm text-gray-400 line-through">
-                    ₹{currentOrigPrice.toLocaleString('en-IN')}
+                {product.isComingSoon ? (
+                  <span className="text-xl font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
+                    Coming Soon
                   </span>
+                ) : (
+                  <>
+                    <span className="text-2xl font-cinzel font-bold text-[#2C2623]">
+                      ₹{(currentPrice || 0).toLocaleString('en-IN')}
+                    </span>
+                    {currentOrigPrice && (
+                      <span className="text-sm text-gray-400 line-through">
+                        ₹{currentOrigPrice.toLocaleString('en-IN')}
+                      </span>
+                    )}
+                  </>
                 )}
               </div>
 
@@ -134,41 +142,52 @@ export const QuickViewModal = ({
 
             {/* Actions */}
             <div className="space-y-3 pt-4 border-t border-[#EAE0CD]">
-              <div className="flex items-center gap-3">
-                {/* Quantity selector */}
-                <div className="flex items-center border border-[#EAE0CD] rounded bg-white px-2 py-1">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-2 text-sm text-[#2C2623]"
-                  >
-                    -
-                  </button>
-                  <span className="px-3 text-xs font-bold text-[#2C2623]">{quantity}</span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="px-2 text-sm text-[#2C2623]"
-                  >
-                    +
-                  </button>
-                </div>
-
-                {/* Wishlist toggle */}
+              {product.isComingSoon ? (
                 <button
-                  onClick={() => onToggleWishlist(product)}
-                  className="p-2.5 rounded border border-[#EAE0CD] hover:border-[#A63A2B] text-[#2C2623] transition-colors"
+                  disabled
+                  className="w-full py-3.5 bg-[#C5A059]/20 text-[#8C6D2D] font-cinzel text-xs uppercase font-bold tracking-widest rounded-md cursor-not-allowed border border-[#C5A059]/40 text-center"
                 >
-                  <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-[#A63A2B] text-[#A63A2B]' : ''}`} />
+                  Collection Launching Soon
                 </button>
-              </div>
+              ) : (
+                <>
+                  <div className="flex items-center gap-3">
+                    {/* Quantity selector */}
+                    <div className="flex items-center border border-[#EAE0CD] rounded bg-white px-2 py-1">
+                      <button
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        className="px-2 text-sm text-[#2C2623]"
+                      >
+                        -
+                      </button>
+                      <span className="px-3 text-xs font-bold text-[#2C2623]">{quantity}</span>
+                      <button
+                        onClick={() => setQuantity(quantity + 1)}
+                        className="px-2 text-sm text-[#2C2623]"
+                      >
+                        +
+                      </button>
+                    </div>
 
-              {/* Add to Cart button */}
-              <button
-                onClick={handleAdd}
-                className="w-full py-3.5 bg-[#231E1C] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-md hover:bg-[#3A3431] shadow-lg transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40"
-              >
-                <ShoppingBag className="w-4 h-4 text-[#C5A059]" />
-                <span>Add to Cart — ₹{(currentPrice * quantity).toLocaleString('en-IN')}</span>
-              </button>
+                    {/* Wishlist toggle */}
+                    <button
+                      onClick={() => onToggleWishlist(product)}
+                      className="p-2.5 rounded border border-[#EAE0CD] hover:border-[#A63A2B] text-[#2C2623] transition-colors"
+                    >
+                      <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-[#A63A2B] text-[#A63A2B]' : ''}`} />
+                    </button>
+                  </div>
+
+                  {/* Add to Cart button */}
+                  <button
+                    onClick={handleAdd}
+                    className="w-full py-3.5 bg-[#231E1C] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-md hover:bg-[#3A3431] shadow-lg transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40"
+                  >
+                    <ShoppingBag className="w-4 h-4 text-[#C5A059]" />
+                    <span>Add to Cart — ₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
+                  </button>
+                </>
+              )}
 
               <div className="flex items-center justify-center gap-2 text-[10px] text-gray-500 pt-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />

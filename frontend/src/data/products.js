@@ -896,7 +896,6 @@ export const PRODUCTS = [
     image: '/assets/ladoo gopal/ladoogopal 2.png',
     images: [
       '/assets/ladoo gopal/ladoogopal 2.png',
-      '/assets/ladoo gopal/ladoo gopal 1.png',
       '/assets/ladoo gopal/ladoogopal4.png',
       '/assets/ladoo gopal/ladoogpal3.jpg',
       '/assets/ladoo gopal/ladoo5.png'
@@ -1689,72 +1688,7 @@ export const PRODUCTS = [
 
 
 
-  // 24. Jap Bag Gaumukhi
-  {
-    id: 'mandir-jap-bag-gaumukhi',
-    name: 'Pure Cotton Gomukhi Japa Mala Bag',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Japa Bags & Pouches',
-    price: 490,
-    originalPrice: 690,
-    rating: 4.99,
-    reviewsCount: 215,
-    tag: 'Sacred Japa Bag',
-    artType: 'bag',
-    fitMode: 'contain',
-    image: '/assets/Jap Bag/Bag1.jpg',
-    images: [
-      '/assets/Jap Bag/Bag1.jpg',
-      '/assets/Jap Bag/Japa Bag.jpg',
-      '/assets/Jap Bag/bag2.png',
-      '/assets/Jap Bag/bag3.png',
-      '/assets/Jap Bag/bag4.png'
-    ],
-    weightVariants: [
-      { weight: 'Single Pack (With Sakshi Counter)', price: 490, originalPrice: 690, default: true },
-      { weight: 'Pack of 2 Bags', price: 890, originalPrice: 1290 },
-      { weight: 'Gift Pack of 5 Bags', price: 1990, originalPrice: 2890 }
-    ],
-    purity: '100% Pure Cotton in Bhagwa / Saffron',
-    inStock: true,
-    description: 'The Shraviko Gomukhi Japa Mala Bag is designed for devotees who regularly practice mantra chanting and use a Japa Mala. Made from cotton and designed in the traditional Gomukhi (Gaumukhi) style, the bag allows you to keep your mala covered while providing a comfortable way to perform daily Jaap. A Sakshi Mala counter is included to help keep track of chanting rounds, while the integrated zipper pocket provides convenient storage for small essentials such as a digital counter or keys. Lightweight and easy to carry for home, temple, satsang, meditation, travel and pilgrimages. Suitable for standard 108-bead malas including Tulsi, Rudraksha, Neem, Chandan, Sphatik and Vaijanti malas.',
-    shortDescription: 'Carry and use your sacred mala comfortably with this Pure Cotton Gomukhi Japa Mala Bag. Featuring a traditional Gomukhi design, Sakshi Mala counter and convenient zipper pocket, it is designed for daily Jaap, mantra chanting, meditation and spiritual practice.',
-    seoTitle: 'Pure Cotton Gomukhi Japa Mala Bag | Gaumukhi Bag with Counter | Shraviko',
-    metaDescription: 'Shop Shraviko Pure Cotton Gomukhi Japa Mala Bag with Sakshi Mala counter and zipper pocket. Ideal for daily Jaap, mantra chanting, Rudraksha and Tulsi malas.',
-    specifications: [
-      { label: 'Product Type', value: 'Gomukhi Japa Mala Bag' },
-      { label: 'Material', value: '100% Pure Cotton' },
-      { label: 'Colour', value: 'Bhagwa / Saffron' },
-      { label: 'Pattern', value: 'Solid' },
-      { label: 'Design Style', value: 'Traditional Gomukhi' },
-      { label: 'Closure', value: 'Integrated Zipper Pocket' },
-      { label: 'Dimensions', value: 'Approx. 15 × 10 × 20 cm' },
-      { label: 'Weight', value: 'Approx. 80 g' },
-      { label: 'Mala Compatibility', value: 'Standard 108-Bead Malas (Tulsi, Rudraksha, etc.)' },
-      { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Gomukhi Japa Mala Bag, 1 × Sakshi Mala Counter' }
-    ],
-    keyFeatures: [
-      'Cotton Gomukhi Design – Traditional Gaumukhi shape crafted from breathable pure cotton in Bhagwa/Saffron.',
-      'Sakshi Mala Counter Included – Comes with a Sakshi Mala counter to effortlessly track completed chanting rounds.',
-      'Integrated Zipper Pocket – Convenient built-in zip pocket to store digital counters, keys, or sacred items.',
-      'Standard 108-Bead Mala Compatibility – Ideal for Tulsi, Rudraksha, Neem, Chandan, Sphatik, and Vaijanti malas.',
-      'Lightweight & Portable – Easy to carry for home Jaap, temple visits, satsangs, meditation, and spiritual pilgrimages.',
-      'Made in India – Authentic traditional Indian devotional craftsmanship.'
-    ],
-    careInstructions: [
-      'Keep the bag dry and clean.',
-      'For routine cleaning, gently wipe or hand wash according to the fabric\'s care requirements.',
-      'Allow it to dry completely before storing your mala inside.'
-    ],
-    faqs: [
-      { q: 'What is included with this Japa Mala Bag?', a: 'The package includes 1 × Pure Cotton Gomukhi Japa Mala Bag and 1 × Sakshi Mala counter.' },
-      { q: 'Which malas are compatible with this bag?', a: 'It fits standard 108-bead malas such as Tulsi, Rudraksha, Neem, Chandan, Sphatik, and Vaijanti malas.' },
-      { q: 'What is the function of the Sakshi Mala counter and zipper pocket?', a: 'The Sakshi Mala counter helps track completed chanting rounds, and the zipper pocket securely holds small items like keys or a digital counter.' },
-      { q: 'How do I wash and maintain the cotton Japa bag?', a: 'Hand wash gently in cold water, avoid bleach, and line dry completely before placing your sacred mala inside.' }
-    ]
-  },
+
 
   // 25. Mala Counter Set
   {
@@ -1884,69 +1818,7 @@ export const PRODUCTS = [
     ]
   },
 
-  // 27. Velvet Pooja Asan Mat
-  {
-    id: 'mandir-royal-velvet-asan-mat',
-    name: 'Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Pooja Asan Mats',
-    price: 590,
-    originalPrice: 890,
-    rating: 4.97,
-    reviewsCount: 142,
-    tag: 'Velvet Asan',
-    artType: 'asan',
-    fitMode: 'contain',
-    image: '/assets/Velvet asan/asan1.png',
-    images: [
-      '/assets/Velvet asan/asan1.png',
-      '/assets/Velvet asan/asan2.jpg',
-      '/assets/Velvet asan/asan3.png',
-      '/assets/Velvet asan/asan4.png',
-      '/assets/Velvet asan/asan5.jpg'
-    ],
-    weightVariants: [
-      { weight: 'Pack of 3 (14 × 26 Inch)', price: 590, originalPrice: 890, default: true },
-      { weight: 'Pack of 6 (14 × 26 Inch)', price: 1090, originalPrice: 1590 }
-    ],
-    purity: 'Soft Micro-Velvet & Golden Lace Border',
-    inStock: true,
-    description: 'Bring a traditional and elegant touch to your home temple with our Red Velvet Pooja Aasan Cloth. Made from soft velvet fabric and finished with a decorative golden lace border, this aasan is designed for placing God idols on chowkis, temple platforms, pooja shelves and other sacred spaces. The rich red color and traditional golden border complement the beauty of your mandir while creating a neat and graceful setting for daily pooja and festive occasions. Its 14 × 26 inch rectangular size provides ample space for a variety of idols and pooja arrangements. The pack of 3 makes it convenient to use across multiple idols or different areas of your home temple. The cloth is washable, reusable and suitable for regular use.',
-    shortDescription: 'Red Velvet Pooja Aasan Cloth with decorative golden lace border (Pack of 3, Size 14 × 26 inch). Soft, washable, and reusable pedestal cloth for God idols, chowkis, and home mandirs.',
-    seoTitle: 'Red Velvet Pooja Aasan Cloth with Golden Border (Pack of 3) | Shraviko',
-    metaDescription: 'Shop Red Velvet Pooja Aasan Cloth with Golden Border (Pack of 3). Soft washable velvet mat for God idols, chowkis, mandir shelves, and festive setups. Size 14x26 inch.',
-    specifications: [
-      { label: 'Product', value: 'Red Velvet Pooja Aasan Cloth' },
-      { label: 'Fabric Material', value: 'Soft Micro-Velvet' },
-      { label: 'Border Detail', value: 'Decorative Golden Lace Border' },
-      { label: 'Color', value: 'Rich Devotional Red' },
-      { label: 'Dimensions', value: '14 × 26 Inches' },
-      { label: 'Pack Quantity', value: 'Pack of 3 Aasan Cloths' },
-      { label: 'Maintenance', value: 'Washable & Reusable' },
-      { label: 'Country of Origin', value: 'Made in India' },
-      { label: 'What\'s Included', value: '3 × Red Velvet Pooja Aasan Cloths' }
-    ],
-    keyFeatures: [
-      'Soft and Elegant Velvet Fabric – Premium micro-velvet material with a luxurious texture.',
-      'Decorative Golden Lace Border – Intricate golden zari lace lining that enhances your mandir aesthetics.',
-      'Generous 14 × 26 Inch Size – Spacious rectangular dimensions suitable for chowkis, platforms, and large idols.',
-      'Convenient Pack of 3 – Comes in a set of 3 to accommodate multiple deities and altar spaces.',
-      'Washable & Reusable – Durable fabric easy to clean, maintain, and reuse for regular worship.',
-      'Versatile Devotional Decor – Ideal for home mandirs, Ganesh Baithak, festive decorations, and religious rituals.'
-    ],
-    careInstructions: [
-      'Gently hand wash in cold water using mild detergent when required.',
-      'Do not bleach or scrub the golden lace border vigorously.',
-      'Air dry flat in shade and iron lightly on low heat from the reverse side if needed.'
-    ],
-    faqs: [
-      { q: 'What is the size of each aasan cloth?', a: 'Each red velvet aasan cloth measures 14 × 26 inches.' },
-      { q: 'How many aasan cloths are included in the pack?', a: 'This product comes as a Pack of 3 aasan cloths.' },
-      { q: 'Is the velvet cloth washable?', a: 'Yes, the fabric is gentle hand-washable and reusable for regular worship.' },
-      { q: 'What can this aasan cloth be used for?', a: 'It is ideal for placing God idols, decorating chowkis, lining temple shelves, Ganesh Baithak, and festive altar setups.' }
-    ]
-  },
+
 
   // 28. Ganesh Siddha Yantra Frame
   {
@@ -2411,131 +2283,7 @@ export const PRODUCTS = [
     ]
   },
 
-  // 35. Dakshinavarti Shankh
-  {
-    id: 'mandir-dakshinavarti-shankh',
-    name: 'Shraviko Natural Dakshinavarti Shankh',
-    category: 'vastu',
-    categoryName: 'Vastu & Spiritual',
-    subcategory: 'Sacred Conch Shells',
-    price: 3490,
-    originalPrice: 4290,
-    rating: 4.99,
-    reviewsCount: 245,
-    tag: 'Dakshinavarti Shankh',
-    artType: 'shankh',
-    fitMode: 'contain',
-    image: '/assets/Shankh/shankhD 2.jpg',
-    images: [
-      '/assets/Shankh/shankhD 2.jpg',
-      '/assets/Shankh/ShankhD1.jpg',
-      '/assets/Shankh/shankhD3.png',
-      '/assets/Shankh/shankhD4.jpg',
-      '/assets/Shankh/shankhD4.png'
-    ],
-    weightVariants: [
-      { weight: 'Small (3 - 4 Inch)', price: 2190, originalPrice: 2790 },
-      { weight: 'Medium (5 - 6 Inch)', price: 3490, originalPrice: 4290, default: true },
-      { weight: 'Royal Large (7 - 8 Inch)', price: 5490, originalPrice: 6890 }
-    ],
-    purity: '100% Natural Consecrated Sea Conch Shell',
-    inStock: true,
-    description: 'Bring a revered symbol of Indian spiritual tradition into your sacred space with the Shraviko Natural Dakshinavarti Shankh. This naturally formed right-handed conch shell is carefully selected for its traditional form, natural appearance, and suitability for pooja and devotional spaces. Known traditionally as a Dakshinavarti Shankh, its opening curves towards the right when viewed from the front. In Hindu tradition, the Dakshinavarti Shankh holds special significance and is commonly kept in home temples and used as part of devotional practices. Each Shankh is naturally formed, giving every piece its own subtle variations in shape, markings, texture, and size. Our shells are carefully selected for their overall appearance and traditional form before being prepared for your sacred space.',
-    shortDescription: 'Shraviko Natural Dakshinavarti Shankh (right-handed non-blowable conch shell) carefully selected for home mandirs, daily puja, Abhishek, and sacred rituals.',
-    seoTitle: 'Shraviko Natural Dakshinavarti Shankh (Right-Handed Conch Shell) | Shraviko',
-    metaDescription: 'Shop Shraviko Natural Dakshinavarti Shankh. Authentic right-handed ocean conch shell for home temples, daily pooja, Abhishek, Diwali and housewarming gifting.',
-    specifications: [
-      { label: 'Product', value: 'Natural Dakshinavarti Shankh' },
-      { label: 'Type', value: 'Right-Handed Conch Shell (Non-Blowable)' },
-      { label: 'Material', value: '100% Natural Ocean Conch Shell' },
-      { label: 'Color', value: 'Natural Off-White / Cream' },
-      { label: 'Size Range', value: 'Approximately 3.5–5 inches (Variations apply)' },
-      { label: 'Usage', value: 'Pooja, Devotional Display, Abhishek & Rituals' },
-      { label: 'Country of Origin', value: 'Made in India' },
-      { label: 'What\'s Included', value: '1 × Natural Dakshinavarti Shankh' }
-    ],
-    keyFeatures: [
-      'Authentic Right-Handed Spiral – Naturally formed shell opening towards the right, sacred to Goddess Lakshmi & Lord Vishnu.',
-      'Carefully Selected Natural Shells – Handpicked for traditional shape, natural texture, and aesthetic grace.',
-      'Ideal for Pooja & Abhishek – Perfect for home altars, mandirs, temple display, and holding ritual offerings.',
-      'Non-Blowable Worship Shankh – Traditionally placed in altars for devotional presence and prosperity blessings.',
-      'Meaningful Traditional Gift – Thoughtful choice for housewarmings, Diwali, Navratri, weddings, and temple ceremonies.'
-    ],
-    careInstructions: [
-      'Clean gently with plain water or Gangajal and dry with a soft cloth.',
-      'Do not expose to harsh chemicals, strong detergents, or boiling hot liquids.',
-      'Place securely on a soft fabric asan, stand, or brass base to prevent accidental rolling.'
-    ],
-    faqs: [
-      { q: 'Is this Dakshinavarti Shankh blowable?', a: 'No, Dakshinavarti (right-handed) Shankhs are non-blowable worship shells kept in altars for devotional rituals.' },
-      { q: 'What makes a Dakshinavarti Shankh special?', a: 'It features a natural right-turning spiral, which is traditionally associated with Goddess Lakshmi and Lord Vishnu.' },
-      { q: 'Are all pieces identical?', a: 'No, as each shell is naturally formed by nature, subtle variations in size, shape, color, and texture make each piece unique.' },
-      { q: 'Can it be used for Abhishek?', a: 'Yes, it can be used during traditional pooja and Abhishek practices according to your family customs.' }
-    ]
-  },
 
-  // 36. Vamavarti Shankha
-  {
-    id: 'mandir-vamavarti-shankh',
-    name: 'Shraviko Vamavarti Blowing Shankh',
-    category: 'vastu',
-    categoryName: 'Vastu & Spiritual',
-    subcategory: 'Sacred Conch Shells',
-    price: 1890,
-    originalPrice: 2490,
-    rating: 4.98,
-    reviewsCount: 198,
-    tag: 'Vamavarti Shankha',
-    artType: 'shankh',
-    fitMode: 'contain',
-    image: '/assets/Shankh/ShankhV2.jpg',
-    images: [
-      '/assets/Shankh/ShankhV2.jpg',
-      '/assets/Shankh/shankhV1.png',
-      '/assets/Shankh/shankhV3.png',
-      '/assets/Shankh/shankhV4.png'
-    ],
-    weightVariants: [
-      { weight: 'Small Blowing (5 Inch)', price: 1290, originalPrice: 1690 },
-      { weight: 'Loud Resonance Medium (7 Inch)', price: 1890, originalPrice: 2490, default: true },
-      { weight: 'Temple Master Large (9 Inch)', price: 2890, originalPrice: 3590 }
-    ],
-    purity: '100% Natural High-Resonance Blowing Conch',
-    inStock: true,
-    description: 'Bring a timeless element of Indian devotional tradition into your sacred space with the Shraviko Vamavarti Blowing Shankh. Naturally formed and selected for its traditional appearance, this white conch shell is suitable for pooja, aarti, devotional ceremonies, and home temple display. The Shankh holds an important place in Hindu worship and is traditionally blown during various religious rituals and ceremonies. Its distinctive natural form also makes it a beautiful addition to a home mandir or spiritual space. Every conch shell is naturally formed, so each piece has its own character. Natural variations in shape, size, texture, colour, markings, and surface appearance are expected and make each Shankh unique.',
-    shortDescription: 'Shraviko Vamavarti Blowing Shankh naturally formed for smooth blowing during daily pooja, Aarti, and religious ceremonies. Approx. 5-inch natural white conch shell.',
-    seoTitle: 'Shraviko Vamavarti Blowing Shankh (Natural White Conch Shell) | Shraviko',
-    metaDescription: 'Shop Shraviko Vamavarti Blowing Shankh. Authentic left-handed blowable ocean conch shell for home temples, daily pooja, Aarti, festive worship, and gifting.',
-    specifications: [
-      { label: 'Product', value: 'Vamavarti Blowing Shankh' },
-      { label: 'Type', value: 'Vamavarti (Left-Handed Spiral)' },
-      { label: 'Blowable', value: 'Yes (Blowing Conch Shell)' },
-      { label: 'Material', value: 'Natural Ocean Conch Shell' },
-      { label: 'Colour', value: 'Natural White' },
-      { label: 'Approximate Size', value: '5 inches' },
-      { label: 'Usage', value: 'Pooja, Aarti & Devotional Practices' },
-      { label: 'Country of Origin', value: 'Made in India' },
-      { label: 'What\'s Included', value: '1 × Natural Vamavarti Blowing Shankh' }
-    ],
-    keyFeatures: [
-      'Authentic Blowable Shankh – Features a smooth natural mouthpiece suitable for traditional ritual blowing.',
-      'Naturally Formed Shell – Unique natural white conch shell with distinctive organic contours and textures.',
-      'Essential for Pooja & Aarti – Traditionally blown during morning/evening Aarti, auspicious ceremonies, and festivals.',
-      'Devotional Mandir Decor – Makes a beautiful sacred centerpiece when displayed on altars and mandir shelves.',
-      'Thoughtful Spiritual Gift – Ideal for housewarmings, Diwali, Navratri, weddings, and temple inaugurations.'
-    ],
-    careInstructions: [
-      'Clean gently with plain water after blowing or ritual use and allow to dry thoroughly.',
-      'Store upright or on a soft fabric cushion/asan to protect the natural mouthpiece.',
-      'Do not use harsh chemical cleaners, bleach, or boiling water.'
-    ],
-    faqs: [
-      { q: 'Is this Vamavarti Shankh blowable?', a: 'Yes, this Vamavarti Shankh is naturally formed with a mouthpiece suitable for blowing during Aarti and rituals.' },
-      { q: 'What sound does the blowing Shankh produce?', a: 'When blown correctly, it produces a clear, deep resonant chime traditionally associated with divine cosmic vibrations.' },
-      { q: 'Are all shells identical in shape and color?', a: 'No, because each shell is naturally formed in the ocean, subtle variations in size, shape, markings, and texture are natural.' },
-      { q: 'How should I clean the Shankh after blowing?', a: 'Rinse with clean water, wipe gently with a soft cloth, and let it dry completely in a clean space.' }
-    ]
-  },
 
   // 37. Kamdhenu Cow & Calf
   {
@@ -3188,10 +2936,6 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Mandir Essentials',
-    price: 1490,
-    originalPrice: 1890,
-    rating: 4.99,
-    reviewsCount: 168,
     tag: 'Coming Soon',
     isComingSoon: true,
     artType: 'chawar',
@@ -3205,9 +2949,9 @@ export const PRODUCTS = [
       '/assets/chawar/chawr 4.png'
     ],
     weightVariants: [
-      { weight: 'Small (12 Inch)', price: 990, originalPrice: 1290 },
-      { weight: 'Medium (18 Inch)', price: 1490, originalPrice: 1890, default: true },
-      { weight: 'Royal Large (24 Inch)', price: 2190, originalPrice: 2690 }
+      { weight: 'Small (12 Inch)' },
+      { weight: 'Medium (18 Inch)', default: true },
+      { weight: 'Royal Large (24 Inch)' }
     ],
     purity: 'Metal Handle & Soft Synthetic Hair',
     inStock: true,
@@ -3242,6 +2986,251 @@ export const PRODUCTS = [
       { q: 'What materials are used in this Chawar Sahib?', a: 'It features premium soft white synthetic hair fibers attached to a durable metal handle.' },
       { q: 'What sizes are available?', a: 'Available in Small, Medium, and Large size options.' },
       { q: 'How do I clean and store the Chawar Sahib?', a: 'Gently brush dust from the fibers, avoid moisture or harsh detergents, and store in a clean, dry location.' }
+    ]
+  },
+
+  // Coming Soon Item - Jap Bag Gaumukhi
+  {
+    id: 'mandir-jap-bag-gaumukhi',
+    name: 'Pure Cotton Gomukhi Japa Mala Bag',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Japa Bags & Pouches',
+    tag: 'Coming Soon',
+    isComingSoon: true,
+    artType: 'bag',
+    fitMode: 'contain',
+    image: '/assets/Jap Bag/Bag1.jpg',
+    images: [
+      '/assets/Jap Bag/Bag1.jpg',
+      '/assets/Jap Bag/Japa Bag.jpg',
+      '/assets/Jap Bag/bag2.png',
+      '/assets/Jap Bag/bag3.png',
+      '/assets/Jap Bag/bag4.png'
+    ],
+    weightVariants: [
+      { weight: 'Single Pack (With Sakshi Counter)', default: true },
+      { weight: 'Pack of 2 Bags' },
+      { weight: 'Gift Pack of 5 Bags' }
+    ],
+    purity: '100% Pure Cotton in Bhagwa / Saffron',
+    inStock: true,
+    description: 'The Shraviko Gomukhi Japa Mala Bag is designed for devotees who regularly practice mantra chanting and use a Japa Mala. Made from cotton and designed in the traditional Gomukhi (Gaumukhi) style, the bag allows you to keep your mala covered while providing a comfortable way to perform daily Jaap. A Sakshi Mala counter is included to help keep track of chanting rounds, while the integrated zipper pocket provides convenient storage for small essentials such as a digital counter or keys. Lightweight and easy to carry for home, temple, satsang, meditation, travel and pilgrimages. Suitable for standard 108-bead malas including Tulsi, Rudraksha, Neem, Chandan, Sphatik and Vaijanti malas.',
+    shortDescription: 'Carry and use your sacred mala comfortably with this Pure Cotton Gomukhi Japa Mala Bag. Featuring a traditional Gomukhi design, Sakshi Mala counter and convenient zipper pocket, it is designed for daily Jaap, mantra chanting, meditation and spiritual practice.',
+    seoTitle: 'Pure Cotton Gomukhi Japa Mala Bag | Gaumukhi Bag with Counter | Shraviko',
+    metaDescription: 'Shop Shraviko Pure Cotton Gomukhi Japa Mala Bag with Sakshi Mala counter and zipper pocket. Ideal for daily Jaap, mantra chanting, Rudraksha and Tulsi malas.',
+    specifications: [
+      { label: 'Product Type', value: 'Gomukhi Japa Mala Bag' },
+      { label: 'Material', value: '100% Pure Cotton' },
+      { label: 'Colour', value: 'Bhagwa / Saffron' },
+      { label: 'Pattern', value: 'Solid' },
+      { label: 'Design Style', value: 'Traditional Gomukhi' },
+      { label: 'Closure', value: 'Integrated Zipper Pocket' },
+      { label: 'Dimensions', value: 'Approx. 15 × 10 × 20 cm' },
+      { label: 'Weight', value: 'Approx. 80 g' },
+      { label: 'Mala Compatibility', value: 'Standard 108-Bead Malas (Tulsi, Rudraksha, etc.)' },
+      { label: 'Country of Origin', value: 'India' },
+      { label: 'What\'s Included', value: '1 × Gomukhi Japa Mala Bag, 1 × Sakshi Mala Counter' }
+    ],
+    keyFeatures: [
+      'Cotton Gomukhi Design – Traditional Gaumukhi shape crafted from breathable pure cotton in Bhagwa/Saffron.',
+      'Sakshi Mala Counter Included – Comes with a Sakshi Mala counter to effortlessly track completed chanting rounds.',
+      'Integrated Zipper Pocket – Convenient built-in zip pocket to store digital counters, keys, or sacred items.',
+      'Standard 108-Bead Mala Compatibility – Ideal for Tulsi, Rudraksha, Neem, Chandan, Sphatik, and Vaijanti malas.',
+      'Lightweight & Portable – Easy to carry for home Jaap, temple visits, satsangs, meditation, and spiritual pilgrimages.',
+      'Made in India – Authentic traditional Indian devotional craftsmanship.'
+    ],
+    careInstructions: [
+      'Keep the bag dry and clean.',
+      'For routine cleaning, gently wipe or hand wash according to the fabric\'s care requirements.',
+      'Allow it to dry completely before storing your mala inside.'
+    ],
+    faqs: [
+      { q: 'What is included with this Japa Mala Bag?', a: 'The package includes 1 × Pure Cotton Gomukhi Japa Mala Bag and 1 × Sakshi Mala counter.' },
+      { q: 'Which malas are compatible with this bag?', a: 'It fits standard 108-bead malas such as Tulsi, Rudraksha, Neem, Chandan, Sphatik, and Vaijanti malas.' },
+      { q: 'What is the function of the Sakshi Mala counter and zipper pocket?', a: 'The Sakshi Mala counter helps track completed chanting rounds, and the zipper pocket securely holds small items like keys or a digital counter.' },
+      { q: 'How do I wash and maintain the cotton Japa bag?', a: 'Hand wash gently in cold water, avoid bleach, and line dry completely before placing your sacred mala inside.' }
+    ]
+  },
+
+  // Coming Soon Item - Velvet Pooja Asan Mat
+  {
+    id: 'mandir-royal-velvet-asan-mat',
+    name: 'Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Pooja Asan Mats',
+    tag: 'Coming Soon',
+    isComingSoon: true,
+    artType: 'asan',
+    fitMode: 'contain',
+    image: '/assets/Velvet asan/asan1.png',
+    images: [
+      '/assets/Velvet asan/asan1.png',
+      '/assets/Velvet asan/asan2.jpg',
+      '/assets/Velvet asan/asan3.png',
+      '/assets/Velvet asan/asan4.png',
+      '/assets/Velvet asan/asan5.jpg'
+    ],
+    weightVariants: [
+      { weight: 'Pack of 3 (14 × 26 Inch)', default: true },
+      { weight: 'Pack of 6 (14 × 26 Inch)' }
+    ],
+    purity: 'Soft Micro-Velvet & Golden Lace Border',
+    inStock: true,
+    description: 'Bring a traditional and elegant touch to your home temple with our Red Velvet Pooja Aasan Cloth. Made from soft velvet fabric and finished with a decorative golden lace border, this aasan is designed for placing God idols on chowkis, temple platforms, pooja shelves and other sacred spaces. The rich red color and traditional golden border complement the beauty of your mandir while creating a neat and graceful setting for daily pooja and festive occasions. Its 14 × 26 inch rectangular size provides ample space for a variety of idols and pooja arrangements. The pack of 3 makes it convenient to use across multiple idols or different areas of your home temple. The cloth is washable, reusable and suitable for regular use.',
+    shortDescription: 'Red Velvet Pooja Aasan Cloth with decorative golden lace border (Pack of 3, Size 14 × 26 inch). Soft, washable, and reusable pedestal cloth for God idols, chowkis, and home mandirs.',
+    seoTitle: 'Red Velvet Pooja Aasan Cloth with Golden Border (Pack of 3) | Shraviko',
+    metaDescription: 'Shop Red Velvet Pooja Aasan Cloth with Golden Border (Pack of 3). Soft washable velvet mat for God idols, chowkis, mandir shelves, and festive setups. Size 14x26 inch.',
+    specifications: [
+      { label: 'Product', value: 'Red Velvet Pooja Aasan Cloth' },
+      { label: 'Fabric Material', value: 'Soft Micro-Velvet' },
+      { label: 'Border Detail', value: 'Decorative Golden Lace Border' },
+      { label: 'Color', value: 'Rich Devotional Red' },
+      { label: 'Dimensions', value: '14 × 26 Inches' },
+      { label: 'Pack Quantity', value: 'Pack of 3 Aasan Cloths' },
+      { label: 'Maintenance', value: 'Washable & Reusable' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '3 × Red Velvet Pooja Aasan Cloths' }
+    ],
+    keyFeatures: [
+      'Soft and Elegant Velvet Fabric – Premium micro-velvet material with a luxurious texture.',
+      'Decorative Golden Lace Border – Intricate golden zari lace lining that enhances your mandir aesthetics.',
+      'Generous 14 × 26 Inch Size – Spacious rectangular dimensions suitable for chowkis, platforms, and large idols.',
+      'Convenient Pack of 3 – Comes in a set of 3 to accommodate multiple deities and altar spaces.',
+      'Washable & Reusable – Durable fabric easy to clean, maintain, and reuse for regular worship.',
+      'Versatile Devotional Decor – Ideal for home mandirs, Ganesh Baithak, festive decorations, and religious rituals.'
+    ],
+    careInstructions: [
+      'Gently hand wash in cold water using mild detergent when required.',
+      'Do not bleach or scrub the golden lace border vigorously.',
+      'Air dry flat in shade and iron lightly on low heat from the reverse side if needed.'
+    ],
+    faqs: [
+      { q: 'What is the size of each aasan cloth?', a: 'Each red velvet aasan cloth measures 14 × 26 inches.' },
+      { q: 'How many aasan cloths are included in the pack?', a: 'This product comes as a Pack of 3 aasan cloths.' },
+      { q: 'Is the velvet cloth washable?', a: 'Yes, the fabric is gentle hand-washable and reusable for regular worship.' },
+      { q: 'What can this aasan cloth be used for?', a: 'It is ideal for placing God idols, decorating chowkis, lining temple shelves, Ganesh Baithak, and festive altar setups.' }
+    ]
+  },
+
+  // Coming Soon Item - Dakshinavarti Shankh
+  {
+    id: 'mandir-dakshinavarti-shankh',
+    name: 'Shraviko Natural Dakshinavarti Shankh',
+    category: 'vastu',
+    categoryName: 'Vastu & Spiritual',
+    subcategory: 'Sacred Conch Shells',
+    tag: 'Coming Soon',
+    isComingSoon: true,
+    artType: 'shankh',
+    fitMode: 'contain',
+    image: '/assets/Shankh/shankhD 2.jpg',
+    images: [
+      '/assets/Shankh/shankhD 2.jpg',
+      '/assets/Shankh/ShankhD1.jpg',
+      '/assets/Shankh/shankhD3.png',
+      '/assets/Shankh/shankhD4.jpg',
+      '/assets/Shankh/shankhD4.png'
+    ],
+    weightVariants: [
+      { weight: 'Small (3 - 4 Inch)' },
+      { weight: 'Medium (5 - 6 Inch)', default: true },
+      { weight: 'Royal Large (7 - 8 Inch)' }
+    ],
+    purity: '100% Natural Consecrated Sea Conch Shell',
+    inStock: true,
+    description: 'Bring a revered symbol of Indian spiritual tradition into your sacred space with the Shraviko Natural Dakshinavarti Shankh. This naturally formed right-handed conch shell is carefully selected for its traditional form, natural appearance, and suitability for pooja and devotional spaces. Known traditionally as a Dakshinavarti Shankh, its opening curves towards the right when viewed from the front. In Hindu tradition, the Dakshinavarti Shankh holds special significance and is commonly kept in home temples and used as part of devotional practices. Each Shankh is naturally formed, giving every piece its own subtle variations in shape, markings, texture, and size. Our shells are carefully selected for their overall appearance and traditional form before being prepared for your sacred space.',
+    shortDescription: 'Shraviko Natural Dakshinavarti Shankh (right-handed non-blowable conch shell) carefully selected for home mandirs, daily puja, Abhishek, and sacred rituals.',
+    seoTitle: 'Shraviko Natural Dakshinavarti Shankh (Right-Handed Conch Shell) | Shraviko',
+    metaDescription: 'Shop Shraviko Natural Dakshinavarti Shankh. Authentic right-handed ocean conch shell for home temples, daily pooja, Abhishek, Diwali and housewarming gifting.',
+    specifications: [
+      { label: 'Product', value: 'Natural Dakshinavarti Shankh' },
+      { label: 'Type', value: 'Right-Handed Conch Shell (Non-Blowable)' },
+      { label: 'Material', value: '100% Natural Ocean Conch Shell' },
+      { label: 'Color', value: 'Natural Off-White / Cream' },
+      { label: 'Size Range', value: 'Approximately 3.5–5 inches (Variations apply)' },
+      { label: 'Usage', value: 'Pooja, Devotional Display, Abhishek & Rituals' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '1 × Natural Dakshinavarti Shankh' }
+    ],
+    keyFeatures: [
+      'Authentic Right-Handed Spiral – Naturally formed shell opening towards the right, sacred to Goddess Lakshmi & Lord Vishnu.',
+      'Carefully Selected Natural Shells – Handpicked for traditional shape, natural texture, and aesthetic grace.',
+      'Ideal for Pooja & Abhishek – Perfect for home altars, mandirs, temple display, and holding ritual offerings.',
+      'Non-Blowable Worship Shankh – Traditionally placed in altars for devotional presence and prosperity blessings.',
+      'Meaningful Traditional Gift – Thoughtful choice for housewarmings, Diwali, Navratri, weddings, and temple ceremonies.'
+    ],
+    careInstructions: [
+      'Clean gently with plain water or Gangajal and dry with a soft cloth.',
+      'Do not expose to harsh chemicals, strong detergents, or boiling hot liquids.',
+      'Place securely on a soft fabric asan, stand, or brass base to prevent accidental rolling.'
+    ],
+    faqs: [
+      { q: 'Is this Dakshinavarti Shankh blowable?', a: 'No, Dakshinavarti (right-handed) Shankhs are non-blowable worship shells kept in altars for devotional rituals.' },
+      { q: 'What makes a Dakshinavarti Shankh special?', a: 'It features a natural right-turning spiral, which is traditionally associated with Goddess Lakshmi and Lord Vishnu.' },
+      { q: 'Are all pieces identical?', a: 'No, as each shell is naturally formed by nature, subtle variations in size, shape, color, and texture make each piece unique.' },
+      { q: 'Can it be used for Abhishek?', a: 'Yes, it can be used during traditional pooja and Abhishek practices according to your family customs.' }
+    ]
+  },
+
+  // Coming Soon Item - Vamavarti Shankha
+  {
+    id: 'mandir-vamavarti-shankh',
+    name: 'Shraviko Vamavarti Blowing Shankh',
+    category: 'vastu',
+    categoryName: 'Vastu & Spiritual',
+    subcategory: 'Sacred Conch Shells',
+    tag: 'Coming Soon',
+    isComingSoon: true,
+    artType: 'shankh',
+    fitMode: 'contain',
+    image: '/assets/Shankh/ShankhV2.jpg',
+    images: [
+      '/assets/Shankh/ShankhV2.jpg',
+      '/assets/Shankh/shankhV1.png',
+      '/assets/Shankh/shankhV3.png',
+      '/assets/Shankh/shankhV4.png'
+    ],
+    weightVariants: [
+      { weight: 'Small Blowing (5 Inch)' },
+      { weight: 'Loud Resonance Medium (7 Inch)', default: true },
+      { weight: 'Temple Master Large (9 Inch)' }
+    ],
+    purity: '100% Natural High-Resonance Blowing Conch',
+    inStock: true,
+    description: 'Bring a timeless element of Indian devotional tradition into your sacred space with the Shraviko Vamavarti Blowing Shankh. Naturally formed and selected for its traditional appearance, this white conch shell is suitable for pooja, aarti, devotional ceremonies, and home temple display. The Shankh holds an important place in Hindu worship and is traditionally blown during various religious rituals and ceremonies. Its distinctive natural form also makes it a beautiful addition to a home mandir or spiritual space. Every conch shell is naturally formed, so each piece has its own character. Natural variations in shape, size, texture, colour, markings, and surface appearance are expected and make each Shankh unique.',
+    shortDescription: 'Shraviko Vamavarti Blowing Shankh naturally formed for smooth blowing during daily pooja, Aarti, and religious ceremonies. Approx. 5-inch natural white conch shell.',
+    seoTitle: 'Shraviko Vamavarti Blowing Shankh (Natural White Conch Shell) | Shraviko',
+    metaDescription: 'Shop Shraviko Vamavarti Blowing Shankh. Authentic left-handed blowable ocean conch shell for home temples, daily pooja, Aarti, festive worship, and gifting.',
+    specifications: [
+      { label: 'Product', value: 'Vamavarti Blowing Shankh' },
+      { label: 'Type', value: 'Vamavarti (Left-Handed Spiral)' },
+      { label: 'Blowable', value: 'Yes (Blowing Conch Shell)' },
+      { label: 'Material', value: 'Natural Ocean Conch Shell' },
+      { label: 'Colour', value: 'Natural White' },
+      { label: 'Approximate Size', value: '5 inches' },
+      { label: 'Usage', value: 'Pooja, Aarti & Devotional Practices' },
+      { label: 'Country of Origin', value: 'Made in India' },
+      { label: 'What\'s Included', value: '1 × Natural Vamavarti Blowing Shankh' }
+    ],
+    keyFeatures: [
+      'Authentic Blowable Shankh – Features a smooth natural mouthpiece suitable for traditional ritual blowing.',
+      'Naturally Formed Shell – Unique natural white conch shell with distinctive organic contours and textures.',
+      'Essential for Pooja & Aarti – Traditionally blown during morning/evening Aarti, auspicious ceremonies, and festivals.',
+      'Devotional Mandir Decor – Makes a beautiful sacred centerpiece when displayed on altars and mandir shelves.',
+      'Thoughtful Spiritual Gift – Ideal for housewarmings, Diwali, Navratri, weddings, and temple inaugurations.'
+    ],
+    careInstructions: [
+      'Clean gently with plain water after blowing or ritual use and allow to dry thoroughly.',
+      'Store upright or on a soft fabric cushion/asan to protect the natural mouthpiece.',
+      'Do not use harsh chemical cleaners, bleach, or boiling water.'
+    ],
+    faqs: [
+      { q: 'Is this Vamavarti Shankh blowable?', a: 'Yes, this Vamavarti Shankh is naturally formed with a mouthpiece suitable for blowing during Aarti and rituals.' },
+      { q: 'What sound does the blowing Shankh produce?', a: 'When blown correctly, it produces a clear, deep resonant chime traditionally associated with divine cosmic vibrations.' },
+      { q: 'Are all shells identical in shape and color?', a: 'No, because each shell is naturally formed in the ocean, subtle variations in size, shape, markings, and texture are natural.' },
+      { q: 'How should I clean the Shankh after blowing?', a: 'Rinse with clean water, wipe gently with a soft cloth, and let it dry completely in a clean space.' }
     ]
   }
 ];

@@ -29,11 +29,19 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
         <div className="relative rounded-2xl overflow-hidden shadow-md border border-[#EAE0CD] bg-[#1C140F]">
           {/* Landscape Background Image */}
           <div className="relative w-full h-[300px] sm:h-[360px] lg:h-[400px] overflow-hidden">
+            {/* Mobile View Image */}
             <img
-              src="/essentialhero.png"
+              src="/mandirphone view.png"
               alt="Mandir Essentials Collection"
-              onError={(e) => { e.target.src = '/mandiressentialmobileview.png'; }}
-              className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
+              onError={(e) => { e.target.src = '/mandiressentials.png'; }}
+              className="block sm:hidden w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
+            />
+            {/* Desktop View Image */}
+            <img
+              src="/mandiressentials.png"
+              alt="Mandir Essentials Collection"
+              onError={(e) => { e.target.src = '/mandirphone view.png'; }}
+              className="hidden sm:block w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
             />
             {/* Dark Landscape Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#1C140F]/95 via-[#1C140F]/75 to-transparent sm:w-3/4" />
@@ -109,10 +117,18 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
                   </h4>
                   <div className="flex items-center justify-between pt-2 border-t border-[#EAE0CD]">
                     <div className="flex items-baseline gap-1">
-                      <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
-                      <span className="text-xs font-cinzel font-bold text-[#2C2623]">
-                        ₹{product.price.toLocaleString('en-IN')}
-                      </span>
+                      {product.isComingSoon ? (
+                        <span className="text-[10px] font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
+                          Coming Soon
+                        </span>
+                      ) : (
+                        <>
+                          <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+                          <span className="text-xs font-cinzel font-bold text-[#2C2623]">
+                            ₹{(product.price || product.weightVariants?.[0]?.price || 0).toLocaleString('en-IN')}
+                          </span>
+                        </>
+                      )}
                     </div>
                     <span className="text-[10px] font-cinzel font-bold text-[#C5A059] uppercase tracking-widest group-hover:translate-x-0.5 transition-transform">
                       View →

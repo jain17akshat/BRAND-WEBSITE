@@ -12,7 +12,8 @@ export const Navbar = ({
   activeCategory,
   onSelectCategory,
   onGoHome,
-  onGoSupport
+  onGoSupport,
+  hideNavbar = false
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -52,10 +53,35 @@ export const Navbar = ({
 
   return (
     <>
+      {/* Shimmer animation for brand text */}
+      <style>{`
+        @keyframes navShimmer {
+          0%, 20% { background-position: 200% center; }
+          80%, 100% { background-position: -200% center; }
+        }
+        .nav-brand-shimmer {
+          background: linear-gradient(
+            90deg,
+            #8C6D2D 0%,
+            #8C6D2D 35%,
+            #C5A059 42%,
+            #FFF8E7 50%,
+            #C5A059 58%,
+            #8C6D2D 65%,
+            #8C6D2D 100%
+          );
+          background-size: 250% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: navShimmer 5s ease-in-out infinite;
+        }
+      `}</style>
       {/* ── Solid Premium Luxury Header with Curved Corners (100% Non-Transparent) ── */}
       <header
-        className={`fixed top-2 sm:top-3.5 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+        className={`fixed top-2 sm:top-3.5 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out ${(isVisible && !hideNavbar) ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
           }`}
+        style={{ pointerEvents: (isVisible && !hideNavbar) ? 'auto' : 'none' }}
       >
         {/* Solid White Floating Capsule with Curved Corners */}
         <div className={`max-w-7xl mx-auto bg-white rounded-2xl sm:rounded-full border border-stone-200/80 overflow-hidden transition-all duration-300 ${isScrolled ? 'shadow-xl' : 'shadow-md'
@@ -79,18 +105,12 @@ export const Navbar = ({
                 className="hidden lg:flex items-center group focus:outline-none"
                 title="Shraviko - Home"
               >
-                <img
-                  src={logoUrl}
-                  alt="Shraviko"
-                  style={{
-                    height: '52px',
-                    width: '52px',
-                    aspectRatio: '1 / 1',
-                    objectFit: 'contain',
-                    display: 'block',
-                  }}
-                  className="rounded-full transition-transform duration-300 group-hover:scale-105"
-                />
+                <span
+                  className="nav-brand-shimmer font-cinzel font-bold tracking-[0.15em] uppercase transition-all duration-300 group-hover:scale-105"
+                  style={{ fontSize: '1.35rem' }}
+                >
+                  Shraviko
+                </span>
               </button>
             </div>
 
@@ -100,18 +120,12 @@ export const Navbar = ({
               className="lg:hidden absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center focus:outline-none z-10"
               title="Shraviko - Home"
             >
-              <img
-                src={logoUrl}
-                alt="Shraviko"
-                style={{
-                  height: '48px',
-                  width: '48px',
-                  aspectRatio: '1 / 1',
-                  objectFit: 'contain',
-                  display: 'block',
-                }}
-                className="rounded-full transition-transform duration-300 active:scale-95 shadow-sm"
-              />
+              <span
+                className="nav-brand-shimmer font-cinzel font-bold tracking-[0.12em] uppercase transition-transform duration-300 active:scale-95"
+                style={{ fontSize: '1.15rem' }}
+              >
+                Shraviko
+              </span>
             </button>
 
             {/* CENTER — Spacious Category Navigation Links */}
