@@ -170,364 +170,131 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
   }, [selectedPurposes]);
 
   return (
-    <div className="min-h-screen bg-[#FDFAF5] pt-24 pb-20 text-[#2C2623] select-none">
+    <div className="min-h-screen bg-[#FDFAF5] pb-20 text-[#2C2623] select-none">
       
-"      {/* ── Top Header Banner with Desktop & Mobile Hero Images ── */}
-      <div className="relative w-full overflow-hidden bg-[#1C1715] border-b border-[#EAE0CD] py-10 sm:py-16 px-4 sm:px-6 lg:px-8 shadow-2xl">
-        {/* Mobile View Image */}
+      {/* ── Standard Category Hero Section ── */}
+      <section
+        className="relative w-full overflow-hidden bg-[#1C1715]"
+        style={{ height: '100svh', minHeight: '100vh' }}
+      >
+        {/* Mobile Image */}
         <img
           src="/energystones mobile view.png"
-          alt="Energy Stones & Crystal Bracelets"
-          className="block sm:hidden absolute inset-0 w-full h-full object-cover object-center hero-image-crisp opacity-50"
+          alt="Energy Stones & Accessories"
+          className="block sm:hidden absolute inset-0 h-full w-full object-cover hero-image-crisp"
+          style={{ objectPosition: 'center center' }}
         />
-        {/* Desktop View Image */}
+
+        {/* Desktop Image */}
         <img
           src="/braclet desktopview.png"
-          alt="Energy Stones & Crystal Bracelets"
-          className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center hero-image-crisp opacity-50"
+          alt="Energy Stones & Accessories"
+          className="hidden sm:block absolute inset-0 h-full w-full object-cover hero-image-crisp"
+          style={{ objectPosition: 'center center' }}
         />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1C1715]/95 via-[#1C1715]/80 to-[#1C1715]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1715] via-transparent to-transparent" />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
-          {/* Back Button */}
-          <button
-            onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-xs font-cinzel font-semibold text-[#E5C378] hover:text-white transition-colors mb-4 group"
+        {/* Minimal Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 pointer-events-none" />
+
+        {/* Category Title — Centered in full viewport */}
+        <div className="absolute inset-0 flex items-center justify-center px-6 pointer-events-none" style={{ paddingTop: '70px' }}>
+          <h1
+            className="font-cinzel font-bold text-white tracking-wider uppercase text-center leading-tight"
+            style={{
+              fontSize: 'clamp(1.75rem, 8vw, 5rem)',
+              textShadow: '0 4px 24px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)'
+            }}
           >
-            <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Home</span>
-          </button>
+            Energy Stones & Bracelets
+          </h1>
+        </div>
+      </section>
 
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C1715]/80 border border-[#DAB97B]/50 text-[#E5C378] text-[10px] sm:text-xs font-cinzel font-bold tracking-widest uppercase mb-3 backdrop-blur-sm">
-                <Gem className="w-3.5 h-3.5 text-[#E5C378] animate-pulse" />
-                <span>Sacred Gemstone & Bracelet Collection</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-5xl font-cinzel font-bold text-white tracking-wide heading-gold-line drop-shadow-md">
-                Energy Stones & Bracelets
-              </h1>
-              
-              <p className="mt-3 text-xs sm:text-sm text-[#E5D7C0] font-light max-w-2xl leading-relaxed">
-                100% Authentic Natural Gemstones, Crystal Bracelets, Orgone Healing Pyramids & Sacred Japa Malas — Consecrated & Energized for Specific Intentions.
-              </p>
+      {/* Back to Home Button Below Hero Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+        <button
+          onClick={onBackToHome}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs font-bold uppercase tracking-wider rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] shadow-md transition-all active:scale-95 group"
+        >
+          <ArrowLeft className="w-4 h-4 text-[#E5C378] group-hover:-translate-x-1 transition-transform" />
+          <span>Back to Home</span>
+        </button>
+      </div>
+      {/* ── Main Container: Pure "Coming Soon" Teaser Showcase ── */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+        <main className="space-y-8">
+          {/* Main Luxury "Coming Soon • Stay Tuned" Showcase Hero Box */}
+          <div className="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#2C1F06] via-[#3D2B0A] to-[#1C1505] text-[#E5C378] border border-[#E5C378]/40 shadow-2xl overflow-hidden text-center">
+            
+            {/* Background Sacred Sun Aura */}
+            <div className="absolute inset-0 opacity-15 pointer-events-none animate-spin-slow flex items-center justify-center">
+              <svg className="w-[500px] h-[500px] text-[#E5C378]" viewBox="0 0 200 200" fill="currentColor">
+                <g transform="translate(100,100)">
+                  <circle r="90" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
+                  <circle r="78" fill="none" stroke="currentColor" strokeWidth="1" />
+                  {[...Array(12)].map((_, i) => (
+                    <path key={i} d="M 0,-65 Q 12,-40 0,-15 Q -12,-40 0,-65" fill="none" stroke="currentColor" strokeWidth="1" transform={`rotate(${i * 30})`} />
+                  ))}
+                </g>
+              </svg>
             </div>
 
-            {/* Launch Status Pill */}
-            <div className="flex items-center gap-2.5 bg-black/50 backdrop-blur-md border border-[#E5C378]/60 px-4 py-2.5 rounded-2xl shadow-xl flex-shrink-0">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#E5C378] animate-ping" />
-              <div>
-                <p className="text-[10px] font-cinzel font-bold text-[#E5C378] uppercase tracking-widest">
-                  Collection Launching Soon
-                </p>
-                <p className="text-[11px] text-white/80 font-medium">
-                  Stay Tuned
+            <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+              
+              {/* Gem Icon Aura */}
+              <div className="w-20 h-20 mx-auto rounded-full bg-[#E5C378]/15 border border-[#E5C378]/50 flex items-center justify-center text-[#E5C378] shadow-2xl">
+                <Gem className="w-10 h-10 animate-pulse" />
+              </div>
+
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E5C378]/20 border border-[#E5C378]/50 text-white text-xs font-cinzel font-bold uppercase tracking-widest">
+                <Hourglass className="w-3.5 h-3.5 text-[#E5C378] animate-spin" style={{ animationDuration: '4s' }} />
+                <span>Collection Launching Soon • Stay Tuned</span>
+              </div>
+
+              {/* Headline */}
+              <h2 className="text-2xl sm:text-4xl font-cinzel font-bold text-white tracking-wide leading-tight">
+                Sacred Energy Stones & Crystal Bracelets
+              </h2>
+
+              {/* Description */}
+              <p className="text-xs sm:text-base text-[#D9C49E] font-light leading-relaxed">
+                We are hand-selecting 100% authentic gemstones, crystal bracelets, orgone pyramids, and sacred Japa malas purified with Ganga Jal and consecrated with Vedic mantras.
+              </p>
+
+              {/* Form Notification Box */}
+              <div className="pt-6 border-t border-[#E5C378]/30 max-w-md mx-auto">
+                {isSubmitted ? (
+                  <div className="p-4 rounded-2xl bg-[#E8F5E9] border border-emerald-400 text-emerald-900 text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                    <span>Thank you! You are registered for updates on Launch Day.</span>
+                  </div>
+                ) : (
+                  <form onSubmit={handleNotifySubmit} className="flex flex-col sm:flex-row gap-2">
+                    <input
+                      type="email"
+                      required
+                      placeholder="Enter your email to get notified..."
+                      value={emailNotify}
+                      onChange={(e) => setEmailNotify(e.target.value)}
+                      className="flex-1 px-4 py-3 rounded-xl bg-white/95 text-xs text-[#2C2623] placeholder-[#8C8070] focus:outline-none focus:ring-2 focus:ring-[#E5C378] shadow-inner"
+                    />
+                    <button
+                      type="submit"
+                      className="px-6 py-3 rounded-xl bg-[#E5C378] hover:bg-[#F3D693] text-[#2C1F06] text-xs font-cinzel font-bold uppercase tracking-widest shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap"
+                    >
+                      <Bell className="w-4 h-4" />
+                      <span>Notify Me</span>
+                    </button>
+                  </form>
+                )}
+                <p className="text-[10px] text-[#B59D72] mt-2 font-light">
+                  ✦ Be the first to be notified 1 hour before official release ✦
                 </p>
               </div>
+
             </div>
           </div>
-
-        </div>
-      </div>
-
-      {/* ── Main Container: Sidebar + Pure "Coming Soon" Teaser Showcase ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-        
-        {/* Mobile Filter Toggle Button */}
-        <div className="lg:hidden mb-6 flex items-center justify-between">
-          <button
-            onClick={() => setMobileSidebarOpen(true)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-[#EAE0CD] text-xs font-cinzel font-bold text-[#2C2623] shadow-sm active:scale-95"
-          >
-            <SlidersHorizontal className="w-4 h-4 text-[#B8860B]" />
-            <span>Select Purpose ({selectedPurposes.length})</span>
-          </button>
-
-          <span className="text-xs font-cinzel text-[#8C6D2D] font-bold uppercase tracking-wider">
-            Coming Soon
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          
-          {/* ── SIDEBAR: SHOP BY PURPOSE FILTERS ── */}
-          <aside className={`
-            fixed inset-y-0 left-0 z-50 w-80 bg-white p-6 shadow-2xl overflow-y-auto transition-transform duration-300 lg:static lg:z-auto lg:w-auto lg:bg-transparent lg:p-0 lg:shadow-none lg:overflow-visible
-            ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-          `}>
-            
-            {/* Mobile Sidebar Close Button */}
-            <div className="lg:hidden flex items-center justify-between pb-4 mb-4 border-b border-[#EAE0CD]">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#B8860B]" />
-                <span className="font-cinzel font-bold text-xs uppercase text-[#2C2623]">Shop by Purpose</span>
-              </div>
-              <button
-                onClick={() => setMobileSidebarOpen(false)}
-                className="p-1.5 rounded-full bg-[#F5EEDC] text-[#2C2623]"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="bg-white rounded-2xl p-5 border border-[#EAE0CD] shadow-sm space-y-6 sticky top-28">
-              
-              {/* Sidebar Header */}
-              <div className="flex items-center justify-between border-b border-[#F0E6D2] pb-3">
-                <div className="flex items-center gap-2">
-                  <Filter className="w-4 h-4 text-[#B8860B]" />
-                  <h3 className="font-cinzel font-bold text-sm text-[#2C2623] tracking-wide">
-                    Shop by Purpose
-                  </h3>
-                </div>
-
-                {selectedPurposes.length > 0 && (
-                  <button
-                    onClick={handleResetFilters}
-                    className="text-[11px] font-cinzel text-[#A63A2B] hover:underline flex items-center gap-1"
-                  >
-                    <RotateCcw className="w-3 h-3" />
-                    <span>Reset</span>
-                  </button>
-                )}
-              </div>
-
-              {/* Purpose Search Box */}
-              <div className="relative">
-                <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#9B7E52]" />
-                <input
-                  type="text"
-                  placeholder="Search purpose (Dhan, Health, Nazar...)"
-                  value={purposeSearchQuery}
-                  onChange={(e) => setPurposeSearchQuery(e.target.value)}
-                  className="w-full pl-8 pr-3 py-2 rounded-lg bg-[#FBF9F5] border border-[#EAE0CD] text-xs text-[#2C2623] placeholder-[#A08E76] focus:outline-none focus:border-[#B8860B]"
-                />
-              </div>
-
-              {/* 8 Main Purpose Checkbox List matching GemsMantra reference */}
-              <div className="space-y-2.5">
-                {filteredSidebarPurposes.map((item) => {
-                  const isChecked = selectedPurposes.includes(item.name);
-                  const IconComp = item.icon;
-
-                  return (
-                    <div
-                      key={item.id}
-                      onClick={() => handleTogglePurpose(item.name)}
-                      className={`group flex items-start gap-3 p-3 rounded-xl cursor-pointer transition-all border ${
-                        isChecked
-                          ? 'bg-[#F5EEDC] border-[#DAB97B] shadow-sm'
-                          : 'bg-[#FDFBF7] border-[#EAE0CD] hover:border-[#C5A059] hover:bg-white'
-                      }`}
-                    >
-                      {/* Checkbox */}
-                      <div
-                        className={`w-4 h-4 mt-0.5 rounded flex items-center justify-center border transition-colors flex-shrink-0 ${
-                          isChecked ? 'bg-[#2C1F06] border-[#2C1F06] text-[#E5C378]' : 'border-[#D1C2A5] bg-white'
-                        }`}
-                      >
-                        {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
-                      </div>
-
-                      {/* Purpose Name + Subtext */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-1">
-                          <h4 className="font-cinzel font-bold text-xs text-[#2C2623] group-hover:text-[#8C6D2D] transition-colors leading-tight truncate">
-                            {item.name}
-                          </h4>
-                          <IconComp className="w-4 h-4 flex-shrink-0" style={{ color: item.color }} />
-                        </div>
-                        <p className="text-[11px] text-[#8C7A65] font-light mt-0.5 capitalize">
-                          {item.subtext}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {filteredSidebarPurposes.length === 0 && (
-                <p className="text-center text-xs text-[#7A6750] py-4">
-                  No purpose matches "{purposeSearchQuery}".
-                </p>
-              )}
-
-            </div>
-          </aside>
-
-          {/* ── MAIN SHOWCASE AREA: PURE "COMING SOON • STAY TUNED" SHOWCASE ── */}
-          <main className="lg:col-span-3 space-y-8">
-            
-            {/* Active Purpose Banner Indicator (If Selected) */}
-            {selectedPurposes.length > 0 && (
-              <div className="bg-white p-4 rounded-2xl border border-[#EAE0CD] shadow-sm flex items-center justify-between flex-wrap gap-3">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-cinzel text-[#8C6D2D] font-bold">Active Purpose Filter:</span>
-                  {selectedPurposes.map(pName => (
-                    <span
-                      key={pName}
-                      onClick={() => handleTogglePurpose(pName)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2C1F06] text-[#E5C378] text-xs font-cinzel font-bold hover:bg-[#3D2B0A] cursor-pointer shadow-sm"
-                    >
-                      <span>{pName}</span>
-                      <X className="w-3 h-3 text-[#E5C378]" />
-                    </span>
-                  ))}
-                </div>
-
-                <button
-                  onClick={handleResetFilters}
-                  className="text-xs font-cinzel text-[#A63A2B] hover:underline font-semibold"
-                >
-                  Clear All Filters
-                </button>
-              </div>
-            )}
-
-            {/* Main Luxury "Coming Soon • Stay Tuned" Showcase Hero Box */}
-            <div className="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#2C1F06] via-[#3D2B0A] to-[#1C1505] text-[#E5C378] border border-[#E5C378]/40 shadow-2xl overflow-hidden text-center">
-              
-              {/* Background Sacred Sun Aura */}
-              <div className="absolute inset-0 opacity-15 pointer-events-none animate-spin-slow flex items-center justify-center">
-                <svg className="w-[500px] h-[500px] text-[#E5C378]" viewBox="0 0 200 200" fill="currentColor">
-                  <g transform="translate(100,100)">
-                    <circle r="90" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
-                    <circle r="78" fill="none" stroke="currentColor" strokeWidth="1" />
-                    {[...Array(12)].map((_, i) => (
-                      <path key={i} d="M 0,-65 Q 12,-40 0,-15 Q -12,-40 0,-65" fill="none" stroke="currentColor" strokeWidth="1" transform={`rotate(${i * 30})`} />
-                    ))}
-                  </g>
-                </svg>
-              </div>
-
-              <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-                
-                {/* Gem Icon Aura */}
-                <div className="w-20 h-20 mx-auto rounded-full bg-[#E5C378]/15 border border-[#E5C378]/50 flex items-center justify-center text-[#E5C378] shadow-2xl">
-                  {activePurposeObj ? (
-                    <activePurposeObj.icon className="w-10 h-10 animate-bounce" style={{ color: activePurposeObj.color }} />
-                  ) : (
-                    <Gem className="w-10 h-10 animate-pulse" />
-                  )}
-                </div>
-
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E5C378]/20 border border-[#E5C378]/50 text-white text-xs font-cinzel font-bold uppercase tracking-widest">
-                  <Hourglass className="w-3.5 h-3.5 text-[#E5C378] animate-spin" style={{ animationDuration: '4s' }} />
-                  <span>Collection Launching Soon • Stay Tuned</span>
-                </div>
-
-                {/* Headline */}
-                <h2 className="text-2xl sm:text-4xl font-cinzel font-bold text-white tracking-wide leading-tight">
-                  {activePurposeObj ? (
-                    <>Energy Stones & Accessories for <span className="text-[#E5C378]">{activePurposeObj.name}</span></>
-                  ) : selectedPurposes.length > 0 ? (
-                    <>Energy Stones for <span className="text-[#E5C378]">{selectedPurposes.join(', ')}</span></>
-                  ) : (
-                    <>Sacred Energy Stones & Crystal Accessories</>
-                  )}
-                </h2>
-
-                {/* Description */}
-                <p className="text-xs sm:text-base text-[#D9C49E] font-light leading-relaxed">
-                  {activePurposeObj ? (
-                    <>{activePurposeObj.description} <br/><span className="text-[#E5C378] font-semibold mt-1 inline-block">({activePurposeObj.subtext})</span></>
-                  ) : (
-                    "We are hand-selecting 100% authentic gemstones, crystal bracelets, orgone pyramids, and sacred Japa malas purified with Ganga Jal and consecrated with Vedic mantras for your selected purpose."
-                  )}
-                </p>
-
-                {/* Form Notification Box */}
-                <div className="pt-6 border-t border-[#E5C378]/30 max-w-md mx-auto">
-                  {isSubmitted ? (
-                    <div className="p-4 rounded-2xl bg-[#E8F5E9] border border-emerald-400 text-emerald-900 text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                      <span>Thank you! You are registered for updates on Launch Day.</span>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleNotifySubmit} className="flex flex-col sm:flex-row gap-2">
-                      <input
-                        type="email"
-                        required
-                        placeholder="Enter your email to get notified..."
-                        value={emailNotify}
-                        onChange={(e) => setEmailNotify(e.target.value)}
-                        className="flex-1 px-4 py-3 rounded-xl bg-white/95 text-xs text-[#2C2623] placeholder-[#8C8070] focus:outline-none focus:ring-2 focus:ring-[#E5C378] shadow-inner"
-                      />
-                      <button
-                        type="submit"
-                        className="px-6 py-3 rounded-xl bg-[#E5C378] hover:bg-[#F3D693] text-[#2C1F06] text-xs font-cinzel font-bold uppercase tracking-widest shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap"
-                      >
-                        <Bell className="w-4 h-4" />
-                        <span>Notify Me</span>
-                      </button>
-                    </form>
-                  )}
-                  <p className="text-[10px] text-[#B59D72] mt-2 font-light">
-                    ✦ Be the first to be notified 1 hour before official release ✦
-                  </p>
-                </div>
-
-              </div>
-            </div>
-
-            {/* Visual Purpose Grid Cards (Overview of the 8 purposes matching screenshot) */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#EAE0CD] shadow-sm">
-              <div className="mb-6 text-center">
-                <span className="text-[10px] font-cinzel font-bold tracking-[0.2em] text-[#9B7E52] uppercase">
-                  Intentional Gemstone Pairings
-                </span>
-                <h3 className="text-xl sm:text-2xl font-cinzel font-bold text-[#2C2623] mt-1">
-                  Browse Purposes
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {PURPOSES.map((item) => {
-                  const IconComp = item.icon;
-                  const isChecked = selectedPurposes.includes(item.name);
-
-                  return (
-                    <div
-                      key={item.id}
-                      onClick={() => handleTogglePurpose(item.name)}
-                      className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between magnetic-hover ${
-                        isChecked
-                          ? 'bg-[#F5EEDC] border-[#B8860B] shadow-md'
-                          : 'bg-[#FDFBF7] border-[#EAE0CD] hover:border-[#C5A059] hover:bg-white'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-3">
-                        <div
-                          className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-[#E5D7BE] shadow-sm"
-                          style={{ color: item.color }}
-                        >
-                          <IconComp className="w-5 h-5" />
-                        </div>
-                        <span className="text-[9px] font-cinzel font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#F5EEDC] text-[#7A5A1B]">
-                          Soon
-                        </span>
-                      </div>
-
-                      <div>
-                        <h4 className="font-cinzel font-bold text-xs sm:text-sm text-[#2C2623]">
-                          {item.name}
-                        </h4>
-                        <p className="text-[11px] text-[#8C7A65] font-light mt-0.5">
-                          {item.subtext}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-          </main>
-
-        </div>
+        </main>
       </div>
 
     </div>
