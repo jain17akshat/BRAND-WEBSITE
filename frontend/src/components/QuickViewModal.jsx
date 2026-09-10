@@ -21,6 +21,7 @@ export const QuickViewModal = ({
 
   React.useEffect(() => {
     if (product) {
+      setQuantity(1);
       setSelectedImg(product.image || (product.images && product.images[0]));
       if (product.weightVariants) {
         setSelectedVariant(product.weightVariants.find((v) => v.default) || product.weightVariants[0]);

@@ -12,6 +12,7 @@ const { AppError } = require('../middleware/errorHandler');
 
 // ── POST /api/returns/request ─────────────────────────────
 router.post('/request', validateBody({
+  order_id:   { type: 'string', required: true },
   phone:      { type: 'phone',  required: true },
   reason:     { type: 'string', required: false },
   refund_type:{ type: 'string', required: false },
@@ -23,7 +24,16 @@ router.post('/request', validateBody({
 
     const { findOrder, markOrderReturned } = require('../services/orderStore');
     const existingOrder = await findOrder(order_id, phone);
-    const cleanOrderId = (order_id && order_id !== 'UNKNOWN') ? order_id : (existingOrder?.id || existingOrder?.order_id || 'SHR153083');
+
+    if (!existingOrder) {
+      return next(new AppError(
+        'Order not found for the provided order ID and phone number.',
+        404,
+        'ORDER_NOT_FOUND'
+      ));
+    }
+
+    const cleanOrderId = existingOrder.id || existingOrder.order_id || order_id;
 
     markOrderReturned(cleanOrderId, { ...details, phone });
 
@@ -176,7 +186,11 @@ router.post('/request', validateBody({
 // ── GET /api/returns/:id ──────────────────────────────────
 router.get('/:id', async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const rawId = req.params.id;
+    const id = String(rawId || '').replace(/[^a-zA-Z0-9_-]/g, '');
+    if (!id) {
+      return next(new AppError('Invalid return ID', 400, 'INVALID_INPUT'));
+    }
 
     if (req.mock.shiprocket) {
       return res.json({

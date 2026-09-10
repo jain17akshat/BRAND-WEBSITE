@@ -11,6 +11,7 @@ const srClient     = require('../shiprocket/client');
 const validateBody = require('../middleware/validateBody');
 const { AppError } = require('../middleware/errorHandler');
 const config       = require('../config');
+const { getProductPrice } = require('../data/catalog');
 
 // ── POST /api/orders/create ───────────────────────────────
 router.post('/create', validateBody({
@@ -40,6 +41,20 @@ router.post('/create', validateBody({
     const state      = customer.state || 'Karnataka';
     const email      = customer.email || 'customer@example.com';
 
+    const orderItems = (cart || []).map(item => {
+      const price = getProductPrice(item);
+      return {
+        name:          item.name || 'Sacred Product',
+        sku:           String(item.id || 'SKU-ITEM').slice(0, 30),
+        units:         item.quantity || item.units || 1,
+        selling_price: price,
+        discount:      0,
+        tax:           0,
+      };
+    });
+
+    const subTotal = orderItems.reduce((s, i) => s + (i.selling_price * i.units), 0);
+
     const payload = {
       order_id,
       order_date:             new Date().toISOString().split('T')[0],
@@ -67,22 +82,16 @@ router.post('/create', validateBody({
       shipping_country:       'India',
       shipping_email:         email,
       shipping_phone:         cleanPhone,
-      order_items: (cart || []).map(item => ({
-        name:          item.name || 'Sacred Product',
-        sku:           String(item.id || 'SKU-ITEM').slice(0, 30),
-        units:         item.quantity || 1,
-        selling_price: item.price || 0,
-        discount:      0,
-        tax:           0,
-      })),
-      payment_method:       'Prepaid',
-      shipping_charges:     0,
-      giftwrap_charges:     0,
-      transaction_charges:  0,
-      total_discount:       0,
-      sub_total:            (cart || []).reduce((s, i) => s + ((i.price || 0) * (i.quantity || 1)), 0),
+      order_items:            orderItems,
+      payment_method:         'Prepaid',
+      shipping_charges:       0,
+      giftwrap_charges:       0,
+      transaction_charges:    0,
+      total_discount:         0,
+      sub_total:              subTotal,
       length: 10, breadth: 10, height: 10, weight: 0.5,
     };
+
 
     const { data } = await srClient.post('/orders/create/adhoc', payload);
 

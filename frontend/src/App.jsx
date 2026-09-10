@@ -184,8 +184,39 @@ export function App() {
     }
   };
 
-  const [cartItems, setCartItems] = useState([]);
-  const [wishlistIds, setWishlistIds] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      const saved = localStorage.getItem('shraviko_cart');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  const [wishlistIds, setWishlistIds] = useState(() => {
+    try {
+      const saved = localStorage.getItem('shraviko_wishlist');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('shraviko_cart', JSON.stringify(cartItems));
+    } catch (e) {
+      console.warn('Failed to save cart to localStorage', e);
+    }
+  }, [cartItems]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('shraviko_wishlist', JSON.stringify(wishlistIds));
+    } catch (e) {
+      console.warn('Failed to save wishlist to localStorage', e);
+    }
+  }, [wishlistIds]);
 
   // Promo Code State — WELCOME10 active by default for Launch Day
   const [appliedPromo, setAppliedPromo] = useState({ code: 'WELCOME10', discountPercent: 10 });

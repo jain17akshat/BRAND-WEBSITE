@@ -65,8 +65,6 @@ router.post(
   }
 );
 
-const crypto        = require('crypto');
-
 // ── In-Memory Order Deduplication & Lock Manager (45s TTL + Auto-Cleanup) ──
 const recentOrderDedupeMap = new Map();
 const DEDUPE_TTL_MS = 45000; // 45 seconds TTL
@@ -115,8 +113,23 @@ router.post(
       const isCOD = String(payment_method).toLowerCase() === 'cod';
       const shiprocketPaymentMethod = isCOD ? 'COD' : 'Prepaid';
 
-      // 1. VALIDATE PAYMENT SIGNATURE FIRST (Never bypass verification)
-      if (!req.mock.razorpay && !isCOD) {
+      // Enforce server-side price integrity against authoritative catalog
+      if (Array.isArray(cart) && cart.length > 0) {
+        for (const item of cart) {
+          const authoritativePrice = getProductPrice(item);
+          if (item.price !== undefined && Number(item.price) !== Number(authoritativePrice)) {
+            throw new AppError(
+              `Price mismatch for product "${item.name || item.id}". Expected ₹${authoritativePrice}, got ₹${item.price}.`,
+              400,
+              'PRICE_TAMPERING'
+            );
+          }
+        }
+      }
+
+      // 1. VALIDATE PAYMENT SIGNATURE FIRST (Never bypass verification in production)
+      const shouldVerifySignature = !isCOD && (config.isProd || !req.mock.razorpay);
+      if (shouldVerifySignature) {
         const { valid, reason } = verifyPaymentSignature(
           razorpay_order_id,
           razorpay_payment_id,
@@ -374,13 +387,19 @@ router.post('/webhook', (req, res, next) => {
     const signature  = req.headers['x-razorpay-signature'];
     const rawPayload = req.rawBody;
 
-    // Skip verification if no webhook secret (dev/mock)
+    // Require webhook secret and signature verification in production
+    if (config.isProd && (!config.razorpay.webhookSecret || !signature)) {
+      console.warn('⛔ Rejected unsigned Razorpay Webhook attempt in production.');
+      return res.status(401).json({ received: false, error: 'Webhook secret or signature missing' });
+    }
+
     if (config.razorpay.webhookSecret && signature) {
       const isValid = verifyWebhookSignature(rawPayload, signature);
       if (!isValid) {
         return res.status(400).json({ received: false, error: 'Invalid signature' });
       }
     }
+
 
     const event = req.body?.event;
     const payload = req.body?.payload;

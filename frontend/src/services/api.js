@@ -7,22 +7,41 @@
 
 const BASE = import.meta.env.VITE_API_URL || '/api';
 
+if (import.meta.env.MODE === 'production' && !import.meta.env.VITE_API_URL) {
+  console.warn('⚠️ VITE_API_URL environment variable is not defined in production. Defaulting to relative path /api.');
+}
+
 async function request(path, options = {}) {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-  const data = await res.json().catch(() => ({}));
+  try {
+    const res = await fetch(`${BASE}${path}`, {
+      headers: { 'Content-Type': 'application/json' },
+      signal: controller.signal,
+      ...options,
+    });
 
-  if (!res.ok) {
-    const err = new Error(data?.error?.message || `Request failed: ${res.status}`);
-    err.code   = data?.error?.code || 'UNKNOWN_ERROR';
-    err.status = res.status;
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      const err = new Error(data?.error?.message || `Request failed: ${res.status}`);
+      err.code   = data?.error?.code || 'UNKNOWN_ERROR';
+      err.status = res.status;
+      throw err;
+    }
+
+    return data;
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      const timeoutErr = new Error('Request timed out after 15 seconds. Please check your network connection.');
+      timeoutErr.code = 'REQUEST_TIMEOUT';
+      throw timeoutErr;
+    }
     throw err;
+  } finally {
+    clearTimeout(timeoutId);
   }
-
-  return data;
 }
 
 // ── Shiprocket / Order: Tracking ──────────────────────────

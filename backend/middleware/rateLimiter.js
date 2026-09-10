@@ -80,7 +80,7 @@ const returns = buildLimiter({
 });
 
 /**
- * webhook — very strict, only Razorpay should hit this
+ * webhook — very strict, for webhooks
  * 50 requests per minute
  */
 const webhook = buildLimiter({
@@ -88,4 +88,32 @@ const webhook = buildLimiter({
   max:      50,
 });
 
-module.exports = { global, payments, track, returns, webhook };
+/**
+ * orders — for order creation and cancellation
+ * 30 requests per 15 minutes
+ */
+const orders = buildLimiter({
+  windowMs: 15 * 60 * 1000,
+  max:      30,
+});
+
+/**
+ * reviews — for submitting product reviews & review requests
+ * 15 requests per 15 minutes
+ */
+const reviews = buildLimiter({
+  windowMs: 15 * 60 * 1000,
+  max:      15,
+});
+
+/**
+ * enquiries — for submitting bulk enquiries and newsletter subscriptions
+ * 15 requests per 15 minutes
+ */
+const enquiries = buildLimiter({
+  windowMs: 15 * 60 * 1000,
+  max:      15,
+});
+
+module.exports = { global, payments, track, returns, webhook, orders, reviews, enquiries };
+

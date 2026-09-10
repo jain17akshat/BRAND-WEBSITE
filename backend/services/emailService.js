@@ -5,12 +5,23 @@
  */
 
 const nodemailer = require('nodemailer');
+const config = require('../config');
+
+/**
+ * HTML Escape Helper to prevent XSS / HTML Injection in email templates
+ */
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 function getTransporter() {
-  const emailUser = process.env.EMAIL_USER || process.env.SMTP_USER;
-  const emailPass = process.env.EMAIL_PASS || process.env.SMTP_PASS;
-
-  if (!emailUser || !emailPass) {
+  if (config.email.isMock) {
     return null;
   }
 
@@ -19,8 +30,8 @@ function getTransporter() {
     port: parseInt(process.env.SMTP_PORT || '587', 10),
     secure: process.env.SMTP_SECURE === 'true',
     auth: {
-      user: emailUser,
-      pass: emailPass,
+      user: config.email.user,
+      pass: config.email.pass,
     },
   });
 }
@@ -36,6 +47,7 @@ function getExpectedDeliveryDate(offsetDays = 5) {
 function getFormattedToday() {
   return new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
+
 
 /**
  * 1. sendOrderConfirmationEmail — Flipkart-styled Order Confirmation Email
@@ -482,12 +494,19 @@ async function sendOrderCancellationEmail({ to, customerName, orderId, items, to
 }
 
 /**
- * 5. sendReturnNotificationToAdmin — Admin Alert to shraviko@gmail.com
+ * 5. sendReturnNotificationToAdmin — Admin Alert
  */
 async function sendReturnNotificationToAdmin({ orderId, phone, reason, refundType, details }) {
   const transporter = getTransporter();
-  const adminEmail = process.env.ADMIN_EMAIL || 'shraviko@gmail.com';
-  const detailsHtml = typeof details === 'object' ? Object.entries(details).map(([k, v]) => v ? `<li><strong>${k}:</strong> ${v}</li>` : '').join('') : details;
+  const adminEmail = config.email.adminEmail || 'info@shraviko.com';
+  const safeOrderId = escapeHtml(orderId);
+  const safePhone = escapeHtml(phone);
+  const safeReason = escapeHtml(reason);
+  const safeRefundType = escapeHtml(refundType);
+
+  const detailsHtml = typeof details === 'object' 
+    ? Object.entries(details).map(([k, v]) => v ? `<li><strong>${escapeHtml(k)}:</strong> ${escapeHtml(v)}</li>` : '').join('') 
+    : escapeHtml(details);
 
   const htmlTemplate = `
     <!DOCTYPE html>
@@ -497,10 +516,10 @@ async function sendReturnNotificationToAdmin({ orderId, phone, reason, refundTyp
       <div style="max-width: 600px; margin: 0 auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
         <h2 style="color: #C5A059;">📦 New Return Request Received</h2>
         <ul>
-          <li><strong>Order ID:</strong> ${orderId}</li>
-          <li><strong>Customer Phone:</strong> ${phone}</li>
-          <li><strong>Return Reason:</strong> ${reason}</li>
-          <li><strong>Refund Preference:</strong> ${refundType}</li>
+          <li><strong>Order ID:</strong> ${safeOrderId}</li>
+          <li><strong>Customer Phone:</strong> ${safePhone}</li>
+          <li><strong>Return Reason:</strong> ${safeReason}</li>
+          <li><strong>Refund Preference:</strong> ${safeRefundType}</li>
         </ul>
         ${detailsHtml ? `<div style="background: #f9f9f9; padding: 15px; border-radius: 6px;"><ul>${detailsHtml}</ul></div>` : ''}
       </div>
@@ -509,15 +528,15 @@ async function sendReturnNotificationToAdmin({ orderId, phone, reason, refundTyp
   `;
 
   if (!transporter) {
-    console.log(`\n📦 [ADMIN RETURN ALERT MOCK] Sent to ${adminEmail}: Order ${orderId} | Phone ${phone}\n`);
+    console.log(`\n📦 [ADMIN RETURN ALERT MOCK] Sent to ${adminEmail}: Order ${safeOrderId} | Phone ${safePhone}\n`);
     return { success: true, mock: true };
   }
 
   try {
     const info = await transporter.sendMail({
-      from: `"Shraviko System" <${process.env.EMAIL_USER}>`,
+      from: `"Shraviko System" <${config.email.user}>`,
       to: adminEmail,
-      subject: `🚨 [RETURN REQUEST] Order #${orderId} (${reason})`,
+      subject: `🚨 [RETURN REQUEST] Order #${safeOrderId} (${safeReason})`,
       html: htmlTemplate,
     });
     return { success: true, messageId: info.messageId };
@@ -531,8 +550,8 @@ async function sendReturnNotificationToAdmin({ orderId, phone, reason, refundTyp
  */
 async function sendCorporateEnquiryNotificationToAdmin({ id, enquiryId, fullName, companyName, email, phone, quantity, budget, occasion, message }) {
   const transporter = getTransporter();
-  const adminEmail = process.env.ADMIN_EMAIL || 'shraviko@gmail.com';
-  const refCode = enquiryId || id || `ENQ_${Date.now()}`;
+  const adminEmail = config.email.adminEmail || 'info@shraviko.com';
+  const refCode = escapeHtml(enquiryId || id || `ENQ_${Date.now()}`);
 
   const htmlTemplate = `
     <!DOCTYPE html>
@@ -542,26 +561,26 @@ async function sendCorporateEnquiryNotificationToAdmin({ id, enquiryId, fullName
       <div style="max-width: 600px; margin: 0 auto; border: 1px solid #E8DFC7; padding: 25px; border-radius: 12px;">
         <h2>💼 New B2B Corporate Bulk Enquiry</h2>
         <p><strong>Ref Code:</strong> ${refCode}</p>
-        <p><strong>Client:</strong> ${fullName} (${companyName})</p>
-        <p><strong>Contact:</strong> ${phone} | ${email}</p>
-        <p><strong>Quantity:</strong> ${quantity} | <strong>Budget:</strong> ${budget}</p>
-        <p><strong>Occasion:</strong> ${occasion}</p>
-        ${message ? `<p><strong>Notes:</strong> ${message}</p>` : ''}
+        <p><strong>Client:</strong> ${escapeHtml(fullName)} (${escapeHtml(companyName)})</p>
+        <p><strong>Contact:</strong> ${escapeHtml(phone)} | ${escapeHtml(email)}</p>
+        <p><strong>Quantity:</strong> ${escapeHtml(quantity)} | <strong>Budget:</strong> ${escapeHtml(budget)}</p>
+        <p><strong>Occasion:</strong> ${escapeHtml(occasion)}</p>
+        ${message ? `<p><strong>Notes:</strong> ${escapeHtml(message)}</p>` : ''}
       </div>
     </body>
     </html>
   `;
 
   if (!transporter) {
-    console.log(`\n💼 [CORPORATE ENQUIRY EMAIL MOCK] Sent to ${adminEmail}: Client ${fullName} (${companyName})\n`);
+    console.log(`\n💼 [CORPORATE ENQUIRY EMAIL MOCK] Sent to ${adminEmail}: Client ${escapeHtml(fullName)} (${escapeHtml(companyName)})\n`);
     return { success: true, mock: true };
   }
 
   try {
     const info = await transporter.sendMail({
-      from: `"Shraviko Corporate" <${process.env.EMAIL_USER}>`,
+      from: `"Shraviko Corporate" <${config.email.user}>`,
       to: adminEmail,
-      subject: `💼 [CORPORATE BULK ENQUIRY] ${companyName} — ${fullName}`,
+      subject: `💼 [CORPORATE BULK ENQUIRY] ${escapeHtml(companyName)} — ${escapeHtml(fullName)}`,
       html: htmlTemplate,
     });
     return { success: true, messageId: info.messageId };
@@ -569,6 +588,7 @@ async function sendCorporateEnquiryNotificationToAdmin({ id, enquiryId, fullName
     return { success: false, error: err.message };
   }
 }
+
 
 /**
  * 7. sendReviewRequestEmail — Post-Delivery 1-Click Review Request Email

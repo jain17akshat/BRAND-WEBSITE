@@ -4,37 +4,36 @@
  * Hostinger MySQL Database Manager & Table Auto-Initializer.
  */
 
+const config = require('../config');
+
 let mysql = null;
 try {
   mysql = require('mysql2/promise');
 } catch (err) {
-  // mysql2 module not installed locally yet
+  // mysql2 module optional in mock mode
 }
 
 let pool = null;
 
 function getPool() {
   if (pool) return pool;
-  if (!mysql) {
+  if (!mysql || config.db.isMock) {
     return null;
   }
 
-  const dbHost = process.env.DB_HOST || 'localhost';
-  const dbUser = process.env.DB_USER || '';
-  const dbPass = process.env.DB_PASS || '';
-  const dbName = process.env.DB_NAME || '';
+  const { host, port, name, user, password } = config.db;
 
-  if (!dbUser || !dbName) {
-    console.log('ℹ️ Hostinger MySQL DB credentials not set in .env. (Add DB_USER + DB_NAME to enable)');
+  if (!user || !name) {
+    console.log('ℹ️ Hostinger MySQL DB credentials not set in config. (Add DB_USER + DB_NAME to enable)');
     return null;
   }
 
   pool = mysql.createPool({
-    host: dbHost,
-    user: dbUser,
-    password: dbPass,
-    database: dbName,
-    port: parseInt(process.env.DB_PORT || '3306', 10),
+    host,
+    user,
+    password,
+    database: name,
+    port,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
@@ -42,6 +41,7 @@ function getPool() {
 
   return pool;
 }
+
 
 /**
  * initDatabase — automatically creates tables if they don't exist

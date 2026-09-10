@@ -7,6 +7,8 @@
 
 const express = require('express');
 const router  = express.Router();
+const crypto  = require('crypto');
+const config  = require('../config');
 const { sendOrderCancellationEmail } = require('../services/emailService');
 
 router.use((req, res, next) => {
@@ -14,8 +16,25 @@ router.use((req, res, next) => {
   if (req.method === 'GET' || req.method === 'OPTIONS' || req.method === 'HEAD') {
     return res.status(200).json({ success: true, message: 'Shiprocket Webhook listener ready' });
   }
+
+  // Token Authentication for Shiprocket Webhook POST events
+  const configuredToken = config.shiprocket.webhookToken;
+  if (configuredToken) {
+    const incomingToken = req.headers['x-shiprocket-token'] || req.headers['shiprocket-token'] || req.headers['x-api-key'] || '';
+    
+    const tokenBuf = Buffer.from(String(incomingToken));
+    const expectedBuf = Buffer.from(String(configuredToken));
+
+    const isValid = tokenBuf.length === expectedBuf.length && crypto.timingSafeEqual(tokenBuf, expectedBuf);
+    if (!isValid) {
+      console.warn('⛔ Unauthorized Shiprocket Webhook attempt blocked: Token mismatch');
+      return res.status(401).json({ success: false, error: 'Unauthorized webhook request' });
+    }
+  }
+
   next();
 });
+
 
 router.post('*', async (req, res) => {
   try {

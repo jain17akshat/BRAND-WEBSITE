@@ -33,7 +33,7 @@ function addOrder(orderData) {
   recentOrders.set(cleanId, record);
 
   // Asynchronously save to MySQL DB if pool active
-  saveToDb(orderData).catch(() => {});
+  saveToDb(orderData).catch(err => console.error('Failed to save order to MySQL DB:', err.stack || err.message));
 }
 
 async function findOrder(orderId, phone) {
@@ -47,14 +47,17 @@ async function findOrder(orderId, phone) {
     if (recentOrders.has(cleanId)) {
       const cached = recentOrders.get(cleanId);
       const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
-      if (!cleanPhone || !cachedPhone || cachedPhone === cleanPhone || cachedPhone.endsWith(cleanPhone) || cleanPhone.endsWith(cachedPhone)) {
+      if (!cleanPhone || !cachedPhone || cachedPhone === cleanPhone) {
         return formatCachedOrder(cached);
       }
     }
 
     for (const [k, cached] of recentOrders.entries()) {
       if (k.toUpperCase() === cleanId) {
-        return formatCachedOrder(cached);
+        const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
+        if (!cleanPhone || !cachedPhone || cachedPhone === cleanPhone) {
+          return formatCachedOrder(cached);
+        }
       }
     }
   }
@@ -63,7 +66,7 @@ async function findOrder(orderId, phone) {
   if (cleanPhone) {
     for (const [k, cached] of recentOrders.entries()) {
       const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
-      if (cachedPhone && (cachedPhone === cleanPhone || cachedPhone.endsWith(cleanPhone) || cleanPhone.endsWith(cachedPhone))) {
+      if (cachedPhone === cleanPhone) {
         return formatCachedOrder(cached);
       }
     }
@@ -79,8 +82,8 @@ async function findOrder(orderId, phone) {
         query = `SELECT * FROM orders WHERE UPPER(order_id) = ? LIMIT 1`;
         params = [cleanId];
       } else if (cleanPhone) {
-        query = `SELECT * FROM orders WHERE customer_phone LIKE ? ORDER BY id DESC LIMIT 1`;
-        params = [`%${cleanPhone}`];
+        query = `SELECT * FROM orders WHERE customer_phone = ? ORDER BY id DESC LIMIT 1`;
+        params = [cleanPhone];
       }
 
       if (query) {
@@ -105,7 +108,7 @@ async function findOrder(orderId, phone) {
         }
       }
     } catch (err) {
-      console.error('OrderStore DB lookup error:', err.message);
+      console.error('OrderStore DB lookup error:', err.stack || err.message);
     }
   }
 
@@ -113,8 +116,8 @@ async function findOrder(orderId, phone) {
 }
 
 function markOrderReturned(orderId, returnData = {}) {
-  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : 'SHR153083';
-  const cleanPhone = returnData.phone ? String(returnData.phone).replace(/\D/g, '').slice(-10) : '7742320607';
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  const cleanPhone = returnData.phone ? String(returnData.phone).replace(/\D/g, '').slice(-10) : '';
 
   if (cleanId) {
     let record = recentOrders.get(cleanId);
@@ -152,7 +155,7 @@ function markOrderReturned(orderId, returnData = {}) {
   if (cleanPhone) {
     for (const [k, cached] of recentOrders.entries()) {
       const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
-      if (!cachedPhone || cachedPhone === cleanPhone || cachedPhone.endsWith(cleanPhone) || cleanPhone.endsWith(cachedPhone)) {
+      if (cachedPhone === cleanPhone) {
         cached.isReturnRequested = true;
         cached.status = 'Return Requested';
         cached.payment_status = 'RETURN_REQUESTED';
@@ -164,12 +167,13 @@ function markOrderReturned(orderId, returnData = {}) {
   // Update MySQL DB status if active
   const pool = getPool();
   if (pool) {
-    pool.query(`UPDATE orders SET payment_status = 'RETURN_REQUESTED' WHERE UPPER(order_id) = ? OR customer_phone LIKE ?`, [cleanId, `%${cleanPhone}`]).catch(() => {});
+    pool.query(`UPDATE orders SET payment_status = 'RETURN_REQUESTED' WHERE UPPER(order_id) = ? OR customer_phone = ?`, [cleanId, cleanPhone])
+      .catch(err => console.error('OrderStore DB update error on return:', err.message));
   }
 }
 
 function markOrderCancelled(orderId, cancelData = {}) {
-  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : 'SHR153083';
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
   const cleanPhone = cancelData.phone ? String(cancelData.phone).replace(/\D/g, '').slice(-10) : '';
 
   if (cleanId) {
@@ -209,7 +213,7 @@ function markOrderCancelled(orderId, cancelData = {}) {
   if (cleanPhone) {
     for (const [k, cached] of recentOrders.entries()) {
       const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
-      if (!cachedPhone || cachedPhone === cleanPhone || cachedPhone.endsWith(cleanPhone) || cleanPhone.endsWith(cachedPhone)) {
+      if (cachedPhone === cleanPhone) {
         cached.isCancelled = true;
         cached.status = 'Cancelled';
         cached.payment_status = 'CANCELLED';
@@ -221,7 +225,8 @@ function markOrderCancelled(orderId, cancelData = {}) {
 
   const pool = getPool();
   if (pool) {
-    pool.query(`UPDATE orders SET payment_status = 'CANCELLED' WHERE UPPER(order_id) = ? OR customer_phone LIKE ?`, [cleanId, `%${cleanPhone}`]).catch(() => {});
+    pool.query(`UPDATE orders SET payment_status = 'CANCELLED' WHERE UPPER(order_id) = ? OR customer_phone = ?`, [cleanId, cleanPhone])
+      .catch(err => console.error('OrderStore DB update error on cancel:', err.message));
   }
 }
 
@@ -341,7 +346,7 @@ function formatCachedOrder(cached) {
     city: cached.city || '',
     state: cached.state || '',
     pincode: cached.pincode || '',
-    awb: `SR${Math.floor(100000000 + Math.random() * 900000000)}`,
+    awb: cached.awb || null,
     courier: 'Shiprocket Express Logistics (Delhivery / BlueDart)',
     timeline,
   };

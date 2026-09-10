@@ -19,8 +19,8 @@ router.post(
   validateBody({
     fullName:    { type: 'string', required: true },
     companyName: { type: 'string', required: true },
-    email:       { type: 'string', required: true },
-    phone:       { type: 'string', required: true },
+    email:       { type: 'email',  required: true },
+    phone:       { type: 'phone',  required: true },
   }),
   async (req, res, next) => {
     try {
@@ -83,45 +83,38 @@ router.get('/corporate', (req, res) => {
 const energySubscribers = [];
 
 // POST /api/enquiries/subscribe — Subscribe to Energy Stones launch list
-router.post('/subscribe', (req, res, next) => {
-  try {
-    const body = req.body || {};
-    const email = body.email;
-    const purpose = body.purpose || 'General Energy Stones';
+router.post(
+  '/subscribe',
+  validateBody({
+    email: { type: 'email', required: true },
+  }),
+  (req, res, next) => {
+    try {
+      const body = req.body || {};
+      const email = body.email;
+      const purpose = body.purpose || 'General Energy Stones';
 
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
-      return res.status(400).json({
-        success: false,
-        error: {
-          code: 'VALIDATION_ERROR',
-          message: 'Valid email address is required.'
-        }
+      const subscriber = {
+        id: `SUB_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}`,
+        email: email.trim().toLowerCase(),
+        purpose: String(purpose),
+        createdAt: new Date().toISOString()
+      };
+
+      energySubscribers.push(subscriber);
+      console.log('✨ New Energy Stones VIP Launch Subscriber:', subscriber);
+
+      return res.json({
+        success: true,
+        message: 'Successfully subscribed to Energy Stones launch access.',
+        subscriber
       });
+    } catch (err) {
+      console.error('Error handling subscription:', err);
+      return next(new AppError(`Subscription failed: ${err.message}`, 500, 'SUBSCRIBE_ERROR'));
     }
-
-    const subscriber = {
-      id: `SUB_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}`,
-      email: email.trim().toLowerCase(),
-      purpose: String(purpose),
-      createdAt: new Date().toISOString()
-    };
-
-    energySubscribers.push(subscriber);
-    console.log('✨ New Energy Stones VIP Launch Subscriber:', subscriber);
-
-    return res.json({
-      success: true,
-      message: 'Successfully subscribed to Energy Stones launch access.',
-      subscriber
-    });
-  } catch (err) {
-    console.error('Error handling subscription:', err);
-    return res.status(200).json({
-      success: true,
-      message: 'Successfully recorded subscription.'
-    });
   }
-});
+);
 
 // GET /api/enquiries/subscribers — View subscribers list
 router.get('/subscribers', (req, res) => {

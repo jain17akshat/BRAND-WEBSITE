@@ -99,6 +99,7 @@ router.post(
   validateBody({
     rating: { type: 'number', required: true, min: 1, max: 5 },
     comment: { type: 'string', required: true },
+    customer_name: { type: 'string', required: true },
   }),
   async (req, res, next) => {
     try {
@@ -140,9 +141,14 @@ router.post(
 );
 
 // ── POST /api/reviews/send-request-email ─────────────────
-router.post('/send-request-email', async (req, res, next) => {
-  try {
-    const { email, customerName, orderId, productName, productId } = req.body;
+router.post(
+  '/send-request-email',
+  validateBody({
+    email: { type: 'email', required: true },
+  }),
+  async (req, res, next) => {
+    try {
+      const { email, customerName, orderId, productName, productId } = req.body;
 
     if (!email) {
       throw new AppError('Customer email is required', 400, 'MISSING_EMAIL');

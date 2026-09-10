@@ -92,13 +92,13 @@ app.get('/api/health', (req, res) => {
 // ── Routes ────────────────────────────────────────────────
 app.use('/api/payments', rateLimiter.payments, paymentsRouter);
 app.use('/api/track', rateLimiter.track, trackRouter);
-app.use('/api/orders', ordersRouter);
+app.use('/api/orders', rateLimiter.orders, ordersRouter);
 app.use('/api/returns', rateLimiter.returns, returnsRouter);
 app.use('/api/rates', ratesRouter);
-app.use('/api/enquiries', enquiriesRouter);
-app.use('/api/reviews', reviewsRouter);
-app.use('/api/fulfillment-updates', shiprocketWebhookRouter);
-app.use('/fulfillment-updates', shiprocketWebhookRouter);
+app.use('/api/enquiries', rateLimiter.enquiries, enquiriesRouter);
+app.use('/api/reviews', rateLimiter.reviews, reviewsRouter);
+app.use('/api/fulfillment-updates', rateLimiter.webhook, shiprocketWebhookRouter);
+app.use('/fulfillment-updates', rateLimiter.webhook, shiprocketWebhookRouter);
 
 // ── 404 handler ───────────────────────────────────────────
 app.use(notFoundHandler);
@@ -108,18 +108,31 @@ app.use(errorHandler);
 
 // ─────────────────────────────────────────────────────────
 const PORT = config.port;
-app.listen(PORT, async () => {
-  console.log(`\n🚀 Shraviko server running on http://localhost:${PORT}`);
-  console.log(`   Environment: ${config.nodeEnv}`);
-  console.log(`   Frontend:    ${config.frontendUrl}\n`);
 
-  const { initDatabase } = require('./database/db');
-  await initDatabase();
+async function startServer() {
+  try {
+    const { initDatabase } = require('./database/db');
+    await initDatabase();
+  } catch (err) {
+    console.error('⚠️ Database initialization warning/failure:', err.message);
+  }
 
   if (!config.shiprocket.isMock) {
-    const { getValidPickupLocation } = require('./shiprocket/pickup');
-    await getValidPickupLocation();
+    try {
+      const { getValidPickupLocation } = require('./shiprocket/pickup');
+      await getValidPickupLocation();
+    } catch (err) {
+      console.warn('⚠️ Shiprocket pickup location fetch warning:', err.message);
+    }
   }
-});
+
+  app.listen(PORT, () => {
+    console.log(`\n🚀 Shraviko server running on http://localhost:${PORT}`);
+    console.log(`   Environment: ${config.nodeEnv}`);
+    console.log(`   Frontend:    ${config.frontendUrl}\n`);
+  });
+}
+
+startServer();
 
 module.exports = app;

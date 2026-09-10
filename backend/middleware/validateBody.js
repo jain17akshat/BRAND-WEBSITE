@@ -26,8 +26,12 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const VALIDATORS = {
   string:  (v) => typeof v === 'string' && v.trim().length > 0,
   number:  (v) => typeof v === 'number' && !isNaN(v) && v > 0,
-  email:   (v) => typeof v === 'string' && EMAIL_RE.test(v.trim()),
-  phone:   (v) => typeof v === 'string' && PHONE_RE.test(v.replace(/\D/g, '').slice(-10)),
+  email:   (v) => typeof v === 'string' && v.trim().length <= 254 && EMAIL_RE.test(v.trim()),
+  phone:   (v) => {
+    if (typeof v !== 'string') return false;
+    const digits = v.replace(/\D/g, '');
+    return digits.length >= 10 && digits.length <= 15 && PHONE_RE.test(digits.slice(-10));
+  },
   boolean: (v) => typeof v === 'boolean',
   array:   (v) => Array.isArray(v) && v.length > 0,
 };
