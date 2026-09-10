@@ -66,9 +66,28 @@ async function initDatabase() {
         payment_status VARCHAR(50),
         shipping_address TEXT,
         items_json JSON,
+        shiprocket_order_id VARCHAR(100),
+        shipment_id VARCHAR(100),
+        shiprocket_sync_status VARCHAR(50) DEFAULT 'PENDING',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
+
+    // Guarded migrations for existing database schemas
+    const alterColumns = [
+      `ALTER TABLE orders ADD COLUMN IF NOT EXISTS shiprocket_order_id VARCHAR(100)`,
+      `ALTER TABLE orders ADD COLUMN IF NOT EXISTS shipment_id VARCHAR(100)`,
+      `ALTER TABLE orders ADD COLUMN IF NOT EXISTS shiprocket_sync_status VARCHAR(50) DEFAULT 'PENDING'`,
+    ];
+    for (const sql of alterColumns) {
+      try {
+        await conn.query(sql);
+      } catch (colErr) {
+        if (!colErr.message.includes('Duplicate column')) {
+          console.warn('⚠️ Column migration notice:', colErr.message);
+        }
+      }
+    }
 
     // 2. Create returns table
     await conn.query(`
@@ -81,10 +100,19 @@ async function initDatabase() {
         customer_phone VARCHAR(50),
         reason TEXT,
         bank_details_json JSON,
+        shiprocket_return_id VARCHAR(100),
         status VARCHAR(50) DEFAULT 'PENDING',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
+
+    try {
+      await conn.query(`ALTER TABLE returns ADD COLUMN IF NOT EXISTS shiprocket_return_id VARCHAR(100)`);
+    } catch (colErr) {
+      if (!colErr.message.includes('Duplicate column')) {
+        console.warn('⚠️ Column migration notice for returns table:', colErr.message);
+      }
+    }
 
     // 3. Create customers table
     await conn.query(`
@@ -166,9 +194,13 @@ async function saveOrder(orderData) {
   try {
     const [result] = await p.query(
       `INSERT INTO orders 
-       (order_id, customer_name, customer_email, customer_phone, total_amount, payment_method, payment_status, shipping_address, items_json)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-       ON DUPLICATE KEY UPDATE payment_status = VALUES(payment_status)`,
+       (order_id, customer_name, customer_email, customer_phone, total_amount, payment_method, payment_status, shipping_address, items_json, shiprocket_order_id, shipment_id, shiprocket_sync_status)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       ON DUPLICATE KEY UPDATE 
+         payment_status = VALUES(payment_status),
+         shiprocket_order_id = COALESCE(VALUES(shiprocket_order_id), shiprocket_order_id),
+         shipment_id = COALESCE(VALUES(shipment_id), shipment_id),
+         shiprocket_sync_status = COALESCE(VALUES(shiprocket_sync_status), shiprocket_sync_status)`,
       [
         orderData.order_id,
         orderData.customer_name || 'Valued Customer',
@@ -179,6 +211,9 @@ async function saveOrder(orderData) {
         orderData.payment_status || 'PAID',
         orderData.shipping_address || '',
         JSON.stringify(orderData.items || []),
+        orderData.shiprocket_order_id || null,
+        orderData.shipment_id || null,
+        orderData.shiprocket_sync_status || 'PENDING',
       ]
     );
 
@@ -202,6 +237,35 @@ async function saveOrder(orderData) {
   } catch (err) {
     console.error('⚠️ Could not save order to database:', err.message);
     throw err;
+  }
+}
+
+/**
+ * updateOrderShiprocketInfo — helper to update shiprocket identifiers and sync status for an existing order in MySQL
+ */
+async function updateOrderShiprocketInfo(orderId, syncData = {}) {
+  const p = getPool();
+  if (!p) return null;
+
+  try {
+    const cleanId = String(orderId || '').replace(/^[#\s]+/, '').trim().toUpperCase();
+    const [result] = await p.query(
+      `UPDATE orders 
+       SET shiprocket_order_id = COALESCE(?, shiprocket_order_id),
+           shipment_id = COALESCE(?, shipment_id),
+           shiprocket_sync_status = COALESCE(?, shiprocket_sync_status)
+       WHERE UPPER(order_id) = ?`,
+      [
+        syncData.shiprocket_order_id || null,
+        syncData.shipment_id || null,
+        syncData.shiprocket_sync_status || null,
+        cleanId,
+      ]
+    );
+    return result;
+  } catch (err) {
+    console.error('⚠️ Could not update Shiprocket info in DB:', err.message);
+    return null;
   }
 }
 
@@ -230,8 +294,8 @@ async function saveReturnRequest(returnData) {
 
     const [result] = await p.query(
       `INSERT INTO returns
-       (return_id, order_id, customer_name, customer_email, customer_phone, reason, bank_details_json, status)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+       (return_id, order_id, customer_name, customer_email, customer_phone, reason, bank_details_json, shiprocket_return_id, status)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         returnData.return_id,
         returnData.order_id,
@@ -240,6 +304,7 @@ async function saveReturnRequest(returnData) {
         returnData.customer_phone || '',
         returnData.reason || '',
         JSON.stringify(returnData.bank_details || {}),
+        returnData.shiprocket_return_id || null,
         'PENDING',
       ]
     );
@@ -461,6 +526,7 @@ module.exports = {
   getPool,
   initDatabase,
   saveOrder,
+  updateOrderShiprocketInfo,
   saveReturnRequest,
   saveReview,
   getReviewsByProduct,

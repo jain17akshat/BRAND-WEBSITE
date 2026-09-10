@@ -38,50 +38,24 @@ router.post('/request', validateBody({
     }
 
     const cleanOrderId = existingOrder.id || existingOrder.order_id || order_id;
-
-    await markOrderReturned(cleanOrderId, { ...details, phone });
+    const srForwardOrderId = existingOrder.shiprocket_order_id || existingOrder.order_id || existingOrder.orderId || cleanOrderId;
 
     const customerEmail = email || existingOrder?.customer_email || 'shraviko@gmail.com';
     const customerName  = customer_name || details?.account_holder_name || existingOrder?.customer_name || 'Valued Customer';
 
-    // Log the return request
-    console.log('📦 Return request approved & email triggered:', { returnId, cleanOrderId, phone, customerEmail, reason });
-
-    // 1. Send instant Return Request Approval email to customer
-    const { sendReturnRequestConfirmationEmail, sendReturnNotificationToAdmin } = require('../services/emailService');
-    sendReturnRequestConfirmationEmail({
-      to: customerEmail,
-      customerName,
-      returnId,
-      orderId: cleanOrderId,
-      reason,
-    }).catch(err => console.error('Failed to send customer return confirmation email:', err));
-
-    // 2. Send immediate email alert to merchant (shraviko@gmail.com)
-    sendReturnNotificationToAdmin({
-      orderId: cleanOrderId,
-      phone,
-      reason,
-      refundType: refund_type,
-      details,
-    }).catch(err => console.error('Failed to notify admin of return:', err));
-
-    const { saveReturnRequest } = require('../database/db');
-    await saveReturnRequest({
-      return_id: returnId,
-      order_id: cleanOrderId,
-      customer_name: customerName,
-      customer_email: customerEmail,
-      customer_phone: phone,
-      reason,
-      bank_details: details,
-    });
-
     // ── Shiprocket Return Order Creation ──────────────────
     let shiprocketReturn = null;
+    let srReturnId = null;
 
     if (req.mock.shiprocket) {
       shiprocketReturn = { return_id: `RET_MOCK_${Date.now()}`, _mock: true };
+      srReturnId = shiprocketReturn.return_id;
+    } else if (existingOrder.shiprocket_sync_status === 'FAILED') {
+      console.warn(`⚠️ Skipping Shiprocket return push for Order #${cleanOrderId}: Forward order failed to sync at checkout.`);
+      shiprocketReturn = {
+        error: 'Forward order was not synced to Shiprocket (forward push failed at checkout).',
+        fallback: true,
+      };
     } else {
       // Pull customer details from existing order for the pickup (customer) side
       const customerAddress = existingOrder?.address || existingOrder?.shipping_address || '';
@@ -89,10 +63,10 @@ router.post('/request', validateBody({
       const customerState = existingOrder?.state || '';
       const customerPincode = existingOrder?.pincode || '';
 
-      // Build order_items from existing order items
+      // Build order_items aligned with forward order SKU source (item.id)
       const orderItems = (existingOrder?.items || []).map(item => ({
         name:          item.name || item.title || 'Shraviko Return Item',
-        sku:           String(item.sku || item.id || `SKU-RET-${Date.now()}`).slice(0, 30),
+        sku:           String(item.id || item.sku || `SKU-RET-${Date.now()}`).slice(0, 30),
         units:         item.qty || item.quantity || 1,
         selling_price: item.price || 0,
         discount:      0,
@@ -123,10 +97,8 @@ router.post('/request', validateBody({
       const firstName = nameParts[0] || 'Valued';
       const lastName  = nameParts.slice(1).join(' ') || 'Customer';
 
-      const uniqueReturnOrderId = `RET-${String(cleanOrderId).replace(/[^a-zA-Z0-9_-]/g, '')}-${Date.now().toString().slice(-4)}`;
-
       const returnPayload = {
-        order_id:               uniqueReturnOrderId,
+        order_id:               srForwardOrderId,
         order_date:             new Date().toISOString().split('T')[0],
         channel_id:             config.shiprocket.channelId || '',
         pickup_customer_name:   firstName,
@@ -161,13 +133,50 @@ router.post('/request', validateBody({
       try {
         const { data } = await srClient.post('/orders/create/return', returnPayload);
         shiprocketReturn = data;
-        console.log('✅ Return order successfully pushed to Shiprocket Return Dashboard:', { return_id: data?.return_id || data?.order_id, order_id: uniqueReturnOrderId });
+        srReturnId = data?.return_id ? String(data.return_id) : (data?.order_id ? String(data.order_id) : (data?.shipment_id ? String(data.shipment_id) : null));
+        console.log('✅ Return order successfully pushed to Shiprocket Return Dashboard:', { return_id: srReturnId, forward_order_id: srForwardOrderId });
       } catch (srErr) {
         const errMsg = srErr.response?.data?.message || srErr.response?.data?.errors || srErr.message;
         console.error('⚠️ Shiprocket return creation response:', JSON.stringify(srErr.response?.data || errMsg));
         shiprocketReturn = { error: errMsg, fallback: true };
       }
     }
+
+    await markOrderReturned(cleanOrderId, { ...details, phone, shiprocket_return_id: srReturnId });
+
+    // Log the return request
+    console.log('📦 Return request approved & email triggered:', { returnId, cleanOrderId, phone, customerEmail, reason, srReturnId });
+
+    // 1. Send instant Return Request Approval email to customer
+    const { sendReturnRequestConfirmationEmail, sendReturnNotificationToAdmin } = require('../services/emailService');
+    sendReturnRequestConfirmationEmail({
+      to: customerEmail,
+      customerName,
+      returnId,
+      orderId: cleanOrderId,
+      reason,
+    }).catch(err => console.error('Failed to send customer return confirmation email:', err));
+
+    // 2. Send immediate email alert to merchant (shraviko@gmail.com)
+    sendReturnNotificationToAdmin({
+      orderId: cleanOrderId,
+      phone,
+      reason,
+      refundType: refund_type,
+      details,
+    }).catch(err => console.error('Failed to notify admin of return:', err));
+
+    const { saveReturnRequest } = require('../database/db');
+    await saveReturnRequest({
+      return_id: returnId,
+      order_id: cleanOrderId,
+      customer_name: customerName,
+      customer_email: customerEmail,
+      customer_phone: phone,
+      reason,
+      bank_details: details,
+      shiprocket_return_id: srReturnId,
+    });
 
     res.json({
       success:   true,

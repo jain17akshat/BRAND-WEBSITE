@@ -27,6 +27,9 @@ async function addOrder(orderData) {
     state: orderData.state || '',
     pincode: orderData.pincode || '',
     items: orderData.items || [],
+    shiprocket_order_id: orderData.shiprocket_order_id || null,
+    shipment_id: orderData.shipment_id || null,
+    shiprocket_sync_status: orderData.shiprocket_sync_status || 'PENDING',
     created_at: new Date().toISOString(),
   };
 
@@ -112,6 +115,9 @@ async function findOrder(orderId, phone) {
             payment_status: row.payment_status,
             shipping_address: row.shipping_address,
             items,
+            shiprocket_order_id: row.shiprocket_order_id || null,
+            shipment_id: row.shipment_id || null,
+            shiprocket_sync_status: row.shiprocket_sync_status || 'PENDING',
             created_at: row.created_at,
           });
         }
@@ -145,6 +151,7 @@ async function markOrderReturned(orderId, returnData = {}) {
     record.status = 'Return Requested';
     record.payment_status = 'RETURN_REQUESTED';
     if (cleanPhone) record.customer_phone = cleanPhone;
+    if (returnData.shiprocket_return_id) record.shiprocket_return_id = returnData.shiprocket_return_id;
     record.return_data = returnData;
     recentOrders.set(record.id || cleanId, record);
   } else {
@@ -155,6 +162,7 @@ async function markOrderReturned(orderId, returnData = {}) {
       isReturnRequested: true,
       status: 'Return Requested',
       payment_status: 'RETURN_REQUESTED',
+      shiprocket_return_id: returnData.shiprocket_return_id || null,
       return_data: returnData,
       created_at: new Date().toISOString(),
     });
@@ -341,6 +349,9 @@ function formatCachedOrder(cached) {
     state: cached.state || '',
     pincode: cached.pincode || '',
     awb: cached.awb || null,
+    shiprocket_order_id: cached.shiprocket_order_id || null,
+    shipment_id: cached.shipment_id || null,
+    shiprocket_sync_status: cached.shiprocket_sync_status || 'PENDING',
     courier: 'Shiprocket Express Logistics (Delhivery / BlueDart)',
     timeline,
   };
@@ -419,9 +430,35 @@ async function markOrderRefunded(orderId, refundData = {}) {
   }
 }
 
+async function updateShiprocketSync(orderId, syncData = {}) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  if (!cleanId) return;
+
+  let record = recentOrders.get(cleanId);
+  if (!record) {
+    for (const [k, cached] of recentOrders.entries()) {
+      if (k.toUpperCase() === cleanId) {
+        record = cached;
+        break;
+      }
+    }
+  }
+
+  if (record) {
+    if (syncData.shiprocket_order_id !== undefined) record.shiprocket_order_id = syncData.shiprocket_order_id;
+    if (syncData.shipment_id !== undefined) record.shipment_id = syncData.shipment_id;
+    if (syncData.shiprocket_sync_status !== undefined) record.shiprocket_sync_status = syncData.shiprocket_sync_status;
+    recentOrders.set(record.id || cleanId, record);
+  }
+
+  const { updateOrderShiprocketInfo } = require('../database/db');
+  await updateOrderShiprocketInfo(cleanId, syncData);
+}
+
 module.exports = {
   addOrder,
   findOrder,
+  updateShiprocketSync,
   markOrderReturned,
   markOrderCancelled,
   markOrderPaid,

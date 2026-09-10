@@ -226,25 +226,11 @@ router.post(
           customer: customer?.name,
         });
 
-        // Register order into OrderStore (in-memory + MySQL DB)
-        const { addOrder } = require('../services/orderStore');
-        await addOrder({
-          order_id: internalOrderId,
-          customer_name: customer?.name,
-          customer_email: customer?.email,
-          customer_phone: customer?.phone,
-          total_amount: totalAmount,
-          payment_method: shiprocketPaymentMethod,
-          payment_status: isCOD ? 'COD_PENDING' : 'PAID',
-          shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
-          city: customer?.city,
-          state: customer?.state,
-          pincode: customer?.pincode,
-          items: cart,
-        });
-
         // Auto-push order to Shiprocket if in live/configured mode
-        let shiprocketData = null;
+        let srOrderId = null;
+        let srShipmentId = null;
+        let shiprocketSyncStatus = req.mock.shiprocket ? 'SKIPPED' : 'PENDING';
+
         if (!req.mock.shiprocket && cart && customer) {
           try {
             const srClient = require('../shiprocket/client');
@@ -306,12 +292,35 @@ router.post(
             };
 
             const srRes = await srClient.post('/orders/create/adhoc', srPayload);
-            shiprocketData = srRes.data;
-            console.log(`✅ ${shiprocketPaymentMethod} Order pushed to Shiprocket:`, internalOrderId, 'Shiprocket Order ID:', srRes.data?.order_id);
+            srOrderId = srRes.data?.order_id ? String(srRes.data.order_id) : null;
+            srShipmentId = srRes.data?.shipment_id ? String(srRes.data.shipment_id) : null;
+            shiprocketSyncStatus = 'SUCCESS';
+            console.log(`✅ ${shiprocketPaymentMethod} Order pushed to Shiprocket:`, internalOrderId, 'Shiprocket Order ID:', srOrderId, 'Shipment ID:', srShipmentId);
           } catch (srErr) {
-            console.error('⚠️ Shiprocket push failed:', srErr.response?.data || srErr.message);
+            shiprocketSyncStatus = 'FAILED';
+            console.error('⚠️ Shiprocket push failed for order', internalOrderId, ':', srErr.response?.data || srErr.message);
           }
         }
+
+        // Register order into OrderStore (in-memory + MySQL DB)
+        const { addOrder } = require('../services/orderStore');
+        await addOrder({
+          order_id: internalOrderId,
+          customer_name: customer?.name,
+          customer_email: customer?.email,
+          customer_phone: customer?.phone,
+          total_amount: totalAmount,
+          payment_method: shiprocketPaymentMethod,
+          payment_status: isCOD ? 'COD_PENDING' : 'PAID',
+          shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
+          city: customer?.city,
+          state: customer?.state,
+          pincode: customer?.pincode,
+          items: cart,
+          shiprocket_order_id: srOrderId,
+          shipment_id: srShipmentId,
+          shiprocket_sync_status: shiprocketSyncStatus,
+        });
 
         // 3. REDACT & SANITIZE DEDUPLICATION DATA
         const sanitizedResponse = {
@@ -319,8 +328,9 @@ router.post(
           internal_order_id:   internalOrderId,
           razorpay_order_id:   razorpay_order_id || null,
           payment_id:          razorpay_payment_id || null,
-          shiprocket_order_id: shiprocketData?.order_id || null,
-          shipment_id:        shiprocketData?.shipment_id || null,
+          shiprocket_order_id: srOrderId,
+          shipment_id:        srShipmentId,
+          shiprocket_sync_status: shiprocketSyncStatus,
           _mock:               !!req.mock.razorpay,
         };
 
