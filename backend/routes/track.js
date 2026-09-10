@@ -34,31 +34,39 @@ router.get('/', async (req, res, next) => {
       if (order && (!cleanPhone || String(order.phone).includes(cleanPhone))) {
         return res.json({ success: true, order, _mock: true });
       }
-      return res.status(404).json({
+      return res.json({
         success: false,
-        error: { code: 'NOT_FOUND', message: 'No order found matching these details. Please verify your Order ID and mobile number.' },
+        notFound: true,
+        message: 'No order found matching these details. Please verify your Order ID and mobile number.',
       });
     }
 
     // ── Live mode Shiprocket lookup ────────────────────────────
-    const srOrderRes = await srClient.get(`/orders`, {
-      params: { channel_order_id: cleanOrderId },
-    });
+    let srOrder = null;
+    try {
+      const srOrderRes = await srClient.get(`/orders`, {
+        params: { channel_order_id: cleanOrderId },
+      });
+      srOrder = srOrderRes.data?.data?.[0];
+    } catch {
+      // Shiprocket lookup fell through
+    }
 
-    const srOrder = srOrderRes.data?.data?.[0];
     if (!srOrder) {
-      return res.status(404).json({
+      return res.json({
         success: false,
-        error: { code: 'NOT_FOUND', message: 'No order found matching these details. Please double check your Order ID and mobile number.' },
+        notFound: true,
+        message: 'No order found matching these details. Please double check your Order ID and mobile number.',
       });
     }
 
     // Verify phone matches
     const srPhone = String(srOrder.customer_phone || '').replace(/\D/g, '').slice(-10);
     if (cleanPhone && srPhone && srPhone !== cleanPhone) {
-      return res.status(404).json({
+      return res.json({
         success: false,
-        error: { code: 'NOT_FOUND', message: 'No order found matching these details.' },
+        notFound: true,
+        message: 'No order found matching these details.',
       });
     }
 

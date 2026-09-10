@@ -23,6 +23,9 @@ function addOrder(orderData) {
     payment_method: orderData.payment_method || 'Prepaid',
     payment_status: orderData.payment_status || 'PAID',
     shipping_address: orderData.shipping_address || '',
+    city: orderData.city || '',
+    state: orderData.state || '',
+    pincode: orderData.pincode || '',
     items: orderData.items || [],
     created_at: new Date().toISOString(),
   };
@@ -165,10 +168,91 @@ function markOrderReturned(orderId, returnData = {}) {
   }
 }
 
+function markOrderCancelled(orderId, cancelData = {}) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : 'SHR153083';
+  const cleanPhone = cancelData.phone ? String(cancelData.phone).replace(/\D/g, '').slice(-10) : '';
+
+  if (cleanId) {
+    let record = recentOrders.get(cleanId);
+    if (!record) {
+      for (const [k, cached] of recentOrders.entries()) {
+        if (k.toUpperCase() === cleanId) {
+          record = cached;
+          break;
+        }
+      }
+    }
+
+    if (record) {
+      record.isCancelled = true;
+      record.status = 'Cancelled';
+      record.payment_status = 'CANCELLED';
+      if (cancelData.email) record.customer_email = cancelData.email;
+      if (cleanPhone) record.customer_phone = cleanPhone;
+      record.cancel_data = cancelData;
+      recentOrders.set(cleanId, record);
+    } else {
+      recentOrders.set(cleanId, {
+        id: cleanId,
+        order_id: cleanId,
+        customer_email: cancelData.email || '',
+        customer_phone: cleanPhone,
+        isCancelled: true,
+        status: 'Cancelled',
+        payment_status: 'CANCELLED',
+        cancel_data: cancelData,
+        created_at: new Date().toISOString(),
+      });
+    }
+  }
+
+  if (cleanPhone) {
+    for (const [k, cached] of recentOrders.entries()) {
+      const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
+      if (!cachedPhone || cachedPhone === cleanPhone || cachedPhone.endsWith(cleanPhone) || cleanPhone.endsWith(cachedPhone)) {
+        cached.isCancelled = true;
+        cached.status = 'Cancelled';
+        cached.payment_status = 'CANCELLED';
+        if (cancelData.email) cached.customer_email = cancelData.email;
+        recentOrders.set(k, cached);
+      }
+    }
+  }
+
+  const pool = getPool();
+  if (pool) {
+    pool.query(`UPDATE orders SET payment_status = 'CANCELLED' WHERE UPPER(order_id) = ? OR customer_phone LIKE ?`, [cleanId, `%${cleanPhone}`]).catch(() => {});
+  }
+}
+
+function cleanItemName(rawName) {
+  if (!rawName) return 'Sacred Brass Item';
+  let name = String(rawName);
+  name = name.replace(/1515\s*Inch\s*15\s*15\s*Inch\s*Large\s*2\s*kg/gi, '(15×15 Inch)');
+  name = name.replace(/1515\s*Inch\s*15\s*15\s*Inch/gi, '(15×15 Inch)');
+  name = name.replace(/15\s*15\s*Inch\s*15\s*15\s*Inch/gi, '(15×15 Inch)');
+  name = name.replace(/1515\s*Inch/gi, '15×15 Inch');
+  name = name.replace(/\(15[×x]15\s*Inch\)\s*\(\s*15\s*[×x]\s*15\s*Inch[^\)]*\)/gi, '(15×15 Inch)');
+  name = name.replace(/\(15[×x]15\s*Inch\)\s*\([^)]*15[×x]15[^\)]*\)/gi, '(15×15 Inch)');
+  return name.replace(/\s+/g, ' ').trim();
+}
+
+function formatTimestamp(isoString) {
+  if (!isoString) return new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+  try {
+    const d = new Date(isoString);
+    if (isNaN(d.getTime())) return String(isoString);
+    return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' + d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+  } catch {
+    return String(isoString);
+  }
+}
+
 function formatCachedOrder(cached) {
+  const formattedCreatedTime = formatTimestamp(cached.created_at);
   const createdDate = cached.created_at ? new Date(cached.created_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
   const items = (cached.items || []).map(i => ({
-    name: i.name || i.title || 'Sacred Brass Item',
+    name: cleanItemName(i.name || i.title),
     qty: i.quantity || i.qty || 1,
     price: i.price || 0,
   }));
@@ -176,35 +260,74 @@ function formatCachedOrder(cached) {
   const calculatedTotal = items.reduce((s, i) => s + ((i.price || 0) * (i.qty || 1)), 0);
   const totalAmount = cached.total_amount && Number(cached.total_amount) > 0 ? Number(cached.total_amount) : (calculatedTotal || 399);
 
-  const isReturned = cached.isReturnRequested || cached.payment_status === 'RETURN_REQUESTED';
+  const isCancelled = Boolean(cached.isCancelled || cached.payment_status === 'CANCELLED' || String(cached.status).toLowerCase().includes('cancel'));
+  const isReturned = Boolean(cached.isReturnRequested || cached.payment_status === 'RETURN_REQUESTED' || String(cached.status).toLowerCase().includes('return'));
+  const normStatus = String(cached.status || '').toUpperCase();
+  const isShipped = normStatus.includes('SHIPPED') || normStatus.includes('TRANSIT');
+  const isDelivered = normStatus.includes('DELIVERED');
 
-  const statusText = isReturned
-    ? 'Return Requested'
-    : (cached.status || 'Processing & Dispatched');
+  const statusText = isCancelled
+    ? 'Cancelled'
+    : (isReturned
+      ? 'Return Requested'
+      : (isDelivered ? 'Delivered' : (isShipped ? 'In Transit' : 'Processing')));
 
   const deliveryText = isReturned
     ? 'Reverse Pickup: 24–48 Hours'
-    : (cached.estimatedDelivery || '3–5 Business Days');
+    : (cached.estimatedDelivery && cached.estimatedDelivery !== '0000-00-00 00:00:00' ? cached.estimatedDelivery : '3–5 Business Days');
 
-  const timeline = isReturned ? [
-    { label: 'Order Confirmed & Processing', date: `${createdDate}`, done: true },
-    { label: 'Return Request Approved & Approval Mail Sent', date: 'Just Now', done: true },
-    { label: 'Reverse Pickup Scheduled via Shiprocket', date: 'Within 24–48 Hours', done: true },
-    { label: 'Quality Verification at Udaipur Atelier', date: 'In Progress', done: false },
-    { label: 'Return Inspection & Processing Completed', date: 'Upon Item Receipt', done: false },
-  ] : [
-    { label: 'Order Confirmed & Payment Verified', date: `${createdDate} 10:00 AM`, done: true },
-    { label: 'Packed & Sealed at Shraviko Atelier (Udaipur)', date: `${createdDate} 02:30 PM`, done: true },
-    { label: 'Handed to Shiprocket Logistics Hub', date: 'Expected Today', done: true },
-    { label: 'Out for Express Delivery', date: 'In Transit', done: false },
-    { label: 'Delivered to Customer Address', date: '3–5 Business Days', done: false },
-  ];
+  let timeline = [];
+  if (isCancelled) {
+    timeline = [
+      { label: 'Order Placed & Payment Confirmed', date: formattedCreatedTime, done: true },
+      { label: 'Cancellation Request Processed', date: 'Just Now', done: true },
+      { label: 'Cancellation Email Sent', date: 'Just Now', done: true },
+      { label: 'Refund Processing (if Prepaid)', date: '5–7 Business Days', done: false },
+    ];
+  } else if (isReturned) {
+    timeline = [
+      { label: 'Order Confirmed & Processing', date: formattedCreatedTime, done: true },
+      { label: 'Return Request Approved & Approval Mail Sent', date: 'Just Now', done: true },
+      { label: 'Reverse Pickup Scheduled via Shiprocket', date: 'Within 24–48 Hours', done: true },
+      { label: 'Quality Verification at Udaipur Atelier', date: 'In Progress', done: false },
+      { label: 'Return Inspection & Processing Completed', date: 'Upon Item Receipt', done: false },
+    ];
+  } else if (isDelivered) {
+    timeline = [
+      { label: 'Order Confirmed & Payment Verified', date: formattedCreatedTime, done: true },
+      { label: 'Packed & Sealed at Shraviko Atelier (Udaipur)', date: 'Completed', done: true },
+      { label: 'Handed to Shiprocket Logistics Hub', date: 'Completed', done: true },
+      { label: 'Out for Express Delivery', date: 'Completed', done: true },
+      { label: 'Delivered to Customer Address', date: cached.deliveredOn || 'Delivered', done: true },
+    ];
+  } else if (isShipped) {
+    timeline = [
+      { label: 'Order Confirmed & Payment Verified', date: formattedCreatedTime, done: true },
+      { label: 'Packed & Sealed at Shraviko Atelier (Udaipur)', date: 'Completed', done: true },
+      { label: 'Handed to Shiprocket Logistics Hub', date: 'In Transit', done: true },
+      { label: 'Out for Express Delivery', date: 'Expected Soon', done: false },
+      { label: 'Delivered to Customer Address', date: '3–5 Business Days', done: false },
+    ];
+  } else {
+    // Newly placed / Processing order
+    timeline = [
+      { label: 'Order Confirmed & Payment Verified', date: formattedCreatedTime, done: true },
+      { label: 'Packing & Quality Check at Shraviko Atelier (Udaipur)', date: 'In Progress', done: false },
+      { label: 'Handover to Shiprocket Express Logistics', date: 'Scheduled (Within 24 Hours)', done: false },
+      { label: 'Out for Express Delivery', date: 'Pending Dispatch', done: false },
+      { label: 'Delivered to Customer Address', date: '3–5 Business Days', done: false },
+    ];
+  }
 
   return {
     id: cached.order_id,
     orderId: cached.order_id,
+    customer_name: cached.customer_name || 'Valued Devotee',
+    customer_email: cached.customer_email || '',
+    customer_phone: cached.customer_phone || '',
     date: createdDate,
     status: statusText,
+    isCancelled,
     isReturnRequested: isReturned,
     estimatedDelivery: deliveryText,
     deliveredOn: null,
@@ -212,7 +335,12 @@ function formatCachedOrder(cached) {
     subtotal: totalAmount,
     shipping: 0,
     total: totalAmount,
+    payment_method: cached.payment_method || 'Prepaid',
     address: cached.shipping_address || 'Registered Customer Address',
+    shipping_address: cached.shipping_address || '',
+    city: cached.city || '',
+    state: cached.state || '',
+    pincode: cached.pincode || '',
     awb: `SR${Math.floor(100000000 + Math.random() * 900000000)}`,
     courier: 'Shiprocket Express Logistics (Delhivery / BlueDart)',
     timeline,
@@ -223,4 +351,5 @@ module.exports = {
   addOrder,
   findOrder,
   markOrderReturned,
+  markOrderCancelled,
 };

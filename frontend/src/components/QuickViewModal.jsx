@@ -37,10 +37,15 @@ export const QuickViewModal = ({
 
   const handleAdd = () => {
     if (selectedVariant) {
+      let cleanName = product.name;
+      const w = selectedVariant.weight ? selectedVariant.weight.trim() : '';
+      if (w && !cleanName.toLowerCase().includes(w.toLowerCase()) && !cleanName.includes('15×15')) {
+        cleanName = `${cleanName} (${w})`;
+      }
       onAddToCart({
         ...product,
         id: `${product.id}-${selectedVariant.weight.replace(/\s+/g, '')}`,
-        name: `${product.name} (${selectedVariant.weight})`,
+        name: cleanName,
         price: selectedVariant.price,
         originalPrice: selectedVariant.originalPrice,
         selectedWeight: selectedVariant.weight

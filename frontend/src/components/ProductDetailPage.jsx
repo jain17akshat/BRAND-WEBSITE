@@ -85,11 +85,18 @@ export const ProductDetailPage = ({
     : null;
 
   const handleAddToCart = () => {
+    let cleanName = product.name;
+    if (selectedVariant && selectedVariant.weight) {
+      const w = selectedVariant.weight.trim();
+      if (!cleanName.toLowerCase().includes(w.toLowerCase()) && !cleanName.includes('15×15')) {
+        cleanName = `${cleanName} (${w})`;
+      }
+    }
     const itemToAdd = selectedVariant
       ? {
           ...product,
           id: `${product.id}-${selectedVariant.weight.replace(/\s+/g, '')}`,
-          name: `${product.name} (${selectedVariant.weight})`,
+          name: cleanName,
           price: selectedVariant.price,
           originalPrice: selectedVariant.originalPrice,
           selectedWeight: selectedVariant.weight

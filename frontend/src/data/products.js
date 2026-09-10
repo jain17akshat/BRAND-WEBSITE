@@ -1582,7 +1582,7 @@ export const PRODUCTS = [
       '/assets/WoodenChowki Large/chowki6.png'
     ],
     weightVariants: [
-      { weight: '15 × 15 Inch Large (2 kg)', price: 1350, originalPrice: 1899, default: true }
+      { weight: '2 kg Heavy Bajot', price: 1350, originalPrice: 1899, default: true }
     ],
     purity: 'Seasoned Solid Wood with Hand-Painted Art & 2 kg Heavy Weight',
     inStock: true,

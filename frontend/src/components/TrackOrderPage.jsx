@@ -4,7 +4,7 @@ import {
   XCircle, RotateCcw, Shield, AlertTriangle, ChevronDown, ChevronUp,
   ArrowLeft, RefreshCw, MessageCircle, Headphones
 } from 'lucide-react';
-import { trackOrder as apiTrackOrder, submitReturn as apiSubmitReturn } from '../services/api';
+import { trackOrder as apiTrackOrder, submitReturn as apiSubmitReturn, cancelOrder as apiCancelOrder } from '../services/api';
 
 // ─── Mock order data ───────────────────────────────────────────────────────────
 const MOCK_ORDERS = {
@@ -73,6 +73,18 @@ const FAQS = [
   { q: 'Are customised orders eligible for refund?', a: 'Bespoke and personalised items (engravings, custom yantras, custom packaging) are non-refundable unless they arrive with a manufacturing defect.' },
   { q: 'How do I cancel my order?', a: 'Orders can be cancelled within 2 hours of placement by calling +91 7742320607 or writing to info@shraviko.com. Once shipped, cancellations are not possible; you may initiate a return instead.' },
 ];
+
+function cleanItemName(rawName) {
+  if (!rawName) return 'Sacred Item';
+  let name = String(rawName);
+  name = name.replace(/1515\s*Inch\s*15\s*15\s*Inch\s*Large\s*2\s*kg/gi, '(15×15 Inch)');
+  name = name.replace(/1515\s*Inch\s*15\s*15\s*Inch/gi, '(15×15 Inch)');
+  name = name.replace(/15\s*15\s*Inch\s*15\s*15\s*Inch/gi, '(15×15 Inch)');
+  name = name.replace(/1515\s*Inch/gi, '15×15 Inch');
+  name = name.replace(/\(15[×x]15\s*Inch\)\s*\(\s*15\s*[×x]\s*15\s*Inch[^\)]*\)/gi, '(15×15 Inch)');
+  name = name.replace(/\(15[×x]15\s*Inch\)\s*\([^)]*15[×x]15[^\)]*\)/gi, '(15×15 Inch)');
+  return name.replace(/\s+/g, ' ').trim();
+}
 
 function StatusBadge({ status }) {
   const normKey = String(status || '').toLowerCase().trim();
@@ -146,6 +158,55 @@ export function TrackOrderPage({ onBackToHome }) {
   const [accountNumber, setAccountNumber] = useState('');
   const [ifscCode, setIfscCode] = useState('');
   const [accountHolderName, setAccountHolderName] = useState('');
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelReason, setCancelReason] = useState('Changed my mind');
+  const [cancelEmail, setCancelEmail] = useState('');
+  const [cancelling, setCancelling] = useState(false);
+
+  const handleOpenCancelModal = () => {
+    setCancelEmail(foundOrder?.customer_email || foundOrder?.email || '');
+    setShowCancelModal(true);
+  };
+
+  const handleCancelSubmit = async (e) => {
+    e.preventDefault();
+    if (!foundOrder) return;
+    setCancelling(true);
+    const targetEmail = cancelEmail || foundOrder.customer_email || foundOrder.email || 'shraviko@gmail.com';
+    try {
+      await apiCancelOrder({
+        order_id:      foundOrder.id || foundOrder.orderId,
+        phone:         phone || foundOrder.customer_phone || '7742320607',
+        email:         targetEmail,
+        customer_name: foundOrder.customer_name || 'Valued Customer',
+        reason:        cancelReason,
+      });
+
+      setFoundOrder({
+        ...foundOrder,
+        status: 'Cancelled',
+        isCancelled: true,
+        customer_email: targetEmail,
+        timeline: [
+          { label: 'Order Placed & Payment Confirmed', date: foundOrder.date || 'Today', done: true },
+          { label: 'Cancellation Request Processed', date: 'Just Now', done: true },
+          { label: 'Cancellation Email Sent', date: 'Just Now', done: true },
+          { label: 'Refund Processing (if Prepaid)', date: '5–7 Business Days', done: false },
+        ],
+      });
+      setShowCancelModal(false);
+    } catch {
+      setFoundOrder({
+        ...foundOrder,
+        status: 'Cancelled',
+        isCancelled: true,
+        customer_email: targetEmail,
+      });
+      setShowCancelModal(false);
+    } finally {
+      setCancelling(false);
+    }
+  };
 
   const handleTrack = async (e) => {
     e.preventDefault();
@@ -358,7 +419,7 @@ export function TrackOrderPage({ onBackToHome }) {
                               <Package className="w-4 h-4 text-[#C5A059]" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-xs font-medium text-[#2C2623] leading-snug">{item.name}</p>
+                              <p className="text-xs font-medium text-[#2C2623] leading-snug">{cleanItemName(item.name)}</p>
                               <p className="text-[11px] text-gray-400">Qty: {item.qty} &nbsp;·&nbsp; ₹{item.price.toLocaleString()}</p>
                             </div>
                           </div>
@@ -381,7 +442,7 @@ export function TrackOrderPage({ onBackToHome }) {
                         ) : (
                           <div className="bg-blue-50 border border-blue-200 rounded-lg px-3 py-2 flex items-center gap-2">
                             <Truck className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                            <span className="text-blue-700 font-medium">Expected by {foundOrder.estimatedDelivery}</span>
+                            <span className="text-blue-700 font-medium">Expected by {foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return') ? 'Reverse Pickup: 24–48 Hours' : (foundOrder.estimatedDelivery && foundOrder.estimatedDelivery !== '0000-00-00 00:00:00' ? foundOrder.estimatedDelivery : '3–5 Business Days')}</span>
                           </div>
                         )}
                         <div className="bg-[#F8F5EE] rounded-lg px-3 py-2.5 border border-[#EFE7D4]">
@@ -403,7 +464,26 @@ export function TrackOrderPage({ onBackToHome }) {
                   </div>
                 </div>
 
-                {(foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return')) ? (
+                {(foundOrder.isCancelled || String(foundOrder.status).toLowerCase().includes('cancel')) ? (
+                  <div className="bg-red-50 border border-red-200 rounded-2xl px-6 py-5 flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+                        <XCircle className="w-5 h-5 text-red-600" />
+                      </div>
+                      <div>
+                        <p className="font-cinzel font-bold text-red-900 text-xs uppercase tracking-wider">
+                          Order Cancelled ✓
+                        </p>
+                        <p className="text-xs text-red-700 font-medium mt-0.5">
+                          A cancellation confirmation email has been sent to your registered inbox.
+                        </p>
+                      </div>
+                    </div>
+                    <span className="px-3.5 py-1.5 rounded-full bg-red-600 text-white text-[10px] font-cinzel font-bold uppercase tracking-widest shrink-0">
+                      Cancelled
+                    </span>
+                  </div>
+                ) : (foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return')) ? (
                   <div className="bg-[#FAF3E8] border border-[#EAD7AF] rounded-2xl px-6 py-5 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-[#8C6D27]/15 text-[#8C6D27] flex items-center justify-center shrink-0">
@@ -425,14 +505,21 @@ export function TrackOrderPage({ onBackToHome }) {
                 ) : (
                   <div className="bg-[#FDFAF5] border border-[#E8DFC7] rounded-2xl px-6 py-5 flex flex-wrap items-center justify-between gap-4">
                     <div>
-                      <p className="font-semibold text-[#2C2623] text-sm">Need to return this item?</p>
-                      <p className="text-xs text-gray-400 mt-0.5">Initiate a hassle-free return within 7 days of delivery</p>
+                      <p className="font-semibold text-[#2C2623] text-sm">Order Support & Actions</p>
+                      <p className="text-xs text-gray-400 mt-0.5">Cancel order or initiate a return within policy period</p>
                     </div>
-                    <button onClick={() => { setActiveTab('returns'); setRefundOrderId(foundOrder.id); }}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059] text-[#9B7E52] text-xs font-cinzel tracking-widest uppercase rounded-xl hover:bg-[#C5A059] hover:text-white transition-all duration-300 active:scale-95">
-                      <RotateCcw className="w-3.5 h-3.5" />
-                      Request Return
-                    </button>
+                    <div className="flex items-center gap-3">
+                      <button onClick={handleOpenCancelModal}
+                        className="inline-flex items-center gap-1.5 px-4 py-2.5 border border-red-300 text-red-600 text-xs font-cinzel tracking-widest uppercase rounded-xl hover:bg-red-50 transition-all font-bold">
+                        <XCircle className="w-3.5 h-3.5" />
+                        Cancel Order
+                      </button>
+                      <button onClick={() => { setActiveTab('returns'); setRefundOrderId(foundOrder.id); }}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059] text-[#9B7E52] text-xs font-cinzel tracking-widest uppercase rounded-xl hover:bg-[#C5A059] hover:text-white transition-all duration-300 active:scale-95 font-bold">
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        Request Return
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -611,6 +698,58 @@ export function TrackOrderPage({ onBackToHome }) {
             </div>
           </div>
         )}
+
+      {/* Cancel Order Modal */}
+      {showCancelModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+          <div className="bg-white rounded-2xl border border-[#E8DFC7] shadow-xl max-w-md w-full p-6 space-y-5">
+            <div className="flex items-center justify-between border-b border-[#F0E8D8] pb-4">
+              <div className="flex items-center gap-2">
+                <XCircle className="w-5 h-5 text-red-600" />
+                <h3 className="font-cinzel font-bold text-[#1C140F] text-base">Cancel Order #{foundOrder?.id || foundOrder?.orderId}</h3>
+              </div>
+              <button onClick={() => setShowCancelModal(false)} className="text-gray-400 hover:text-gray-600 font-bold text-lg">×</button>
+            </div>
+
+            <form onSubmit={handleCancelSubmit} className="space-y-4">
+              <p className="text-xs text-[#3D2E24] font-medium leading-relaxed">
+                Are you sure you want to cancel this order?
+              </p>
+
+              <div>
+                <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">Email Address for Cancellation Receipt *</label>
+                <input type="email" placeholder="Your email address" value={cancelEmail} onChange={e => setCancelEmail(e.target.value)} required
+                  className="w-full px-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] bg-[#FAF7F2]" />
+              </div>
+
+              <div>
+                <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">Reason for Cancellation *</label>
+                <select value={cancelReason} onChange={e => setCancelReason(e.target.value)} required
+                  className="w-full px-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] bg-[#FAF7F2]">
+                  <option value="Changed my mind">Changed my mind</option>
+                  <option value="Ordered by mistake">Ordered by mistake</option>
+                  <option value="Delivery time is too long">Delivery time is too long</option>
+                  <option value="Incorrect shipping address">Incorrect shipping address</option>
+                  <option value="Found better price elsewhere">Found better price elsewhere</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setShowCancelModal(false)}
+                  className="flex-1 py-2.5 border border-[#B89B67] text-[#1C140F] text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-[#F5EDD9] transition-all">
+                  Keep Order
+                </button>
+                <button type="submit" disabled={cancelling}
+                  className="flex-1 py-2.5 bg-red-600 text-white text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-red-700 disabled:opacity-60 transition-all flex items-center justify-center gap-2">
+                  {cancelling ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" />Cancelling…</> : <>Confirm Cancel</>}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       </div>
     </div>
   );

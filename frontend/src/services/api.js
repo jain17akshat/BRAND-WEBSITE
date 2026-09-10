@@ -32,6 +32,15 @@ export async function trackOrder(phone, orderId) {
   return request(`/track?orderId=${encodeURIComponent(cleanId)}&phone=${cleanPhone}`);
 }
 
+// ── Shiprocket / Order: Cancel Order ─────────────────────────
+export async function cancelOrder({ order_id, email, phone, customer_name, reason }) {
+  const cleanId = String(order_id || '').replace(/^[#\s]+/, '').trim();
+  return request(`/orders/${encodeURIComponent(cleanId)}/cancel`, {
+    method: 'POST',
+    body: JSON.stringify({ email, phone, customer_name, reason }),
+  });
+}
+
 // ── Shiprocket / Returns: Submit Return ────────────────────
 export async function submitReturn({ order_id, phone, email, customer_name, reason, refund_type, details }) {
   return request('/returns/request', {

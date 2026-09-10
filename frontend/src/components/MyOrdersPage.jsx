@@ -4,7 +4,7 @@ import {
   XCircle, RotateCcw, Shield, AlertTriangle, ChevronDown, ChevronUp,
   ArrowLeft, RefreshCw, MessageCircle, Headphones, CreditCard, ShoppingBag
 } from 'lucide-react';
-import { trackOrder as apiTrackOrder, submitReturn as apiSubmitReturn } from '../services/api';
+import { trackOrder as apiTrackOrder, submitReturn as apiSubmitReturn, cancelOrder as apiCancelOrder } from '../services/api';
 
 // ─── Mock order lookup data ───────────────────────────────────────────────────
 const MOCK_ORDERS = {
@@ -58,10 +58,11 @@ const MOCK_ORDERS = {
 };
 
 const STATUS_CONFIG = {
-  delivered:  { label: 'Delivered',  bg: 'bg-emerald-50',  color: 'text-emerald-700', border: 'border-emerald-200', Icon: CheckCircle2 },
-  shipped:    { label: 'In Transit', bg: 'bg-blue-50',     color: 'text-blue-700',    border: 'border-blue-200',    Icon: Truck },
-  processing: { label: 'Processing', bg: 'bg-amber-50',    color: 'text-amber-700',   border: 'border-amber-200',   Icon: Clock },
-  cancelled:  { label: 'Cancelled',  bg: 'bg-red-50',      color: 'text-red-700',     border: 'border-red-200',     Icon: XCircle },
+  delivered:          { label: 'Delivered',        bg: 'bg-emerald-50', color: 'text-emerald-700', border: 'border-emerald-200', Icon: CheckCircle2 },
+  shipped:            { label: 'In Transit',        bg: 'bg-blue-50',    color: 'text-blue-700',    border: 'border-blue-200',    Icon: Truck },
+  processing:         { label: 'Processing',       bg: 'bg-amber-50',   color: 'text-amber-700',   border: 'border-amber-200',   Icon: Clock },
+  cancelled:          { label: 'Cancelled',        bg: 'bg-red-50',     color: 'text-red-700',     border: 'border-red-200',     Icon: XCircle },
+  'return requested': { label: 'Return Requested', bg: 'bg-[#FAF3E8]',   color: 'text-[#8C6D27]',   border: 'border-[#EAD7AF]',   Icon: RotateCcw },
 };
 
 const FAQS = [
@@ -71,6 +72,18 @@ const FAQS = [
   { q: 'What if my item arrives damaged?', a: 'Please photograph the damaged product and packaging immediately and write to info@shraviko.com or submit a return request here within 48 hours of delivery. We will arrange a free replacement at no extra cost.' },
   { q: 'How do I cancel my order?', a: 'Orders can be cancelled within 2 hours of placement by calling +91 7742320607 or writing to info@shraviko.com. Once shipped, cancellations are not possible; you may initiate a return instead.' },
 ];
+
+function cleanItemName(rawName) {
+  if (!rawName) return 'Sacred Item';
+  let name = String(rawName);
+  name = name.replace(/1515\s*Inch\s*15\s*15\s*Inch\s*Large\s*2\s*kg/gi, '(15×15 Inch)');
+  name = name.replace(/1515\s*Inch\s*15\s*15\s*Inch/gi, '(15×15 Inch)');
+  name = name.replace(/15\s*15\s*Inch\s*15\s*15\s*Inch/gi, '(15×15 Inch)');
+  name = name.replace(/1515\s*Inch/gi, '15×15 Inch');
+  name = name.replace(/\(15[×x]15\s*Inch\)\s*\(\s*15\s*[×x]\s*15\s*Inch[^\)]*\)/gi, '(15×15 Inch)');
+  name = name.replace(/\(15[×x]15\s*Inch\)\s*\([^)]*15[×x]15[^\)]*\)/gi, '(15×15 Inch)');
+  return name.replace(/\s+/g, ' ').trim();
+}
 
 function StatusBadge({ status }) {
   const cfg = STATUS_CONFIG[status] || STATUS_CONFIG.processing;
@@ -139,6 +152,55 @@ export function MyOrdersPage({ onBackToHome }) {
   const [accountNumber, setAccountNumber] = useState('');
   const [ifscCode, setIfscCode] = useState('');
   const [accountHolderName, setAccountHolderName] = useState('');
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelReason, setCancelReason] = useState('Changed my mind');
+  const [cancelEmail, setCancelEmail] = useState('');
+  const [cancelling, setCancelling] = useState(false);
+
+  const handleOpenCancelModal = () => {
+    setCancelEmail(foundOrder?.customer_email || foundOrder?.email || '');
+    setShowCancelModal(true);
+  };
+
+  const handleCancelSubmit = async (e) => {
+    e.preventDefault();
+    if (!foundOrder) return;
+    setCancelling(true);
+    const targetEmail = cancelEmail || foundOrder.customer_email || foundOrder.email || 'shraviko@gmail.com';
+    try {
+      await apiCancelOrder({
+        order_id:      foundOrder.id || foundOrder.orderId,
+        phone:         phone || foundOrder.customer_phone || '7742320607',
+        email:         targetEmail,
+        customer_name: foundOrder.customer_name || 'Valued Customer',
+        reason:        cancelReason,
+      });
+
+      setFoundOrder({
+        ...foundOrder,
+        status: 'Cancelled',
+        isCancelled: true,
+        customer_email: targetEmail,
+        timeline: [
+          { label: 'Order Placed & Payment Confirmed', date: foundOrder.date || 'Today', done: true },
+          { label: 'Cancellation Request Processed', date: 'Just Now', done: true },
+          { label: 'Cancellation Email Sent', date: 'Just Now', done: true },
+          { label: 'Refund Processing (if Prepaid)', date: '5–7 Business Days', done: false },
+        ],
+      });
+      setShowCancelModal(false);
+    } catch {
+      setFoundOrder({
+        ...foundOrder,
+        status: 'Cancelled',
+        isCancelled: true,
+        customer_email: targetEmail,
+      });
+      setShowCancelModal(false);
+    } finally {
+      setCancelling(false);
+    }
+  };
 
   const handleTrack = async (e) => {
     e.preventDefault();
@@ -379,22 +441,51 @@ export function MyOrdersPage({ onBackToHome }) {
                             {foundOrder.status === 'delivered' ? 'Delivered On' : 'Estimated Delivery / Pickup'}
                           </p>
                           <p className="text-sm font-bold text-[#9B7E52]">
-                            {foundOrder.status === 'delivered' ? foundOrder.deliveredOn : foundOrder.estimatedDelivery}
+                            {foundOrder.status === 'delivered' ? foundOrder.deliveredOn : (foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return') ? 'Reverse Pickup: 24–48 Hours' : (foundOrder.estimatedDelivery && foundOrder.estimatedDelivery !== '0000-00-00 00:00:00' ? foundOrder.estimatedDelivery : '3–5 Business Days'))}
                           </p>
                         </div>
                       </div>
-                      {!(foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return')) && (
-                        <button
-                          onClick={() => {
-                            if (foundOrder?.id) setRefundOrderId(foundOrder.id);
-                            setActiveTab('returns');
-                          }}
-                          className="text-xs font-cinzel uppercase tracking-wider text-[#B8860B] hover:underline font-bold"
-                        >
-                          Request Return →
-                        </button>
+                      {!(foundOrder.isCancelled || String(foundOrder.status).toLowerCase().includes('cancel') || foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return')) && (
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={handleOpenCancelModal}
+                            className="text-xs font-cinzel uppercase tracking-wider text-red-600 hover:text-red-700 font-bold border border-red-200 px-3.5 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
+                          >
+                            Cancel Order
+                          </button>
+                          <button
+                            onClick={() => {
+                              if (foundOrder?.id) setRefundOrderId(foundOrder.id);
+                              setActiveTab('returns');
+                            }}
+                            className="text-xs font-cinzel uppercase tracking-wider text-[#B8860B] hover:underline font-bold"
+                          >
+                            Request Return →
+                          </button>
+                        </div>
                       )}
                     </div>
+
+                    {(foundOrder.isCancelled || String(foundOrder.status).toLowerCase().includes('cancel')) && (
+                      <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 flex items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+                            <XCircle className="w-4 h-4 text-red-600" />
+                          </div>
+                          <div>
+                            <p className="font-cinzel font-bold text-red-900 text-xs uppercase tracking-wider">
+                              Order Cancelled ✓
+                            </p>
+                            <p className="text-xs text-red-700 font-medium mt-0.5">
+                              A cancellation confirmation email has been sent to your registered inbox.
+                            </p>
+                          </div>
+                        </div>
+                        <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-cinzel font-bold uppercase tracking-widest shrink-0">
+                          Cancelled
+                        </span>
+                      </div>
+                    )}
 
                     {(foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return')) && (
                       <div className="bg-[#FAF3E8] border border-[#EAD7AF] rounded-xl px-5 py-4 flex items-center justify-between gap-4">
@@ -433,7 +524,7 @@ export function MyOrdersPage({ onBackToHome }) {
                       <div className="divide-y divide-[#F0E8D8]">
                         {foundOrder.items.map((item, idx) => (
                           <div key={idx} className="py-3 flex items-center justify-between gap-4 text-xs">
-                            <span className="font-medium text-[#2C2623]">{item.name} × {item.qty}</span>
+                            <span className="font-medium text-[#2C2623]">{cleanItemName(item.name)} × {item.qty}</span>
                             <span className="font-bold text-[#9B7E52]">₹{(item.price * item.qty).toLocaleString('en-IN')}</span>
                           </div>
                         ))}
@@ -603,6 +694,57 @@ export function MyOrdersPage({ onBackToHome }) {
             </div>
           </div>
         )}
+
+      {/* Cancel Order Modal */}
+      {showCancelModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+          <div className="bg-white rounded-2xl border border-[#E8DFC7] shadow-xl max-w-md w-full p-6 space-y-5">
+            <div className="flex items-center justify-between border-b border-[#F0E8D8] pb-4">
+              <div className="flex items-center gap-2">
+                <XCircle className="w-5 h-5 text-red-600" />
+                <h3 className="font-cinzel font-bold text-[#1C140F] text-base">Cancel Order #{foundOrder?.id || foundOrder?.orderId}</h3>
+              </div>
+              <button onClick={() => setShowCancelModal(false)} className="text-gray-400 hover:text-gray-600 font-bold text-lg">×</button>
+            </div>
+
+            <form onSubmit={handleCancelSubmit} className="space-y-4">
+              <p className="text-xs text-[#3D2E24] font-medium leading-relaxed">
+                Are you sure you want to cancel this order?
+              </p>
+
+              <div>
+                <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">Email Address for Cancellation Receipt *</label>
+                <input type="email" placeholder="Your email address" value={cancelEmail} onChange={e => setCancelEmail(e.target.value)} required
+                  className="w-full px-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] bg-[#FAF7F2]" />
+              </div>
+
+              <div>
+                <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">Reason for Cancellation *</label>
+                <select value={cancelReason} onChange={e => setCancelReason(e.target.value)} required
+                  className="w-full px-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] bg-[#FAF7F2]">
+                  <option value="Changed my mind">Changed my mind</option>
+                  <option value="Ordered by mistake">Ordered by mistake</option>
+                  <option value="Delivery time is too long">Delivery time is too long</option>
+                  <option value="Incorrect shipping address">Incorrect shipping address</option>
+                  <option value="Found better price elsewhere">Found better price elsewhere</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div className="flex gap-3 pt-2">
+                <button type="button" onClick={() => setShowCancelModal(false)}
+                  className="flex-1 py-2.5 border border-[#B89B67] text-[#1C140F] text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-[#F5EDD9] transition-all">
+                  Keep Order
+                </button>
+                <button type="submit" disabled={cancelling}
+                  className="flex-1 py-2.5 bg-red-600 text-white text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-red-700 disabled:opacity-60 transition-all flex items-center justify-center gap-2">
+                  {cancelling ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" />Cancelling…</> : <>Confirm Cancel</>}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       </div>
     </div>

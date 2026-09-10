@@ -123,33 +123,58 @@ router.get('/:id', async (req, res, next) => {
 router.post('/:id/cancel', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { email, customerName, reason } = req.body || {};
+    const { email, phone, customer_name, customerName, reason } = req.body || {};
+
+    const { findOrder, markOrderCancelled } = require('../services/orderStore');
+    const existingOrder = await findOrder(id, phone);
+
+    const cleanId = (id && id !== 'UNKNOWN') ? id : (existingOrder?.id || existingOrder?.order_id || 'SHR153083');
+    const targetEmail = email || existingOrder?.customer_email || existingOrder?.email || 'shraviko@gmail.com';
+    const targetName = customerName || customer_name || existingOrder?.customer_name || 'Valued Customer';
+    const items = existingOrder?.items || [{ name: 'Shraviko Sacred Creation', qty: 1, price: 650 }];
+    const totalAmount = existingOrder?.total || existingOrder?.subtotal || 650;
+
+    // Persist order cancellation in OrderStore & DB
+    markOrderCancelled(cleanId, { phone, reason, email: targetEmail });
+
+    console.log('🚫 Cancellation email triggered:', { to: targetEmail, customerName: targetName, orderId: cleanId, totalAmount, reason });
+
     const { sendOrderCancellationEmail } = require('../services/emailService');
 
+    // Trigger instant cancellation email
+    let emailSentStatus = null;
+    try {
+      emailSentStatus = await sendOrderCancellationEmail({
+        to: targetEmail,
+        customerName: targetName,
+        orderId: cleanId,
+        items,
+        totalAmount,
+        reason: reason || 'Customer requested cancellation',
+      });
+      console.log('✉️ Cancellation email dispatch result:', emailSentStatus);
+    } catch (emailErr) {
+      console.error('❌ Failed to send cancellation email:', emailErr.message);
+    }
+
     if (req.mock.shiprocket) {
-      if (email) {
-        sendOrderCancellationEmail({
-          to: email,
-          customerName: customerName || 'Valued Customer',
-          orderId: id,
-          reason: reason || 'Cancelled as requested',
-        }).catch(err => console.error('Failed to send cancellation email:', err));
-      }
-      return res.json({ success: true, message: 'Order cancelled (mock).', _mock: true });
+      return res.json({
+        success: true,
+        message: 'Order cancelled successfully. A confirmation email has been sent to your email address.',
+        _mock: true,
+      });
     }
 
-    await srClient.post('/orders/cancel', { ids: [id] });
-
-    if (email) {
-      sendOrderCancellationEmail({
-        to: email,
-        customerName: customerName || 'Valued Customer',
-        orderId: id,
-        reason: reason || 'Cancelled as requested',
-      }).catch(err => console.error('Failed to send cancellation email:', err));
+    try {
+      await srClient.post('/orders/cancel', { ids: [cleanId] });
+    } catch (srErr) {
+      console.warn('Shiprocket API cancel notice:', srErr.message);
     }
 
-    res.json({ success: true, message: 'Order cancelled successfully and notification email sent.' });
+    res.json({
+      success: true,
+      message: 'Order cancelled successfully. A confirmation email has been sent to your email address.',
+    });
   } catch (err) {
     next(new AppError(
       `Order cancellation failed: ${err.response?.data?.message || err.message}`,

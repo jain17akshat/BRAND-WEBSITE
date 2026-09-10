@@ -117,6 +117,8 @@ router.post(
           items: cart || [],
           totalAmount,
           shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
+          phone: customer.phone || '7742320607',
+          paymentMethod: shiprocketPaymentMethod,
         }).catch(err => console.error('Failed to send confirmation email:', err));
       }
 
@@ -139,6 +141,7 @@ router.post(
         payment_status: isCOD ? 'COD_PENDING' : 'PAID',
         shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
         city: customer?.city,
+        state: customer?.state,
         pincode: customer?.pincode,
         items: cart,
       });
