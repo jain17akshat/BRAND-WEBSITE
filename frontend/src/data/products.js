@@ -33,13 +33,7 @@ export const PRODUCTS = [
       '/assets/garud bell/garuda 4.png'
     ],
     weightVariants: [
-      { weight: '100 G', price: 650, originalPrice: 1250, default: true },
-      { weight: '150 G', price: 850, originalPrice: 1450 },
-      { weight: '200 G', price: 1050, originalPrice: 1650 },
-      { weight: '250 G', price: 1250, originalPrice: 1850 },
-      { weight: '300 G', price: 1450, originalPrice: 2050 },
-      { weight: '400 G', price: 1890, originalPrice: 2290 },
-      { weight: '500 G', price: 2390, originalPrice: 2890 }
+      { weight: '90 g', price: 650, originalPrice: 1250, default: true }
     ],
     purity: '100% Solid Heavy Brass',
     inStock: true,
@@ -47,6 +41,7 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Garud Headed Brass Pooja Bell' },
       { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Weight', value: '90 g' },
       { label: 'Size', value: '4 Inch' },
       { label: 'Handle Motif', value: 'Detailed Garud-Inspired Handle' },
       { label: 'Sound Quality', value: 'Clear & Resonant Ringing Chime' },
@@ -100,13 +95,7 @@ export const PRODUCTS = [
       '/assets/nandi bell/nandi 5.png'
     ],
     weightVariants: [
-      { weight: '100 G', price: 650, originalPrice: 1250, default: true },
-      { weight: '150 G', price: 850, originalPrice: 1450 },
-      { weight: '200 G', price: 1050, originalPrice: 1650 },
-      { weight: '250 G', price: 1250, originalPrice: 1850 },
-      { weight: '300 G', price: 1450, originalPrice: 2050 },
-      { weight: '400 G', price: 1790, originalPrice: 2190 },
-      { weight: '500 G', price: 2250, originalPrice: 2690 }
+      { weight: '90 g', price: 650, originalPrice: 1250, default: true }
     ],
     purity: '100% Solid Heavy Brass',
     inStock: true,
@@ -114,6 +103,7 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Nandi Headed Brass Pooja Bell' },
       { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Weight', value: '90 g' },
       { label: 'Size', value: '4 Inch' },
       { label: 'Handle Motif', value: 'Traditional Nandi-Inspired Handle' },
       { label: 'Sound Quality', value: 'Clear & Resonant Ringing Chime' },
@@ -166,13 +156,7 @@ export const PRODUCTS = [
       '/assets/simple bell/simple bell 1.jpg'
     ],
     weightVariants: [
-      { weight: '100 G', price: 650, originalPrice: 1250, default: true },
-      { weight: '150 G', price: 850, originalPrice: 1450 },
-      { weight: '200 G', price: 1050, originalPrice: 1650 },
-      { weight: '250 G', price: 1250, originalPrice: 1850 },
-      { weight: '300 G', price: 1450, originalPrice: 2050 },
-      { weight: '400 G', price: 1790, originalPrice: 2190 },
-      { weight: '500 G', price: 2190, originalPrice: 2590 }
+      { weight: '90 g', price: 650, originalPrice: 1250, default: true }
     ],
     purity: '100% Solid Brass',
     inStock: true,
@@ -180,6 +164,7 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Traditional Brass Pooja Bell' },
       { label: 'Material', value: '100% Solid Brass' },
+      { label: 'Weight', value: '90 g' },
       { label: 'Size', value: '4 Inch' },
       { label: 'Design', value: 'Classic Smooth Dome Bell Form' },
       { label: 'Sound Quality', value: 'Clear & Resonant Ringing Chime' },
@@ -233,13 +218,7 @@ export const PRODUCTS = [
       '/assets/commonbell/brassbell 5.png'
     ],
     weightVariants: [
-      { weight: '100 G', price: 650, originalPrice: 1250, default: true },
-      { weight: '150 G', price: 850, originalPrice: 1450 },
-      { weight: '200 G', price: 1050, originalPrice: 1650 },
-      { weight: '250 G', price: 1250, originalPrice: 1850 },
-      { weight: '300 G', price: 1450, originalPrice: 2050 },
-      { weight: '400 G', price: 2190, originalPrice: 2650 },
-      { weight: '500 G', price: 2690, originalPrice: 3250 }
+      { weight: '90 g', price: 650, originalPrice: 1250, default: true }
     ],
     purity: '100% Solid Heavy Brass',
     inStock: true,
@@ -247,6 +226,7 @@ export const PRODUCTS = [
     specifications: [
       { label: 'Product', value: 'Brass Ganesh Ghanti' },
       { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Weight', value: '90 g' },
       { label: 'Size', value: '4 Inch' },
       { label: 'Handle Motif', value: 'Distinctive Ganesh-Inspired Design' },
       { label: 'Sound Quality', value: 'Clear & Resonant Ringing Sound' },

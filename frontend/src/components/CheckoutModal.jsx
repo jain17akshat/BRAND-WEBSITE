@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, CheckCircle, ShieldCheck, Lock, ArrowRight, Loader2, AlertCircle, RefreshCw, CreditCard, QrCode, Building2, Banknote } from 'lucide-react';
 import { createRazorpayOrder, verifyPayment } from '../services/api';
 
@@ -15,6 +15,7 @@ export const CheckoutModal = ({
   const [errorMessage, setErrorMessage] = useState('');
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState('');
+  const isSubmittingRef = useRef(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -81,8 +82,9 @@ export const CheckoutModal = ({
 
   const handleExecutePayment = async (e) => {
     if (e) e.preventDefault();
-    if (isProcessing) return;
+    if (isSubmittingRef.current || isProcessing) return;
 
+    isSubmittingRef.current = true;
     setIsProcessing(true);
     setPaymentError(false);
     setErrorMessage('');
@@ -104,6 +106,7 @@ export const CheckoutModal = ({
         setOrderId(verified.internal_order_id || receipt);
         setOrderComplete(true);
         setIsProcessing(false);
+        isSubmittingRef.current = false;
         onClearCart();
         return;
       }
@@ -130,6 +133,7 @@ export const CheckoutModal = ({
         setOrderId(verified.internal_order_id || receipt);
         setOrderComplete(true);
         setIsProcessing(false);
+        isSubmittingRef.current = false;
         onClearCart();
         return;
       }
@@ -148,7 +152,7 @@ export const CheckoutModal = ({
           contact: formData.phone,
         },
         theme:   { color: '#C5A059' },
-        modal:   { ondismiss: () => setIsProcessing(false) },
+        modal:   { ondismiss: () => { setIsProcessing(false); isSubmittingRef.current = false; } },
         handler: async (response) => {
           try {
             // 3. Verify payment signature on server
@@ -162,11 +166,13 @@ export const CheckoutModal = ({
             setOrderId(verified.internal_order_id || receipt);
             setOrderComplete(true);
             setIsProcessing(false);
+            isSubmittingRef.current = false;
             onClearCart();
           } catch (vErr) {
             setErrorMessage(vErr.message || 'Signature verification failed.');
             setPaymentError(true);
             setIsProcessing(false);
+            isSubmittingRef.current = false;
           }
         },
       };
@@ -181,6 +187,7 @@ export const CheckoutModal = ({
       setErrorMessage(err.message || 'Server connection lost. Please verify the server is running and try again.');
       setPaymentError(true);
       setIsProcessing(false);
+      isSubmittingRef.current = false;
     }
   };
 
@@ -188,6 +195,7 @@ export const CheckoutModal = ({
     setOrderComplete(false);
     setPaymentError(false);
     setIsProcessing(false);
+    isSubmittingRef.current = false;
     onClose();
   };
 
