@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, ShoppingBag, Heart, ShieldCheck, Check } from 'lucide-react';
 import { ProductImage } from './ProductImage';
+import { ProductReviewsSection } from './ProductReviewsSection';
 
 export const QuickViewModal = ({
   product,
@@ -196,7 +197,11 @@ export const QuickViewModal = ({
             </div>
 
           </div>
+        </div>
 
+        {/* Product Reviews & Ratings Section */}
+        <div className="border-t border-[#EAE0CD]">
+          <ProductReviewsSection productId={product.id} productName={product.name} />
         </div>
 
       </div>

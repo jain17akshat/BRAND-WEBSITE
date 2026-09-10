@@ -25,17 +25,18 @@ async function request(path, options = {}) {
   return data;
 }
 
-// ── Shiprocket: Order Tracking ────────────────────────────
+// ── Shiprocket / Order: Tracking ──────────────────────────
 export async function trackOrder(phone, orderId) {
-  const clean = phone.replace(/\D/g, '').slice(-10);
-  return request(`/track?orderId=${encodeURIComponent(orderId)}&phone=${clean}`);
+  const cleanPhone = String(phone || '').replace(/\D/g, '').slice(-10);
+  const cleanId    = String(orderId || '').replace(/^[#\s]+/, '').trim();
+  return request(`/track?orderId=${encodeURIComponent(cleanId)}&phone=${cleanPhone}`);
 }
 
-// ── Shiprocket: Submit Return ─────────────────────────────
-export async function submitReturn({ order_id, phone, reason, refund_type, details }) {
+// ── Shiprocket / Returns: Submit Return ────────────────────
+export async function submitReturn({ order_id, phone, email, customer_name, reason, refund_type, details }) {
   return request('/returns/request', {
     method: 'POST',
-    body: JSON.stringify({ order_id, phone, reason, refund_type, details }),
+    body: JSON.stringify({ order_id, phone, email, customer_name, reason, refund_type, details }),
   });
 }
 
@@ -62,6 +63,7 @@ export async function verifyPayment({
   razorpay_signature,
   cart,
   customer,
+  payment_method,
 }) {
   return request('/payments/verify', {
     method: 'POST',
@@ -71,6 +73,7 @@ export async function verifyPayment({
       razorpay_signature,
       cart,
       customer,
+      payment_method,
     }),
   });
 }
@@ -96,6 +99,18 @@ export async function subscribeToLaunch({ email, purpose }) {
   return request('/enquiries/subscribe', {
     method: 'POST',
     body: JSON.stringify({ email, purpose }),
+  });
+}
+
+// ── Product Reviews & Ratings ──────────────────────────────
+export async function fetchProductReviews(productId) {
+  return request(`/reviews/${encodeURIComponent(productId || 'ALL')}`);
+}
+
+export async function submitProductReview(reviewData) {
+  return request('/reviews', {
+    method: 'POST',
+    body: JSON.stringify(reviewData),
   });
 }
 

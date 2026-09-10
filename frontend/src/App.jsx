@@ -303,6 +303,11 @@ export function App() {
         setCurrentPage('refund-policy');
       } else if (hash === 'terms-and-conditions') {
         setCurrentPage('terms');
+      } else if (hash.startsWith('review')) {
+        const firstProduct = PRODUCTS[0];
+        if (firstProduct) {
+          setSelectedProduct(firstProduct);
+        }
       }
     };
 

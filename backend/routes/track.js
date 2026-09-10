@@ -9,45 +9,53 @@ const srClient     = require('../shiprocket/client');
 const { MOCK_ORDERS } = require('../mock/orders');
 const { AppError } = require('../middleware/errorHandler');
 
+const { findOrder } = require('../services/orderStore');
+
 router.get('/', async (req, res, next) => {
   try {
     const { orderId, phone } = req.query;
 
-    if (!orderId || !phone) {
-      throw new AppError('orderId and phone are required query parameters.', 400, 'VALIDATION_ERROR');
+    if (!phone && !orderId) {
+      throw new AppError('Please enter your 10-digit Mobile Number or Order ID to track.', 400, 'VALIDATION_ERROR');
     }
 
-    const cleanPhone = String(phone).replace(/\D/g, '').slice(-10);
+    const cleanOrderId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+    const cleanPhone = phone ? String(phone).replace(/\D/g, '').slice(-10) : '';
 
-    // ── Mock mode ──────────────────────────────────────────
+    // 1. Check local OrderStore (recent memory cache + MySQL DB)
+    const localOrder = await findOrder(cleanOrderId, cleanPhone);
+    if (localOrder) {
+      return res.json({ success: true, order: localOrder });
+    }
+
+    // ── Mock mode fallback ─────────────────────────────────────
     if (req.mock.shiprocket) {
-      const order = MOCK_ORDERS[orderId.toUpperCase()];
-      if (!order || order.phone !== cleanPhone) {
-        return res.status(404).json({
-          success: false,
-          error: { code: 'NOT_FOUND', message: 'No order found matching these details.' },
-        });
+      const order = MOCK_ORDERS[cleanOrderId] || MOCK_ORDERS[orderId.toUpperCase()];
+      if (order && (!cleanPhone || String(order.phone).includes(cleanPhone))) {
+        return res.json({ success: true, order, _mock: true });
       }
-      return res.json({ success: true, order, _mock: true });
+      return res.status(404).json({
+        success: false,
+        error: { code: 'NOT_FOUND', message: 'No order found matching these details. Please verify your Order ID and mobile number.' },
+      });
     }
 
-    // ── Live mode ──────────────────────────────────────────
-    // 1. Fetch order from Shiprocket
+    // ── Live mode Shiprocket lookup ────────────────────────────
     const srOrderRes = await srClient.get(`/orders`, {
-      params: { channel_order_id: orderId },
+      params: { channel_order_id: cleanOrderId },
     });
 
     const srOrder = srOrderRes.data?.data?.[0];
     if (!srOrder) {
       return res.status(404).json({
         success: false,
-        error: { code: 'NOT_FOUND', message: 'Order not found in Shiprocket.' },
+        error: { code: 'NOT_FOUND', message: 'No order found matching these details. Please double check your Order ID and mobile number.' },
       });
     }
 
     // Verify phone matches
     const srPhone = String(srOrder.customer_phone || '').replace(/\D/g, '').slice(-10);
-    if (srPhone !== cleanPhone) {
+    if (cleanPhone && srPhone && srPhone !== cleanPhone) {
       return res.status(404).json({
         success: false,
         error: { code: 'NOT_FOUND', message: 'No order found matching these details.' },

@@ -99,6 +99,21 @@ async function initDatabase() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
+    // 4. Create product_reviews table
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS product_reviews (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        product_id VARCHAR(100) NOT NULL,
+        rating INT NOT NULL DEFAULT 5,
+        title VARCHAR(255),
+        comment TEXT,
+        customer_name VARCHAR(255),
+        customer_email VARCHAR(255),
+        verified_buyer TINYINT(1) DEFAULT 1,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
     conn.release();
     console.log(`✅ Hostinger MySQL Database connected & tables verified! (${process.env.DB_NAME})`);
     return true;
@@ -107,6 +122,9 @@ async function initDatabase() {
     return false;
   }
 }
+
+// In-memory fallback storage for product reviews when DB is offline
+const inMemoryReviews = [];
 
 /**
  * saveOrder — helper to insert/update order into MySQL
@@ -185,9 +203,86 @@ async function saveReturnRequest(returnData) {
   }
 }
 
+/**
+ * saveReview — helper to persist a product review to MySQL (and in-memory)
+ */
+async function saveReview(reviewData) {
+  const record = {
+    id: Date.now(),
+    product_id: String(reviewData.product_id || reviewData.productId || 'ALL').trim(),
+    rating: parseInt(reviewData.rating || 5, 10),
+    title: reviewData.title || '',
+    comment: reviewData.comment || reviewData.review_text || '',
+    customer_name: reviewData.customer_name || reviewData.name || 'Valued Devotee',
+    customer_email: reviewData.customer_email || reviewData.email || '',
+    verified_buyer: reviewData.verified_buyer !== false ? 1 : 0,
+    created_at: new Date().toISOString(),
+  };
+
+  inMemoryReviews.unshift(record);
+
+  const p = getPool();
+  if (!p) return record;
+
+  try {
+    const [res] = await p.query(
+      `INSERT INTO product_reviews 
+       (product_id, rating, title, comment, customer_name, customer_email, verified_buyer)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [
+        record.product_id,
+        record.rating,
+        record.title,
+        record.comment,
+        record.customer_name,
+        record.customer_email,
+        record.verified_buyer,
+      ]
+    );
+    record.id = res.insertId;
+    return record;
+  } catch (err) {
+    console.error('⚠️ Could not save review to DB:', err.message);
+    return record;
+  }
+}
+
+/**
+ * getReviewsByProduct — fetches all reviews for a product from DB & memory
+ */
+async function getReviewsByProduct(productId) {
+  const cleanId = String(productId || '').trim();
+  const p = getPool();
+
+  if (p) {
+    try {
+      let query = `SELECT * FROM product_reviews ORDER BY id DESC LIMIT 100`;
+      let params = [];
+      if (cleanId && cleanId.toUpperCase() !== 'ALL') {
+        query = `SELECT * FROM product_reviews WHERE product_id = ? OR product_id = 'ALL' ORDER BY id DESC LIMIT 100`;
+        params = [cleanId];
+      }
+      const [rows] = await p.query(query, params);
+      if (rows && rows.length > 0) {
+        return rows;
+      }
+    } catch (err) {
+      console.error('⚠️ Could not fetch reviews from DB:', err.message);
+    }
+  }
+
+  // Fallback to in-memory reviews
+  if (cleanId && cleanId.toUpperCase() !== 'ALL') {
+    return inMemoryReviews.filter(r => r.product_id === cleanId || r.product_id === 'ALL');
+  }
+  return inMemoryReviews;
+}
+
 module.exports = {
   getPool,
   initDatabase,
   saveOrder,
   saveReturnRequest,
+  saveReview,
+  getReviewsByProduct,
 };

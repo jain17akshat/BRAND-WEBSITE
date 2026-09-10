@@ -11,18 +11,18 @@ export function QuickTrackSection({ onGoSupport }) {
 
   const handleTrackSubmit = async (e) => {
     e.preventDefault();
-    if (!orderId.trim() || !phone.trim()) return;
+    if (!phone.trim() && !orderId.trim()) return;
 
     setLoading(true);
     setErrorMsg('');
     setOrderData(null);
 
     try {
-      const data = await apiTrackOrder(phone, orderId.trim());
+      const data = await apiTrackOrder(phone.trim(), orderId.trim());
       if (data.success && data.order) {
         setOrderData(data.order);
       } else {
-        setErrorMsg('No order found matching these details. Please check your Order ID and phone number.');
+        setErrorMsg('No order found matching these details. Please check your registered mobile number.');
       }
     } catch (err) {
       setErrorMsg(err.message || 'Unable to fetch tracking data right now. Please try again.');
@@ -36,49 +36,48 @@ export function QuickTrackSection({ onGoSupport }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5EFE0] border border-[#DAB97B]/50 text-[#8C6D27] text-xs font-cinzel tracking-widest uppercase font-semibold mb-4">
-            <Truck className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5EFE0] border border-[#DAB97B] text-[#5C420D] text-xs font-cinzel tracking-widest uppercase font-bold mb-4 shadow-xs">
+            <Truck className="w-3.5 h-3.5 text-[#5C420D]" />
             <span>Shiprocket Live Tracking</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-cinzel font-bold text-[#2C1F06] tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-4xl font-cinzel font-bold text-[#1C140F] tracking-tight mb-3">
             Track Your Sacred Order
           </h2>
-          <p className="text-xs sm:text-sm text-[#5C4A3E] font-light max-w-lg mx-auto leading-relaxed">
-            Enter your 10-digit phone number and Order ID to fetch real-time dispatch, AWB, and courier delivery updates.
+          <p className="text-xs sm:text-sm text-[#3D2E24] font-semibold max-w-lg mx-auto leading-relaxed">
+            Enter your registered 10-digit mobile number to fetch real-time dispatch, AWB, and courier delivery updates.
           </p>
         </div>
 
         {/* Input Card */}
-        <div className="max-w-2xl mx-auto bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-[#E8DFC7] relative">
+        <div className="max-w-2xl mx-auto bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-[#C5A059]/40 relative">
           <form onSubmit={handleTrackSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
               <div>
-                <label className="block text-xs font-cinzel uppercase tracking-wider text-[#3D2B1F] font-semibold mb-1.5">
-                  Order ID
+                <label className="block text-xs font-cinzel uppercase tracking-wider text-[#1C140F] font-bold mb-1.5">
+                  Mobile Number *
                 </label>
                 <input
-                  type="text"
-                  placeholder="e.g. SHR-2024-001847"
-                  value={orderId}
-                  onChange={(e) => setOrderId(e.target.value)}
+                  type="tel"
+                  placeholder="10-digit registered number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-[#D9C7A5] focus:outline-none focus:ring-2 focus:ring-[#B8860B] text-sm text-[#2C2623] placeholder-gray-400 bg-[#FDFBF7]"
+                  className="w-full px-4 py-3 rounded-xl border border-[#B89B67] focus:outline-none focus:ring-2 focus:ring-[#8C6D27] text-sm text-[#1C140F] font-bold placeholder-[#7D6E63] bg-[#FAF7F2] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-cinzel uppercase tracking-wider text-[#3D2B1F] font-semibold mb-1.5">
-                  Phone Number
+                <label className="block text-xs font-cinzel uppercase tracking-wider text-[#1C140F] font-bold mb-1.5">
+                  Order ID <span className="text-gray-500 font-normal lowercase">(optional)</span>
                 </label>
                 <input
-                  type="tel"
-                  placeholder="10-digit mobile number"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                  className="w-full px-4 py-3 rounded-xl border border-[#D9C7A5] focus:outline-none focus:ring-2 focus:ring-[#B8860B] text-sm text-[#2C2623] placeholder-gray-400 bg-[#FDFBF7]"
+                  type="text"
+                  placeholder="e.g. SHR278696"
+                  value={orderId}
+                  onChange={(e) => setOrderId(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-[#B89B67] focus:outline-none focus:ring-2 focus:ring-[#8C6D27] text-sm text-[#1C140F] font-bold placeholder-[#7D6E63] bg-[#FAF7F2] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 

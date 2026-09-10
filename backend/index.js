@@ -33,6 +33,7 @@ const returnsRouter = require('./routes/returns');
 const ratesRouter = require('./routes/rates');
 const enquiriesRouter = require('./routes/enquiries');
 const shiprocketWebhookRouter = require('./routes/shiprocketWebhook');
+const reviewsRouter = require('./routes/reviews');
 
 // ─────────────────────────────────────────────────────────
 const app = express();
@@ -95,6 +96,7 @@ app.use('/api/orders', ordersRouter);
 app.use('/api/returns', rateLimiter.returns, returnsRouter);
 app.use('/api/rates', ratesRouter);
 app.use('/api/enquiries', enquiriesRouter);
+app.use('/api/reviews', reviewsRouter);
 app.use('/api/fulfillment-updates', shiprocketWebhookRouter);
 app.use('/fulfillment-updates', shiprocketWebhookRouter);
 

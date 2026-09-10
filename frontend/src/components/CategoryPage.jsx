@@ -273,6 +273,9 @@ export const CategoryPage = ({
         <img
           src={category.mobileImage || category.image || '/brasshero.png'}
           alt={category.title || 'Category Collection'}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
           onError={(e) => {
             // If mobileImage fails, fall back to desktop image
             if (category.mobileImage && e.target.src !== (category.image || '/brasshero.png')) {
@@ -291,6 +294,9 @@ export const CategoryPage = ({
         <img
           src={category.image || '/brasshero.png'}
           alt={category.title || 'Category Collection'}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
           onError={(e) => {
             if (category.fallbackImage && e.target.src !== category.fallbackImage) {
               e.target.src = category.fallbackImage;

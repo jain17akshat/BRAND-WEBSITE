@@ -229,7 +229,7 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
                 src={slide.mobileVideo}
                 muted
                 playsInline
-                preload="auto"
+                preload={idx === 0 ? 'auto' : 'none'}
                 className="
                   absolute inset-0
                   h-full w-full
@@ -247,7 +247,7 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
                 src={slide.desktopVideo}
                 muted
                 playsInline
-                preload="auto"
+                preload={idx === 0 ? 'auto' : 'none'}
                 className="
                   absolute inset-0
                   h-full w-full

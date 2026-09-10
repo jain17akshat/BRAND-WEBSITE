@@ -159,6 +159,9 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
         <img
           src="/energystones mobile view.png"
           alt="Energy Stones & Accessories"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
           className="block sm:hidden absolute inset-0 h-full w-full object-cover hero-image-crisp"
           style={{ objectPosition: 'center center' }}
         />
@@ -167,6 +170,9 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
         <img
           src="/braclet desktopview.png"
           alt="Energy Stones & Accessories"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
           className="hidden sm:block absolute inset-0 h-full w-full object-cover hero-image-crisp"
           style={{ objectPosition: 'center center' }}
         />

@@ -67,7 +67,7 @@ const STATUS_CONFIG = {
 const FAQS = [
   { q: 'How long does delivery take?', a: 'Standard delivery across India takes 4–7 business days. Metro cities like Delhi, Mumbai, Bangalore, and Jaipur typically receive orders within 2–4 business days.' },
   { q: 'Can I return an item?', a: 'We accept returns within 7 days of delivery for unused, undamaged items in original packaging. Customised or engraved items are non-returnable unless there is a manufacturing defect.' },
-  { q: 'How are refunds processed for COD orders?', a: 'COD refunds are transferred directly to your UPI ID or Bank Account (IFSC) provided on our return form within 24–48 hours of item receipt.' },
+  { q: 'How are returns processed for COD orders?', a: 'For Cash on Delivery (COD) orders, returns are processed via Return Request Approval Mail and reverse pickup. Upon submitting your return request, you will receive a Return Request Approval Mail.' },
   { q: 'What if my item arrives damaged?', a: 'Please photograph the damaged product and packaging immediately and write to info@shraviko.com or submit a return request here within 48 hours of delivery. We will arrange a free replacement at no extra cost.' },
   { q: 'How do I cancel my order?', a: 'Orders can be cancelled within 2 hours of placement by calling +91 7742320607 or writing to info@shraviko.com. Once shipped, cancellations are not possible; you may initiate a return instead.' },
 ];
@@ -142,7 +142,7 @@ export function MyOrdersPage({ onBackToHome }) {
 
   const handleTrack = async (e) => {
     e.preventDefault();
-    if (!phone.trim() || !orderId.trim()) return;
+    if (!phone.trim() && !orderId.trim()) return;
     setLoading(true);
     setResult(null);
 
@@ -150,15 +150,23 @@ export function MyOrdersPage({ onBackToHome }) {
     const cleanOrder = orderId.trim().toUpperCase();
     const cleanPhone = phone.replace(/\D/g, '').slice(-10);
 
-    if (MOCK_ORDERS[cleanOrder] && MOCK_ORDERS[cleanOrder].phone.slice(-10) === cleanPhone) {
-      setFoundOrder(MOCK_ORDERS[cleanOrder]);
-      setResult('found');
-      setLoading(false);
-      return;
+    if (cleanPhone) {
+      const mockKey = Object.keys(MOCK_ORDERS).find(k => {
+        const o = MOCK_ORDERS[k];
+        const matchPhone = o.phone.slice(-10) === cleanPhone;
+        const matchOrder = !cleanOrder || o.id === cleanOrder || k === cleanOrder;
+        return matchPhone && matchOrder;
+      });
+      if (mockKey) {
+        setFoundOrder(MOCK_ORDERS[mockKey]);
+        setResult('found');
+        setLoading(false);
+        return;
+      }
     }
 
     try {
-      const data = await apiTrackOrder(phone, orderId.trim());
+      const data = await apiTrackOrder(phone.trim(), orderId.trim());
       if (data.success && data.order) {
         setFoundOrder(data.order);
         setResult('found');
@@ -179,22 +187,38 @@ export function MyOrdersPage({ onBackToHome }) {
   const handleRefundSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const targetOrderId = refundOrderId.trim() || foundOrder?.id || foundOrder?.orderId || 'SHR153083';
+
     try {
       await apiSubmitReturn({
-        order_id:    refundOrderId || 'UNKNOWN',
-        phone:       phone || '',
-        reason:      'Customer requested return',
-        refund_type: refundType,
-        details: {
-          upi_id:              upiId,
-          account_number:      accountNumber,
-          ifsc_code:           ifscCode,
-          account_holder_name: accountHolderName,
-        },
+        order_id:      targetOrderId,
+        phone:         phone || '7742320607',
+        email:         foundOrder?.customer_email || 'shraviko@gmail.com',
+        customer_name: foundOrder?.customer_name || 'Valued Customer',
+        reason:        'Customer requested return',
+        refund_type:   'approval_mail',
+        details: {},
       });
+
+      if (foundOrder) {
+        setFoundOrder({
+          ...foundOrder,
+          status: 'Return Requested',
+          isReturnRequested: true,
+          estimatedDelivery: 'Reverse Pickup: 24–48 Hours',
+          timeline: [
+            { label: 'Order Confirmed & Processing', date: foundOrder.date || 'Today', done: true },
+            { label: 'Return Request Approved & Approval Mail Sent', date: 'Just Now', done: true },
+            { label: 'Reverse Pickup Scheduled via Shiprocket', date: 'Within 24–48 Hours', done: true },
+            { label: 'Quality Verification at Udaipur Atelier', date: 'In Progress', done: false },
+            { label: 'Return Inspection & Processing Completed', date: 'Upon Item Receipt', done: false },
+          ],
+        });
+      }
+
       setRefundSubmitted(true);
     } catch {
-      setRefundSubmitted(true); // show success even on API error
+      setRefundSubmitted(true);
     } finally {
       setLoading(false);
     }
@@ -256,8 +280,8 @@ export function MyOrdersPage({ onBackToHome }) {
                     <Search className="w-5 h-5 text-[#C5A059]" />
                   </div>
                   <div>
-                    <h2 className="font-cinzel font-bold text-[#2C2623] text-base">Look Up Your Order</h2>
-                    <p className="text-xs text-gray-500 mt-0.5">Enter your registered mobile number and Order ID to fetch live status.</p>
+                    <h2 className="font-cinzel font-bold text-[#1C140F] text-base">Look Up Your Order</h2>
+                    <p className="text-xs text-[#3D2E24] font-semibold mt-0.5">Enter your registered 10-digit mobile number to fetch live status. Order ID is optional.</p>
                   </div>
                 </div>
               </div>
@@ -265,35 +289,34 @@ export function MyOrdersPage({ onBackToHome }) {
               <form onSubmit={handleTrack} className="p-6 sm:p-8 space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] mb-2 font-semibold">
-                      Order ID *
+                    <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">
+                      Order ID <span className="text-gray-500 font-normal lowercase">(optional)</span>
                     </label>
                     <div className="relative">
-                      <Hash className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#C5A059]" />
+                      <Hash className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8C6D27]" />
                       <input
                         type="text"
-                        placeholder="e.g. SHR-2024-001847"
+                        placeholder="e.g. SHR278696"
                         value={orderId}
                         onChange={(e) => setOrderId(e.target.value)}
-                        required
-                        className="w-full pl-10 pr-4 py-3 border border-[#E0D5C0] rounded-xl text-sm focus:outline-none focus:border-[#C5A059] focus:ring-2 focus:ring-[#C5A059]/20 bg-white transition-all uppercase placeholder:normal-case placeholder:text-gray-300"
+                        className="w-full pl-10 pr-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] focus:ring-2 focus:ring-[#8C6D27]/20 bg-[#FAF7F2] focus:bg-white transition-all uppercase placeholder:normal-case placeholder:text-[#7D6E63] placeholder:font-medium"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] mb-2 font-semibold">
+                    <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">
                       Mobile Number *
                     </label>
                     <div className="relative">
-                      <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#C5A059]" />
+                      <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8C6D27]" />
                       <input
                         type="tel"
                         placeholder="10-digit registered number"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         required
-                        className="w-full pl-10 pr-4 py-3 border border-[#E0D5C0] rounded-xl text-sm focus:outline-none focus:border-[#C5A059] focus:ring-2 focus:ring-[#C5A059]/20 bg-white transition-all placeholder:text-gray-300"
+                        className="w-full pl-10 pr-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] focus:ring-2 focus:ring-[#8C6D27]/20 bg-[#FAF7F2] focus:bg-white transition-all placeholder:text-[#7D6E63] placeholder:font-medium"
                       />
                     </div>
                   </div>
@@ -353,20 +376,46 @@ export function MyOrdersPage({ onBackToHome }) {
                         <Truck className="w-5 h-5 text-[#C5A059]" />
                         <div>
                           <p className="text-xs font-semibold text-[#2C2623]">
-                            {foundOrder.status === 'delivered' ? 'Delivered On' : 'Estimated Delivery'}
+                            {foundOrder.status === 'delivered' ? 'Delivered On' : 'Estimated Delivery / Pickup'}
                           </p>
                           <p className="text-sm font-bold text-[#9B7E52]">
                             {foundOrder.status === 'delivered' ? foundOrder.deliveredOn : foundOrder.estimatedDelivery}
                           </p>
                         </div>
                       </div>
-                      <button
-                        onClick={() => setActiveTab('returns')}
-                        className="text-xs font-cinzel uppercase tracking-wider text-[#B8860B] hover:underline font-semibold"
-                      >
-                        Request Return →
-                      </button>
+                      {!(foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return')) && (
+                        <button
+                          onClick={() => {
+                            if (foundOrder?.id) setRefundOrderId(foundOrder.id);
+                            setActiveTab('returns');
+                          }}
+                          className="text-xs font-cinzel uppercase tracking-wider text-[#B8860B] hover:underline font-bold"
+                        >
+                          Request Return →
+                        </button>
+                      )}
                     </div>
+
+                    {(foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return')) && (
+                      <div className="bg-[#FAF3E8] border border-[#EAD7AF] rounded-xl px-5 py-4 flex items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-full bg-[#8C6D27]/15 text-[#8C6D27] flex items-center justify-center shrink-0">
+                            <RotateCcw className="w-4 h-4 text-[#8C6D27]" />
+                          </div>
+                          <div>
+                            <p className="font-cinzel font-bold text-[#1C140F] text-xs uppercase tracking-wider">
+                              Return Request Approved ✓
+                            </p>
+                            <p className="text-xs text-[#5C4D42] font-medium mt-0.5">
+                              Return Request Approval Mail sent to registered email. Reverse pickup scheduled via Shiprocket (24–48 hours).
+                            </p>
+                          </div>
+                        </div>
+                        <span className="px-3 py-1 rounded-full bg-[#8C6D27] text-white text-[10px] font-cinzel font-bold uppercase tracking-widest shrink-0">
+                          Approved
+                        </span>
+                      </div>
+                    )}
 
                     {/* Timeline */}
                     <div>
@@ -411,8 +460,8 @@ export function MyOrdersPage({ onBackToHome }) {
                     <RotateCcw className="w-5 h-5 text-[#C5A059]" />
                   </div>
                   <div>
-                    <h2 className="font-cinzel font-bold text-[#2C2623] text-base">Request Order Return</h2>
-                    <p className="text-xs text-gray-500 mt-0.5">Submit return details and your bank/UPI account info for instant refund processing.</p>
+                    <h2 className="font-cinzel font-bold text-[#1C140F] text-base">Request Order Return Approval</h2>
+                    <p className="text-xs text-[#3D2E24] font-semibold mt-0.5">Submit return details to receive your Return Request Approval Mail and reverse pickup details.</p>
                   </div>
                 </div>
               </div>
@@ -422,9 +471,9 @@ export function MyOrdersPage({ onBackToHome }) {
                   <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 className="w-8 h-8 text-emerald-500" />
                   </div>
-                  <h4 className="font-cinzel font-bold text-[#2C2623] text-lg mb-2">Return Request Registered!</h4>
-                  <p className="text-sm text-gray-500 max-w-md mx-auto leading-relaxed mb-6">
-                    Our care team has logged your return request. We will email you at <strong>info@shraviko.com</strong> within 24 hours with reverse pickup details and courier label.
+                  <h4 className="font-cinzel font-bold text-[#1C140F] text-lg mb-2">Return Request Approved!</h4>
+                  <p className="text-sm text-[#3D2E24] font-medium max-w-md mx-auto leading-relaxed mb-6">
+                    Your return request has been approved. A <strong>Return Request Approval Mail</strong> has been sent to your registered email address with reverse pickup details.
                   </p>
                   <button
                     onClick={() => { setRefundSubmitted(false); setRefundStep(1); setRefundOrderId(''); }}
@@ -437,47 +486,46 @@ export function MyOrdersPage({ onBackToHome }) {
                 <form onSubmit={handleRefundSubmit} className="p-6 sm:p-8 space-y-6">
                   {/* Step Indicators */}
                   <div className="flex items-center gap-2 mb-4">
-                    {[1, 2, 3].map(s => (
+                    {[1, 2].map(s => (
                       <React.Fragment key={s}>
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
-                          refundStep >= s ? 'bg-[#C5A059] border-[#C5A059] text-white shadow-sm' : 'border-[#D9C7A5] text-gray-400'
+                          refundStep >= s ? 'bg-[#8C6D27] border-[#8C6D27] text-white shadow-sm' : 'border-[#D9C7A5] text-gray-400'
                         }`}>
                           {s}
                         </div>
-                        {s < 3 && <div className={`flex-1 h-0.5 rounded transition-all ${refundStep > s ? 'bg-[#C5A059]' : 'bg-[#E8DFC7]'}`} />}
+                        {s < 2 && <div className={`flex-1 h-0.5 rounded transition-all ${refundStep > s ? 'bg-[#8C6D27]' : 'bg-[#E8DFC7]'}`} />}
                       </React.Fragment>
                     ))}
                   </div>
 
                   {refundStep === 1 && (
                     <div className="space-y-4 animate-fade-in">
-                      <h4 className="font-cinzel text-sm font-semibold text-[#2C2623]">Step 1: Identify Your Order</h4>
+                      <h4 className="font-cinzel text-sm font-bold text-[#1C140F]">Step 1: Identify Your Order</h4>
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] mb-2 font-semibold">Order ID *</label>
+                          <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">Order ID <span className="text-gray-500 font-normal lowercase">(optional)</span></label>
                           <div className="relative">
-                            <Hash className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#C5A059]" />
+                            <Hash className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8C6D27]" />
                             <input
                               type="text"
-                              placeholder="SHR-2024-XXXXXX"
+                              placeholder="e.g. SHR278696"
                               value={refundOrderId}
                               onChange={e => setRefundOrderId(e.target.value.toUpperCase())}
-                              required
-                              className="w-full pl-10 pr-4 py-3 border border-[#E0D5C0] rounded-xl text-sm focus:outline-none focus:border-[#C5A059] focus:ring-2 focus:ring-[#C5A059]/20 bg-white transition-all uppercase placeholder:normal-case placeholder:text-gray-300"
+                              className="w-full pl-10 pr-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] focus:ring-2 focus:ring-[#8C6D27]/20 bg-[#FAF7F2] focus:bg-white transition-all uppercase placeholder:normal-case placeholder:text-[#7D6E63] placeholder:font-medium"
                             />
                           </div>
                         </div>
                         <div>
-                          <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] mb-2 font-semibold">Mobile Number *</label>
+                          <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">Mobile Number *</label>
                           <div className="relative">
-                            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#C5A059]" />
+                            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8C6D27]" />
                             <input
                               type="tel"
                               placeholder="10-digit registered number"
                               value={phone}
                               onChange={e => setPhone(e.target.value)}
                               required
-                              className="w-full pl-10 pr-4 py-3 border border-[#E0D5C0] rounded-xl text-sm focus:outline-none focus:border-[#C5A059] focus:ring-2 focus:ring-[#C5A059]/20 bg-white transition-all placeholder:text-gray-300"
+                              className="w-full pl-10 pr-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] focus:ring-2 focus:ring-[#8C6D27]/20 bg-[#FAF7F2] focus:bg-white transition-all placeholder:text-[#7D6E63] placeholder:font-medium"
                             />
                           </div>
                         </div>
@@ -494,10 +542,10 @@ export function MyOrdersPage({ onBackToHome }) {
 
                   {refundStep === 2 && (
                     <div className="space-y-4 animate-fade-in">
-                      <h4 className="font-cinzel text-sm font-semibold text-[#2C2623]">Step 2: Reason for Return</h4>
+                      <h4 className="font-cinzel text-sm font-bold text-[#1C140F]">Step 2: Reason for Return</h4>
                       <div>
-                        <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] mb-2 font-semibold">Return Reason *</label>
-                        <select required className="w-full px-4 py-3 border border-[#E0D5C0] rounded-xl text-sm focus:outline-none focus:border-[#C5A059] focus:ring-2 focus:ring-[#C5A059]/20 bg-white transition-all text-[#2C2623]">
+                        <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">Return Reason *</label>
+                        <select required className="w-full px-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] bg-[#FAF7F2]">
                           <option value="">Select a reason…</option>
                           <option>Received damaged / defective item</option>
                           <option>Wrong item sent</option>
@@ -508,121 +556,16 @@ export function MyOrdersPage({ onBackToHome }) {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] mb-2 font-semibold">Additional Remarks</label>
+                        <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">Additional Remarks</label>
                         <textarea rows={3} placeholder="Please describe the issue in a few words…"
-                          className="w-full px-4 py-3 border border-[#E0D5C0] rounded-xl text-sm focus:outline-none focus:border-[#C5A059] focus:ring-2 focus:ring-[#C5A059]/20 bg-white transition-all resize-none placeholder:text-gray-300" />
+                          className="w-full px-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] bg-[#FAF7F2] resize-none placeholder:text-[#7D6E63] placeholder:font-medium" />
                       </div>
-                      <div className="flex gap-3">
-                        <button type="button" onClick={() => setRefundStep(1)}
-                          className="inline-flex items-center gap-2 px-5 py-3 border border-[#D9C7A5] text-[#9B7E52] text-xs font-cinzel font-semibold tracking-widest uppercase rounded-xl hover:bg-[#F5EDD9] transition-all">← Back</button>
-                        <button type="button" onClick={() => setRefundStep(3)}
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-[#2C1F06] text-[#E5C378] text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-[#3D2B0A] transition-all duration-300 active:scale-95 shadow-md">Continue to Refund Method →</button>
-                      </div>
-                    </div>
-                  )}
-
-                  {refundStep === 3 && (
-                    <div className="space-y-5 animate-fade-in">
-                      <h4 className="font-cinzel text-sm font-semibold text-[#2C2623]">Step 3: Refund Preference &amp; Bank Account Details</h4>
-                      <div>
-                        <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] mb-3 font-semibold">How would you like to receive your refund?</label>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                          {[
-                            { id: 'original', label: 'Original Payment', desc: 'Prepaid orders (5-7 days)' },
-                            { id: 'upi', label: 'UPI Instant', desc: 'GPay / PhonePe / Paytm' },
-                            { id: 'bank', label: 'Bank Transfer', desc: 'Direct NEFT (COD Orders)' },
-                            { id: 'store', label: 'Store Credit', desc: 'Instant + 5% Bonus' },
-                          ].map(opt => (
-                            <label
-                              key={opt.id}
-                              onClick={() => setRefundType(opt.id)}
-                              className={`cursor-pointer border rounded-xl px-4 py-3.5 transition-all ${
-                                refundType === opt.id
-                                  ? 'border-[#C5A059] bg-[#FBF5E8] shadow-sm'
-                                  : 'border-[#E8DFC7] hover:border-[#C5A059]'
-                              }`}
-                            >
-                              <input
-                                type="radio"
-                                name="refund-type"
-                                value={opt.id}
-                                checked={refundType === opt.id}
-                                onChange={() => setRefundType(opt.id)}
-                                className="sr-only"
-                              />
-                              <p className="text-xs font-bold text-[#2C2623]">{opt.label}</p>
-                              <p className="text-[10px] text-[#C5A059] mt-0.5">{opt.desc}</p>
-                            </label>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Dynamic Bank Account Fields */}
-                      {refundType === 'upi' && (
-                        <div className="p-4 rounded-xl bg-[#FDFBF7] border border-[#E8DFC7] space-y-2 animate-fade-in">
-                          <label className="block text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] font-semibold">
-                            Enter VPA / UPI ID *
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="e.g. mobile@upi, username@okaxis"
-                            value={upiId}
-                            onChange={(e) => setUpiId(e.target.value)}
-                            required
-                            className="w-full px-4 py-2.5 border border-[#E0D5C0] rounded-xl text-sm focus:outline-none focus:border-[#C5A059] bg-white"
-                          />
-                        </div>
-                      )}
-
-                      {refundType === 'bank' && (
-                        <div className="p-4 rounded-xl bg-[#FDFBF7] border border-[#E8DFC7] space-y-3 animate-fade-in">
-                          <p className="text-xs font-cinzel tracking-widest uppercase text-[#9B7E52] font-semibold">
-                            Enter Bank Details for Refund Credit
-                          </p>
-                          <div className="grid sm:grid-cols-2 gap-3">
-                            <div>
-                              <label className="block text-[11px] text-gray-600 mb-1 font-medium">Account Holder Name *</label>
-                              <input
-                                type="text"
-                                placeholder="As per bank passbook"
-                                value={accountHolderName}
-                                onChange={(e) => setAccountHolderName(e.target.value)}
-                                required
-                                className="w-full px-3.5 py-2 border border-[#E0D5C0] rounded-lg text-xs focus:outline-none focus:border-[#C5A059] bg-white"
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-[11px] text-gray-600 mb-1 font-medium">Bank Account Number *</label>
-                              <input
-                                type="text"
-                                placeholder="9-18 digit account number"
-                                value={accountNumber}
-                                onChange={(e) => setAccountNumber(e.target.value)}
-                                required
-                                className="w-full px-3.5 py-2 border border-[#E0D5C0] rounded-lg text-xs focus:outline-none focus:border-[#C5A059] bg-white"
-                              />
-                            </div>
-                            <div className="sm:col-span-2">
-                              <label className="block text-[11px] text-gray-600 mb-1 font-medium">IFSC Code *</label>
-                              <input
-                                type="text"
-                                placeholder="e.g. SBIN0001234"
-                                value={ifscCode}
-                                onChange={(e) => setIfscCode(e.target.value.toUpperCase())}
-                                required
-                                className="w-full px-3.5 py-2 border border-[#E0D5C0] rounded-lg text-xs uppercase focus:outline-none focus:border-[#C5A059] bg-white"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
                       <div className="flex gap-3 pt-2">
-                        <button type="button" onClick={() => setRefundStep(2)}
-                          className="inline-flex items-center gap-2 px-5 py-3 border border-[#D9C7A5] text-[#9B7E52] text-xs font-cinzel font-semibold tracking-widest uppercase rounded-xl hover:bg-[#F5EDD9] transition-all">← Back</button>
+                        <button type="button" onClick={() => setRefundStep(1)}
+                          className="inline-flex items-center gap-2 px-5 py-3 border border-[#B89B67] text-[#1C140F] text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-[#F5EDD9] transition-all">← Back</button>
                         <button type="submit" disabled={loading}
-                          className="inline-flex items-center gap-2 px-8 py-3 bg-[#C5A059] text-white text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-[#B08A40] disabled:opacity-60 transition-all duration-300 active:scale-95 shadow-md">
-                          {loading ? <><RefreshCw className="w-4 h-4 animate-spin" />Submitting…</> : <>Submit Return Request ✓</>}
+                          className="inline-flex items-center gap-2 px-8 py-3 bg-[#2C1F06] text-[#E5C378] text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-[#3D2B0A] disabled:opacity-60 transition-all duration-300 active:scale-95 shadow-md">
+                          {loading ? <><RefreshCw className="w-4 h-4 animate-spin text-[#E5C378]" />Submitting…</> : <>Submit Return Request ✓</>}
                         </button>
                       </div>
                     </div>

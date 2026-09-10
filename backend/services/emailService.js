@@ -418,10 +418,185 @@ async function sendOrderCancellationEmail({ to, customerName, orderId, reason })
   }
 }
 
+/**
+ * sendReturnRequestConfirmationEmail — sends Return Request Approval Email to customer
+ */
+async function sendReturnRequestConfirmationEmail({ to, customerName, returnId, orderId, reason }) {
+  const transporter = getTransporter();
+
+  const htmlTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Return Request Approved — SHRAVIKO</title>
+    </head>
+    <body style="font-family: 'Georgia', serif; background-color: #FBF9F5; margin: 0; padding: 20px; color: #2C2623;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; padding: 30px; border: 1px solid #E8DFC7;">
+        
+        <!-- Header Logo -->
+        <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid #C5A059;">
+          <h1 style="color: #3D2B1F; margin: 0; font-size: 26px; letter-spacing: 3px; font-weight: normal;">SHRAVIKO</h1>
+          <p style="color: #C5A059; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;">Handcrafted in India</p>
+        </div>
+
+        <!-- Greeting -->
+        <div style="padding: 25px 0;">
+          <h2 style="color: #2C1F06; font-size: 18px; margin-bottom: 10px;">Namaste ${customerName || 'Valued Customer'},</h2>
+          <p style="font-size: 14px; color: #5C4A3E; line-height: 1.6; margin: 0;">
+            Your return request for order <strong>#${orderId}</strong> has been <strong>Approved</strong>. Our care team has initiated the return request approval workflow and scheduled reverse pickup.
+          </p>
+        </div>
+
+        <!-- Return Details Box -->
+        <div style="background-color: #FDFBF7; border: 1px solid #E8DFC7; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+          <h3 style="margin: 0 0 15px 0; font-size: 14px; color: #8C6D27; text-transform: uppercase; letter-spacing: 1px;">Return Approval Summary</h3>
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #7A6859;">Return Reference ID</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #2C1F06; font-weight: bold; text-align: right;">${returnId}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #7A6859;">Order ID</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #2C1F06; font-weight: bold; text-align: right;">#${orderId}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #7A6859;">Approval Status</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #E8DFC7; color: #276749; font-weight: bold; text-align: right;">Approved</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #7A6859;">Reason for Return</td>
+              <td style="padding: 8px 0; color: #2C1F06; text-align: right;">${reason || 'Customer Return Request'}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="background-color: #FAF0D9; border-radius: 8px; padding: 15px; text-align: center; margin-bottom: 20px; font-size: 12px; color: #755722;">
+          <strong>Next Steps for Return:</strong><br>
+          1. Our logistics partner (Shiprocket) will arrive for reverse pickup from your address within 24–48 hours.<br>
+          2. Please hand over the unused item in its original packaging along with all accessories.
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; font-size: 12px; color: #7A6859; padding-top: 20px; border-top: 1px solid #E8DFC7;">
+          <p style="margin-bottom: 5px;">Need help with your return pickup?</p>
+          <p style="margin: 0;">Write to us at <a href="mailto:shraviko@gmail.com" style="color: #C5A059; text-decoration: none;">shraviko@gmail.com</a> or call <strong>+91 7742320607</strong>.</p>
+        </div>
+
+      </div>
+    </body>
+    </html>
+  `;
+
+  if (!transporter) {
+    console.log(`\n📧 [EMAIL MOCK] Return Request Approval Email generated for ${to}:`);
+    console.log(`   Return ID: ${returnId} | Order ID: ${orderId} | Reason: ${reason}`);
+    return { success: true, mock: true };
+  }
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"Shraviko Support" <${process.env.EMAIL_USER}>`,
+      to,
+      subject: `Return Request Approved #${orderId} — Shraviko`,
+      html: htmlTemplate,
+    });
+    console.log(`✅ Return request approval email sent to ${to}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err) {
+    console.error(`❌ Return request approval email failed: ${err.message}`);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * sendReviewRequestEmail — sends post-delivery review & feedback request email with 1-click star links
+ */
+async function sendReviewRequestEmail({ to, customerName, orderId, productName, productId }) {
+  const transporter = getTransporter();
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+
+  const starsHtml = [5, 4, 3, 2, 1].map(stars => `
+    <a href="${frontendUrl}/#/review?product_id=${encodeURIComponent(productId || 'ALL')}&rating=${stars}&order_id=${encodeURIComponent(orderId)}"
+       style="display: inline-block; padding: 10px 14px; margin: 4px; background-color: #FDFBF7; border: 1px solid #C5A059; border-radius: 8px; color: #8C6D27; text-decoration: none; font-weight: bold; font-size: 14px;">
+      ${'★'.repeat(stars)}${'☆'.repeat(5 - stars)} (${stars} Star${stars > 1 ? 's' : ''})
+    </a>
+  `).join('');
+
+  const htmlTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>How was your Sacred Experience? — SHRAVIKO</title>
+    </head>
+    <body style="font-family: 'Georgia', serif; background-color: #FBF9F5; margin: 0; padding: 20px; color: #2C2623;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; padding: 30px; border: 1px solid #E8DFC7;">
+        
+        <!-- Header Logo -->
+        <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid #C5A059;">
+          <h1 style="color: #3D2B1F; margin: 0; font-size: 26px; letter-spacing: 3px; font-weight: normal;">SHRAVIKO</h1>
+          <p style="color: #C5A059; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;">Handcrafted in India</p>
+        </div>
+
+        <!-- Greeting -->
+        <div style="padding: 25px 0; text-align: center;">
+          <h2 style="color: #2C1F06; font-size: 20px; margin-bottom: 10px;">Namaste ${customerName || 'Valued Devotee'},</h2>
+          <p style="font-size: 14px; color: #5C4A3E; line-height: 1.6; margin: 0;">
+            Thank you for bringing <strong>SHRAVIKO</strong> sacred creations into your home (Order <strong>#${orderId}</strong>).
+          </p>
+          <p style="font-size: 13px; color: #7A6859; margin-top: 8px;">
+            How would you rate your experience with <strong>${productName || 'your handcrafted sacred items'}</strong>?
+          </p>
+        </div>
+
+        <!-- Star Rating Box -->
+        <div style="background-color: #FDFAF5; border: 1px solid #E8DFC7; border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 25px;">
+          <h3 style="margin: 0 0 15px 0; font-size: 13px; color: #8C6D27; text-transform: uppercase; letter-spacing: 1.5px;">Click a Star Below to Rate</h3>
+          <div style="margin-bottom: 15px;">
+            ${starsHtml}
+          </div>
+          <p style="font-size: 11px; color: #7A6859; margin: 0;">Your review helps fellow devotees find authentic handcrafted sacred products.</p>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; font-size: 12px; color: #7A6859; padding-top: 20px; border-top: 1px solid #E8DFC7;">
+          <p style="margin-bottom: 5px;">Shraviko Artisans Atelier — Udaipur, Rajasthan</p>
+          <p style="margin: 0;">Questions or suggestions? Write to <a href="mailto:shraviko@gmail.com" style="color: #C5A059; text-decoration: none;">shraviko@gmail.com</a></p>
+        </div>
+
+      </div>
+    </body>
+    </html>
+  `;
+
+  if (!transporter) {
+    console.log(`\n⭐ [EMAIL MOCK] Post-Delivery Review Request Email generated for ${to}:`);
+    console.log(`   Order ID: ${orderId} | Product: ${productName}\n`);
+    return { success: true, mock: true };
+  }
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"Shraviko Care" <${process.env.EMAIL_USER}>`,
+      to,
+      subject: `How was your Sacred Experience? #${orderId} — Shraviko`,
+      html: htmlTemplate,
+    });
+    console.log(`✅ Review request email sent to ${to}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err) {
+    console.error(`❌ Review request email failed: ${err.message}`);
+    return { success: false, error: err.message };
+  }
+}
+
 module.exports = {
   sendOrderConfirmationEmail,
   sendRefundConfirmationEmail,
   sendOrderCancellationEmail,
+  sendReturnRequestConfirmationEmail,
   sendReturnNotificationToAdmin,
   sendCorporateEnquiryNotificationToAdmin,
+  sendReviewRequestEmail,
 };

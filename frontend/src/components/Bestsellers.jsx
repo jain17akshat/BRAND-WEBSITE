@@ -124,12 +124,12 @@ export const Bestsellers = ({
                       ) : product.weightVariants && product.weightVariants[0]?.price ? (
                         <>
                           <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
-                          <span className="text-sm font-cinzel font-bold text-[#2C2623]">
+                          <span className="text-sm font-sans font-bold text-[#2C2623]">
                             ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
                           </span>
                         </>
                       ) : product.price ? (
-                        <span className="text-sm font-cinzel font-bold text-[#2C2623]">
+                        <span className="text-sm font-sans font-bold text-[#2C2623]">
                           ₹{product.price.toLocaleString('en-IN')}
                         </span>
                       ) : null}

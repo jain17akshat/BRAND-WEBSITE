@@ -13,9 +13,9 @@ export const ProductImage = ({ src, hoverSrc, images, alt, artType = 'brass', cl
     return [src];
   }, [src, hoverSrc, images]);
 
-  // Preload secondary / hover images in background for instant slideshow switching
+  // Preload secondary / hover images ONLY when user hovers or interacts with the card
   React.useEffect(() => {
-    if (imageList.length > 1) {
+    if (isHovered && imageList.length > 1) {
       imageList.slice(1).forEach((imgUrl) => {
         if (imgUrl) {
           const img = new Image();
@@ -23,7 +23,7 @@ export const ProductImage = ({ src, hoverSrc, images, alt, artType = 'brass', cl
         }
       });
     }
-  }, [imageList]);
+  }, [isHovered, imageList]);
 
   React.useEffect(() => {
     let timer;

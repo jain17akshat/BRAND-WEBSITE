@@ -105,6 +105,7 @@ router.post(
 
       // Generate internal order ID
       const internalOrderId = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
+      const totalAmount = (cart || []).reduce((s, i) => s + ((i.price || 0) * (i.quantity || 1)), 0);
 
       // Send instant order confirmation email (Zero-Cost Notification)
       if (customer?.email) {
@@ -114,7 +115,7 @@ router.post(
           customerName: customer.name || 'Valued Customer',
           orderId: internalOrderId,
           items: cart || [],
-          totalAmount: (cart || []).reduce((s, i) => s + (i.price * (i.quantity || 1)), 0),
+          totalAmount,
           shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
         }).catch(err => console.error('Failed to send confirmation email:', err));
       }
@@ -126,16 +127,16 @@ router.post(
         customer: customer?.name,
       });
 
-      // Save order to Hostinger MySQL Database (if configured)
-      const { saveOrder } = require('../database/db');
-      await saveOrder({
+      // Register order into OrderStore (in-memory + MySQL DB)
+      const { addOrder } = require('../services/orderStore');
+      addOrder({
         order_id: internalOrderId,
         customer_name: customer?.name,
         customer_email: customer?.email,
         customer_phone: customer?.phone,
         total_amount: totalAmount,
         payment_method: shiprocketPaymentMethod,
-        payment_status: 'PAID',
+        payment_status: isCOD ? 'COD_PENDING' : 'PAID',
         shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
         city: customer?.city,
         pincode: customer?.pincode,

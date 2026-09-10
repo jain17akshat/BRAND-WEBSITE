@@ -12,6 +12,7 @@ export const CheckoutModal = ({
   const [paymentMethod, setPaymentMethod] = useState('upi');
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentError, setPaymentError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState('');
 
@@ -84,6 +85,7 @@ export const CheckoutModal = ({
 
     setIsProcessing(true);
     setPaymentError(false);
+    setErrorMessage('');
 
     try {
       // 1. Generate receipt ID
@@ -108,7 +110,7 @@ export const CheckoutModal = ({
 
       // 3. Online Payment (Razorpay) Path
       const { order, key_id, _mock } = await createRazorpayOrder({
-        amount: grandTotal,   // in ₹ — server converts to paise
+        amount: Number(grandTotal),   // in ₹ — server converts to paise
         receipt,
         notes: {
           promo_code: appliedPromo?.code || 'NONE',
@@ -161,7 +163,8 @@ export const CheckoutModal = ({
             setOrderComplete(true);
             setIsProcessing(false);
             onClearCart();
-          } catch {
+          } catch (vErr) {
+            setErrorMessage(vErr.message || 'Signature verification failed.');
             setPaymentError(true);
             setIsProcessing(false);
           }
@@ -169,12 +172,13 @@ export const CheckoutModal = ({
       };
 
       if (!window.Razorpay) {
-        throw new Error('Razorpay script not loaded. Please refresh and try again.');
+        throw new Error('Razorpay checkout script not loaded yet. Please wait a moment or refresh.');
       }
       new window.Razorpay(options).open();
 
     } catch (err) {
       console.error('Payment error:', err);
+      setErrorMessage(err.message || 'Server connection lost. Please verify the server is running and try again.');
       setPaymentError(true);
       setIsProcessing(false);
     }
@@ -277,7 +281,7 @@ export const CheckoutModal = ({
                   Payment didn't go through
                 </h2>
                 <p className="text-xs text-gray-600 font-sans mt-2 max-w-xs mx-auto">
-                  Your order details are still saved. Please try again or switch your payment method.
+                  {errorMessage || 'Your order details are still saved. Please try again or switch your payment method.'}
                 </p>
               </div>
 

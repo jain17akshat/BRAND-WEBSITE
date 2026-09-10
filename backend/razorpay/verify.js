@@ -38,10 +38,14 @@ function verifyPaymentSignature(razorpay_order_id, razorpay_payment_id, razorpay
       .update(body)
       .digest('hex');
 
-    const isValid = crypto.timingSafeEqual(
-      Buffer.from(expected, 'hex'),
-      Buffer.from(razorpay_signature, 'hex')
-    );
+    const expectedBuf = Buffer.from(expected, 'hex');
+    const sigBuf      = Buffer.from(razorpay_signature, 'hex');
+
+    if (expectedBuf.length !== sigBuf.length) {
+      return { valid: false, reason: 'Signature mismatch.' };
+    }
+
+    const isValid = crypto.timingSafeEqual(expectedBuf, sigBuf);
 
     return { valid: isValid, reason: isValid ? undefined : 'Signature mismatch.' };
   } catch (err) {

@@ -227,11 +227,6 @@ export const ProductDetailPage = ({
                 <span className="text-xs font-cinzel uppercase tracking-[0.25em] text-[#C5A059] font-bold">
                   {product.categoryName || 'Sacred Collection'}
                 </span>
-                <div className="flex items-center gap-1.5 bg-[#FAF0D9] px-3 py-1 rounded-full border border-[#EAD7AF]">
-                  <Star className="w-4 h-4 fill-[#D97706] text-[#D97706]" />
-                  <span className="font-bold text-xs text-[#2C2623]">{product.rating || 4.9}</span>
-                  <span className="text-gray-500 text-xs">({product.reviewsCount || 120} Verified Reviews)</span>
-                </div>
               </div>
 
               <h1 className="text-2xl sm:text-4xl font-cinzel font-bold text-[#2C2623] leading-snug">
@@ -257,11 +252,11 @@ export const ProductDetailPage = ({
                 <div>
                   <span className="text-xs text-gray-500 font-cinzel block mb-0.5">Special Price</span>
                   <div className="flex items-baseline gap-3">
-                    <span className="text-3xl sm:text-4xl font-cinzel font-bold text-[#2C2623]">
+                    <span className="text-3xl sm:text-4xl font-sans font-bold text-[#2C2623]">
                       ₹{(currentPrice || 0).toLocaleString('en-IN')}
                     </span>
                     {currentOrigPrice && (
-                      <span className="text-base text-gray-400 line-through">
+                      <span className="text-base font-sans text-gray-400 line-through">
                         ₹{currentOrigPrice.toLocaleString('en-IN')}
                       </span>
                     )}
@@ -288,39 +283,33 @@ export const ProductDetailPage = ({
                   </div>
                 </div>
 
-                {/* Urgency Row — Stock + Viewers */}
-                <div className="grid grid-cols-2 gap-2">
-                  {/* Stock Left */}
-                  <div className="flex items-center gap-2 p-2.5 bg-red-50 rounded-xl border border-red-200">
-                    <Flame className="w-4 h-4 text-red-600 shrink-0 animate-pulse" />
+                {/* Brand Assurance Row */}
+                <div className="grid grid-cols-2 gap-2.5">
+                  {/* Heritage Craft */}
+                  <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF7F2] rounded-xl border border-[#EAE0CD]">
+                    <div className="w-7 h-7 rounded-lg bg-[#C5A059]/15 border border-[#C5A059]/30 flex items-center justify-center shrink-0">
+                      <Sparkles className="w-3.5 h-3.5 text-[#9B7E52]" />
+                    </div>
                     <div>
-                      <span className="text-[10px] font-cinzel font-bold text-red-700 block uppercase tracking-wide">
-                        Only {urgencyData.stockLeft} Left!
+                      <span className="text-[10px] font-cinzel font-bold text-[#2C2623] block uppercase tracking-wider">
+                        Heritage Craft
                       </span>
-                      <span className="text-[9px] text-red-600 font-sans">Selling fast today</span>
+                      <span className="text-[9px] text-[#6B5840] font-sans">100% Solid & Sacred</span>
                     </div>
                   </div>
-                  {/* Viewer Count */}
-                  <div className="flex items-center gap-2 p-2.5 bg-amber-50 rounded-xl border border-amber-200">
-                    <Eye className="w-4 h-4 text-amber-600 shrink-0" />
-                    <div>
-                      <span className="text-[10px] font-cinzel font-bold text-amber-700 block uppercase tracking-wide">
-                        {urgencyData.viewers} Viewing Now
-                      </span>
-                      <span className="text-[9px] text-amber-600 font-sans">High demand</span>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Countdown Timer */}
-                <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF0D9] rounded-xl border border-[#E0CEAA]">
-                  <Clock className="w-4 h-4 text-[#8C6929] shrink-0" />
-                  <span className="text-[11px] font-cinzel font-bold text-[#5A3E10] uppercase tracking-wide">
-                    Special Price Ends In:
-                  </span>
-                  <span className="ml-auto font-mono text-sm font-bold text-[#8C0000] bg-white px-2.5 py-0.5 rounded-lg border border-red-200 shadow-sm">
-                    {mm}:{ss}
-                  </span>
+                  {/* Express Delivery */}
+                  <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF7F2] rounded-xl border border-[#EAE0CD]">
+                    <div className="w-7 h-7 rounded-lg bg-[#C5A059]/15 border border-[#C5A059]/30 flex items-center justify-center shrink-0">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#9B7E52]" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-cinzel font-bold text-[#2C2623] block uppercase tracking-wider">
+                        Secure Transit
+                      </span>
+                      <span className="text-[9px] text-[#6B5840] font-sans">Insured & Express Delivery</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -463,19 +452,24 @@ export const ProductDetailPage = ({
                   <div className="space-y-3 animate-fadeIn">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {product.specifications ? (
-                        product.specifications.map((spec, i) => (
-                          <div 
-                            key={i} 
-                            className="p-3.5 rounded-xl bg-white border border-[#EAE0CD]/90 shadow-xs flex items-center justify-between gap-3 hover:border-[#C5A059]/40 transition-colors h-full"
-                          >
-                            <span className="text-[11px] text-[#7A6B63] font-cinzel font-bold uppercase tracking-wider shrink-0 w-28 sm:w-32 leading-snug">
-                              {spec.label}
-                            </span>
-                            <span className="font-bold text-[#2C2623] text-xs font-sans bg-[#FAF3E8] px-3 py-1.5 rounded-lg border border-[#EAD7AF]/60 text-right shrink break-words max-w-[60%] sm:max-w-[65%]">
-                              {spec.value}
-                            </span>
-                          </div>
-                        ))
+                        product.specifications.map((spec, i) => {
+                          const isLongValue = (spec.value && spec.value.length > 25) || (spec.label && spec.label.length > 20);
+                          return (
+                            <div 
+                              key={i} 
+                              className={`p-3.5 rounded-xl bg-white border border-[#EAE0CD]/90 shadow-xs flex items-center justify-between gap-3 hover:border-[#C5A059]/40 transition-colors ${
+                                isLongValue ? 'col-span-1 sm:col-span-2' : 'col-span-1'
+                              }`}
+                            >
+                              <span className="text-[11px] text-[#7A6B63] font-cinzel font-bold uppercase tracking-wider shrink-0 whitespace-nowrap">
+                                {spec.label}
+                              </span>
+                              <span className="font-bold text-[#2C2623] text-xs font-sans bg-[#FAF3E8] px-3 py-1.5 rounded-lg border border-[#EAD7AF]/60 text-right whitespace-nowrap shrink-0 overflow-x-auto scrollbar-none">
+                                {spec.value}
+                              </span>
+                            </div>
+                          );
+                        })
                       ) : (
                         <div className="col-span-2 py-4 text-center text-xs text-gray-500 italic">
                           Standard Sacred Vedic brassware specifications apply.
@@ -483,8 +477,8 @@ export const ProductDetailPage = ({
                       )}
                       {selectedVariant && (
                         <div className="p-3.5 rounded-xl bg-[#FAF3E8] border border-[#EAD7AF] shadow-xs flex items-center justify-between gap-3 col-span-1 sm:col-span-2">
-                          <span className="text-[11px] text-[#8C6929] font-cinzel font-bold uppercase tracking-wider shrink-0 w-28 sm:w-32 leading-snug">Selected Option</span>
-                          <span className="font-bold text-[#2C2623] text-xs bg-white px-3 py-1.5 rounded-lg border border-[#EAD7AF]/60 text-right">{selectedVariant.weight}</span>
+                          <span className="text-[11px] text-[#8C6929] font-cinzel font-bold uppercase tracking-wider shrink-0 whitespace-nowrap">Selected Option</span>
+                          <span className="font-bold text-[#2C2623] text-xs font-sans bg-white px-3 py-1.5 rounded-lg border border-[#EAD7AF]/60 text-right whitespace-nowrap">{selectedVariant.weight}</span>
                         </div>
                       )}
                     </div>

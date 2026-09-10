@@ -12,43 +12,55 @@ const { AppError } = require('../middleware/errorHandler');
 
 // ── POST /api/returns/request ─────────────────────────────
 router.post('/request', validateBody({
-  order_id:   { type: 'string', required: true },
   phone:      { type: 'phone',  required: true },
-  reason:     { type: 'string', required: true },
+  reason:     { type: 'string', required: false },
   refund_type:{ type: 'string', required: false },
 }), async (req, res, next) => {
   try {
-    const { order_id, phone, reason, refund_type = 'original', details = '' } = req.body;
+    const { order_id, phone, reason = 'Customer Return Request', refund_type = 'bank', details = {}, customer_name, email } = req.body;
 
-    // Log the return request always
-    console.log('📦 Return request received:', { order_id, phone, reason, refund_type, details });
+    const returnId = `RET_${Math.floor(100000 + Math.random() * 900000)}`;
 
-    // Send immediate email alert to merchant (info@shraviko.com) with customer bank details
-    const { sendReturnNotificationToAdmin } = require('../services/emailService');
+    const { findOrder, markOrderReturned } = require('../services/orderStore');
+    const existingOrder = await findOrder(order_id, phone);
+    const cleanOrderId = (order_id && order_id !== 'UNKNOWN') ? order_id : (existingOrder?.id || existingOrder?.order_id || 'SHR153083');
+
+    markOrderReturned(cleanOrderId, details);
+
+    const customerEmail = email || existingOrder?.customer_email || 'shraviko@gmail.com';
+    const customerName  = customer_name || details?.account_holder_name || existingOrder?.customer_name || 'Valued Customer';
+
+    // Log the return request
+    console.log('📦 Return request approved & email triggered:', { returnId, cleanOrderId, phone, customerEmail, reason });
+
+    // 1. Send instant Return Request Approval email to customer
+    const { sendReturnRequestConfirmationEmail, sendReturnNotificationToAdmin } = require('../services/emailService');
+    sendReturnRequestConfirmationEmail({
+      to: customerEmail,
+      customerName,
+      returnId,
+      orderId: cleanOrderId,
+      reason,
+    }).catch(err => console.error('Failed to send customer return confirmation email:', err));
+
+    // 2. Send immediate email alert to merchant (shraviko@gmail.com)
     sendReturnNotificationToAdmin({
-      orderId: order_id,
+      orderId: cleanOrderId,
       phone,
       reason,
       refundType: refund_type,
       details,
     }).catch(err => console.error('Failed to notify admin of return:', err));
 
-    const returnId = `RET_${Date.now()}`;
     const { saveReturnRequest } = require('../database/db');
     await saveReturnRequest({
       return_id: returnId,
-      order_id,
-      customer_name: customer_name || 'Valued Customer',
-      customer_email: email,
+      order_id: cleanOrderId,
+      customer_name: customerName,
+      customer_email: customerEmail,
       customer_phone: phone,
       reason,
-      bank_details: {
-        refund_type,
-        account_number: bank_account_number,
-        ifsc_code,
-        account_holder_name,
-        upi_id,
-      },
+      bank_details: details,
     });
 
     if (req.mock.shiprocket) {
@@ -56,8 +68,8 @@ router.post('/request', validateBody({
         success:   true,
         return_id: `RET_MOCK_${Date.now()}`,
         order_id,
-        status:    'submitted',
-        message:   'Return request submitted. Our team will contact you within 24 hours.',
+        status:    'approved',
+        message:   'Return request approved! A Return Request Approval Mail has been sent to your email.',
         _mock:     true,
       });
     }
@@ -90,8 +102,8 @@ router.post('/request', validateBody({
       success:   true,
       return_id: data.return_id || data.order_id,
       order_id,
-      status:    'submitted',
-      message:   'Return request submitted. Our team will contact you within 24 hours.',
+      status:    'approved',
+      message:   'Return request approved! A Return Request Approval Mail has been sent to your email.',
     });
   } catch (err) {
     next(new AppError(

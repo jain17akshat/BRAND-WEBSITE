@@ -111,7 +111,7 @@ export function RefundPolicyPage({ onBackToHome }) {
             <ul className="list-disc pl-5 space-y-1.5 text-xs text-[#5C4A3E]">
               <li>Refunds are processed within <strong>2 business days</strong>.</li>
               <li>Prepaid orders are refunded back to your original payment method via Razorpay (*credited within 5 to 7 banking days*).</li>
-              <li>COD orders are refunded via UPI or direct bank account transfer provided by you.</li>
+              <li>For Cash on Delivery (COD) orders, returns are processed via Return Request Approval Mail and reverse pickup confirmation.</li>
             </ul>
           </section>
 
