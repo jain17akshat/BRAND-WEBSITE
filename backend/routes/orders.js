@@ -43,10 +43,15 @@ router.post('/create', validateBody({
 
     const orderItems = (cart || []).map(item => {
       const price = getProductPrice(item);
+      const rawQty = item.quantity !== undefined ? item.quantity : (item.units !== undefined ? item.units : 1);
+      const qty = Number(rawQty);
+      if (isNaN(qty) || qty <= 0 || !Number.isInteger(qty)) {
+        throw new AppError(`Invalid item quantity for "${item.name || item.id}": ${rawQty}`, 400, 'VALIDATION_ERROR');
+      }
       return {
         name:          item.name || 'Sacred Product',
         sku:           String(item.id || 'SKU-ITEM').slice(0, 30),
-        units:         item.quantity || item.units || 1,
+        units:         qty,
         selling_price: price,
         discount:      0,
         tax:           0,
@@ -137,14 +142,18 @@ router.post('/:id/cancel', async (req, res, next) => {
     const { findOrder, markOrderCancelled } = require('../services/orderStore');
     const existingOrder = await findOrder(id, phone);
 
-    const cleanId = (id && id !== 'UNKNOWN') ? id : (existingOrder?.id || existingOrder?.order_id || 'SHR153083');
+    if (!existingOrder && (!id || id === 'UNKNOWN')) {
+      return next(new AppError('Order not found for the provided order ID and phone number.', 404, 'ORDER_NOT_FOUND'));
+    }
+
+    const cleanId = existingOrder?.id || existingOrder?.order_id || id;
     const targetEmail = email || existingOrder?.customer_email || existingOrder?.email || 'shraviko@gmail.com';
     const targetName = customerName || customer_name || existingOrder?.customer_name || 'Valued Customer';
     const items = existingOrder?.items || [{ name: 'Shraviko Sacred Creation', qty: 1, price: 650 }];
     const totalAmount = existingOrder?.total || existingOrder?.subtotal || 650;
 
     // Persist order cancellation in OrderStore & DB
-    markOrderCancelled(cleanId, { phone, reason, email: targetEmail });
+    await markOrderCancelled(cleanId, { phone, reason, email: targetEmail });
 
     console.log('🚫 Cancellation email triggered:', { to: targetEmail, customerName: targetName, orderId: cleanId, totalAmount, reason });
 

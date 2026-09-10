@@ -10,12 +10,14 @@
 
 const express       = require('express');
 const router        = express.Router();
+const crypto        = require('crypto');
 const { getClient } = require('../razorpay/client');
 const { verifyPaymentSignature, verifyWebhookSignature } = require('../razorpay/verify');
 const { mockRazorpayOrder, mockRazorpayVerify, mockRazorpayRefund } = require('../mock/payments');
 const validateBody  = require('../middleware/validateBody');
 const { AppError }  = require('../middleware/errorHandler');
 const config        = require('../config');
+const { getProductPrice } = require('../data/catalog');
 
 // ── POST /api/payments/create-order ───────────────────────
 router.post(
@@ -26,10 +28,24 @@ router.post(
   }),
   async (req, res, next) => {
     try {
-      const { amount, receipt, notes = {} } = req.body;
+      const { amount, receipt, cart, notes = {} } = req.body;
+
+      // Server-side calculation of cart total using authoritative catalog
+      let finalAmount = amount;
+      if (Array.isArray(cart) && cart.length > 0) {
+        const calculatedTotal = cart.reduce((sum, item) => {
+          const price = getProductPrice(item);
+          const qty = Number(item.quantity || item.qty || 1);
+          return sum + (price * qty);
+        }, 0);
+
+        if (calculatedTotal > 0) {
+          finalAmount = calculatedTotal;
+        }
+      }
 
       // Amount must be in paise (Razorpay convention)
-      const amountInPaise = Math.round(amount * 100);
+      const amountInPaise = Math.round(finalAmount * 100);
 
       if (req.mock.razorpay) {
         const mockOrder = mockRazorpayOrder(amountInPaise, receipt);
@@ -117,7 +133,8 @@ router.post(
       if (Array.isArray(cart) && cart.length > 0) {
         for (const item of cart) {
           const authoritativePrice = getProductPrice(item);
-          if (item.price !== undefined && Number(item.price) !== Number(authoritativePrice)) {
+          const submittedPrice = item.price !== undefined && item.price !== null ? Number(item.price) : null;
+          if (submittedPrice === null || isNaN(submittedPrice) || submittedPrice !== Number(authoritativePrice)) {
             throw new AppError(
               `Price mismatch for product "${item.name || item.id}". Expected ₹${authoritativePrice}, got ₹${item.price}.`,
               400,
@@ -211,7 +228,7 @@ router.post(
 
         // Register order into OrderStore (in-memory + MySQL DB)
         const { addOrder } = require('../services/orderStore');
-        addOrder({
+        await addOrder({
           order_id: internalOrderId,
           customer_name: customer?.name,
           customer_email: customer?.email,
@@ -382,7 +399,7 @@ router.post(
 );
 
 // ── POST /api/payments/webhook ────────────────────────────
-router.post('/webhook', (req, res, next) => {
+router.post('/webhook', async (req, res, next) => {
   try {
     const signature  = req.headers['x-razorpay-signature'];
     const rawPayload = req.rawBody;
@@ -400,30 +417,67 @@ router.post('/webhook', (req, res, next) => {
       }
     }
 
+    // Parse req.rawBody into JSON payload
+    let parsedBody = {};
+    try {
+      if (typeof rawPayload === 'string') {
+        parsedBody = JSON.parse(rawPayload);
+      } else if (Buffer.isBuffer(rawPayload)) {
+        parsedBody = JSON.parse(rawPayload.toString('utf8'));
+      } else if (req.body && typeof req.body === 'object') {
+        parsedBody = req.body;
+      }
+    } catch (parseErr) {
+      console.error('⚠️ Failed to parse Razorpay webhook raw body:', parseErr.message);
+    }
 
-    const event = req.body?.event;
-    const payload = req.body?.payload;
+    const event = parsedBody?.event;
+    const payload = parsedBody?.payload;
 
-    console.log(`📨 Razorpay Webhook: ${event}`);
+    console.log(`📨 Razorpay Webhook parsed event: [${event}]`);
+
+    const { markOrderPaid, markOrderPaymentFailed, markOrderRefunded } = require('../services/orderStore');
 
     switch (event) {
-      case 'payment.captured':
-        console.log('  → Payment captured:', payload?.payment?.entity?.id);
+      case 'payment.captured': {
+        const paymentEntity = payload?.payment?.entity || {};
+        const razorpayOrderId = paymentEntity.order_id;
+        const internalOrderId = paymentEntity.notes?.order_id || paymentEntity.notes?.internal_order_id || razorpayOrderId;
+        console.log('  → Payment captured:', paymentEntity.id, 'Order:', internalOrderId);
+        if (internalOrderId) {
+          await markOrderPaid(internalOrderId, { payment_id: paymentEntity.id });
+        }
         break;
-      case 'payment.failed':
-        console.log('  → Payment failed:', payload?.payment?.entity?.id);
+      }
+      case 'payment.failed': {
+        const paymentEntity = payload?.payment?.entity || {};
+        const razorpayOrderId = paymentEntity.order_id;
+        const internalOrderId = paymentEntity.notes?.order_id || paymentEntity.notes?.internal_order_id || razorpayOrderId;
+        console.log('  → Payment failed:', paymentEntity.id, 'Order:', internalOrderId);
+        if (internalOrderId) {
+          await markOrderPaymentFailed(internalOrderId, { payment_id: paymentEntity.id });
+        }
         break;
-      case 'refund.processed':
-        console.log('  → Refund processed:', payload?.refund?.entity?.id);
+      }
+      case 'refund.processed': {
+        const refundEntity = payload?.refund?.entity || {};
+        const paymentEntity = payload?.payment?.entity || {};
+        const internalOrderId = refundEntity.notes?.order_id || paymentEntity.notes?.order_id || refundEntity.payment_id;
+        console.log('  → Refund processed:', refundEntity.id, 'Order/Payment:', internalOrderId);
+        if (internalOrderId) {
+          await markOrderRefunded(internalOrderId, { refund_id: refundEntity.id });
+        }
         break;
+      }
       default:
         console.log('  → Unhandled event:', event);
     }
 
-    // Always respond 200 immediately to Razorpay
+    // Always respond 200 immediately to Razorpay to prevent webhook retries
     res.json({ received: true });
   } catch (err) {
-    next(err);
+    console.error('❌ Error handling Razorpay webhook:', err.message);
+    res.json({ received: true, error: err.message });
   }
 });
 

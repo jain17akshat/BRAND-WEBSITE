@@ -8,8 +8,12 @@
  *   app.use('/api/payments', rateLimiter.payments);
  *   app.use('/api/track',    rateLimiter.track);
  *   app.use('/api',          rateLimiter.global);
+/**
+ * Note: The default MemoryStore used here resets counters on server restart and
+ * does not share state across horizontally scaled multi-instance deployments.
+ * If deploying across multiple load-balanced worker instances in the future,
+ * configure a shared store (e.g. Redis via `rate-limit-redis`).
  */
-
 const rateLimit = require('express-rate-limit');
 
 /** Standardised error response for rate-limited requests */

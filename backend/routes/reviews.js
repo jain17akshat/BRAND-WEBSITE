@@ -9,11 +9,12 @@
 
 const express = require('express');
 const router = express.Router();
+const config = require('../config');
 const validateBody = require('../middleware/validateBody');
 const { AppError } = require('../middleware/errorHandler');
 const { saveReview, getReviewsByProduct } = require('../database/db');
 
-// Seed default verified reviews if DB is empty
+// Seed default verified reviews if DB is empty (development only)
 const MOCK_DEFAULT_REVIEWS = [
   {
     id: 'rev_1',
@@ -54,12 +55,13 @@ const MOCK_DEFAULT_REVIEWS = [
 router.get('/:productId', async (req, res, next) => {
   try {
     const { productId } = req.params;
+    const isDevMode = config.nodeEnv !== 'production';
     let reviews = await getReviewsByProduct(productId);
 
     if (!reviews || reviews.length === 0) {
-      reviews = MOCK_DEFAULT_REVIEWS;
-    } else {
-      // Merge default reviews so product pages always have rich feedback
+      reviews = isDevMode ? MOCK_DEFAULT_REVIEWS : [];
+    } else if (isDevMode) {
+      // Merge default reviews in development so product pages have feedback
       const merged = [...reviews];
       MOCK_DEFAULT_REVIEWS.forEach(mr => {
         if (!merged.find(r => r.id === mr.id)) {

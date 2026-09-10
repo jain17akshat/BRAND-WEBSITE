@@ -3,11 +3,31 @@ require('dotenv').config();
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = nodeEnv === 'production';
 
+const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+const extraOrigins = (process.env.CORS_EXTRA_ORIGINS || '')
+  .split(',')
+  .map(o => o.trim())
+  .filter(Boolean);
+
+const devOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  'http://127.0.0.1:3000',
+  'http://127.0.0.1:5173',
+];
+
+const corsOrigins = Array.from(new Set([
+  frontendUrl,
+  ...extraOrigins,
+  ...(isProd ? [] : devOrigins),
+]));
+
 const config = {
   port: parseInt(process.env.PORT || '4000', 10),
   nodeEnv,
   isProd,
-  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000',
+  frontendUrl,
+  corsOrigins,
 
   razorpay: {
     keyId: process.env.RAZORPAY_KEY_ID || '',

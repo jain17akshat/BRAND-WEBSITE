@@ -20,6 +20,10 @@ router.post('/request', validateBody({
   try {
     const { order_id, phone, reason = 'Customer Return Request', refund_type = 'bank', details = {}, customer_name, email } = req.body;
 
+    if (!order_id || !/^[a-zA-Z0-9_-]+$/.test(String(order_id).trim())) {
+      return next(new AppError('Invalid order ID format. Must contain only alphanumeric characters, underscores, or hyphens.', 400, 'INVALID_INPUT'));
+    }
+
     const returnId = `RET_${Math.floor(100000 + Math.random() * 900000)}`;
 
     const { findOrder, markOrderReturned } = require('../services/orderStore');
@@ -35,7 +39,7 @@ router.post('/request', validateBody({
 
     const cleanOrderId = existingOrder.id || existingOrder.order_id || order_id;
 
-    markOrderReturned(cleanOrderId, { ...details, phone });
+    await markOrderReturned(cleanOrderId, { ...details, phone });
 
     const customerEmail = email || existingOrder?.customer_email || 'shraviko@gmail.com';
     const customerName  = customer_name || details?.account_holder_name || existingOrder?.customer_name || 'Valued Customer';
@@ -186,10 +190,9 @@ router.post('/request', validateBody({
 // ── GET /api/returns/:id ──────────────────────────────────
 router.get('/:id', async (req, res, next) => {
   try {
-    const rawId = req.params.id;
-    const id = String(rawId || '').replace(/[^a-zA-Z0-9_-]/g, '');
-    if (!id) {
-      return next(new AppError('Invalid return ID', 400, 'INVALID_INPUT'));
+    const id = req.params.id;
+    if (!id || !/^[a-zA-Z0-9_-]+$/.test(id)) {
+      return next(new AppError('Invalid return ID format. Must contain only alphanumeric characters, underscores, or hyphens.', 400, 'INVALID_INPUT'));
     }
 
     if (req.mock.shiprocket) {

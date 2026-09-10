@@ -1146,7 +1146,7 @@ export const PRODUCTS = [
     images: [
       '/assets/Copper thali/copper thali 1.png',
       '/assets/Copper thali/copperthali6.png',
-      '/assets/Copper thali/copper thali1.png',
+      '/assets/Copper thali/copper thali 1.png',
       '/assets/Copper thali/copper thali 2.png',
       '/assets/Copper thali/copper thali 3.jpg',
       '/assets/Copper thali/copper thali  5.png'

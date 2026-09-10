@@ -91,11 +91,15 @@ const variantPrices = {
   'brass-gomukhi-shringi-abhishekam-ExtraLarge(8cm)': 2590,
 };
 
+const { AppError } = require('../middleware/errorHandler');
+
 /**
  * Get authoritative server-side price for a product item or variant
  */
 function getProductPrice(item) {
-  if (!item) return 0;
+  if (!item) {
+    throw new AppError('Product item details are required', 400, 'UNKNOWN_PRODUCT');
+  }
 
   const rawId = String(item.id || item.productId || '').trim();
 
@@ -115,8 +119,8 @@ function getProductPrice(item) {
     return catalog[baseId];
   }
 
-  // Fallback if item has explicit unit price matching base catalog
-  return catalog[rawId] || item.price || 0;
+  // Reject unknown product IDs
+  throw new AppError(`Unknown or uncatalogued product ID: "${rawId || 'empty'}"`, 400, 'UNKNOWN_PRODUCT');
 }
 
 /**

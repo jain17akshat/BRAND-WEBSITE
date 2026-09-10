@@ -51,6 +51,12 @@ router.post('*', async (req, res) => {
       const name    = payload.customer_name || payload.billing_customer_name || 'Valued Customer';
       const reason  = payload.reason || payload.cancellation_reason || 'Order cancelled via Shiprocket Dashboard';
 
+      if (orderId && orderId !== 'UNKNOWN') {
+        const { markOrderCancelled } = require('../services/orderStore');
+        await markOrderCancelled(orderId, { reason, email });
+        console.log(`✅ Order status updated to CANCELLED in OrderStore for Order #${orderId}`);
+      }
+
       if (email) {
         await sendOrderCancellationEmail({
           to: email,

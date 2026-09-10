@@ -38,6 +38,9 @@ const reviewsRouter = require('./routes/reviews');
 // ─────────────────────────────────────────────────────────
 const app = express();
 
+// Enable reverse proxy support so req.ip reflects real client IP behind load balancers/hosting proxies
+app.set('trust proxy', 1);
+
 // Bypass ngrok warning page for external webhooks
 app.use((req, res, next) => {
   res.setHeader('ngrok-skip-browser-warning', 'true');
@@ -49,13 +52,7 @@ app.use(rawBody);
 
 // 2. CORS
 app.use(cors({
-  origin: [
-    config.frontendUrl,
-    'http://localhost:3000',
-    'http://localhost:5173',
-    'http://127.0.0.1:3000',
-    'http://127.0.0.1:5173',
-  ],
+  origin: config.corsOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Razorpay-Signature'],
   credentials: true,
@@ -112,9 +109,17 @@ const PORT = config.port;
 async function startServer() {
   try {
     const { initDatabase } = require('./database/db');
-    await initDatabase();
+    const dbSuccess = await initDatabase();
+    if (dbSuccess === false && config.isProd) {
+      console.error('❌ FATAL: Database initialization returned false in PRODUCTION mode. Halting server startup.');
+      process.exit(1);
+    }
   } catch (err) {
-    console.error('⚠️ Database initialization warning/failure:', err.message);
+    console.error('⚠️ Database initialization error:', err.message);
+    if (config.isProd) {
+      console.error('❌ FATAL: Database initialization failed in PRODUCTION mode. Halting server startup.');
+      process.exit(1);
+    }
   }
 
   if (!config.shiprocket.isMock) {
@@ -127,7 +132,7 @@ async function startServer() {
   }
 
   app.listen(PORT, () => {
-    console.log(`\n🚀 Shraviko server running on http://localhost:${PORT}`);
+    console.log(`\n🚀 Shraviko server running on port ${PORT}`);
     console.log(`   Environment: ${config.nodeEnv}`);
     console.log(`   Frontend:    ${config.frontendUrl}\n`);
   });

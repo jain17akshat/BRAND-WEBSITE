@@ -84,10 +84,64 @@ export const CheckoutModal = ({
     if (e) e.preventDefault();
     if (isSubmittingRef.current || isProcessing) return;
 
-    isSubmittingRef.current = true;
-    setIsProcessing(true);
     setPaymentError(false);
     setErrorMessage('');
+
+    // Client-side input validation & normalization
+    const cleanPhone = String(formData.phone || '').replace(/\D/g, '').slice(-10);
+    const PHONE_RE = /^[6-9]\d{9}$/;
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const PINCODE_RE = /^\d{6}$/;
+
+    if (!formData.name || formData.name.trim().length === 0) {
+      setErrorMessage('Please enter your full name.');
+      setPaymentError(true);
+      return;
+    }
+
+    if (!cleanPhone || !PHONE_RE.test(cleanPhone)) {
+      setErrorMessage('Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.');
+      setPaymentError(true);
+      return;
+    }
+
+    if (!formData.email || !EMAIL_RE.test(formData.email.trim())) {
+      setErrorMessage('Please enter a valid email address.');
+      setPaymentError(true);
+      return;
+    }
+
+    if (!formData.address || formData.address.trim().length < 5) {
+      setErrorMessage('Please enter your complete delivery address (at least 5 characters).');
+      setPaymentError(true);
+      return;
+    }
+
+    if (!formData.city || formData.city.trim().length === 0) {
+      setErrorMessage('Please enter your city.');
+      setPaymentError(true);
+      return;
+    }
+
+    const cleanPincode = String(formData.pincode || '').replace(/\D/g, '');
+    if (!cleanPincode || !PINCODE_RE.test(cleanPincode)) {
+      setErrorMessage('Please enter a valid 6-digit PIN code.');
+      setPaymentError(true);
+      return;
+    }
+
+    const customerData = {
+      ...formData,
+      name: formData.name.trim().slice(0, 100),
+      email: formData.email.trim().toLowerCase().slice(0, 254),
+      phone: cleanPhone,
+      address: formData.address.trim().slice(0, 250),
+      city: formData.city.trim().slice(0, 100),
+      pincode: cleanPincode,
+    };
+
+    isSubmittingRef.current = true;
+    setIsProcessing(true);
 
     try {
       // 1. Generate receipt ID
@@ -100,7 +154,7 @@ export const CheckoutModal = ({
           razorpay_payment_id: `pay_COD_${Date.now()}`,
           razorpay_signature:  'cod_signature',
           cart: cartItems,
-          customer: formData,
+          customer: customerData,
           payment_method: 'cod',
         });
         setOrderId(verified.internal_order_id || receipt);
@@ -128,7 +182,7 @@ export const CheckoutModal = ({
           razorpay_payment_id: `pay_MOCK${Date.now()}`,
           razorpay_signature:  'mock_signature',
           cart: cartItems,
-          customer: formData,
+          customer: customerData,
         });
         setOrderId(verified.internal_order_id || receipt);
         setOrderComplete(true);
@@ -147,9 +201,9 @@ export const CheckoutModal = ({
         description: 'Sacred & Artisan Products',
         order_id:    order.id,
         prefill: {
-          name:    formData.name,
-          email:   formData.email,
-          contact: formData.phone,
+          name:    customerData.name,
+          email:   customerData.email,
+          contact: customerData.phone,
         },
         theme:   { color: '#C5A059' },
         modal:   { ondismiss: () => { setIsProcessing(false); isSubmittingRef.current = false; } },
@@ -161,7 +215,7 @@ export const CheckoutModal = ({
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature:  response.razorpay_signature,
               cart: cartItems,
-              customer: formData,
+              customer: customerData,
             });
             setOrderId(verified.internal_order_id || receipt);
             setOrderComplete(true);
@@ -325,6 +379,7 @@ export const CheckoutModal = ({
                     <input
                       type="text"
                       value={formData.name}
+                      maxLength={100}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Full Name *"
                       required
@@ -335,6 +390,7 @@ export const CheckoutModal = ({
                     <input
                       type="tel"
                       value={formData.phone}
+                      maxLength={15}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="10-Digit Phone Number *"
                       required
@@ -345,6 +401,7 @@ export const CheckoutModal = ({
                     <input
                       type="email"
                       value={formData.email}
+                      maxLength={254}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="Email Address *"
                       required
@@ -355,6 +412,7 @@ export const CheckoutModal = ({
                     <input
                       type="text"
                       value={formData.address}
+                      maxLength={250}
                       onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                       placeholder="Flat / House No. / Building / Street Address *"
                       required
@@ -365,6 +423,7 @@ export const CheckoutModal = ({
                     <input
                       type="text"
                       value={formData.city}
+                      maxLength={100}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                       placeholder="City *"
                       required
@@ -375,6 +434,7 @@ export const CheckoutModal = ({
                     <input
                       type="text"
                       value={formData.pincode}
+                      maxLength={6}
                       onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
                       placeholder="Pincode *"
                       required

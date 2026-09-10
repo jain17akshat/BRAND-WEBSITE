@@ -9,7 +9,7 @@ const { saveOrder: saveToDb, getPool } = require('../database/db');
 // In-memory fallback map for active runtime orders
 const recentOrders = new Map();
 
-function addOrder(orderData) {
+async function addOrder(orderData) {
   if (!orderData || !orderData.order_id) return;
   const cleanId = String(orderData.order_id).replace(/^[#\s]+/, '').trim().toUpperCase();
   
@@ -32,8 +32,17 @@ function addOrder(orderData) {
 
   recentOrders.set(cleanId, record);
 
-  // Asynchronously save to MySQL DB if pool active
-  saveToDb(orderData).catch(err => console.error('Failed to save order to MySQL DB:', err.stack || err.message));
+  // Await save to MySQL DB if pool active
+  const pool = getPool();
+  if (pool) {
+    try {
+      await saveToDb(orderData);
+    } catch (err) {
+      console.error('Failed to save order to MySQL DB:', err.stack || err.message);
+      const { AppError } = require('../middleware/errorHandler');
+      throw new AppError(`Database persistence failed: ${err.message}`, 500, 'DATABASE_ERROR');
+    }
+  }
 }
 
 async function findOrder(orderId, phone) {
@@ -115,118 +124,102 @@ async function findOrder(orderId, phone) {
   return null;
 }
 
-function markOrderReturned(orderId, returnData = {}) {
+async function markOrderReturned(orderId, returnData = {}) {
   const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
   const cleanPhone = returnData.phone ? String(returnData.phone).replace(/\D/g, '').slice(-10) : '';
 
-  if (cleanId) {
-    let record = recentOrders.get(cleanId);
-    if (!record) {
-      for (const [k, cached] of recentOrders.entries()) {
-        if (k.toUpperCase() === cleanId) {
-          record = cached;
-          break;
-        }
-      }
-    }
+  if (!cleanId) return;
 
-    if (record) {
-      record.isReturnRequested = true;
-      record.status = 'Return Requested';
-      record.payment_status = 'RETURN_REQUESTED';
-      if (cleanPhone) record.customer_phone = cleanPhone;
-      record.return_data = returnData;
-      recentOrders.set(cleanId, record);
-    } else {
-      recentOrders.set(cleanId, {
-        id: cleanId,
-        order_id: cleanId,
-        customer_phone: cleanPhone,
-        isReturnRequested: true,
-        status: 'Return Requested',
-        payment_status: 'RETURN_REQUESTED',
-        return_data: returnData,
-        created_at: new Date().toISOString(),
-      });
-    }
-  }
-
-  // Update all cached records matching this phone number so phone-only searches instantly show Return Requested
-  if (cleanPhone) {
+  let record = recentOrders.get(cleanId);
+  if (!record) {
     for (const [k, cached] of recentOrders.entries()) {
-      const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
-      if (cachedPhone === cleanPhone) {
-        cached.isReturnRequested = true;
-        cached.status = 'Return Requested';
-        cached.payment_status = 'RETURN_REQUESTED';
-        recentOrders.set(k, cached);
+      if (k.toUpperCase() === cleanId) {
+        record = cached;
+        break;
       }
     }
   }
 
-  // Update MySQL DB status if active
+  if (record) {
+    record.isReturnRequested = true;
+    record.status = 'Return Requested';
+    record.payment_status = 'RETURN_REQUESTED';
+    if (cleanPhone) record.customer_phone = cleanPhone;
+    record.return_data = returnData;
+    recentOrders.set(record.id || cleanId, record);
+  } else {
+    recentOrders.set(cleanId, {
+      id: cleanId,
+      order_id: cleanId,
+      customer_phone: cleanPhone,
+      isReturnRequested: true,
+      status: 'Return Requested',
+      payment_status: 'RETURN_REQUESTED',
+      return_data: returnData,
+      created_at: new Date().toISOString(),
+    });
+  }
+
+  // Await MySQL DB status update for single target order by order_id
   const pool = getPool();
   if (pool) {
-    pool.query(`UPDATE orders SET payment_status = 'RETURN_REQUESTED' WHERE UPPER(order_id) = ? OR customer_phone = ?`, [cleanId, cleanPhone])
-      .catch(err => console.error('OrderStore DB update error on return:', err.message));
+    try {
+      await pool.query(`UPDATE orders SET payment_status = 'RETURN_REQUESTED' WHERE UPPER(order_id) = ?`, [cleanId]);
+    } catch (err) {
+      console.error('OrderStore DB update error on return:', err.message);
+      const { AppError } = require('../middleware/errorHandler');
+      throw new AppError(`Database update failed: ${err.message}`, 500, 'DATABASE_ERROR');
+    }
   }
 }
 
-function markOrderCancelled(orderId, cancelData = {}) {
+async function markOrderCancelled(orderId, cancelData = {}) {
   const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
   const cleanPhone = cancelData.phone ? String(cancelData.phone).replace(/\D/g, '').slice(-10) : '';
 
-  if (cleanId) {
-    let record = recentOrders.get(cleanId);
-    if (!record) {
-      for (const [k, cached] of recentOrders.entries()) {
-        if (k.toUpperCase() === cleanId) {
-          record = cached;
-          break;
-        }
-      }
-    }
+  if (!cleanId) return;
 
-    if (record) {
-      record.isCancelled = true;
-      record.status = 'Cancelled';
-      record.payment_status = 'CANCELLED';
-      if (cancelData.email) record.customer_email = cancelData.email;
-      if (cleanPhone) record.customer_phone = cleanPhone;
-      record.cancel_data = cancelData;
-      recentOrders.set(cleanId, record);
-    } else {
-      recentOrders.set(cleanId, {
-        id: cleanId,
-        order_id: cleanId,
-        customer_email: cancelData.email || '',
-        customer_phone: cleanPhone,
-        isCancelled: true,
-        status: 'Cancelled',
-        payment_status: 'CANCELLED',
-        cancel_data: cancelData,
-        created_at: new Date().toISOString(),
-      });
+  let record = recentOrders.get(cleanId);
+  if (!record) {
+    for (const [k, cached] of recentOrders.entries()) {
+      if (k.toUpperCase() === cleanId) {
+        record = cached;
+        break;
+      }
     }
   }
 
-  if (cleanPhone) {
-    for (const [k, cached] of recentOrders.entries()) {
-      const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
-      if (cachedPhone === cleanPhone) {
-        cached.isCancelled = true;
-        cached.status = 'Cancelled';
-        cached.payment_status = 'CANCELLED';
-        if (cancelData.email) cached.customer_email = cancelData.email;
-        recentOrders.set(k, cached);
-      }
-    }
+  if (record) {
+    record.isCancelled = true;
+    record.status = 'Cancelled';
+    record.payment_status = 'CANCELLED';
+    if (cancelData.email) record.customer_email = cancelData.email;
+    if (cleanPhone) record.customer_phone = cleanPhone;
+    record.cancel_data = cancelData;
+    recentOrders.set(record.id || cleanId, record);
+  } else {
+    recentOrders.set(cleanId, {
+      id: cleanId,
+      order_id: cleanId,
+      customer_email: cancelData.email || '',
+      customer_phone: cleanPhone,
+      isCancelled: true,
+      status: 'Cancelled',
+      payment_status: 'CANCELLED',
+      cancel_data: cancelData,
+      created_at: new Date().toISOString(),
+    });
   }
 
   const pool = getPool();
   if (pool) {
-    pool.query(`UPDATE orders SET payment_status = 'CANCELLED' WHERE UPPER(order_id) = ? OR customer_phone = ?`, [cleanId, cleanPhone])
-      .catch(err => console.error('OrderStore DB update error on cancel:', err.message));
+    try {
+      await pool.query(`UPDATE orders SET payment_status = 'CANCELLED' WHERE UPPER(order_id) = ?`, [cleanId]);
+    } catch (err) {
+      console.error('OrderStore DB update error on cancel:', err.message);
+      const { AppError } = require('../middleware/errorHandler');
+      throw new AppError(`Database update failed: ${err.message}`, 500, 'DATABASE_ERROR');
+    }
   }
 }
 
@@ -332,6 +325,7 @@ function formatCachedOrder(cached) {
     customer_phone: cached.customer_phone || '',
     date: createdDate,
     status: statusText,
+    payment_status: cached.payment_status || (isCancelled ? 'CANCELLED' : (isReturned ? 'RETURN_REQUESTED' : 'PAID')),
     isCancelled,
     isReturnRequested: isReturned,
     estimatedDelivery: deliveryText,
@@ -352,9 +346,85 @@ function formatCachedOrder(cached) {
   };
 }
 
+async function markOrderPaid(orderId, paymentData = {}) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  if (!cleanId) return;
+
+  let record = recentOrders.get(cleanId);
+  if (!record) {
+    for (const [k, cached] of recentOrders.entries()) {
+      if (k.toUpperCase() === cleanId) {
+        record = cached;
+        break;
+      }
+    }
+  }
+
+  if (record) {
+    record.payment_status = 'PAID';
+    record.status = 'Processing';
+    if (paymentData.payment_id) record.payment_id = paymentData.payment_id;
+    recentOrders.set(record.id || cleanId, record);
+  }
+
+  const pool = getPool();
+  if (pool) {
+    try {
+      await pool.query(`UPDATE orders SET payment_status = 'PAID' WHERE UPPER(order_id) = ?`, [cleanId]);
+    } catch (err) {
+      console.error('OrderStore DB update error on markOrderPaid:', err.message);
+    }
+  }
+}
+
+async function markOrderPaymentFailed(orderId, failureData = {}) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  if (!cleanId) return;
+
+  let record = recentOrders.get(cleanId);
+  if (record) {
+    record.payment_status = 'FAILED';
+    record.status = 'Payment Failed';
+    recentOrders.set(record.id || cleanId, record);
+  }
+
+  const pool = getPool();
+  if (pool) {
+    try {
+      await pool.query(`UPDATE orders SET payment_status = 'FAILED' WHERE UPPER(order_id) = ?`, [cleanId]);
+    } catch (err) {
+      console.error('OrderStore DB update error on markOrderPaymentFailed:', err.message);
+    }
+  }
+}
+
+async function markOrderRefunded(orderId, refundData = {}) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  if (!cleanId) return;
+
+  let record = recentOrders.get(cleanId);
+  if (record) {
+    record.payment_status = 'REFUNDED';
+    record.status = 'Refunded';
+    recentOrders.set(record.id || cleanId, record);
+  }
+
+  const pool = getPool();
+  if (pool) {
+    try {
+      await pool.query(`UPDATE orders SET payment_status = 'REFUNDED' WHERE UPPER(order_id) = ?`, [cleanId]);
+    } catch (err) {
+      console.error('OrderStore DB update error on markOrderRefunded:', err.message);
+    }
+  }
+}
+
 module.exports = {
   addOrder,
   findOrder,
   markOrderReturned,
   markOrderCancelled,
+  markOrderPaid,
+  markOrderPaymentFailed,
+  markOrderRefunded,
 };

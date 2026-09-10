@@ -114,6 +114,34 @@ async function initDatabase() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
+    // 5. Create corporate_enquiries table
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS corporate_enquiries (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        enquiry_id VARCHAR(100) UNIQUE NOT NULL,
+        full_name VARCHAR(255),
+        company_name VARCHAR(255),
+        email VARCHAR(255),
+        phone VARCHAR(50),
+        quantity VARCHAR(100),
+        budget VARCHAR(100),
+        occasion VARCHAR(255),
+        message TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
+    // 6. Create subscribers table
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS subscribers (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        subscriber_id VARCHAR(100) UNIQUE NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        purpose VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
     conn.release();
     console.log(`✅ Hostinger MySQL Database connected & tables verified! (${process.env.DB_NAME})`);
     return true;
@@ -123,8 +151,10 @@ async function initDatabase() {
   }
 }
 
-// In-memory fallback storage for product reviews when DB is offline
+// In-memory fallback storage for product reviews, corporate enquiries, and subscribers when DB is offline
 const inMemoryReviews = [];
+const inMemoryCorporateEnquiries = [];
+const inMemorySubscribers = [];
 
 /**
  * saveOrder — helper to insert/update order into MySQL
@@ -171,6 +201,7 @@ async function saveOrder(orderData) {
     return result;
   } catch (err) {
     console.error('⚠️ Could not save order to database:', err.message);
+    throw err;
   }
 }
 
@@ -179,9 +210,24 @@ async function saveOrder(orderData) {
  */
 async function saveReturnRequest(returnData) {
   const p = getPool();
-  if (!p) return null;
+  if (!p) return { success: true, mock: true };
 
   try {
+    // Check if a return request for this order_id already exists in DB
+    const cleanId = String(returnData.order_id || '').trim().toUpperCase();
+    if (cleanId) {
+      const [existing] = await p.query(
+        `SELECT id FROM returns WHERE UPPER(order_id) = ? LIMIT 1`,
+        [cleanId]
+      );
+
+      if (existing && existing.length > 0) {
+        console.warn(`⚠️ Duplicate return request attempt for Order #${cleanId} blocked.`);
+        const { AppError } = require('../middleware/errorHandler');
+        throw new AppError('A return request has already been submitted for this order.', 400, 'DUPLICATE_RETURN');
+      }
+    }
+
     const [result] = await p.query(
       `INSERT INTO returns
        (return_id, order_id, customer_name, customer_email, customer_phone, reason, bank_details_json, status)
@@ -200,6 +246,7 @@ async function saveReturnRequest(returnData) {
     return result;
   } catch (err) {
     console.error('⚠️ Could not save return to database:', err.message);
+    throw err;
   }
 }
 
@@ -278,6 +325,138 @@ async function getReviewsByProduct(productId) {
   return inMemoryReviews;
 }
 
+/**
+ * saveCorporateEnquiry — helper to persist corporate bulk enquiry to MySQL (and in-memory)
+ */
+async function saveCorporateEnquiry(enquiryData) {
+  const record = {
+    id: enquiryData.enquiryId || enquiryData.id,
+    enquiryId: enquiryData.enquiryId || enquiryData.id,
+    fullName: enquiryData.fullName || '',
+    companyName: enquiryData.companyName || '',
+    email: enquiryData.email || '',
+    phone: enquiryData.phone || '',
+    quantity: enquiryData.quantity || '50-100',
+    budget: enquiryData.budget || '1000-2500',
+    occasion: enquiryData.occasion || 'Corporate Gifting',
+    message: enquiryData.message || '',
+    createdAt: new Date().toISOString(),
+  };
+
+  inMemoryCorporateEnquiries.unshift(record);
+
+  const p = getPool();
+  if (!p) return record;
+
+  try {
+    await p.query(
+      `INSERT INTO corporate_enquiries
+       (enquiry_id, full_name, company_name, email, phone, quantity, budget, occasion, message)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        record.enquiryId,
+        record.fullName,
+        record.companyName,
+        record.email,
+        record.phone,
+        record.quantity,
+        record.budget,
+        record.occasion,
+        record.message,
+      ]
+    );
+    return record;
+  } catch (err) {
+    console.error('⚠️ Could not save corporate enquiry to DB:', err.message);
+    return record;
+  }
+}
+
+/**
+ * getCorporateEnquiries — fetches recent corporate enquiries from DB & memory
+ */
+async function getCorporateEnquiries() {
+  const p = getPool();
+  if (p) {
+    try {
+      const [rows] = await p.query(`SELECT * FROM corporate_enquiries ORDER BY id DESC LIMIT 100`);
+      if (rows && rows.length > 0) {
+        return rows.map(r => ({
+          id: r.enquiry_id || r.id,
+          enquiryId: r.enquiry_id,
+          fullName: r.full_name,
+          companyName: r.company_name,
+          email: r.email,
+          phone: r.phone,
+          quantity: r.quantity,
+          budget: r.budget,
+          occasion: r.occasion,
+          message: r.message,
+          createdAt: r.created_at,
+        }));
+      }
+    } catch (err) {
+      console.error('⚠️ Could not fetch corporate enquiries from DB:', err.message);
+    }
+  }
+
+  return inMemoryCorporateEnquiries;
+}
+
+/**
+ * saveSubscriber — helper to persist launch subscriber to MySQL (and in-memory)
+ */
+async function saveSubscriber(subscriberData) {
+  const record = {
+    id: subscriberData.subscriberId || subscriberData.id,
+    subscriberId: subscriberData.subscriberId || subscriberData.id,
+    email: subscriberData.email || '',
+    purpose: subscriberData.purpose || 'General Energy Stones',
+    createdAt: new Date().toISOString(),
+  };
+
+  inMemorySubscribers.unshift(record);
+
+  const p = getPool();
+  if (!p) return record;
+
+  try {
+    await p.query(
+      `INSERT INTO subscribers (subscriber_id, email, purpose) VALUES (?, ?, ?)`,
+      [record.subscriberId, record.email, record.purpose]
+    );
+    return record;
+  } catch (err) {
+    console.error('⚠️ Could not save subscriber to DB:', err.message);
+    return record;
+  }
+}
+
+/**
+ * getSubscribers — fetches subscribers list from DB & memory
+ */
+async function getSubscribers() {
+  const p = getPool();
+  if (p) {
+    try {
+      const [rows] = await p.query(`SELECT * FROM subscribers ORDER BY id DESC LIMIT 1000`);
+      if (rows && rows.length > 0) {
+        return rows.map(r => ({
+          id: r.subscriber_id || r.id,
+          subscriberId: r.subscriber_id,
+          email: r.email,
+          purpose: r.purpose,
+          createdAt: r.created_at,
+        }));
+      }
+    } catch (err) {
+      console.error('⚠️ Could not fetch subscribers from DB:', err.message);
+    }
+  }
+
+  return inMemorySubscribers;
+}
+
 module.exports = {
   getPool,
   initDatabase,
@@ -285,4 +464,9 @@ module.exports = {
   saveReturnRequest,
   saveReview,
   getReviewsByProduct,
+  saveCorporateEnquiry,
+  getCorporateEnquiries,
+  saveSubscriber,
+  getSubscribers,
 };
+

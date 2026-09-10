@@ -20,6 +20,14 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+/**
+ * Header Sanitizer to prevent Header Injection in email subjects
+ */
+function sanitizeHeader(str) {
+  if (str === null || str === undefined) return '';
+  return String(str).replace(/[\r\n\t\x00-\x1F\x7F]+/g, ' ').trim().slice(0, 100);
+}
+
 function getTransporter() {
   if (config.email.isMock) {
     return null;
@@ -536,7 +544,7 @@ async function sendReturnNotificationToAdmin({ orderId, phone, reason, refundTyp
     const info = await transporter.sendMail({
       from: `"Shraviko System" <${config.email.user}>`,
       to: adminEmail,
-      subject: `🚨 [RETURN REQUEST] Order #${safeOrderId} (${safeReason})`,
+      subject: `🚨 [RETURN REQUEST] Order #${sanitizeHeader(orderId)} (${sanitizeHeader(reason)})`,
       html: htmlTemplate,
     });
     return { success: true, messageId: info.messageId };
@@ -580,7 +588,7 @@ async function sendCorporateEnquiryNotificationToAdmin({ id, enquiryId, fullName
     const info = await transporter.sendMail({
       from: `"Shraviko Corporate" <${config.email.user}>`,
       to: adminEmail,
-      subject: `💼 [CORPORATE BULK ENQUIRY] ${escapeHtml(companyName)} — ${escapeHtml(fullName)}`,
+      subject: `💼 [CORPORATE BULK ENQUIRY] ${sanitizeHeader(companyName)} — ${sanitizeHeader(fullName)}`,
       html: htmlTemplate,
     });
     return { success: true, messageId: info.messageId };

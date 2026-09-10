@@ -10,9 +10,12 @@ const router       = express.Router();
 const validateBody = require('../middleware/validateBody');
 const { AppError } = require('../middleware/errorHandler');
 const { sendCorporateEnquiryNotificationToAdmin } = require('../services/emailService');
-
-// Store in-memory log of corporate enquiries for demo/development
-const corporateEnquiries = [];
+const {
+  saveCorporateEnquiry,
+  getCorporateEnquiries,
+  saveSubscriber,
+  getSubscribers,
+} = require('../database/db');
 
 router.post(
   '/corporate',
@@ -37,8 +40,7 @@ router.post(
 
       const enquiryId = `ENQ_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}`;
 
-      const enquiryRecord = {
-        id: enquiryId,
+      const enquiryRecord = await saveCorporateEnquiry({
         enquiryId,
         fullName,
         companyName,
@@ -48,10 +50,8 @@ router.post(
         budget,
         occasion,
         message,
-        createdAt: new Date().toISOString()
-      };
+      });
 
-      corporateEnquiries.push(enquiryRecord);
       console.log('💼 New Corporate Bulk Enquiry Received:', enquiryRecord);
 
       // Trigger instant email notification to merchant admin
@@ -71,16 +71,18 @@ router.post(
 );
 
 // GET /api/enquiries/corporate — list recent enquiries
-router.get('/corporate', (req, res) => {
-  res.json({
-    success: true,
-    total: corporateEnquiries.length,
-    enquiries: corporateEnquiries
-  });
+router.get('/corporate', async (req, res, next) => {
+  try {
+    const enquiries = await getCorporateEnquiries();
+    res.json({
+      success: true,
+      total: enquiries.length,
+      enquiries
+    });
+  } catch (err) {
+    next(new AppError(`Fetch corporate enquiries failed: ${err.message}`, 500, 'ENQUIRY_FETCH_ERROR'));
+  }
 });
-
-// In-memory list of VIP Energy Stones Launch Subscribers
-const energySubscribers = [];
 
 // POST /api/enquiries/subscribe — Subscribe to Energy Stones launch list
 router.post(
@@ -88,20 +90,18 @@ router.post(
   validateBody({
     email: { type: 'email', required: true },
   }),
-  (req, res, next) => {
+  async (req, res, next) => {
     try {
       const body = req.body || {};
       const email = body.email;
       const purpose = body.purpose || 'General Energy Stones';
 
-      const subscriber = {
-        id: `SUB_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}`,
+      const subscriber = await saveSubscriber({
+        subscriberId: `SUB_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}`,
         email: email.trim().toLowerCase(),
         purpose: String(purpose),
-        createdAt: new Date().toISOString()
-      };
+      });
 
-      energySubscribers.push(subscriber);
       console.log('✨ New Energy Stones VIP Launch Subscriber:', subscriber);
 
       return res.json({
@@ -117,12 +117,17 @@ router.post(
 );
 
 // GET /api/enquiries/subscribers — View subscribers list
-router.get('/subscribers', (req, res) => {
-  res.json({
-    success: true,
-    total: energySubscribers.length,
-    subscribers: energySubscribers
-  });
+router.get('/subscribers', async (req, res, next) => {
+  try {
+    const subscribers = await getSubscribers();
+    res.json({
+      success: true,
+      total: subscribers.length,
+      subscribers
+    });
+  } catch (err) {
+    next(new AppError(`Fetch subscribers failed: ${err.message}`, 500, 'SUBSCRIBERS_FETCH_ERROR'));
+  }
 });
 
 module.exports = router;

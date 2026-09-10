@@ -44,6 +44,7 @@ export function ProductReviewsSection({ productId = 'ALL', productName = 'Shravi
   const handleSubmitReview = async (e) => {
     e.preventDefault();
     if (!comment.trim() || !name.trim()) return;
+    if (title.length > 100 || comment.length > 1000) return;
     setSubmitting(true);
     try {
       const res = await submitProductReview({
@@ -188,6 +189,7 @@ export function ProductReviewsSection({ productId = 'ALL', productName = 'Shravi
                     placeholder="e.g. Pure Divine Finish & Outstanding Energy!"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    maxLength={100}
                     className="w-full px-4 py-2.5 rounded-xl border border-[#B89B67] text-sm font-bold text-[#1C140F] bg-[#FAF7F2] focus:bg-white focus:outline-none placeholder:text-[#7D6E63]"
                   />
                 </div>
@@ -201,6 +203,7 @@ export function ProductReviewsSection({ productId = 'ALL', productName = 'Shravi
                     placeholder="Tell us about the craftsmanship, finish, fragrance, aura, or delivery experience..."
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
+                    maxLength={1000}
                     required
                     className="w-full px-4 py-2.5 rounded-xl border border-[#B89B67] text-sm font-bold text-[#1C140F] bg-[#FAF7F2] focus:bg-white focus:outline-none placeholder:text-[#7D6E63] resize-none"
                   />

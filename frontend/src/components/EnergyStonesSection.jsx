@@ -66,8 +66,8 @@ export const EnergyStonesSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
   const [selectedPurposeModal, setSelectedPurposeModal] = useState(null);
-  const [emailNotify, setEmailNotify] = useState(() => localStorage.getItem('shraviko_energy_vip_email') || '');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [emailNotify, setEmailNotify] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(() => localStorage.getItem('shraviko_energy_vip_subscribed') === 'true');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Filter logic
@@ -88,7 +88,7 @@ export const EnergyStonesSection = () => {
         email: cleanEmail,
         purpose: selectedPurposeModal ? selectedPurposeModal.name : 'Energy Stones Section'
       });
-      localStorage.setItem('shraviko_energy_vip_email', cleanEmail);
+      localStorage.setItem('shraviko_energy_vip_subscribed', 'true');
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);
@@ -96,7 +96,7 @@ export const EnergyStonesSection = () => {
       }, 3000);
     } catch (err) {
       console.warn('Backend subscription logged:', err.message);
-      localStorage.setItem('shraviko_energy_vip_email', cleanEmail);
+      localStorage.setItem('shraviko_energy_vip_subscribed', 'true');
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);
