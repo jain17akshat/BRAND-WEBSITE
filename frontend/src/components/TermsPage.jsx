@@ -83,7 +83,7 @@ export function TermsPage({ onBackToHome }) {
               5. Governing Law & Jurisdiction
             </h2>
             <p>
-              These Terms & Conditions shall be governed by and construed in accordance with the laws of India. Any legal disputes or claims arising out of the use of this website shall be subject to the exclusive jurisdiction of courts in <strong>Jaipur, Rajasthan</strong>.
+              These Terms & Conditions shall be governed by and construed in accordance with the laws of India. Any legal disputes or claims arising out of the use of this website shall be subject to the exclusive jurisdiction of courts in <strong>Udaipur, Rajasthan</strong>.
             </p>
           </section>
 
@@ -105,7 +105,7 @@ export function TermsPage({ onBackToHome }) {
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#B8860B] shrink-0 mt-0.5" />
-                <span>Address: Shraviko Sacred Atelier, Civil Lines, Jaipur, Rajasthan – 302006</span>
+                <span>Address: Shraviko Sacred Atelier, Udaipur, Rajasthan</span>
               </div>
             </div>
           </section>

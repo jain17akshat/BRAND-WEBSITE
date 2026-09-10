@@ -289,12 +289,20 @@ export function App() {
           setSelectedProduct(prod);
           setCurrentPage('product');
         }
+      } else if (hash === 'about' || hash === 'about-us' || hash === 'our-story') {
+        setCurrentPage('about');
       } else if (hash === 'gifting') {
         setCurrentPage('gifting');
       } else if (hash === 'energy-stones') {
         setCurrentPage('energy-stones');
       } else if (hash === 'track-order' || hash === 'support') {
         setCurrentPage('support');
+      } else if (hash === 'privacy-policy') {
+        setCurrentPage('privacy');
+      } else if (hash === 'refund-policy') {
+        setCurrentPage('refund-policy');
+      } else if (hash === 'terms-and-conditions') {
+        setCurrentPage('terms');
       }
     };
 
@@ -368,6 +376,12 @@ export function App() {
   const handleGoTerms = () => {
     setCurrentPage('terms');
     window.location.hash = '#/terms-and-conditions';
+    resetScrollToTop();
+  };
+
+  const handleGoAbout = () => {
+    setCurrentPage('about');
+    window.location.hash = '#/about';
     resetScrollToTop();
   };
 
@@ -519,7 +533,7 @@ export function App() {
 
               {/* 7. Brand Story */}
               <div id="brand-story" className="smooth-reveal">
-                <BrandStory onDiscover={() => { }} />
+                <BrandStory onDiscover={handleGoAbout} />
               </div>
 
               {/* 8. Corporate Gifting Section */}
@@ -694,7 +708,7 @@ export function App() {
             onGoPrivacy={handleGoPrivacy}
             onGoRefundPolicy={handleGoRefundPolicy}
             onGoTerms={handleGoTerms}
-            onGoAbout={() => setCurrentPage('about')}
+            onGoAbout={handleGoAbout}
           />
         </div>
 

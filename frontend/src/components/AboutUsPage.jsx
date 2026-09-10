@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Heart, Award, Leaf, Globe, ArrowLeft, Star, Users, Package } from 'lucide-react';
+import { Heart, Award, Leaf, Globe, ArrowLeft } from 'lucide-react';
 
 const VALUES = [
   {
@@ -20,35 +20,7 @@ const VALUES = [
   {
     icon: Globe,
     title: 'Sacred Living, Globally',
-    desc: 'From Jaipur to your doorstep — we ship Indias living spiritual traditions to homes across the world with care and reverence.',
-  },
-];
-
-const STATS = [
-  { icon: Package, number: '500+',  label: 'Sacred Products' },
-  { icon: Users,   number: '12,000+', label: 'Happy Devotees' },
-  { icon: Star,    number: '4.8★',  label: 'Average Rating' },
-  { icon: Award,   number: '50+',   label: 'Artisan Partners' },
-];
-
-const TEAM = [
-  {
-    name: 'Founder',
-    role: 'Visionary & Curator',
-    quote: 'I started Shraviko because I wanted every Indian home to hold something genuinely sacred — not mass-produced, but handcrafted with prayer.',
-    initial: 'S',
-  },
-  {
-    name: 'Head of Craft',
-    role: 'Master Artisan & Design Lead',
-    quote: 'Each piece passes through my hands before it reaches yours. I ensure the finish honours the tradition it was born from.',
-    initial: 'A',
-  },
-  {
-    name: 'Community Lead',
-    role: 'Customer Experience',
-    quote: 'Our relationship with every customer is as sacred as the products we sell. Your joy is our puja.',
-    initial: 'P',
+    desc: 'From Udaipur to your doorstep — we ship Indias living spiritual traditions to homes across the world with care and reverence.',
   },
 ];
 
@@ -145,7 +117,7 @@ export function AboutUsPage({ onBackToHome }) {
           </h1>
           <p className="max-w-xl mx-auto text-[#D4C3A3]/85 font-light leading-relaxed"
             style={{ fontSize: 'clamp(0.875rem, 1.5vw, 1.05rem)' }}>
-            Shraviko is a Jaipur-born brand on a mission — to bring the warmth, reverence, and beauty of India's sacred traditions into every home, every ritual, every moment.
+            From a local shop in Udaipur to a global sacred brand — Shraviko was built to elevate authentic Indian ritual craftsmanship and bring sacred living to every home.
           </p>
 
           {/* Back button */}
@@ -156,19 +128,6 @@ export function AboutUsPage({ onBackToHome }) {
             <ArrowLeft className="w-3.5 h-3.5" />
             Back to Home
           </button>
-        </div>
-      </section>
-
-      {/* ── STATS ROW ──────────────────────────────────────────────────────── */}
-      <section className="bg-[#1C140F] py-10">
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {STATS.map(({ icon: Icon, number, label }) => (
-            <div key={label} className="flex flex-col items-center gap-2">
-              <Icon className="w-5 h-5 text-[#C5A059] mb-1" />
-              <span className="font-cinzel font-bold text-white" style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)' }}>{number}</span>
-              <span className="text-[10px] tracking-[0.2em] uppercase text-[#9B7E52] font-cinzel">{label}</span>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -191,8 +150,8 @@ export function AboutUsPage({ onBackToHome }) {
               </div>
               {/* Badge */}
               <div className="absolute -bottom-5 -right-4 bg-[#1C140F] border border-[#C5A059]/40 rounded-2xl px-5 py-4 shadow-xl hidden sm:block">
-                <p className="font-cinzel text-[#C5A059] font-bold text-sm">Est. 2020</p>
-                <p className="text-[10px] text-[#9B7E52] tracking-widest uppercase">Jaipur, Rajasthan</p>
+                <p className="font-cinzel text-[#C5A059] font-bold text-xs tracking-widest uppercase">Sacred Atelier</p>
+                <p className="text-[10px] text-[#9B7E52] tracking-widest uppercase mt-0.5">Udaipur, Rajasthan</p>
               </div>
             </div>
 
@@ -205,13 +164,13 @@ export function AboutUsPage({ onBackToHome }) {
                 <span className="text-[#9B7E52]">Made for Today.</span>
               </h2>
               <p className="text-[#6B5840] leading-relaxed font-light">
-                Shraviko was born in Jaipur — a city where sacred art has been alive for centuries. Our founder, inspired by the diminishing presence of authentic ritual objects in modern homes, set out to bridge that gap.
+                The story of Shraviko began on the floor of a local shop in Udaipur. Day after day, watching local devotees, families, and seekers come in search of authentic brassware, pure copper vessels, and sacred puja essentials, our founder witnessed the deep love and demand for genuine ritual craftsmanship.
               </p>
               <p className="text-[#6B5840] leading-relaxed font-light">
-                We work directly with master artisans across Rajasthan and South India who carry centuries of metallurgical knowledge. Every brass diya, copper kumbh, and handcrafted mala that leaves our atelier has been touched by hands that understand the sacred meaning behind the form.
+                Seeing the warmth and devotion in people's eyes as they bought these handcrafted items locally sparked a bigger vision: Why keep this sacred heritage limited to a local storefront? Why not take this passion to the next stage, elevate the craftsmanship, and build something grand that reaches devotees across the country and the world?
               </p>
               <p className="text-[#6B5840] leading-relaxed font-light">
-                Our promise is simple: <span className="text-[#2C2623] font-semibold">every object we sell is made with devotion</span> — not just crafted, but blessed by the intention of the artisan who made it.
+                Today, Shraviko works directly with master artisans across Rajasthan and South India to bring heirloom-quality brass diyas, copper vessels, consecrated mala beads, and spiritual lifestyle items to your home — crafted with devotion, preserved with pride, and scaled for modern living.
               </p>
 
               <div className="flex items-center gap-3 pt-2">
@@ -247,42 +206,6 @@ export function AboutUsPage({ onBackToHome }) {
                 </div>
                 <h3 className="font-cinzel font-bold text-[#2C2623] text-sm mb-3">{title}</h3>
                 <p className="text-[#6B5840] text-xs leading-relaxed font-light">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── THE TEAM ───────────────────────────────────────────────────────── */}
-      <section className="py-16 sm:py-24 bg-[#FBF9F5]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={addRef} className="about-hidden text-center mb-14">
-            <p className="text-[10px] font-cinzel tracking-[0.35em] text-[#9B7E52] uppercase mb-4">The People Behind the Brand</p>
-            <h2 className="font-cinzel font-bold text-[#2C2623]"
-              style={{ fontSize: 'clamp(1.5rem, 3vw, 2.4rem)' }}>
-              Meet the Team
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {TEAM.map(({ name, role, quote, initial }, i) => (
-              <div
-                key={name}
-                ref={addRef}
-                className="about-hidden bg-white rounded-2xl p-8 shadow-sm border border-[#EAE0CD] hover:shadow-md transition-all duration-300 flex flex-col gap-5"
-                style={{ transitionDelay: `${i * 0.12}s` }}
-              >
-                {/* Avatar */}
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#C5A059] to-[#9B7E52] flex items-center justify-center shadow-md">
-                  <span className="font-cinzel font-bold text-white text-xl">{initial}</span>
-                </div>
-                <div>
-                  <p className="font-cinzel font-bold text-[#2C2623] text-sm">{name}</p>
-                  <p className="text-[10px] tracking-widest uppercase text-[#9B7E52] font-cinzel mt-0.5">{role}</p>
-                </div>
-                <p className="text-[#6B5840] text-xs leading-relaxed font-light italic border-l-2 border-[#C5A059]/40 pl-4">
-                  "{quote}"
-                </p>
               </div>
             ))}
           </div>

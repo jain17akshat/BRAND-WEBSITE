@@ -106,7 +106,7 @@ export function RefundPolicyPage({ onBackToHome }) {
               4. Refund Timelines & Method
             </h2>
             <p>
-              Once your returned item is received and inspected at our Jaipur atelier:
+              Once your returned item is received and inspected at our Udaipur atelier:
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-xs text-[#5C4A3E]">
               <li>Refunds are processed within <strong>2 business days</strong>.</li>

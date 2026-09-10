@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Film, X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 
 export const VideoShowcase = () => {
   const [popupVideo, setPopupVideo] = useState(null);
@@ -24,21 +24,6 @@ export const VideoShowcase = () => {
     <section className="py-12 sm:py-16 text-[#2C2623] relative">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF0D9] border border-[#EAD7AF] text-[#755722] text-xs font-cinzel tracking-widest uppercase shadow-xs">
-            <Film className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>Sacred Video Reels</span>
-          </div>
-
-          <h2 className="text-2xl sm:text-4xl font-cinzel font-bold text-[#2C2623] tracking-tight">
-            Artisan Stories & Craft in Motion
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-500 font-sans font-light">
-            Swipe right to left to explore live craft demonstrations & sacred rituals
-          </p>
-        </div>
 
         {/* Carousel Container with Overlay Buttons on Both Ends */}
         <div className="relative group">

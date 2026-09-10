@@ -76,23 +76,63 @@ export const Footer = ({
                 "Where devotion meets craftsmanship — every piece carries the soul of a tradition that has burned bright for centuries."
               </p>
 
-              {/* Social Icons */}
-              <div className="flex items-center gap-3 pt-1">
-                {[
-                  { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/shraviko/' },
-                  { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61593917600311' },
-                ].map(({ Icon, label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="w-8 h-8 rounded-full bg-[#231E1C] border border-[#3E342F] flex items-center justify-center text-[#B5A895] hover:text-[#E5C378] hover:border-[#E5C378] transition-all"
-                  >
-                    <Icon className="w-4 h-4 stroke-[1.75]" />
-                  </a>
-                ))}
+              {/* Social & Available On */}
+              <div className="flex flex-col gap-3 pt-1">
+                <div className="flex items-center gap-3">
+                  {[
+                    { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/shraviko/' },
+                    { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61593917600311' },
+                  ].map(({ Icon, label, href }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="w-8 h-8 rounded-full bg-[#231E1C] border border-[#3E342F] flex items-center justify-center text-[#B5A895] hover:text-[#E5C378] hover:border-[#E5C378] transition-all"
+                    >
+                      <Icon className="w-4 h-4 stroke-[1.75]" />
+                    </a>
+                  ))}
+                </div>
+
+                {/* Compact Also Available On */}
+                <div className="pt-2 space-y-1.5">
+                  <p className="text-[9px] font-cinzel font-semibold tracking-widest text-[#9B7E52] uppercase">
+                    Also Available On
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {/* Amazon */}
+                    <a
+                      href="https://www.amazon.in/s?k=shraviko"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Shop Shraviko on Amazon"
+                      className="inline-flex items-center transition-all duration-300 opacity-90 hover:opacity-100 hover:scale-105 active:scale-95"
+                    >
+                      <img
+                        src="/amaazon.png"
+                        alt="Amazon India"
+                        className="h-6 w-auto object-contain"
+                      />
+                    </a>
+
+                    {/* Flipkart */}
+                    <a
+                      href="https://www.flipkart.com/shraviko-sphatik-shivling-decorative-showpiece-6-35-cm/p/itm7792c0df90a81?pid=SHIHQMCDBHYUFBHE&lid=LSTSHIHQMCDBHYUFBHESVJAQG&marketplace=FLIPKART&q=shraviko+shivling+&store=arb%2Fuj2%2Fz1t&srno=s_1_23&otracker=search&otracker1=search&fm=Search&iid=76c5c2be-57e0-433f-b4f6-f3a230c3c997.SHIHQMCDBHYUFBHE.SEARCH&ppt=sp&ppn=sp&ssid=ypmh054fgg0000001789024161589&qH=edbcd4a2d5bd0faa&ov_redirect=true&ov_redirect=true"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Shop Shraviko on Flipkart"
+                      className="inline-flex items-center transition-all duration-300 opacity-90 hover:opacity-100 hover:scale-105 active:scale-95"
+                    >
+                      <img
+                        src="/flipkart logo.png"
+                        alt="Flipkart"
+                        className="h-6 w-auto object-contain"
+                      />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -200,60 +240,6 @@ export const Footer = ({
             </button>
           </div>
 
-        </div>
-      </div>
-
-      {/* ── Also Available On: Amazon & Flipkart ── */}
-      <div className="bg-[#0E0C0B] border-t border-[#2C2420] py-10 px-4">
-        <div className="max-w-3xl mx-auto flex flex-col items-center gap-6">
-
-          {/* Label with side dividers */}
-          <div className="flex items-center gap-4 w-full max-w-xs">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#3E342F]" />
-            <p className="text-[9px] font-sans tracking-[0.35em] text-[#6B5E50] uppercase whitespace-nowrap">Also Available On</p>
-            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#3E342F]" />
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
-
-            {/* ── Amazon ── */}
-            <a
-              href="https://www.amazon.in/s?k=shraviko"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Shop Shraviko on Amazon India"
-              className="group flex items-center gap-2.5 px-6 py-3.5 rounded-2xl border border-[#FF9900]/20 bg-[#19140F] hover:bg-[#231A0B] hover:border-[#FF9900]/50 transition-all duration-300 shadow-lg hover:shadow-[0_0_24px_rgba(255,153,0,0.12)] active:scale-95"
-            >
-              <svg width="90" height="30" viewBox="0 0 90 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="21" fontFamily="'Arial Black', Arial, sans-serif" fontWeight="900" fontSize="21" fill="#FF9900" letterSpacing="-0.5">amazon</text>
-                <path d="M5 27 Q 45 36 85 24" stroke="#FF9900" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
-                <path d="M77 21 L85 24 L80 30" stroke="#FF9900" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-              </svg>
-              <span style={{ fontFamily: 'Arial, sans-serif', fontSize: '0.6rem', color: '#FF9900', opacity: 0.65, fontWeight: 700, marginLeft: '-4px', marginTop: '8px' }}>.in</span>
-            </a>
-
-            <span className="w-1.5 h-1.5 rounded-full bg-[#3E342F] hidden sm:block" />
-
-            {/* ── Flipkart ── */}
-            <a
-              href="https://www.flipkart.com/search?q=shraviko"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Shop Shraviko on Flipkart"
-              className="group flex items-center gap-3 px-6 py-3.5 rounded-2xl border border-[#2874F0]/20 bg-[#0F1219] hover:bg-[#111827] hover:border-[#2874F0]/50 transition-all duration-300 shadow-lg hover:shadow-[0_0_24px_rgba(40,116,240,0.12)] active:scale-95"
-            >
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="28" height="28" rx="5" fill="#2874F0"/>
-                <rect x="8" y="8" width="10" height="2.5" rx="1.25" fill="white"/>
-                <rect x="8" y="12.75" width="7.5" height="2.5" rx="1.25" fill="white"/>
-                <rect x="8" y="8" width="2.5" height="13" rx="1.25" fill="white"/>
-              </svg>
-              <span style={{ fontFamily: "'Arial Black', 'Helvetica Neue', Arial, sans-serif", fontWeight: 900, fontSize: '1.1rem', color: '#2874F0', letterSpacing: '-0.02em' }}>
-                Flipkart
-              </span>
-            </a>
-
-          </div>
         </div>
       </div>
 

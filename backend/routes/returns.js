@@ -77,7 +77,7 @@ router.post('/request', validateBody({
       shipping_customer_name: 'Shraviko',
       shipping_phone:  '7742320607',
       shipping_address:'Civil Lines',
-      shipping_city:   'Jaipur',
+      shipping_city:   'Udaipur',
       shipping_state:  'Rajasthan',
       shipping_pincode:'302006',
       shipping_country:'India',

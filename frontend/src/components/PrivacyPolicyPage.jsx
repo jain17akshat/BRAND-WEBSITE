@@ -107,7 +107,7 @@ export function PrivacyPolicyPage({ onBackToHome }) {
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#B8860B] shrink-0 mt-0.5" />
-                <span>Address: Shraviko Sacred Atelier, Civil Lines, Jaipur, Rajasthan – 302006</span>
+                <span>Address: Shraviko Sacred Atelier, Udaipur, Rajasthan</span>
               </div>
             </div>
           </section>
