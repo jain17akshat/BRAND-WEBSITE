@@ -133,6 +133,10 @@ router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
 
+    if (!id || !/^[a-zA-Z0-9_-]+$/.test(String(id).trim())) {
+      return next(new AppError('Invalid order ID format. Must contain only alphanumeric characters, underscores, or hyphens.', 400, 'INVALID_INPUT'));
+    }
+
     if (req.mock.shiprocket) {
       return res.json({ success: true, order: { id, status: 'mock', _mock: true } });
     }
@@ -152,6 +156,10 @@ router.post('/:id/cancel', async (req, res, next) => {
   try {
     const { id } = req.params;
     const { email, phone, customer_name, customerName, reason } = req.body || {};
+
+    if (!id || !/^[a-zA-Z0-9_-]+$/.test(String(id).trim())) {
+      return next(new AppError('Invalid order ID format. Must contain only alphanumeric characters, underscores, or hyphens.', 400, 'INVALID_INPUT'));
+    }
 
     const { findOrder, markOrderCancelled } = require('../services/orderStore');
     const existingOrder = await findOrder(id, phone);

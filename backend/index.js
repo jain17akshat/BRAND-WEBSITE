@@ -127,14 +127,14 @@ async function startServer() {
   try {
     const { initDatabase } = require('./database/db');
     const dbSuccess = await initDatabase();
-    if (dbSuccess === false && config.isProd) {
-      console.error('❌ FATAL: Database initialization returned false in PRODUCTION mode. Halting server startup.');
+    if (dbSuccess === false && (config.isProd || !config.db.isMock)) {
+      console.error('❌ FATAL: Database initialization returned false. Halting server startup.');
       process.exit(1);
     }
   } catch (err) {
     console.error('⚠️ Database initialization error:', err.message);
-    if (config.isProd) {
-      console.error('❌ FATAL: Database initialization failed in PRODUCTION mode. Halting server startup.');
+    if (config.isProd || !config.db.isMock) {
+      console.error('❌ FATAL: Database initialization failed. Halting server startup.');
       process.exit(1);
     }
   }

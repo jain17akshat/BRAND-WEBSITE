@@ -256,7 +256,7 @@ async function sendOrderConfirmationEmail({ to, customerName, orderId, items, to
     const info = await transporter.sendMail({
       from: `"Shraviko" <${process.env.EMAIL_USER}>`,
       to: recipients,
-      subject: `Order Confirmed: #${cleanId} — Shraviko`,
+      subject: `Order Confirmed: #${sanitizeHeader(cleanId)} — Shraviko`,
       html: htmlTemplate,
     });
     console.log(`✅ Order confirmation email sent to ${recipients}: ${info.messageId}`);
@@ -382,7 +382,7 @@ async function sendPrepaidPaymentReceivedEmail({ to, customerName, orderId, paym
     const info = await transporter.sendMail({
       from: `"Shraviko" <${process.env.EMAIL_USER}>`,
       to: recipients,
-      subject: `We have received your payment for Order #${cleanId} — Shraviko`,
+      subject: `We have received your payment for Order #${sanitizeHeader(cleanId)} — Shraviko`,
       html: htmlTemplate,
     });
     console.log(`✅ Prepaid payment receipt email sent to ${recipients}: ${info.messageId}`);
@@ -491,7 +491,7 @@ async function sendReturnRequestConfirmationEmail({ to, customerName, returnId, 
     const info = await transporter.sendMail({
       from: `"Shraviko Care" <${process.env.EMAIL_USER}>`,
       to: recipients,
-      subject: `Return Request Approved: Order #${safeOrderId} — Shraviko`,
+      subject: `Return Request Approved: Order #${sanitizeHeader(safeOrderId)} — Shraviko`,
       html: htmlTemplate,
     });
     console.log(`✅ Return approval email sent to ${recipients}: ${info.messageId}`);
@@ -586,7 +586,7 @@ async function sendRefundConfirmationEmail({ to, customerName, refundId, payment
     const info = await transporter.sendMail({
       from: `"Shraviko" <${process.env.EMAIL_USER}>`,
       to: recipients,
-      subject: `Refund Processed: #${safeRefundId} — Shraviko`,
+      subject: `Refund Processed: #${sanitizeHeader(safeRefundId)} — Shraviko`,
       html: htmlTemplate,
     });
     return { success: true, messageId: info.messageId };
@@ -694,7 +694,7 @@ async function sendOrderCancellationEmail({ to, customerName, orderId, items, to
     const info = await transporter.sendMail({
       from: `"Shraviko" <${process.env.EMAIL_USER}>`,
       to: recipients,
-      subject: `Order Cancellation Confirmed: #${cleanId} — Shraviko`,
+      subject: `Order Cancellation Confirmed: #${sanitizeHeader(cleanId)} — Shraviko`,
       html: htmlTemplate,
     });
     console.log(`✅ Cancellation email sent to ${recipients}: ${info.messageId}`);
@@ -848,7 +848,7 @@ async function sendReviewRequestEmail({ to, customerName, orderId, productName, 
     const info = await transporter.sendMail({
       from: `"Shraviko Care" <${process.env.EMAIL_USER}>`,
       to: recipients,
-      subject: `How was your Sacred Experience? #${orderId} — Shraviko`,
+      subject: `How was your Sacred Experience? #${sanitizeHeader(orderId)} — Shraviko`,
       html: htmlTemplate,
     });
     return { success: true, messageId: info.messageId };

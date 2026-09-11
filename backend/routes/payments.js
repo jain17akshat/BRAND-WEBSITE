@@ -30,12 +30,21 @@ router.post(
     try {
       const { amount, receipt, cart, notes = {} } = req.body;
 
+      // Reject invalid characters in receipt identifier
+      if (receipt && !/^[a-zA-Z0-9_-]+$/.test(String(receipt).trim())) {
+        throw new AppError('Invalid receipt identifier format. Must contain only alphanumeric characters, underscores, or hyphens.', 400, 'INVALID_INPUT');
+      }
+
       // Server-side calculation of cart total using authoritative catalog
       let finalAmount = amount;
       if (Array.isArray(cart) && cart.length > 0) {
         const calculatedTotal = cart.reduce((sum, item) => {
+          const rawQty = item.quantity !== undefined ? item.quantity : (item.qty !== undefined ? item.qty : (item.units !== undefined ? item.units : 1));
+          const qty = Number(rawQty);
+          if (isNaN(qty) || qty <= 0 || !Number.isInteger(qty)) {
+            throw new AppError(`Invalid item quantity for "${item.name || item.id}": ${rawQty}`, 400, 'VALIDATION_ERROR');
+          }
           const price = getProductPrice(item);
-          const qty = Number(item.quantity || item.qty || 1);
           return sum + (price * qty);
         }, 0);
 
@@ -126,21 +135,39 @@ router.post(
         payment_method = 'prepaid',
       } = req.body;
 
+      if (razorpay_order_id && !/^[a-zA-Z0-9_-]+$/.test(String(razorpay_order_id).trim())) {
+        throw new AppError('Invalid razorpay_order_id format. Must contain only alphanumeric characters, underscores, or hyphens.', 400, 'INVALID_INPUT');
+      }
+
+      if (razorpay_payment_id && !/^[a-zA-Z0-9_-]+$/.test(String(razorpay_payment_id).trim())) {
+        throw new AppError('Invalid razorpay_payment_id format. Must contain only alphanumeric characters, underscores, or hyphens.', 400, 'INVALID_INPUT');
+      }
+
       const isCOD = String(payment_method).toLowerCase() === 'cod';
       const shiprocketPaymentMethod = isCOD ? 'COD' : 'Prepaid';
 
-      // Enforce server-side price integrity against authoritative catalog
+      // Enforce server-side price & quantity integrity against authoritative catalog
       if (Array.isArray(cart) && cart.length > 0) {
         for (const item of cart) {
-          const authoritativePrice = getProductPrice(item);
-          const submittedPrice = item.price !== undefined && item.price !== null ? Number(item.price) : null;
-          if (submittedPrice === null || isNaN(submittedPrice) || submittedPrice !== Number(authoritativePrice)) {
-            throw new AppError(
-              `Price mismatch for product "${item.name || item.id}". Expected ₹${authoritativePrice}, got ₹${item.price}.`,
-              400,
-              'PRICE_TAMPERING'
-            );
+          const rawQty = item.quantity !== undefined ? item.quantity : (item.qty !== undefined ? item.qty : (item.units !== undefined ? item.units : 1));
+          const qty = Number(rawQty);
+          if (isNaN(qty) || qty <= 0 || !Number.isInteger(qty)) {
+            throw new AppError(`Invalid item quantity for "${item.name || item.id}": ${rawQty}`, 400, 'VALIDATION_ERROR');
           }
+
+          const authoritativePrice = getProductPrice(item);
+          if (item.price !== undefined && item.price !== null) {
+            const submittedPrice = Number(item.price);
+            if (isNaN(submittedPrice) || submittedPrice !== Number(authoritativePrice)) {
+              throw new AppError(
+                `Price mismatch for product "${item.name || item.id}". Expected ₹${authoritativePrice}, got ₹${item.price}.`,
+                400,
+                'PRICE_TAMPERING'
+              );
+            }
+          }
+          item.price = authoritativePrice;
+          item.quantity = qty;
         }
       }
 

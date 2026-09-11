@@ -7,6 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const { saveOrder: saveToDb, getPool } = require('../database/db');
+const { getProductPrice } = require('../data/catalog');
 
 const STORE_FILE = path.join(__dirname, '../data/orders_store.json');
 
@@ -17,12 +18,17 @@ function loadPersistedOrders() {
   try {
     if (fs.existsSync(STORE_FILE)) {
       const data = fs.readFileSync(STORE_FILE, 'utf8');
+      if (!data || !data.trim()) return;
       const list = JSON.parse(data);
       if (Array.isArray(list)) {
         list.forEach(ord => {
-          if (ord && (ord.order_id || ord.id)) {
+          if (ord && typeof ord === 'object' && (ord.order_id || ord.id)) {
             const cleanId = String(ord.order_id || ord.id).toUpperCase();
-            recentOrders.set(cleanId, ord);
+            const validatedOrd = {
+              ...ord,
+              items: Array.isArray(ord.items) ? ord.items : [],
+            };
+            recentOrders.set(cleanId, validatedOrd);
           }
         });
         console.log(`📦 Loaded ${recentOrders.size} orders into OrderStore memory from orders_store.json`);
@@ -329,7 +335,6 @@ function formatTimestamp(isoString) {
 }
 
 function formatCachedOrder(cached) {
-  const { getProductPrice } = require('../data/catalog');
   const formattedCreatedTime = formatTimestamp(cached.created_at);
   const createdDate = cached.created_at ? new Date(cached.created_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
   const items = (cached.items || []).map(i => {
