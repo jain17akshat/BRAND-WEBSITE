@@ -749,8 +749,8 @@ export function App() {
           )}
         </main>
 
-        {/* Footer with bottom padding on mobile for sticky nav */}
-        <div className="pb-16 md:pb-0">
+        {/* Footer with dark luxury background container */}
+        <div className="bg-[#0E0C0B]">
           <Footer
             onSelectCategory={handleSelectCategory}
             onGoSupport={handleGoSupport}

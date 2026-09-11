@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { ArrowUp, Instagram, Facebook, Share2, Mail, Phone, MapPin } from 'lucide-react';
-import { PaymentLogos } from './PaymentLogos';
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowUp, Instagram, Facebook, Share2, Mail, Phone, MapPin, MessageSquare, Package, RotateCcw, Truck } from 'lucide-react';
+
+const WORDMARK_LETTERS = ['S', 'H', 'R', 'A', 'V', 'I', 'K', 'O'];
 
 export const Footer = ({
   onSelectCategory,
@@ -11,8 +12,8 @@ export const Footer = ({
   onGoAbout
 }) => {
   const revealPanelRef = useRef(null);
-  const brandTextRef = useRef(null);
-  const tagTextRef = useRef(null);
+  const [typedLength, setTypedLength] = useState(0);
+  const [isTypingDone, setIsTypingDone] = useState(false);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -20,36 +21,117 @@ export const Footer = ({
 
   useEffect(() => {
     const panel = revealPanelRef.current;
-    const brand = brandTextRef.current;
-    const tag = tagTextRef.current;
-    if (!panel || !brand || !tag) return;
+    if (!panel) return;
 
+    let timer;
     let fired = false;
-
-    const doReveal = () => {
-      if (fired) return;
-      fired = true;
-
-      brand.classList.add('footer-revealed');
-      tag.classList.add('footer-revealed');
-    };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          doReveal();
+        if (entry.isIntersecting && !fired) {
+          fired = true;
+          let current = 0;
+          timer = setInterval(() => {
+            current++;
+            setTypedLength(current);
+            if (current >= WORDMARK_LETTERS.length) {
+              clearInterval(timer);
+              setTimeout(() => setIsTypingDone(true), 300);
+            }
+          }, 95);
           observer.disconnect();
         }
       },
-      { threshold: 0.05, rootMargin: '100px 0px 100px 0px' }
+      { threshold: 0.15 }
     );
 
     observer.observe(panel);
-    return () => observer.disconnect();
+    return () => {
+      if (timer) clearInterval(timer);
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <footer className="relative bg-[#110E0D] text-[#EAE0CD] font-sans">
+      {/* ── 0. Top Customer Care & Services Bar ── */}
+      <div className="bg-[#FBF5EA] border-y border-[#EAE0CD] text-[#2C2623] py-6 px-4 sm:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-center justify-between">
+          
+          {/* Item 1: Happy to help */}
+          <div 
+            onClick={onGoSupport}
+            className="flex items-center gap-3 cursor-pointer group p-1.5 sm:p-2 rounded-xl hover:bg-[#F3EBDC] transition-all"
+          >
+            <div className="w-10 h-10 rounded-full bg-[#F4EBE0] border border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] transition-all">
+              <MessageSquare className="w-5 h-5 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors">
+                Happy to help
+              </h4>
+              <p className="text-[11px] text-[#7A6B5D] font-light">
+                Chat or email
+              </p>
+            </div>
+          </div>
+
+          {/* Item 2: Check order status */}
+          <div 
+            onClick={onGoSupport}
+            className="flex items-center gap-3 cursor-pointer group p-1.5 sm:p-2 rounded-xl hover:bg-[#F3EBDC] transition-all"
+          >
+            <div className="w-10 h-10 rounded-full bg-[#F4EBE0] border border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] transition-all">
+              <Package className="w-5 h-5 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors">
+                Check order status
+              </h4>
+              <p className="text-[11px] text-[#7A6B5D] font-light">
+                Updates &amp; tracking
+              </p>
+            </div>
+          </div>
+
+          {/* Item 3: Returns & exchanges */}
+          <div 
+            onClick={onGoRefundPolicy || onGoSupport}
+            className="flex items-center gap-3 cursor-pointer group p-1.5 sm:p-2 rounded-xl hover:bg-[#F3EBDC] transition-all"
+          >
+            <div className="w-10 h-10 rounded-full bg-[#F4EBE0] border border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] transition-all">
+              <RotateCcw className="w-5 h-5 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors">
+                Returns &amp; exchanges
+              </h4>
+              <p className="text-[11px] text-[#7A6B5D] font-light">
+                Quick &amp; hassle-free
+              </p>
+            </div>
+          </div>
+
+          {/* Item 4: Free delivery */}
+          <div 
+            onClick={onGoSupport}
+            className="flex items-center gap-3 cursor-pointer group p-1.5 sm:p-2 rounded-xl hover:bg-[#F3EBDC] transition-all"
+          >
+            <div className="w-10 h-10 rounded-full bg-[#F4EBE0] border border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] transition-all">
+              <Truck className="w-5 h-5 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors">
+                Free delivery
+              </h4>
+              <p className="text-[11px] text-[#7A6B5D] font-light">
+                All over India
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
       {/* ── 1. Main Luxury Footer Section ── */}
       <div className="relative z-20 bg-[#161211] border-t border-[#382E29] pt-14 pb-10">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
@@ -229,8 +311,6 @@ export const Footer = ({
               </p>
             </div>
 
-            <PaymentLogos />
-
             <button
               onClick={scrollToTop}
               className="flex items-center gap-1.5 text-[#C5A059] hover:text-[#E5C378] transition-colors font-cinzel text-xs uppercase tracking-widest font-semibold"
@@ -243,31 +323,56 @@ export const Footer = ({
         </div>
       </div>
 
-      {/* ── 2. SHRAVIKO Grand Metallic Wordmark Panel ── */}
+      {/* ── 2. SHRAVIKO Grand Metallic Wordmark Panel with Typing & Gold Shimmer Effect ── */}
       <div
         ref={revealPanelRef}
-        className="relative bg-[#0E0C0B] border-t border-[#2C2420] overflow-hidden select-none py-14 sm:py-20"
+        className="relative bg-[#0E0C0B] border-t border-[#2C2420] overflow-hidden select-none pt-14 pb-28 sm:py-20"
       >
-        {/* Subtle Radial Glow */}
+        {/* Radial Ambient Gold Glow */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className={`absolute inset-0 pointer-events-none transition-opacity duration-1000 ${
+            typedLength > 0 ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{
-            background: 'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(197,160,89,0.12) 0%, transparent 80%)',
+            background: 'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(197,160,89,0.16) 0%, transparent 80%)',
           }}
         />
 
-        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
-          <h2
-            ref={brandTextRef}
-            className="font-brand font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FAF0D9] via-[#D4AF62] to-[#6B5020] w-full text-center drop-shadow-2xl tracking-[0.14em]"
-            style={{
-              fontSize: 'clamp(2.2rem, 13vw, 6.5rem)',
-            }}
-          >
-            SHRAVIKO
-          </h2>
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6">
+          <div className="flex items-center justify-center font-brand font-black leading-none tracking-[0.14em] drop-shadow-2xl">
+            {WORDMARK_LETTERS.map((letter, idx) => {
+              const isRevealed = idx < typedLength;
+              return (
+                <span
+                  key={idx}
+                  className={`inline-block transition-all duration-300 ${
+                    isRevealed ? 'animate-letter-pop opacity-100' : 'opacity-0 translate-y-4 scale-75'
+                  } ${
+                    isTypingDone
+                      ? 'footer-shimmer-text'
+                      : 'text-transparent bg-clip-text bg-gradient-to-b from-[#FAF0D9] via-[#D4AF62] to-[#6B5020]'
+                  }`}
+                  style={{
+                    fontSize: 'clamp(2.2rem, 13vw, 6.5rem)',
+                  }}
+                >
+                  {letter}
+                </span>
+              );
+            })}
+
+            {/* Glowing Golden Cursor during typing */}
+            {!isTypingDone && typedLength > 0 && (
+              <span
+                className="inline-block w-1 sm:w-1.5 bg-[#E5C378] animate-cursor-blink ml-1 rounded-full shadow-[0_0_12px_#E5C378]"
+                style={{
+                  height: 'clamp(1.8rem, 10vw, 5rem)',
+                }}
+              />
+            )}
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
   );
 };

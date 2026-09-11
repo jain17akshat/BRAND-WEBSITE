@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, CheckCircle, ShieldCheck, Lock, ArrowRight, Loader2, AlertCircle, RefreshCw, CreditCard, QrCode, Building2, Banknote } from 'lucide-react';
 import { createRazorpayOrder, verifyPayment } from '../services/api';
+import { PaymentLogos } from './PaymentLogos';
 
 export const CheckoutModal = ({
   isOpen,
@@ -545,7 +546,12 @@ export const CheckoutModal = ({
               </div>
 
               {/* 3. PAYMENT BUTTON & 10. TRUST */}
-              <div className="space-y-2 pt-1">
+              <div className="space-y-3 pt-1">
+                {/* Razorpay Secure Badge */}
+                <div className="flex justify-center">
+                  <PaymentLogos dark={false} className="w-full sm:w-auto" />
+                </div>
+
                 <button
                   type="submit"
                   disabled={isProcessing}

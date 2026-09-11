@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, ShieldCheck, Tag, Check, Gift, Package, Sparkles, Truck } from 'lucide-react';
 import { ProductImage } from './ProductImage';
+import { PaymentLogos } from './PaymentLogos';
 
 /* ─── Milestone definitions ──────────────────────────────────────────── */
 const MILESTONES = [
@@ -389,9 +390,8 @@ export const CartDrawer = ({
                 <ArrowRight className="w-4 h-4 text-[#C5A059]" />
               </button>
 
-              <div className="flex items-center justify-center gap-1.5 text-[10px] text-gray-500">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
-                <span>100% Encrypted &amp; Insured Checkout</span>
+              <div className="flex justify-center pt-1">
+                <PaymentLogos dark={false} className="w-full" />
               </div>
             </div>
           )}
