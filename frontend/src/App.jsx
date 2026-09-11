@@ -486,7 +486,15 @@ export function App() {
             /* Dedicated Product Details Page View */
             <ProductDetailPage
               product={selectedProduct}
-              onBackToCategory={() => setCurrentPage('category')}
+              onBackToCategory={(catId) => {
+                if (catId) {
+                  handleSelectCategory(catId);
+                } else if (window.history && window.history.length > 1) {
+                  window.history.back();
+                } else {
+                  handleGoHome();
+                }
+              }}
               onBackToHome={handleGoHome}
               onAddToCart={handleAddToCart}
               onToggleWishlist={handleToggleWishlist}

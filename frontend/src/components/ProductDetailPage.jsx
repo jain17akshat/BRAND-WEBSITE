@@ -107,6 +107,16 @@ export const ProductDetailPage = ({
     onAddToCart(itemToAdd, quantity);
   };
 
+  const handleBack = () => {
+    if (window.history && window.history.length > 1) {
+      window.history.back();
+    } else if (onBackToCategory) {
+      onBackToCategory(product?.category);
+    } else {
+      onBackToHome();
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#FBF9F5] pb-24 text-[#2C2623]">
       
@@ -114,9 +124,9 @@ export const ProductDetailPage = ({
       <div className="bg-[#1C1715] border-b border-[#3A322C] pt-24 sm:pt-28 pb-4 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs font-cinzel tracking-wider text-[#C5A059] uppercase overflow-x-auto scrollbar-none">
-            <button onClick={onBackToHome} className="hover:text-white transition-colors">Home</button>
+            <button onClick={onBackToHome} className="hover:text-white transition-colors cursor-pointer">Home</button>
             <ChevronRight className="w-3 h-3 text-gray-500" />
-            <button onClick={onBackToCategory} className="hover:text-white transition-colors">
+            <button onClick={() => onBackToCategory?.(product.category)} className="hover:text-white transition-colors cursor-pointer">
               {product.categoryName || 'Collection'}
             </button>
             <ChevronRight className="w-3 h-3 text-gray-500" />
@@ -130,11 +140,11 @@ export const ProductDetailPage = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
         <div className="mb-6">
           <button
-            onClick={onBackToCategory || onBackToHome}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-wider rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] transition-all shadow-md active:scale-95 group"
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-wider rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] transition-all shadow-md active:scale-95 group cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-[#E5C378] group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Catalog</span>
+            <span>Back</span>
           </button>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
