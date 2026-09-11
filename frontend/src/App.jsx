@@ -360,7 +360,10 @@ export function App() {
   }, [currentPage, selectedProduct?.id, selectedCategoryId]);
 
   const handleSelectCategory = (catId) => {
-    if (catId === 'all') {
+    if (catId === 'all-collections') {
+      setCurrentPage('all-collections');
+      window.location.hash = '#/all-collections';
+    } else if (catId === 'all') {
       setCurrentPage('home');
       window.location.hash = '#/home';
     } else if (catId === 'energy-stones') {
@@ -756,7 +759,7 @@ export function App() {
           wishlistCount={wishlistIds.length}
           onGoHome={handleGoHome}
           onOpenCategories={() => {
-            handleSelectCategory('metalware');
+            handleSelectCategory('all-collections');
           }}
           onOpenSearch={() => setSearchOpen(true)}
           onOpenWishlist={() => setWishlistOpen(true)}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SafeImage } from './SafeImage';
 
 export const Collections = ({ onSelectCategory }) => {
   const collections = [
@@ -58,55 +59,41 @@ export const Collections = ({ onSelectCategory }) => {
             <div
               key={col.id}
               onClick={() => onSelectCategory && onSelectCategory(col.id)}
-              className="group relative overflow-hidden rounded-xl cursor-pointer bg-[#1C1715] aspect-[4/3] sm:aspect-[16/10]"
+              className="group relative overflow-hidden rounded-xl cursor-pointer aspect-[4/3] sm:aspect-[16/10] shadow-xs"
             >
-              {/* Video background (if available) */}
-              {col.video ? (
-                <video
-                  src={col.video}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  style={{ objectPosition: 'center center' }}
+              {/* Mobile image */}
+              <div className="block sm:hidden absolute inset-0 w-full h-full">
+                <SafeImage
+                  src={col.mobileImage || col.image}
+                  alt={col.title}
+                  fallbackSrc={col.fallback}
+                  dark={true}
+                  containerClassName="w-full h-full"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hero-image-crisp"
+                  style={{ objectPosition: col.mobilePosition }}
                 />
-              ) : (
-                <>
-                  {/* Mobile image */}
-                  <img
-                    src={col.mobileImage || col.image}
-                    alt={col.title}
-                    loading="lazy"
-                    onError={(e) => { if (e.target.src !== col.fallback) e.target.src = col.fallback; }}
-                    className="block sm:hidden absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hero-image-crisp"
-                    style={{ objectPosition: col.mobilePosition }}
-                  />
-                  {/* Desktop image */}
-                  <img
-                    src={col.image}
-                    alt={col.title}
-                    loading="lazy"
-                    onError={(e) => { if (e.target.src !== col.fallback) e.target.src = col.fallback; }}
-                    className="hidden sm:block absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hero-image-crisp"
-                    style={{ objectPosition: col.desktopPosition }}
-                  />
-                </>
-              )}
+              </div>
+              {/* Desktop image */}
+              <div className="hidden sm:block absolute inset-0 w-full h-full">
+                <SafeImage
+                  src={col.image}
+                  alt={col.title}
+                  fallbackSrc={col.fallback}
+                  dark={true}
+                  containerClassName="w-full h-full"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hero-image-crisp"
+                  style={{ objectPosition: col.desktopPosition }}
+                />
+              </div>
 
               {/* Bottom gradient for text */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none" />
 
-              {/* Text */}
-              <div className="absolute bottom-0 left-0 p-3.5 sm:p-5 lg:p-7">
-                <h3 className="font-cinzel font-bold text-white text-sm sm:text-base lg:text-xl tracking-wide mb-0.5 drop-shadow">
+              {/* Card Label */}
+              <div className="absolute bottom-2.5 left-3 sm:bottom-4 sm:left-5 right-3 z-10">
+                <h3 className="font-cinzel text-xs sm:text-lg font-bold text-[#F5EAD4] tracking-wide leading-tight group-hover:text-white transition-colors">
                   {col.title}
                 </h3>
-                <span className="inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-cinzel text-[#D4B896] tracking-widest uppercase group-hover:text-white transition-colors">
-                  Explore
-                  <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-                </span>
               </div>
             </div>
           ))}

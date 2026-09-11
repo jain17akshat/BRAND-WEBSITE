@@ -1,4 +1,5 @@
 import React from 'react';
+import { SafeImage } from './SafeImage';
 
 export const BrandStory = ({ onDiscover }) => {
   return (
@@ -16,10 +17,11 @@ export const BrandStory = ({ onDiscover }) => {
 
             {/* Main Primary Image */}
             <div className="layered-composition-main img-reveal-curtain overflow-hidden rounded-xl shadow-md border border-[#EAE0CD]" style={{ aspectRatio: '4/3' }}>
-              <img
+              <SafeImage
                 src="/brasshero.png"
                 alt="Shraviko — Handcrafted in India"
-                onError={(e) => { if (e.target.src !== '/assets/brasscover.png') e.target.src = '/assets/brasscover.png'; }}
+                fallbackSrc="/assets/brasscover.png"
+                containerClassName="w-full h-full"
                 className="w-full h-full object-cover hero-image-crisp transform group-hover:scale-105 transition-transform duration-700"
                 style={{ objectPosition: 'center 60%' }}
               />

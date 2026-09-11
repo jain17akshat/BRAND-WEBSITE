@@ -862,9 +862,9 @@ button, a {
 .skeleton-shimmer {
   background: linear-gradient(
     90deg,
-    #F3EDE0 25%,
-    #E8DCBE 37%,
-    #F3EDE0 63%
+    #F4EFE6 25%,
+    #EADFCD 37%,
+    #F4EFE6 63%
   );
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.6s ease-in-out infinite;
@@ -873,12 +873,19 @@ button, a {
 .skeleton-shimmer-dark {
   background: linear-gradient(
     90deg,
-    #231E1C 25%,
-    #362E2B 37%,
-    #231E1C 63%
+    #1E1A18 25%,
+    #2E2724 37%,
+    #1E1A18 63%
   );
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer,
+  .skeleton-shimmer-dark {
+    animation: none !important;
+  }
 }
 
 /* ── Infinite Right to Left Marquee Slider ── */

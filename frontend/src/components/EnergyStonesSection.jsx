@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { subscribeToLaunch } from '../services/api';
+import { SafeImage } from './SafeImage';
 import {
   Sparkles,
   Gem,
@@ -147,19 +148,27 @@ export const EnergyStonesSection = () => {
         </div>
 
         {/* ── HERO SHOWCASE BANNER ── */}
-        <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#EAE0CD] bg-[#1C1715] mb-10 h-[220px] sm:h-[300px] lg:h-[340px]">
+        <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#EAE0CD] bg-[#F4EFE6] mb-10 h-[220px] sm:h-[300px] lg:h-[340px]">
           {/* Mobile View Image */}
-          <img
-            src="/energystones mobile view.png"
-            alt="Energy Stones & Crystal Bracelets"
-            className="block sm:hidden absolute inset-0 w-full h-full object-cover object-center hero-image-crisp transform hover:scale-105 transition-transform duration-1000"
-          />
+          <div className="block sm:hidden absolute inset-0 w-full h-full">
+            <SafeImage
+              src="/energystones mobile view.png"
+              alt="Energy Stones & Crystal Bracelets"
+              dark={true}
+              containerClassName="w-full h-full"
+              className="w-full h-full object-cover object-center hero-image-crisp transform hover:scale-105 transition-transform duration-1000"
+            />
+          </div>
           {/* Desktop View Image */}
-          <img
-            src="/braclet desktopview.png"
-            alt="Energy Stones & Crystal Bracelets"
-            className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center hero-image-crisp transform hover:scale-105 transition-transform duration-1000"
-          />
+          <div className="hidden sm:block absolute inset-0 w-full h-full">
+            <SafeImage
+              src="/braclet desktopview.png"
+              alt="Energy Stones & Crystal Bracelets"
+              dark={true}
+              containerClassName="w-full h-full"
+              className="w-full h-full object-cover object-center hero-image-crisp transform hover:scale-105 transition-transform duration-1000"
+            />
+          </div>
           {/* Dark Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#1C1715]/90 via-[#1C1715]/60 to-transparent sm:w-2/3" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1C1715]/80 via-transparent to-transparent" />

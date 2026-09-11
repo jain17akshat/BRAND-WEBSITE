@@ -3,9 +3,11 @@ node_modules/
 frontend/node_modules/
 backend/node_modules/
 
-# Production builds
+# Production builds & zips
 frontend/dist/
+frontend/dist*.zip
 frontend/build/
+*.zip
 
 # Environment variables & secrets
 backend/.env

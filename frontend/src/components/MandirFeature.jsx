@@ -1,6 +1,7 @@
 import React from 'react';
 import { PRODUCTS } from '../data/products';
 import { ArrowRight } from 'lucide-react';
+import { SafeImage } from './SafeImage';
 
 // Products to hide from the moving catalog
 const EXCLUDED_IDS = [
@@ -39,22 +40,30 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
           {/* Landscape Background Image */}
           <div className="relative w-full h-[300px] sm:h-[360px] lg:h-[400px] overflow-hidden">
             {/* Mobile View Image */}
-            <img
-              src="/mandirphone view.png"
-              alt="Mandir Essentials Collection"
-              onError={(e) => { e.target.src = '/mandiressentials.png'; }}
-              className="block sm:hidden w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
-            />
+            <div className="block sm:hidden absolute inset-0 w-full h-full">
+              <SafeImage
+                src="/mandirphone view.png"
+                alt="Mandir Essentials Collection"
+                fallbackSrc="/mandiressentials.png"
+                dark={true}
+                containerClassName="w-full h-full"
+                className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
+              />
+            </div>
             {/* Desktop View Image */}
-            <img
-              src="/mandiressentials.png"
-              alt="Mandir Essentials Collection"
-              onError={(e) => { e.target.src = '/mandirphone view.png'; }}
-              className="hidden sm:block w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
-            />
+            <div className="hidden sm:block absolute inset-0 w-full h-full">
+              <SafeImage
+                src="/mandiressentials.png"
+                alt="Mandir Essentials Collection"
+                fallbackSrc="/mandirphone view.png"
+                dark={true}
+                containerClassName="w-full h-full"
+                className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
+              />
+            </div>
             {/* Dark Landscape Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1C140F]/95 via-[#1C140F]/75 to-transparent sm:w-3/4" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1C140F]/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1C140F]/95 via-[#1C140F]/75 to-transparent sm:w-3/4 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1C140F]/80 via-transparent to-transparent pointer-events-none" />
           </div>
 
           {/* Banner Text Content Overlay */}

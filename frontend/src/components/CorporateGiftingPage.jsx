@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Send, CheckCircle2, Building2, Mail, Phone, User, Loader2 } from 'lucide-react';
 import { submitCorporateEnquiry } from '../services/api';
+import { SafeImage } from './SafeImage';
 
 export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
   const [formData, setFormData] = useState({
@@ -70,28 +71,30 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
         style={{ height: '70vh', minHeight: '480px' }}
       >
         {/* Mobile Image */}
-        <img
-          src="/mandiressentialmobileview.png"
-          alt="Corporate & Bulk Gifting"
-          onError={(e) => {
-            if (e.target.src !== '/assets/handcrafted cover.jpg') {
-              e.target.src = '/assets/handcrafted cover.jpg';
-            }
-          }}
-          className="block sm:hidden absolute inset-0 w-full h-full object-cover object-center hero-image-crisp"
-        />
+        <div className="block sm:hidden absolute inset-0 w-full h-full">
+          <SafeImage
+            src="/mandiressentialmobileview.png"
+            alt="Corporate & Bulk Gifting"
+            fallbackSrc="/assets/handcrafted cover.jpg"
+            priority={true}
+            dark={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-center hero-image-crisp"
+          />
+        </div>
 
         {/* Desktop Image */}
-        <img
-          src="/essentialhero.png"
-          alt="Corporate & Bulk Gifting"
-          onError={(e) => {
-            if (e.target.src !== '/assets/HERO2.png') {
-              e.target.src = '/assets/HERO2.png';
-            }
-          }}
-          className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center hero-image-crisp"
-        />
+        <div className="hidden sm:block absolute inset-0 w-full h-full">
+          <SafeImage
+            src="/essentialhero.png"
+            alt="Corporate & Bulk Gifting"
+            fallbackSrc="/assets/HERO2.png"
+            priority={true}
+            dark={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-center hero-image-crisp"
+          />
+        </div>
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/60 pointer-events-none" />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ paddingTop: '40px' }}>

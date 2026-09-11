@@ -100,6 +100,20 @@ router.post('/create', validateBody({
 
     const { data } = await srClient.post('/orders/create/adhoc', payload);
 
+    if (email) {
+      const { sendPrepaidPaymentReceivedEmail } = require('../services/emailService');
+      sendPrepaidPaymentReceivedEmail({
+        to: email,
+        customerName: `${firstName} ${lastName}`,
+        orderId: order_id,
+        paymentId: 'Prepaid Direct',
+        items: cart || [],
+        totalAmount: subTotal,
+        shippingAddress: `${address}, ${city}, ${state} - ${pincode}`,
+        phone: cleanPhone,
+      }).catch(err => console.error('Failed to send order creation email:', err));
+    }
+
     res.json({
       success:              true,
       shiprocket_order_id:  data.order_id,
@@ -175,23 +189,29 @@ router.post('/:id/cancel', async (req, res, next) => {
       console.error('❌ Failed to send cancellation email:', emailErr.message);
     }
 
+    let shiprocketCancelStatus = null;
     if (req.mock.shiprocket) {
-      return res.json({
-        success: true,
-        message: 'Order cancelled successfully. A confirmation email has been sent to your email address.',
-        _mock: true,
-      });
-    }
-
-    try {
-      await srClient.post('/orders/cancel', { ids: [cleanId] });
-    } catch (srErr) {
-      console.warn('Shiprocket API cancel notice:', srErr.message);
+      shiprocketCancelStatus = { success: true, _mock: true };
+    } else {
+      const idsToCancel = Array.from(new Set([existingOrder?.shiprocket_order_id, cleanId].filter(Boolean)));
+      console.log('🔄 Triggering Shiprocket cancellation for IDs:', idsToCancel);
+      try {
+        const srRes = await srClient.post('/orders/cancel', { ids: idsToCancel });
+        shiprocketCancelStatus = srRes.data;
+        console.log('✅ Shiprocket cancellation response:', JSON.stringify(srRes.data));
+      } catch (srErr) {
+        console.warn('⚠️ Shiprocket API cancel warning:', srErr.response?.data || srErr.message);
+        shiprocketCancelStatus = { error: srErr.response?.data?.message || srErr.message };
+      }
     }
 
     res.json({
       success: true,
+      order_id: cleanId,
+      status: 'CANCELLED',
       message: 'Order cancelled successfully. A confirmation email has been sent to your email address.',
+      shiprocket: shiprocketCancelStatus,
+      _mock: !!req.mock.shiprocket,
     });
   } catch (err) {
     next(new AppError(

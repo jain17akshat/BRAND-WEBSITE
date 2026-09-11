@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, Heart, ShoppingBag, ShoppingCart, Menu, X, Truck, Sparkles } from 'lucide-react';
+import { SafeImage } from './SafeImage';
 
 const logoUrl = '/assets/Logo/LOGO.png';
 
@@ -43,6 +44,7 @@ export const Navbar = ({
 
   const navLinks = [
     { label: 'Home', category: 'all' },
+    { label: 'All Collections', category: 'all-collections' },
     { label: 'Metalware', category: 'metalware' },
     { label: 'Mandir Essentials', category: 'mandir-essentials' },
     { label: 'Energy Stones', category: 'energy-stones' },
@@ -103,11 +105,13 @@ export const Navbar = ({
                 className="hidden lg:flex items-center group focus:outline-none py-1"
                 title="Shraviko - Home"
               >
-                <img
+                <SafeImage
                   src="/trasnparwtnt bg.png"
                   alt="Shraviko"
-                  className="transition-transform duration-300 group-hover:scale-105 object-contain"
-                  style={{ height: '52px', width: 'auto', filter: 'drop-shadow(0 2px 6px rgba(120,80,0,0.18))' }}
+                  priority={true}
+                  containerClassName="h-[52px] w-auto bg-transparent"
+                  className="transition-transform duration-300 group-hover:scale-105 object-contain h-full"
+                  style={{ filter: 'drop-shadow(0 2px 6px rgba(120,80,0,0.18))' }}
                 />
               </button>
             </div>
@@ -118,11 +122,13 @@ export const Navbar = ({
               className="lg:hidden absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center focus:outline-none z-10 active:scale-95 transition-transform duration-200"
               title="Shraviko - Home"
             >
-              <img
+              <SafeImage
                 src="/trasnparwtnt bg.png"
                 alt="Shraviko"
-                className="object-contain"
-                style={{ height: '44px', width: 'auto', filter: 'drop-shadow(0 2px 4px rgba(120,80,0,0.18))' }}
+                priority={true}
+                containerClassName="h-[44px] w-auto bg-transparent"
+                className="object-contain h-full"
+                style={{ filter: 'drop-shadow(0 2px 4px rgba(120,80,0,0.18))' }}
               />
             </button>
 

@@ -184,7 +184,7 @@ async function findOrder(orderId, phone) {
 async function markOrderReturned(orderId, returnData = {}) {
   const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
   const cleanPhone = returnData.phone ? String(returnData.phone).replace(/\D/g, '').slice(-10) : '';
-  const targetStatus = returnData.status || 'RETURN_INITIATED';
+  const targetStatus = returnData.status || 'RETURN_INITIATED'; // Canonical status: RETURN_INITIATED or RETURNED
 
   if (!cleanId) return;
 
@@ -213,7 +213,7 @@ async function markOrderReturned(orderId, returnData = {}) {
       customer_phone: cleanPhone,
       isReturnRequested: true,
       status: targetStatus,
-      payment_status: returnData.payment_status || 'RETURN_REQUESTED',
+      payment_status: returnData.payment_status || 'PAID',
       shiprocket_return_id: returnData.shiprocket_return_id || null,
       return_data: returnData,
       created_at: new Date().toISOString(),
@@ -225,10 +225,17 @@ async function markOrderReturned(orderId, returnData = {}) {
   const pool = getPool();
   if (pool) {
     try {
-      await pool.query(
-        `UPDATE orders SET status = ?, payment_status = COALESCE(?, payment_status) WHERE UPPER(order_id) = ?`,
-        [targetStatus, returnData.payment_status || 'RETURN_REQUESTED', cleanId]
-      );
+      if (returnData.payment_status) {
+        await pool.query(
+          `UPDATE orders SET status = ?, payment_status = ? WHERE UPPER(order_id) = ?`,
+          [targetStatus, returnData.payment_status, cleanId]
+        );
+      } else {
+        await pool.query(
+          `UPDATE orders SET status = ? WHERE UPPER(order_id) = ?`,
+          [targetStatus, cleanId]
+        );
+      }
     } catch (err) {
       console.error('OrderStore DB update error on return:', err.message);
       const { AppError } = require('../middleware/errorHandler');
@@ -256,7 +263,7 @@ async function markOrderCancelled(orderId, cancelData = {}) {
   if (record) {
     record.isCancelled = true;
     record.status = 'CANCELLED';
-    record.payment_status = cancelData.payment_status || 'CANCELLED';
+    if (cancelData.payment_status) record.payment_status = cancelData.payment_status;
     if (cancelData.email) record.customer_email = cancelData.email;
     if (cleanPhone) record.customer_phone = cleanPhone;
     record.cancel_data = cancelData;
@@ -269,7 +276,7 @@ async function markOrderCancelled(orderId, cancelData = {}) {
       customer_phone: cleanPhone,
       isCancelled: true,
       status: 'CANCELLED',
-      payment_status: cancelData.payment_status || 'CANCELLED',
+      payment_status: cancelData.payment_status || 'PAID',
       cancel_data: cancelData,
       created_at: new Date().toISOString(),
     });
@@ -279,10 +286,17 @@ async function markOrderCancelled(orderId, cancelData = {}) {
   const pool = getPool();
   if (pool) {
     try {
-      await pool.query(
-        `UPDATE orders SET status = 'CANCELLED', payment_status = COALESCE(?, payment_status) WHERE UPPER(order_id) = ?`,
-        [cancelData.payment_status || 'CANCELLED', cleanId]
-      );
+      if (cancelData.payment_status) {
+        await pool.query(
+          `UPDATE orders SET status = 'CANCELLED', payment_status = ? WHERE UPPER(order_id) = ?`,
+          [cancelData.payment_status, cleanId]
+        );
+      } else {
+        await pool.query(
+          `UPDATE orders SET status = 'CANCELLED' WHERE UPPER(order_id) = ?`,
+          [cleanId]
+        );
+      }
     } catch (err) {
       console.error('OrderStore DB update error on cancel:', err.message);
       const { AppError } = require('../middleware/errorHandler');

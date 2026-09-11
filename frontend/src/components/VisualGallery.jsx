@@ -1,4 +1,5 @@
 import React from 'react';
+import { SafeImage } from './SafeImage';
 
 export const VisualGallery = () => {
   const images = [
@@ -45,19 +46,17 @@ export const VisualGallery = () => {
           {images.map((img, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-xl bg-[#1C1715] aspect-square sm:aspect-[4/5]"
+              className="group relative overflow-hidden rounded-xl aspect-square sm:aspect-[4/5] shadow-xs"
             >
-              <img
+              <SafeImage
                 src={img.src}
                 alt={img.alt}
-                loading="lazy"
-                onError={(e) => {
-                  if (e.target.src !== img.fallback) e.target.src = img.fallback;
-                }}
+                fallbackSrc={img.fallback}
+                containerClassName="w-full h-full"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hero-image-crisp"
                 style={{ objectPosition: img.position }}
               />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors pointer-events-none" />
             </div>
           ))}
         </div>

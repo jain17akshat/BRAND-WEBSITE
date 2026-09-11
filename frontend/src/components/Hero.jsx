@@ -2,14 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const mobileVideoRef = useRef(null);
   const desktopVideoRef = useRef(null);
 
-  // Detect mobile viewport
+  // Detect mobile viewport eagerly to prevent loading unneeded videos
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 640 : false
+  );
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
-    checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -19,9 +21,9 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
       id: 'hero-launch',
       mobileVideo: '/Logo_animation_for_luxury_brand_202609091407.mp4',
       desktopVideo: '/Logo_animation_on_ivory_paper_202609091440.mp4',
-      mobileImage: '/assets/launch3.png',
-      desktopImage: '/assets/Launch2.png',
-      fallback: '/assets/Pooja.png',
+      mobileImage: '/mobilevideo.png',
+      desktopImage: '/desktopvideo.jpeg',
+      fallback: '/desktopvideo.jpeg',
       mobilePosition: 'center top',
       desktopPosition: 'center center',
       duration: 12000, // Longer for video playback
@@ -223,13 +225,15 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
             `}
           >
             {/* ── Mobile Video (shown only on mobile < 640px) ── */}
-            {slide.mobileVideo && (
+            {slide.mobileVideo && isMobile && (
               <video
                 ref={idx === 0 ? mobileVideoRef : null}
                 src={slide.mobileVideo}
+                poster={slide.mobileImage || slide.fallback}
                 muted
                 playsInline
-                preload={idx === 0 ? 'auto' : 'none'}
+                autoPlay
+                preload="auto"
                 className="
                   absolute inset-0
                   h-full w-full
@@ -241,13 +245,15 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
             )}
 
             {/* ── Desktop Video (shown only on desktop >= 640px) ── */}
-            {slide.desktopVideo && (
+            {slide.desktopVideo && !isMobile && (
               <video
                 ref={idx === 0 ? desktopVideoRef : null}
                 src={slide.desktopVideo}
+                poster={slide.desktopImage || slide.fallback}
                 muted
                 playsInline
-                preload={idx === 0 ? 'auto' : 'none'}
+                autoPlay
+                preload="auto"
                 className="
                   absolute inset-0
                   h-full w-full

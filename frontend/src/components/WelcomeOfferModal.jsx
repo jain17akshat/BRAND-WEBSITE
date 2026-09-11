@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Copy, Check, Sparkles } from 'lucide-react';
+import { SafeImage } from './SafeImage';
 
 export const WelcomeOfferModal = ({ onApplyCoupon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,10 +65,12 @@ export const WelcomeOfferModal = ({ onApplyCoupon }) => {
         <div className="px-6 pt-7 pb-6 text-center relative">
           
           {/* Logo Badge — Clean White Aura Border */}
-          <div className="w-14 h-14 mx-auto mb-3 rounded-full border-2 border-white p-0.5 bg-white shadow-md flex items-center justify-center">
-            <img 
+          <div className="w-14 h-14 mx-auto mb-3 rounded-full border-2 border-white p-0.5 bg-white shadow-md flex items-center justify-center overflow-hidden">
+            <SafeImage 
               src="/assets/Logo/LOGO.png" 
               alt="Shraviko" 
+              priority={true}
+              containerClassName="w-full h-full rounded-full"
               className="w-full h-full object-contain rounded-full" 
             />
           </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { ArrowLeft, Star, Heart, ShoppingBag, ShieldCheck, Truck, RotateCcw, Sparkles, Check, ChevronRight, Flame, Clock, Eye, Zap, FileText, Sliders, Shield, HelpCircle, CheckCircle2, Info } from 'lucide-react';
 import { ProductImage } from './ProductImage';
 import { ProductDetailSkeleton } from './Skeleton';
+import { SafeImage } from './SafeImage';
 import { PRODUCTS } from '../data/products';
 
 export const ProductDetailPage = ({
@@ -190,11 +191,10 @@ export const ProductDetailPage = ({
                             : 'border-[#EAE0CD] opacity-70 hover:opacity-100'
                         }`}
                       >
-                        <img
+                        <SafeImage
                           src={img}
                           alt={`View ${idx + 1}`}
-                          loading="lazy"
-                          decoding="async"
+                          containerClassName="w-full h-full"
                           className="w-full h-full object-contain"
                         />
                       </button>

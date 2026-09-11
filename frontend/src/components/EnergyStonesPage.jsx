@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { subscribeToLaunch } from '../services/api';
+import { SafeImage } from './SafeImage';
 import {
   ArrowLeft,
   Sparkles,
@@ -156,26 +157,30 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
         style={{ height: '100svh', minHeight: '100vh' }}
       >
         {/* Mobile Image */}
-        <img
-          src="/energystones mobile view.png"
-          alt="Energy Stones & Accessories"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          className="block sm:hidden absolute inset-0 h-full w-full object-cover hero-image-crisp"
-          style={{ objectPosition: 'center center' }}
-        />
+        <div className="block sm:hidden absolute inset-0 h-full w-full">
+          <SafeImage
+            src="/energystones mobile view.png"
+            alt="Energy Stones & Accessories"
+            priority={true}
+            dark={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover hero-image-crisp"
+            style={{ objectPosition: 'center center' }}
+          />
+        </div>
 
         {/* Desktop Image */}
-        <img
-          src="/braclet desktopview.png"
-          alt="Energy Stones & Accessories"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          className="hidden sm:block absolute inset-0 h-full w-full object-cover hero-image-crisp"
-          style={{ objectPosition: 'center center' }}
-        />
+        <div className="hidden sm:block absolute inset-0 h-full w-full">
+          <SafeImage
+            src="/braclet desktopview.png"
+            alt="Energy Stones & Accessories"
+            priority={true}
+            dark={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover hero-image-crisp"
+            style={{ objectPosition: 'center center' }}
+          />
+        </div>
 
         {/* Minimal Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 pointer-events-none" />

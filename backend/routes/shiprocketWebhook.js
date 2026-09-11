@@ -66,15 +66,15 @@ router.post('*', async (req, res) => {
         }).catch(() => {});
       }
     } 
-    // 2. Physical return completed / received (RETURN DELIVERED, RETURN RECEIVED, status_code === 18)
-    else if (status.includes('RETURN DELIVERED') || status.includes('RETURN RECEIVED') || status.includes('RETURN COMPLETED') || statusCode === 18) {
+    // 2. Physical return completed / received (RETURN DELIVERED, RETURN RECEIVED, RETURN COMPLETED, RTO DELIVERED, RTO RECEIVED, status_code === 18)
+    else if (status.includes('RETURN DELIVERED') || status.includes('RETURN RECEIVED') || status.includes('RETURN COMPLETED') || status.includes('RTO DELIVERED') || status.includes('RTO RECEIVED') || statusCode === 18) {
       if (orderId && orderId !== 'UNKNOWN') {
         await markOrderReturned(orderId, { status: 'RETURNED', email });
         console.log(`✅ Order status updated to RETURNED in OrderStore for Order #${orderId}`);
       }
     }
-    // 3. Reverse shipment created / Return Initiated (RETURN INITIATED, RETURN APPROVED, status_code === 17)
-    else if (status.includes('RETURN') || statusCode === 17) {
+    // 3. Reverse shipment created / Return Initiated (RETURN INITIATED, RETURN APPROVED, RTO INITIATED, RTO ACKNOWLEDGED, status_code === 17)
+    else if (status.includes('RETURN') || status.includes('RTO') || statusCode === 17) {
       if (orderId && orderId !== 'UNKNOWN') {
         await markOrderReturned(orderId, { status: 'RETURN_INITIATED', email });
         console.log(`✅ Order status updated to RETURN_INITIATED in OrderStore for Order #${orderId}`);

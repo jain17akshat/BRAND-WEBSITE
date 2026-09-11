@@ -204,19 +204,32 @@ router.post(
         const internalOrderId = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
         const totalAmount = (cart || []).reduce((s, i) => s + ((i.price || 0) * (i.quantity || 1)), 0);
 
-        // Send instant order confirmation email (Zero-Cost Notification)
+        // Send instant email notification (Prepaid Payment Received for online, Order Confirmed for COD)
         if (customer?.email) {
-          const { sendOrderConfirmationEmail } = require('../services/emailService');
-          sendOrderConfirmationEmail({
-            to: customer.email,
-            customerName: customer.name || 'Valued Customer',
-            orderId: internalOrderId,
-            items: cart || [],
-            totalAmount,
-            shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
-            phone: customer.phone || '7742320607',
-            paymentMethod: shiprocketPaymentMethod,
-          }).catch(err => console.error('Failed to send confirmation email:', err));
+          const { sendOrderConfirmationEmail, sendPrepaidPaymentReceivedEmail } = require('../services/emailService');
+          if (isCOD) {
+            sendOrderConfirmationEmail({
+              to: customer.email,
+              customerName: customer.name || 'Valued Customer',
+              orderId: internalOrderId,
+              items: cart || [],
+              totalAmount,
+              shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
+              phone: customer.phone || '7742320607',
+              paymentMethod: 'Cash on Delivery (COD)',
+            }).catch(err => console.error('Failed to send COD confirmation email:', err));
+          } else {
+            sendPrepaidPaymentReceivedEmail({
+              to: customer.email,
+              customerName: customer.name || 'Valued Customer',
+              orderId: internalOrderId,
+              paymentId: razorpay_payment_id,
+              items: cart || [],
+              totalAmount,
+              shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
+              phone: customer.phone || '7742320607',
+            }).catch(err => console.error('Failed to send prepaid payment received email:', err));
+          }
         }
 
         console.log(`✅ Order verified (${shiprocketPaymentMethod}) & Confirmation Email triggered:`, {

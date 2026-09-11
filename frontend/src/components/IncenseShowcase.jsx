@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Wind, Sparkles, Bell, Check, Clock } from 'lucide-react';
+import { SafeImage } from './SafeImage';
 
 export const IncenseShowcase = () => {
   const [email, setEmail] = useState('');
@@ -17,11 +18,16 @@ export const IncenseShowcase = () => {
     <div className="relative w-full min-h-[85vh] bg-[#1C1715] text-[#F9F5EC] flex flex-col justify-center items-center overflow-hidden">
       
       {/* High-Res Background Image Layer */}
-      <img
-        src="/assets/Incense cover.jpg"
-        alt="Sacred Incense & Natural Dhoop"
-        className="absolute inset-0 w-full h-full object-cover object-[center_65%] opacity-35 hero-image-crisp scale-105"
-      />
+      <div className="absolute inset-0 w-full h-full">
+        <SafeImage
+          src="/assets/Incense cover.jpg"
+          alt="Sacred Incense & Natural Dhoop"
+          priority={true}
+          dark={true}
+          containerClassName="w-full h-full"
+          className="w-full h-full object-cover object-[center_65%] opacity-35 hero-image-crisp scale-105"
+        />
+      </div>
 
       {/* Dark Ambient Glass Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#1C1715]/85 via-[#1C1715]/70 to-[#1C1715]/95 backdrop-blur-[2px] pointer-events-none" />

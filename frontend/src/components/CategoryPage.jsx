@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowLeft, ArrowRight, ShoppingBag, Heart, Eye, Check, Star, Sparkles } from 'lucide-react';
 import { IncenseShowcase } from './IncenseShowcase';
 import { CategoryPageSkeleton } from './Skeleton';
+import { SafeImage } from './SafeImage';
 
 export const CategoryPage = ({
   category,
@@ -270,43 +271,32 @@ export const CategoryPage = ({
       >
 
         {/* Mobile Image — shown below sm breakpoint (< 640px) */}
-        <img
-          src={category.mobileImage || category.image || '/brasshero.png'}
-          alt={category.title || 'Category Collection'}
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          onError={(e) => {
-            // If mobileImage fails, fall back to desktop image
-            if (category.mobileImage && e.target.src !== (category.image || '/brasshero.png')) {
-              e.target.src = category.image || '/brasshero.png';
-            } else if (category.fallbackImage && e.target.src !== category.fallbackImage) {
-              e.target.src = category.fallbackImage;
-            } else if (e.target.src !== '/assets/brasscover.png') {
-              e.target.src = '/assets/brasscover.png';
-            }
-          }}
-          className="block sm:hidden absolute inset-0 h-full w-full object-cover hero-image-crisp"
-          style={{ objectPosition: category.mobilePosition || 'center center' }}
-        />
+        <div className="block sm:hidden absolute inset-0 h-full w-full">
+          <SafeImage
+            src={category.mobileImage || category.image || '/brasshero.png'}
+            alt={category.title || 'Category Collection'}
+            fallbackSrc={category.fallbackImage || '/assets/brasscover.png'}
+            priority={true}
+            dark={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover hero-image-crisp"
+            style={{ objectPosition: category.mobilePosition || 'center center' }}
+          />
+        </div>
 
         {/* Desktop Image — shown from sm breakpoint (≥ 640px) */}
-        <img
-          src={category.image || '/brasshero.png'}
-          alt={category.title || 'Category Collection'}
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          onError={(e) => {
-            if (category.fallbackImage && e.target.src !== category.fallbackImage) {
-              e.target.src = category.fallbackImage;
-            } else if (e.target.src !== '/assets/brasscover.png') {
-              e.target.src = '/assets/brasscover.png';
-            }
-          }}
-          className="hidden sm:block absolute inset-0 h-full w-full object-cover hero-image-crisp"
-          style={{ objectPosition: category.desktopPosition || 'center center' }}
-        />
+        <div className="hidden sm:block absolute inset-0 h-full w-full">
+          <SafeImage
+            src={category.image || '/brasshero.png'}
+            alt={category.title || 'Category Collection'}
+            fallbackSrc={category.fallbackImage || '/assets/brasscover.png'}
+            priority={true}
+            dark={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover hero-image-crisp"
+            style={{ objectPosition: category.desktopPosition || 'center center' }}
+          />
+        </div>
 
         {/* Minimal Dark Overlay — preserves image vibrancy */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 pointer-events-none" />

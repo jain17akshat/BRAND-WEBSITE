@@ -134,14 +134,19 @@ function OrderTimeline({ steps }) {
 function FAQItem({ q, a }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className={`border rounded-xl overflow-hidden transition-all duration-300 ${open ? 'border-[#C5A059]/50 shadow-sm' : 'border-[#E8DFC7]'}`}>
-      <button className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left bg-white hover:bg-[#FBF9F5] transition-colors" onClick={() => setOpen(!open)}>
-        <span className="font-semibold text-sm text-[#2C2623]">{q}</span>
-        {open ? <ChevronUp className="w-4 h-4 text-[#C5A059] flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />}
+    <div className={`border rounded-2xl overflow-hidden transition-all duration-300 ${open ? 'border-[#C5A059] shadow-md bg-white' : 'border-[#E8DFC7] bg-[#FDFBF7]'}`}>
+      <button
+        className="w-full flex items-center justify-between gap-4 px-4 sm:px-6 py-4 text-left hover:bg-[#FAF6EE] transition-colors cursor-pointer"
+        onClick={() => setOpen(!open)}
+      >
+        <span className="font-semibold text-xs sm:text-sm text-[#2C2623] leading-snug">{q}</span>
+        <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${open ? 'bg-[#C5A059]/20 text-[#8C6D27]' : 'bg-[#F4EFE6] text-gray-400'}`}>
+          {open ? <ChevronUp className="w-4 h-4 text-[#8C6D27]" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
+        </div>
       </button>
       {open && (
-        <div className="px-5 pb-4 bg-[#FDFAF5] border-t border-[#F0E8D8]">
-          <p className="text-sm text-gray-500 leading-relaxed pt-3">{a}</p>
+        <div className="px-4 sm:px-6 pb-5 bg-[#FAF6EE] border-t border-[#E8DFC7]/70">
+          <p className="text-xs sm:text-sm text-[#5C4D41] leading-relaxed pt-3.5 font-normal">{a}</p>
         </div>
       )}
     </div>
@@ -370,39 +375,56 @@ export function MyOrdersPage({ onBackToHome }) {
     <div className="min-h-screen bg-[#FBF9F5]">
 
       {/* Hero Banner */}
-      <div className="relative overflow-hidden bg-[#1C1715] py-16 sm:py-20">
+      <div className="relative overflow-hidden bg-[#1C1715] pt-14 pb-14 sm:py-20">
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 100%, rgba(197,160,89,0.18) 0%, transparent 70%)' }} />
         <div className="absolute inset-0 pointer-events-none opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(0deg,#C5A059 0px,transparent 1px,transparent 40px),repeating-linear-gradient(90deg,#C5A059 0px,transparent 1px,transparent 40px)' }} />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <button onClick={onBackToHome} className="inline-flex items-center gap-2 text-[#C5A059] hover:text-[#E5C378] text-xs font-cinzel tracking-widest uppercase transition-colors mb-6 group">
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
-            Back to Home
-          </button>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2C211C] border border-[#C5A059]/40 text-[#E5C378] text-xs font-cinzel tracking-widest uppercase mb-3">
-            <Package className="w-4 h-4 text-[#C5A059]" />
-            <span>Customer Portal</span>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
+          
+          {/* Top-Left Aligned Responsive Back Button */}
+          <div className="flex justify-start mb-4 sm:mb-6">
+            <button
+              onClick={onBackToHome}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#2C211C] hover:bg-[#3D2E27] text-[#E5C378] border border-[#C5A059]/50 shadow-md font-cinzel text-xs font-bold uppercase tracking-wider transition-all active:scale-95 group cursor-pointer z-20"
+            >
+              <ArrowLeft className="w-4 h-4 text-[#E5C378] group-hover:-translate-x-1 transition-transform" />
+              <span>Back to Home</span>
+            </button>
           </div>
-          <h1 className="font-cinzel font-bold text-white leading-tight mb-3" style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)' }}>
-            My Orders &amp; Returns
-          </h1>
-          <p className="text-xs sm:text-sm text-white/60 font-light max-w-md mx-auto leading-relaxed">
-            Track live dispatch, view order details, initiate easy returns, or submit bank account details for refunds.
-          </p>
+
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2C211C] border border-[#C5A059]/40 text-[#E5C378] text-xs font-cinzel tracking-widest uppercase mb-3">
+              <Package className="w-4 h-4 text-[#C5A059]" />
+              <span>Customer Portal</span>
+            </div>
+            <h1 className="font-cinzel font-bold text-white leading-tight mb-3" style={{ fontSize: 'clamp(1.6rem, 4vw, 3rem)' }}>
+              My Orders &amp; Returns
+            </h1>
+            <p className="text-xs sm:text-sm text-white/70 font-light max-w-md mx-auto leading-relaxed">
+              Track live dispatch, view order details, initiate easy returns, or submit bank account details for refunds.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Sticky Tab Bar */}
+      {/* Sticky Tab Bar — Fully Phone Responsive */}
       <div className="bg-white border-b border-[#E8DFC7] sticky top-0 z-30 shadow-sm">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-center sm:justify-start">
+        <div className="max-w-4xl mx-auto px-2 sm:px-6">
+          <div className="flex items-center justify-start sm:justify-start gap-1 sm:gap-3 overflow-x-auto scrollbar-none py-1.5 sm:py-0 w-full">
             {[
               { key: 'orders', label: 'My Orders & Tracking', Icon: Package },
               { key: 'returns', label: 'Returns & Refund Portal', Icon: RotateCcw },
               { key: 'faq', label: 'Help & FAQs', Icon: MessageCircle },
             ].map(({ key, label, Icon }) => (
-              <button key={key} onClick={() => setActiveTab(key)}
-                className={`flex items-center gap-2 px-4 sm:px-6 py-4 text-xs font-cinzel tracking-wide uppercase border-b-2 transition-all duration-200 whitespace-nowrap ${activeTab === key ? 'border-[#C5A059] text-[#9B7E52] font-bold' : 'border-transparent text-gray-400 hover:text-[#2C2623] hover:border-gray-200'}`}>
-                <Icon className="w-4 h-4 text-[#C5A059]" />
+              <button
+                key={key}
+                onClick={() => setActiveTab(key)}
+                className={`flex items-center gap-2 px-3.5 sm:px-6 py-3.5 text-[11px] sm:text-xs font-cinzel tracking-wider uppercase border-b-2 transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer ${
+                  activeTab === key
+                    ? 'border-[#C5A059] text-[#8C6D27] font-bold bg-[#FAF6EE] rounded-t-xl'
+                    : 'border-transparent text-gray-500 hover:text-[#2C2623]'
+                }`}
+              >
+                <Icon className="w-4 h-4 text-[#B8860B] shrink-0" />
                 <span>{label}</span>
               </button>
             ))}
@@ -916,17 +938,31 @@ export function MyOrdersPage({ onBackToHome }) {
               </div>
             </div>
 
-            <div className="bg-[#1C1715] rounded-2xl px-6 py-8 text-center relative overflow-hidden">
-              <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(197,160,89,0.15) 0%, transparent 70%)' }} />
+            <div className="bg-[#1C1715] rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden border border-[#C5A059]/30 shadow-xl">
+              <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 80% at 50% 100%, rgba(197,160,89,0.2) 0%, transparent 70%)' }} />
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-full bg-[#C5A059]/20 flex items-center justify-center mx-auto mb-4">
-                  <Headphones className="w-5 h-5 text-[#C5A059]" />
+                <div className="w-14 h-14 rounded-full bg-[#C5A059]/20 border border-[#C5A059]/40 flex items-center justify-center mx-auto mb-4 text-[#E5C378]">
+                  <Headphones className="w-6 h-6 text-[#E5C378]" />
                 </div>
-                <h3 className="font-cinzel font-bold text-white text-base mb-2">Still need help?</h3>
-                <p className="text-xs text-white/50 mb-6 max-w-xs mx-auto">Our sacred care team is available Mon–Sat, 9 AM – 7 PM IST, and will respond within 4 business hours.</p>
-                <div className="flex flex-wrap gap-3 justify-center">
-                  <a href="mailto:info@shraviko.com" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A059] text-white text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-[#E5C378] hover:text-[#1C1715] transition-all duration-300 active:scale-95">Email Us</a>
-                  <a href="tel:+917742320607" className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059]/40 text-[#C5A059] text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:border-[#C5A059] hover:bg-[#C5A059]/10 transition-all duration-300 active:scale-95">Call Us</a>
+                <h3 className="font-cinzel font-bold text-white text-lg sm:text-xl mb-2">Still need help?</h3>
+                <p className="text-xs sm:text-sm text-white/70 mb-6 max-w-sm mx-auto leading-relaxed font-light">
+                  Our dedicated concierge team is available Mon–Sat, 9 AM – 7 PM IST, and will respond within 4 business hours.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+                  <a
+                    href="mailto:info@shraviko.com"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#C5A059] hover:bg-[#E5C378] text-[#1C1715] font-cinzel font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg transition-all active:scale-95 cursor-pointer border border-[#E5C378]"
+                  >
+                    <Mail className="w-4 h-4 text-[#1C1715]" />
+                    <span>Email Us</span>
+                  </a>
+                  <a
+                    href="tel:+917742320607"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#2C211C] hover:bg-[#3D2E27] text-[#E5C378] border border-[#C5A059]/70 font-cinzel font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg transition-all active:scale-95 cursor-pointer"
+                  >
+                    <Phone className="w-4 h-4 text-[#E5C378]" />
+                    <span>Call: +91 7742320607</span>
+                  </a>
                 </div>
               </div>
             </div>
