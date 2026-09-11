@@ -63,10 +63,10 @@ export const WelcomeOfferModal = ({ onApplyCoupon }) => {
         {/* Modal Body */}
         <div className="px-6 pt-7 pb-6 text-center relative">
           
-          {/* Logo Badge */}
-          <div className="w-14 h-14 mx-auto mb-3 rounded-full border border-[#D4AF37]/40 p-1 bg-[#1C1715] shadow-md flex items-center justify-center">
+          {/* Logo Badge — Clean White Aura Border */}
+          <div className="w-14 h-14 mx-auto mb-3 rounded-full border-2 border-white p-0.5 bg-white shadow-md flex items-center justify-center">
             <img 
-              src="/assets/Logo/CURRENT LOGO.png" 
+              src="/assets/Logo/LOGO.png" 
               alt="Shraviko" 
               className="w-full h-full object-contain rounded-full" 
             />

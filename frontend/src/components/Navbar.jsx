@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, Heart, ShoppingBag, ShoppingCart, Menu, X, Truck, Sparkles } from 'lucide-react';
 
-const logoUrl = '/assets/Logo/CURRENT LOGO.png';
+const logoUrl = '/assets/Logo/LOGO.png';
 
 export const Navbar = ({
   cartCount,

@@ -60,9 +60,9 @@ export const Footer = ({
             <div className="sm:col-span-2 space-y-4">
               <div className="flex items-center gap-3">
                 <img
-                  src="/assets/Logo/CURRENT LOGO.png"
+                  src="/assets/Logo/LOGO.png"
                   alt="Shraviko"
-                  className="h-20 w-20 object-contain rounded-full border border-[#D4AF37]/30 p-1 bg-[#1C1715] shadow-md"
+                  className="h-20 w-20 object-contain rounded-full border-2 border-white p-0.5 bg-white shadow-md"
                   style={{ aspectRatio: '1 / 1' }}
                 />
                 <div>
