@@ -21,7 +21,8 @@ function getPool() {
     return null;
   }
 
-  const { host, port, name, user, password } = config.db;
+  const { host: rawHost, port, name, user, password } = config.db;
+  const host = (!rawHost || rawHost === 'localhost') ? '127.0.0.1' : rawHost;
 
   if (!user || !name) {
     console.log('ℹ️ Hostinger MySQL DB credentials not set in config. (Add DB_USER + DB_NAME to enable)');
