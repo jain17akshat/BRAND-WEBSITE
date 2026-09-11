@@ -20,7 +20,7 @@ export const IncenseShowcase = () => {
       {/* High-Res Background Image Layer */}
       <div className="absolute inset-0 w-full h-full">
         <SafeImage
-          src="/assets/Incense cover.webp"
+          src="/assets/Incense cover.jpg"
           alt="Sacred Incense & Natural Dhoop"
           priority={true}
           dark={true}

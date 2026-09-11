@@ -86,7 +86,7 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
         {/* Desktop Image */}
         <div className="hidden sm:block absolute inset-0 w-full h-full">
           <SafeImage
-            src="/essentialhero.webp"
+            src="/essentialhero.png"
             alt="Corporate & Bulk Gifting"
             fallbackSrc="/assets/HERO2.png"
             priority={true}

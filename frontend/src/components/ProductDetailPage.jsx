@@ -633,7 +633,7 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
                     alt={product.name}
                     loading="lazy"
                     className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => { e.target.src = '/assets/Incense cover.webp'; }}
+                    onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
                   />
 
                 </div>

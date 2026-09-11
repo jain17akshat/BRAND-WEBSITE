@@ -48,7 +48,6 @@ export const SafeImage = ({
   return (
     <div
       className={`relative overflow-hidden ${aspect} ${bgPlaceholderClass} ${containerClassName}`}
-      style={style}
     >
       {/* ── Skeleton Shimmer Overlay (Active until image decodes) ── */}
       {!isLoaded && (
@@ -71,6 +70,7 @@ export const SafeImage = ({
         onError={handleError}
         sizes={sizes}
         srcSet={srcSet}
+        style={style}
         className={`w-full h-full ${objectFit} transition-opacity duration-400 ease-out ${
           isLoaded ? 'opacity-100' : 'opacity-0'
         } ${className}`}

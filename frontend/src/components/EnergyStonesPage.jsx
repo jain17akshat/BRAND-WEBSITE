@@ -159,7 +159,7 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
         {/* Mobile Image */}
         <div className="block sm:hidden absolute inset-0 h-full w-full">
           <SafeImage
-            src="/energystones mobile view.webp"
+            src="/energystones mobile view.png"
             alt="Energy Stones & Accessories"
             priority={true}
             dark={true}
@@ -172,7 +172,7 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
         {/* Desktop Image */}
         <div className="hidden sm:block absolute inset-0 h-full w-full">
           <SafeImage
-            src="/braclet desktopview.webp"
+            src="/braclet desktopview.png"
             alt="Energy Stones & Accessories"
             priority={true}
             dark={true}

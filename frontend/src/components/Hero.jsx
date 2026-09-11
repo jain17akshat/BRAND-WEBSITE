@@ -21,44 +21,44 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
       id: 'hero-launch',
       mobileVideo: '/Logo_animation_for_luxury_brand_202609091407.mp4',
       desktopVideo: '/Logo_animation_on_ivory_paper_202609091440.mp4',
-      mobileImage: '/mobilevideo.webp',
-      desktopImage: '/desktopvideo.webp',
-      fallback: '/desktopvideo.webp',
+      mobileImage: '/mobilevideo.png',
+      desktopImage: '/desktopvideo.jpeg',
+      fallback: '/desktopvideo.jpeg',
       mobilePosition: 'center top',
       desktopPosition: 'center center',
       duration: 12000, // Longer for video playback
     },
     {
       id: 'hero-pooja',
-      mobileImage: '/assets/Poojamobile.webp',
-      desktopImage: '/assets/Pooja.webp',
-      fallback: '/assets/brasscover.webp',
+      mobileImage: '/assets/Poojamobile.png',
+      desktopImage: '/assets/Pooja.png',
+      fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-candel',
-      mobileImage: '/assets/Candelmobile.webp',
-      desktopImage: '/assets/Candel.webp',
-      fallback: '/assets/brasscover.webp',
+      mobileImage: '/assets/Candelmobile.png',
+      desktopImage: '/assets/Candel.png',
+      fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-calm',
-      mobileImage: '/assets/Calmmobile.webp',
-      desktopImage: '/assets/Calm.webp',
-      fallback: '/assets/brasscover.webp',
+      mobileImage: '/assets/Calmmobile.png',
+      desktopImage: '/assets/Calm.png',
+      fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-4',
-      mobileImage: '/assets/HERO4MOBILE.webp',
-      desktopImage: '/assets/HERO4.webp',
+      mobileImage: '/assets/HERO4MOBILE.png',
+      desktopImage: '/assets/HERO4.png',
       fallback: '/assets/Hero4.jpg',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
@@ -66,44 +66,44 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
     },
     {
       id: 'hero-1',
-      mobileImage: '/assets/HERO1MOBILEVIEW.webp',
-      desktopImage: '/assets/HERO1.webp',
-      fallback: '/assets/brasscover.webp',
+      mobileImage: '/assets/HERO1MOBILEVIEW.png',
+      desktopImage: '/assets/HERO1.png',
+      fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-2',
-      mobileImage: '/assets/HERO2MBOILE.webp',
-      desktopImage: '/assets/HERO2.webp',
-      fallback: '/assets/brasscover.webp',
+      mobileImage: '/assets/HERO2MBOILE.png',
+      desktopImage: '/assets/HERO2.png',
+      fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-3',
-      mobileImage: '/assets/HERO3MOBILE.webp',
-      desktopImage: '/assets/HERO3.webp',
-      fallback: '/assets/HERO2.webp',
+      mobileImage: '/assets/HERO3MOBILE.png',
+      desktopImage: '/assets/HERO3.png',
+      fallback: '/assets/HERO2.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-copper',
-      mobileImage: '/coppermobileview.webp',
-      desktopImage: '/copperhero.webp',
-      fallback: '/assets/Copper cover.webp',
+      mobileImage: '/coppermobileview.png',
+      desktopImage: '/copperhero.png',
+      fallback: '/assets/Copper cover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-mandir',
-      mobileImage: '/mandirphone view.webp',
-      desktopImage: '/mandiressentials.webp',
+      mobileImage: '/mandirphone view.png',
+      desktopImage: '/mandiressentials.png',
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       mobilePosition: 'center 45%',
       desktopPosition: 'center 45%',
@@ -276,69 +276,42 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
               />
             )}
 
-            {/* ── Fallback static image (hidden when video is available on that viewport) ── */}
-            {!hasVideo && (
-              <picture>
-                <source
-                  media="(max-width: 639px)"
-                  srcSet={slide.mobileImage}
-                />
-                <img
-                  src={slide.desktopImage}
-                  alt="Shraviko Collection"
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                  decoding={idx === 0 ? 'sync' : 'async'}
-                  fetchpriority={idx === 0 ? 'high' : 'low'}
-                  width="1920"
-                  height="1080"
-                  onError={(e) => {
-                    if (e.currentTarget.src !== slide.fallback) {
-                      e.currentTarget.src = slide.fallback;
-                    }
-                  }}
-                  className="
-                    absolute inset-0
-                    h-full w-full
-                    object-cover
-                  "
-                  style={{
-                    objectPosition: slide.mobilePosition || 'center top',
-                  }}
-                />
-              </picture>
+            {/* ── Mobile Static Image ── */}
+            {(!slide.mobileVideo) && (
+              <img
+                src={slide.mobileImage || slide.fallback}
+                alt="Shraviko Collection"
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                decoding={idx === 0 ? 'sync' : 'async'}
+                onError={(e) => {
+                  if (e.currentTarget.src !== slide.fallback) {
+                    e.currentTarget.src = slide.fallback;
+                  }
+                }}
+                className="block sm:hidden absolute inset-0 w-full h-full object-cover"
+                style={{
+                  objectPosition: slide.mobilePosition || 'center center',
+                }}
+              />
             )}
 
-            {/* For slides with video: show static image only as a non-video-viewport fallback */}
-            {hasVideo && (
-              <picture className={`
-                ${slide.mobileVideo ? 'hidden' : 'block'} 
-                ${slide.desktopVideo ? 'sm:hidden' : 'sm:block'}
-              `}>
-                <source
-                  media="(max-width: 639px)"
-                  srcSet={slide.mobileImage}
-                />
-                <img
-                  src={slide.desktopImage}
-                  alt="Shraviko Collection"
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  fetchpriority={idx === 0 ? 'high' : 'low'}
-                  onError={(e) => {
-                    if (e.currentTarget.src !== slide.fallback) {
-                      e.currentTarget.src = slide.fallback;
-                    }
-                  }}
-                  className="
-                    absolute inset-0
-                    h-full w-full
-                    object-cover
-                  "
-                  style={{
-                    objectPosition: slide.mobilePosition || 'center top',
-                  }}
-                />
-              </picture>
+            {/* ── Desktop Static Image ── */}
+            {(!slide.desktopVideo) && (
+              <img
+                src={slide.desktopImage || slide.fallback}
+                alt="Shraviko Collection"
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                decoding={idx === 0 ? 'sync' : 'async'}
+                onError={(e) => {
+                  if (e.currentTarget.src !== slide.fallback) {
+                    e.currentTarget.src = slide.fallback;
+                  }
+                }}
+                className="hidden sm:block absolute inset-0 w-full h-full object-cover"
+                style={{
+                  objectPosition: slide.desktopPosition || 'center center',
+                }}
+              />
             )}
           </div>
         );

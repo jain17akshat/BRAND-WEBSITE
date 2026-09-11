@@ -94,7 +94,7 @@ const MustTryCard = ({
 
   const cardImages = React.useMemo(() => {
     if (product.images && product.images.length > 0) return product.images;
-    return [product.image || '/assets/Incense cover.webp'];
+    return [product.image || '/assets/Incense cover.jpg'];
   }, [product]);
 
   const primarySrc = cardImages[0];
@@ -154,8 +154,8 @@ const MustTryCard = ({
           decoding="async"
           onLoad={() => { if (!primaryLoaded) setPrimaryLoaded(true); }}
           onError={(e) => {
-            if (e.target.src !== '/assets/Incense cover.webp') {
-              e.target.src = '/assets/Incense cover.webp';
+            if (e.target.src !== '/assets/Incense cover.jpg') {
+              e.target.src = '/assets/Incense cover.jpg';
             }
           }}
           className={`w-full h-full object-contain p-4 transition-all duration-500 ${
