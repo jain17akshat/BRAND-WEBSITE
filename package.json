@@ -5,9 +5,9 @@
     "dev": "npx -y concurrently \"npm --prefix frontend run dev\" \"npm --prefix backend run dev\" --names \"frontend,backend\" --prefix-colors \"cyan,yellow\"",
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "npm --prefix backend run dev",
-    "postinstall": "npm --prefix backend install && npm --prefix frontend install",
-    "build": "npm --prefix frontend install && npm --prefix frontend run build",
-    "build:frontend": "npm --prefix frontend install && npm --prefix frontend run build",
+    "postinstall": "npm --prefix backend install --production=false && npm --prefix frontend install --production=false",
+    "build": "npm --prefix frontend install --production=false && npm --prefix frontend run build",
+    "build:frontend": "npm --prefix frontend install --production=false && npm --prefix frontend run build",
     "start": "npm --prefix backend start",
     "start:backend": "npm --prefix backend start"
   }
