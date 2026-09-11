@@ -42,9 +42,9 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
             {/* Mobile View Image */}
             <div className="block sm:hidden absolute inset-0 w-full h-full">
               <SafeImage
-                src="/mandirphone view.png"
+                src="/mandirphone view.webp"
                 alt="Mandir Essentials Collection"
-                fallbackSrc="/mandiressentials.png"
+                fallbackSrc="/mandiressentials.webp"
                 dark={true}
                 containerClassName="w-full h-full"
                 className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
@@ -53,9 +53,9 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
             {/* Desktop View Image */}
             <div className="hidden sm:block absolute inset-0 w-full h-full">
               <SafeImage
-                src="/mandiressentials.png"
+                src="/mandiressentials.webp"
                 alt="Mandir Essentials Collection"
-                fallbackSrc="/mandirphone view.png"
+                fallbackSrc="/mandirphone view.webp"
                 dark={true}
                 containerClassName="w-full h-full"
                 className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
@@ -123,7 +123,7 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
                     src={product.image}
                     alt={product.name}
                     className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
+                    onError={(e) => { e.target.src = '/assets/Incense cover.webp'; }}
                   />
                 </div>
 

@@ -92,9 +92,9 @@ export function App() {
       id: 'metalware',
       title: 'Metalware Collection',
       name: 'Metalware Collection',
-      image: '/METALWARE.png',
-      mobileImage: '/Metalwaremobile.png',
-      fallbackImage: '/assets/brasscover.png',
+      image: '/METALWARE.webp',
+      mobileImage: '/Metalwaremobile.webp',
+      fallbackImage: '/assets/brasscover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       description: 'Explore our complete artisanal collection of 100% solid brass and pure copper articles — handcrafted pooja bells, thali sets, kalash vessels, diyas, hawankunds, and panchpatra sets.'
@@ -103,16 +103,16 @@ export function App() {
       id: 'incense',
       title: 'Incense & Dhoop',
       name: 'Incense & Dhoop',
-      image: '/assets/Incense cover.jpg',
+      image: '/assets/Incense cover.webp',
       description: 'Explore our complete artisanal collection of 100% natural, charcoal-free agarbatti sticks, organic dhoop cones, dhoop sticks, and sambrani cups.'
     },
     brass: {
       id: 'brass',
       title: 'Brass Articles',
       name: 'Brass Articles',
-      image: '/brasshero.png',
-      mobileImage: '/brassmobileview.png',
-      fallbackImage: '/assets/brasscover.png',
+      image: '/brasshero.webp',
+      mobileImage: '/brassmobileview.webp',
+      fallbackImage: '/assets/brasscover.webp',
       // object-position: mobile shows bottom-center where items cluster; desktop shows full wide scene
       mobilePosition: 'center 70%',
       desktopPosition: 'center 55%',
@@ -122,9 +122,9 @@ export function App() {
       id: 'copper',
       title: 'Copper Articles',
       name: 'Copper Articles',
-      image: '/copperhero.png',
-      mobileImage: '/coppermobileview.png',
-      fallbackImage: '/assets/Copper cover.png',
+      image: '/copperhero.webp',
+      mobileImage: '/coppermobileview.webp',
+      fallbackImage: '/assets/Copper cover.webp',
       // Copper kalash is center-frame, keep centered on both
       mobilePosition: 'center 40%',
       desktopPosition: 'center 45%',
@@ -134,8 +134,8 @@ export function App() {
       id: 'kits',
       title: 'Corporate & Bulk Gifting',
       name: 'Corporate & Bulk Gifting',
-      image: '/essentialhero.png',
-      mobileImage: '/mandiressentialmobileview.png',
+      image: '/essentialhero.webp',
+      mobileImage: '/mandiressentialmobileview.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       description: 'Auspicious festive hampers, wedding favor caskets, and corporate gift hampers.'
@@ -144,7 +144,7 @@ export function App() {
       id: 'yantras',
       title: 'Custom & Handcrafted',
       name: 'Custom & Handcrafted',
-      image: '/assets/handcrafted cover.jpg',
+      image: '/assets/handcrafted cover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       description: 'Bespoke 24K gold plated brass yantras and custom-engraved temple idols.'
@@ -163,8 +163,8 @@ export function App() {
       id: 'mandir-essentials',
       title: 'Mandir Essentials',
       name: 'Mandir Essentials',
-      image: '/mandiressentials.png',
-      mobileImage: '/mandirphone view.png',
+      image: '/mandiressentials.webp',
+      mobileImage: '/mandirphone view.webp',
       fallbackImage: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       // Mandir image — key items in center, show slightly higher on mobile
       mobilePosition: 'center 35%',
@@ -175,9 +175,9 @@ export function App() {
       id: 'energy-stones',
       title: 'Energy Stones & Bracelets',
       name: 'Energy Stones & Bracelets',
-      image: '/braclet desktopview.png',
-      mobileImage: '/energystones mobile view.png',
-      fallbackImage: '/assets/handcrafted cover.jpg',
+      image: '/braclet desktopview.webp',
+      mobileImage: '/energystones mobile view.webp',
+      fallbackImage: '/assets/handcrafted cover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       description: '100% Authentic Natural Gemstones, Orgone Healing Pyramids, Crystal Bracelets & Sacred Japa Malas — Consecrated & Energized for Specific Intentions.'
@@ -523,7 +523,7 @@ export function App() {
                 id: selectedCategoryId,
                 title: selectedCategoryId.toUpperCase(),
                 name: selectedCategoryId.toUpperCase(),
-                image: '/assets/Incense cover.jpg',
+                image: '/assets/Incense cover.webp',
                 description: 'Sacred collection'
               }}
               categories={CATEGORIES}
@@ -590,13 +590,13 @@ export function App() {
                 <section className="py-14 sm:py-20 bg-[#1C1715] text-white relative overflow-hidden">
                   {/* Background image */}
                   <img
-                    src="/mandiressentialmobileview.png"
+                    src="/mandiressentialmobileview.webp"
                     alt="Corporate Gifting"
                     className="block sm:hidden absolute inset-0 w-full h-full object-cover opacity-25 hero-image-crisp"
                     style={{ objectPosition: 'center center' }}
                   />
                   <img
-                    src="/essentialhero.png"
+                    src="/essentialhero.webp"
                     alt="Corporate Gifting"
                     className="hidden sm:block absolute inset-0 w-full h-full object-cover opacity-20 hero-image-crisp"
                     style={{ objectPosition: 'center center' }}

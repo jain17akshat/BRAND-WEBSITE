@@ -4,27 +4,27 @@ import { SafeImage } from './SafeImage';
 export const VisualGallery = () => {
   const images = [
     {
-      src: '/brasshero.png',
+      src: '/brasshero.webp',
       alt: 'Brass Craftsmanship',
-      fallback: '/assets/brasscover.png',
+      fallback: '/assets/brasscover.webp',
       position: 'center 60%',
     },
     {
-      src: '/copperhero.png',
+      src: '/copperhero.webp',
       alt: 'Pure Copper Vessels',
-      fallback: '/assets/Copper cover.png',
+      fallback: '/assets/Copper cover.webp',
       position: 'center 40%',
     },
     {
-      src: '/mandiressentials.png',
+      src: '/mandiressentials.webp',
       alt: 'Mandir Essentials Setup',
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       position: 'center 35%',
     },
     {
-      src: '/assets/handcrafted cover.jpg',
+      src: '/assets/handcrafted cover.webp',
       alt: 'Artisan Handcrafted Living',
-      fallback: '/assets/HERO2.png',
+      fallback: '/assets/HERO2.webp',
       position: 'center center',
     },
   ];

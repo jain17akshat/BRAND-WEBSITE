@@ -1,0 +1,313 @@
+{
+  "results": [
+    {
+      "file": "public/desktopvideo.jpeg",
+      "original": "523",
+      "webp": "126",
+      "savings": "76%",
+      "status": "converted"
+    },
+    {
+      "file": "public/mobilevideo.png",
+      "original": "1879",
+      "webp": "106",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Pooja.png",
+      "original": "2570",
+      "webp": "150",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Poojamobile.png",
+      "original": "2595",
+      "webp": "156",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Candel.png",
+      "original": "2406",
+      "webp": "109",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Candelmobile.png",
+      "original": "2368",
+      "webp": "109",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Calm.png",
+      "original": "2081",
+      "webp": "60",
+      "savings": "97%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Calmmobile.png",
+      "original": "2180",
+      "webp": "63",
+      "savings": "97%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO1.png",
+      "original": "2397",
+      "webp": "116",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO1MOBILEVIEW.png",
+      "original": "2404",
+      "webp": "133",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO2.png",
+      "original": "2423",
+      "webp": "117",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO2MBOILE.png",
+      "original": "2595",
+      "webp": "155",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO3.png",
+      "original": "2285",
+      "webp": "91",
+      "savings": "96%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO3MOBILE.png",
+      "original": "2412",
+      "webp": "115",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO4.png",
+      "original": "2480",
+      "webp": "130",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO4MOBILE.png",
+      "original": "2478",
+      "webp": "129",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO5.png",
+      "original": "1655",
+      "webp": "84",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/HERO8.png",
+      "original": "2323",
+      "webp": "121",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Hero6.png",
+      "original": "1788",
+      "webp": "99",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/METALWARE.png",
+      "original": "2478",
+      "webp": "233",
+      "savings": "91%",
+      "status": "converted"
+    },
+    {
+      "file": "public/Metalwaremobile.png",
+      "original": "2327",
+      "webp": "234",
+      "savings": "90%",
+      "status": "converted"
+    },
+    {
+      "file": "public/brasshero.png",
+      "original": "1967",
+      "webp": "133",
+      "savings": "93%",
+      "status": "converted"
+    },
+    {
+      "file": "public/brassmobileview.png",
+      "original": "2217",
+      "webp": "173",
+      "savings": "92%",
+      "status": "converted"
+    },
+    {
+      "file": "public/copperhero.png",
+      "original": "2181",
+      "webp": "160",
+      "savings": "93%",
+      "status": "converted"
+    },
+    {
+      "file": "public/coppermobileview.png",
+      "original": "2151",
+      "webp": "174",
+      "savings": "92%",
+      "status": "converted"
+    },
+    {
+      "file": "public/copperatepcview.png",
+      "original": "2638",
+      "webp": "208",
+      "savings": "92%",
+      "status": "converted"
+    },
+    {
+      "file": "public/copperatemobileview.png",
+      "original": "2298",
+      "webp": "138",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/mandiressentials.png",
+      "original": "1897",
+      "webp": "118",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/mandirphone view.png",
+      "original": "1944",
+      "webp": "123",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/mandiressentialmobileview.png",
+      "original": "2028",
+      "webp": "105",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/brasscover.png",
+      "original": "2245",
+      "webp": "157",
+      "savings": "93%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Copper cover.png",
+      "original": "2167",
+      "webp": "134",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Incense cover.jpg",
+      "original": "3354",
+      "webp": "2965",
+      "savings": "12%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/handcrafted cover.jpg",
+      "original": "4028",
+      "webp": "1880",
+      "savings": "53%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Launch2.png",
+      "original": "2667",
+      "webp": "173",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Launch2mobile.png",
+      "original": "2549",
+      "webp": "161",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/Launchmobile.png",
+      "original": "2581",
+      "webp": "170",
+      "savings": "93%",
+      "status": "converted"
+    },
+    {
+      "file": "public/assets/launch3.png",
+      "original": "2531",
+      "webp": "170",
+      "savings": "93%",
+      "status": "converted"
+    },
+    {
+      "file": "public/energystones mobile view.png",
+      "original": "2120",
+      "webp": "151",
+      "savings": "93%",
+      "status": "converted"
+    },
+    {
+      "file": "public/incesne hero.png",
+      "original": "1827",
+      "webp": "103",
+      "savings": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "public/incenemobile hero.png",
+      "original": "1871",
+      "webp": "101",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/essentialhero.png",
+      "original": "2107",
+      "webp": "113",
+      "savings": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "public/braclet desktopview.png",
+      "original": "2320",
+      "webp": "195",
+      "savings": "92%",
+      "status": "converted"
+    }
+  ],
+  "summary": {
+    "converted": 43,
+    "skipped": 0,
+    "failed": 0,
+    "totalOrigMB": "96.0",
+    "totalWebpMB": "10.2",
+    "savedMB": "85.8"
+  }
+}

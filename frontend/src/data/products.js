@@ -1346,7 +1346,7 @@ export const PRODUCTS = [
     reviewsCount: 188,
     tag: 'Bamboo-Free',
     artType: 'incense',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '50 Sticks Pack', price: 149, originalPrice: 199, default: true },
       { weight: '80 Sticks Pack', price: 219, originalPrice: 289 },
@@ -1374,7 +1374,7 @@ export const PRODUCTS = [
     reviewsCount: 160,
     tag: 'Classic Scent',
     artType: 'incense',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '50 Sticks Pack', price: 129, originalPrice: 169, default: true },
       { weight: '80 Sticks Pack', price: 189, originalPrice: 249 },
@@ -1402,7 +1402,7 @@ export const PRODUCTS = [
     reviewsCount: 220,
     tag: 'Natural Dhoop',
     artType: 'dhoop',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '12 Cones Trial Pack', price: 99, originalPrice: 129 },
       { weight: '24 Cones Small Pack', price: 179, originalPrice: 229, default: true },
@@ -1433,7 +1433,7 @@ export const PRODUCTS = [
     reviewsCount: 155,
     tag: 'Charcoal-Free',
     artType: 'dhoop',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '20 Sticks Pack', price: 119, originalPrice: 149 },
       { weight: '50 Sticks Pack', price: 249, originalPrice: 319, default: true },
@@ -1461,7 +1461,7 @@ export const PRODUCTS = [
     reviewsCount: 280,
     tag: 'Loban & Guggal',
     artType: 'dhoop',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '12 Cups Pack', price: 199, originalPrice: 249, default: true },
       { weight: '24 Cups Pack', price: 349, originalPrice: 449 },

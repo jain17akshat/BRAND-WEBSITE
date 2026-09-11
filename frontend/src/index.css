@@ -851,12 +851,8 @@ button, a {
 
 /* ── Skeleton Shimmer Loaders ── */
 @keyframes skeleton-shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .skeleton-shimmer {
@@ -867,7 +863,8 @@ button, a {
     #F4EFE6 63%
   );
   background-size: 200% 100%;
-  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  /* Slowed from 1.6s → 2.2s: looks equally good, fewer GPU repaints per second */
+  animation: skeleton-shimmer 2.2s ease-in-out infinite;
 }
 
 .skeleton-shimmer-dark {
@@ -878,13 +875,18 @@ button, a {
     #1E1A18 63%
   );
   background-size: 200% 100%;
-  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  animation: skeleton-shimmer 2.2s ease-in-out infinite;
 }
 
+/* Reduced motion: static placeholder, no animation at all */
 @media (prefers-reduced-motion: reduce) {
   .skeleton-shimmer,
   .skeleton-shimmer-dark {
     animation: none !important;
+    background: #F4EFE6;
+  }
+  .skeleton-shimmer-dark {
+    background: #1E1A18;
   }
 }
 
@@ -1229,4 +1231,17 @@ button, a {
   .img-reveal-curtain::after {
     display: none !important;
   }
+}
+
+/* ── Image Loading Performance Utilities ── */
+
+/* Prevents CLS: aspect-ratio reservation for images with explicit width/height attrs */
+img[width][height] {
+  aspect-ratio: attr(width) / attr(height);
+  height: auto;
+}
+
+/* Ensure images never overflow their container */
+img {
+  max-width: 100%;
 }

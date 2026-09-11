@@ -73,21 +73,22 @@ export const CategoryPage = ({
       title: 'All Metalware',
       subtitle: 'Complete Brass & Copper Collection',
       subcatKey: 'all',
-      image: '/assets/brasscover.png'
+      image: '/assets/brasscover.webp'
     },
     {
       id: 'brass-articles',
       title: 'Brass Articles',
       subtitle: 'Bells, Kalash, Designer Thali & Statues',
       subcatKey: 'brass',
-      image: '/assets/brasscover.png'
+      image: '/assets/brasscover.webp'
     },
     {
-      id: 'copper-articles',
-      title: 'Copper Articles',
-      subtitle: 'Pure Copper Kalash & Vessels',
-      subcatKey: 'copper',
-      image: '/assets/Copper cover.png'
+      id: 'copper-vessels',
+      title: 'Copper Vessels & Utensils',
+      subtitle: 'Water Pots, Jugs, Tumblers & Kalash',
+      subcatKey: 'Copper Utensils',
+      image: '/assets/Copper cover.webp',
+      badge: 'Ayurvedic Health'
     }
   ] : category.id === 'incense' ? [
     {
@@ -95,7 +96,7 @@ export const CategoryPage = ({
       title: 'All Varieties',
       subtitle: '16 Total Pack Options',
       subcatKey: 'all',
-      image: '/assets/Incense cover.jpg',
+      image: '/assets/Incense cover.webp',
       badge: 'Full Collection'
     },
     {
@@ -103,7 +104,7 @@ export const CategoryPage = ({
       title: 'Bamboo-Free Agarbatti',
       subtitle: '50, 80 & 100 Sticks',
       subcatKey: 'Agarbatti (Without Bamboo)',
-      image: '/assets/Incense cover.jpg',
+      image: '/assets/Incense cover.webp',
       badge: '100% Organic'
     },
     {
@@ -111,7 +112,7 @@ export const CategoryPage = ({
       title: 'Traditional Agarbatti',
       subtitle: '50, 80 & 100 Sticks',
       subcatKey: 'Agarbatti (With Bamboo)',
-      image: '/assets/Incense cover.jpg',
+      image: '/assets/Incense cover.webp',
       badge: 'Classic Aroma'
     },
     {
@@ -119,7 +120,7 @@ export const CategoryPage = ({
       title: 'Natural Dhoop Cones',
       subtitle: '12, 24, 40, 50, 100 & 200 Cones',
       subcatKey: 'Dhoop Cones',
-      image: '/assets/Incense cover.jpg',
+      image: '/assets/Incense cover.webp',
       badge: '6 Pack Sizes'
     },
     {
@@ -127,7 +128,7 @@ export const CategoryPage = ({
       title: 'Charcoal-Free Dhoop Sticks',
       subtitle: '20, 50 & 100 Sticks',
       subcatKey: 'Dhoop Sticks',
-      image: '/assets/Incense cover.jpg',
+      image: '/assets/Incense cover.webp',
       badge: 'Natural Resin'
     },
     {
@@ -135,7 +136,7 @@ export const CategoryPage = ({
       title: 'Loban & Sambrani Cups',
       subtitle: '12, 24 & 48 Cups',
       subcatKey: 'Sambrani Cups',
-      image: '/assets/Incense cover.jpg',
+      image: '/assets/Incense cover.webp',
       badge: 'Guggal & Ghee'
     }
   ] : category.id === 'brass' ? [
@@ -144,7 +145,7 @@ export const CategoryPage = ({
       title: 'All Brass Articles',
       subtitle: 'Complete Masterpiece Catalog',
       subcatKey: 'all',
-      image: '/assets/brasscover.png',
+      image: '/assets/brasscover.webp',
       badge: 'Full Collection'
     },
     {
@@ -177,7 +178,7 @@ export const CategoryPage = ({
       title: 'All Copper Articles',
       subtitle: '99.6% Certified Pure Copper Collection',
       subcatKey: 'all',
-      image: '/assets/Copper cover.png',
+      image: '/assets/Copper cover.webp',
       badge: 'Full Collection'
     },
     {
@@ -273,9 +274,9 @@ export const CategoryPage = ({
         {/* Mobile Image — shown below sm breakpoint (< 640px) */}
         <div className="block sm:hidden absolute inset-0 h-full w-full">
           <SafeImage
-            src={category.mobileImage || category.image || '/brasshero.png'}
+            src={category.mobileImage || category.image || '/brasshero.webp'}
             alt={category.title || 'Category Collection'}
-            fallbackSrc={category.fallbackImage || '/assets/brasscover.png'}
+            fallbackSrc={category.fallbackImage || '/assets/brasscover.webp'}
             priority={true}
             dark={true}
             containerClassName="w-full h-full"
@@ -287,9 +288,9 @@ export const CategoryPage = ({
         {/* Desktop Image — shown from sm breakpoint (≥ 640px) */}
         <div className="hidden sm:block absolute inset-0 h-full w-full">
           <SafeImage
-            src={category.image || '/brasshero.png'}
+            src={category.image || '/brasshero.webp'}
             alt={category.title || 'Category Collection'}
-            fallbackSrc={category.fallbackImage || '/assets/brasscover.png'}
+            fallbackSrc={category.fallbackImage || '/assets/brasscover.webp'}
             priority={true}
             dark={true}
             containerClassName="w-full h-full"
@@ -444,7 +445,7 @@ const CategoryProductCard = ({
 
   const cardImages = React.useMemo(() => {
     if (product.images && product.images.length > 0) return product.images;
-    return [product.image || category.image || '/assets/Incense cover.jpg'];
+    return [product.image || category.image || '/assets/Incense cover.webp'];
   }, [product, category]);
 
   // Preload secondary hover images in background for zero flicker
@@ -508,8 +509,8 @@ const CategoryProductCard = ({
               decoding="async"
               onLoad={() => handleImageLoad(idx)}
               onError={(e) => {
-                if (e.target.src !== '/assets/Incense cover.jpg') {
-                  e.target.src = '/assets/Incense cover.jpg';
+                if (e.target.src !== '/assets/Incense cover.webp') {
+                  e.target.src = '/assets/Incense cover.webp';
                 }
               }}
               className={`w-full h-full transform transition-all duration-500 ${

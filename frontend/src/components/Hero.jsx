@@ -21,44 +21,44 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
       id: 'hero-launch',
       mobileVideo: '/Logo_animation_for_luxury_brand_202609091407.mp4',
       desktopVideo: '/Logo_animation_on_ivory_paper_202609091440.mp4',
-      mobileImage: '/mobilevideo.png',
-      desktopImage: '/desktopvideo.jpeg',
-      fallback: '/desktopvideo.jpeg',
+      mobileImage: '/mobilevideo.webp',
+      desktopImage: '/desktopvideo.webp',
+      fallback: '/desktopvideo.webp',
       mobilePosition: 'center top',
       desktopPosition: 'center center',
       duration: 12000, // Longer for video playback
     },
     {
       id: 'hero-pooja',
-      mobileImage: '/assets/Poojamobile.png',
-      desktopImage: '/assets/Pooja.png',
-      fallback: '/assets/brasscover.png',
+      mobileImage: '/assets/Poojamobile.webp',
+      desktopImage: '/assets/Pooja.webp',
+      fallback: '/assets/brasscover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-candel',
-      mobileImage: '/assets/Candelmobile.png',
-      desktopImage: '/assets/Candel.png',
-      fallback: '/assets/brasscover.png',
+      mobileImage: '/assets/Candelmobile.webp',
+      desktopImage: '/assets/Candel.webp',
+      fallback: '/assets/brasscover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-calm',
-      mobileImage: '/assets/Calmmobile.png',
-      desktopImage: '/assets/Calm.png',
-      fallback: '/assets/brasscover.png',
+      mobileImage: '/assets/Calmmobile.webp',
+      desktopImage: '/assets/Calm.webp',
+      fallback: '/assets/brasscover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-4',
-      mobileImage: '/assets/HERO4MOBILE.png',
-      desktopImage: '/assets/HERO4.png',
+      mobileImage: '/assets/HERO4MOBILE.webp',
+      desktopImage: '/assets/HERO4.webp',
       fallback: '/assets/Hero4.jpg',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
@@ -66,44 +66,44 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
     },
     {
       id: 'hero-1',
-      mobileImage: '/assets/HERO1MOBILEVIEW.png',
-      desktopImage: '/assets/HERO1.png',
-      fallback: '/assets/brasscover.png',
+      mobileImage: '/assets/HERO1MOBILEVIEW.webp',
+      desktopImage: '/assets/HERO1.webp',
+      fallback: '/assets/brasscover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-2',
-      mobileImage: '/assets/HERO2MBOILE.png',
-      desktopImage: '/assets/HERO2.png',
-      fallback: '/assets/brasscover.png',
+      mobileImage: '/assets/HERO2MBOILE.webp',
+      desktopImage: '/assets/HERO2.webp',
+      fallback: '/assets/brasscover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-3',
-      mobileImage: '/assets/HERO3MOBILE.png',
-      desktopImage: '/assets/HERO3.png',
-      fallback: '/assets/HERO2.png',
+      mobileImage: '/assets/HERO3MOBILE.webp',
+      desktopImage: '/assets/HERO3.webp',
+      fallback: '/assets/HERO2.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-copper',
-      mobileImage: '/coppermobileview.png',
-      desktopImage: '/copperhero.png',
-      fallback: '/assets/Copper cover.png',
+      mobileImage: '/coppermobileview.webp',
+      desktopImage: '/copperhero.webp',
+      fallback: '/assets/Copper cover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       duration: 4500,
     },
     {
       id: 'hero-mandir',
-      mobileImage: '/mandirphone view.png',
-      desktopImage: '/mandiressentials.png',
+      mobileImage: '/mandirphone view.webp',
+      desktopImage: '/mandiressentials.webp',
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       mobilePosition: 'center 45%',
       desktopPosition: 'center 45%',
@@ -111,15 +111,27 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
     },
   ];
 
-  // Preload images silently in background
+  // REMOVED: Aggressive upfront preload of all 20 hero images on mount.
+  // Previously this created ~20 new Image() instances immediately, saturating the
+  // browser request queue and delaying LCP. Instead, prefetch only the NEXT slide
+  // image ~1 second before the transition fires.
   useEffect(() => {
-    heroSlides.forEach((img) => {
-      const desktop = new Image();
-      desktop.src = img.desktopImage;
-      const mobile = new Image();
-      mobile.src = img.mobileImage;
-    });
-  }, []);
+    const nextIdx = (activeSlide + 1) % heroSlides.length;
+    const nextSlide = heroSlides[nextIdx];
+    const currentDuration = heroSlides[activeSlide]?.duration || 4500;
+
+    // Preload next slide's image 1 second before the transition
+    const preloadDelay = Math.max(currentDuration - 1000, 0);
+    const timer = setTimeout(() => {
+      const imgSrc = isMobile ? nextSlide.mobileImage : nextSlide.desktopImage;
+      if (imgSrc && !nextSlide.mobileVideo && !nextSlide.desktopVideo) {
+        const img = new window.Image();
+        img.src = imgSrc;
+      }
+    }, preloadDelay);
+
+    return () => clearTimeout(timer);
+  }, [activeSlide, isMobile, heroSlides.length]);
 
   // Play/pause videos when the launch slide becomes active
   useEffect(() => {
@@ -233,7 +245,7 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
                 muted
                 playsInline
                 autoPlay
-                preload="auto"
+                preload="metadata"
                 className="
                   absolute inset-0
                   h-full w-full
@@ -253,7 +265,7 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
                 muted
                 playsInline
                 autoPlay
-                preload="auto"
+                preload="metadata"
                 className="
                   absolute inset-0
                   h-full w-full
@@ -275,8 +287,10 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
                   src={slide.desktopImage}
                   alt="Shraviko Collection"
                   loading={idx === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
+                  decoding={idx === 0 ? 'sync' : 'async'}
                   fetchpriority={idx === 0 ? 'high' : 'low'}
+                  width="1920"
+                  height="1080"
                   onError={(e) => {
                     if (e.currentTarget.src !== slide.fallback) {
                       e.currentTarget.src = slide.fallback;

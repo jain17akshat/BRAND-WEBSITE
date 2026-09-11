@@ -22,7 +22,7 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
 
   const cardImages = React.useMemo(() => {
     if (product.images && product.images.length > 0) return product.images;
-    return [product.image || '/assets/Incense cover.jpg'];
+    return [product.image || '/assets/Incense cover.webp'];
   }, [product]);
 
   React.useEffect(() => {
@@ -63,7 +63,7 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
               loading="lazy"
               decoding="async"
               onLoad={() => setLoadedMap(prev => ({ ...prev, [idx]: true }))}
-              onError={e => { e.target.src = '/assets/Incense cover.jpg'; }}
+              onError={e => { e.target.src = '/assets/Incense cover.webp'; }}
               className={`w-full h-full object-contain p-3 transition-all duration-500 ${
                 idx === 0 ? 'relative' : 'absolute inset-0'
               } ${
