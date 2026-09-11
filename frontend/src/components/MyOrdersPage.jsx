@@ -765,14 +765,8 @@ export function MyOrdersPage({ onBackToHome }) {
                   ))}
                 </div>
               </div>
-            )}v>
             )}
-          </div>
-        )}
 
-        {/* ── 2. RETURNS & REFUND PORTAL ── */}
-        {activeTab === 'returns' && (
-          <div className="space-y-8">
             <div className="bg-white rounded-2xl shadow-sm border border-[#E8DFC7] overflow-hidden">
               <div className="px-6 py-5 border-b border-[#F0E8D8] bg-[#FDFAF5]">
                 <div className="flex items-center gap-3">
