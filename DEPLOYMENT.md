@@ -132,3 +132,64 @@ Before opening the site to live traffic, complete this verification checklist st
 - [ ] **7. Shiprocket Fulfillment Creation & Tracking**
   - Confirm shipment order creation log in backend.
   - Query order status via frontend Track Order page (`/api/track?orderId=SHR######&phone=XXXXXXXXXX`) and confirm tracking data is returned.
+
+---
+
+## 6. Hostinger Combined Deployment (Frontend + Backend Together)
+
+Follow these step-by-step instructions to deploy both the **Frontend** and **Backend** together on **Hostinger**:
+
+### Step 1: Prepare Production Build & Code
+1. In your local terminal, ensure the frontend build is generated:
+   ```bash
+   npm run build
+   ```
+   *This compiles the Vite frontend into `frontend/dist`.*
+2. Our `backend/index.js` automatically serves the static assets in `frontend/dist` and handles SPA route fallbacks when deployed!
+
+---
+
+### Step 2: Set Up Hostinger MySQL Database (hPanel)
+1. Log in to **Hostinger hPanel** → Go to **Databases** → **MySQL Databases**.
+2. Create a new database (e.g. `u123456789_shraviko`) and a database user with a secure password.
+3. Save the Database Host (usually `localhost`), Database Name, Username, and Password.
+4. *Note: The backend auto-initializes all required database tables (`orders`, `returns`, `enquiries`, `reviews`) when it starts up!*
+
+---
+
+### Step 3: Deploy on Hostinger Node.js Web App (hPanel)
+1. Go to **Hostinger hPanel** → **Website** → **Node.js**.
+2. Select your Node.js version (Recommended: **Node.js 18.x or 20.x**).
+3. Set **Application Root**: `/public_html` (or project root directory).
+4. Set **Application Startup File**: `backend/index.js`.
+5. Set Environment Variables in Hostinger Node.js panel or upload `backend/.env`:
+   ```env
+   NODE_ENV=production
+   PORT=4000
+   FRONTEND_URL=https://yourdomain.com
+   DB_HOST=localhost
+   DB_USER=u123456789_user
+   DB_PASS=YourSecurePassword
+   DB_NAME=u123456789_shraviko
+   RAZORPAY_KEY_ID=rzp_live_...
+   RAZORPAY_KEY_SECRET=...
+   RAZORPAY_WEBHOOK_SECRET=...
+   SHIPROCKET_EMAIL=...
+   SHIPROCKET_PASSWORD=...
+   SHIPROCKET_CHANNEL_ID=...
+   EMAIL_USER=info@shraviko.com
+   EMAIL_PASS=...
+   ADMIN_EMAIL=orders@shraviko.com
+   ```
+6. Click **Run NPM Install** and **Restart Application**.
+
+---
+
+### Step 4: Webhook URLs for Live Services
+Once live on your domain (e.g. `https://yourdomain.com`):
+
+- **Razorpay Webhook URL**:
+  `https://yourdomain.com/api/payments/webhook`
+- **Shiprocket Webhook URL**:
+  `https://yourdomain.com/api/fulfillment-updates`
+

@@ -97,6 +97,21 @@ app.use('/api/reviews', rateLimiter.reviews, reviewsRouter);
 app.use('/api/fulfillment-updates', rateLimiter.webhook, shiprocketWebhookRouter);
 app.use('/fulfillment-updates', rateLimiter.webhook, shiprocketWebhookRouter);
 
+// ── Serve Static Frontend (Combined Deployment on Hostinger) ──
+const path = require('path');
+const fs = require('fs');
+const frontendDistPath = path.join(__dirname, '../frontend/dist');
+
+if (fs.existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/fulfillment-updates')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
+
 // ── 404 handler ───────────────────────────────────────────
 app.use(notFoundHandler);
 
