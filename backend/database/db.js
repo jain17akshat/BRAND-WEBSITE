@@ -78,6 +78,7 @@ async function initDatabase() {
       `ALTER TABLE orders ADD COLUMN IF NOT EXISTS shiprocket_order_id VARCHAR(100)`,
       `ALTER TABLE orders ADD COLUMN IF NOT EXISTS shipment_id VARCHAR(100)`,
       `ALTER TABLE orders ADD COLUMN IF NOT EXISTS shiprocket_sync_status VARCHAR(50) DEFAULT 'PENDING'`,
+      `ALTER TABLE orders ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'PROCESSING'`,
     ];
     for (const sql of alterColumns) {
       try {
@@ -87,6 +88,15 @@ async function initDatabase() {
           console.warn('⚠️ Column migration notice:', colErr.message);
         }
       }
+    }
+
+    // Backfill historical lifecycle status for existing database records safely
+    try {
+      await conn.query(`UPDATE orders SET status = 'CANCELLED' WHERE (status IS NULL OR status = '' OR status = 'PROCESSING') AND payment_status = 'CANCELLED'`);
+      await conn.query(`UPDATE orders SET status = 'RETURNED' WHERE (status IS NULL OR status = '' OR status = 'PROCESSING') AND payment_status = 'RETURNED'`);
+      await conn.query(`UPDATE orders SET status = 'RETURN_INITIATED' WHERE (status IS NULL OR status = '' OR status = 'PROCESSING') AND payment_status = 'RETURN_REQUESTED'`);
+    } catch (backfillErr) {
+      console.warn('⚠️ Historical status backfill notice:', backfillErr.message);
     }
 
     // 2. Create returns table
@@ -194,10 +204,11 @@ async function saveOrder(orderData) {
   try {
     const [result] = await p.query(
       `INSERT INTO orders 
-       (order_id, customer_name, customer_email, customer_phone, total_amount, payment_method, payment_status, shipping_address, items_json, shiprocket_order_id, shipment_id, shiprocket_sync_status)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       (order_id, customer_name, customer_email, customer_phone, total_amount, payment_method, payment_status, status, shipping_address, items_json, shiprocket_order_id, shipment_id, shiprocket_sync_status)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
        ON DUPLICATE KEY UPDATE 
          payment_status = VALUES(payment_status),
+         status = COALESCE(VALUES(status), status),
          shiprocket_order_id = COALESCE(VALUES(shiprocket_order_id), shiprocket_order_id),
          shipment_id = COALESCE(VALUES(shipment_id), shipment_id),
          shiprocket_sync_status = COALESCE(VALUES(shiprocket_sync_status), shiprocket_sync_status)`,
@@ -209,6 +220,7 @@ async function saveOrder(orderData) {
         orderData.total_amount || 0,
         orderData.payment_method || 'Prepaid',
         orderData.payment_status || 'PAID',
+        orderData.status || 'PROCESSING',
         orderData.shipping_address || '',
         JSON.stringify(orderData.items || []),
         orderData.shiprocket_order_id || null,
@@ -522,12 +534,53 @@ async function getSubscribers() {
   return inMemorySubscribers;
 }
 
+/**
+ * getReturnRequestsByPhone — fetches return records from DB for a customer phone number
+ */
+async function getReturnRequestsByPhone(phone) {
+  const cleanPhone = phone ? String(phone).replace(/\D/g, '').slice(-10) : '';
+  if (!cleanPhone) return [];
+
+  const p = getPool();
+  if (p) {
+    try {
+      const [rows] = await p.query(
+        `SELECT * FROM returns WHERE customer_phone LIKE ? ORDER BY id DESC LIMIT 50`,
+        [`%${cleanPhone}`]
+      );
+      if (rows && rows.length > 0) {
+        return rows.map(r => {
+          let details = {};
+          try { details = typeof r.bank_details_json === 'string' ? JSON.parse(r.bank_details_json) : (r.bank_details_json || {}); } catch {}
+          return {
+            id: r.return_id,
+            return_id: r.return_id,
+            order_id: r.order_id,
+            customer_name: r.customer_name,
+            customer_email: r.customer_email,
+            customer_phone: r.customer_phone,
+            reason: r.reason,
+            bank_details: details,
+            shiprocket_return_id: r.shiprocket_return_id,
+            status: r.status || 'APPROVED',
+            created_at: r.created_at,
+          };
+        });
+      }
+    } catch (err) {
+      console.error('⚠️ Could not fetch return requests from DB:', err.message);
+    }
+  }
+  return [];
+}
+
 module.exports = {
   getPool,
   initDatabase,
   saveOrder,
   updateOrderShiprocketInfo,
   saveReturnRequest,
+  getReturnRequestsByPhone,
   saveReview,
   getReviewsByProduct,
   saveCorporateEnquiry,

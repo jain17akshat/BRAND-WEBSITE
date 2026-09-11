@@ -1,0 +1,101 @@
+[
+  {
+    "id": "SHR278696",
+    "order_id": "SHR278696",
+    "customer_name": "Valued Devotee",
+    "customer_email": "shraviko@gmail.com",
+    "customer_phone": "7742320607",
+    "total_amount": 399,
+    "payment_method": "COD",
+    "payment_status": "RETURN_REQUESTED",
+    "shipping_address": "14-B, Civil Lines, Jaipur, Rajasthan – 302006",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "pincode": "302006",
+    "items": [
+      {
+        "id": "vastu-brass-pyramid-multitier",
+        "name": "Vastu Brass Pyramid (Multi-Tier)",
+        "qty": 1,
+        "price": 399
+      }
+    ],
+    "shiprocket_order_id": "1001",
+    "shipment_id": "2001",
+    "shiprocket_sync_status": "SUCCESS",
+    "created_at": "2026-09-10T17:30:00.000Z",
+    "isReturnRequested": true,
+    "status": "RETURN_INITIATED",
+    "shiprocket_return_id": "1578005850",
+    "return_data": {
+      "phone": "7742320607",
+      "shiprocket_return_id": "1578005850"
+    }
+  },
+  {
+    "id": "SHR278697",
+    "order_id": "SHR278697",
+    "customer_name": "Valued Devotee",
+    "customer_email": "jain.7akshat@gmail.com",
+    "customer_phone": "7742320607",
+    "total_amount": 349,
+    "payment_method": "COD",
+    "payment_status": "CANCELLED",
+    "shipping_address": "14-B, Civil Lines, Jaipur, Rajasthan – 302006",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "pincode": "302006",
+    "items": [
+      {
+        "id": "japa-counter-digital",
+        "name": "Digital Japa Counter L 10 cm B 10 cm H 10 cm 25 g",
+        "qty": 1,
+        "price": 349
+      }
+    ],
+    "shiprocket_order_id": "1002",
+    "shipment_id": "2002",
+    "shiprocket_sync_status": "SUCCESS",
+    "created_at": "2026-09-10T17:55:00.000Z",
+    "isCancelled": true,
+    "status": "CANCELLED",
+    "cancel_data": {
+      "phone": "7742320607",
+      "reason": "Ordered by mistake",
+      "email": "jain.7akshat@gmail.com"
+    }
+  },
+  {
+    "id": "SHR278698",
+    "order_id": "SHR278698",
+    "customer_name": "Valued Devotee",
+    "customer_email": "shraviko@gmail.com",
+    "customer_phone": "7742320607",
+    "total_amount": 649,
+    "payment_method": "COD",
+    "payment_status": "RETURN_REQUESTED",
+    "shipping_address": "14-B, Civil Lines, Jaipur, Rajasthan – 302006",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "pincode": "302006",
+    "items": [
+      {
+        "id": "brass-diya-handcrafted",
+        "name": "Brass Diya – Moradabad Handcrafted",
+        "qty": 1,
+        "price": 649
+      }
+    ],
+    "shiprocket_order_id": "1003",
+    "shipment_id": "2003",
+    "shiprocket_sync_status": "SUCCESS",
+    "created_at": "2026-09-10T18:04:00.000Z",
+    "isReturnRequested": true,
+    "status": "RETURN_INITIATED",
+    "shiprocket_return_id": "1577991652",
+    "return_data": {
+      "phone": "7742320607",
+      "shiprocket_return_id": "1577991652"
+    }
+  }
+]

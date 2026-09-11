@@ -142,7 +142,7 @@ router.post('/request', validateBody({
       }
     }
 
-    await markOrderReturned(cleanOrderId, { ...details, phone, shiprocket_return_id: srReturnId });
+    await markOrderReturned(cleanOrderId, { ...details, phone, shiprocket_return_id: srReturnId, status: 'RETURN_INITIATED' });
 
     // Log the return request
     console.log('📦 Return request approved & email triggered:', { returnId, cleanOrderId, phone, customerEmail, reason, srReturnId });
@@ -193,6 +193,21 @@ router.post('/request', validateBody({
       `Return request failed: ${err.response?.data?.message || err.message}`,
       502, 'SHIPROCKET_ERROR'
     ));
+  }
+});
+
+// ── GET /api/returns/user ─────────────────────────────────
+router.get('/user', async (req, res, next) => {
+  try {
+    const { phone } = req.query;
+    if (!phone) {
+      return res.json({ success: true, returns: [] });
+    }
+    const { getReturnRequestsByPhone } = require('../database/db');
+    const returns = await getReturnRequestsByPhone(phone);
+    res.json({ success: true, returns });
+  } catch (err) {
+    next(err);
   }
 });
 

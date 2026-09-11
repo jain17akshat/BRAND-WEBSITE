@@ -43,16 +43,16 @@ router.post('*', async (req, res) => {
 
     const status = String(payload.status || payload.current_status || '').toUpperCase();
     const statusCode = payload.status_code;
+    const orderId = payload.channel_order_id || payload.order_id || 'UNKNOWN';
+    const email   = payload.customer_email || payload.billing_email || payload.email;
+    const name    = payload.customer_name || payload.billing_customer_name || 'Valued Customer';
+    const reason  = payload.reason || payload.cancellation_reason || 'Shiprocket status update';
 
-    // Check if status represents a Cancellation (CANCELED, CANCELLED, status_code === 5)
+    const { markOrderCancelled, markOrderReturned } = require('../services/orderStore');
+
+    // 1. Forward shipment cancellation (CANCELED, CANCELLED, status_code === 5)
     if (status.includes('CANCEL') || statusCode === 5) {
-      const orderId = payload.channel_order_id || payload.order_id || 'UNKNOWN';
-      const email   = payload.customer_email || payload.billing_email || payload.email;
-      const name    = payload.customer_name || payload.billing_customer_name || 'Valued Customer';
-      const reason  = payload.reason || payload.cancellation_reason || 'Order cancelled via Shiprocket Dashboard';
-
       if (orderId && orderId !== 'UNKNOWN') {
-        const { markOrderCancelled } = require('../services/orderStore');
         await markOrderCancelled(orderId, { reason, email });
         console.log(`✅ Order status updated to CANCELLED in OrderStore for Order #${orderId}`);
       }
@@ -63,10 +63,21 @@ router.post('*', async (req, res) => {
           customerName: name,
           orderId,
           reason,
-        });
-        console.log(`✅ Order cancellation email sent via Shiprocket Webhook for Order #${orderId} to ${email}`);
-      } else {
-        console.log(`⚠️ Cancellation webhook received for Order #${orderId}, but no customer email was provided in payload.`);
+        }).catch(() => {});
+      }
+    } 
+    // 2. Physical return completed / received (RETURN DELIVERED, RETURN RECEIVED, status_code === 18)
+    else if (status.includes('RETURN DELIVERED') || status.includes('RETURN RECEIVED') || status.includes('RETURN COMPLETED') || statusCode === 18) {
+      if (orderId && orderId !== 'UNKNOWN') {
+        await markOrderReturned(orderId, { status: 'RETURNED', email });
+        console.log(`✅ Order status updated to RETURNED in OrderStore for Order #${orderId}`);
+      }
+    }
+    // 3. Reverse shipment created / Return Initiated (RETURN INITIATED, RETURN APPROVED, status_code === 17)
+    else if (status.includes('RETURN') || statusCode === 17) {
+      if (orderId && orderId !== 'UNKNOWN') {
+        await markOrderReturned(orderId, { status: 'RETURN_INITIATED', email });
+        console.log(`✅ Order status updated to RETURN_INITIATED in OrderStore for Order #${orderId}`);
       }
     }
 

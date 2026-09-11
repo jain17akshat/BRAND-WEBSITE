@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Package, Phone, Hash, Search, CheckCircle2, Truck, Clock,
   XCircle, RotateCcw, Shield, AlertTriangle, ChevronDown, ChevronUp,
@@ -58,10 +58,16 @@ const MOCK_ORDERS = {
 };
 
 const STATUS_CONFIG = {
-  delivered:          { label: 'Delivered', color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-200', Icon: CheckCircle2 },
-  shipped:            { label: 'Shipped',   color: 'text-blue-600',   bg: 'bg-blue-50',    border: 'border-blue-200',    Icon: Truck },
-  processing:         { label: 'Processing',color: 'text-amber-600',  bg: 'bg-amber-50',   border: 'border-amber-200',   Icon: Clock },
-  cancelled:          { label: 'Cancelled', color: 'text-red-600',    bg: 'bg-red-50',     border: 'border-red-200',     Icon: XCircle },
+  DELIVERED:          { label: 'Delivered',        color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-200', Icon: CheckCircle2 },
+  IN_TRANSIT:         { label: 'In Transit',        color: 'text-blue-600',   bg: 'bg-blue-50',    border: 'border-blue-200',    Icon: Truck },
+  PROCESSING:         { label: 'Processing',       color: 'text-amber-600',  bg: 'bg-amber-50',   border: 'border-amber-200',   Icon: Clock },
+  CANCELLED:          { label: 'Cancelled',        color: 'text-red-600',    bg: 'bg-red-50',     border: 'border-red-200',     Icon: XCircle },
+  RETURN_INITIATED:   { label: 'Return Requested', color: 'text-[#8C6D27]', bg: 'bg-[#FAF3E8]', border: 'border-[#EAD7AF]', Icon: RotateCcw },
+  RETURNED:           { label: 'Returned',         color: 'text-[#61513C]', bg: 'bg-[#F0EBE1]', border: 'border-[#D9CFBE]', Icon: CheckCircle2 },
+  delivered:          { label: 'Delivered',        color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-200', Icon: CheckCircle2 },
+  shipped:            { label: 'Shipped',          color: 'text-blue-600',   bg: 'bg-blue-50',    border: 'border-blue-200',    Icon: Truck },
+  processing:         { label: 'Processing',       color: 'text-amber-600',  bg: 'bg-amber-50',   border: 'border-amber-200',   Icon: Clock },
+  cancelled:          { label: 'Cancelled',        color: 'text-red-600',    bg: 'bg-red-50',     border: 'border-red-200',     Icon: XCircle },
   'return requested': { label: 'Return Requested', color: 'text-[#8C6D27]', bg: 'bg-[#FAF3E8]', border: 'border-[#EAD7AF]', Icon: RotateCcw },
 };
 
@@ -86,13 +92,14 @@ function cleanItemName(rawName) {
   return name.replace(/\s+/g, ' ').trim();
 }
 
-function StatusBadge({ status }) {
-  const normKey = String(status || '').toLowerCase().trim();
-  const cfg = STATUS_CONFIG[normKey] || (normKey.includes('return') ? STATUS_CONFIG['return requested'] : STATUS_CONFIG.processing);
+function StatusBadge({ status, displayStatus }) {
+  const normKey = String(status || '').toUpperCase().trim();
+  const cfg = STATUS_CONFIG[normKey] || STATUS_CONFIG[status] || STATUS_CONFIG.PROCESSING;
+  const labelText = displayStatus || cfg.label;
   return (
     <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${cfg.bg} ${cfg.color} ${cfg.border}`}>
       <cfg.Icon className="w-3.5 h-3.5" />
-      {cfg.label}
+      {labelText}
     </span>
   );
 }
@@ -148,6 +155,7 @@ export function TrackOrderPage({ onBackToHome }) {
   const [orderId, setOrderId] = useState('');
   const [result, setResult] = useState(null);
   const [foundOrder, setFoundOrder] = useState(null);
+  const [foundOrders, setFoundOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('track');
   const [refundStep, setRefundStep] = useState(1);
@@ -163,6 +171,11 @@ export function TrackOrderPage({ onBackToHome }) {
   const [cancelEmail, setCancelEmail] = useState('');
   const [cancelling, setCancelling] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
+  }, [activeTab]);
+
   const handleOpenCancelModal = () => {
     setCancelEmail(foundOrder?.customer_email || foundOrder?.email || '');
     setShowCancelModal(true);
@@ -173,16 +186,17 @@ export function TrackOrderPage({ onBackToHome }) {
     if (!foundOrder) return;
     setCancelling(true);
     const targetEmail = cancelEmail || foundOrder.customer_email || foundOrder.email || 'shraviko@gmail.com';
+    const targetOrderId = foundOrder.id || foundOrder.orderId;
     try {
       await apiCancelOrder({
-        order_id:      foundOrder.id || foundOrder.orderId,
+        order_id:      targetOrderId,
         phone:         phone || foundOrder.customer_phone || '7742320607',
         email:         targetEmail,
         customer_name: foundOrder.customer_name || 'Valued Customer',
         reason:        cancelReason,
       });
 
-      setFoundOrder({
+      const updated = {
         ...foundOrder,
         status: 'Cancelled',
         isCancelled: true,
@@ -193,15 +207,19 @@ export function TrackOrderPage({ onBackToHome }) {
           { label: 'Cancellation Email Sent', date: 'Just Now', done: true },
           { label: 'Refund Processing (if Prepaid)', date: '5–7 Business Days', done: false },
         ],
-      });
+      };
+      setFoundOrder(updated);
+      setFoundOrders(prev => prev.map(o => (o.id === targetOrderId || o.orderId === targetOrderId ? updated : o)));
       setShowCancelModal(false);
     } catch {
-      setFoundOrder({
+      const updated = {
         ...foundOrder,
         status: 'Cancelled',
         isCancelled: true,
         customer_email: targetEmail,
-      });
+      };
+      setFoundOrder(updated);
+      setFoundOrders(prev => prev.map(o => (o.id === targetOrderId || o.orderId === targetOrderId ? updated : o)));
       setShowCancelModal(false);
     } finally {
       setCancelling(false);
@@ -225,7 +243,9 @@ export function TrackOrderPage({ onBackToHome }) {
         return matchPhone && matchOrder;
       });
       if (mockKey) {
-        setFoundOrder(MOCK_ORDERS[mockKey]);
+        const mockItem = MOCK_ORDERS[mockKey];
+        setFoundOrders([mockItem]);
+        setFoundOrder(mockItem);
         setResult('found');
         setLoading(false);
         return;
@@ -234,8 +254,10 @@ export function TrackOrderPage({ onBackToHome }) {
 
     try {
       const data = await apiTrackOrder(phone.trim(), orderId.trim());
-      if (data.success && data.order) {
-        setFoundOrder(data.order);
+      if (data.success && (data.orders?.length || data.order)) {
+        const orderList = Array.isArray(data.orders) && data.orders.length > 0 ? data.orders : [data.order];
+        setFoundOrders(orderList);
+        setFoundOrder(orderList[0]);
         setResult('found');
       } else {
         setResult('not-found');
@@ -400,6 +422,37 @@ export function TrackOrderPage({ onBackToHome }) {
 
             {result === 'found' && foundOrder && (
               <div className="space-y-5">
+                {foundOrders && foundOrders.length > 1 && (
+                  <div className="bg-[#FAF7F2] border border-[#E5D5B5] rounded-2xl p-4 sm:p-5 shadow-sm">
+                    <div className="flex items-center justify-between gap-3 mb-3">
+                      <p className="text-xs font-cinzel font-bold text-[#8C6D27] uppercase tracking-wider">
+                        📦 Found {foundOrders.length} Orders for {phone || foundOrder.customer_phone || 'your phone'}
+                      </p>
+                      <span className="text-[10px] text-[#7D6E63] font-medium">Select an order to view details:</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {foundOrders.map((ord, idx) => {
+                        const ordId = ord.id || ord.orderId;
+                        const currId = foundOrder.id || foundOrder.orderId;
+                        const isSelected = currId === ordId;
+                        return (
+                          <button
+                            key={ordId || idx}
+                            type="button"
+                            onClick={() => setFoundOrder(ord)}
+                            className={`px-4 py-2.5 rounded-xl text-xs font-bold font-cinzel tracking-wider border transition-all ${
+                              isSelected
+                                ? 'bg-[#8C6D27] text-white border-[#8C6D27] shadow-sm scale-[1.02]'
+                                : 'bg-white text-[#2C2623] border-[#D9C7A5] hover:border-[#8C6D27] hover:bg-[#FAF3E8]'
+                            }`}
+                          >
+                            Order #{ordId} · ₹{(ord.total || ord.subtotal || 0).toLocaleString()}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
                 <div className="bg-white rounded-2xl border border-[#E8DFC7] shadow-sm overflow-hidden">
                   <div className="px-6 py-5 bg-[#FDFAF5] border-b border-[#F0E8D8] flex flex-wrap items-center justify-between gap-3">
                     <div>
@@ -426,9 +479,9 @@ export function TrackOrderPage({ onBackToHome }) {
                         ))}
                       </div>
                       <div className="mt-4 pt-3 border-t border-[#F0E8D8] space-y-1.5 text-xs">
-                        <div className="flex justify-between text-gray-500"><span>Subtotal</span><span>₹{foundOrder.subtotal.toLocaleString()}</span></div>
+                        <div className="flex justify-between text-gray-500"><span>Subtotal</span><span>₹{(foundOrder.subtotal || foundOrder.total || foundOrder.items.reduce((s, i) => s + ((i.price || 0) * (i.qty || 1)), 0) || 349).toLocaleString()}</span></div>
                         <div className="flex justify-between text-gray-500"><span>Shipping</span><span className="text-emerald-600">{foundOrder.shipping === 0 ? 'Free' : `₹${foundOrder.shipping}`}</span></div>
-                        <div className="flex justify-between font-bold text-[#2C2623] text-sm"><span>Total</span><span>₹{foundOrder.total.toLocaleString()}</span></div>
+                        <div className="flex justify-between font-bold text-[#2C2623] text-sm"><span>Total</span><span>₹{(foundOrder.total || foundOrder.subtotal || foundOrder.items.reduce((s, i) => s + ((i.price || 0) * (i.qty || 1)), 0) || 349).toLocaleString()}</span></div>
                       </div>
                     </div>
                     <div>

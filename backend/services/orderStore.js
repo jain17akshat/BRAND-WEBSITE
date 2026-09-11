@@ -4,10 +4,46 @@
  * In-memory order registry & MySQL DB bridge for instant tracking lookup.
  */
 
+const fs = require('fs');
+const path = require('path');
 const { saveOrder: saveToDb, getPool } = require('../database/db');
+
+const STORE_FILE = path.join(__dirname, '../data/orders_store.json');
 
 // In-memory fallback map for active runtime orders
 const recentOrders = new Map();
+
+function loadPersistedOrders() {
+  try {
+    if (fs.existsSync(STORE_FILE)) {
+      const data = fs.readFileSync(STORE_FILE, 'utf8');
+      const list = JSON.parse(data);
+      if (Array.isArray(list)) {
+        list.forEach(ord => {
+          if (ord && (ord.order_id || ord.id)) {
+            const cleanId = String(ord.order_id || ord.id).toUpperCase();
+            recentOrders.set(cleanId, ord);
+          }
+        });
+        console.log(`📦 Loaded ${recentOrders.size} orders into OrderStore memory from orders_store.json`);
+      }
+    }
+  } catch (err) {
+    console.warn('⚠️ Could not load orders_store.json:', err.message);
+  }
+}
+
+function persistOrders() {
+  try {
+    const list = Array.from(recentOrders.values());
+    fs.writeFileSync(STORE_FILE, JSON.stringify(list, null, 2), 'utf8');
+  } catch (err) {
+    console.warn('⚠️ Could not write orders_store.json:', err.message);
+  }
+}
+
+// Auto-load on boot
+loadPersistedOrders();
 
 async function addOrder(orderData) {
   if (!orderData || !orderData.order_id) return;
@@ -34,6 +70,7 @@ async function addOrder(orderData) {
   };
 
   recentOrders.set(cleanId, record);
+  persistOrders();
 
   // Await save to MySQL DB if pool active
   const pool = getPool();
@@ -48,38 +85,33 @@ async function addOrder(orderData) {
   }
 }
 
-async function findOrder(orderId, phone) {
+async function findOrders(orderId, phone) {
   const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
   const cleanPhone = phone ? String(phone).replace(/\D/g, '').slice(-10) : '';
 
-  if (!cleanId && !cleanPhone) return null;
+  if (!cleanId && !cleanPhone) return [];
+
+  const matchedMap = new Map();
 
   // 1. Check in-memory recent orders
-  if (cleanId) {
-    if (recentOrders.has(cleanId)) {
-      const cached = recentOrders.get(cleanId);
-      const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
-      if (!cleanPhone || !cachedPhone || cachedPhone === cleanPhone) {
-        return formatCachedOrder(cached);
-      }
-    }
+  for (const [k, cached] of recentOrders.entries()) {
+    const cachedId = String(cached.order_id || cached.id || k).toUpperCase();
+    const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
 
-    for (const [k, cached] of recentOrders.entries()) {
-      if (k.toUpperCase() === cleanId) {
-        const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
-        if (!cleanPhone || !cachedPhone || cachedPhone === cleanPhone) {
-          return formatCachedOrder(cached);
-        }
-      }
-    }
-  }
+    const matchesId = cleanId && (cachedId === cleanId);
+    const matchesPhone = cleanPhone && (cachedPhone === cleanPhone);
 
-  // Search by phone only if cleanId is empty or not matched
-  if (cleanPhone) {
-    for (const [k, cached] of recentOrders.entries()) {
-      const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
-      if (cachedPhone === cleanPhone) {
-        return formatCachedOrder(cached);
+    if (cleanId && cleanPhone) {
+      if (matchesId && matchesPhone) {
+        matchedMap.set(cachedId, formatCachedOrder(cached));
+      }
+    } else if (cleanId) {
+      if (matchesId) {
+        matchedMap.set(cachedId, formatCachedOrder(cached));
+      }
+    } else if (cleanPhone) {
+      if (matchesPhone) {
+        matchedMap.set(cachedId, formatCachedOrder(cached));
       }
     }
   }
@@ -90,49 +122,69 @@ async function findOrder(orderId, phone) {
     try {
       let query = '';
       let params = [];
-      if (cleanId) {
-        query = `SELECT * FROM orders WHERE UPPER(order_id) = ? LIMIT 1`;
+      if (cleanId && cleanPhone) {
+        query = `SELECT * FROM orders WHERE UPPER(order_id) = ? AND customer_phone LIKE ? ORDER BY id DESC LIMIT 50`;
+        params = [cleanId, `%${cleanPhone}`];
+      } else if (cleanId) {
+        query = `SELECT * FROM orders WHERE UPPER(order_id) = ? ORDER BY id DESC LIMIT 50`;
         params = [cleanId];
       } else if (cleanPhone) {
-        query = `SELECT * FROM orders WHERE customer_phone = ? ORDER BY id DESC LIMIT 1`;
-        params = [cleanPhone];
+        query = `SELECT * FROM orders WHERE customer_phone LIKE ? ORDER BY id DESC LIMIT 50`;
+        params = [`%${cleanPhone}`];
       }
 
       if (query) {
         const [rows] = await pool.query(query, params);
         if (rows && rows.length > 0) {
-          const row = rows[0];
-          let items = [];
-          try { items = typeof row.items_json === 'string' ? JSON.parse(row.items_json) : row.items_json; } catch {}
-          return formatCachedOrder({
-            id: row.order_id,
-            order_id: row.order_id,
-            customer_name: row.customer_name,
-            customer_email: row.customer_email,
-            customer_phone: row.customer_phone,
-            total_amount: row.total_amount,
-            payment_method: row.payment_method,
-            payment_status: row.payment_status,
-            shipping_address: row.shipping_address,
-            items,
-            shiprocket_order_id: row.shiprocket_order_id || null,
-            shipment_id: row.shipment_id || null,
-            shiprocket_sync_status: row.shiprocket_sync_status || 'PENDING',
-            created_at: row.created_at,
-          });
+          for (const row of rows) {
+            const rowId = String(row.order_id).toUpperCase();
+            if (!matchedMap.has(rowId)) {
+              let items = [];
+              try { items = typeof row.items_json === 'string' ? JSON.parse(row.items_json) : row.items_json; } catch {}
+              matchedMap.set(rowId, formatCachedOrder({
+                id: row.order_id,
+                order_id: row.order_id,
+                customer_name: row.customer_name,
+                customer_email: row.customer_email,
+                customer_phone: row.customer_phone,
+                total_amount: row.total_amount,
+                payment_method: row.payment_method,
+                payment_status: row.payment_status,
+                shipping_address: row.shipping_address,
+                items,
+                shiprocket_order_id: row.shiprocket_order_id || null,
+                shipment_id: row.shipment_id || null,
+                shiprocket_sync_status: row.shiprocket_sync_status || 'PENDING',
+                created_at: row.created_at,
+              }));
+            }
+          }
         }
       }
     } catch (err) {
-      console.error('OrderStore DB lookup error:', err.stack || err.message);
+      console.error('OrderStore DB multi-lookup error:', err.stack || err.message);
     }
   }
 
-  return null;
+  const resultList = Array.from(matchedMap.values());
+  resultList.sort((a, b) => {
+    const timeA = new Date(a.created_at || a.date || 0).getTime();
+    const timeB = new Date(b.created_at || b.date || 0).getTime();
+    return timeB - timeA;
+  });
+
+  return resultList;
+}
+
+async function findOrder(orderId, phone) {
+  const orders = await findOrders(orderId, phone);
+  return orders.length > 0 ? orders[0] : null;
 }
 
 async function markOrderReturned(orderId, returnData = {}) {
   const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
   const cleanPhone = returnData.phone ? String(returnData.phone).replace(/\D/g, '').slice(-10) : '';
+  const targetStatus = returnData.status || 'RETURN_INITIATED';
 
   if (!cleanId) return;
 
@@ -148,8 +200,8 @@ async function markOrderReturned(orderId, returnData = {}) {
 
   if (record) {
     record.isReturnRequested = true;
-    record.status = 'Return Requested';
-    record.payment_status = 'RETURN_REQUESTED';
+    record.status = targetStatus;
+    if (returnData.payment_status) record.payment_status = returnData.payment_status;
     if (cleanPhone) record.customer_phone = cleanPhone;
     if (returnData.shiprocket_return_id) record.shiprocket_return_id = returnData.shiprocket_return_id;
     record.return_data = returnData;
@@ -160,19 +212,23 @@ async function markOrderReturned(orderId, returnData = {}) {
       order_id: cleanId,
       customer_phone: cleanPhone,
       isReturnRequested: true,
-      status: 'Return Requested',
-      payment_status: 'RETURN_REQUESTED',
+      status: targetStatus,
+      payment_status: returnData.payment_status || 'RETURN_REQUESTED',
       shiprocket_return_id: returnData.shiprocket_return_id || null,
       return_data: returnData,
       created_at: new Date().toISOString(),
     });
   }
+  persistOrders();
 
   // Await MySQL DB status update for single target order by order_id
   const pool = getPool();
   if (pool) {
     try {
-      await pool.query(`UPDATE orders SET payment_status = 'RETURN_REQUESTED' WHERE UPPER(order_id) = ?`, [cleanId]);
+      await pool.query(
+        `UPDATE orders SET status = ?, payment_status = COALESCE(?, payment_status) WHERE UPPER(order_id) = ?`,
+        [targetStatus, returnData.payment_status || 'RETURN_REQUESTED', cleanId]
+      );
     } catch (err) {
       console.error('OrderStore DB update error on return:', err.message);
       const { AppError } = require('../middleware/errorHandler');
@@ -199,8 +255,8 @@ async function markOrderCancelled(orderId, cancelData = {}) {
 
   if (record) {
     record.isCancelled = true;
-    record.status = 'Cancelled';
-    record.payment_status = 'CANCELLED';
+    record.status = 'CANCELLED';
+    record.payment_status = cancelData.payment_status || 'CANCELLED';
     if (cancelData.email) record.customer_email = cancelData.email;
     if (cleanPhone) record.customer_phone = cleanPhone;
     record.cancel_data = cancelData;
@@ -212,17 +268,21 @@ async function markOrderCancelled(orderId, cancelData = {}) {
       customer_email: cancelData.email || '',
       customer_phone: cleanPhone,
       isCancelled: true,
-      status: 'Cancelled',
-      payment_status: 'CANCELLED',
+      status: 'CANCELLED',
+      payment_status: cancelData.payment_status || 'CANCELLED',
       cancel_data: cancelData,
       created_at: new Date().toISOString(),
     });
   }
+  persistOrders();
 
   const pool = getPool();
   if (pool) {
     try {
-      await pool.query(`UPDATE orders SET payment_status = 'CANCELLED' WHERE UPPER(order_id) = ?`, [cleanId]);
+      await pool.query(
+        `UPDATE orders SET status = 'CANCELLED', payment_status = COALESCE(?, payment_status) WHERE UPPER(order_id) = ?`,
+        [cancelData.payment_status || 'CANCELLED', cleanId]
+      );
     } catch (err) {
       console.error('OrderStore DB update error on cancel:', err.message);
       const { AppError } = require('../middleware/errorHandler');
@@ -255,34 +315,65 @@ function formatTimestamp(isoString) {
 }
 
 function formatCachedOrder(cached) {
+  const { getProductPrice } = require('../data/catalog');
   const formattedCreatedTime = formatTimestamp(cached.created_at);
   const createdDate = cached.created_at ? new Date(cached.created_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
-  const items = (cached.items || []).map(i => ({
-    name: cleanItemName(i.name || i.title),
-    qty: i.quantity || i.qty || 1,
-    price: i.price || 0,
-  }));
+  const items = (cached.items || []).map(i => {
+    let price = Number(i.price || 0);
+    if (!price || isNaN(price)) {
+      try { price = getProductPrice(i); } catch {}
+    }
+    return {
+      name: cleanItemName(i.name || i.title),
+      qty: Number(i.quantity || i.qty || 1),
+      price: price > 0 ? price : 349,
+    };
+  });
 
   const calculatedTotal = items.reduce((s, i) => s + ((i.price || 0) * (i.qty || 1)), 0);
-  const totalAmount = cached.total_amount && Number(cached.total_amount) > 0 ? Number(cached.total_amount) : (calculatedTotal || 399);
+  const totalAmount = (cached.total_amount && Number(cached.total_amount) > 0)
+    ? Number(cached.total_amount)
+    : ((cached.total && Number(cached.total) > 0)
+      ? Number(cached.total)
+      : (calculatedTotal > 0 ? calculatedTotal : 349));
 
-  const isCancelled = Boolean(cached.isCancelled || cached.payment_status === 'CANCELLED' || String(cached.status).toLowerCase().includes('cancel'));
-  const isReturned = Boolean(cached.isReturnRequested || cached.payment_status === 'RETURN_REQUESTED' || String(cached.status).toLowerCase().includes('return'));
   const normStatus = String(cached.status || '').toUpperCase();
-  const isShipped = normStatus.includes('SHIPPED') || normStatus.includes('TRANSIT');
-  const isDelivered = normStatus.includes('DELIVERED');
+  const normPayStatus = String(cached.payment_status || '').toUpperCase();
 
-  const statusText = isCancelled
-    ? 'Cancelled'
-    : (isReturned
-      ? 'Return Requested'
-      : (isDelivered ? 'Delivered' : (isShipped ? 'In Transit' : 'Processing')));
+  let canonicalStatus = 'PROCESSING';
+  if (normStatus === 'CANCELLED' || normPayStatus === 'CANCELLED' || cached.isCancelled) {
+    canonicalStatus = 'CANCELLED';
+  } else if (normStatus === 'RETURNED') {
+    canonicalStatus = 'RETURNED';
+  } else if (normStatus === 'RETURN_INITIATED' || normStatus === 'RETURN REQUESTED' || normPayStatus === 'RETURN_REQUESTED' || cached.isReturnRequested) {
+    canonicalStatus = 'RETURN_INITIATED';
+  } else if (normStatus.includes('DELIVERED')) {
+    canonicalStatus = 'DELIVERED';
+  } else if (normStatus.includes('SHIPPED') || normStatus.includes('TRANSIT')) {
+    canonicalStatus = 'IN_TRANSIT';
+  }
+
+  const isCancelled = canonicalStatus === 'CANCELLED';
+  const isReturned = canonicalStatus === 'RETURN_INITIATED' || canonicalStatus === 'RETURNED';
+
+  let displayStatus = 'Processing';
+  if (canonicalStatus === 'CANCELLED') displayStatus = 'Cancelled';
+  else if (canonicalStatus === 'RETURN_INITIATED') displayStatus = 'Return Requested';
+  else if (canonicalStatus === 'RETURNED') displayStatus = 'Returned';
+  else if (canonicalStatus === 'DELIVERED') displayStatus = 'Delivered';
+  else if (canonicalStatus === 'IN_TRANSIT') displayStatus = 'In Transit';
+
+  const isShipped = canonicalStatus === 'IN_TRANSIT';
+  const isDelivered = canonicalStatus === 'DELIVERED';
 
   const deliveryText = isReturned
     ? 'Reverse Pickup: 24–48 Hours'
     : (cached.estimatedDelivery && cached.estimatedDelivery !== '0000-00-00 00:00:00' ? cached.estimatedDelivery : '3–5 Business Days');
 
   let timeline = [];
+  const isCodOrder = String(cached.payment_method || '').toUpperCase().includes('COD') || String(cached.payment_status || '').toUpperCase().includes('COD');
+  const orderConfirmedLabel = isCodOrder ? 'Order Confirmed (Cash on Delivery)' : 'Order Confirmed & Payment Verified';
+
   if (isCancelled) {
     timeline = [
       { label: 'Order Placed & Payment Confirmed', date: formattedCreatedTime, done: true },
@@ -296,11 +387,11 @@ function formatCachedOrder(cached) {
       { label: 'Return Request Approved & Approval Mail Sent', date: 'Just Now', done: true },
       { label: 'Reverse Pickup Scheduled via Shiprocket', date: 'Within 24–48 Hours', done: true },
       { label: 'Quality Verification at Udaipur Atelier', date: 'In Progress', done: false },
-      { label: 'Return Inspection & Processing Completed', date: 'Upon Item Receipt', done: false },
+      { label: 'Return Inspection & Processing Completed', date: canonicalStatus === 'RETURNED' ? 'Completed' : 'Upon Item Receipt', done: canonicalStatus === 'RETURNED' },
     ];
   } else if (isDelivered) {
     timeline = [
-      { label: 'Order Confirmed & Payment Verified', date: formattedCreatedTime, done: true },
+      { label: 'Order Confirmed & Delivered', date: formattedCreatedTime, done: true },
       { label: 'Packed & Sealed at Shraviko Atelier (Udaipur)', date: 'Completed', done: true },
       { label: 'Handed to Shiprocket Logistics Hub', date: 'Completed', done: true },
       { label: 'Out for Express Delivery', date: 'Completed', done: true },
@@ -308,7 +399,7 @@ function formatCachedOrder(cached) {
     ];
   } else if (isShipped) {
     timeline = [
-      { label: 'Order Confirmed & Payment Verified', date: formattedCreatedTime, done: true },
+      { label: orderConfirmedLabel, date: formattedCreatedTime, done: true },
       { label: 'Packed & Sealed at Shraviko Atelier (Udaipur)', date: 'Completed', done: true },
       { label: 'Handed to Shiprocket Logistics Hub', date: 'In Transit', done: true },
       { label: 'Out for Express Delivery', date: 'Expected Soon', done: false },
@@ -317,7 +408,7 @@ function formatCachedOrder(cached) {
   } else {
     // Newly placed / Processing order
     timeline = [
-      { label: 'Order Confirmed & Payment Verified', date: formattedCreatedTime, done: true },
+      { label: orderConfirmedLabel, date: formattedCreatedTime, done: true },
       { label: 'Packing & Quality Check at Shraviko Atelier (Udaipur)', date: 'In Progress', done: false },
       { label: 'Handover to Shiprocket Express Logistics', date: 'Scheduled (Within 24 Hours)', done: false },
       { label: 'Out for Express Delivery', date: 'Pending Dispatch', done: false },
@@ -332,8 +423,9 @@ function formatCachedOrder(cached) {
     customer_email: cached.customer_email || '',
     customer_phone: cached.customer_phone || '',
     date: createdDate,
-    status: statusText,
-    payment_status: cached.payment_status || (isCancelled ? 'CANCELLED' : (isReturned ? 'RETURN_REQUESTED' : 'PAID')),
+    status: canonicalStatus,
+    displayStatus,
+    payment_status: String(cached.payment_method || '').toUpperCase() === 'PREPAID' ? (cached.payment_status || 'PAID') : (isCancelled ? 'CANCELLED' : (isReturned ? 'RETURN_REQUESTED' : 'COD_PENDING')),
     isCancelled,
     isReturnRequested: isReturned,
     estimatedDelivery: deliveryText,
@@ -342,7 +434,7 @@ function formatCachedOrder(cached) {
     subtotal: totalAmount,
     shipping: 0,
     total: totalAmount,
-    payment_method: cached.payment_method || 'Prepaid',
+    payment_method: String(cached.payment_method || '').toUpperCase() === 'PREPAID' ? 'Prepaid' : 'COD',
     address: cached.shipping_address || 'Registered Customer Address',
     shipping_address: cached.shipping_address || '',
     city: cached.city || '',
@@ -352,6 +444,7 @@ function formatCachedOrder(cached) {
     shiprocket_order_id: cached.shiprocket_order_id || null,
     shipment_id: cached.shipment_id || null,
     shiprocket_sync_status: cached.shiprocket_sync_status || 'PENDING',
+    shiprocket_return_id: cached.shiprocket_return_id || null,
     courier: 'Shiprocket Express Logistics (Delhivery / BlueDart)',
     timeline,
   };
@@ -449,6 +542,7 @@ async function updateShiprocketSync(orderId, syncData = {}) {
     if (syncData.shipment_id !== undefined) record.shipment_id = syncData.shipment_id;
     if (syncData.shiprocket_sync_status !== undefined) record.shiprocket_sync_status = syncData.shiprocket_sync_status;
     recentOrders.set(record.id || cleanId, record);
+    persistOrders();
   }
 
   const { updateOrderShiprocketInfo } = require('../database/db');
@@ -458,6 +552,7 @@ async function updateShiprocketSync(orderId, syncData = {}) {
 module.exports = {
   addOrder,
   findOrder,
+  findOrders,
   updateShiprocketSync,
   markOrderReturned,
   markOrderCancelled,

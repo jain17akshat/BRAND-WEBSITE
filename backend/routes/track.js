@@ -9,7 +9,7 @@ const srClient     = require('../shiprocket/client');
 const { MOCK_ORDERS } = require('../mock/orders');
 const { AppError } = require('../middleware/errorHandler');
 
-const { findOrder } = require('../services/orderStore');
+const { findOrder, findOrders } = require('../services/orderStore');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -23,9 +23,13 @@ router.get('/', async (req, res, next) => {
     const cleanPhone = phone ? String(phone).replace(/\D/g, '').slice(-10) : '';
 
     // 1. Check local OrderStore (recent memory cache + MySQL DB)
-    const localOrder = await findOrder(cleanOrderId, cleanPhone);
-    if (localOrder) {
-      return res.json({ success: true, order: localOrder });
+    const localOrders = await findOrders(cleanOrderId, cleanPhone);
+    if (localOrders && localOrders.length > 0) {
+      return res.json({
+        success: true,
+        order: localOrders[0],
+        orders: localOrders,
+      });
     }
 
     // ── Mock mode fallback ─────────────────────────────────────

@@ -22,27 +22,27 @@ const catalog = {
   'brass-singhasan-deity-throne': 2890,
   'brass-ladoo-gopal-statue': 1800,
   'brass-kalash-pooja-vessel': 1390,
-  'brass-design-thali-set': 1290,
+  'brass-design-thali-set': 550,
 
   // Copper Articles
-  'copper-panchpatra-pali-set': 690,
-  'copper-puja-thali-set': 1890,
-  'copper-hawan-kund-pyre': 1490,
-  'copper-kalash-pooja-vessel': 890,
+  'copper-panchpatra-pali-set': 300,
+  'copper-puja-thali-set': 1200,
+  'copper-hawan-kund-pyre': 2200,
+  'copper-kalash-pooja-vessel': 1490,
 
   // Incense & Dhoop
-  'incense-no-bamboo': 299,
-  'incense-with-bamboo': 249,
-  'dhoop-cones': 199,
-  'dhoop-sticks': 229,
-  'sambrani-cups': 349,
+  'incense-no-bamboo': 149,
+  'incense-with-bamboo': 129,
+  'dhoop-cones': 179,
+  'dhoop-sticks': 249,
+  'sambrani-cups': 199,
 
   // Mandir Essentials
-  'wooden-chowki-carved-01': 1490,
-  'wooden-chowki-large-15x15': 2490,
-  'brass-dhoopdani-burner': 890,
-  'mandir-mala-counter-brass': 490,
-  'mandir-pooja-box-chest': 1890,
+  'wooden-chowki-carved-01': 990,
+  'wooden-chowki-large-15x15': 1350,
+  'brass-dhoopdani-burner': 499,
+  'mandir-mala-counter-brass': 349,
+  'mandir-pooja-box-chest': 450,
   'essentials-brass-chawar-whisk': 1290,
   'mandir-jap-bag-gaumukhi': 290,
   'mandir-royal-velvet-asan-mat': 490,
@@ -50,24 +50,24 @@ const catalog = {
   'mandir-copper-akhand-jyot': 1290,
 
   // Vastu & Spiritual
-  'vastu-ganesh-siddha-yantra': 890,
-  'vastu-kuber-dhan-prapti-yantra': 890,
-  'vastu-laxmi-siddha-yantra': 890,
-  'vastu-shani-siddha-yantra': 890,
-  'vastu-crystal-glass-yantra': 1290,
-  'vastu-brass-pyramid-multitier': 1490,
-  'vastu-crystal-glass-turtle': 690,
-  'brass-kamdhenu-cow-statue': 2190,
-  'brass-ganesh-ji-statue': 2490,
-  'brass-radha-krishna-statue': 3890,
-  'vastu-crystal-glass-shivling': 990,
+  'vastu-ganesh-siddha-yantra': 349,
+  'vastu-kuber-dhan-prapti-yantra': 349,
+  'vastu-laxmi-siddha-yantra': 349,
+  'vastu-shani-siddha-yantra': 349,
+  'vastu-crystal-glass-yantra': 1590,
+  'vastu-brass-pyramid-multitier': 399,
+  'vastu-crystal-glass-turtle': 349,
+  'brass-kamdhenu-cow-statue': 2490,
+  'brass-ganesh-ji-statue': 2290,
+  'brass-radha-krishna-statue': 2890,
+  'vastu-crystal-glass-shivling': 370,
 
   // Malas
-  'mandir-rudraksh-mala': 490,
-  'mandir-sphatik-mala': 890,
-  'mandir-tulsi-mala': 390,
-  'mandir-vaijanti-mala': 590,
-  'mandir-karungali-mala': 1190,
+  'mandir-rudraksh-mala': 699,
+  'mandir-sphatik-mala': 1699,
+  'mandir-tulsi-mala': 250,
+  'mandir-vaijanti-mala': 250,
+  'mandir-karungali-mala': 250,
   'mandir-wooden-damru-shiva': 390,
 };
 
@@ -89,6 +89,35 @@ const variantPrices = {
   'brass-gomukhi-shringi-abhishekam-Medium(6.25cm)': 1490,
   'brass-gomukhi-shringi-abhishekam-Large(7cm)': 1990,
   'brass-gomukhi-shringi-abhishekam-ExtraLarge(8cm)': 2590,
+
+  // Copper Kalash variants
+  'copper-kalash-pooja-vessel-64g(Small/DailyPooja)': 790,
+  'copper-kalash-pooja-vessel-240g(Large/Sthapana&Ceremonies)': 1490,
+
+  // Kamdhenu variants
+  'brass-kamdhenu-cow-statue-Compact(7×3×5cm-70G)': 1490,
+  'brass-kamdhenu-cow-statue-Medium(450G-5Inch)': 2490,
+  'brass-kamdhenu-cow-statue-RoyalLarge(850G-7Inch)': 3890,
+
+  // Incense variants
+  'incense-no-bamboo-50SticksPack': 149,
+  'incense-no-bamboo-80SticksPack': 219,
+  'incense-no-bamboo-100SticksPack': 269,
+
+  'incense-with-bamboo-50SticksPack': 129,
+  'incense-with-bamboo-80SticksPack': 189,
+  'incense-with-bamboo-100SticksPack': 229,
+
+  'dhoop-cones-12ConesTrialPack': 99,
+  'dhoop-cones-24ConesSmallPack': 179,
+  'dhoop-cones-40ConesTwinPack(80Cones)': 299,
+  'dhoop-cones-50ConesRetailPack': 349,
+  'dhoop-cones-100ConesValueBox': 599,
+  'dhoop-cones-200ConesFamilyTinBox': 999,
+
+  'dhoop-sticks-20SticksPack': 119,
+  'dhoop-sticks-50SticksPack': 249,
+  'dhoop-sticks-100SticksValueBox': 449,
 };
 
 const { AppError } = require('../middleware/errorHandler');
@@ -108,12 +137,20 @@ function getProductPrice(item) {
     return variantPrices[rawId];
   }
 
-  // 2. Check base catalog ID
+  // 2. Check if item has weight/variant field attached
+  if (item.weight) {
+    const variantId = `${rawId}-${String(item.weight).replace(/\s+/g, '')}`;
+    if (variantPrices[variantId] !== undefined) {
+      return variantPrices[variantId];
+    }
+  }
+
+  // 3. Check base catalog ID
   if (catalog[rawId] !== undefined) {
     return catalog[rawId];
   }
 
-  // 3. Extract base ID if rawId contains variant suffix (e.g., 'brass-bell-garuda-90g')
+  // 4. Extract base ID if rawId contains variant suffix (e.g., 'brass-bell-garuda-90g')
   const baseId = rawId.split('-').slice(0, -1).join('-');
   if (baseId && catalog[baseId] !== undefined) {
     return catalog[baseId];

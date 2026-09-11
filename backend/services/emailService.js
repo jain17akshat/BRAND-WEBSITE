@@ -319,13 +319,14 @@ async function sendReturnRequestConfirmationEmail({ to, customerName, returnId, 
   }
 
   try {
+    const recipients = Array.from(new Set([to, config.email.adminEmail, config.email.user].filter(Boolean))).join(', ');
     const info = await transporter.sendMail({
       from: `"Shraviko Support" <${process.env.EMAIL_USER}>`,
-      to,
+      to: recipients,
       subject: `Return Request Approved #${orderId} — Shraviko`,
       html: htmlTemplate,
     });
-    console.log(`✅ Return approval email sent to ${to}: ${info.messageId}`);
+    console.log(`✅ Return approval email sent to ${recipients}: ${info.messageId}`);
     return { success: true, messageId: info.messageId };
   } catch (err) {
     console.error(`❌ Return approval email failed: ${err.message}`);
@@ -487,13 +488,14 @@ async function sendOrderCancellationEmail({ to, customerName, orderId, items, to
   }
 
   try {
+    const recipients = Array.from(new Set([to, config.email.adminEmail, config.email.user].filter(Boolean))).join(', ');
     const info = await transporter.sendMail({
       from: `"Shraviko" <${process.env.EMAIL_USER}>`,
-      to,
+      to: recipients,
       subject: `Your request to cancel ${itemTitle} from your order is being processed`,
       html: htmlTemplate,
     });
-    console.log(`✅ Flipkart-style cancellation email sent to ${to}: ${info.messageId}`);
+    console.log(`✅ Flipkart-style cancellation email sent to ${recipients}: ${info.messageId}`);
     return { success: true, messageId: info.messageId };
   } catch (err) {
     console.error(`❌ Cancellation email failed: ${err.message}`);
@@ -512,8 +514,8 @@ async function sendReturnNotificationToAdmin({ orderId, phone, reason, refundTyp
   const safeReason = escapeHtml(reason);
   const safeRefundType = escapeHtml(refundType);
 
-  const detailsHtml = typeof details === 'object' 
-    ? Object.entries(details).map(([k, v]) => v ? `<li><strong>${escapeHtml(k)}:</strong> ${escapeHtml(v)}</li>` : '').join('') 
+  const detailsHtml = typeof details === 'object'
+    ? Object.entries(details).map(([k, v]) => v ? `<li><strong>${escapeHtml(k)}:</strong> ${escapeHtml(v)}</li>` : '').join('')
     : escapeHtml(details);
 
   const htmlTemplate = `

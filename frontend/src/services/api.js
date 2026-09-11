@@ -68,6 +68,11 @@ export async function submitReturn({ order_id, phone, email, customer_name, reas
   });
 }
 
+export async function fetchCustomerReturns(phone) {
+  const cleanPhone = String(phone || '').replace(/\D/g, '').slice(-10);
+  return request(`/returns/user?phone=${cleanPhone}`);
+}
+
 // ── Shiprocket: Check Rates ───────────────────────────────
 export async function checkRates({ delivery_pincode, weight = 0.5, cod = false }) {
   return request('/rates/check', {

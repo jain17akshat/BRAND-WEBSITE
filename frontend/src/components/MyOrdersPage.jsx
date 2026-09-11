@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Package, Phone, Hash, Search, CheckCircle2, Truck, Clock,
   XCircle, RotateCcw, Shield, AlertTriangle, ChevronDown, ChevronUp,
-  ArrowLeft, RefreshCw, MessageCircle, Headphones, CreditCard, ShoppingBag
+  ArrowLeft, RefreshCw, MessageCircle, Headphones, CreditCard, ShoppingBag, Mail
 } from 'lucide-react';
-import { trackOrder as apiTrackOrder, submitReturn as apiSubmitReturn, cancelOrder as apiCancelOrder } from '../services/api';
+import {
+  trackOrder as apiTrackOrder,
+  submitReturn as apiSubmitReturn,
+  cancelOrder as apiCancelOrder,
+  fetchCustomerReturns as apiFetchCustomerReturns
+} from '../services/api';
 
 // ─── Mock order lookup data ───────────────────────────────────────────────────
 const MOCK_ORDERS = {
@@ -58,6 +63,12 @@ const MOCK_ORDERS = {
 };
 
 const STATUS_CONFIG = {
+  DELIVERED:          { label: 'Delivered',        bg: 'bg-emerald-50', color: 'text-emerald-700', border: 'border-emerald-200', Icon: CheckCircle2 },
+  IN_TRANSIT:         { label: 'In Transit',        bg: 'bg-blue-50',    color: 'text-blue-700',    border: 'border-blue-200',    Icon: Truck },
+  PROCESSING:         { label: 'Processing',       bg: 'bg-amber-50',   color: 'text-amber-700',   border: 'border-amber-200',   Icon: Clock },
+  CANCELLED:          { label: 'Cancelled',        bg: 'bg-red-50',     color: 'text-red-700',     border: 'border-red-200',     Icon: XCircle },
+  RETURN_INITIATED:   { label: 'Return Requested', bg: 'bg-[#FAF3E8]',   color: 'text-[#8C6D27]',   border: 'border-[#EAD7AF]',   Icon: RotateCcw },
+  RETURNED:           { label: 'Returned',         bg: 'bg-[#F0EBE1]',   color: 'text-[#61513C]',   border: 'border-[#D9CFBE]',   Icon: CheckCircle2 },
   delivered:          { label: 'Delivered',        bg: 'bg-emerald-50', color: 'text-emerald-700', border: 'border-emerald-200', Icon: CheckCircle2 },
   shipped:            { label: 'In Transit',        bg: 'bg-blue-50',    color: 'text-blue-700',    border: 'border-blue-200',    Icon: Truck },
   processing:         { label: 'Processing',       bg: 'bg-amber-50',   color: 'text-amber-700',   border: 'border-amber-200',   Icon: Clock },
@@ -142,10 +153,13 @@ export function MyOrdersPage({ onBackToHome }) {
   const [orderId, setOrderId] = useState('');
   const [result, setResult] = useState(null);
   const [foundOrder, setFoundOrder] = useState(null);
+  const [foundOrders, setFoundOrders] = useState([]);
+  const [customerReturns, setCustomerReturns] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('orders'); // 'orders' | 'returns' | 'faq'
   const [refundStep, setRefundStep] = useState(1);
   const [refundOrderId, setRefundOrderId] = useState('');
+  const [refundEmail, setRefundEmail] = useState('');
   const [refundSubmitted, setRefundSubmitted] = useState(false);
   const [refundType, setRefundType] = useState('original');
   const [upiId, setUpiId] = useState('');
@@ -157,6 +171,46 @@ export function MyOrdersPage({ onBackToHome }) {
   const [cancelEmail, setCancelEmail] = useState('');
   const [cancelling, setCancelling] = useState(false);
 
+  const [emailError, setEmailError] = useState('');
+
+  const activeOrders = (foundOrders || []).filter(order => {
+    const statusUpper = String(order.status || '').toUpperCase();
+    const displayUpper = String(order.displayStatus || order.status || '').toUpperCase();
+    return !['RETURN_INITIATED', 'RETURNED', 'CANCELLED'].includes(statusUpper) &&
+           !displayUpper.includes('RETURN') && !displayUpper.includes('CANCEL') &&
+           !order.isCancelled && !order.isReturnRequested;
+  });
+
+  const returnedOrders = (foundOrders || []).filter(order => {
+    const statusUpper = String(order.status || '').toUpperCase();
+    const displayUpper = String(order.displayStatus || order.status || '').toUpperCase();
+    return ['RETURN_INITIATED', 'RETURNED'].includes(statusUpper) ||
+           displayUpper.includes('RETURN') || order.isReturnRequested;
+  });
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
+  }, [activeTab]);
+
+  useEffect(() => {
+    if (foundOrder) {
+      const orderIdVal = foundOrder.id || foundOrder.orderId || '';
+      if (orderIdVal && !refundOrderId) {
+        setRefundOrderId(orderIdVal);
+      }
+    }
+  }, [foundOrder]);
+
+  const handleStep1Continue = () => {
+    if (!refundEmail.trim()) {
+      setEmailError('Please enter your email address to receive return approval & pickup details.');
+      return;
+    }
+    setEmailError('');
+    setRefundStep(2);
+  };
+
   const handleOpenCancelModal = () => {
     setCancelEmail(foundOrder?.customer_email || foundOrder?.email || '');
     setShowCancelModal(true);
@@ -167,18 +221,20 @@ export function MyOrdersPage({ onBackToHome }) {
     if (!foundOrder) return;
     setCancelling(true);
     const targetEmail = cancelEmail || foundOrder.customer_email || foundOrder.email || 'shraviko@gmail.com';
+    const targetOrderId = foundOrder.id || foundOrder.orderId;
     try {
       await apiCancelOrder({
-        order_id:      foundOrder.id || foundOrder.orderId,
+        order_id:      targetOrderId,
         phone:         phone || foundOrder.customer_phone || '7742320607',
         email:         targetEmail,
         customer_name: foundOrder.customer_name || 'Valued Customer',
         reason:        cancelReason,
       });
 
-      setFoundOrder({
+      const updated = {
         ...foundOrder,
-        status: 'Cancelled',
+        status: 'CANCELLED',
+        displayStatus: 'Cancelled',
         isCancelled: true,
         customer_email: targetEmail,
         timeline: [
@@ -187,15 +243,20 @@ export function MyOrdersPage({ onBackToHome }) {
           { label: 'Cancellation Email Sent', date: 'Just Now', done: true },
           { label: 'Refund Processing (if Prepaid)', date: '5–7 Business Days', done: false },
         ],
-      });
+      };
+      setFoundOrders(prev => prev.map(o => (o.id === targetOrderId || o.orderId === targetOrderId ? updated : o)));
+      setFoundOrder(updated);
       setShowCancelModal(false);
     } catch {
-      setFoundOrder({
+      const updated = {
         ...foundOrder,
-        status: 'Cancelled',
+        status: 'CANCELLED',
+        displayStatus: 'Cancelled',
         isCancelled: true,
         customer_email: targetEmail,
-      });
+      };
+      setFoundOrders(prev => prev.map(o => (o.id === targetOrderId || o.orderId === targetOrderId ? updated : o)));
+      setFoundOrder(updated);
       setShowCancelModal(false);
     } finally {
       setCancelling(false);
@@ -203,59 +264,75 @@ export function MyOrdersPage({ onBackToHome }) {
   };
 
   const handleTrack = async (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     if (!phone.trim() && !orderId.trim()) return;
     setLoading(true);
     setResult(null);
 
-    // Try mock lookup first
     const cleanOrder = orderId.trim().toUpperCase();
     const cleanPhone = phone.replace(/\D/g, '').slice(-10);
 
+    // 1. Try Live API lookup first
+    try {
+      const data = await apiTrackOrder(phone.trim(), orderId.trim());
+      if (data.success && (data.orders?.length || data.order)) {
+        const orderList = Array.isArray(data.orders) && data.orders.length > 0 ? data.orders : [data.order];
+        setFoundOrders(orderList);
+
+        try {
+          const retData = await apiFetchCustomerReturns(phone.trim());
+          if (retData.success && retData.returns) {
+            setCustomerReturns(retData.returns);
+          }
+        } catch {}
+
+        const targetOrder = cleanOrder
+          ? (orderList.find(o => String(o.id || o.orderId).toUpperCase() === cleanOrder) || orderList[0])
+          : (orderList.find(o => !['RETURN_INITIATED', 'RETURNED', 'CANCELLED'].includes(String(o.status).toUpperCase()) && !o.isCancelled && !o.isReturnRequested) || orderList[0]);
+
+        setFoundOrder(targetOrder);
+        setResult('found');
+        setLoading(false);
+        return;
+      }
+    } catch {
+      // Fall through to mock lookup fallback if network or endpoint fails
+    }
+
+    // 2. Fallback to mock lookup if API found no orders
     if (cleanPhone) {
-      const mockKey = Object.keys(MOCK_ORDERS).find(k => {
+      const matchingKeys = Object.keys(MOCK_ORDERS).filter(k => {
         const o = MOCK_ORDERS[k];
         const matchPhone = o.phone.slice(-10) === cleanPhone;
         const matchOrder = !cleanOrder || o.id === cleanOrder || k === cleanOrder;
         return matchPhone && matchOrder;
       });
-      if (mockKey) {
-        setFoundOrder(MOCK_ORDERS[mockKey]);
+
+      if (matchingKeys.length > 0) {
+        const mockList = matchingKeys.map(k => MOCK_ORDERS[k]);
+        setFoundOrders(mockList);
+        setFoundOrder(mockList[0]);
         setResult('found');
         setLoading(false);
         return;
       }
     }
 
-    try {
-      const data = await apiTrackOrder(phone.trim(), orderId.trim());
-      if (data.success && data.order) {
-        setFoundOrder(data.order);
-        setResult('found');
-      } else {
-        setResult('not-found');
-      }
-    } catch (err) {
-      if (err.status === 404) {
-        setResult('not-found');
-      } else {
-        setResult('error');
-      }
-    } finally {
-      setLoading(false);
-    }
+    setResult('not-found');
+    setLoading(false);
   };
 
   const handleRefundSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     const targetOrderId = refundOrderId.trim() || foundOrder?.id || foundOrder?.orderId || 'SHR153083';
+    const targetEmail = refundEmail.trim() || cancelEmail.trim() || foundOrder?.customer_email || 'shraviko@gmail.com';
 
     try {
       await apiSubmitReturn({
         order_id:      targetOrderId,
         phone:         phone || '7742320607',
-        email:         foundOrder?.customer_email || 'shraviko@gmail.com',
+        email:         targetEmail,
         customer_name: foundOrder?.customer_name || 'Valued Customer',
         reason:        'Customer requested return',
         refund_type:   'approval_mail',
@@ -263,9 +340,10 @@ export function MyOrdersPage({ onBackToHome }) {
       });
 
       if (foundOrder) {
-        setFoundOrder({
+        const updated = {
           ...foundOrder,
-          status: 'Return Requested',
+          status: 'RETURN_INITIATED',
+          displayStatus: 'Return Requested',
           isReturnRequested: true,
           estimatedDelivery: 'Reverse Pickup: 24–48 Hours',
           timeline: [
@@ -275,7 +353,9 @@ export function MyOrdersPage({ onBackToHome }) {
             { label: 'Quality Verification at Udaipur Atelier', date: 'In Progress', done: false },
             { label: 'Return Inspection & Processing Completed', date: 'Upon Item Receipt', done: false },
           ],
-        });
+        };
+        setFoundOrders(prev => prev.map(o => (o.id === targetOrderId || o.orderId === targetOrderId ? updated : o)));
+        setFoundOrder(updated);
       }
 
       setRefundSubmitted(true);
@@ -419,124 +499,273 @@ export function MyOrdersPage({ onBackToHome }) {
             )}
 
             {/* Live Order Result Display */}
-            {result === 'found' && foundOrder && (
+            {result === 'found' && (
               <div className="space-y-6 animate-fade-in">
-                <div className="bg-white rounded-2xl border border-[#E8DFC7] shadow-sm overflow-hidden">
-                  <div className="px-6 py-5 bg-[#FDFAF5] border-b border-[#F0E8D8] flex flex-wrap items-center justify-between gap-3">
-                    <div>
-                      <p className="text-[10px] font-cinzel tracking-widest uppercase text-[#9B7E52] mb-1">Order Details</p>
-                      <h3 className="font-cinzel font-bold text-[#2C2623] text-lg">{foundOrder.id}</h3>
-                      <p className="text-xs text-gray-400 mt-0.5">Placed on {foundOrder.date}</p>
-                    </div>
-                    <StatusBadge status={foundOrder.status} />
-                  </div>
+                {activeOrders.length > 0 ? (
+                  <>
+                    {activeOrders.length > 1 && (
+                      <div className="bg-[#FAF7F2] border border-[#E5D5B5] rounded-2xl p-4 sm:p-5 shadow-sm">
+                        <div className="flex items-center justify-between gap-3 mb-3">
+                          <p className="text-xs font-cinzel font-bold text-[#8C6D27] uppercase tracking-wider">
+                            📦 Found {activeOrders.length} Active Orders for {phone || foundOrder?.customer_phone || 'your phone'}
+                          </p>
+                          <span className="text-[10px] text-[#7D6E63] font-medium">Select an order to view details:</span>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {activeOrders.map((ord, idx) => {
+                            const ordId = ord.id || ord.orderId;
+                            const currId = foundOrder?.id || foundOrder?.orderId;
+                            const isSelected = currId === ordId;
+                            return (
+                              <button
+                                key={ordId || idx}
+                                type="button"
+                                onClick={() => setFoundOrder(ord)}
+                                className={`px-4 py-2.5 rounded-xl text-xs font-bold font-cinzel tracking-wider border transition-all ${
+                                  isSelected
+                                    ? 'bg-[#8C6D27] text-white border-[#8C6D27] shadow-sm scale-[1.02]'
+                                    : 'bg-white text-[#2C2623] border-[#D9C7A5] hover:border-[#8C6D27] hover:bg-[#FAF3E8]'
+                                }`}
+                              >
+                                Order #{ordId} · ₹{(ord.total || ord.subtotal || 0).toLocaleString('en-IN')}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
 
-                  <div className="p-6 sm:p-8 space-y-8">
-                    {/* Est delivery banner */}
-                    <div className="p-4 rounded-xl bg-[#FBF5E8] border border-[#E8DFC7] flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
-                        <Truck className="w-5 h-5 text-[#C5A059]" />
+                    {foundOrder && (
+                      <div className="bg-white rounded-2xl border border-[#E8DFC7] shadow-sm overflow-hidden">
+                        <div className="px-6 py-5 bg-[#FDFAF5] border-b border-[#F0E8D8] flex flex-wrap items-center justify-between gap-3">
+                          <div>
+                            <p className="text-[10px] font-cinzel tracking-widest uppercase text-[#9B7E52] mb-1">Order Details</p>
+                            <h3 className="font-cinzel font-bold text-[#2C2623] text-lg">{foundOrder.id}</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">Placed on {foundOrder.date}</p>
+                          </div>
+                          <StatusBadge status={foundOrder.status} displayStatus={foundOrder.displayStatus} />
+                        </div>
+
+                        <div className="p-6 sm:p-8 space-y-8">
+                          {/* Est delivery banner */}
+                          <div className="p-4 rounded-xl bg-[#FBF5E8] border border-[#E8DFC7] flex items-center justify-between gap-4">
+                            <div className="flex items-center gap-3">
+                              <Truck className="w-5 h-5 text-[#C5A059]" />
+                              <div>
+                                <p className="text-xs font-semibold text-[#2C2623]">
+                                  {foundOrder.status === 'DELIVERED' ? 'Delivered On' : 'Estimated Delivery / Pickup'}
+                                </p>
+                                <p className="text-sm font-bold text-[#9B7E52]">
+                                  {foundOrder.status === 'DELIVERED' ? (foundOrder.deliveredOn || 'Delivered') : (['RETURN_INITIATED', 'RETURNED'].includes(foundOrder.status) || foundOrder.isReturnRequested ? 'Reverse Pickup: 24–48 Hours' : (foundOrder.estimatedDelivery && foundOrder.estimatedDelivery !== '0000-00-00 00:00:00' ? foundOrder.estimatedDelivery : '3–5 Business Days'))}
+                                </p>
+                              </div>
+                            </div>
+                            {!(foundOrder.status === 'CANCELLED' || foundOrder.isCancelled || ['RETURN_INITIATED', 'RETURNED'].includes(foundOrder.status) || foundOrder.isReturnRequested) && (
+                              <div className="flex items-center gap-3">
+                                <button
+                                  onClick={handleOpenCancelModal}
+                                  className="text-xs font-cinzel uppercase tracking-wider text-red-600 hover:text-red-700 font-bold border border-red-200 px-3.5 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
+                                >
+                                  Cancel Order
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    if (foundOrder?.id) setRefundOrderId(foundOrder.id);
+                                    setActiveTab('returns');
+                                    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+                                    window.scrollTo(0, 0);
+                                  }}
+                                  className="text-xs font-cinzel uppercase tracking-wider text-[#B8860B] hover:underline font-bold"
+                                >
+                                  Request Return →
+                                </button>
+                              </div>
+                            )}
+                          </div>
+
+                          {(foundOrder.status === 'CANCELLED' || foundOrder.isCancelled) && (
+                            <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 flex items-center justify-between gap-4">
+                              <div className="flex items-center gap-3">
+                                <div className="w-9 h-9 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+                                  <XCircle className="w-4 h-4 text-red-600" />
+                                </div>
+                                <div>
+                                  <p className="font-cinzel font-bold text-red-900 text-xs uppercase tracking-wider">
+                                    Order Cancelled ✓
+                                  </p>
+                                  <p className="text-xs text-red-700 font-medium mt-0.5">
+                                    A cancellation confirmation email has been sent to your registered inbox.
+                                  </p>
+                                </div>
+                              </div>
+                              <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-cinzel font-bold uppercase tracking-widest shrink-0">
+                                Cancelled
+                              </span>
+                            </div>
+                          )}
+
+                          {(['RETURN_INITIATED', 'RETURNED'].includes(foundOrder.status) || foundOrder.isReturnRequested) && (
+                            <div className="bg-[#FAF3E8] border border-[#EAD7AF] rounded-xl px-5 py-4 flex items-center justify-between gap-4">
+                              <div className="flex items-center gap-3">
+                                <div className="w-9 h-9 rounded-full bg-[#8C6D27]/15 text-[#8C6D27] flex items-center justify-center shrink-0">
+                                  <RotateCcw className="w-4 h-4 text-[#8C6D27]" />
+                                </div>
+                                <div>
+                                  <p className="font-cinzel font-bold text-[#1C140F] text-xs uppercase tracking-wider">
+                                    {foundOrder.status === 'RETURNED' ? 'Return Completed ✓' : 'Return Request Approved ✓'}
+                                  </p>
+                                  <p className="text-xs text-[#5C4D42] font-medium mt-0.5">
+                                    {foundOrder.status === 'RETURNED' ? 'Item has been received and inspected at our atelier.' : 'Return Request Approval Mail sent to registered email. Reverse pickup scheduled via Shiprocket (24–48 hours).'}
+                                  </p>
+                                </div>
+                              </div>
+                              <span className="px-3 py-1 rounded-full bg-[#8C6D27] text-white text-[10px] font-cinzel font-bold uppercase tracking-widest shrink-0">
+                                {foundOrder.status === 'RETURNED' ? 'Returned' : 'Approved'}
+                              </span>
+                            </div>
+                          )}
+
+                          {/* Timeline */}
+                          <div>
+                            <h4 className="font-cinzel text-xs font-semibold text-[#9B7E52] uppercase tracking-wider mb-5">
+                              Shipment Journey
+                            </h4>
+                            <OrderTimeline steps={foundOrder.timeline} />
+                          </div>
+
+                          {/* Item list */}
+                          <div className="border-t border-[#F0E8D8] pt-6">
+                            <h4 className="font-cinzel text-xs font-semibold text-[#9B7E52] uppercase tracking-wider mb-4">
+                              Items in this Order
+                            </h4>
+                            <div className="divide-y divide-[#F0E8D8]">
+                              {foundOrder.items.map((item, idx) => (
+                                <div key={idx} className="py-3 flex items-center justify-between gap-4 text-xs">
+                                  <span className="font-medium text-[#2C2623]">{cleanItemName(item.name)} × {item.qty}</span>
+                                  <span className="font-bold text-[#9B7E52]">₹{(item.price * item.qty).toLocaleString('en-IN')}</span>
+                                </div>
+                              ))}
+                            </div>
+                            {(() => {
+                              const methodUpper = String(foundOrder.payment_method || '').toUpperCase();
+                              const statusUpper = String(foundOrder.payment_status || '').toUpperCase();
+                              const orderStatus = String(foundOrder.status || '').toUpperCase();
+
+                              const isCod = methodUpper.includes('COD') || statusUpper.includes('COD') || methodUpper !== 'PREPAID';
+                              const isDelivered = orderStatus === 'DELIVERED';
+                              const isPaid = (!isCod && statusUpper === 'PAID') || (isCod && isDelivered);
+
+                              const totalLabel = (isCod && !isDelivered) ? 'Total Amount (Pay on Delivery)' : 'Total Paid';
+
+                              return (
+                                <div className="border-t border-[#F0E8D8] pt-3 flex justify-between items-center text-sm font-bold text-[#2C2623]">
+                                  <div className="flex items-center gap-2">
+                                    <span>{totalLabel}</span>
+                                    {isCod && !isDelivered && (
+                                      <span className="text-[10px] font-sans bg-amber-50 text-amber-800 border border-amber-200/80 px-2.5 py-0.5 rounded-full font-semibold tracking-normal">
+                                        Cash on Delivery
+                                      </span>
+                                    )}
+                                    {isPaid && (
+                                      <span className="text-[10px] font-sans bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-2.5 py-0.5 rounded-full font-semibold tracking-normal">
+                                        Paid ✓
+                                      </span>
+                                    )}
+                                  </div>
+                                  <span className="text-[#C5A059]">₹{(foundOrder.total || foundOrder.subtotal || foundOrder.items.reduce((s, i) => s + ((i.price || 0) * (i.qty || 1)), 0) || 349).toLocaleString('en-IN')}</span>
+                                </div>
+                              );
+                            })()}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="bg-white rounded-2xl border border-[#E8DFC7] p-8 sm:p-10 text-center space-y-4 shadow-sm">
+                    <div className="w-14 h-14 rounded-full bg-[#FAF3E8] border border-[#EAD7AF] flex items-center justify-center mx-auto text-[#8C6D27]">
+                      <RotateCcw className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-cinzel font-bold text-[#1C140F] text-base sm:text-lg">No Active Orders Found</h3>
+                    <p className="text-xs sm:text-sm text-[#5C4D42] max-w-md mx-auto leading-relaxed font-medium">
+                      All orders associated with {phone || 'your phone'} have been returned or cancelled. You can view reverse pickup, tracking, and approval details in the <strong>Returns &amp; Refund Portal</strong>.
+                    </p>
+                    {returnedOrders.length > 0 && (
+                      <button
+                        onClick={() => setActiveTab('returns')}
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#8C6D27] hover:bg-[#6D541C] text-white text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl transition-all shadow-sm"
+                      >
+                        <span>View Returns Portal ({returnedOrders.length})</span>
+                        <RotateCcw className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── 2. RETURNS & REFUND PORTAL ── */}
+        {activeTab === 'returns' && (
+          <div className="space-y-8">
+            {/* Customer Returned Orders Listing Card */}
+            {(returnedOrders.length > 0 || customerReturns.length > 0) && (
+              <div className="bg-white rounded-2xl border border-[#E8DFC7] shadow-sm overflow-hidden animate-fade-in">
+                <div className="px-6 py-5 border-b border-[#F0E8D8] bg-[#FDFAF5] flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#F5EDD9] flex items-center justify-center shrink-0">
+                      <RotateCcw className="w-5 h-5 text-[#C5A059]" />
+                    </div>
+                    <div>
+                      <h3 className="font-cinzel font-bold text-[#1C140F] text-base">Your Returned Orders</h3>
+                      <p className="text-xs text-[#3D2E24] font-semibold mt-0.5">Track reverse pickup status, approval emails, and inspection progress</p>
+                    </div>
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-[#8C6D27] text-white text-[10px] font-cinzel font-bold uppercase tracking-widest">
+                    {returnedOrders.length || customerReturns.length} Return(s)
+                  </span>
+                </div>
+
+                <div className="divide-y divide-[#F0E8D8]">
+                  {returnedOrders.map((retOrd, idx) => (
+                    <div key={retOrd.id || idx} className="p-6 space-y-5">
+                      <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
-                          <p className="text-xs font-semibold text-[#2C2623]">
-                            {foundOrder.status === 'delivered' ? 'Delivered On' : 'Estimated Delivery / Pickup'}
-                          </p>
-                          <p className="text-sm font-bold text-[#9B7E52]">
-                            {foundOrder.status === 'delivered' ? foundOrder.deliveredOn : (foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return') ? 'Reverse Pickup: 24–48 Hours' : (foundOrder.estimatedDelivery && foundOrder.estimatedDelivery !== '0000-00-00 00:00:00' ? foundOrder.estimatedDelivery : '3–5 Business Days'))}
+                          <p className="text-[10px] font-cinzel tracking-widest uppercase text-[#9B7E52] mb-0.5">Order #{retOrd.id || retOrd.orderId}</p>
+                          <p className="text-xs text-gray-500 font-medium">
+                            Shiprocket Return ID: <strong className="text-[#2C2623]">{retOrd.shiprocket_return_id ? `SR-${retOrd.shiprocket_return_id}` : (retOrd.return_id || 'RET-APPROVED')}</strong>
                           </p>
                         </div>
+                        <StatusBadge status={retOrd.status} displayStatus={retOrd.displayStatus} />
                       </div>
-                      {!(foundOrder.isCancelled || String(foundOrder.status).toLowerCase().includes('cancel') || foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return')) && (
-                        <div className="flex items-center gap-3">
-                          <button
-                            onClick={handleOpenCancelModal}
-                            className="text-xs font-cinzel uppercase tracking-wider text-red-600 hover:text-red-700 font-bold border border-red-200 px-3.5 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
-                          >
-                            Cancel Order
-                          </button>
-                          <button
-                            onClick={() => {
-                              if (foundOrder?.id) setRefundOrderId(foundOrder.id);
-                              setActiveTab('returns');
-                            }}
-                            className="text-xs font-cinzel uppercase tracking-wider text-[#B8860B] hover:underline font-bold"
-                          >
-                            Request Return →
-                          </button>
-                        </div>
-                      )}
-                    </div>
 
-                    {(foundOrder.isCancelled || String(foundOrder.status).toLowerCase().includes('cancel')) && (
-                      <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 flex items-center justify-between gap-4">
+                      <div className="p-4 rounded-xl bg-[#FAF3E8] border border-[#EAD7AF] flex flex-wrap items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
-                            <XCircle className="w-4 h-4 text-red-600" />
-                          </div>
+                          <RotateCcw className="w-4 h-4 text-[#8C6D27] shrink-0" />
                           <div>
-                            <p className="font-cinzel font-bold text-red-900 text-xs uppercase tracking-wider">
-                              Order Cancelled ✓
+                            <p className="text-xs font-bold text-[#1C140F]">
+                              {retOrd.status === 'RETURNED' ? 'Physical Return Received & Inspected ✓' : 'Return Request Approved & Reverse Pickup Scheduled'}
                             </p>
-                            <p className="text-xs text-red-700 font-medium mt-0.5">
-                              A cancellation confirmation email has been sent to your registered inbox.
+                            <p className="text-[11px] text-[#5C4D42] font-medium mt-0.5">
+                              {retOrd.status === 'RETURNED' ? 'Item inspected at Udaipur Atelier.' : 'Reverse pickup will be collected from registered address within 24–48 hours.'}
                             </p>
                           </div>
                         </div>
-                        <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-cinzel font-bold uppercase tracking-widest shrink-0">
-                          Cancelled
+                        <span className="text-xs font-bold text-[#8C6D27]">
+                          Total: ₹{(retOrd.total || retOrd.subtotal || 0).toLocaleString('en-IN')}
                         </span>
                       </div>
-                    )}
 
-                    {(foundOrder.isReturnRequested || String(foundOrder.status).toLowerCase().includes('return')) && (
-                      <div className="bg-[#FAF3E8] border border-[#EAD7AF] rounded-xl px-5 py-4 flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-full bg-[#8C6D27]/15 text-[#8C6D27] flex items-center justify-center shrink-0">
-                            <RotateCcw className="w-4 h-4 text-[#8C6D27]" />
-                          </div>
-                          <div>
-                            <p className="font-cinzel font-bold text-[#1C140F] text-xs uppercase tracking-wider">
-                              Return Request Approved ✓
-                            </p>
-                            <p className="text-xs text-[#5C4D42] font-medium mt-0.5">
-                              Return Request Approval Mail sent to registered email. Reverse pickup scheduled via Shiprocket (24–48 hours).
-                            </p>
-                          </div>
-                        </div>
-                        <span className="px-3 py-1 rounded-full bg-[#8C6D27] text-white text-[10px] font-cinzel font-bold uppercase tracking-widest shrink-0">
-                          Approved
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Timeline */}
-                    <div>
-                      <h4 className="font-cinzel text-xs font-semibold text-[#9B7E52] uppercase tracking-wider mb-5">
-                        Shipment Journey
-                      </h4>
-                      <OrderTimeline steps={foundOrder.timeline} />
-                    </div>
-
-                    {/* Item list */}
-                    <div className="border-t border-[#F0E8D8] pt-6">
-                      <h4 className="font-cinzel text-xs font-semibold text-[#9B7E52] uppercase tracking-wider mb-4">
-                        Items in this Order
-                      </h4>
-                      <div className="divide-y divide-[#F0E8D8]">
-                        {foundOrder.items.map((item, idx) => (
-                          <div key={idx} className="py-3 flex items-center justify-between gap-4 text-xs">
-                            <span className="font-medium text-[#2C2623]">{cleanItemName(item.name)} × {item.qty}</span>
-                            <span className="font-bold text-[#9B7E52]">₹{(item.price * item.qty).toLocaleString('en-IN')}</span>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="border-t border-[#F0E8D8] pt-3 flex justify-between items-center text-sm font-bold text-[#2C2623]">
-                        <span>Total Paid</span>
-                        <span className="text-[#C5A059]">₹{foundOrder.total.toLocaleString('en-IN')}</span>
+                      <div>
+                        <h4 className="font-cinzel text-xs font-semibold text-[#9B7E52] uppercase tracking-wider mb-4">Reverse Shipment Timeline</h4>
+                        <OrderTimeline steps={retOrd.timeline} />
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
+            )}v>
             )}
           </div>
         )}
@@ -564,10 +793,10 @@ export function MyOrdersPage({ onBackToHome }) {
                   </div>
                   <h4 className="font-cinzel font-bold text-[#1C140F] text-lg mb-2">Return Request Approved!</h4>
                   <p className="text-sm text-[#3D2E24] font-medium max-w-md mx-auto leading-relaxed mb-6">
-                    Your return request has been approved. A <strong>Return Request Approval Mail</strong> has been sent to your registered email address with reverse pickup details.
+                    Your return request has been approved. A <strong>Return Request Approval Mail</strong> has been sent to <strong>{refundEmail || cancelEmail || foundOrder?.customer_email || 'shraviko@gmail.com'}</strong> with reverse pickup details.
                   </p>
                   <button
-                    onClick={() => { setRefundSubmitted(false); setRefundStep(1); setRefundOrderId(''); }}
+                    onClick={() => { setRefundSubmitted(false); setRefundStep(1); setRefundOrderId(''); setRefundEmail(''); setEmailError(''); }}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-[#2C1F06] text-[#E5C378] text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-[#3D2B0A] transition-all duration-300 active:scale-95 shadow-md"
                   >
                     Submit Another Request
@@ -621,9 +850,24 @@ export function MyOrdersPage({ onBackToHome }) {
                           </div>
                         </div>
                       </div>
+                      <div>
+                        <label className="block text-xs font-cinzel tracking-widest uppercase text-[#1C140F] mb-2 font-bold">Email Address for Return Approval Mail *</label>
+                        <div className="relative">
+                          <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8C6D27]" />
+                          <input
+                            type="email"
+                            placeholder="Enter your email address (e.g. customer@gmail.com)"
+                            value={refundEmail}
+                            onChange={e => { setRefundEmail(e.target.value); setEmailError(''); }}
+                            required
+                            className="w-full pl-10 pr-4 py-3 border border-[#B89B67] rounded-xl text-sm font-bold text-[#1C140F] focus:outline-none focus:border-[#8C6D27] focus:ring-2 focus:ring-[#8C6D27]/20 bg-[#FAF7F2] focus:bg-white transition-all placeholder:text-[#7D6E63] placeholder:font-medium"
+                          />
+                        </div>
+                        {emailError && <p className="text-xs text-red-600 font-bold mt-1.5">{emailError}</p>}
+                      </div>
                       <button
                         type="button"
-                        onClick={() => setRefundStep(2)}
+                        onClick={handleStep1Continue}
                         className="inline-flex items-center gap-2 px-6 py-3 bg-[#2C1F06] text-[#E5C378] text-xs font-cinzel font-bold tracking-widest uppercase rounded-xl hover:bg-[#3D2B0A] transition-all duration-300 active:scale-95 shadow-md"
                       >
                         Continue to Return Reason →
