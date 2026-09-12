@@ -209,6 +209,27 @@ export function AboutUsPage({ onBackToHome }) {
               </div>
             ))}
           </div>
+
+          {/* E-E-A-T Business & Craft Authenticity Credentials */}
+          <div ref={addRef} className="about-hidden mt-12 bg-white rounded-2xl p-6 sm:p-8 border border-[#EAE0CD] shadow-sm max-w-4xl mx-auto">
+            <h3 className="font-cinzel font-bold text-[#2C2623] text-base mb-4 text-center">Authenticity & Brand Transparency</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-[#6B5840] leading-relaxed">
+              <div className="border-b md:border-b-0 md:border-r border-[#EAE0CD] pb-4 md:pb-0 md:pr-4">
+                <span className="font-bold text-[#2C2623] block mb-1">Registered Business</span>
+                Based in Udaipur, Rajasthan, India.<br />
+                <span className="font-mono text-[11px] text-[#9B7E52]">GSTIN: 08CODPJ2489F1ZT</span>
+              </div>
+              <div className="border-b md:border-b-0 md:border-r border-[#EAE0CD] pb-4 md:pb-0 md:pr-4">
+                <span className="font-bold text-[#2C2623] block mb-1">Material Integrity</span>
+                100% Solid Virgin Brass (Moradabad)<br />
+                99.6% Pure Copper & Authentic Himalayan Rudraksha
+              </div>
+              <div className="pb-0">
+                <span className="font-bold text-[#2C2623] block mb-1">Worldwide Fulfillment</span>
+                Safely packaged & shipped across India and internationally from Udaipur.
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

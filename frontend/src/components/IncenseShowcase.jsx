@@ -45,9 +45,9 @@ export const IncenseShowcase = () => {
         </div>
 
         {/* Main Category Title */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-cinzel font-bold text-white tracking-tight drop-shadow-2xl">
+        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-cinzel font-bold text-white tracking-tight drop-shadow-2xl">
           Sacred Incense & Natural Dhoop
-        </h1>
+        </h2>
 
         {/* Prominent Launching Soon Badge */}
         <div className="inline-flex items-center gap-2.5 px-8 py-3 rounded-full bg-gradient-to-r from-[#C5A059]/30 via-[#E5C378]/40 to-[#C5A059]/30 border-2 border-[#E5C378] text-[#F5C767] font-cinzel font-bold text-base sm:text-lg tracking-widest uppercase shadow-[0_0_30px_rgba(229,195,120,0.3)] animate-pulse my-2">

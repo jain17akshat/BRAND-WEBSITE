@@ -4,6 +4,7 @@ import { ProductImage } from './ProductImage';
 import { ProductDetailSkeleton } from './Skeleton';
 import { SafeImage } from './SafeImage';
 import { PRODUCTS } from '../data/products';
+import { JsonLd } from './JsonLd';
 
 export const ProductDetailPage = ({
   product,
@@ -117,8 +118,54 @@ export const ProductDetailPage = ({
     }
   };
 
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    image: product.image ? [`https://shraviko.com${product.image}`] : (product.images ? product.images.map(img => `https://shraviko.com${img}`) : []),
+    description: product.metaDescription || product.shortDescription || (product.description ? product.description.substring(0, 160) : ''),
+    sku: product.id,
+    brand: {
+      '@type': 'Brand',
+      name: 'SHRAVIKO'
+    },
+    offers: {
+      '@type': 'Offer',
+      url: `https://shraviko.com/#/product/${product.id}`,
+      priceCurrency: 'INR',
+      price: currentPrice || product.price,
+      availability: product.inStock !== false ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: {
+        '@type': 'Organization',
+        name: 'SHRAVIKO'
+      }
+    },
+    ...(product.rating ? {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: product.rating,
+        reviewCount: product.reviewsCount || 12
+      }
+    } : {})
+  };
+
+  const faqSchema = product.faqs && product.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: product.faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  } : null;
+
   return (
     <div className="min-h-screen bg-[#FBF9F5] pb-24 text-[#2C2623]">
+      <JsonLd data={[productSchema, ...(faqSchema ? [faqSchema] : [])]} />
       
       {/* Top Header Navigation Bar */}
       <div className="bg-[#1C1715] border-b border-[#3A322C] pt-24 sm:pt-28 pb-4 px-4 sm:px-6 lg:px-8">

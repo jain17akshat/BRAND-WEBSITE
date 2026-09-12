@@ -33,6 +33,8 @@ import { AllCollectionsPage } from './components/AllCollectionsPage';
 import { LaunchBanner } from './components/LaunchBanner';
 import { WelcomeOfferModal } from './components/WelcomeOfferModal';
 import { EnergyStonesPage } from './components/EnergyStonesPage';
+import { SEOHead } from './components/SEOHead';
+import { JsonLd } from './components/JsonLd';
 
 export function App() {
   // Page Routing & Active Category State
@@ -299,30 +301,41 @@ export function App() {
 
   const wishlistProducts = PRODUCTS.filter((p) => wishlistIds.includes(p.id));
 
-  // ── Client-Side URL Pathname & Hash Routing ────────────────
+  // ── Client-Side URL Pathname Routing (Clean URLs) ────────────────
   useEffect(() => {
     const parseRoute = () => {
-      const pathname = window.location.pathname;
-      const hash = window.location.hash.replace(/^#\/?/, '');
-      const search = window.location.search;
-      const params = new URLSearchParams(search);
+      // ── Hash-to-clean-URL redirect for backward compatibility ──
+      const rawHash = window.location.hash;
+      if (rawHash && rawHash.startsWith('#/')) {
+        let cleanPath = rawHash.replace('#/', '/').replace(/\/$/, '') || '/';
+        // Map old hash paths to new clean paths
+        if (cleanPath === '/home') cleanPath = '/';
+        else if (cleanPath === '/privacy-policy') cleanPath = '/privacy-policy';
+        else if (cleanPath === '/refund-policy') cleanPath = '/refund-policy';
+        else if (cleanPath === '/terms-and-conditions') cleanPath = '/terms-and-conditions';
+        else if (cleanPath === '/track-order') cleanPath = '/track-order';
+        window.history.replaceState(null, '', cleanPath);
+      }
+
+      const pathname = window.location.pathname.replace(/\/$/, '') || '/';
+      const params = new URLSearchParams(window.location.search);
 
       // Product Deep Link
-      if (pathname.startsWith('/product/') || hash.startsWith('product/')) {
-        const prodId = pathname.startsWith('/product/') ? pathname.replace('/product/', '').trim() : hash.split('/')[1];
-        const prod = PRODUCTS.find((p) => String(p.id) === String(prodId) || p.slug === prodId);
-        if (prod) {
-          setSelectedProduct(prod);
-          setCurrentPage('product');
-          return;
+      if (pathname.startsWith('/product/')) {
+        const prodId = decodeURIComponent(pathname.replace('/product/', '').trim());
+        if (prodId) {
+          const prod = PRODUCTS.find((p) => String(p.id) === String(prodId) || p.slug === prodId);
+          if (prod) {
+            setSelectedProduct(prod);
+            setCurrentPage('product');
+            return;
+          }
         }
       }
 
       // Category / Collection Deep Link
-      if (pathname.startsWith('/category/') || pathname.startsWith('/collections/') || hash.startsWith('category/')) {
-        const catId = (pathname.startsWith('/category/') || pathname.startsWith('/collections/'))
-          ? pathname.replace(/^\/(category|collections)\//, '').trim()
-          : hash.split('/')[1];
+      if (pathname.startsWith('/category/') || pathname.startsWith('/collections/')) {
+        const catId = decodeURIComponent(pathname.replace(/^\/(category|collections)\//, '').trim());
         if (catId) {
           if (catId === 'all-collections') {
             setCurrentPage('all-collections');
@@ -334,43 +347,48 @@ export function App() {
         }
       }
 
-      if (pathname === '/gifting' || pathname === '/corporate-gifting' || hash === 'gifting') {
+      if (pathname === '/gifting' || pathname === '/corporate-gifting') {
         setCurrentPage('gifting');
         return;
       }
 
-      if (pathname === '/my-orders' || pathname === '/orders' || hash === 'my-orders') {
+      if (pathname === '/my-orders' || pathname === '/orders') {
         setCurrentPage('my-orders');
         return;
       }
 
-      if (pathname === '/energy-stones' || hash === 'energy-stones') {
+      if (pathname === '/energy-stones') {
         setCurrentPage('energy-stones');
         return;
       }
 
-      if (pathname === '/all-collections' || hash === 'all-collections') {
+      if (pathname === '/all-collections') {
         setCurrentPage('all-collections');
         return;
       }
 
-      if (pathname === '/about' || pathname === '/about-us' || hash === 'about' || hash === 'about-us') {
+      if (pathname === '/about' || pathname === '/about-us') {
         setCurrentPage('about');
         return;
       }
 
-      if (pathname === '/policy/privacy' || hash === 'privacy-policy') {
+      if (pathname === '/privacy-policy' || pathname === '/policy/privacy') {
         setCurrentPage('privacy');
         return;
       }
 
-      if (pathname === '/policy/refund' || hash === 'refund-policy') {
+      if (pathname === '/refund-policy' || pathname === '/policy/refund') {
         setCurrentPage('refund-policy');
         return;
       }
 
-      if (pathname === '/policy/terms' || hash === 'terms-and-conditions' || hash === 'terms') {
+      if (pathname === '/terms-and-conditions' || pathname === '/terms' || pathname === '/policy/terms') {
         setCurrentPage('terms');
+        return;
+      }
+
+      if (pathname === '/track-order') {
+        setCurrentPage('support');
         return;
       }
 
@@ -391,17 +409,15 @@ export function App() {
         return;
       }
 
-      if (pathname === '/' || hash === 'home' || !hash) {
+      if (pathname === '/') {
         setCurrentPage('home');
       }
     };
 
     parseRoute();
     window.addEventListener('popstate', parseRoute);
-    window.addEventListener('hashchange', parseRoute);
     return () => {
       window.removeEventListener('popstate', parseRoute);
-      window.removeEventListener('hashchange', parseRoute);
     };
   }, []);
 
@@ -418,26 +434,21 @@ export function App() {
   const handleSelectCategory = (catId) => {
     if (catId === 'all-collections') {
       setCurrentPage('all-collections');
-      try { window.history.pushState(null, '', '/all-collections'); } catch {}
-      window.location.hash = '#/all-collections';
+      window.history.pushState(null, '', '/all-collections');
     } else if (catId === 'all') {
       setCurrentPage('home');
-      try { window.history.pushState(null, '', '/'); } catch {}
-      window.location.hash = '#/home';
+      window.history.pushState(null, '', '/');
     } else if (catId === 'energy-stones') {
       setCurrentPage('energy-stones');
-      try { window.history.pushState(null, '', '/energy-stones'); } catch {}
-      window.location.hash = '#/energy-stones';
+      window.history.pushState(null, '', '/energy-stones');
     } else if (catId === 'kits' || catId === 'gifting') {
       setCurrentPage('gifting');
       setSelectedCategoryId('kits');
-      try { window.history.pushState(null, '', '/gifting'); } catch {}
-      window.location.hash = '#/gifting';
+      window.history.pushState(null, '', '/gifting');
     } else {
       setSelectedCategoryId(catId);
       setCurrentPage('category');
-      try { window.history.pushState(null, '', `/category/${catId}`); } catch {}
-      window.location.hash = `#/category/${catId}`;
+      window.history.pushState(null, '', `/category/${catId}`);
     }
     resetScrollToTop();
   };
@@ -445,43 +456,43 @@ export function App() {
   const handleSelectProduct = (product) => {
     setSelectedProduct(product);
     setCurrentPage('product');
-    window.location.hash = `#/product/${product.id}`;
+    window.history.pushState(null, '', `/product/${product.id}`);
     resetScrollToTop();
   };
 
   const handleGoHome = () => {
     setCurrentPage('home');
-    window.location.hash = '#/home';
+    window.history.pushState(null, '', '/');
     resetScrollToTop();
   };
 
   const handleGoSupport = () => {
     setCurrentPage('support');
-    window.location.hash = '#/track-order';
+    window.history.pushState(null, '', '/track-order');
     resetScrollToTop();
   };
 
   const handleGoPrivacy = () => {
     setCurrentPage('privacy');
-    window.location.hash = '#/privacy-policy';
+    window.history.pushState(null, '', '/privacy-policy');
     resetScrollToTop();
   };
 
   const handleGoRefundPolicy = () => {
     setCurrentPage('refund-policy');
-    window.location.hash = '#/refund-policy';
+    window.history.pushState(null, '', '/refund-policy');
     resetScrollToTop();
   };
 
   const handleGoTerms = () => {
     setCurrentPage('terms');
-    window.location.hash = '#/terms-and-conditions';
+    window.history.pushState(null, '', '/terms-and-conditions');
     resetScrollToTop();
   };
 
   const handleGoAbout = () => {
     setCurrentPage('about');
-    window.location.hash = '#/about';
+    window.history.pushState(null, '', '/about');
     resetScrollToTop();
   };
 
@@ -516,87 +527,244 @@ export function App() {
         <main className={`flex-1 ${currentPage === 'home' ? '' : 'pt-20 sm:pt-24'}`}>
           {currentPage === 'terms' ? (
             /* Dedicated Terms & Conditions Page */
-            <TermsPage onBackToHome={handleGoHome} />
+            <>
+              <SEOHead
+                title="Terms & Conditions | SHRAVIKO"
+                description="Read the terms and conditions for purchasing from SHRAVIKO. Covers ordering, payments, shipping, and usage policies for our pooja essentials store."
+                canonicalPath="/terms-and-conditions"
+              />
+              <TermsPage onBackToHome={handleGoHome} />
+            </>
           ) : currentPage === 'privacy' ? (
             /* Dedicated Privacy Policy Page */
-            <PrivacyPolicyPage onBackToHome={handleGoHome} />
+            <>
+              <SEOHead
+                title="Privacy Policy | SHRAVIKO"
+                description="Learn how SHRAVIKO collects, uses, and protects your personal information. Our privacy policy covers data handling for our Indian pooja essentials store."
+                canonicalPath="/privacy-policy"
+              />
+              <PrivacyPolicyPage onBackToHome={handleGoHome} />
+            </>
           ) : currentPage === 'refund-policy' ? (
             /* Dedicated Refund & Cancellation Policy Page */
-            <RefundPolicyPage onBackToHome={handleGoHome} />
+            <>
+              <SEOHead
+                title="Cancellation & Refund Policy | SHRAVIKO"
+                description="SHRAVIKO cancellation and refund policy. Learn about returns, exchanges, and refund procedures for brass, copper, and pooja essential products."
+                canonicalPath="/refund-policy"
+              />
+              <RefundPolicyPage onBackToHome={handleGoHome} />
+            </>
           ) : currentPage === 'about' ? (
             /* Dedicated About Us Page */
-            <AboutUsPage onBackToHome={handleGoHome} />
+            <>
+              <SEOHead
+                title="About SHRAVIKO — Our Story & Heritage"
+                description="SHRAVIKO is a Udaipur-based brand specializing in handcrafted pooja essentials — pure brass, copper, Rudraksha malas, yantras, and spiritual accessories. Made in India with devotion."
+                canonicalPath="/about"
+              />
+              <AboutUsPage onBackToHome={handleGoHome} />
+            </>
           ) : currentPage === 'all-collections' ? (
             /* All Products — Category-wise listing */
-            <AllCollectionsPage
-              products={PRODUCTS}
-              categories={CATEGORIES}
-              onBackToHome={handleGoHome}
-              onAddToCart={handleAddToCart}
-              onToggleWishlist={handleToggleWishlist}
-              wishlistIds={wishlistIds}
-              onSelectProduct={handleSelectProduct}
-              onSelectCategory={handleSelectCategory}
-            />
+            <>
+              <SEOHead
+                title="All Collections | SHRAVIKO — Premium Pooja Essentials"
+                description="Browse all SHRAVIKO collections — brass articles, copper vessels, mandir essentials, yantras, Rudraksha malas, and vastu items. Handcrafted in India."
+                canonicalPath="/all-collections"
+              />
+              <AllCollectionsPage
+                products={PRODUCTS}
+                categories={CATEGORIES}
+                onBackToHome={handleGoHome}
+                onAddToCart={handleAddToCart}
+                onToggleWishlist={handleToggleWishlist}
+                wishlistIds={wishlistIds}
+                onSelectProduct={handleSelectProduct}
+                onSelectCategory={handleSelectCategory}
+              />
+            </>
           ) : currentPage === 'support' || currentPage === 'my-orders' ? (
             /* Dedicated My Orders & Returns Portal */
-            <MyOrdersPage onBackToHome={handleGoHome} />
+            <>
+              <SEOHead
+                title="My Orders & Tracking | SHRAVIKO"
+                description="Track your SHRAVIKO orders, view order history, and manage returns. Fast order tracking for pooja essentials delivered across India."
+                canonicalPath="/track-order"
+              />
+              <MyOrdersPage onBackToHome={handleGoHome} />
+            </>
           ) : currentPage === 'product' ? (
             /* Dedicated Product Details Page View */
-            <ProductDetailPage
-              product={selectedProduct}
-              onBackToCategory={(catId) => {
-                if (catId) {
-                  handleSelectCategory(catId);
-                } else if (window.history && window.history.length > 1) {
-                  window.history.back();
-                } else {
-                  handleGoHome();
-                }
-              }}
-              onBackToHome={handleGoHome}
-              onAddToCart={handleAddToCart}
-              onToggleWishlist={handleToggleWishlist}
-              isWishlisted={selectedProduct && wishlistIds.includes(selectedProduct.id)}
-              showToast={showToast}
-            />
+            <>
+              {selectedProduct && (
+                <SEOHead
+                  title={selectedProduct.seoTitle || `${selectedProduct.name} | SHRAVIKO`}
+                  description={selectedProduct.metaDescription || selectedProduct.shortDescription || selectedProduct.description?.substring(0, 160)}
+                  canonicalPath={`/product/${selectedProduct.id}`}
+                  ogImage={selectedProduct.image ? `https://shraviko.com${selectedProduct.image}` : undefined}
+                  ogType="product"
+                />
+              )}
+              <ProductDetailPage
+                product={selectedProduct}
+                onBackToCategory={(catId) => {
+                  if (catId) {
+                    handleSelectCategory(catId);
+                  } else if (window.history && window.history.length > 1) {
+                    window.history.back();
+                  } else {
+                    handleGoHome();
+                  }
+                }}
+                onBackToHome={handleGoHome}
+                onAddToCart={handleAddToCart}
+                onToggleWishlist={handleToggleWishlist}
+                isWishlisted={selectedProduct && wishlistIds.includes(selectedProduct.id)}
+                showToast={showToast}
+              />
+            </>
           ) : currentPage === 'gifting' ? (
             /* Dedicated Corporate Gifting & Bulk Enquiry Page View */
-            <CorporateGiftingPage
-              onBackToHome={handleGoHome}
-              showToast={showToast}
-            />
+            <>
+              <SEOHead
+                title="Corporate & Bulk Gifting | SHRAVIKO"
+                description="Curated spiritual and lifestyle gifts for teams, clients, celebrations, and special occasions. Custom packaging, bulk orders, and personalization available."
+                canonicalPath="/gifting"
+              />
+              <CorporateGiftingPage
+                onBackToHome={handleGoHome}
+                showToast={showToast}
+              />
+            </>
           ) : currentPage === 'energy-stones' ? (
             /* Dedicated Energy Stones & Accessories Collection Page View */
-            <EnergyStonesPage
-              onBackToHome={handleGoHome}
-              onAddToCart={handleAddToCart}
-              onToggleWishlist={handleToggleWishlist}
-              wishlistIds={wishlistIds}
-              onOpenQuickView={(product) => setQuickViewProduct(product)}
-            />
+            <>
+              <SEOHead
+                title="Energy Stones & Crystal Bracelets | SHRAVIKO"
+                description="100% Authentic Natural Gemstones, Orgone Healing Pyramids, Crystal Bracelets and Sacred Japa Malas — Consecrated and Energized for Specific Intentions."
+                canonicalPath="/energy-stones"
+              />
+              <EnergyStonesPage
+                onBackToHome={handleGoHome}
+                onAddToCart={handleAddToCart}
+                onToggleWishlist={handleToggleWishlist}
+                wishlistIds={wishlistIds}
+                onOpenQuickView={(product) => setQuickViewProduct(product)}
+              />
+            </>
           ) : currentPage === 'category' ? (
             /* Dedicated Category Page View */
-            <CategoryPage
-              category={categoryDetailsMap[selectedCategoryId] || {
-                id: selectedCategoryId,
-                title: selectedCategoryId.toUpperCase(),
-                name: selectedCategoryId.toUpperCase(),
-                image: '/assets/Incense cover.jpg',
-                description: 'Sacred collection'
-              }}
-              categories={CATEGORIES}
-              products={PRODUCTS}
-              onBackToHome={handleGoHome}
-              onAddToCart={handleAddToCart}
-              onToggleWishlist={handleToggleWishlist}
-              wishlistIds={wishlistIds}
-              onOpenQuickView={(product) => setQuickViewProduct(product)}
-              onSelectProduct={handleSelectProduct}
-            />
+            <>
+              {(() => {
+                const cat = categoryDetailsMap[selectedCategoryId] || { id: selectedCategoryId, title: selectedCategoryId, name: selectedCategoryId, description: 'Sacred collection' };
+                return (
+                  <>
+                    <SEOHead
+                      title={`${cat.name || cat.title} Collection | SHRAVIKO`}
+                      description={cat.description || `Explore the SHRAVIKO ${cat.name} collection. Premium handcrafted pooja essentials made in India.`}
+                      canonicalPath={`/category/${selectedCategoryId}`}
+                    />
+                    <JsonLd data={{
+                      '@context': 'https://schema.org',
+                      '@type': 'CollectionPage',
+                      'name': `${cat.name || cat.title} Collection — SHRAVIKO`,
+                      'description': cat.description,
+                      'url': `https://shraviko.com/category/${selectedCategoryId}`
+                    }} />
+                  </>
+                );
+              })()}
+              <CategoryPage
+                category={categoryDetailsMap[selectedCategoryId] || {
+                  id: selectedCategoryId,
+                  title: selectedCategoryId.toUpperCase(),
+                  name: selectedCategoryId.toUpperCase(),
+                  image: '/assets/Incense cover.jpg',
+                  description: 'Sacred collection'
+                }}
+                categories={CATEGORIES}
+                products={PRODUCTS}
+                onBackToHome={handleGoHome}
+                onAddToCart={handleAddToCart}
+                onToggleWishlist={handleToggleWishlist}
+                wishlistIds={wishlistIds}
+                onOpenQuickView={(product) => setQuickViewProduct(product)}
+                onSelectProduct={handleSelectProduct}
+              />
+            </>
           ) : (
             /* ── Premium Minimal Homepage ── */
             <>
+              <SEOHead
+                title="SHRAVIKO — Premium Indian Pooja Essentials"
+                description="Elevate daily rituals with Shraviko. Pure brassware, heavy copper vessels, organic temple flower incense, handcrafted pooja thalis, and sacred yantras. Made in India."
+                canonicalPath="/"
+              />
+              {/* Organization + WebSite + Store JSON-LD */}
+              <JsonLd data={[
+                {
+                  '@context': 'https://schema.org',
+                  '@type': 'Organization',
+                  'name': 'SHRAVIKO',
+                  'url': 'https://shraviko.com',
+                  'logo': 'https://shraviko.com/assets/Logo/LOGO.png',
+                  'description': 'Premium Indian pooja essentials — handcrafted brassware, pure copper vessels, sacred yantras, Rudraksha malas, and organic incense. Made in India.',
+                  'contactPoint': {
+                    '@type': 'ContactPoint',
+                    'telephone': '+917742320607',
+                    'contactType': 'customer service',
+                    'email': 'info@shraviko.com',
+                    'areaServed': 'IN',
+                    'availableLanguage': ['English', 'Hindi']
+                  },
+                  'sameAs': [
+                    'https://www.instagram.com/shraviko/',
+                    'https://www.facebook.com/profile.php?id=61593917600311',
+                    'https://www.amazon.in/s?k=shraviko'
+                  ]
+                },
+                {
+                  '@context': 'https://schema.org',
+                  '@type': 'WebSite',
+                  'name': 'SHRAVIKO',
+                  'url': 'https://shraviko.com',
+                  'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://shraviko.com/all-collections?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                  }
+                },
+                {
+                  '@context': 'https://schema.org',
+                  '@type': 'Store',
+                  'name': 'SHRAVIKO',
+                  'url': 'https://shraviko.com',
+                  'logo': 'https://shraviko.com/assets/Logo/LOGO.png',
+                  'image': 'https://shraviko.com/assets/Logo/LOGO.png',
+                  'telephone': '+917742320607',
+                  'email': 'info@shraviko.com',
+                  'address': {
+                    '@type': 'PostalAddress',
+                    'addressLocality': 'Udaipur',
+                    'addressRegion': 'Rajasthan',
+                    'postalCode': '313001',
+                    'addressCountry': 'IN'
+                  },
+                  'geo': {
+                    '@type': 'GeoCoordinates',
+                    'latitude': '24.5854',
+                    'longitude': '73.7125'
+                  },
+                  'areaServed': { '@type': 'Country', 'name': 'India' },
+                  'priceRange': '₹₹',
+                  'sameAs': [
+                    'https://www.instagram.com/shraviko/',
+                    'https://www.facebook.com/profile.php?id=61593917600311',
+                    'https://www.amazon.in/s?k=shraviko'
+                  ]
+                }
+              ]} />
               {/* 1. Hero — full-width image carousel with minimal text */}
               <Hero
                 onExploreClick={() => {
