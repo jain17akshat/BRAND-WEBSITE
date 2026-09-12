@@ -91,12 +91,8 @@ If you prefer serving the frontend static build directly from the Express backen
 Before opening the site to live traffic, complete this verification checklist step by step:
 
 - [ ] **1. Live SMTP Email Delivery Test**
-  - Before starting server, run the test script from `backend/`:
-    ```bash
-    cd backend
-    node test-email.js
-    ```
-  - Confirm the test corporate enquiry notification email arrives cleanly in the `ADMIN_EMAIL` inbox.
+  - Verify corporate enquiry email delivery by testing live enquiry form submission on site.
+  - Confirm the notification email arrives cleanly in the `ADMIN_EMAIL` inbox.
 
 - [ ] **2. Backend Production Startup & Mock Gate**
   - Start backend with `NODE_ENV=production npm start`.
