@@ -82,10 +82,10 @@ export async function checkRates({ delivery_pincode, weight = 0.5, cod = false }
 }
 
 // ── Razorpay: Create Order ────────────────────────────────
-export async function createRazorpayOrder({ amount, receipt }) {
+export async function createRazorpayOrder({ amount, receipt, couponCode, cart, customer }) {
   return request('/payments/create-order', {
     method: 'POST',
-    body: JSON.stringify({ amount, receipt }),
+    body: JSON.stringify({ amount, receipt, coupon_code: couponCode, cart, customer }),
   });
 }
 
@@ -97,6 +97,7 @@ export async function verifyPayment({
   cart,
   customer,
   payment_method,
+  couponCode,
 }) {
   return request('/payments/verify', {
     method: 'POST',
@@ -107,6 +108,7 @@ export async function verifyPayment({
       cart,
       customer,
       payment_method,
+      coupon_code: couponCode,
     }),
   });
 }

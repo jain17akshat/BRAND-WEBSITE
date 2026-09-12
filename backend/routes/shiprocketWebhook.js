@@ -19,17 +19,25 @@ router.use((req, res, next) => {
 
   // Token Authentication for Shiprocket Webhook POST events
   const configuredToken = config.shiprocket.webhookToken;
-  if (configuredToken) {
-    const incomingToken = req.headers['x-shiprocket-token'] || req.headers['shiprocket-token'] || req.headers['x-api-key'] || '';
-    
-    const tokenBuf = Buffer.from(String(incomingToken));
-    const expectedBuf = Buffer.from(String(configuredToken));
+  if (!configuredToken) {
+    console.error('❌ Shiprocket Webhook configuration error: SHIPROCKET_WEBHOOK_TOKEN is missing on server.');
+    return res.status(500).json({ success: false, error: 'Webhook token configuration missing on server' });
+  }
 
-    const isValid = tokenBuf.length === expectedBuf.length && crypto.timingSafeEqual(tokenBuf, expectedBuf);
-    if (!isValid) {
-      console.warn('⛔ Unauthorized Shiprocket Webhook attempt blocked: Token mismatch');
-      return res.status(401).json({ success: false, error: 'Unauthorized webhook request' });
-    }
+  const incomingToken = req.headers['x-shiprocket-token'] || req.headers['shiprocket-token'] || req.headers['x-api-key'] || '';
+
+  if (!incomingToken) {
+    console.warn('⛔ Unauthorized Shiprocket Webhook attempt blocked: Missing token header');
+    return res.status(401).json({ success: false, error: 'Unauthorized: Missing webhook token' });
+  }
+
+  const tokenBuf = Buffer.from(String(incomingToken));
+  const expectedBuf = Buffer.from(String(configuredToken));
+
+  const isValid = tokenBuf.length === expectedBuf.length && crypto.timingSafeEqual(tokenBuf, expectedBuf);
+  if (!isValid) {
+    console.warn('⛔ Unauthorized Shiprocket Webhook attempt blocked: Token mismatch');
+    return res.status(401).json({ success: false, error: 'Unauthorized: Invalid webhook token' });
   }
 
   next();

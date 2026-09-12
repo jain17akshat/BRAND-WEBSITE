@@ -157,6 +157,7 @@ export const CheckoutModal = ({
           cart: cartItems,
           customer: customerData,
           payment_method: 'cod',
+          couponCode: appliedPromo?.code || null,
         });
         setOrderId(verified.internal_order_id || receipt);
         setOrderComplete(true);
@@ -170,6 +171,9 @@ export const CheckoutModal = ({
       const { order, key_id, _mock } = await createRazorpayOrder({
         amount: Number(grandTotal),   // in ₹ — server converts to paise
         receipt,
+        couponCode: appliedPromo?.code || null,
+        cart: cartItems,
+        customer: customerData,
         notes: {
           promo_code: appliedPromo?.code || 'NONE',
           discount_amount: discount
@@ -184,6 +188,7 @@ export const CheckoutModal = ({
           razorpay_signature:  'mock_signature',
           cart: cartItems,
           customer: customerData,
+          couponCode: appliedPromo?.code || null,
         });
         setOrderId(verified.internal_order_id || receipt);
         setOrderComplete(true);
@@ -217,6 +222,7 @@ export const CheckoutModal = ({
               razorpay_signature:  response.razorpay_signature,
               cart: cartItems,
               customer: customerData,
+              couponCode: appliedPromo?.code || null,
             });
             setOrderId(verified.internal_order_id || receipt);
             setOrderComplete(true);

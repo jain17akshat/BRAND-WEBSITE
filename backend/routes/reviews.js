@@ -95,6 +95,12 @@ router.get('/:productId', async (req, res, next) => {
   }
 });
 
+function sanitizeText(str = '') {
+  return String(str)
+    .replace(/<[^>]*>?/gm, '') // Strip HTML tags
+    .trim();
+}
+
 // ── POST /api/reviews ─────────────────────────────────────
 router.post(
   '/',
@@ -112,23 +118,53 @@ router.post(
         comment,
         customer_name,
         customer_email,
+        order_id,
+        phone,
+        customer_phone,
       } = req.body;
 
+      const cleanTitle = sanitizeText(title || '').slice(0, 150);
+      const cleanComment = sanitizeText(comment || '').slice(0, 2000);
+      const cleanName = sanitizeText(customer_name || 'Anonymous').slice(0, 100);
+
+      // Verify buyer status strictly
+      let isVerifiedBuyer = false;
+      const targetPhone = customer_phone || phone;
+      const targetEmail = customer_email;
+
+      if (order_id && (targetPhone || targetEmail)) {
+        const { findOrder } = require('../services/orderStore');
+        const order = await findOrder(order_id, targetPhone, targetEmail);
+
+        if (order && String(order.status || '').toUpperCase() === 'DELIVERED') {
+          const items = order.items || [];
+          const hasProduct = product_id === 'ALL' || items.some(item => {
+            const itemId = String(item.id || item.productId || item.sku || '').trim();
+            return itemId === String(product_id).trim() || String(product_id).startsWith(itemId);
+          });
+
+          if (hasProduct) {
+            isVerifiedBuyer = true;
+          }
+        }
+      }
+
       const savedRecord = await saveReview({
-        product_id,
-        rating,
-        title,
-        comment,
-        customer_name,
-        customer_email,
-        verified_buyer: true,
+        product_id: String(product_id).trim(),
+        rating: Math.min(5, Math.max(1, Number(rating) || 5)),
+        title: cleanTitle,
+        comment: cleanComment,
+        customer_name: cleanName,
+        customer_email: customer_email ? String(customer_email).trim() : '',
+        verified_buyer: isVerifiedBuyer ? 1 : 0,
       });
 
       console.log('⭐ New Product Review Saved:', {
         id: savedRecord.id,
         product_id,
         rating,
-        customer_name,
+        customer_name: cleanName,
+        verified_buyer: isVerifiedBuyer,
       });
 
       res.json({

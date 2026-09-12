@@ -8,53 +8,79 @@
  *   POST /api/payments/webhook
  */
 
-const express       = require('express');
-const router        = express.Router();
-const crypto        = require('crypto');
-const { getClient } = require('../razorpay/client');
+const express          = require('express');
+const router           = express.Router();
+const crypto           = require('crypto');
+const { getClient }    = require('../razorpay/client');
 const { verifyPaymentSignature, verifyWebhookSignature } = require('../razorpay/verify');
 const { mockRazorpayOrder, mockRazorpayVerify, mockRazorpayRefund } = require('../mock/payments');
-const validateBody  = require('../middleware/validateBody');
-const { AppError }  = require('../middleware/errorHandler');
-const config        = require('../config');
-const { getProductPrice } = require('../data/catalog');
+const validateBody     = require('../middleware/validateBody');
+const { AppError }     = require('../middleware/errorHandler');
+const requireAdminAuth = require('../middleware/adminAuth');
+const config           = require('../config');
+const { getProductPrice, validateCoupon } = require('../data/catalog');
 
 // ── POST /api/payments/create-order ───────────────────────
 router.post(
   '/create-order',
   validateBody({
-    amount:  { type: 'number', required: true, min: 1 },
     receipt: { type: 'string', required: true },
+    cart:    { type: 'array',  required: true },
   }),
   async (req, res, next) => {
     try {
-      const { amount, receipt, cart, notes = {} } = req.body;
+      const { receipt, cart, couponCode, coupon_code, notes = {} } = req.body;
 
       // Reject invalid characters in receipt identifier
       if (receipt && !/^[a-zA-Z0-9_-]+$/.test(String(receipt).trim())) {
         throw new AppError('Invalid receipt identifier format. Must contain only alphanumeric characters, underscores, or hyphens.', 400, 'INVALID_INPUT');
       }
 
-      // Server-side calculation of cart total using authoritative catalog
-      let finalAmount = amount;
-      if (Array.isArray(cart) && cart.length > 0) {
-        const calculatedTotal = cart.reduce((sum, item) => {
-          const rawQty = item.quantity !== undefined ? item.quantity : (item.qty !== undefined ? item.qty : (item.units !== undefined ? item.units : 1));
-          const qty = Number(rawQty);
-          if (isNaN(qty) || qty <= 0 || !Number.isInteger(qty)) {
-            throw new AppError(`Invalid item quantity for "${item.name || item.id}": ${rawQty}`, 400, 'VALIDATION_ERROR');
-          }
-          const price = getProductPrice(item);
-          return sum + (price * qty);
-        }, 0);
+      // Mandatory non-empty cart validation
+      if (!Array.isArray(cart) || cart.length === 0) {
+        throw new AppError('Cart is missing or empty. A valid cart is required to create a payment order.', 400, 'INVALID_CART');
+      }
 
-        if (calculatedTotal > 0) {
-          finalAmount = calculatedTotal;
+      // Server-side calculation of cart total using authoritative catalog
+      let authoritativeSubtotal = 0;
+      for (const item of cart) {
+        if (!item || typeof item !== 'object') {
+          throw new AppError('Invalid cart item structure.', 400, 'INVALID_CART_ITEM');
+        }
+
+        const rawQty = item.quantity !== undefined ? item.quantity : (item.qty !== undefined ? item.qty : (item.units !== undefined ? item.units : 1));
+        const qty = Number(rawQty);
+        if (isNaN(qty) || qty <= 0 || !Number.isInteger(qty)) {
+          throw new AppError(`Invalid item quantity for "${item.name || item.id}": ${rawQty}`, 400, 'VALIDATION_ERROR');
+        }
+
+        const price = getProductPrice(item);
+        if (typeof price !== 'number' || isNaN(price) || price < 0) {
+          throw new AppError(`Unrecognized or invalid product in cart: ${item.id || item.name}`, 400, 'INVALID_PRODUCT');
+        }
+
+        authoritativeSubtotal += price * qty;
+      }
+
+      if (authoritativeSubtotal <= 0) {
+        throw new AppError('Authoritative cart subtotal must be greater than 0.', 400, 'INVALID_AMOUNT');
+      }
+
+      // Apply server-validated coupon discount (e.g. WELCOME10)
+      const code = couponCode || coupon_code;
+      let appliedDiscount = 0;
+      if (code) {
+        const couponResult = validateCoupon(code, authoritativeSubtotal);
+        if (couponResult.valid) {
+          appliedDiscount = couponResult.discountAmount;
         }
       }
 
-      // Amount must be in paise (Razorpay convention)
-      const amountInPaise = Math.round(finalAmount * 100);
+      // Server-side shipping fee & prepaid online saving
+      const shippingFee = (authoritativeSubtotal >= 999 || authoritativeSubtotal === 0) ? 0 : 99;
+      const prepaidSaving = 50; // Razorpay orders created via /create-order are online/prepaid
+      const authoritativePayable = Math.max(0, authoritativeSubtotal + shippingFee - appliedDiscount - prepaidSaving);
+      const amountInPaise = Math.round(authoritativePayable * 100);
 
       if (req.mock.razorpay) {
         const mockOrder = mockRazorpayOrder(amountInPaise, receipt);
@@ -71,7 +97,12 @@ router.post(
         amount:   amountInPaise,
         currency: 'INR',
         receipt,
-        notes,
+        notes: {
+          ...notes,
+          subtotal: authoritativeSubtotal,
+          discount: appliedDiscount,
+          coupon: code || '',
+        },
       });
 
       res.json({
@@ -80,6 +111,7 @@ router.post(
         key_id:  config.razorpay.keyId,
       });
     } catch (err) {
+      if (err instanceof AppError) return next(err);
       next(new AppError(
         `Razorpay order creation failed: ${err.message}`,
         502,
@@ -123,6 +155,7 @@ router.post(
     razorpay_order_id:   { type: 'string', required: true },
     razorpay_payment_id: { type: 'string', required: true },
     razorpay_signature:  { type: 'string', required: true },
+    cart:                { type: 'array',  required: true },
   }),
   async (req, res, next) => {
     try {
@@ -133,6 +166,8 @@ router.post(
         cart,
         customer,
         payment_method = 'prepaid',
+        coupon_code,
+        couponCode,
       } = req.body;
 
       if (razorpay_order_id && !/^[a-zA-Z0-9_-]+$/.test(String(razorpay_order_id).trim())) {
@@ -146,32 +181,56 @@ router.post(
       const isCOD = String(payment_method).toLowerCase() === 'cod';
       const shiprocketPaymentMethod = isCOD ? 'COD' : 'Prepaid';
 
-      // Enforce server-side price & quantity integrity against authoritative catalog
-      if (Array.isArray(cart) && cart.length > 0) {
-        for (const item of cart) {
-          const rawQty = item.quantity !== undefined ? item.quantity : (item.qty !== undefined ? item.qty : (item.units !== undefined ? item.units : 1));
-          const qty = Number(rawQty);
-          if (isNaN(qty) || qty <= 0 || !Number.isInteger(qty)) {
-            throw new AppError(`Invalid item quantity for "${item.name || item.id}": ${rawQty}`, 400, 'VALIDATION_ERROR');
-          }
+      // 1. Mandatory non-empty cart validation
+      if (!Array.isArray(cart) || cart.length === 0) {
+        throw new AppError('Cart is missing or empty. Cannot verify payment.', 400, 'INVALID_CART');
+      }
 
-          const authoritativePrice = getProductPrice(item);
-          if (item.price !== undefined && item.price !== null) {
-            const submittedPrice = Number(item.price);
-            if (isNaN(submittedPrice) || submittedPrice !== Number(authoritativePrice)) {
-              throw new AppError(
-                `Price mismatch for product "${item.name || item.id}". Expected ₹${authoritativePrice}, got ₹${item.price}.`,
-                400,
-                'PRICE_TAMPERING'
-              );
-            }
-          }
-          item.price = authoritativePrice;
-          item.quantity = qty;
+      // 2. Authoritative price & subtotal calculation from server-side catalog
+      let verifiedSubtotal = 0;
+      const sanitizedCart = [];
+      for (const item of cart) {
+        if (!item || typeof item !== 'object') {
+          throw new AppError('Invalid cart item structure.', 400, 'INVALID_CART_ITEM');
+        }
+
+        const rawQty = item.quantity !== undefined ? item.quantity : (item.qty !== undefined ? item.qty : (item.units !== undefined ? item.units : 1));
+        const qty = Number(rawQty);
+        if (isNaN(qty) || qty <= 0 || !Number.isInteger(qty)) {
+          throw new AppError(`Invalid item quantity for "${item.name || item.id}": ${rawQty}`, 400, 'VALIDATION_ERROR');
+        }
+
+        const authoritativePrice = getProductPrice(item);
+        if (typeof authoritativePrice !== 'number' || isNaN(authoritativePrice) || authoritativePrice < 0) {
+          throw new AppError(`Unrecognized or invalid product in cart: ${item.id || item.name}`, 400, 'INVALID_PRODUCT');
+        }
+
+        sanitizedCart.push({
+          ...item,
+          price: authoritativePrice,
+          quantity: qty,
+        });
+
+        verifiedSubtotal += authoritativePrice * qty;
+      }
+
+      // 3. Server-side coupon validation (e.g. WELCOME10)
+      const code = couponCode || coupon_code;
+      let verifiedDiscount = 0;
+      if (code) {
+        const couponResult = validateCoupon(code, verifiedSubtotal);
+        if (couponResult.valid) {
+          verifiedDiscount = couponResult.discountAmount;
         }
       }
 
-      // 1. VALIDATE PAYMENT SIGNATURE FIRST (Never bypass verification in production)
+      // Server-side shipping fee & prepaid online saving
+      const shippingFee = (verifiedSubtotal >= 999 || verifiedSubtotal === 0) ? 0 : 99;
+      const prepaidSaving = isCOD ? 0 : 50;
+      const authoritativePayable = Math.max(0, verifiedSubtotal + shippingFee - verifiedDiscount - prepaidSaving);
+      const expectedAmountInPaise = Math.round(authoritativePayable * 100);
+
+      // 4. VERIFY PAYMENT SIGNATURE (HMAC SHA-256)
       const shouldVerifySignature = !isCOD && (config.isProd || !req.mock.razorpay);
       if (shouldVerifySignature) {
         const { valid, reason } = verifyPaymentSignature(
@@ -187,10 +246,50 @@ router.post(
             'SIGNATURE_MISMATCH'
           );
         }
+
+        // 5. FETCH & VERIFY RAZORPAY TRANSACTION WITH SERVER CREDENTIALS
+        const razorpay = getClient();
+        try {
+          const fetchedPayment = await razorpay.payments.fetch(razorpay_payment_id);
+          if (!fetchedPayment) {
+            throw new AppError('Payment record not found on Razorpay.', 400, 'PAYMENT_NOT_FOUND');
+          }
+
+          // Check payment belongs to this Razorpay order ID
+          if (fetchedPayment.order_id && fetchedPayment.order_id !== razorpay_order_id) {
+            throw new AppError(`Payment order ID mismatch. Payment ${razorpay_payment_id} belongs to order ${fetchedPayment.order_id}, not ${razorpay_order_id}.`, 400, 'ORDER_MISMATCH');
+          }
+
+          // Check payment status is valid
+          if (fetchedPayment.status !== 'captured' && fetchedPayment.status !== 'authorized') {
+            throw new AppError(`Payment status is invalid: ${fetchedPayment.status}`, 400, 'INVALID_PAYMENT_STATUS');
+          }
+
+          // Check paid amount matches server-authoritative payable amount
+          if (Number(fetchedPayment.amount) !== expectedAmountInPaise) {
+            throw new AppError(`Paid amount mismatch. Expected ₹${authoritativePayable} (${expectedAmountInPaise} paise), got ₹${fetchedPayment.amount / 100} (${fetchedPayment.amount} paise).`, 400, 'AMOUNT_MISMATCH');
+          }
+        } catch (rzpErr) {
+          if (rzpErr instanceof AppError) throw rzpErr;
+          throw new AppError(`Razorpay payment verification failed: ${rzpErr.message}`, 400, 'RAZORPAY_VERIFICATION_FAILED');
+        }
       }
 
-      // 2. RESERVE DEDUPLICATION LOCK BEFORE SIDE EFFECTS
-      const fingerprint = getOrderFingerprint(customer, cart, shiprocketPaymentMethod, razorpay_payment_id);
+      // Mock Mode Checks for testing
+      if (!isCOD && req.mock.razorpay) {
+        if (razorpay_payment_id.includes('FAILED') || razorpay_payment_id.includes('INVALID')) {
+          throw new AppError('Mock payment status is invalid or failed.', 400, 'INVALID_PAYMENT_STATUS');
+        }
+        if (razorpay_payment_id.includes('MISMATCH_ORDER')) {
+          throw new AppError('Payment order ID mismatch.', 400, 'ORDER_MISMATCH');
+        }
+        if (razorpay_payment_id.includes('MISMATCH_AMOUNT')) {
+          throw new AppError('Paid amount mismatch.', 400, 'AMOUNT_MISMATCH');
+        }
+      }
+
+      // 6. RESERVE DEDUPLICATION LOCK BEFORE SIDE EFFECTS
+      const fingerprint = getOrderFingerprint(customer, sanitizedCart, shiprocketPaymentMethod, razorpay_payment_id);
       const fpHash = hashFingerprint(fingerprint);
       const now = Date.now();
       const existingEntry = recentOrderDedupeMap.get(fingerprint);
@@ -205,7 +304,7 @@ router.post(
             recentOrderDedupeMap.delete(fingerprint);
           }
         } else if (existingEntry.status === 'COMPLETED' && (now - existingEntry.createdAt < DEDUPE_TTL_MS)) {
-          console.warn(`⚠️ Duplicate order attempt blocked [Hash: ${fpHash}]. Returning redacted cached response.`);
+          console.warn(`⚠️ Duplicate order attempt blocked [Hash: ${fpHash}]. Returning cached response.`);
           return res.json(existingEntry.response);
         }
       }
@@ -215,11 +314,8 @@ router.post(
         resolvePromise = resolve;
         rejectPromise = reject;
       });
-
-      // Attach a no-op rejection handler to prevent UnhandledPromiseRejection warnings
       dedupePromise.catch(() => {});
 
-      // Synchronously lock fingerprint in memory BEFORE sending email, saving DB, or calling Shiprocket API
       recentOrderDedupeMap.set(fingerprint, {
         status: 'PROCESSING',
         createdAt: now,
@@ -227,11 +323,13 @@ router.post(
       });
 
       try {
-        // Generate internal order ID & total amount
         const internalOrderId = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
-        const totalAmount = (cart || []).reduce((s, i) => s + ((i.price || 0) * (i.quantity || 1)), 0);
+        const totalAmount = authoritativePayable;
 
-        // Send instant email notification (Prepaid Payment Received for online, Order Confirmed for COD)
+        // Deduct inventory atomically (fails with 409 OUT_OF_STOCK if insufficient)
+        const { deductInventoryForCart } = require('../data/catalog');
+        await deductInventoryForCart(sanitizedCart);
+
         if (customer?.email) {
           const { sendOrderConfirmationEmail, sendPrepaidPaymentReceivedEmail } = require('../services/emailService');
           if (isCOD) {
@@ -239,7 +337,7 @@ router.post(
               to: customer.email,
               customerName: customer.name || 'Valued Customer',
               orderId: internalOrderId,
-              items: cart || [],
+              items: sanitizedCart,
               totalAmount,
               shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
               phone: customer.phone || '7742320607',
@@ -251,7 +349,7 @@ router.post(
               customerName: customer.name || 'Valued Customer',
               orderId: internalOrderId,
               paymentId: razorpay_payment_id,
-              items: cart || [],
+              items: sanitizedCart,
               totalAmount,
               shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
               phone: customer.phone || '7742320607',
@@ -266,12 +364,11 @@ router.post(
           customer: customer?.name,
         });
 
-        // Auto-push order to Shiprocket if in live/configured mode
         let srOrderId = null;
         let srShipmentId = null;
         let shiprocketSyncStatus = req.mock.shiprocket ? 'SKIPPED' : 'PENDING';
 
-        if (!req.mock.shiprocket && cart && customer) {
+        if (!req.mock.shiprocket && sanitizedCart && customer) {
           try {
             const srClient = require('../shiprocket/client');
             const { getValidPickupLocation } = require('../shiprocket/pickup');
@@ -296,7 +393,6 @@ router.post(
               billing_customer_name:  firstName,
               billing_last_name:      lastName,
               billing_address:        address,
-              billing_address_2:      '',
               billing_city:           city,
               billing_pincode:        pincode,
               billing_state:          state,
@@ -307,14 +403,13 @@ router.post(
               shipping_customer_name: firstName,
               shipping_last_name:     lastName,
               shipping_address:       address,
-              shipping_address_2:     '',
               shipping_city:          city,
               shipping_pincode:       pincode,
               shipping_state:         state,
               shipping_country:       'India',
               shipping_email:         email,
               shipping_phone:         cleanPhone,
-              order_items: (cart || []).map(item => ({
+              order_items: sanitizedCart.map(item => ({
                 name:          item.name || 'Sacred Product',
                 sku:           String(item.id || 'SKU-ITEM').slice(0, 30),
                 units:         item.quantity || 1,
@@ -326,8 +421,8 @@ router.post(
               shipping_charges:     0,
               giftwrap_charges:     0,
               transaction_charges:  0,
-              total_discount:       0,
-              sub_total:            (cart || []).reduce((s, i) => s + ((i.price || 0) * (i.quantity || 1)), 0),
+              total_discount:       verifiedDiscount,
+              sub_total:            verifiedSubtotal,
               length: 10, breadth: 10, height: 10, weight: 0.5,
             };
 
@@ -335,14 +430,12 @@ router.post(
             srOrderId = srRes.data?.order_id ? String(srRes.data.order_id) : null;
             srShipmentId = srRes.data?.shipment_id ? String(srRes.data.shipment_id) : null;
             shiprocketSyncStatus = 'SUCCESS';
-            console.log(`✅ ${shiprocketPaymentMethod} Order pushed to Shiprocket:`, internalOrderId, 'Shiprocket Order ID:', srOrderId, 'Shipment ID:', srShipmentId);
           } catch (srErr) {
             shiprocketSyncStatus = 'FAILED';
             console.error('⚠️ Shiprocket push failed for order', internalOrderId, ':', srErr.response?.data || srErr.message);
           }
         }
 
-        // Register order into OrderStore (in-memory + MySQL DB)
         const { addOrder } = require('../services/orderStore');
         await addOrder({
           order_id: internalOrderId,
@@ -356,13 +449,13 @@ router.post(
           city: customer?.city,
           state: customer?.state,
           pincode: customer?.pincode,
-          items: cart,
+          items: sanitizedCart,
           shiprocket_order_id: srOrderId,
           shipment_id: srShipmentId,
           shiprocket_sync_status: shiprocketSyncStatus,
+          inventory_deducted: true,
         });
 
-        // 3. REDACT & SANITIZE DEDUPLICATION DATA
         const sanitizedResponse = {
           success:             true,
           internal_order_id:   internalOrderId,
@@ -374,7 +467,6 @@ router.post(
           _mock:               !!req.mock.razorpay,
         };
 
-        // Complete the lock with sanitized response
         recentOrderDedupeMap.set(fingerprint, {
           status: 'COMPLETED',
           createdAt: now,
@@ -383,9 +475,7 @@ router.post(
 
         resolvePromise(sanitizedResponse);
         return res.json(sanitizedResponse);
-
       } catch (execErr) {
-        // If order execution failed, release deduplication key so user can retry!
         recentOrderDedupeMap.delete(fingerprint);
         rejectPromise(execErr);
         throw execErr;
@@ -397,9 +487,10 @@ router.post(
   }
 );
 
-// ── POST /api/payments/refund ─────────────────────────────
+// ── POST /api/payments/refund (Admin ONLY) ─────────────────
 router.post(
   '/refund',
+  requireAdminAuth,
   validateBody({
     payment_id: { type: 'string', required: true },
     amount:     { type: 'number', required: true, min: 1 },

@@ -3,7 +3,7 @@ require('dotenv').config();
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = nodeEnv === 'production';
 
-const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+const frontendUrl = process.env.FRONTEND_URL || (isProd ? '' : 'http://localhost:3000');
 const extraOrigins = (process.env.CORS_EXTRA_ORIGINS || '')
   .split(',')
   .map(o => o.trim())
@@ -17,7 +17,7 @@ const devOrigins = [
 ];
 
 const corsOrigins = Array.from(new Set([
-  frontendUrl,
+  ...(frontendUrl ? [frontendUrl] : []),
   ...extraOrigins,
   ...(isProd ? [] : devOrigins),
 ]));
@@ -61,6 +61,10 @@ const config = {
     adminPhone: process.env.ADMIN_PHONE || '',
     isMock: !process.env.EMAIL_USER || !process.env.EMAIL_PASS,
   },
+
+  admin: {
+    apiKey: process.env.ADMIN_API_KEY || process.env.ADMIN_TOKEN || 'shraviko-admin-secret-key-2026',
+  },
 };
 
 // Production Mock Gate: Refuse to run in production if critical services resolve to mock mode
@@ -71,6 +75,8 @@ if (isProd) {
   if (config.db.isMock) unconfigured.push('Database (DB_HOST / DB_NAME / DB_USER missing)');
   if (config.email.isMock) unconfigured.push('Email (EMAIL_USER / EMAIL_PASS missing)');
   if (!config.razorpay.webhookSecret) unconfigured.push('Razorpay Webhook Secret (RAZORPAY_WEBHOOK_SECRET missing)');
+  if (!config.shiprocket.webhookToken) unconfigured.push('Shiprocket Webhook Token (SHIPROCKET_WEBHOOK_TOKEN missing)');
+  if (!process.env.FRONTEND_URL) unconfigured.push('Frontend URL (FRONTEND_URL missing)');
 
   if (unconfigured.length > 0) {
     console.error('\n❌ FATAL: Cannot start server in PRODUCTION mode with mock services or missing secrets:');

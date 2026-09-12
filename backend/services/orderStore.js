@@ -91,11 +91,12 @@ async function addOrder(orderData) {
   }
 }
 
-async function findOrders(orderId, phone) {
+async function findOrders(orderId, phone, email) {
   const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
   const cleanPhone = phone ? String(phone).replace(/\D/g, '').slice(-10) : '';
+  const cleanEmail = email ? String(email).trim().toLowerCase() : '';
 
-  if (!cleanId && !cleanPhone) return [];
+  if (!cleanId && !cleanPhone && !cleanEmail) return [];
 
   const matchedMap = new Map();
 
@@ -103,22 +104,14 @@ async function findOrders(orderId, phone) {
   for (const [k, cached] of recentOrders.entries()) {
     const cachedId = String(cached.order_id || cached.id || k).toUpperCase();
     const cachedPhone = String(cached.customer_phone || '').replace(/\D/g, '').slice(-10);
+    const cachedEmail = String(cached.customer_email || '').trim().toLowerCase();
 
-    const matchesId = cleanId && (cachedId === cleanId);
-    const matchesPhone = cleanPhone && (cachedPhone === cleanPhone);
+    const matchesId = !cleanId || (cachedId === cleanId);
+    const matchesPhone = !cleanPhone || (cachedPhone === cleanPhone);
+    const matchesEmail = !cleanEmail || (cachedEmail === cleanEmail);
 
-    if (cleanId && cleanPhone) {
-      if (matchesId && matchesPhone) {
-        matchedMap.set(cachedId, formatCachedOrder(cached));
-      }
-    } else if (cleanId) {
-      if (matchesId) {
-        matchedMap.set(cachedId, formatCachedOrder(cached));
-      }
-    } else if (cleanPhone) {
-      if (matchesPhone) {
-        matchedMap.set(cachedId, formatCachedOrder(cached));
-      }
+    if (matchesId && matchesPhone && matchesEmail) {
+      matchedMap.set(cachedId, formatCachedOrder(cached));
     }
   }
 
@@ -126,44 +119,49 @@ async function findOrders(orderId, phone) {
   const pool = getPool();
   if (pool) {
     try {
-      let query = '';
-      let params = [];
-      if (cleanId && cleanPhone) {
-        query = `SELECT * FROM orders WHERE UPPER(order_id) = ? AND customer_phone LIKE ? ORDER BY id DESC LIMIT 50`;
-        params = [cleanId, `%${cleanPhone}`];
-      } else if (cleanId) {
-        query = `SELECT * FROM orders WHERE UPPER(order_id) = ? ORDER BY id DESC LIMIT 50`;
-        params = [cleanId];
-      } else if (cleanPhone) {
-        query = `SELECT * FROM orders WHERE customer_phone LIKE ? ORDER BY id DESC LIMIT 50`;
-        params = [`%${cleanPhone}`];
+      let query = 'SELECT * FROM orders WHERE 1=1';
+      const params = [];
+
+      if (cleanId) {
+        query += ' AND UPPER(order_id) = ?';
+        params.push(cleanId);
+      }
+      if (cleanPhone) {
+        query += ' AND customer_phone LIKE ?';
+        params.push(`%${cleanPhone}`);
+      }
+      if (cleanEmail) {
+        query += ' AND LOWER(customer_email) = ?';
+        params.push(cleanEmail);
       }
 
-      if (query) {
-        const [rows] = await pool.query(query, params);
-        if (rows && rows.length > 0) {
-          for (const row of rows) {
-            const rowId = String(row.order_id).toUpperCase();
-            if (!matchedMap.has(rowId)) {
-              let items = [];
-              try { items = typeof row.items_json === 'string' ? JSON.parse(row.items_json) : row.items_json; } catch {}
-              matchedMap.set(rowId, formatCachedOrder({
-                id: row.order_id,
-                order_id: row.order_id,
-                customer_name: row.customer_name,
-                customer_email: row.customer_email,
-                customer_phone: row.customer_phone,
-                total_amount: row.total_amount,
-                payment_method: row.payment_method,
-                payment_status: row.payment_status,
-                shipping_address: row.shipping_address,
-                items,
-                shiprocket_order_id: row.shiprocket_order_id || null,
-                shipment_id: row.shipment_id || null,
-                shiprocket_sync_status: row.shiprocket_sync_status || 'PENDING',
-                created_at: row.created_at,
-              }));
-            }
+      query += ' ORDER BY id DESC LIMIT 50';
+
+      const [rows] = await pool.query(query, params);
+      if (rows && rows.length > 0) {
+        for (const row of rows) {
+          const rowId = String(row.order_id).toUpperCase();
+          if (!matchedMap.has(rowId)) {
+            let items = [];
+            try { items = typeof row.items_json === 'string' ? JSON.parse(row.items_json) : row.items_json; } catch {}
+            matchedMap.set(rowId, formatCachedOrder({
+              id: row.order_id,
+              order_id: row.order_id,
+              customer_name: row.customer_name,
+              customer_email: row.customer_email,
+              customer_phone: row.customer_phone,
+              total_amount: row.total_amount,
+              payment_method: row.payment_method,
+              payment_status: row.payment_status,
+              shipping_address: row.shipping_address,
+              items,
+              shiprocket_order_id: row.shiprocket_order_id || null,
+              shipment_id: row.shipment_id || null,
+              shiprocket_sync_status: row.shiprocket_sync_status || 'PENDING',
+              inventory_deducted: !!row.inventory_deducted,
+              status: row.status,
+              created_at: row.created_at,
+            }));
           }
         }
       }
@@ -182,9 +180,32 @@ async function findOrders(orderId, phone) {
   return resultList;
 }
 
-async function findOrder(orderId, phone) {
-  const orders = await findOrders(orderId, phone);
-  return orders.length > 0 ? orders[0] : null;
+async function findOrder(orderId, phone, email) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  const cleanPhone = phone ? String(phone).replace(/\D/g, '').slice(-10) : '';
+  const cleanEmail = email ? String(email).trim().toLowerCase() : '';
+
+  // Require orderId AND at least one valid ownership identifier (phone or email)
+  if (!cleanId || (!cleanPhone && !cleanEmail)) {
+    return null;
+  }
+
+  const orders = await findOrders(cleanId, cleanPhone, cleanEmail);
+  if (!orders || orders.length === 0) return null;
+
+  const order = orders[0];
+  const orderPhone = String(order.customer_phone || '').replace(/\D/g, '').slice(-10);
+  const orderEmail = String(order.customer_email || '').trim().toLowerCase();
+
+  // Verify BOTH identifiers if both are provided
+  if (cleanPhone && orderPhone && cleanPhone !== orderPhone) {
+    return null;
+  }
+  if (cleanEmail && orderEmail && cleanEmail !== orderEmail) {
+    return null;
+  }
+
+  return order;
 }
 
 async function markOrderReturned(orderId, returnData = {}) {
@@ -267,6 +288,11 @@ async function markOrderCancelled(orderId, cancelData = {}) {
   }
 
   if (record) {
+    if (record.inventory_deducted) {
+      const { restoreInventoryForCart } = require('../data/catalog');
+      await restoreInventoryForCart(record.items || []);
+      record.inventory_deducted = false;
+    }
     record.isCancelled = true;
     record.status = 'CANCELLED';
     if (cancelData.payment_status) record.payment_status = cancelData.payment_status;
@@ -282,6 +308,7 @@ async function markOrderCancelled(orderId, cancelData = {}) {
       customer_phone: cleanPhone,
       isCancelled: true,
       status: 'CANCELLED',
+      inventory_deducted: false,
       payment_status: cancelData.payment_status || 'PAID',
       cancel_data: cancelData,
       created_at: new Date().toISOString(),
@@ -294,12 +321,12 @@ async function markOrderCancelled(orderId, cancelData = {}) {
     try {
       if (cancelData.payment_status) {
         await pool.query(
-          `UPDATE orders SET status = 'CANCELLED', payment_status = ? WHERE UPPER(order_id) = ?`,
+          `UPDATE orders SET status = 'CANCELLED', payment_status = ?, inventory_deducted = 0 WHERE UPPER(order_id) = ?`,
           [cancelData.payment_status, cleanId]
         );
       } else {
         await pool.query(
-          `UPDATE orders SET status = 'CANCELLED' WHERE UPPER(order_id) = ?`,
+          `UPDATE orders SET status = 'CANCELLED', inventory_deducted = 0 WHERE UPPER(order_id) = ?`,
           [cleanId]
         );
       }
@@ -568,10 +595,54 @@ async function updateShiprocketSync(orderId, syncData = {}) {
   await updateOrderShiprocketInfo(cleanId, syncData);
 }
 
+async function getAllOrders(limit = 100) {
+  const matchedMap = new Map();
+
+  for (const [k, cached] of recentOrders.entries()) {
+    const cachedId = String(cached.order_id || cached.id || k).toUpperCase();
+    matchedMap.set(cachedId, formatCachedOrder(cached));
+  }
+
+  const pool = getPool();
+  if (pool) {
+    try {
+      const [rows] = await pool.query(`SELECT * FROM orders ORDER BY id DESC LIMIT ?`, [Number(limit) || 100]);
+      if (rows && rows.length > 0) {
+        for (const row of rows) {
+          const rowId = String(row.order_id).toUpperCase();
+          if (!matchedMap.has(rowId)) {
+            let items = [];
+            try { items = typeof row.items_json === 'string' ? JSON.parse(row.items_json) : row.items_json; } catch {}
+            matchedMap.set(rowId, formatCachedOrder({
+              id: row.order_id,
+              order_id: row.order_id,
+              customer_name: row.customer_name,
+              customer_email: row.customer_email,
+              customer_phone: row.customer_phone,
+              total_amount: row.total_amount,
+              payment_method: row.payment_method,
+              payment_status: row.payment_status,
+              shipping_address: row.shipping_address,
+              items,
+              status: row.status,
+              created_at: row.created_at,
+            }));
+          }
+        }
+      }
+    } catch (err) {
+      console.error('OrderStore DB getAllOrders error:', err.message);
+    }
+  }
+
+  return Array.from(matchedMap.values());
+}
+
 module.exports = {
   addOrder,
   findOrder,
   findOrders,
+  getAllOrders,
   updateShiprocketSync,
   markOrderReturned,
   markOrderCancelled,

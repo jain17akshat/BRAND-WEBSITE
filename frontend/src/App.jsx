@@ -91,8 +91,8 @@ export function App() {
       id: 'metalware',
       title: 'Metalware Collection',
       name: 'Metalware Collection',
-      image: '/METALWARE.png',
-      mobileImage: '/Metalwaremobile.png',
+      image: '/METALWARE.webp',
+      mobileImage: '/Metalwaremobile.webp',
       fallbackImage: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
@@ -109,8 +109,8 @@ export function App() {
       id: 'brass',
       title: 'Brass Articles',
       name: 'Brass Articles',
-      image: '/brasshero.png',
-      mobileImage: '/brassmobileview.png',
+      image: '/brasshero.webp',
+      mobileImage: '/brassmobileview.webp',
       fallbackImage: '/assets/brasscover.png',
       // object-position: mobile shows bottom-center where items cluster; desktop shows full wide scene
       mobilePosition: 'center 70%',
@@ -121,8 +121,8 @@ export function App() {
       id: 'copper',
       title: 'Copper Articles',
       name: 'Copper Articles',
-      image: '/copperhero.png',
-      mobileImage: '/coppermobileview.png',
+      image: '/copperhero.webp',
+      mobileImage: '/coppermobileview.webp',
       fallbackImage: '/assets/Copper cover.png',
       // Copper kalash is center-frame, keep centered on both
       mobilePosition: 'center 40%',
@@ -133,8 +133,8 @@ export function App() {
       id: 'kits',
       title: 'Corporate & Bulk Gifting',
       name: 'Corporate & Bulk Gifting',
-      image: '/essentialhero.png',
-      mobileImage: '/mandiressentialmobileview.png',
+      image: '/essentialhero.webp',
+      mobileImage: '/mandiressentialmobileview.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
       description: 'Auspicious festive hampers, wedding favor caskets, and corporate gift hampers.'
@@ -299,53 +299,110 @@ export function App() {
 
   const wishlistProducts = PRODUCTS.filter((p) => wishlistIds.includes(p.id));
 
-  // Hash-based URL Routing & Deep Link Sync
+  // ── Client-Side URL Pathname & Hash Routing ────────────────
   useEffect(() => {
-    const parseHash = () => {
+    const parseRoute = () => {
+      const pathname = window.location.pathname;
       const hash = window.location.hash.replace(/^#\/?/, '');
-      if (!hash || hash === 'home') {
-        setCurrentPage('home');
-        return;
-      }
+      const search = window.location.search;
+      const params = new URLSearchParams(search);
 
-      if (hash.startsWith('category/')) {
-        const catId = hash.split('/')[1];
-        if (catId) {
-          setSelectedCategoryId(catId);
-          setCurrentPage('category');
-        }
-      } else if (hash.startsWith('product/')) {
-        const prodId = hash.split('/')[1];
-        const prod = PRODUCTS.find((p) => String(p.id) === String(prodId));
+      // Product Deep Link
+      if (pathname.startsWith('/product/') || hash.startsWith('product/')) {
+        const prodId = pathname.startsWith('/product/') ? pathname.replace('/product/', '').trim() : hash.split('/')[1];
+        const prod = PRODUCTS.find((p) => String(p.id) === String(prodId) || p.slug === prodId);
         if (prod) {
           setSelectedProduct(prod);
           setCurrentPage('product');
+          return;
         }
-      } else if (hash === 'about' || hash === 'about-us' || hash === 'our-story') {
-        setCurrentPage('about');
-      } else if (hash === 'gifting') {
+      }
+
+      // Category / Collection Deep Link
+      if (pathname.startsWith('/category/') || pathname.startsWith('/collections/') || hash.startsWith('category/')) {
+        const catId = (pathname.startsWith('/category/') || pathname.startsWith('/collections/'))
+          ? pathname.replace(/^\/(category|collections)\//, '').trim()
+          : hash.split('/')[1];
+        if (catId) {
+          if (catId === 'all-collections') {
+            setCurrentPage('all-collections');
+          } else {
+            setSelectedCategoryId(catId);
+            setCurrentPage('category');
+          }
+          return;
+        }
+      }
+
+      if (pathname === '/gifting' || pathname === '/corporate-gifting' || hash === 'gifting') {
         setCurrentPage('gifting');
-      } else if (hash === 'energy-stones') {
+        return;
+      }
+
+      if (pathname === '/my-orders' || pathname === '/orders' || hash === 'my-orders') {
+        setCurrentPage('my-orders');
+        return;
+      }
+
+      if (pathname === '/energy-stones' || hash === 'energy-stones') {
         setCurrentPage('energy-stones');
-      } else if (hash === 'track-order' || hash === 'support') {
-        setCurrentPage('support');
-      } else if (hash === 'privacy-policy') {
+        return;
+      }
+
+      if (pathname === '/all-collections' || hash === 'all-collections') {
+        setCurrentPage('all-collections');
+        return;
+      }
+
+      if (pathname === '/about' || pathname === '/about-us' || hash === 'about' || hash === 'about-us') {
+        setCurrentPage('about');
+        return;
+      }
+
+      if (pathname === '/policy/privacy' || hash === 'privacy-policy') {
         setCurrentPage('privacy');
-      } else if (hash === 'refund-policy') {
+        return;
+      }
+
+      if (pathname === '/policy/refund' || hash === 'refund-policy') {
         setCurrentPage('refund-policy');
-      } else if (hash === 'terms-and-conditions') {
+        return;
+      }
+
+      if (pathname === '/policy/terms' || hash === 'terms-and-conditions' || hash === 'terms') {
         setCurrentPage('terms');
-      } else if (hash.startsWith('review')) {
-        const firstProduct = PRODUCTS[0];
-        if (firstProduct) {
-          setSelectedProduct(firstProduct);
+        return;
+      }
+
+      // Query Param Fallback
+      const pParam = params.get('product');
+      const cParam = params.get('category');
+      if (pParam) {
+        const prod = PRODUCTS.find((p) => String(p.id) === String(pParam));
+        if (prod) {
+          setSelectedProduct(prod);
+          setCurrentPage('product');
+          return;
         }
+      }
+      if (cParam) {
+        setSelectedCategoryId(cParam);
+        setCurrentPage('category');
+        return;
+      }
+
+      if (pathname === '/' || hash === 'home' || !hash) {
+        setCurrentPage('home');
       }
     };
 
-    parseHash();
-    window.addEventListener('hashchange', parseHash);
-    return () => window.removeEventListener('hashchange', parseHash);
+    parseRoute();
+    window.addEventListener('popstate', parseRoute);
+    window.addEventListener('hashchange', parseRoute);
+    return () => {
+      window.removeEventListener('popstate', parseRoute);
+      window.removeEventListener('hashchange', parseRoute);
+    };
   }, []);
 
   // Navigation handlers for Multi-page view — Jump instantly to top (0,0)
@@ -361,22 +418,25 @@ export function App() {
   const handleSelectCategory = (catId) => {
     if (catId === 'all-collections') {
       setCurrentPage('all-collections');
+      try { window.history.pushState(null, '', '/all-collections'); } catch {}
       window.location.hash = '#/all-collections';
     } else if (catId === 'all') {
       setCurrentPage('home');
+      try { window.history.pushState(null, '', '/'); } catch {}
       window.location.hash = '#/home';
     } else if (catId === 'energy-stones') {
       setCurrentPage('energy-stones');
+      try { window.history.pushState(null, '', '/energy-stones'); } catch {}
       window.location.hash = '#/energy-stones';
-      resetScrollToTop();
-      return;
     } else if (catId === 'kits' || catId === 'gifting') {
       setCurrentPage('gifting');
       setSelectedCategoryId('kits');
+      try { window.history.pushState(null, '', '/gifting'); } catch {}
       window.location.hash = '#/gifting';
     } else {
       setSelectedCategoryId(catId);
       setCurrentPage('category');
+      try { window.history.pushState(null, '', `/category/${catId}`); } catch {}
       window.location.hash = `#/category/${catId}`;
     }
     resetScrollToTop();

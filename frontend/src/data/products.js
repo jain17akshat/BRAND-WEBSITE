@@ -18,8 +18,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
-    price: 650,
-    originalPrice: 1250,
+    price: 722,
+    originalPrice: 1389,
     rating: 4.98,
     reviewsCount: 148,
     tag: 'Garuda Finial',
@@ -33,7 +33,7 @@ export const PRODUCTS = [
       '/assets/garud bell/garuda 4.png'
     ],
     weightVariants: [
-      { weight: '90 g', price: 650, originalPrice: 1250, default: true }
+      { weight: '90 g', price: 722, originalPrice: 1389, default: true }
     ],
     purity: '100% Solid Heavy Brass',
     inStock: true,
@@ -79,8 +79,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
-    price: 650,
-    originalPrice: 1250,
+    price: 722,
+    originalPrice: 1389,
     rating: 4.96,
     reviewsCount: 132,
     tag: 'Nandi Finial',
@@ -95,7 +95,7 @@ export const PRODUCTS = [
       '/assets/nandi bell/nandi 5.png'
     ],
     weightVariants: [
-      { weight: '90 g', price: 650, originalPrice: 1250, default: true }
+      { weight: '90 g', price: 722, originalPrice: 1389, default: true }
     ],
     purity: '100% Solid Heavy Brass',
     inStock: true,
@@ -141,8 +141,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
-    price: 650,
-    originalPrice: 1250,
+    price: 722,
+    originalPrice: 1389,
     rating: 4.92,
     reviewsCount: 165,
     tag: 'Classic Design',
@@ -156,7 +156,7 @@ export const PRODUCTS = [
       '/assets/simple bell/simple bell 1.jpg'
     ],
     weightVariants: [
-      { weight: '90 g', price: 650, originalPrice: 1250, default: true }
+      { weight: '90 g', price: 722, originalPrice: 1389, default: true }
     ],
     purity: '100% Solid Brass',
     inStock: true,
@@ -202,8 +202,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
-    price: 650,
-    originalPrice: 1250,
+    price: 722,
+    originalPrice: 1389,
     rating: 4.99,
     reviewsCount: 190,
     tag: 'Ganesh Finial',
@@ -218,7 +218,7 @@ export const PRODUCTS = [
       '/assets/commonbell/brassbell 5.png'
     ],
     weightVariants: [
-      { weight: '90 g', price: 650, originalPrice: 1250, default: true }
+      { weight: '90 g', price: 722, originalPrice: 1389, default: true }
     ],
     purity: '100% Solid Heavy Brass',
     inStock: true,
@@ -265,8 +265,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Puja Thali',
-    price: 499,
-    originalPrice: 799,
+    price: 554,
+    originalPrice: 888,
     rating: 4.99,
     reviewsCount: 195,
     tag: 'Engraved Floral',
@@ -281,7 +281,7 @@ export const PRODUCTS = [
       '/assets/Brass thali/thali 4.jpg'
     ],
     weightVariants: [
-      { weight: '6 Inch (80 g)', price: 499, originalPrice: 799, default: true }
+      { weight: '6 Inch (80 g)', price: 554, originalPrice: 888, default: true }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -333,8 +333,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Aarti & Diyas',
-    price: 1690,
-    originalPrice: 2190,
+    price: 1878,
+    originalPrice: 2433,
     rating: 4.98,
     reviewsCount: 134,
     tag: '5-Wick Panchmukhi',
@@ -348,7 +348,7 @@ export const PRODUCTS = [
       '/assets/Brass aarti/aarti 4.jpg'
     ],
     weightVariants: [
-      { weight: 'L 14 cm × B 12 cm × H 6 Inch (150 g)', price: 1690, originalPrice: 2190, default: true }
+      { weight: 'L 14 cm × B 12 cm × H 6 Inch (150 g)', price: 1878, originalPrice: 2433, default: true }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -400,8 +400,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
-    price: 450,
-    originalPrice: 799,
+    price: 500,
+    originalPrice: 888,
     rating: 4.99,
     reviewsCount: 178,
     tag: 'Akhand Jyot',
@@ -415,7 +415,7 @@ export const PRODUCTS = [
       '/assets/akhand jyot/akhand jyot  size.png'
     ],
     weightVariants: [
-      { weight: 'L 13 cm × B 24 cm × H 13 cm (120 g)', price: 450, originalPrice: 799, default: true }
+      { weight: 'L 13 cm × B 24 cm × H 13 cm (120 g)', price: 500, originalPrice: 888, default: true }
     ],
     purity: 'Premium Brass Construction with Om Finial',
     inStock: true,
@@ -464,8 +464,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
-    price: 450,
-    originalPrice: 799,
+    price: 500,
+    originalPrice: 888,
     rating: 4.96,
     reviewsCount: 122,
     tag: 'Akhand Deepak',
@@ -478,7 +478,7 @@ export const PRODUCTS = [
       '/assets/Cup jyot/cup 3.png'
     ],
     weightVariants: [
-      { weight: 'L 13 cm × B 24 cm × H 13 cm (120 g)', price: 450, originalPrice: 799, default: true }
+      { weight: 'L 13 cm × B 24 cm × H 13 cm (120 g)', price: 500, originalPrice: 888, default: true }
     ],
     purity: '100% Solid Brass with Traditional Polished Finish',
     inStock: true,
@@ -537,8 +537,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Ritual Vessels',
-    price: 2490,
-    originalPrice: 3190,
+    price: 2767,
+    originalPrice: 3544,
     rating: 4.98,
     reviewsCount: 146,
     tag: 'Gangajali Vessel',
@@ -554,9 +554,9 @@ export const PRODUCTS = [
       '/assets/Brass kamandal/kamndal 5.png'
     ],
     weightVariants: [
-      { weight: '500 ML (0.5 L)', price: 1690, originalPrice: 2190 },
-      { weight: '1 Litre (1.0 L)', price: 2490, originalPrice: 3190, default: true },
-      { weight: '2 Litres (2.0 L)', price: 3890, originalPrice: 4690 }
+      { weight: '500 ML (0.5 L)', price: 1878, originalPrice: 2433 },
+      { weight: '1 Litre (1.0 L)', price: 2767, originalPrice: 3544, default: true },
+      { weight: '2 Litres (2.0 L)', price: 4322, originalPrice: 5211 }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -606,8 +606,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Symbols & Statues',
-    price: 2890,
-    originalPrice: 3590,
+    price: 3211,
+    originalPrice: 3989,
     rating: 4.99,
     reviewsCount: 162,
     tag: 'Shiva Emblem',
@@ -620,7 +620,7 @@ export const PRODUCTS = [
       '/assets/Trishul with damru/trishul with damru3.png'
     ],
     weightVariants: [
-      { weight: 'L 20 cm × B 6 cm × H 20 cm (90 g)', price: 2890, originalPrice: 3590, default: true }
+      { weight: 'L 20 cm × B 6 cm × H 20 cm (90 g)', price: 3211, originalPrice: 3989, default: true }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -666,8 +666,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Symbols & Statues',
-    price: 1890,
-    originalPrice: 2490,
+    price: 2100,
+    originalPrice: 2767,
     rating: 4.98,
     reviewsCount: 145,
     tag: 'Standing Trishul',
@@ -681,9 +681,9 @@ export const PRODUCTS = [
       '/assets/Trishul/trishul 4.png'
     ],
     weightVariants: [
-      { weight: '6 Inch Altar Trishul', price: 1290, originalPrice: 1690 },
-      { weight: '9 Inch Heavy Trishul', price: 1890, originalPrice: 2490, default: true },
-      { weight: '12 Inch Temple Trishul', price: 2990, originalPrice: 3790 }
+      { weight: '6 Inch Altar Trishul', price: 1433, originalPrice: 1878 },
+      { weight: '9 Inch Heavy Trishul', price: 2100, originalPrice: 2767, default: true },
+      { weight: '12 Inch Temple Trishul', price: 3322, originalPrice: 4211 }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -727,8 +727,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Abhishekam Vessels',
-    price: 1490,
-    originalPrice: 1890,
+    price: 1656,
+    originalPrice: 2100,
     rating: 4.98,
     reviewsCount: 152,
     tag: 'Gomukhi Patra',
@@ -742,11 +742,11 @@ export const PRODUCTS = [
       '/assets/gomukhi/shringi 4.jpg'
     ],
     weightVariants: [
-      { weight: 'Small (4.5 cm)', price: 690, originalPrice: 890 },
-      { weight: 'Small-Medium (5 cm)', price: 990, originalPrice: 1290 },
-      { weight: 'Medium (6.25 cm)', price: 1490, originalPrice: 1890, default: true },
-      { weight: 'Large (7 cm)', price: 1990, originalPrice: 2490 },
-      { weight: 'Extra Large (8 cm)', price: 2590, originalPrice: 3190 }
+      { weight: 'Small (4.5 cm)', price: 767, originalPrice: 989 },
+      { weight: 'Small-Medium (5 cm)', price: 1100, originalPrice: 1433 },
+      { weight: 'Medium (6.25 cm)', price: 1656, originalPrice: 2100, default: true },
+      { weight: 'Large (7 cm)', price: 2211, originalPrice: 2767 },
+      { weight: 'Extra Large (8 cm)', price: 2878, originalPrice: 3544 }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -798,8 +798,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Altar Thrones',
-    price: 2890,
-    originalPrice: 3690,
+    price: 3211,
+    originalPrice: 4100,
     rating: 4.99,
     reviewsCount: 168,
     tag: 'Brass Singhasan',
@@ -812,7 +812,7 @@ export const PRODUCTS = [
       '/assets/singhasan/singhasan 3.png'
     ],
     weightVariants: [
-      { weight: 'L 18 cm × B 13 cm × H 23 cm (280 g)', price: 2890, originalPrice: 3690, default: true }
+      { weight: 'L 18 cm × B 13 cm × H 23 cm (280 g)', price: 3211, originalPrice: 4100, default: true }
     ],
     purity: '100% Solid Brass with Polished Finish',
     inStock: true,
@@ -866,8 +866,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Idols',
-    price: 1800,
-    originalPrice: 2599,
+    price: 2000,
+    originalPrice: 2888,
     rating: 4.99,
     reviewsCount: 192,
     tag: 'Laddu Gopal Idol',
@@ -881,7 +881,7 @@ export const PRODUCTS = [
       '/assets/ladoo gopal/ladoo5.png'
     ],
     weightVariants: [
-      { weight: 'L 13 cm × B 13 cm × H 10 cm (800 g)', price: 1800, originalPrice: 2599, default: true }
+      { weight: 'L 13 cm × B 13 cm × H 10 cm (800 g)', price: 2000, originalPrice: 2888, default: true }
     ],
     purity: '100% Solid Brass with Traditional Finish',
     inStock: true,
@@ -932,8 +932,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Kalash',
-    price: 1390,
-    originalPrice: 1790,
+    price: 1544,
+    originalPrice: 1989,
     rating: 4.98,
     reviewsCount: 145,
     tag: 'Pure Brass Kalash',
@@ -947,7 +947,7 @@ export const PRODUCTS = [
       '/assets/brass kalash/kalash4.png'
     ],
     weightVariants: [
-      { weight: 'Size 4 Inch (100 g)', price: 1390, originalPrice: 1790, default: true }
+      { weight: 'Size 4 Inch (100 g)', price: 1544, originalPrice: 1989, default: true }
     ],
     purity: '100% Solid Brass with Polished Finish',
     inStock: true,
@@ -997,8 +997,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Puja Thali',
-    price: 550,
-    originalPrice: 899,
+    price: 611,
+    originalPrice: 999,
     rating: 4.99,
     reviewsCount: 152,
     tag: 'Peacock Thali',
@@ -1012,7 +1012,7 @@ export const PRODUCTS = [
       '/assets/brassdesign thali/design4.png'
     ],
     weightVariants: [
-      { weight: '19 × 19 × 19 cm (10 g)', price: 550, originalPrice: 899, default: true }
+      { weight: '19 × 19 × 19 cm (10 g)', price: 611, originalPrice: 999, default: true }
     ],
     purity: '100% Solid Brass with Traditional Polish',
     inStock: true,
@@ -1066,8 +1066,8 @@ export const PRODUCTS = [
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Vessels',
-    price: 300,
-    originalPrice: 499,
+    price: 333,
+    originalPrice: 554,
     rating: 4.99,
     reviewsCount: 184,
     tag: 'Panchpatra Set',
@@ -1082,7 +1082,7 @@ export const PRODUCTS = [
       '/assets/pancpatra set/patra 4.png'
     ],
     weightVariants: [
-      { weight: 'L 10 cm × B 10 cm × H 10 cm (20 g)', price: 300, originalPrice: 499, default: true }
+      { weight: 'L 10 cm × B 10 cm × H 10 cm (20 g)', price: 333, originalPrice: 554, default: true }
     ],
     purity: '100% Pure Copper with Hammered Finish',
     inStock: true,
@@ -1135,8 +1135,8 @@ export const PRODUCTS = [
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Puja Thali',
-    price: 1200,
-    originalPrice: 1700,
+    price: 1333,
+    originalPrice: 1889,
     rating: 4.98,
     reviewsCount: 164,
     tag: 'Pure Copper Thali',
@@ -1152,7 +1152,7 @@ export const PRODUCTS = [
       '/assets/Copper thali/copper thali  5.png'
     ],
     weightVariants: [
-      { weight: '11 Inch (360 g)', price: 1200, originalPrice: 1700, default: true }
+      { weight: '11 Inch (360 g)', price: 1333, originalPrice: 1889, default: true }
     ],
     purity: '100% Pure Copper with Traditional Finish',
     inStock: true,
@@ -1205,8 +1205,8 @@ export const PRODUCTS = [
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Sacred Homa Vessels',
-    price: 2200,
-    originalPrice: 2999,
+    price: 2444,
+    originalPrice: 3332,
     rating: 4.99,
     reviewsCount: 172,
     tag: 'Copper Hawan Kund',
@@ -1220,7 +1220,7 @@ export const PRODUCTS = [
       '/assets/hawankund/kund 4.png'
     ],
     weightVariants: [
-      { weight: 'L 25 cm × B 25 cm × H 10 cm (540 g)', price: 2200, originalPrice: 2999, default: true }
+      { weight: 'L 25 cm × B 25 cm × H 10 cm (540 g)', price: 2444, originalPrice: 3332, default: true }
     ],
     purity: '100% Solid Pure Copper',
     inStock: true,
@@ -1274,8 +1274,8 @@ export const PRODUCTS = [
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Kalash',
-    price: 1490,
-    originalPrice: 1890,
+    price: 1656,
+    originalPrice: 2100,
     rating: 4.99,
     reviewsCount: 168,
     tag: 'Pure Copper Kalash',
@@ -1289,8 +1289,8 @@ export const PRODUCTS = [
       '/assets/Copperkalsh/copperkalsh5.png'
     ],
     weightVariants: [
-      { weight: '64 g (Small / Daily Pooja)', price: 790, originalPrice: 990 },
-      { weight: '240 g (Large / Sthapana & Ceremonies)', price: 1490, originalPrice: 1890, default: true }
+      { weight: '64 g (Small / Daily Pooja)', price: 878, originalPrice: 1100 },
+      { weight: '240 g (Large / Sthapana & Ceremonies)', price: 1656, originalPrice: 2100, default: true }
     ],
     purity: '100% Pure Copper',
     inStock: true,
@@ -1340,17 +1340,17 @@ export const PRODUCTS = [
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Agarbatti (Without Bamboo)',
-    price: 149,
-    originalPrice: 199,
+    price: 166,
+    originalPrice: 221,
     rating: 4.96,
     reviewsCount: 188,
     tag: 'Bamboo-Free',
     artType: 'incense',
     image: '/assets/Incense cover.jpg',
     weightVariants: [
-      { weight: '50 Sticks Pack', price: 149, originalPrice: 199, default: true },
-      { weight: '80 Sticks Pack', price: 219, originalPrice: 289 },
-      { weight: '100 Sticks Pack', price: 269, originalPrice: 349 }
+      { weight: '50 Sticks Pack', price: 166, originalPrice: 221, default: true },
+      { weight: '80 Sticks Pack', price: 243, originalPrice: 321 },
+      { weight: '100 Sticks Pack', price: 299, originalPrice: 388 }
     ],
     purity: '100% Bamboo-Free & Charcoal-Free',
     inStock: true,
@@ -1368,17 +1368,17 @@ export const PRODUCTS = [
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Agarbatti (With Bamboo)',
-    price: 129,
-    originalPrice: 169,
+    price: 143,
+    originalPrice: 188,
     rating: 4.88,
     reviewsCount: 160,
     tag: 'Classic Scent',
     artType: 'incense',
     image: '/assets/Incense cover.jpg',
     weightVariants: [
-      { weight: '50 Sticks Pack', price: 129, originalPrice: 169, default: true },
-      { weight: '80 Sticks Pack', price: 189, originalPrice: 249 },
-      { weight: '100 Sticks Pack', price: 229, originalPrice: 299 }
+      { weight: '50 Sticks Pack', price: 143, originalPrice: 188, default: true },
+      { weight: '80 Sticks Pack', price: 210, originalPrice: 277 },
+      { weight: '100 Sticks Pack', price: 254, originalPrice: 332 }
     ],
     purity: 'Natural Fragrance Oils & Herbal Gums',
     inStock: true,
@@ -1396,20 +1396,20 @@ export const PRODUCTS = [
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Dhoop Cones',
-    price: 179,
-    originalPrice: 229,
+    price: 199,
+    originalPrice: 254,
     rating: 4.94,
     reviewsCount: 220,
     tag: 'Natural Dhoop',
     artType: 'dhoop',
     image: '/assets/Incense cover.jpg',
     weightVariants: [
-      { weight: '12 Cones Trial Pack', price: 99, originalPrice: 129 },
-      { weight: '24 Cones Small Pack', price: 179, originalPrice: 229, default: true },
-      { weight: '40 Cones Twin Pack (80 Cones)', price: 299, originalPrice: 399 },
-      { weight: '50 Cones Retail Pack', price: 349, originalPrice: 449 },
-      { weight: '100 Cones Value Box', price: 599, originalPrice: 799 },
-      { weight: '200 Cones Family Tin Box', price: 999, originalPrice: 1399 }
+      { weight: '12 Cones Trial Pack', price: 110, originalPrice: 143 },
+      { weight: '24 Cones Small Pack', price: 199, originalPrice: 254, default: true },
+      { weight: '40 Cones Twin Pack (80 Cones)', price: 332, originalPrice: 443 },
+      { weight: '50 Cones Retail Pack', price: 388, originalPrice: 499 },
+      { weight: '100 Cones Value Box', price: 666, originalPrice: 888 },
+      { weight: '200 Cones Family Tin Box', price: 1110, originalPrice: 1554 }
     ],
     purity: 'Organic Sambrani & Ghee Cones',
     inStock: true,
@@ -1427,17 +1427,17 @@ export const PRODUCTS = [
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Dhoop Sticks',
-    price: 249,
-    originalPrice: 319,
+    price: 277,
+    originalPrice: 354,
     rating: 4.91,
     reviewsCount: 155,
     tag: 'Charcoal-Free',
     artType: 'dhoop',
     image: '/assets/Incense cover.jpg',
     weightVariants: [
-      { weight: '20 Sticks Pack', price: 119, originalPrice: 149 },
-      { weight: '50 Sticks Pack', price: 249, originalPrice: 319, default: true },
-      { weight: '100 Sticks Value Box', price: 449, originalPrice: 599 }
+      { weight: '20 Sticks Pack', price: 132, originalPrice: 166 },
+      { weight: '50 Sticks Pack', price: 277, originalPrice: 354, default: true },
+      { weight: '100 Sticks Value Box', price: 499, originalPrice: 666 }
     ],
     purity: '100% Charcoal-Free Dhoop Sticks',
     inStock: true,
@@ -1455,17 +1455,17 @@ export const PRODUCTS = [
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Sambrani Cups',
-    price: 199,
-    originalPrice: 249,
+    price: 221,
+    originalPrice: 277,
     rating: 4.97,
     reviewsCount: 280,
     tag: 'Loban & Guggal',
     artType: 'dhoop',
     image: '/assets/Incense cover.jpg',
     weightVariants: [
-      { weight: '12 Cups Pack', price: 199, originalPrice: 249, default: true },
-      { weight: '24 Cups Pack', price: 349, originalPrice: 449 },
-      { weight: '48 Cups Mega Pack', price: 599, originalPrice: 799 }
+      { weight: '12 Cups Pack', price: 221, originalPrice: 277, default: true },
+      { weight: '24 Cups Pack', price: 388, originalPrice: 499 },
+      { weight: '48 Cups Mega Pack', price: 666, originalPrice: 888 }
     ],
     purity: '100% Pure Natural Loban & Guggal Resin',
     inStock: true,
@@ -1483,8 +1483,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Wooden Chowki',
-    price: 499,
-    originalPrice: 999,
+    price: 554,
+    originalPrice: 1110,
     rating: 4.98,
     reviewsCount: 124,
     tag: 'Pooja Chowki',
@@ -1498,7 +1498,7 @@ export const PRODUCTS = [
       '/assets/Wooden Choki/chowki6.png'
     ],
     weightVariants: [
-      { weight: 'L 38 cm × B 12 cm × H 5 cm (350 g)', price: 499, originalPrice: 999, default: true }
+      { weight: 'L 38 cm × B 12 cm × H 5 cm (350 g)', price: 554, originalPrice: 1110, default: true }
     ],
     purity: 'Handcrafted Wood with Traditional Painting',
     inStock: true,
@@ -1546,8 +1546,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Wooden Chowki',
-    price: 1350,
-    originalPrice: 1899,
+    price: 1500,
+    originalPrice: 2110,
     rating: 4.99,
     reviewsCount: 156,
     tag: '15×15" Large Bajot',
@@ -1562,7 +1562,7 @@ export const PRODUCTS = [
       '/assets/WoodenChowki Large/chowki6.png'
     ],
     weightVariants: [
-      { weight: '2 kg Heavy Bajot', price: 1350, originalPrice: 1899, default: true }
+      { weight: '2 kg Heavy Bajot', price: 1500, originalPrice: 2110, default: true }
     ],
     purity: 'Seasoned Solid Wood with Hand-Painted Art & 2 kg Heavy Weight',
     inStock: true,
@@ -1609,8 +1609,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Puja Accessories',
-    price: 499,
-    originalPrice: 999,
+    price: 554,
+    originalPrice: 1110,
     rating: 4.96,
     reviewsCount: 185,
     tag: 'Dhoop Dani',
@@ -1624,7 +1624,7 @@ export const PRODUCTS = [
       '/assets/dhoop dani/dhoop dani 5.jpg'
     ],
     weightVariants: [
-      { weight: 'L 25 cm × B 12 cm × H 16 cm (300 g)', price: 499, originalPrice: 999, default: true }
+      { weight: 'L 25 cm × B 12 cm × H 16 cm (300 g)', price: 554, originalPrice: 1110, default: true }
     ],
     purity: 'Polished Metal with Gold Finish',
     inStock: true,
@@ -1677,8 +1677,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Mala Counters',
-    price: 349,
-    originalPrice: 799,
+    price: 388,
+    originalPrice: 888,
     rating: 4.98,
     reviewsCount: 182,
     tag: 'Digital Counter',
@@ -1692,7 +1692,7 @@ export const PRODUCTS = [
       '/assets/mala counter/a2759320-ade5-4ca3-96b4-304fd2022217.png'
     ],
     weightVariants: [
-      { weight: 'L 10 cm × B 10 cm × H 10 cm (25 g)', price: 349, originalPrice: 799, default: true }
+      { weight: 'L 10 cm × B 10 cm × H 10 cm (25 g)', price: 388, originalPrice: 888, default: true }
     ],
     purity: 'Digital LCD Finger Tally Counter',
     inStock: true,
@@ -1739,8 +1739,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Storage & Chests',
-    price: 450,
-    originalPrice: 799,
+    price: 500,
+    originalPrice: 888,
     rating: 4.99,
     reviewsCount: 196,
     tag: '7-in-1 Pooja Box',
@@ -1756,7 +1756,7 @@ export const PRODUCTS = [
       '/assets/Pooja box/pooja box 4.png'
     ],
     weightVariants: [
-      { weight: 'L 15 cm × B 15 cm × H 2 cm (300 g)', price: 450, originalPrice: 799, default: true }
+      { weight: 'L 15 cm × B 15 cm × H 2 cm (300 g)', price: 500, originalPrice: 888, default: true }
     ],
     purity: 'Premium Stainless Steel with 7 Removable Cups',
     inStock: true,
@@ -1807,8 +1807,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Yantras',
-    price: 349,
-    originalPrice: 990,
+    price: 388,
+    originalPrice: 1100,
     rating: 4.99,
     reviewsCount: 185,
     tag: 'Ganesh Yantra',
@@ -1822,7 +1822,7 @@ export const PRODUCTS = [
       '/assets/Ganeshyantra/gNESH4.png'
     ],
     weightVariants: [
-      { weight: '3 × 3 Inches (20 g)', price: 349, originalPrice: 990, default: true }
+      { weight: '3 × 3 Inches (20 g)', price: 388, originalPrice: 1100, default: true }
     ],
     purity: '100% Pure Copper Sheet (20 g)',
     inStock: true,
@@ -1874,8 +1874,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Wealth Yantras',
-    price: 349,
-    originalPrice: 990,
+    price: 388,
+    originalPrice: 1100,
     rating: 5.0,
     reviewsCount: 230,
     tag: 'Kuber Yantra',
@@ -1890,7 +1890,7 @@ export const PRODUCTS = [
       '/assets/Kuber yantra/laxmi 4.jpg'
     ],
     weightVariants: [
-      { weight: '3 × 3 Inches (20 g)', price: 349, originalPrice: 990, default: true }
+      { weight: '3 × 3 Inches (20 g)', price: 388, originalPrice: 1100, default: true }
     ],
     purity: '100% Pure Copper Sheet (20 g)',
     inStock: true,
@@ -1944,8 +1944,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Mahalakshmi Yantras',
-    price: 349,
-    originalPrice: 990,
+    price: 388,
+    originalPrice: 1100,
     rating: 5.0,
     reviewsCount: 214,
     tag: 'Mahalakshmi Yantra',
@@ -1960,7 +1960,7 @@ export const PRODUCTS = [
       '/assets/luxmiyantra/laxmi5.png'
     ],
     weightVariants: [
-      { weight: '3 × 3 Inches (20 g)', price: 349, originalPrice: 990, default: true }
+      { weight: '3 × 3 Inches (20 g)', price: 388, originalPrice: 1100, default: true }
     ],
     purity: '100% Pure Copper Sheet (20 g)',
     inStock: true,
@@ -2014,8 +2014,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Shani Yantras',
-    price: 349,
-    originalPrice: 990,
+    price: 388,
+    originalPrice: 1100,
     rating: 5.0,
     reviewsCount: 184,
     tag: 'Shani Yantra',
@@ -2029,7 +2029,7 @@ export const PRODUCTS = [
       '/assets/shani yantra/laxmi 4.jpg'
     ],
     weightVariants: [
-      { weight: '3 × 3 Inches (20 g)', price: 349, originalPrice: 990, default: true }
+      { weight: '3 × 3 Inches (20 g)', price: 388, originalPrice: 1100, default: true }
     ],
     purity: '100% Pure Copper Sheet (20 g)',
     inStock: true,
@@ -2083,8 +2083,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Glass Yantras',
-    price: 1590,
-    originalPrice: 1990,
+    price: 1767,
+    originalPrice: 2211,
     rating: 4.98,
     reviewsCount: 162,
     tag: 'Shree Yantra',
@@ -2098,7 +2098,7 @@ export const PRODUCTS = [
       '/assets/Glassyantra/glass4.png'
     ],
     weightVariants: [
-      { weight: '5 × 4 × 5 cm (70 g Meru)', price: 1590, originalPrice: 1990, default: true }
+      { weight: '5 × 4 × 5 cm (70 g Meru)', price: 1767, originalPrice: 2211, default: true }
     ],
     purity: 'High-Clarity Sphatik Crystal Glass (70 g)',
     inStock: true,
@@ -2149,8 +2149,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Pyramids',
-    price: 399,
-    originalPrice: 899,
+    price: 443,
+    originalPrice: 999,
     rating: 4.98,
     reviewsCount: 148,
     tag: 'Vastu Energy',
@@ -2164,7 +2164,7 @@ export const PRODUCTS = [
       '/assets/pyramid/pyramid 3.png'
     ],
     weightVariants: [
-      { weight: 'L 10 cm × B 10 cm × H 8 cm (15 g)', price: 399, originalPrice: 899, default: true }
+      { weight: 'L 10 cm × B 10 cm × H 8 cm (15 g)', price: 443, originalPrice: 999, default: true }
     ],
     purity: '100% Solid Heavy Virgin Brass',
     inStock: true,
@@ -2209,8 +2209,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
-    price: 349,
-    originalPrice: 699,
+    price: 388,
+    originalPrice: 777,
     rating: 4.97,
     reviewsCount: 178,
     tag: 'Vastu Kurma',
@@ -2224,7 +2224,7 @@ export const PRODUCTS = [
       '/assets/glassturtle/turtle4.jpg'
     ],
     weightVariants: [
-      { weight: 'L 35 cm × B 15 cm × H 15 cm (300 g)', price: 349, originalPrice: 699, default: true }
+      { weight: 'L 35 cm × B 15 cm × H 15 cm (300 g)', price: 388, originalPrice: 777, default: true }
     ],
     purity: 'High-Transmission Beveled Optical Crystal Glass',
     inStock: true,
@@ -2272,8 +2272,8 @@ export const PRODUCTS = [
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
-    price: 2490,
-    originalPrice: 3190,
+    price: 2767,
+    originalPrice: 3544,
     rating: 4.98,
     reviewsCount: 165,
     tag: 'Handcrafted Brass',
@@ -2287,9 +2287,9 @@ export const PRODUCTS = [
       '/assets/kamdhenu/kamdhenu 4.jpg'
     ],
     weightVariants: [
-      { weight: 'Compact (7 × 3 × 5 cm - 70 G)', price: 1490, originalPrice: 1890 },
-      { weight: 'Medium (450 G - 5 Inch)', price: 2490, originalPrice: 3190, default: true },
-      { weight: 'Royal Large (850 G - 7 Inch)', price: 3890, originalPrice: 4790 }
+      { weight: 'Compact (7 × 3 × 5 cm - 70 G)', price: 1656, originalPrice: 2100 },
+      { weight: 'Medium (450 G - 5 Inch)', price: 2767, originalPrice: 3544, default: true },
+      { weight: 'Royal Large (850 G - 7 Inch)', price: 4322, originalPrice: 5322 }
     ],
     purity: '100% Solid Heavy Virgin Brass',
     inStock: true,
@@ -2336,8 +2336,8 @@ export const PRODUCTS = [
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
-    price: 2290,
-    originalPrice: 2890,
+    price: 2544,
+    originalPrice: 3211,
     rating: 5.0,
     reviewsCount: 210,
     tag: 'Handcrafted Brass',
@@ -2352,7 +2352,7 @@ export const PRODUCTS = [
       '/assets/ganeshji/brassganesh5.png'
     ],
     weightVariants: [
-      { weight: 'L 8 cm × B 5 cm × H 7 cm (130 g)', price: 2290, originalPrice: 2890, default: true }
+      { weight: 'L 8 cm × B 5 cm × H 7 cm (130 g)', price: 2544, originalPrice: 3211, default: true }
     ],
     purity: '100% Solid Heavy Golden Brass',
     inStock: true,
@@ -2398,8 +2398,8 @@ export const PRODUCTS = [
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
-    price: 2890,
-    originalPrice: 3690,
+    price: 3211,
+    originalPrice: 4100,
     rating: 5.0,
     reviewsCount: 248,
     tag: 'Handcrafted Brass',
@@ -2413,7 +2413,7 @@ export const PRODUCTS = [
       '/assets/radhakrishna/krishna4.png'
     ],
     weightVariants: [
-      { weight: 'L 8 cm × B 5 cm × H 8 cm (130 g)', price: 2890, originalPrice: 3690, default: true }
+      { weight: 'L 8 cm × B 5 cm × H 8 cm (130 g)', price: 3211, originalPrice: 4100, default: true }
     ],
     purity: '100% Solid Heavy Polished Brass',
     inStock: true,
@@ -2459,8 +2459,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
-    price: 370,
-    originalPrice: 899,
+    price: 411,
+    originalPrice: 999,
     rating: 4.99,
     reviewsCount: 175,
     tag: 'Sphatik Shivling',
@@ -2475,7 +2475,7 @@ export const PRODUCTS = [
       '/assets/glass shivling/shivling 5.jpg'
     ],
     weightVariants: [
-      { weight: 'L 6 cm × B 6 cm × H 6 cm (90 g)', price: 370, originalPrice: 899, default: true }
+      { weight: 'L 6 cm × B 6 cm × H 6 cm (90 g)', price: 411, originalPrice: 999, default: true }
     ],
     purity: 'Natural Sphatik / Clear Quartz Crystal',
     inStock: true,
@@ -2522,8 +2522,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 699,
-    originalPrice: 999,
+    price: 777,
+    originalPrice: 1110,
     rating: 4.99,
     reviewsCount: 245,
     tag: 'Rudraksha Mala',
@@ -2537,7 +2537,7 @@ export const PRODUCTS = [
       '/assets/Rudraksh Mala/rudraksh mala 4.png'
     ],
     weightVariants: [
-      { weight: 'Length 12 cm (20 g)', price: 699, originalPrice: 999, default: true }
+      { weight: 'Length 12 cm (20 g)', price: 777, originalPrice: 1110, default: true }
     ],
     purity: 'Natural 5 Mukhi Rudraksha Beads with Gomukhi Bag',
     inStock: true,
@@ -2587,8 +2587,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 1699,
-    originalPrice: 1999,
+    price: 1888,
+    originalPrice: 2221,
     rating: 4.98,
     reviewsCount: 198,
     tag: 'Sphatik Mala',
@@ -2604,7 +2604,7 @@ export const PRODUCTS = [
       '/assets/Sphatik mala/sphatik 6.png'
     ],
     weightVariants: [
-      { weight: 'Length 34 cm (30 g)', price: 1699, originalPrice: 1999, default: true }
+      { weight: 'Length 34 cm (30 g)', price: 1888, originalPrice: 2221, default: true }
     ],
     purity: 'Natural Crystal Quartz (Sphatik) Beads',
     inStock: true,
@@ -2653,8 +2653,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 250,
-    originalPrice: 399,
+    price: 278,
+    originalPrice: 443,
     rating: 5.0,
     reviewsCount: 310,
     tag: 'Tulsi Mala',
@@ -2669,7 +2669,7 @@ export const PRODUCTS = [
       '/assets/Tulsi mala/tulsi 5.png'
     ],
     weightVariants: [
-      { weight: 'Length 40 cm (20 g)', price: 250, originalPrice: 399, default: true }
+      { weight: 'Length 40 cm (20 g)', price: 278, originalPrice: 443, default: true }
     ],
     purity: 'Natural Organic Tulsi Wood',
     inStock: true,
@@ -2720,8 +2720,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 250,
-    originalPrice: 499,
+    price: 278,
+    originalPrice: 554,
     rating: 4.97,
     reviewsCount: 162,
     tag: 'Vaijanti Mala',
@@ -2735,7 +2735,7 @@ export const PRODUCTS = [
       '/assets/Vaijanti mala/vajainti 5.png'
     ],
     weightVariants: [
-      { weight: 'Length 32 cm (30 g)', price: 250, originalPrice: 499, default: true }
+      { weight: 'Length 32 cm (30 g)', price: 278, originalPrice: 554, default: true }
     ],
     purity: 'Natural Vaijanti Seeds with Rudraksha Sumeru Bead',
     inStock: true,
@@ -2785,8 +2785,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 250,
-    originalPrice: 499,
+    price: 278,
+    originalPrice: 554,
     rating: 4.99,
     reviewsCount: 215,
     tag: 'Karungali Mala',
@@ -2800,7 +2800,7 @@ export const PRODUCTS = [
       '/assets/Karungali mala/karungali 6.png'
     ],
     weightVariants: [
-      { weight: 'Length 42 cm (26 g)', price: 250, originalPrice: 499, default: true }
+      { weight: 'Length 42 cm (26 g)', price: 278, originalPrice: 554, default: true }
     ],
     purity: 'Natural Karungali (Black Ebony Wood)',
     inStock: true,
@@ -2853,8 +2853,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Devotional Instruments',
-    price: 250,
-    originalPrice: 499,
+    price: 278,
+    originalPrice: 554,
     rating: 4.98,
     reviewsCount: 164,
     tag: 'Wooden Damru',
@@ -2869,7 +2869,7 @@ export const PRODUCTS = [
       '/assets/Damru/Wooden Damru.png'
     ],
     weightVariants: [
-      { weight: 'Size 5 Inch (60 g)', price: 250, originalPrice: 499, default: true }
+      { weight: 'Size 5 Inch (60 g)', price: 278, originalPrice: 554, default: true }
     ],
     purity: '100% Natural Wood & Leather',
     inStock: true,

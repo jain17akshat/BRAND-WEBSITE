@@ -6,8 +6,8 @@ export const Collections = ({ onSelectCategory }) => {
     {
       id: 'metalware',
       title: 'Metalware (Brass & Copper)',
-      image: '/METALWARE.png',
-      mobileImage: '/Metalwaremobile.png',
+      image: '/METALWARE.webp',
+      mobileImage: '/Metalwaremobile.webp',
       fallback: '/assets/brasscover.png',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
@@ -15,8 +15,8 @@ export const Collections = ({ onSelectCategory }) => {
     {
       id: 'mandir-essentials',
       title: 'Mandir Essentials',
-      image: '/mandiressentials.png',
-      mobileImage: '/mandirphone view.png',
+      image: '/mandiressentials.webp',
+      mobileImage: '/mandirphone view.webp',
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       mobilePosition: 'center 45%',
       desktopPosition: 'center 45%',
@@ -24,8 +24,8 @@ export const Collections = ({ onSelectCategory }) => {
     {
       id: 'incense',
       title: 'Incense & Dhoop',
-      image: '/incesne hero.png',
-      mobileImage: '/incesne hero.png',
+      image: '/incesne hero.webp',
+      mobileImage: '/incenemobile hero.webp',
       fallback: '/assets/Incense cover.jpg',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
@@ -33,8 +33,8 @@ export const Collections = ({ onSelectCategory }) => {
     {
       id: 'kits',
       title: 'Corporate Gifting',
-      image: '/essentialhero.png',
-      mobileImage: '/mandiressentialmobileview.png',
+      image: '/essentialhero.webp',
+      mobileImage: '/mandiressentialmobileview.webp',
       fallback: '/assets/handcrafted cover.jpg',
       mobilePosition: 'center center',
       desktopPosition: 'center center',

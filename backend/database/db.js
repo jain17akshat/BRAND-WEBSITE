@@ -138,6 +138,24 @@ async function initDatabase() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
+    // 4. Create products table (for atomic inventory control)
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS products (
+        id VARCHAR(100) PRIMARY KEY,
+        name VARCHAR(255),
+        stock_quantity INT DEFAULT 100,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
+    try {
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS inventory_deducted TINYINT(1) DEFAULT 0`);
+    } catch (colErr) {
+      if (!colErr.message.includes('Duplicate column')) {
+        console.warn('⚠️ Column migration notice for inventory_deducted:', colErr.message);
+      }
+    }
+
     // 4. Create product_reviews table
     await conn.query(`
       CREATE TABLE IF NOT EXISTS product_reviews (
@@ -575,11 +593,51 @@ async function getReturnRequestsByPhone(phone) {
   return [];
 }
 
+async function deductStockAtomic(productId, quantity) {
+  const p = getPool();
+  if (!p) return true;
+
+  try {
+    await p.query(
+      `INSERT INTO products (id, name, stock_quantity) VALUES (?, ?, 100) ON DUPLICATE KEY UPDATE id=id`,
+      [productId, productId]
+    );
+
+    const [res] = await p.query(
+      `UPDATE products SET stock_quantity = stock_quantity - ? WHERE id = ? AND stock_quantity >= ?`,
+      [quantity, productId, quantity]
+    );
+
+    return res.affectedRows > 0;
+  } catch (err) {
+    console.error(`DB deductStockAtomic error for ${productId}:`, err.message);
+    return false;
+  }
+}
+
+async function restoreStockAtomic(productId, quantity) {
+  const p = getPool();
+  if (!p) return true;
+
+  try {
+    await p.query(
+      `UPDATE products SET stock_quantity = stock_quantity + ? WHERE id = ?`,
+      [quantity, productId]
+    );
+    return true;
+  } catch (err) {
+    console.error(`DB restoreStockAtomic error for ${productId}:`, err.message);
+    return false;
+  }
+}
+
 module.exports = {
   getPool,
   initDatabase,
   saveOrder,
   updateOrderShiprocketInfo,
+  deductStockAtomic,
+  restoreStockAtomic,
   saveReturnRequest,
   getReturnRequestsByPhone,
   saveReview,

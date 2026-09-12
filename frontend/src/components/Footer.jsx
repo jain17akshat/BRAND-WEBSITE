@@ -55,7 +55,7 @@ export const Footer = ({
   return (
     <footer className="relative bg-[#110E0D] text-[#EAE0CD] font-sans">
       {/* ── 0. Top Customer Care & Services Bar — Marquee ── */}
-      <div className="bg-[#FBF5EA] border-y border-[#EAE0CD] text-[#2C2623] py-5 sm:py-6 overflow-hidden">
+      <div className="bg-white text-[#2C2623] py-5 sm:py-6 overflow-hidden">
         <div className="footer-marquee-track">
           {[0, 1].map((copy) => (
             <div key={copy} className="footer-marquee-content" aria-hidden={copy === 1}>
@@ -165,7 +165,7 @@ export const Footer = ({
         </div>
       </div>
       {/* ── 1. Main Luxury Footer Section ── */}
-      <div className="relative z-20 bg-[#161211] border-t border-[#382E29] pt-14 pb-10">
+      <div className="relative z-20 bg-[#161211] pt-14 pb-10">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-[#2C2420]">
@@ -312,7 +312,7 @@ export const Footer = ({
             {/* Col 4: Sacred Studio Contact */}
             <div className="space-y-3.5">
               <h4 className="font-cinzel text-xs font-bold text-[#E5C378] tracking-widest uppercase pb-1 border-b border-[#2C2420]">
-                Sacred Studio
+                   Contact Us
               </h4>
               <div className="space-y-3 text-xs text-[#B5A895] font-light leading-relaxed">
                 <div className="flex items-start gap-2.5">

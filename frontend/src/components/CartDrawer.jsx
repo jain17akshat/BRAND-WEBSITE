@@ -173,10 +173,15 @@ export const CartDrawer = ({
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const freeShippingThreshold = 999;
+  const shippingFee = subtotal >= freeShippingThreshold || subtotal === 0 ? 0 : 99;
 
   // Calculate discount dynamically if WELCOME10 is applied
   const isWelcomeApplied = appliedPromo?.code === 'WELCOME10';
   const discount = isWelcomeApplied ? Math.round(subtotal * 0.10) : (appliedPromo?.discount || 0);
+
+  // ₹50 prepaid incentive for online checkout preview
+  const PREPAID_INCENTIVE = 50;
+  const prepaidSaving = subtotal > 0 ? PREPAID_INCENTIVE : 0;
 
   const handleApply = (e) => {
     e.preventDefault();
@@ -190,7 +195,7 @@ export const CartDrawer = ({
     }
   };
 
-  const finalTotal = Math.max(0, subtotal - discount);
+  const finalTotal = Math.max(0, subtotal + shippingFee - discount - prepaidSaving);
 
   return (
     <div className="fixed inset-0 z-[1000] overflow-hidden">
@@ -371,12 +376,18 @@ export const CartDrawer = ({
                 )}
                 <div className="flex justify-between">
                   <span>Shipping</span>
-                  <span className="text-emerald-700 font-semibold">
-                    {subtotal >= freeShippingThreshold ? 'FREE' : '₹99'}
+                  <span className={shippingFee === 0 ? "text-emerald-700 font-semibold uppercase" : "font-semibold text-[#2C2623]"}>
+                    {shippingFee === 0 ? 'FREE' : `₹${shippingFee}`}
                   </span>
                 </div>
+                {prepaidSaving > 0 && (
+                  <div className="flex justify-between text-emerald-700 font-medium">
+                    <span>Prepaid Saving 💸</span>
+                    <span className="font-bold">-₹{prepaidSaving.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
                 <div className="flex justify-between text-sm font-cinzel font-bold text-[#2C2623] pt-2 border-t border-[#EAE0CD]">
-                  <span>Total</span>
+                  <span>Total Payable</span>
                   <span className="text-base text-[#967433]">₹{finalTotal.toLocaleString('en-IN')}</span>
                 </div>
               </div>

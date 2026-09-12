@@ -5,13 +5,29 @@
  * GET  /api/orders/:id
  */
 
-const express      = require('express');
-const router       = express.Router();
-const srClient     = require('../shiprocket/client');
-const validateBody = require('../middleware/validateBody');
-const { AppError } = require('../middleware/errorHandler');
-const config       = require('../config');
-const { getProductPrice } = require('../data/catalog');
+const express          = require('express');
+const router           = express.Router();
+const srClient         = require('../shiprocket/client');
+const validateBody     = require('../middleware/validateBody');
+const { AppError }     = require('../middleware/errorHandler');
+const requireAdminAuth = require('../middleware/adminAuth');
+const config           = require('../config');
+const { getProductPrice, validateCoupon } = require('../data/catalog');
+
+// ── GET /api/orders (Admin ONLY - Order List) ─────────────
+router.get('/', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { getAllOrders } = require('../services/orderStore');
+    const orders = await getAllOrders();
+    res.json({
+      success: true,
+      count: orders.length,
+      orders,
+    });
+  } catch (err) {
+    next(new AppError(`Failed to fetch order list: ${err.message}`, 500, 'SERVER_ERROR'));
+  }
+});
 
 // ── POST /api/orders/create ───────────────────────────────
 router.post('/create', validateBody({
@@ -20,7 +36,7 @@ router.post('/create', validateBody({
   cart:        { type: 'array',  required: true },
 }), async (req, res, next) => {
   try {
-    const { order_id, customer = {}, cart } = req.body;
+    const { order_id, customer = {}, cart, coupon_code, couponCode } = req.body;
 
     if (req.mock.shiprocket) {
       return res.json({
@@ -59,6 +75,12 @@ router.post('/create', validateBody({
     });
 
     const subTotal = orderItems.reduce((s, i) => s + (i.selling_price * i.units), 0);
+    const code = coupon_code || couponCode;
+    let totalDiscount = 0;
+    if (code) {
+      const cRes = validateCoupon(code, subTotal);
+      if (cRes.valid) totalDiscount = cRes.discountAmount;
+    }
 
     const payload = {
       order_id,
@@ -92,7 +114,7 @@ router.post('/create', validateBody({
       shipping_charges:       0,
       giftwrap_charges:       0,
       transaction_charges:    0,
-      total_discount:         0,
+      total_discount:         totalDiscount,
       sub_total:              subTotal,
       length: 10, breadth: 10, height: 10, weight: 0.5,
     };
@@ -132,21 +154,24 @@ router.post('/create', validateBody({
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
+    const { phone, email } = req.query;
 
     if (!id || !/^[a-zA-Z0-9_-]+$/.test(String(id).trim())) {
       return next(new AppError('Invalid order ID format. Must contain only alphanumeric characters, underscores, or hyphens.', 400, 'INVALID_INPUT'));
     }
 
-    if (req.mock.shiprocket) {
-      return res.json({ success: true, order: { id, status: 'mock', _mock: true } });
+    const { findOrder } = require('../services/orderStore');
+    const existingOrder = await findOrder(id, phone, email);
+
+    if (!existingOrder) {
+      return next(new AppError('Order not found for the provided order ID and customer credentials.', 404, 'ORDER_NOT_FOUND'));
     }
 
-    const { data } = await srClient.get(`/orders/show/${id}`);
-    res.json({ success: true, order: data.data });
+    res.json({ success: true, order: existingOrder });
   } catch (err) {
     next(new AppError(
-      `Order fetch failed: ${err.response?.data?.message || err.message}`,
-      err.response?.status === 404 ? 404 : 502, 'SHIPROCKET_ERROR'
+      `Order fetch failed: ${err.message}`,
+      500, 'SERVER_ERROR'
     ));
   }
 });
@@ -162,19 +187,19 @@ router.post('/:id/cancel', async (req, res, next) => {
     }
 
     const { findOrder, markOrderCancelled } = require('../services/orderStore');
-    const existingOrder = await findOrder(id, phone);
+    const existingOrder = await findOrder(id, phone, email);
 
-    if (!existingOrder && (!id || id === 'UNKNOWN')) {
-      return next(new AppError('Order not found for the provided order ID and phone number.', 404, 'ORDER_NOT_FOUND'));
+    if (!existingOrder) {
+      return next(new AppError('Order not found for the provided order ID and phone/email credentials.', 404, 'ORDER_NOT_FOUND'));
     }
 
-    const cleanId = existingOrder?.id || existingOrder?.order_id || id;
-    const targetEmail = email || existingOrder?.customer_email || existingOrder?.email || 'shraviko@gmail.com';
-    const targetName = customerName || customer_name || existingOrder?.customer_name || 'Valued Customer';
-    const items = existingOrder?.items || [{ name: 'Shraviko Sacred Creation', qty: 1, price: 650 }];
-    const totalAmount = existingOrder?.total || existingOrder?.subtotal || 650;
+    const cleanId = existingOrder.id || existingOrder.order_id || id;
+    const targetEmail = existingOrder.customer_email || email || 'shraviko@gmail.com';
+    const targetName = existingOrder.customer_name || customerName || customer_name || 'Valued Customer';
+    const items = existingOrder.items || [];
+    const totalAmount = existingOrder.total_amount || existingOrder.total || 0;
 
-    // Persist order cancellation in OrderStore & DB
+    // Persist order cancellation in OrderStore & DB (with inventory restoration if applicable)
     await markOrderCancelled(cleanId, { phone, reason, email: targetEmail });
 
     console.log('🚫 Cancellation email triggered:', { to: targetEmail, customerName: targetName, orderId: cleanId, totalAmount, reason });

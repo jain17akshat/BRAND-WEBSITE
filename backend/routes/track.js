@@ -13,17 +13,18 @@ const { findOrder, findOrders } = require('../services/orderStore');
 
 router.get('/', async (req, res, next) => {
   try {
-    const { orderId, phone } = req.query;
+    const { orderId, phone, email } = req.query;
 
-    if (!phone && !orderId) {
-      throw new AppError('Please enter your 10-digit Mobile Number or Order ID to track.', 400, 'VALIDATION_ERROR');
+    if (!orderId || (!phone && !email)) {
+      throw new AppError('Order ID and a matching mobile number or email address are required to track your order.', 400, 'VALIDATION_ERROR');
     }
 
     const cleanOrderId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
     const cleanPhone = phone ? String(phone).replace(/\D/g, '').slice(-10) : '';
+    const cleanEmail = email ? String(email).trim().toLowerCase() : '';
 
     // 1. Check local OrderStore (recent memory cache + MySQL DB)
-    const localOrders = await findOrders(cleanOrderId, cleanPhone);
+    const localOrders = await findOrders(cleanOrderId, cleanPhone, cleanEmail);
     if (localOrders && localOrders.length > 0) {
       return res.json({
         success: true,
