@@ -261,7 +261,7 @@ export const CheckoutModal = ({
   };
 
   return (
-    <div data-lenis-prevent className="fixed inset-0 z-[1000] overflow-y-auto flex items-center justify-center p-3 sm:p-6">
+    <div data-lenis-prevent className="fixed inset-0 z-[1000] overflow-y-auto flex items-center justify-center p-2 sm:p-4 md:p-6">
       {/* Backdrop */}
       <div
         onClick={() => {
@@ -270,7 +270,7 @@ export const CheckoutModal = ({
         className="fixed inset-0 bg-[#171312]/80 backdrop-blur-xs transition-opacity animate-fade-in"
       />
 
-      <div className="relative bg-[#FBF9F5] rounded-2xl max-w-xl w-full border border-[#C5A059]/40 shadow-2xl overflow-hidden z-10 animate-slide-up my-4 max-h-[92vh] flex flex-col">
+      <div className="relative bg-[#FBF9F5] rounded-2xl max-w-xl w-full border border-[#C5A059]/40 shadow-2xl overflow-hidden z-10 animate-slide-up my-auto max-h-[90dvh] sm:max-h-[92vh] flex flex-col">
 
         {/* Header */}
         <div className="p-4 sm:p-5 bg-[#231E1C] text-[#F9F5EC] border-b border-[#C5A059]/30 flex items-center justify-between shrink-0">
@@ -371,9 +371,36 @@ export const CheckoutModal = ({
                 </button>
               </div>
             </div>
+          ) : isProcessing ? (
+            /* 8. MOBILE OPTIMIZED PROCESSING SCREEN */
+            <div className="text-center py-10 px-4 space-y-6 animate-fade-in flex flex-col items-center justify-center min-h-[300px]">
+              <div className="relative">
+                <div className="w-16 h-16 rounded-full border-4 border-[#E5C378]/30 border-t-[#B8860B] animate-spin" />
+                <ShieldCheck className="w-7 h-7 text-[#B8860B] absolute inset-0 m-auto" />
+              </div>
+
+              <div className="space-y-2">
+                <span className="text-[10px] font-cinzel tracking-[0.25em] text-[#8C6929] uppercase font-bold block">
+                  Securing Transaction
+                </span>
+                <h3 className="text-lg sm:text-xl font-cinzel font-bold text-[#2C2623]">
+                  {paymentMethod === 'cod' ? 'Confirming Your Order...' : 'Processing Payment...'}
+                </h3>
+                <p className="text-xs text-gray-600 font-sans max-w-xs mx-auto leading-relaxed">
+                  {paymentMethod === 'cod'
+                    ? 'Placing your Cash on Delivery order with express delivery.'
+                    : 'Please complete the payment in the secure window. Do not refresh or close this window.'}
+                </p>
+              </div>
+
+              <div className="flex items-center justify-center gap-1.5 text-[10px] text-gray-500 font-sans pt-2">
+                <Lock className="w-3.5 h-3.5 text-emerald-700" />
+                <span>🔒 256-Bit Encrypted Secure Channel</span>
+              </div>
+            </div>
           ) : (
             /* MAIN CHECKOUT & PAYMENT FORM */
-            <form onSubmit={handleExecutePayment} className="space-y-6">
+            <form onSubmit={handleExecutePayment} className="space-y-5 sm:space-y-6">
 
               {/* Customer Address Details (compact) */}
               <div className="space-y-3">
@@ -381,7 +408,7 @@ export const CheckoutModal = ({
                   Delivery Details
                 </h4>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-sans">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm sm:text-xs font-sans">
                   <div>
                     <input
                       type="text"
@@ -390,7 +417,7 @@ export const CheckoutModal = ({
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Full Name *"
                       required
-                      className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
+                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-xl sm:rounded-lg focus:border-[#C5A059] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
                     />
                   </div>
                   <div>
@@ -401,7 +428,7 @@ export const CheckoutModal = ({
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="10-Digit Phone Number *"
                       required
-                      className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
+                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-xl sm:rounded-lg focus:border-[#C5A059] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
                     />
                   </div>
                   <div className="sm:col-span-2">
@@ -412,7 +439,7 @@ export const CheckoutModal = ({
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="Email Address *"
                       required
-                      className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
+                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-xl sm:rounded-lg focus:border-[#C5A059] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
                     />
                   </div>
                   <div className="sm:col-span-2">
@@ -423,7 +450,7 @@ export const CheckoutModal = ({
                       onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                       placeholder="Flat / House No. / Building / Street Address *"
                       required
-                      className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
+                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-xl sm:rounded-lg focus:border-[#C5A059] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
                     />
                   </div>
                   <div>
@@ -434,7 +461,7 @@ export const CheckoutModal = ({
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                       placeholder="City *"
                       required
-                      className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
+                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
                     />
                   </div>
                   <div>
@@ -445,7 +472,7 @@ export const CheckoutModal = ({
                       onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
                       placeholder="Pincode *"
                       required
-                      className="w-full p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none"
+                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-lg focus:border-[#C5A059] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
                     />
                   </div>
                 </div>
