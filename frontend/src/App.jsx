@@ -23,7 +23,6 @@ import { MandirFeature } from './components/MandirFeature';
 import { VisualGallery } from './components/VisualGallery';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { MyOrdersPage } from './components/MyOrdersPage';
-import { VideoShowcase } from './components/VideoShowcase';
 import { QuickTrackSection } from './components/QuickTrackSection';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import { RefundPolicyPage } from './components/RefundPolicyPage';
@@ -735,13 +734,6 @@ export function App() {
                   </div>
                 </section>
               </div>
-
-              {/* 10. Video Reels — Artisan Stories & Craft in Motion */}
-              <div className="smooth-reveal">
-                <VideoShowcase />
-              </div>
-
-
 
 
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUp, Instagram, Facebook, Share2, Mail, Phone, MapPin, MessageSquare, Package, RotateCcw, Truck } from 'lucide-react';
+import { ArrowUp, Instagram, Facebook, Share2, Mail, Phone, MapPin, MessageSquare, Package, RotateCcw, Truck, ShieldCheck } from 'lucide-react';
 
 const WORDMARK_LETTERS = ['S', 'H', 'R', 'A', 'V', 'I', 'K', 'O'];
 
@@ -54,82 +54,114 @@ export const Footer = ({
 
   return (
     <footer className="relative bg-[#110E0D] text-[#EAE0CD] font-sans">
-      {/* ── 0. Top Customer Care & Services Bar ── */}
-      <div className="bg-[#FBF5EA] border-y border-[#EAE0CD] text-[#2C2623] py-6 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-center justify-between">
-          
-          {/* Item 1: Happy to help */}
-          <div 
-            onClick={onGoSupport}
-            className="flex items-center gap-3 cursor-pointer group p-1.5 sm:p-2 rounded-xl hover:bg-[#F3EBDC] transition-all"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#F4EBE0] border border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] transition-all">
-              <MessageSquare className="w-5 h-5 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
-            </div>
-            <div>
-              <h4 className="text-xs sm:text-sm font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors">
-                Happy to help
-              </h4>
-              <p className="text-[11px] text-[#7A6B5D] font-light">
-                Chat or email
-              </p>
-            </div>
-          </div>
+      {/* ── 0. Top Customer Care & Services Bar — Marquee ── */}
+      <div className="bg-[#FBF5EA] border-y border-[#EAE0CD] text-[#2C2623] py-5 sm:py-6 overflow-hidden">
+        <div className="footer-marquee-track">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="footer-marquee-content" aria-hidden={copy === 1}>
 
-          {/* Item 2: Check order status */}
-          <div 
-            onClick={onGoSupport}
-            className="flex items-center gap-3 cursor-pointer group p-1.5 sm:p-2 rounded-xl hover:bg-[#F3EBDC] transition-all"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#F4EBE0] border border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] transition-all">
-              <Package className="w-5 h-5 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
-            </div>
-            <div>
-              <h4 className="text-xs sm:text-sm font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors">
-                Check order status
-              </h4>
-              <p className="text-[11px] text-[#7A6B5D] font-light">
-                Updates &amp; tracking
-              </p>
-            </div>
-          </div>
+              {/* 1. Happy to help */}
+              <div
+                onClick={onGoSupport}
+                className="flex items-center gap-4 cursor-pointer group px-8 sm:px-12 shrink-0"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#F4EBE0] border-2 border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] group-hover:scale-110 transition-all duration-300">
+                  <MessageSquare className="w-9 h-9 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
+                </div>
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors whitespace-nowrap">
+                    Happy to help
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#7A6B5D] font-light whitespace-nowrap">
+                    Chat or email
+                  </p>
+                </div>
+              </div>
 
-          {/* Item 3: Returns & exchanges */}
-          <div 
-            onClick={onGoRefundPolicy || onGoSupport}
-            className="flex items-center gap-3 cursor-pointer group p-1.5 sm:p-2 rounded-xl hover:bg-[#F3EBDC] transition-all"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#F4EBE0] border border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] transition-all">
-              <RotateCcw className="w-5 h-5 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
-            </div>
-            <div>
-              <h4 className="text-xs sm:text-sm font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors">
-                Returns &amp; exchanges
-              </h4>
-              <p className="text-[11px] text-[#7A6B5D] font-light">
-                Quick &amp; hassle-free
-              </p>
-            </div>
-          </div>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]/40 shrink-0" />
 
-          {/* Item 4: Free delivery */}
-          <div 
-            onClick={onGoSupport}
-            className="flex items-center gap-3 cursor-pointer group p-1.5 sm:p-2 rounded-xl hover:bg-[#F3EBDC] transition-all"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#F4EBE0] border border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] transition-all">
-              <Truck className="w-5 h-5 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
-            </div>
-            <div>
-              <h4 className="text-xs sm:text-sm font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors">
-                Free delivery
-              </h4>
-              <p className="text-[11px] text-[#7A6B5D] font-light">
-                All over India
-              </p>
-            </div>
-          </div>
+              {/* 2. Easy Returns */}
+              <div
+                onClick={onGoRefundPolicy || onGoSupport}
+                className="flex items-center gap-4 cursor-pointer group px-8 sm:px-12 shrink-0"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#F4EBE0] border-2 border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] group-hover:scale-110 transition-all duration-300">
+                  <RotateCcw className="w-9 h-9 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
+                </div>
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors whitespace-nowrap">
+                    Easy Returns
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#7A6B5D] font-light whitespace-nowrap">
+                    Quick &amp; hassle-free
+                  </p>
+                </div>
+              </div>
 
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]/40 shrink-0" />
+
+              {/* 3. Securely Packed */}
+              <div
+                onClick={onGoSupport}
+                className="flex items-center gap-4 cursor-pointer group px-8 sm:px-12 shrink-0"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#F4EBE0] border-2 border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] group-hover:scale-110 transition-all duration-300">
+                  <ShieldCheck className="w-9 h-9 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
+                </div>
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors whitespace-nowrap">
+                    Securely Packed
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#7A6B5D] font-light whitespace-nowrap">
+                    Sacred items, safe delivery
+                  </p>
+                </div>
+              </div>
+
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]/40 shrink-0" />
+
+              {/* 4. Free Delivery */}
+              <div
+                onClick={onGoSupport}
+                className="flex items-center gap-4 cursor-pointer group px-8 sm:px-12 shrink-0"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#F4EBE0] border-2 border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] group-hover:scale-110 transition-all duration-300">
+                  <Truck className="w-9 h-9 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
+                </div>
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors whitespace-nowrap">
+                    Free Delivery
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#7A6B5D] font-light whitespace-nowrap">
+                    All over India
+                  </p>
+                </div>
+              </div>
+
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]/40 shrink-0" />
+
+              {/* 5. Check Order Status */}
+              <div
+                onClick={onGoSupport}
+                className="flex items-center gap-4 cursor-pointer group px-8 sm:px-12 shrink-0"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#F4EBE0] border-2 border-[#E5DAC8] flex items-center justify-center shrink-0 group-hover:border-[#C5A059] group-hover:scale-110 transition-all duration-300">
+                  <Package className="w-9 h-9 text-[#2C2623] group-hover:text-[#B8860B] transition-colors" />
+                </div>
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors whitespace-nowrap">
+                    Check Order Status
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#7A6B5D] font-light whitespace-nowrap">
+                    Updates &amp; tracking
+                  </p>
+                </div>
+              </div>
+
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]/40 shrink-0" />
+
+            </div>
+          ))}
         </div>
       </div>
       {/* ── 1. Main Luxury Footer Section ── */}

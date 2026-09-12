@@ -968,6 +968,47 @@ button, a {
   animation-play-state: paused;
 }
 
+/* Footer service bar marquee */
+.footer-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-rtl 30s linear infinite;
+}
+
+.footer-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.footer-marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  shrink: 0;
+}
+
+/* Why Choose Us marquee */
+.why-choose-marquee-wrap {
+  overflow: hidden;
+  width: 100%;
+}
+
+.why-choose-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-rtl 28s linear infinite;
+}
+
+.why-choose-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.why-choose-marquee-set {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+
 /* ==========================================================================
    12-MOTION ANIMATION SYSTEM - SHRAVIKO SACRED LIVING
    ========================================================================== */
