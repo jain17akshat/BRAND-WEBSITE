@@ -152,11 +152,13 @@ async function startServer() {
     }
   }
 
-  app.listen(PORT, () => {
-    console.log(`\n🚀 Shraviko server running on port ${PORT}`);
-    console.log(`   Environment: ${config.nodeEnv}`);
-    console.log(`   Frontend:    ${config.frontendUrl}\n`);
-  });
+  if (require.main === module) {
+    app.listen(PORT, () => {
+      console.log(`\n🚀 Shraviko server running on port ${PORT}`);
+      console.log(`   Environment: ${config.nodeEnv}`);
+      console.log(`   Frontend:    ${config.frontendUrl}\n`);
+    });
+  }
 }
 
 startServer();
