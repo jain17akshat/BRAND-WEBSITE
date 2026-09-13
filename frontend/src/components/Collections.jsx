@@ -8,7 +8,7 @@ export const Collections = ({ onSelectCategory }) => {
       title: 'Metalware (Brass & Copper)',
       image: '/METALWARE.webp',
       mobileImage: '/Metalwaremobile.webp',
-      fallback: '/assets/brasscover.png',
+      fallback: '/assets/brasscover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
     },
@@ -17,7 +17,7 @@ export const Collections = ({ onSelectCategory }) => {
       title: 'Mandir Essentials',
       image: '/mandiressentials.webp',
       mobileImage: '/mandirphone view.webp',
-      fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
+      fallback: '/assets/brasscover.webp',
       mobilePosition: 'center 45%',
       desktopPosition: 'center 45%',
     },
@@ -26,7 +26,7 @@ export const Collections = ({ onSelectCategory }) => {
       title: 'Incense & Dhoop',
       image: '/incesne hero.webp',
       mobileImage: '/incenemobile hero.webp',
-      fallback: '/assets/Incense cover.jpg',
+      fallback: '/assets/Incense cover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
     },
@@ -35,7 +35,25 @@ export const Collections = ({ onSelectCategory }) => {
       title: 'Corporate Gifting',
       image: '/essentialhero.webp',
       mobileImage: '/mandiressentialmobileview.webp',
-      fallback: '/assets/handcrafted cover.jpg',
+      fallback: '/assets/handcrafted cover.webp',
+      mobilePosition: 'center center',
+      desktopPosition: 'center center',
+    },
+    {
+      id: 'energy-stones',
+      title: 'Energy Stones & Bracelets',
+      image: '/braclet desktopview.webp',
+      mobileImage: '/energystones mobile view.webp',
+      fallback: '/assets/handcrafted cover.webp',
+      mobilePosition: 'center center',
+      desktopPosition: 'center center',
+    },
+    {
+      id: 'vastu',
+      title: 'Vastu & Spiritual',
+      image: '/assets/Copper cover.webp',
+      mobileImage: '/assets/Copper cover.webp',
+      fallback: '/assets/brasscover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
     },
@@ -53,13 +71,13 @@ export const Collections = ({ onSelectCategory }) => {
           </h2>
         </div>
 
-        {/* 2-col grid on mobile (always), 2-col on desktop too */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+        {/* 2-col grid on mobile, 3-col on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
           {collections.map((col) => (
             <div
               key={col.id}
               onClick={() => onSelectCategory && onSelectCategory(col.id)}
-              className="group relative overflow-hidden rounded-xl cursor-pointer aspect-[4/3] sm:aspect-[16/10] shadow-xs"
+              className="group relative overflow-hidden rounded-xl cursor-pointer aspect-[4/3] sm:aspect-[16/10] shadow-xs border border-[#EAE0CD]/60 hover:border-[#C5A059]/50 transition-all"
             >
               {/* Mobile image */}
               <div className="block sm:hidden absolute inset-0 w-full h-full">
@@ -91,7 +109,7 @@ export const Collections = ({ onSelectCategory }) => {
 
               {/* Card Label */}
               <div className="absolute bottom-2.5 left-3 sm:bottom-4 sm:left-5 right-3 z-10">
-                <h3 className="font-cinzel text-xs sm:text-lg font-bold text-[#F5EAD4] tracking-wide leading-tight group-hover:text-white transition-colors">
+                <h3 className="font-cinzel text-xs sm:text-base lg:text-lg font-bold text-[#F5EAD4] tracking-wide leading-tight group-hover:text-white transition-colors">
                   {col.title}
                 </h3>
               </div>

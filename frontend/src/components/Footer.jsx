@@ -72,7 +72,7 @@ export const Footer = ({
                   <h4 className="text-base sm:text-lg font-bold font-sans text-[#2C2623] group-hover:text-[#B8860B] transition-colors whitespace-nowrap">
                     Happy to help
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#7A6B5D] font-light whitespace-nowrap">
+                  <p className="text-xs sm:text-sm text-[#52453A] font-medium whitespace-nowrap">
                     Chat or email
                   </p>
                 </div>
@@ -335,16 +335,17 @@ export const Footer = ({
           </div>
 
           {/* Bottom Copyright Bar */}
-          <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#8C7E6C]">
+          <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#B5A895]">
             <div className="text-center md:text-left font-light space-y-0.5">
               <p>© {new Date().getFullYear()} Shraviko. All rights reserved.</p>
-              <p className="text-[10px] text-[#6B5E50] tracking-wide">
+              <p className="text-[10px] text-[#A09282] tracking-wide font-medium">
                 GSTIN: 08CODPJ2489F1ZT &nbsp;·&nbsp; Registered in Rajasthan, India
               </p>
             </div>
 
             <button
               onClick={scrollToTop}
+              aria-label="Scroll back to top of page"
               className="flex items-center gap-1.5 text-[#C5A059] hover:text-[#E5C378] transition-colors font-cinzel text-xs uppercase tracking-widest font-semibold"
             >
               <span>Back to Top</span>

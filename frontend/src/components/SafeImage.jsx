@@ -64,7 +64,7 @@ export const SafeImage = ({
         src={finalSrc}
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
+        decoding={priority ? 'sync' : 'async'}
         fetchpriority={priority ? 'high' : 'low'}
         onLoad={handleLoad}
         onError={handleError}
@@ -72,7 +72,7 @@ export const SafeImage = ({
         srcSet={srcSet}
         style={style}
         className={`w-full h-full ${objectFit} transition-opacity duration-400 ease-out ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
+          priority || isLoaded ? 'opacity-100' : 'opacity-0'
         } ${className}`}
         {...props}
       />

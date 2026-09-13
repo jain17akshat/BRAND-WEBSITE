@@ -54,9 +54,6 @@ export default {
         brand: ['"Cinzel Decorative"', 'Cinzel', 'serif'],
         cinzel: ['Cinzel', 'serif'],
         heading: ['Cinzel', 'serif'],
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        playfair: ['"Playfair Display"', 'Georgia', 'serif'],
-        prata: ['Prata', 'Georgia', 'serif'],
         sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
       },
       boxShadow: {

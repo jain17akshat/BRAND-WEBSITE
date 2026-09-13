@@ -85,6 +85,7 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
         <div className="absolute inset-x-0 bottom-0 flex gap-1 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <button
             onClick={e => { e.stopPropagation(); onToggleWishlist(product); }}
+            aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
             className={`flex-1 flex items-center justify-center gap-1 py-2 rounded-xl text-[10px] font-cinzel font-bold tracking-wide border transition-all ${isWishlisted ? 'bg-rose-50 border-rose-200 text-rose-500' : 'bg-white/95 border-[#EAE0CD] text-[#6B5840] hover:border-[#C5A059] hover:text-[#C5A059]'}`}
           >
             <Heart className={`w-3 h-3 ${isWishlisted ? 'fill-rose-400' : ''}`} />
@@ -92,6 +93,7 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
           </button>
           <button
             onClick={e => { e.stopPropagation(); onSelectProduct(product); }}
+            aria-label={`View details for ${product.name}`}
             className="flex-1 flex items-center justify-center gap-1 py-2 rounded-xl bg-white/95 border border-[#EAE0CD] text-[#6B5840] text-[10px] font-cinzel font-bold tracking-wide hover:border-[#C5A059] hover:text-[#C5A059] transition-all"
           >
             <Eye className="w-3 h-3" />
@@ -103,7 +105,7 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
       {/* Info */}
       <div className="p-3 flex flex-col gap-2 flex-1">
         {product.categoryName && (
-          <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#9B7E52] uppercase font-medium">
+          <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#7A5B1D] uppercase font-bold">
             {product.categoryName}
           </p>
         )}
@@ -117,7 +119,7 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
           <div className="flex items-baseline gap-1.5 mt-auto pt-2 border-t border-[#EAE0CD]">
             {product.weightVariants && product.weightVariants[0]?.price ? (
               <div className="flex items-baseline gap-1">
-                <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+                <span className="text-[10px] font-sans text-[#52453A] font-medium lowercase">from</span>
                 <span className="font-cinzel font-bold text-[#2C2623] text-xs sm:text-sm">
                   ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
                 </span>
@@ -128,14 +130,14 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
               </span>
             ) : null}
             {product.originalPrice && (
-              <span className="text-[10px] text-[#A09484] line-through font-sans">
+              <span className="text-[10px] text-stone-600 line-through font-sans font-medium">
                 ₹{product.originalPrice.toLocaleString('en-IN')}
               </span>
             )}
           </div>
         )}
         {product.isComingSoon ? (
-          <div className="w-full text-center py-2 rounded-xl bg-[#C5A059]/15 text-[#9B7E52] text-[10px] font-cinzel font-bold tracking-widest uppercase border border-[#C5A059]/30">
+          <div className="w-full text-center py-2 rounded-xl bg-[#C5A059]/15 text-[#7A5B1D] text-[10px] font-cinzel font-bold tracking-widest uppercase border border-[#C5A059]/30">
             Coming Soon
           </div>
         ) : (
@@ -297,13 +299,14 @@ export function AllCollectionsPage({
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => onSelectCategory(cat)}
-                    className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-cinzel tracking-widest uppercase text-[#C5A059] border border-[#C5A059]/40 px-3 py-1.5 rounded-full hover:bg-[#C5A059]/10 hover:border-[#C5A059] transition-all"
+                    className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-cinzel tracking-widest uppercase text-[#8C6929] border border-[#C5A059]/40 px-3 py-1.5 rounded-full hover:bg-[#C5A059]/10 hover:border-[#C5A059] transition-all font-bold"
                   >
                     View All →
                   </button>
                   <button
                     onClick={() => toggleCat(cat)}
-                    className="p-1.5 rounded-full border border-[#EAE0CD] text-[#9B7E52] hover:border-[#C5A059] hover:text-[#C5A059] transition-all"
+                    aria-label={isExpanded ? `Collapse ${meta.label} category` : `Expand ${meta.label} category`}
+                    className="p-1.5 rounded-full border border-[#EAE0CD] text-[#7A5B1D] hover:border-[#C5A059] hover:text-[#C5A059] transition-all"
                   >
                     {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                   </button>
@@ -329,7 +332,7 @@ export function AllCollectionsPage({
                     <div className="mt-5 text-center">
                       <button
                         onClick={() => onSelectCategory(cat)}
-                        className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#C5A059]/50 text-[#C5A059] text-[10px] font-cinzel tracking-[0.2em] uppercase rounded-full hover:bg-[#C5A059] hover:text-white transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#C5A059]/50 text-[#8C6929] text-[10px] font-cinzel tracking-[0.2em] uppercase font-bold rounded-full hover:bg-[#C5A059] hover:text-white transition-all duration-300"
                       >
                         See all {prods.length} {meta.label} →
                       </button>

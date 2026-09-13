@@ -6,40 +6,27 @@
  * Automatically runs before `vite build` via the "prebuild" npm script.
  */
 
-import { readFileSync, writeFileSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { PRODUCTS, CATEGORIES } from './src/data/products.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const SITE_URL = 'https://shraviko.com';
 
-// Read and extract product/category data from products.js
-// We parse it manually since it uses `export const` syntax
-const productsFile = readFileSync(resolve(__dirname, 'src/data/products.js'), 'utf-8');
+// Valid category IDs (exclude 'all')
+const validCategoryIds = CATEGORIES
+  .map(c => c.id)
+  .filter(id => id && id !== 'all');
 
-// Extract product IDs
-const productIdRegex = /id:\s*'([^']+)'/g;
-const productIds = [];
-let match;
-while ((match = productIdRegex.exec(productsFile)) !== null) {
-  // Skip IDs from TESTIMONIALS or non-product sections (numeric IDs)
-  if (!/^\d+$/.test(match[1])) {
-    productIds.push(match[1]);
-  }
-}
-// Deduplicate (some IDs may appear in references)
-const uniqueProductIds = [...new Set(productIds)];
+// Valid product IDs
+const validProductIds = PRODUCTS
+  .map(p => p.id)
+  .filter(Boolean);
 
-// Extract category IDs
-const categoryIdRegex = /{\s*id:\s*'([^']+)',\s*name:/g;
-const categoryIds = [];
-while ((match = categoryIdRegex.exec(productsFile)) !== null) {
-  if (match[1] !== 'all') {
-    categoryIds.push(match[1]);
-  }
-}
-const uniqueCategoryIds = [...new Set(categoryIds)];
+// Deduplicate just in case
+const uniqueCategoryIds = [...new Set(validCategoryIds)];
+const uniqueProductIds = [...new Set(validProductIds)];
 
 // Static pages
 const staticPages = [

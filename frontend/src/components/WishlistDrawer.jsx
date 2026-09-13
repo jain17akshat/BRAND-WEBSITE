@@ -32,6 +32,7 @@ export const WishlistDrawer = ({
             </div>
             <button
               onClick={onClose}
+              aria-label="Close wishlist drawer"
               className="p-1 text-gray-400 hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
@@ -73,6 +74,7 @@ export const WishlistDrawer = ({
                         </h4>
                         <button
                           onClick={() => onRemoveFromWishlist(product.id)}
+                          aria-label={`Remove ${product.name} from wishlist`}
                           className="text-gray-400 hover:text-[#A63A2B] transition-colors p-0.5"
                         >
                           <Trash2 className="w-3.5 h-3.5" />

@@ -274,9 +274,9 @@ export const CategoryPage = ({
         {/* Mobile Image — shown below sm breakpoint (< 640px) */}
         <div className="block sm:hidden absolute inset-0 h-full w-full">
           <SafeImage
-            src={category.mobileImage || category.image || '/brasshero.png'}
+            src={category.mobileImage || category.image || '/brasshero.webp'}
             alt={category.title || 'Category Collection'}
-            fallbackSrc={category.fallbackImage || '/assets/brasscover.png'}
+            fallbackSrc={category.fallbackImage || '/assets/brasscover.webp'}
             priority={true}
             dark={true}
             containerClassName="w-full h-full"
@@ -288,9 +288,9 @@ export const CategoryPage = ({
         {/* Desktop Image — shown from sm breakpoint (≥ 640px) */}
         <div className="hidden sm:block absolute inset-0 h-full w-full">
           <SafeImage
-            src={category.image || '/brasshero.png'}
+            src={category.image || '/brasshero.webp'}
             alt={category.title || 'Category Collection'}
-            fallbackSrc={category.fallbackImage || '/assets/brasscover.png'}
+            fallbackSrc={category.fallbackImage || '/assets/brasscover.webp'}
             priority={true}
             dark={true}
             containerClassName="w-full h-full"
@@ -636,7 +636,7 @@ const CategoryProductCard = ({
                 </span>
               ) : null}
               {product.originalPrice && (
-                <span className="text-[10px] sm:text-xs text-[#A09484] line-through font-sans">
+                <span className="text-[10px] sm:text-xs text-stone-600 line-through font-sans font-medium">
                   ₹{product.originalPrice.toLocaleString('en-IN')}
                 </span>
               )}

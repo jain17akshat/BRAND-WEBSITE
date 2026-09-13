@@ -65,6 +65,7 @@ export const Bestsellers = ({
                   {/* Wishlist */}
                   <button
                     onClick={(e) => { e.stopPropagation(); onToggleWishlist(product); }}
+                    aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                     className={`absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 text-[#2C2623] hover:text-[#A63A2B] flex items-center justify-center transition-colors shadow-sm magnetic-hover ${isWishlisted ? 'wishlist-heart-pop' : ''}`}
                     title={isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
                   >
@@ -89,6 +90,7 @@ export const Bestsellers = ({
                         e.stopPropagation();
                         if (onOpenQuickView) onOpenQuickView(product);
                       }}
+                      aria-label={`Quick view ${product.name}`}
                       className="p-1.5 rounded-lg bg-white/90 hover:bg-white text-[#2C2623] text-xs font-medium shadow-lg transition-transform active:scale-95"
                       title="Quick View"
                     >
@@ -101,7 +103,7 @@ export const Bestsellers = ({
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
                     {product.categoryName && (
-                      <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#9B7E52] uppercase mb-1 font-medium">
+                      <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#7A5B1D] uppercase mb-1 font-bold">
                         {product.categoryName}
                       </p>
                     )}
@@ -123,7 +125,7 @@ export const Bestsellers = ({
                         </span>
                       ) : product.weightVariants && product.weightVariants[0]?.price ? (
                         <>
-                          <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
+                          <span className="text-[10px] font-sans text-[#52453A] font-medium lowercase">from</span>
                           <span className="text-sm font-sans font-bold text-[#2C2623]">
                             ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
                           </span>
@@ -134,7 +136,7 @@ export const Bestsellers = ({
                         </span>
                       ) : null}
                       {!product.isComingSoon && product.originalPrice && (
-                        <span className="text-[10px] text-[#A09484] line-through font-sans ml-1">
+                        <span className="text-[10px] text-stone-600 line-through font-sans ml-1 font-medium">
                           ₹{product.originalPrice.toLocaleString('en-IN')}
                         </span>
                       )}

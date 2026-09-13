@@ -73,9 +73,9 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
         {/* Mobile Image */}
         <div className="block sm:hidden absolute inset-0 w-full h-full">
           <SafeImage
-            src="/mandiressentialmobileview.png"
+            src="/mandiressentialmobileview.webp"
             alt="Corporate & Bulk Gifting"
-            fallbackSrc="/assets/handcrafted cover.jpg"
+            fallbackSrc="/assets/handcrafted cover.webp"
             priority={true}
             dark={true}
             containerClassName="w-full h-full"
@@ -86,9 +86,9 @@ export const CorporateGiftingPage = ({ onBackToHome, showToast }) => {
         {/* Desktop Image */}
         <div className="hidden sm:block absolute inset-0 w-full h-full">
           <SafeImage
-            src="/essentialhero.png"
+            src="/essentialhero.webp"
             alt="Corporate & Bulk Gifting"
-            fallbackSrc="/assets/HERO2.png"
+            fallbackSrc="/assets/HERO2.webp"
             priority={true}
             dark={true}
             containerClassName="w-full h-full"

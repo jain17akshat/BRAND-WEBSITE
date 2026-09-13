@@ -79,16 +79,16 @@ export const Navbar = ({
       `}</style>
       {/* ── Solid Premium Luxury Header with Curved Corners (100% Non-Transparent) ── */}
       <header
-        className={`fixed top-2 sm:top-3.5 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out ${(isVisible && !hideNavbar) ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+        className={`fixed top-2 sm:top-3.5 left-0 right-0 z-50 px-2 sm:px-4 lg:px-6 transition-all duration-500 ease-in-out ${(isVisible && !hideNavbar) ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
           }`}
         style={{ pointerEvents: (isVisible && !hideNavbar) ? 'auto' : 'none' }}
       >
         {/* Solid White Floating Capsule with Curved Corners */}
-        <div className={`max-w-7xl mx-auto bg-white rounded-2xl sm:rounded-full border border-stone-200/80 overflow-hidden transition-all duration-300 ${isScrolled ? 'shadow-xl' : 'shadow-md'
+        <div className={`max-w-[1400px] mx-auto bg-white rounded-2xl sm:rounded-full border border-stone-200/80 overflow-hidden transition-all duration-300 ${isScrolled ? 'shadow-xl' : 'shadow-md'
           }`}>
 
           {/* ── Top bar: 52px Logo | Category Links | Action Buttons ── */}
-          <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-between relative" style={{ height: '68px' }}>
+          <div className="px-5 sm:px-8 lg:px-12 xl:px-16 flex items-center justify-between relative" style={{ height: '68px' }}>
 
             {/* LEFT — Mobile Toggle & Desktop Logo */}
             <div className="flex items-center gap-3 flex-shrink-0 z-10">
@@ -102,6 +102,7 @@ export const Navbar = ({
 
               <button
                 onClick={onGoHome}
+                aria-label="Shraviko - Return to Homepage"
                 className="hidden lg:flex items-center group focus:outline-none py-1"
                 title="Shraviko - Home"
               >
@@ -119,6 +120,7 @@ export const Navbar = ({
             {/* CENTER (MOBILE ONLY) — Perfectly Centered Mobile Logo */}
             <button
               onClick={onGoHome}
+              aria-label="Shraviko - Return to Homepage"
               className="lg:hidden absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center focus:outline-none z-10 active:scale-95 transition-transform duration-200"
               title="Shraviko - Home"
             >
@@ -133,7 +135,7 @@ export const Navbar = ({
             </button>
 
             {/* CENTER — Spacious Category Navigation Links */}
-            <nav className="hidden lg:flex items-center justify-center gap-3 lg:gap-4.5 xl:gap-6 mx-3">
+            <nav className="hidden lg:flex items-center justify-center gap-2.5 lg:gap-3.5 xl:gap-5 mx-2 xl:mx-4">
               {navLinks.map((link) => {
                 const isActive = activeCategory === link.category;
                 return (
@@ -158,6 +160,7 @@ export const Navbar = ({
             <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
               <button
                 onClick={onOpenSearch}
+                aria-label="Search products"
                 className="hidden sm:flex p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm magnetic-hover group"
                 title="Search Products"
               >
@@ -167,6 +170,7 @@ export const Navbar = ({
 
               <button
                 onClick={onOpenWishlist}
+                aria-label={`View wishlist (${wishlistCount} items)`}
                 className="p-2.5 rounded-full bg-[#F8F5EF] hover:bg-[#EDE4D0] text-[#3D2B1F] hover:text-[#B8860B] border border-[#DAB97B]/40 transition-all shadow-sm magnetic-hover relative group"
                 title="Saved Items"
               >

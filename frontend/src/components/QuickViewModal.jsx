@@ -70,6 +70,7 @@ export const QuickViewModal = ({
         {/* Close Button */}
         <button
           onClick={onClose}
+          aria-label="Close modal"
           className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-[#231E1C] text-[#E5C378] hover:bg-[#3A3431] flex items-center justify-center transition-colors shadow"
         >
           <X className="w-4 h-4" />
@@ -96,6 +97,7 @@ export const QuickViewModal = ({
                   <button
                     key={idx}
                     onClick={() => setSelectedImg(img)}
+                    aria-label={`View image ${idx + 1}`}
                     className={`w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
                       selectedImg === img ? 'border-[#C5A059] scale-105 shadow-md' : 'border-[#EAE0CD] opacity-70 hover:opacity-100'
                     }`}
@@ -134,7 +136,7 @@ export const QuickViewModal = ({
                       ₹{(currentPrice || 0).toLocaleString('en-IN')}
                     </span>
                     {currentOrigPrice && (
-                      <span className="text-sm text-gray-400 line-through">
+                      <span className="text-sm text-gray-600 line-through font-medium">
                         ₹{currentOrigPrice.toLocaleString('en-IN')}
                       </span>
                     )}
@@ -163,6 +165,7 @@ export const QuickViewModal = ({
                     <div className="flex items-center border border-[#EAE0CD] rounded bg-white px-2 py-1">
                       <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        aria-label="Decrease quantity"
                         className="px-2 text-sm text-[#2C2623]"
                       >
                         -
@@ -170,6 +173,7 @@ export const QuickViewModal = ({
                       <span className="px-3 text-xs font-bold text-[#2C2623]">{quantity}</span>
                       <button
                         onClick={() => setQuantity(quantity + 1)}
+                        aria-label="Increase quantity"
                         className="px-2 text-sm text-[#2C2623]"
                       >
                         +
@@ -179,6 +183,7 @@ export const QuickViewModal = ({
                     {/* Wishlist toggle */}
                     <button
                       onClick={() => onToggleWishlist(product)}
+                      aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                       className="p-2.5 rounded border border-[#EAE0CD] hover:border-[#A63A2B] text-[#2C2623] transition-colors"
                     >
                       <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-[#A63A2B] text-[#A63A2B]' : ''}`} />

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Converter</title>
+</head>
+<body>
+  <h1>Converting Images to WebP</h1>
+  <div id="output">Starting...</div>
+  <script>
+    const images = [
+      '/assets/Copper thali/copper thali 1.png',
+      '/assets/Copper thali/copper thali 2.png',
+      '/assets/Copper thali/copperthali6.png',
+      '/assets/Copper thali/copper thali  5.png'
+    ];
+
+    async function convert() {
+      const output = document.getElementById('output');
+      const results = {};
+
+      for (const src of images) {
+        try {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          await new Promise((resolve, reject) => {
+            img.onload = resolve;
+            img.onerror = reject;
+            img.src = src;
+          });
+
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+
+          const webpDataUrl = canvas.toDataURL('image/webp', 0.8);
+          results[src] = webpDataUrl;
+          
+          const p = document.createElement('p');
+          p.textContent = `Converted ${src}: original ${img.naturalWidth}x${img.naturalHeight}, webp len: ${webpDataUrl.length}`;
+          output.appendChild(p);
+        } catch (err) {
+          console.error(err);
+          const p = document.createElement('p');
+          p.textContent = `Error converting ${src}: ${err.message}`;
+          output.appendChild(p);
+        }
+      }
+      window.convertedResults = results;
+      const done = document.createElement('h2');
+      done.id = "done-status";
+      done.textContent = "Conversion Complete!";
+      output.appendChild(done);
+    }
+
+    convert();
+  </script>
+</body>
+</html>

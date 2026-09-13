@@ -62,18 +62,6 @@
     font-family: 'Cinzel', serif;
     letter-spacing: 0.03em;
   }
-
-  .font-playfair {
-    font-family: 'Playfair Display', Georgia, serif;
-  }
-
-  .font-prata {
-    font-family: 'Prata', Georgia, serif;
-  }
-
-  .font-cormorant {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-  }
 }
 
 /* Fluid CSS Clamp Typography Utilities */
@@ -152,6 +140,35 @@
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+/* Elegant Text Appearance Keyframe Animations */
+@keyframes textFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-text-appear-1 {
+  opacity: 0;
+  animation: textFadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.animate-text-appear-2 {
+  opacity: 0;
+  animation: textFadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+}
+
+.animate-text-appear-3 {
+  opacity: 0;
+  animation: textFadeInUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 }
 
 .shimmer-effect {

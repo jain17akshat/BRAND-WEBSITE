@@ -218,6 +218,7 @@ export const CartDrawer = ({
             </div>
             <button
               onClick={onClose}
+              aria-label="Close cart drawer"
               className="p-1 text-gray-400 hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
@@ -268,6 +269,7 @@ export const CartDrawer = ({
                         </h4>
                         <button
                           onClick={() => onRemoveItem(item.id)}
+                          aria-label={`Remove ${item.name} from cart`}
                           className="text-gray-400 hover:text-[#A63A2B] transition-colors p-0.5"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -282,6 +284,7 @@ export const CartDrawer = ({
                       <div className="flex items-center border border-[#EAE0CD] rounded bg-[#FBF9F5]">
                         <button
                           onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                          aria-label={`Decrease quantity of ${item.name}`}
                           className="p-1 hover:bg-[#F2EBDC] transition-colors"
                         >
                           <Minus className="w-3 h-3 text-[#2C2623]" />
@@ -291,6 +294,7 @@ export const CartDrawer = ({
                         </span>
                         <button
                           onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                          aria-label={`Increase quantity of ${item.name}`}
                           className="p-1 hover:bg-[#F2EBDC] transition-colors"
                         >
                           <Plus className="w-3 h-3 text-[#2C2623]" />

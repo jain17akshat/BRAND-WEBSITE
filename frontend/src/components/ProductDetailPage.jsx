@@ -13,7 +13,8 @@ export const ProductDetailPage = ({
   onAddToCart,
   onToggleWishlist,
   isWishlisted,
-  showToast
+  showToast,
+  onSelectProduct
 }) => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -51,7 +52,6 @@ export const ProductDetailPage = ({
 
   useEffect(() => {
     if (product) {
-      setIsLoading(true);
       setActiveImg(product.image || (product.images && product.images[0]) || '');
       if (product.weightVariants) {
         setSelectedVariant(product.weightVariants.find((v) => v.default) || product.weightVariants[0]);
@@ -59,9 +59,23 @@ export const ProductDetailPage = ({
         setSelectedVariant(null);
       }
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      window.scrollTo(0, 0);
 
-      // Preload all gallery images in background for instant thumbnail switching
+      // Dynamic preload link for high priority LCP image
+      const primaryImg = product.image || (product.images && product.images[0]);
+      if (primaryImg) {
+        let link = document.querySelector('link[data-lcp-preload="true"]');
+        if (!link) {
+          link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.setAttribute('data-lcp-preload', 'true');
+          document.head.appendChild(link);
+        }
+        link.href = primaryImg;
+        link.setAttribute('fetchpriority', 'high');
+      }
+
+      // Background preload for other gallery thumbnails
       if (product.images && product.images.length > 0) {
         product.images.forEach((imgUrl) => {
           if (imgUrl) {
@@ -70,9 +84,6 @@ export const ProductDetailPage = ({
           }
         });
       }
-
-      const timer = setTimeout(() => setIsLoading(false), 200);
-      return () => clearTimeout(timer);
     }
   }, [product?.id]);
 
@@ -122,6 +133,7 @@ export const ProductDetailPage = ({
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
+    url: `https://shraviko.com/product/${product.id}`,
     image: product.image ? [`https://shraviko.com${product.image}`] : (product.images ? product.images.map(img => `https://shraviko.com${img}`) : []),
     description: product.metaDescription || product.shortDescription || (product.description ? product.description.substring(0, 160) : ''),
     sku: product.id,
@@ -131,7 +143,7 @@ export const ProductDetailPage = ({
     },
     offers: {
       '@type': 'Offer',
-      url: `https://shraviko.com/#/product/${product.id}`,
+      url: `https://shraviko.com/product/${product.id}`,
       priceCurrency: 'INR',
       price: currentPrice || product.price,
       availability: product.inStock !== false ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
@@ -212,13 +224,13 @@ export const ProductDetailPage = ({
                 fitMode={product.fitMode}
                 aspect="aspect-full"
                 className="w-full h-full"
+                priority={true}
               />
-
-
 
               {/* Wishlist Button */}
               <button
                 onClick={() => onToggleWishlist(product)}
+                aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                 className={`absolute top-4 right-4 z-10 w-10 h-10 rounded-full flex items-center justify-center shadow-lg backdrop-blur-md transition-all ${
                   isWishlisted
                     ? 'bg-red-500 text-white'
@@ -242,6 +254,7 @@ export const ProductDetailPage = ({
                       <button
                         key={idx}
                         onClick={() => setActiveImg(img)}
+                        aria-label={`View product image ${idx + 1}`}
                         className={`aspect-square rounded-xl overflow-hidden border-2 transition-all p-1 bg-white ${
                           isActive
                             ? 'border-[#C5A059] ring-2 ring-[#C5A059]/50 scale-105 shadow-md'
@@ -288,7 +301,7 @@ export const ProductDetailPage = ({
             {/* Header Info */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-xs font-cinzel uppercase tracking-[0.25em] text-[#C5A059] font-bold">
+                <span className="text-xs font-cinzel uppercase tracking-[0.25em] text-[#8C6929] font-bold">
                   {product.categoryName || 'Sacred Collection'}
                 </span>
               </div>
@@ -298,7 +311,7 @@ export const ProductDetailPage = ({
               </h1>
 
               <p className="text-xs sm:text-sm text-[#755722] font-cinzel font-semibold flex items-center gap-1.5 pt-1">
-                <Sparkles className="w-4 h-4 text-[#C5A059]" />
+                <Sparkles className="w-4 h-4 text-[#8C6929]" />
                 <span>{product.purity || '100% Pure Virgin Brass'}</span>
               </p>
             </div>
@@ -320,7 +333,7 @@ export const ProductDetailPage = ({
                       ₹{(currentPrice || 0).toLocaleString('en-IN')}
                     </span>
                     {currentOrigPrice && (
-                      <span className="text-base font-sans text-gray-400 line-through">
+                      <span className="text-base font-sans text-gray-600 line-through font-medium">
                         ₹{currentOrigPrice.toLocaleString('en-IN')}
                       </span>
                     )}
@@ -395,6 +408,7 @@ export const ProductDetailPage = ({
                   <div className="flex items-center border border-[#EAE0CD] rounded-xl bg-white p-1">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      aria-label="Decrease quantity"
                       className="w-9 h-9 rounded-lg bg-[#F6F1E7] text-[#2C2623] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
                     >
                       -
@@ -402,6 +416,7 @@ export const ProductDetailPage = ({
                     <span className="px-4 text-sm font-cinzel font-bold text-[#2C2623]">{quantity}</span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
+                      aria-label="Increase quantity"
                       className="w-9 h-9 rounded-lg bg-[#F6F1E7] text-[#2C2623] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
                     >
                       +
@@ -604,8 +619,12 @@ export const ProductDetailPage = ({
         currentProduct={product}
         allProducts={PRODUCTS}
         onSelectProduct={(p) => {
-          // Navigate via hash — App.jsx parseHash handles it
-          window.location.hash = `#/product/${p.id}`;
+          if (onSelectProduct) {
+            onSelectProduct(p);
+          } else {
+            window.history.pushState(null, '', `/product/${p.id}`);
+            window.dispatchEvent(new Event('popstate'));
+          }
         }}
         onAddToCart={onAddToCart}
       />
@@ -702,7 +721,7 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
                         ₹{product.price?.toLocaleString('en-IN')}
                       </span>
                       {product.originalPrice && (
-                        <span className="text-[10px] text-gray-400 line-through ml-1">
+                        <span className="text-[10px] text-stone-600 line-through ml-1 font-medium">
                           ₹{product.originalPrice?.toLocaleString('en-IN')}
                         </span>
                       )}
@@ -714,6 +733,7 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
                         setAdded(product.id);
                         setTimeout(() => setAdded(null), 1500);
                       }}
+                      aria-label={`Add ${product.name} to cart`}
                       className={`px-2.5 py-1.5 rounded-lg text-[10px] font-cinzel font-bold uppercase tracking-wide transition-all flex items-center gap-1 active:scale-95 ${
                         isAdded
                           ? 'bg-emerald-600 text-white'

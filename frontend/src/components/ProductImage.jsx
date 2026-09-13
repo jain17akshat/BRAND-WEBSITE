@@ -118,15 +118,17 @@ export const ProductImage = ({
         <img
           src={activeSrc}
           alt={alt || 'Shraviko Sacred Product'}
+          width={800}
+          height={800}
           loading={priority ? 'eager' : 'lazy'}
-          decoding="async"
+          decoding={priority ? 'sync' : 'async'}
           fetchpriority={priority ? 'high' : undefined}
           onLoad={() => {
             if (!primaryLoaded) setPrimaryLoaded(true);
           }}
           onError={() => setImgError(true)}
           className={`w-full h-full transition-opacity duration-400 ${
-            primaryLoaded ? 'opacity-100' : 'opacity-0'
+            priority || primaryLoaded ? 'opacity-100' : 'opacity-0'
           } ${
             isContain ? 'object-contain p-2 sm:p-3' : 'object-cover'
           } ${

@@ -175,6 +175,7 @@ const MustTryCard = ({
             e.stopPropagation();
             onToggleWishlist && onToggleWishlist(product);
           }}
+          aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
           className={`absolute bottom-2.5 right-2.5 z-20 w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-md transition-all shadow-md ${
             isWishlisted ? 'bg-rose-500 text-white' : 'bg-white/90 text-[#3D2B1F] hover:bg-white hover:text-[#B8860B]'
           }`}
@@ -189,7 +190,7 @@ const MustTryCard = ({
         <div>
           {/* Category */}
           <div className="flex items-center justify-between text-[10px] text-stone-500 mb-1">
-            <span className="uppercase font-cinzel font-bold text-[#9C7830] tracking-wider truncate">
+            <span className="uppercase font-cinzel font-bold text-[#7A5B1D] tracking-wider truncate">
               {product.category || 'Sacred Item'}
             </span>
           </div>
@@ -207,7 +208,7 @@ const MustTryCard = ({
               ₹{product.price?.toLocaleString('en-IN')}
             </span>
             {product.originalPrice && (
-              <span className="text-[10px] text-stone-400 line-through ml-1.5 font-sans">
+              <span className="text-[10px] text-stone-600 line-through ml-1.5 font-sans font-medium">
                 ₹{product.originalPrice?.toLocaleString('en-IN')}
               </span>
             )}

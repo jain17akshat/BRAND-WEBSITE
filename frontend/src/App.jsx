@@ -164,8 +164,8 @@ export function App() {
       id: 'mandir-essentials',
       title: 'Mandir Essentials',
       name: 'Mandir Essentials',
-      image: '/mandiressentials.png',
-      mobileImage: '/mandirphone view.png',
+      image: '/mandiressentials.webp',
+      mobileImage: '/mandirphone view.webp',
       fallbackImage: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       // Mandir image — key items in center, show slightly higher on mobile
       mobilePosition: 'center 35%',
@@ -176,8 +176,8 @@ export function App() {
       id: 'energy-stones',
       title: 'Energy Stones & Bracelets',
       name: 'Energy Stones & Bracelets',
-      image: '/braclet desktopview.png',
-      mobileImage: '/energystones mobile view.png',
+      image: '/braclet desktopview.webp',
+      mobileImage: '/energystones mobile view.webp',
       fallbackImage: '/assets/handcrafted cover.jpg',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
@@ -320,29 +320,74 @@ export function App() {
       const pathname = window.location.pathname.replace(/\/$/, '') || '/';
       const params = new URLSearchParams(window.location.search);
 
-      // Product Deep Link
+      // Route Validation Helpers
+      const isCategorySlug = (slug) => {
+        if (!slug) return false;
+        const lower = slug.toLowerCase();
+        if (lower === 'all-collections' || lower === 'all' || lower === 'gifting' || lower === 'corporate-gifting' || lower === 'energy-stones') return true;
+        return CATEGORIES.some((c) => String(c.id).toLowerCase() === lower) || Boolean(categoryDetailsMap[lower]);
+      };
+
+      // 1. Strict Product Deep Link Validation & Redirect
       if (pathname.startsWith('/product/')) {
-        const prodId = decodeURIComponent(pathname.replace('/product/', '').trim());
-        if (prodId) {
-          const prod = PRODUCTS.find((p) => String(p.id) === String(prodId) || p.slug === prodId);
+        const rawSlug = decodeURIComponent(pathname.replace('/product/', '').trim());
+        if (rawSlug) {
+          const prod = PRODUCTS.find((p) => String(p.id).toLowerCase() === rawSlug.toLowerCase() || (p.slug && String(p.slug).toLowerCase() === rawSlug.toLowerCase()));
           if (prod) {
             setSelectedProduct(prod);
             setCurrentPage('product');
             return;
           }
+          // Mis-typed route: Category requested under /product/ -> Canonical redirect to /category/{slug}
+          if (isCategorySlug(rawSlug)) {
+            const cleanTarget = (rawSlug === 'all' || rawSlug === 'all-collections') ? '/all-collections' : `/category/${rawSlug}`;
+            window.history.replaceState(null, '', cleanTarget);
+            if (rawSlug === 'all-collections' || rawSlug === 'all') {
+              setCurrentPage('all-collections');
+            } else if (rawSlug === 'gifting' || rawSlug === 'corporate-gifting') {
+              setCurrentPage('gifting');
+            } else if (rawSlug === 'energy-stones') {
+              setCurrentPage('energy-stones');
+            } else {
+              setSelectedCategoryId(rawSlug);
+              setCurrentPage('category');
+            }
+            return;
+          }
+          // Neither product nor category -> Redirect to Home
+          window.history.replaceState(null, '', '/');
+          setCurrentPage('home');
+          return;
         }
       }
 
-      // Category / Collection Deep Link
+      // 2. Strict Category / Collection Deep Link Validation & Redirect
       if (pathname.startsWith('/category/') || pathname.startsWith('/collections/')) {
-        const catId = decodeURIComponent(pathname.replace(/^\/(category|collections)\//, '').trim());
-        if (catId) {
-          if (catId === 'all-collections') {
+        const rawSlug = decodeURIComponent(pathname.replace(/^\/(category|collections)\//, '').trim());
+        if (rawSlug) {
+          if (rawSlug === 'all-collections' || rawSlug === 'all') {
+            if (pathname !== '/all-collections') {
+              window.history.replaceState(null, '', '/all-collections');
+            }
             setCurrentPage('all-collections');
-          } else {
-            setSelectedCategoryId(catId);
-            setCurrentPage('category');
+            return;
           }
+          if (isCategorySlug(rawSlug)) {
+            setSelectedCategoryId(rawSlug);
+            setCurrentPage('category');
+            return;
+          }
+          // Mis-typed route: Product requested under /category/ -> Canonical redirect to /product/{slug}
+          const prodMatch = PRODUCTS.find((p) => String(p.id).toLowerCase() === rawSlug.toLowerCase() || (p.slug && String(p.slug).toLowerCase() === rawSlug.toLowerCase()));
+          if (prodMatch) {
+            window.history.replaceState(null, '', `/product/${prodMatch.id}`);
+            setSelectedProduct(prodMatch);
+            setCurrentPage('product');
+            return;
+          }
+          // Neither category nor product -> Redirect to Home
+          window.history.replaceState(null, '', '/');
+          setCurrentPage('home');
           return;
         }
       }
@@ -512,10 +557,12 @@ export function App() {
           onOpenSearch={() => setSearchOpen(true)}
           activeCategory={
             currentPage === 'home' ? 'all'
-              : currentPage === 'energy-stones' ? 'energy-stones'
-                : currentPage === 'gifting' ? 'kits'
-                  : currentPage === 'category' ? selectedCategoryId
-                    : 'all'
+              : currentPage === 'all-collections' ? 'all-collections'
+                : currentPage === 'energy-stones' ? 'energy-stones'
+                  : currentPage === 'gifting' ? 'kits'
+                    : currentPage === 'category' ? selectedCategoryId
+                      : currentPage === 'product' ? selectedProduct?.category
+                        : ''
           }
           onSelectCategory={handleSelectCategory}
           onGoHome={handleGoHome}
@@ -608,6 +655,7 @@ export function App() {
               )}
               <ProductDetailPage
                 product={selectedProduct}
+                onSelectProduct={handleSelectProduct}
                 onBackToCategory={(catId) => {
                   if (catId) {
                     handleSelectCategory(catId);
@@ -817,13 +865,13 @@ export function App() {
                 <section className="py-14 sm:py-20 bg-[#1C1715] text-white relative overflow-hidden">
                   {/* Background image */}
                   <img
-                    src="/mandiressentialmobileview.png"
+                    src="/mandiressentialmobileview.webp"
                     alt="Corporate Gifting"
                     className="block sm:hidden absolute inset-0 w-full h-full object-cover opacity-25 hero-image-crisp"
                     style={{ objectPosition: 'center center' }}
                   />
                   <img
-                    src="/essentialhero.png"
+                    src="/essentialhero.webp"
                     alt="Corporate Gifting"
                     className="hidden sm:block absolute inset-0 w-full h-full object-cover opacity-20 hero-image-crisp"
                     style={{ objectPosition: 'center center' }}
@@ -892,7 +940,7 @@ export function App() {
                   </div>
 
                   {/* 4. Rotating Sacred Sun Mandala (Aura behind the Logo) */}
-                  <div className="absolute left-[2%] sm:left-[4%] lg:left-[6%] top-1/2 -translate-y-1/2 pointer-events-none opacity-30 animate-spin-slow">
+                  <div className="absolute left-[0.5%] sm:left-[1.5%] lg:left-[2.5%] top-1/2 -translate-y-1/2 pointer-events-none opacity-30 animate-spin-slow">
                     <svg className="w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px] text-[#8C1E2E]" viewBox="0 0 200 200" fill="currentColor">
                       <g transform="translate(100,100)">
                         <circle r="90" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
@@ -909,7 +957,7 @@ export function App() {
                   </div>
 
                   {/* 5. Rotating Sacred Mandala (Aura behind OM Symbol on Right) */}
-                  <div className="absolute right-[2%] sm:right-[5%] lg:right-[8%] top-1/2 -translate-y-1/2 pointer-events-none opacity-25 animate-spin-reverse-slow hidden sm:block">
+                  <div className="absolute right-[1%] sm:right-[3%] lg:right-[5%] top-1/2 -translate-y-1/2 pointer-events-none opacity-25 animate-spin-reverse-slow hidden sm:block">
                     <svg className="w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] lg:w-[290px] lg:h-[290px] text-[#8C1E2E]" viewBox="0 0 200 200" fill="currentColor">
                       <g transform="translate(100,100)">
                         <circle r="85" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
@@ -921,42 +969,61 @@ export function App() {
                     </svg>
                   </div>
 
-                  {/* Inner layout — GIF left, text center */}
-                  <div className="relative z-10 flex items-center justify-between h-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-4 sm:py-6 gap-4">
+                  {/* Inner layout — Logo left, text center */}
+                  <div className="relative z-10 flex items-center justify-between h-full w-full max-w-[1440px] mx-auto px-2 sm:px-4 lg:px-6 py-4 sm:py-6 gap-2 sm:gap-4">
 
-                    {/* LEFT — Animated GIF */}
-                    <div className="flex-shrink-0 flex items-center relative">
-                      <img
-                        src="/assets/shraviko-anim.gif"
-                        alt="Sacred Ritual Animation"
-                        className="object-contain relative z-10"
+                    {/* LEFT — Shraviko Circular Emblem Logo */}
+                    <div className="flex-shrink-0 flex items-center relative z-10">
+                      <div
+                        className="rounded-full overflow-hidden flex items-center justify-center"
                         style={{
-                          width: 'clamp(160px, 24vw, 300px)',
-                          height: 'clamp(160px, 24vw, 300px)',
+                          width: 'clamp(140px, 20vw, 240px)',
+                          height: 'clamp(140px, 20vw, 240px)',
                         }}
-                      />
+                      >
+                        <img
+                          src="/assets/Logo/LOGO.png"
+                          alt="Shraviko Sacred Logo"
+                          className="w-full h-full object-contain rounded-full"
+                        />
+                      </div>
                     </div>
 
-                    {/* CENTER — Big & Bold Message */}
-                    <div className="flex-1 text-center px-1 sm:px-4">
+                    {/* CENTER — Big & Bold Message with Animated Appearance & Royal Color Palette */}
+                    <div className="flex-1 text-center px-1 sm:px-4 flex flex-col items-center justify-center">
+                      {/* 1. Top Tagline with Gold Flourish & Smooth Entrance */}
+                      <div className="flex items-center justify-center gap-2 mb-1 sm:mb-1.5 w-full animate-text-appear-1">
+                        <span className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent to-[#8C6521]/70 hidden xs:inline-block" />
+                        <p className="font-cinzel font-extrabold text-[0.65rem] sm:text-xs lg:text-sm tracking-[0.25em] uppercase sm:whitespace-nowrap text-[#8C6521]">
+                          ✦ WHERE TRADITION MEETS POSITIVE ENERGY ✦
+                        </p>
+                        <span className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-l from-transparent to-[#8C6521]/70 hidden xs:inline-block" />
+                      </div>
+
+                      {/* 2. Main Crimson Headline with Staggered Fade-Up */}
                       <h2
-                        className="font-cinzel font-extrabold text-[#6B1420] leading-tight tracking-wider uppercase sm:whitespace-nowrap"
+                        className="font-cinzel font-black text-[#681521] leading-tight tracking-[0.05em] uppercase sm:whitespace-nowrap animate-text-appear-2"
                         style={{
-                          fontSize: 'clamp(0.85rem, 2.7vw, 2.2rem)',
-                          textShadow: '1px 2px 6px rgba(107,20,32,0.15)',
+                          fontSize: 'clamp(0.9rem, 2.7vw, 2.25rem)',
+                          textShadow: '0 2px 6px rgba(104,21,33,0.15)',
                         }}
                       >
                         From Daily Pooja to Festive Rituals
                       </h2>
-                      <p
-                        className="font-cinzel font-black text-[#8C6929] tracking-[0.25em] uppercase mt-1 sm:mt-2 sm:whitespace-nowrap"
-                        style={{
-                          fontSize: 'clamp(0.95rem, 3.2vw, 2.4rem)',
-                          textShadow: '1px 2px 6px rgba(140,105,41,0.2)',
-                        }}
-                      >
-                        WE HAVE IT ALL
-                      </p>
+
+                      {/* 3. Bottom Statement with Metallic Gold Glow & Entrance */}
+                      <div className="mt-1 sm:mt-1.5 animate-text-appear-3">
+                        <p
+                          className="font-cinzel font-black text-[#916922] tracking-[0.28em] uppercase sm:whitespace-nowrap"
+                          style={{
+                            fontSize: 'clamp(0.95rem, 3.2vw, 2.4rem)',
+                            textShadow: '0 2px 6px rgba(145,105,34,0.18)',
+                          }}
+                        >
+                          WE HAVE IT ALL
+                        </p>
+                        <div className="w-20 sm:w-32 h-[2px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent mx-auto mt-1 sm:mt-1.5" />
+                      </div>
                     </div>
 
                   </div>
@@ -985,6 +1052,7 @@ export function App() {
         <MobileBottomNav
           cartCount={cartItems.reduce((acc, item) => acc + item.quantity, 0)}
           wishlistCount={wishlistIds.length}
+          currentPage={currentPage}
           onGoHome={handleGoHome}
           onOpenCategories={() => {
             handleSelectCategory('all-collections');
