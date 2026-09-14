@@ -25,12 +25,12 @@ export const PRODUCTS = [
     tag: 'Garuda Finial',
     artType: 'bell',
     fitMode: 'contain',
-    image: '/assets/garud bell/garduda 1.png',
+    image: '/assets/garud bell/garduda 1.webp',
     images: [
-      '/assets/garud bell/garduda 1.png',
-      '/assets/garud bell/garuda 2.png',
-      '/assets/garud bell/garud 3.png',
-      '/assets/garud bell/garuda 4.png'
+      '/assets/garud bell/garduda 1.webp',
+      '/assets/garud bell/garuda 2.webp',
+      '/assets/garud bell/garud 3.webp',
+      '/assets/garud bell/garuda 4.webp'
     ],
     weightVariants: [
       { weight: '90 g', price: 722, originalPrice: 1389, default: true }
@@ -86,13 +86,13 @@ export const PRODUCTS = [
     tag: 'Nandi Finial',
     artType: 'bell',
     fitMode: 'contain',
-    image: '/assets/nandi bell/nandi bell 1.jpg',
+    image: '/assets/nandi bell/nandi bell 1.webp',
     images: [
-      '/assets/nandi bell/nandi bell 1.jpg',
-      '/assets/nandi bell/nandi bell 2.jpg',
-      '/assets/nandi bell/nandi bell 3.png',
-      '/assets/nandi bell/nandi 4.png',
-      '/assets/nandi bell/nandi 5.png'
+      '/assets/nandi bell/nandi bell 1.webp',
+      '/assets/nandi bell/nandi bell 2.webp',
+      '/assets/nandi bell/nandi bell 3.webp',
+      '/assets/nandi bell/nandi 4.webp',
+      '/assets/nandi bell/nandi 5.webp'
     ],
     weightVariants: [
       { weight: '90 g', price: 722, originalPrice: 1389, default: true }
@@ -148,12 +148,12 @@ export const PRODUCTS = [
     tag: 'Classic Design',
     artType: 'bell',
     fitMode: 'contain',
-    image: '/assets/simple bell/simple bell 5.png',
+    image: '/assets/simple bell/simple bell 5.webp',
     images: [
-      '/assets/simple bell/simple bell 5.png',
-      '/assets/simple bell/simple bell 4.png',
-      '/assets/simple bell/simple bell 3.png',
-      '/assets/simple bell/simple bell 1.jpg'
+      '/assets/simple bell/simple bell 5.webp',
+      '/assets/simple bell/simple bell 4.webp',
+      '/assets/simple bell/simple bell 3.webp',
+      '/assets/simple bell/simple bell 1.webp'
     ],
     weightVariants: [
       { weight: '90 g', price: 722, originalPrice: 1389, default: true }
@@ -209,13 +209,13 @@ export const PRODUCTS = [
     tag: 'Ganesh Finial',
     artType: 'bell',
     fitMode: 'contain',
-    image: '/assets/commonbell/brass bell 1.png',
+    image: '/assets/commonbell/brass bell 1.webp',
     images: [
-      '/assets/commonbell/brass bell 1.png',
-      '/assets/commonbell/brass bell 2.png',
-      '/assets/commonbell/brass bell 3.png',
-      '/assets/commonbell/brass bell 4.png',
-      '/assets/commonbell/brassbell 5.png'
+      '/assets/commonbell/brass bell 1.webp',
+      '/assets/commonbell/brass bell 2.webp',
+      '/assets/commonbell/brass bell 3.webp',
+      '/assets/commonbell/brass bell 4.webp',
+      '/assets/commonbell/brassbell 5.webp'
     ],
     weightVariants: [
       { weight: '90 g', price: 722, originalPrice: 1389, default: true }
@@ -272,13 +272,13 @@ export const PRODUCTS = [
     tag: 'Engraved Floral',
     artType: 'thali',
     fitMode: 'contain',
-    image: '/assets/Brass thali/thali 2.jpg',
+    image: '/assets/Brass thali/thali 2.webp',
     images: [
-      '/assets/Brass thali/thali 2.jpg',
-      '/assets/Brass thali/thali 1.jpg',
-      '/assets/Brass thali/Brass thali.jpg',
-      '/assets/Brass thali/thali 3.jpg',
-      '/assets/Brass thali/thali 4.jpg'
+      '/assets/Brass thali/thali 2.webp',
+      '/assets/Brass thali/thali 1.webp',
+      '/assets/Brass thali/Brass thali.webp',
+      '/assets/Brass thali/thali 3.webp',
+      '/assets/Brass thali/thali 4.webp'
     ],
     weightVariants: [
       { weight: '6 Inch (80 g)', price: 554, originalPrice: 888, default: true }
@@ -340,12 +340,12 @@ export const PRODUCTS = [
     tag: '5-Wick Panchmukhi',
     artType: 'aarti',
     fitMode: 'contain',
-    image: '/assets/Brass aarti/Aarti1.jpg',
+    image: '/assets/Brass aarti/Aarti1.webp',
     images: [
-      '/assets/Brass aarti/Aarti1.jpg',
-      '/assets/Brass aarti/aarti2.jpg',
-      '/assets/Brass aarti/aarti 3.jpg',
-      '/assets/Brass aarti/aarti 4.jpg'
+      '/assets/Brass aarti/Aarti1.webp',
+      '/assets/Brass aarti/aarti2.webp',
+      '/assets/Brass aarti/aarti 3.webp',
+      '/assets/Brass aarti/aarti 4.webp'
     ],
     weightVariants: [
       { weight: 'L 14 cm × B 12 cm × H 6 Inch (150 g)', price: 1878, originalPrice: 2433, default: true }
@@ -407,12 +407,12 @@ export const PRODUCTS = [
     tag: 'Akhand Jyot',
     artType: 'jyot',
     fitMode: 'contain',
-    image: '/assets/akhand jyot/akhand jyot 2.png',
+    image: '/assets/akhand jyot/akhand jyot 2.webp',
     images: [
-      '/assets/akhand jyot/akhand jyot 2.png',
-      '/assets/akhand jyot/akhand jyot 1.png',
-      '/assets/akhand jyot/akhand jyot 3.png',
-      '/assets/akhand jyot/akhand jyot  size.png'
+      '/assets/akhand jyot/akhand jyot 2.webp',
+      '/assets/akhand jyot/akhand jyot 1.webp',
+      '/assets/akhand jyot/akhand jyot 3.webp',
+      '/assets/akhand jyot/akhand jyot  size.webp'
     ],
     weightVariants: [
       { weight: 'L 13 cm × B 24 cm × H 13 cm (120 g)', price: 500, originalPrice: 888, default: true }
@@ -471,11 +471,11 @@ export const PRODUCTS = [
     tag: 'Akhand Deepak',
     artType: 'jyot',
     fitMode: 'contain',
-    image: '/assets/Cup jyot/cup 2.png',
+    image: '/assets/Cup jyot/cup 2.webp',
     images: [
-      '/assets/Cup jyot/cup 2.png',
-      '/assets/Cup jyot/akhand jyot cup 1.png',
-      '/assets/Cup jyot/cup 3.png'
+      '/assets/Cup jyot/cup 2.webp',
+      '/assets/Cup jyot/akhand jyot cup 1.webp',
+      '/assets/Cup jyot/cup 3.webp'
     ],
     weightVariants: [
       { weight: 'L 13 cm × B 24 cm × H 13 cm (120 g)', price: 500, originalPrice: 888, default: true }
@@ -544,14 +544,14 @@ export const PRODUCTS = [
     tag: 'Gangajali Vessel',
     artType: 'kamandal',
     fitMode: 'contain',
-    image: '/assets/Brass kamandal/kamndal1.jpg',
+    image: '/assets/Brass kamandal/kamndal1.webp',
     images: [
-      '/assets/Brass kamandal/kamndal1.jpg',
-      '/assets/Brass kamandal/Brass Kamndal.jpg',
-      '/assets/Brass kamandal/kanmdal2.jpg',
-      '/assets/Brass kamandal/kamndal 3.png',
-      '/assets/Brass kamandal/kamndal 4.jpg',
-      '/assets/Brass kamandal/kamndal 5.png'
+      '/assets/Brass kamandal/kamndal1.webp',
+      '/assets/Brass kamandal/Brass Kamndal.webp',
+      '/assets/Brass kamandal/kanmdal2.webp',
+      '/assets/Brass kamandal/kamndal 3.webp',
+      '/assets/Brass kamandal/kamndal 4.webp',
+      '/assets/Brass kamandal/kamndal 5.webp'
     ],
     weightVariants: [
       { weight: '500 ML (0.5 L)', price: 1878, originalPrice: 2433 },
@@ -613,11 +613,11 @@ export const PRODUCTS = [
     tag: 'Shiva Emblem',
     artType: 'trishul',
     fitMode: 'contain',
-    image: '/assets/Trishul with damru/trishul with damru1.png',
+    image: '/assets/Trishul with damru/trishul with damru1.webp',
     images: [
-      '/assets/Trishul with damru/trishul with damru1.png',
-      '/assets/Trishul with damru/trishul with damru2.png',
-      '/assets/Trishul with damru/trishul with damru3.png'
+      '/assets/Trishul with damru/trishul with damru1.webp',
+      '/assets/Trishul with damru/trishul with damru2.webp',
+      '/assets/Trishul with damru/trishul with damru3.webp'
     ],
     weightVariants: [
       { weight: 'L 20 cm × B 6 cm × H 20 cm (90 g)', price: 3211, originalPrice: 3989, default: true }
@@ -673,12 +673,12 @@ export const PRODUCTS = [
     tag: 'Standing Trishul',
     artType: 'trishul',
     fitMode: 'contain',
-    image: '/assets/Trishul/trishul 2.png',
+    image: '/assets/Trishul/trishul 2.webp',
     images: [
-      '/assets/Trishul/trishul 2.png',
-      '/assets/Trishul/Trishul1.png',
-      '/assets/Trishul/trihsul 3.png',
-      '/assets/Trishul/trishul 4.png'
+      '/assets/Trishul/trishul 2.webp',
+      '/assets/Trishul/Trishul1.webp',
+      '/assets/Trishul/trihsul 3.webp',
+      '/assets/Trishul/trishul 4.webp'
     ],
     weightVariants: [
       { weight: '6 Inch Altar Trishul', price: 1433, originalPrice: 1878 },
@@ -734,12 +734,12 @@ export const PRODUCTS = [
     tag: 'Gomukhi Patra',
     artType: 'gomukhi',
     fitMode: 'contain',
-    image: '/assets/gomukhi/shringi 2.jpg',
+    image: '/assets/gomukhi/shringi 2.webp',
     images: [
-      '/assets/gomukhi/shringi 2.jpg',
-      '/assets/gomukhi/shringi1.jpg',
-      '/assets/gomukhi/shringi 3.jpg',
-      '/assets/gomukhi/shringi 4.jpg'
+      '/assets/gomukhi/shringi 2.webp',
+      '/assets/gomukhi/shringi1.webp',
+      '/assets/gomukhi/shringi 3.webp',
+      '/assets/gomukhi/shringi 4.webp'
     ],
     weightVariants: [
       { weight: 'Small (4.5 cm)', price: 767, originalPrice: 989 },
@@ -805,11 +805,11 @@ export const PRODUCTS = [
     tag: 'Brass Singhasan',
     artType: 'singhasan',
     fitMode: 'contain',
-    image: '/assets/singhasan/sighasan 1.jpg',
+    image: '/assets/singhasan/sighasan 1.webp',
     images: [
-      '/assets/singhasan/sighasan 1.jpg',
-      '/assets/singhasan/sighasan 2.png',
-      '/assets/singhasan/singhasan 3.png'
+      '/assets/singhasan/sighasan 1.webp',
+      '/assets/singhasan/sighasan 2.webp',
+      '/assets/singhasan/singhasan 3.webp'
     ],
     weightVariants: [
       { weight: 'L 18 cm × B 13 cm × H 23 cm (280 g)', price: 3211, originalPrice: 4100, default: true }
@@ -873,12 +873,12 @@ export const PRODUCTS = [
     tag: 'Laddu Gopal Idol',
     artType: 'brass',
     fitMode: 'contain',
-    image: '/assets/ladoo gopal/ladoogopal 2.png',
+    image: '/assets/ladoo gopal/ladoogopal 2.webp',
     images: [
-      '/assets/ladoo gopal/ladoogopal 2.png',
-      '/assets/ladoo gopal/ladoogopal4.png',
-      '/assets/ladoo gopal/ladoogpal3.jpg',
-      '/assets/ladoo gopal/ladoo5.png'
+      '/assets/ladoo gopal/ladoogopal 2.webp',
+      '/assets/ladoo gopal/ladoogopal4.webp',
+      '/assets/ladoo gopal/ladoogpal3.webp',
+      '/assets/ladoo gopal/ladoo5.webp'
     ],
     weightVariants: [
       { weight: 'L 13 cm × B 13 cm × H 10 cm (800 g)', price: 2000, originalPrice: 2888, default: true }
@@ -939,12 +939,12 @@ export const PRODUCTS = [
     tag: 'Pure Brass Kalash',
     artType: 'kalash',
     fitMode: 'contain',
-    image: '/assets/brass kalash/kalash1.png',
+    image: '/assets/brass kalash/kalash1.webp',
     images: [
-      '/assets/brass kalash/kalash1.png',
-      '/assets/brass kalash/kalash2.png',
-      '/assets/brass kalash/kalash3.png',
-      '/assets/brass kalash/kalash4.png'
+      '/assets/brass kalash/kalash1.webp',
+      '/assets/brass kalash/kalash2.webp',
+      '/assets/brass kalash/kalash3.webp',
+      '/assets/brass kalash/kalash4.webp'
     ],
     weightVariants: [
       { weight: 'Size 4 Inch (100 g)', price: 1544, originalPrice: 1989, default: true }
@@ -1004,12 +1004,12 @@ export const PRODUCTS = [
     tag: 'Peacock Thali',
     artType: 'thali',
     fitMode: 'contain',
-    image: '/assets/brassdesign thali/design1.png',
+    image: '/assets/brassdesign thali/design1.webp',
     images: [
-      '/assets/brassdesign thali/design1.png',
-      '/assets/brassdesign thali/design 2.png',
-      '/assets/brassdesign thali/design3.png',
-      '/assets/brassdesign thali/design4.png'
+      '/assets/brassdesign thali/design1.webp',
+      '/assets/brassdesign thali/design 2.webp',
+      '/assets/brassdesign thali/design3.webp',
+      '/assets/brassdesign thali/design4.webp'
     ],
     weightVariants: [
       { weight: '19 × 19 × 19 cm (10 g)', price: 611, originalPrice: 999, default: true }
@@ -1073,13 +1073,13 @@ export const PRODUCTS = [
     tag: 'Panchpatra Set',
     artType: 'panchapatra',
     fitMode: 'contain',
-    image: '/assets/pancpatra set/patra 1.jpg',
+    image: '/assets/pancpatra set/patra 1.webp',
     images: [
-      '/assets/pancpatra set/patra 1.jpg',
-      '/assets/pancpatra set/patra 2.jpg',
-      '/assets/pancpatra set/patra3.jpg',
-      '/assets/pancpatra set/patra 4.jpg',
-      '/assets/pancpatra set/patra 4.png'
+      '/assets/pancpatra set/patra 1.webp',
+      '/assets/pancpatra set/patra 2.webp',
+      '/assets/pancpatra set/patra3.webp',
+      '/assets/pancpatra set/patra 4.webp',
+      '/assets/pancpatra set/patra 4.webp'
     ],
     weightVariants: [
       { weight: 'L 10 cm × B 10 cm × H 10 cm (20 g)', price: 333, originalPrice: 554, default: true }
@@ -1142,14 +1142,14 @@ export const PRODUCTS = [
     tag: 'Pure Copper Thali',
     artType: 'thali',
     fitMode: 'contain',
-    image: '/assets/Copper thali/copper thali 1.png',
+    image: '/assets/Copper thali/copper thali 1.webp',
     images: [
-      '/assets/Copper thali/copper thali 1.png',
-      '/assets/Copper thali/copperthali6.png',
-      '/assets/Copper thali/copper thali 1.png',
-      '/assets/Copper thali/copper thali 2.png',
-      '/assets/Copper thali/copper thali 3.jpg',
-      '/assets/Copper thali/copper thali  5.png'
+      '/assets/Copper thali/copper thali 1.webp',
+      '/assets/Copper thali/copperthali6.webp',
+      '/assets/Copper thali/copper thali 1.webp',
+      '/assets/Copper thali/copper thali 2.webp',
+      '/assets/Copper thali/copper thali 3.webp',
+      '/assets/Copper thali/copper thali  5.webp'
     ],
     weightVariants: [
       { weight: '11 Inch (360 g)', price: 1333, originalPrice: 1889, default: true }
@@ -1212,12 +1212,12 @@ export const PRODUCTS = [
     tag: 'Copper Hawan Kund',
     artType: 'hawankund',
     fitMode: 'contain',
-    image: '/assets/hawankund/kund 1.jpg',
+    image: '/assets/hawankund/kund 1.webp',
     images: [
-      '/assets/hawankund/kund 1.jpg',
-      '/assets/hawankund/kund 2.png',
-      '/assets/hawankund/kund 3.png',
-      '/assets/hawankund/kund 4.png'
+      '/assets/hawankund/kund 1.webp',
+      '/assets/hawankund/kund 2.webp',
+      '/assets/hawankund/kund 3.webp',
+      '/assets/hawankund/kund 4.webp'
     ],
     weightVariants: [
       { weight: 'L 25 cm × B 25 cm × H 10 cm (540 g)', price: 2444, originalPrice: 3332, default: true }
@@ -1281,12 +1281,12 @@ export const PRODUCTS = [
     tag: 'Pure Copper Kalash',
     artType: 'kalash',
     fitMode: 'contain',
-    image: '/assets/Copperkalsh/copperkalsh1.png',
+    image: '/assets/Copperkalsh/copperkalsh1.webp',
     images: [
-      '/assets/Copperkalsh/copperkalsh1.png',
-      '/assets/Copperkalsh/copperkalash2.png',
-      '/assets/Copperkalsh/copperkalsh3.png',
-      '/assets/Copperkalsh/copperkalsh5.png'
+      '/assets/Copperkalsh/copperkalsh1.webp',
+      '/assets/Copperkalsh/copperkalash2.webp',
+      '/assets/Copperkalsh/copperkalsh3.webp',
+      '/assets/Copperkalsh/copperkalsh5.webp'
     ],
     weightVariants: [
       { weight: '64 g (Small / Daily Pooja)', price: 878, originalPrice: 1100 },
@@ -1346,7 +1346,7 @@ export const PRODUCTS = [
     reviewsCount: 188,
     tag: 'Bamboo-Free',
     artType: 'incense',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '50 Sticks Pack', price: 166, originalPrice: 221, default: true },
       { weight: '80 Sticks Pack', price: 243, originalPrice: 321 },
@@ -1374,7 +1374,7 @@ export const PRODUCTS = [
     reviewsCount: 160,
     tag: 'Classic Scent',
     artType: 'incense',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '50 Sticks Pack', price: 143, originalPrice: 188, default: true },
       { weight: '80 Sticks Pack', price: 210, originalPrice: 277 },
@@ -1402,7 +1402,7 @@ export const PRODUCTS = [
     reviewsCount: 220,
     tag: 'Natural Dhoop',
     artType: 'dhoop',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '12 Cones Trial Pack', price: 110, originalPrice: 143 },
       { weight: '24 Cones Small Pack', price: 199, originalPrice: 254, default: true },
@@ -1433,7 +1433,7 @@ export const PRODUCTS = [
     reviewsCount: 155,
     tag: 'Charcoal-Free',
     artType: 'dhoop',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '20 Sticks Pack', price: 132, originalPrice: 166 },
       { weight: '50 Sticks Pack', price: 277, originalPrice: 354, default: true },
@@ -1461,7 +1461,7 @@ export const PRODUCTS = [
     reviewsCount: 280,
     tag: 'Loban & Guggal',
     artType: 'dhoop',
-    image: '/assets/Incense cover.jpg',
+    image: '/assets/Incense cover.webp',
     weightVariants: [
       { weight: '12 Cups Pack', price: 221, originalPrice: 277, default: true },
       { weight: '24 Cups Pack', price: 388, originalPrice: 499 },
@@ -1490,12 +1490,12 @@ export const PRODUCTS = [
     tag: 'Pooja Chowki',
     artType: 'chowki',
     fitMode: 'contain',
-    image: '/assets/Wooden Choki/chowki1.png',
+    image: '/assets/Wooden Choki/chowki1.webp',
     images: [
-      '/assets/Wooden Choki/chowki1.png',
-      '/assets/Wooden Choki/chowki 2.png',
-      '/assets/Wooden Choki/chowki333.png',
-      '/assets/Wooden Choki/chowki6.png'
+      '/assets/Wooden Choki/chowki1.webp',
+      '/assets/Wooden Choki/chowki 2.webp',
+      '/assets/Wooden Choki/chowki333.webp',
+      '/assets/Wooden Choki/chowki6.webp'
     ],
     weightVariants: [
       { weight: 'L 38 cm × B 12 cm × H 5 cm (350 g)', price: 554, originalPrice: 1110, default: true }
@@ -1553,13 +1553,13 @@ export const PRODUCTS = [
     tag: '15×15" Large Bajot',
     artType: 'chowki',
     fitMode: 'contain',
-    image: '/assets/WoodenChowki Large/chowki4.jpg',
+    image: '/assets/WoodenChowki Large/chowki4.webp',
     images: [
-      '/assets/WoodenChowki Large/chowki4.jpg',
-      '/assets/WoodenChowki Large/chowki5.jpg',
-      '/assets/WoodenChowki Large/chowki444.png',
-      '/assets/WoodenChowki Large/sizechowki.png',
-      '/assets/WoodenChowki Large/chowki6.png'
+      '/assets/WoodenChowki Large/chowki4.webp',
+      '/assets/WoodenChowki Large/chowki5.webp',
+      '/assets/WoodenChowki Large/chowki444.webp',
+      '/assets/WoodenChowki Large/sizechowki.webp',
+      '/assets/WoodenChowki Large/chowki6.webp'
     ],
     weightVariants: [
       { weight: '2 kg Heavy Bajot', price: 1500, originalPrice: 2110, default: true }
@@ -1616,12 +1616,12 @@ export const PRODUCTS = [
     tag: 'Dhoop Dani',
     artType: 'diffuser',
     fitMode: 'contain',
-    image: '/assets/dhoop dani/dhoop dani 1.jpg',
+    image: '/assets/dhoop dani/dhoop dani 1.webp',
     images: [
-      '/assets/dhoop dani/dhoop dani 1.jpg',
-      '/assets/dhoop dani/dhoop dani 2.jpg',
-      '/assets/dhoop dani/dhoop dani 4.jpg',
-      '/assets/dhoop dani/dhoop dani 5.jpg'
+      '/assets/dhoop dani/dhoop dani 1.webp',
+      '/assets/dhoop dani/dhoop dani 2.webp',
+      '/assets/dhoop dani/dhoop dani 4.webp',
+      '/assets/dhoop dani/dhoop dani 5.webp'
     ],
     weightVariants: [
       { weight: 'L 25 cm × B 12 cm × H 16 cm (300 g)', price: 554, originalPrice: 1110, default: true }
@@ -1684,12 +1684,12 @@ export const PRODUCTS = [
     tag: 'Digital Counter',
     artType: 'counter',
     fitMode: 'contain',
-    image: '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.png',
+    image: '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.webp',
     images: [
-      '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.png',
-      '/assets/mala counter/72e9e401-501c-4c66-af99-33c2e75f835b.png',
-      '/assets/mala counter/6723a7bc-a812-4ce3-92b7-134c3b0490e6.png',
-      '/assets/mala counter/a2759320-ade5-4ca3-96b4-304fd2022217.png'
+      '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.webp',
+      '/assets/mala counter/72e9e401-501c-4c66-af99-33c2e75f835b.webp',
+      '/assets/mala counter/6723a7bc-a812-4ce3-92b7-134c3b0490e6.webp',
+      '/assets/mala counter/a2759320-ade5-4ca3-96b4-304fd2022217.webp'
     ],
     weightVariants: [
       { weight: 'L 10 cm × B 10 cm × H 10 cm (25 g)', price: 388, originalPrice: 888, default: true }
@@ -1746,14 +1746,14 @@ export const PRODUCTS = [
     tag: '7-in-1 Pooja Box',
     artType: 'box',
     fitMode: 'contain',
-    image: '/assets/Pooja box/Poojafront.png',
+    image: '/assets/Pooja box/Poojafront.webp',
     images: [
-      '/assets/Pooja box/Poojafront.png',
-      '/assets/Pooja box/poojabox1.jpg',
-      '/assets/Pooja box/poobjabox2.png',
-      '/assets/Pooja box/Pooja box.jpg',
-      '/assets/Pooja box/pooja box 3.jpg',
-      '/assets/Pooja box/pooja box 4.png'
+      '/assets/Pooja box/Poojafront.webp',
+      '/assets/Pooja box/poojabox1.webp',
+      '/assets/Pooja box/poobjabox2.webp',
+      '/assets/Pooja box/Pooja box.webp',
+      '/assets/Pooja box/pooja box 3.webp',
+      '/assets/Pooja box/pooja box 4.webp'
     ],
     weightVariants: [
       { weight: 'L 15 cm × B 15 cm × H 2 cm (300 g)', price: 500, originalPrice: 888, default: true }
@@ -1814,12 +1814,12 @@ export const PRODUCTS = [
     tag: 'Ganesh Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/Ganeshyantra/Ganesh 1.png',
+    image: '/assets/Ganeshyantra/Ganesh 1.webp',
     images: [
-      '/assets/Ganeshyantra/Ganesh 1.png',
-      '/assets/Ganeshyantra/Ganesh2.png',
-      '/assets/Ganeshyantra/ganesh 3.png',
-      '/assets/Ganeshyantra/gNESH4.png'
+      '/assets/Ganeshyantra/Ganesh 1.webp',
+      '/assets/Ganeshyantra/Ganesh2.webp',
+      '/assets/Ganeshyantra/ganesh 3.webp',
+      '/assets/Ganeshyantra/gNESH4.webp'
     ],
     weightVariants: [
       { weight: '3 × 3 Inches (20 g)', price: 388, originalPrice: 1100, default: true }
@@ -1881,13 +1881,13 @@ export const PRODUCTS = [
     tag: 'Kuber Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/Kuber yantra/kuber 1.png',
+    image: '/assets/Kuber yantra/kuber 1.webp',
     images: [
-      '/assets/Kuber yantra/kuber 1.png',
-      '/assets/Kuber yantra/kuber 2.png',
-      '/assets/Kuber yantra/kuber 3.png',
-      '/assets/Kuber yantra/kuber4.png',
-      '/assets/Kuber yantra/laxmi 4.jpg'
+      '/assets/Kuber yantra/kuber 1.webp',
+      '/assets/Kuber yantra/kuber 2.webp',
+      '/assets/Kuber yantra/kuber 3.webp',
+      '/assets/Kuber yantra/kuber4.webp',
+      '/assets/Kuber yantra/laxmi 4.webp'
     ],
     weightVariants: [
       { weight: '3 × 3 Inches (20 g)', price: 388, originalPrice: 1100, default: true }
@@ -1951,13 +1951,13 @@ export const PRODUCTS = [
     tag: 'Mahalakshmi Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/luxmiyantra/laxmi1.png',
+    image: '/assets/luxmiyantra/laxmi1.webp',
     images: [
-      '/assets/luxmiyantra/laxmi1.png',
-      '/assets/luxmiyantra/laxmi 2.png',
-      '/assets/luxmiyantra/luxmi3.png',
-      '/assets/luxmiyantra/laxmi 4.jpg',
-      '/assets/luxmiyantra/laxmi5.png'
+      '/assets/luxmiyantra/laxmi1.webp',
+      '/assets/luxmiyantra/laxmi 2.webp',
+      '/assets/luxmiyantra/luxmi3.webp',
+      '/assets/luxmiyantra/laxmi 4.webp',
+      '/assets/luxmiyantra/laxmi5.webp'
     ],
     weightVariants: [
       { weight: '3 × 3 Inches (20 g)', price: 388, originalPrice: 1100, default: true }
@@ -2021,12 +2021,12 @@ export const PRODUCTS = [
     tag: 'Shani Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/shani yantra/shani1.png',
+    image: '/assets/shani yantra/shani1.webp',
     images: [
-      '/assets/shani yantra/shani1.png',
-      '/assets/shani yantra/shani3.png',
-      '/assets/shani yantra/shani 4.png',
-      '/assets/shani yantra/laxmi 4.jpg'
+      '/assets/shani yantra/shani1.webp',
+      '/assets/shani yantra/shani3.webp',
+      '/assets/shani yantra/shani 4.webp',
+      '/assets/shani yantra/laxmi 4.webp'
     ],
     weightVariants: [
       { weight: '3 × 3 Inches (20 g)', price: 388, originalPrice: 1100, default: true }
@@ -2090,12 +2090,12 @@ export const PRODUCTS = [
     tag: 'Shree Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/Glassyantra/Glass1.png',
+    image: '/assets/Glassyantra/Glass1.webp',
     images: [
-      '/assets/Glassyantra/Glass1.png',
-      '/assets/Glassyantra/glass2.png',
-      '/assets/Glassyantra/glass 3.png',
-      '/assets/Glassyantra/glass4.png'
+      '/assets/Glassyantra/Glass1.webp',
+      '/assets/Glassyantra/glass2.webp',
+      '/assets/Glassyantra/glass 3.webp',
+      '/assets/Glassyantra/glass4.webp'
     ],
     weightVariants: [
       { weight: '5 × 4 × 5 cm (70 g Meru)', price: 1767, originalPrice: 2211, default: true }
@@ -2156,12 +2156,12 @@ export const PRODUCTS = [
     tag: 'Vastu Energy',
     artType: 'pyramid',
     fitMode: 'contain',
-    image: '/assets/pyramid/pyramid4.png',
+    image: '/assets/pyramid/pyramid4.webp',
     images: [
-      '/assets/pyramid/pyramid4.png',
-      '/assets/pyramid/pyramid1.png',
-      '/assets/pyramid/pyramid2.png',
-      '/assets/pyramid/pyramid 3.png'
+      '/assets/pyramid/pyramid4.webp',
+      '/assets/pyramid/pyramid1.webp',
+      '/assets/pyramid/pyramid2.webp',
+      '/assets/pyramid/pyramid 3.webp'
     ],
     weightVariants: [
       { weight: 'L 10 cm × B 10 cm × H 8 cm (15 g)', price: 443, originalPrice: 999, default: true }
@@ -2216,12 +2216,12 @@ export const PRODUCTS = [
     tag: 'Vastu Kurma',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/glassturtle/Glass turtle 1.jpg',
+    image: '/assets/glassturtle/Glass turtle 1.webp',
     images: [
-      '/assets/glassturtle/Glass turtle 1.jpg',
-      '/assets/glassturtle/glass turtle 2.jpg',
-      '/assets/glassturtle/turutle 3.jpg',
-      '/assets/glassturtle/turtle4.jpg'
+      '/assets/glassturtle/Glass turtle 1.webp',
+      '/assets/glassturtle/glass turtle 2.webp',
+      '/assets/glassturtle/turutle 3.webp',
+      '/assets/glassturtle/turtle4.webp'
     ],
     weightVariants: [
       { weight: 'L 35 cm × B 15 cm × H 15 cm (300 g)', price: 388, originalPrice: 777, default: true }
@@ -2279,12 +2279,12 @@ export const PRODUCTS = [
     tag: 'Handcrafted Brass',
     artType: 'brass',
     fitMode: 'contain',
-    image: '/assets/kamdhenu/kamdhenu1.jpg',
+    image: '/assets/kamdhenu/kamdhenu1.webp',
     images: [
-      '/assets/kamdhenu/kamdhenu1.jpg',
-      '/assets/kamdhenu/kamdhenu 2.jpg',
-      '/assets/kamdhenu/kamdhenu 3.jpg',
-      '/assets/kamdhenu/kamdhenu 4.jpg'
+      '/assets/kamdhenu/kamdhenu1.webp',
+      '/assets/kamdhenu/kamdhenu 2.webp',
+      '/assets/kamdhenu/kamdhenu 3.webp',
+      '/assets/kamdhenu/kamdhenu 4.webp'
     ],
     weightVariants: [
       { weight: 'Compact (7 × 3 × 5 cm - 70 G)', price: 1656, originalPrice: 2100 },
@@ -2343,13 +2343,13 @@ export const PRODUCTS = [
     tag: 'Handcrafted Brass',
     artType: 'brass',
     fitMode: 'contain',
-    image: '/assets/ganeshji/brassganesh4.jpg',
+    image: '/assets/ganeshji/brassganesh4.webp',
     images: [
-      '/assets/ganeshji/brassganesh4.jpg',
-      '/assets/ganeshji/brassganesh1.png',
-      '/assets/ganeshji/brass ganesh2.jpg',
-      '/assets/ganeshji/brassganesh3.png',
-      '/assets/ganeshji/brassganesh5.png'
+      '/assets/ganeshji/brassganesh4.webp',
+      '/assets/ganeshji/brassganesh1.webp',
+      '/assets/ganeshji/brass ganesh2.webp',
+      '/assets/ganeshji/brassganesh3.webp',
+      '/assets/ganeshji/brassganesh5.webp'
     ],
     weightVariants: [
       { weight: 'L 8 cm × B 5 cm × H 7 cm (130 g)', price: 2544, originalPrice: 3211, default: true }
@@ -2405,12 +2405,12 @@ export const PRODUCTS = [
     tag: 'Handcrafted Brass',
     artType: 'brass',
     fitMode: 'contain',
-    image: '/assets/radhakrishna/krishna1.jpg',
+    image: '/assets/radhakrishna/krishna1.webp',
     images: [
-      '/assets/radhakrishna/krishna1.jpg',
-      '/assets/radhakrishna/krishna2.png',
-      '/assets/radhakrishna/krishna3.png',
-      '/assets/radhakrishna/krishna4.png'
+      '/assets/radhakrishna/krishna1.webp',
+      '/assets/radhakrishna/krishna2.webp',
+      '/assets/radhakrishna/krishna3.webp',
+      '/assets/radhakrishna/krishna4.webp'
     ],
     weightVariants: [
       { weight: 'L 8 cm × B 5 cm × H 8 cm (130 g)', price: 3211, originalPrice: 4100, default: true }
@@ -2466,13 +2466,13 @@ export const PRODUCTS = [
     tag: 'Sphatik Shivling',
     artType: 'shivling',
     fitMode: 'contain',
-    image: '/assets/glass shivling/Glass shivling 1.jpg',
+    image: '/assets/glass shivling/Glass shivling 1.webp',
     images: [
-      '/assets/glass shivling/Glass shivling 1.jpg',
-      '/assets/glass shivling/glass shivling 2.jpg',
-      '/assets/glass shivling/shivlin 3.jpg',
-      '/assets/glass shivling/glass shivlingg 4.jpg',
-      '/assets/glass shivling/shivling 5.jpg'
+      '/assets/glass shivling/Glass shivling 1.webp',
+      '/assets/glass shivling/glass shivling 2.webp',
+      '/assets/glass shivling/shivlin 3.webp',
+      '/assets/glass shivling/glass shivlingg 4.webp',
+      '/assets/glass shivling/shivling 5.webp'
     ],
     weightVariants: [
       { weight: 'L 6 cm × B 6 cm × H 6 cm (90 g)', price: 411, originalPrice: 999, default: true }
@@ -2529,12 +2529,12 @@ export const PRODUCTS = [
     tag: 'Rudraksha Mala',
     artType: 'mala',
     fitMode: 'contain',
-    image: '/assets/Rudraksh Mala/rudraksh mala 1.png',
+    image: '/assets/Rudraksh Mala/rudraksh mala 1.webp',
     images: [
-      '/assets/Rudraksh Mala/rudraksh mala 1.png',
-      '/assets/Rudraksh Mala/rudraksh 2.png',
-      '/assets/Rudraksh Mala/rudraksh 6.png',
-      '/assets/Rudraksh Mala/rudraksh mala 4.png'
+      '/assets/Rudraksh Mala/rudraksh mala 1.webp',
+      '/assets/Rudraksh Mala/rudraksh 2.webp',
+      '/assets/Rudraksh Mala/rudraksh 6.webp',
+      '/assets/Rudraksh Mala/rudraksh mala 4.webp'
     ],
     weightVariants: [
       { weight: 'Length 12 cm (20 g)', price: 777, originalPrice: 1110, default: true }
@@ -2594,14 +2594,14 @@ export const PRODUCTS = [
     tag: 'Sphatik Mala',
     artType: 'mala',
     fitMode: 'contain',
-    image: '/assets/Sphatik mala/sphatik 2.png',
+    image: '/assets/Sphatik mala/sphatik 2.webp',
     images: [
-      '/assets/Sphatik mala/sphatik 2.png',
-      '/assets/Sphatik mala/sphatik 1.jpg',
-      '/assets/Sphatik mala/sphatik 3.jpg',
-      '/assets/Sphatik mala/sphatik 4.png',
-      '/assets/Sphatik mala/sphatik 5.png',
-      '/assets/Sphatik mala/sphatik 6.png'
+      '/assets/Sphatik mala/sphatik 2.webp',
+      '/assets/Sphatik mala/sphatik 1.webp',
+      '/assets/Sphatik mala/sphatik 3.webp',
+      '/assets/Sphatik mala/sphatik 4.webp',
+      '/assets/Sphatik mala/sphatik 5.webp',
+      '/assets/Sphatik mala/sphatik 6.webp'
     ],
     weightVariants: [
       { weight: 'Length 34 cm (30 g)', price: 1888, originalPrice: 2221, default: true }
@@ -2660,13 +2660,13 @@ export const PRODUCTS = [
     tag: 'Tulsi Mala',
     artType: 'mala',
     fitMode: 'contain',
-    image: '/assets/Tulsi mala/tulsi mala.png',
+    image: '/assets/Tulsi mala/tulsi mala.webp',
     images: [
-      '/assets/Tulsi mala/tulsi mala.png',
-      '/assets/Tulsi mala/tulsi mala 1.jpg',
-      '/assets/Tulsi mala/tulsi mala 2.png',
-      '/assets/Tulsi mala/tulsi mala 3.jpg',
-      '/assets/Tulsi mala/tulsi 5.png'
+      '/assets/Tulsi mala/tulsi mala.webp',
+      '/assets/Tulsi mala/tulsi mala 1.webp',
+      '/assets/Tulsi mala/tulsi mala 2.webp',
+      '/assets/Tulsi mala/tulsi mala 3.webp',
+      '/assets/Tulsi mala/tulsi 5.webp'
     ],
     weightVariants: [
       { weight: 'Length 40 cm (20 g)', price: 278, originalPrice: 443, default: true }
@@ -2727,12 +2727,12 @@ export const PRODUCTS = [
     tag: 'Vaijanti Mala',
     artType: 'mala',
     fitMode: 'contain',
-    image: '/assets/Vaijanti mala/vaijanti 1.jpg',
+    image: '/assets/Vaijanti mala/vaijanti 1.webp',
     images: [
-      '/assets/Vaijanti mala/vaijanti 1.jpg',
-      '/assets/Vaijanti mala/vaijanti 2.jpg',
-      '/assets/Vaijanti mala/vaijant 4.png',
-      '/assets/Vaijanti mala/vajainti 5.png'
+      '/assets/Vaijanti mala/vaijanti 1.webp',
+      '/assets/Vaijanti mala/vaijanti 2.webp',
+      '/assets/Vaijanti mala/vaijant 4.webp',
+      '/assets/Vaijanti mala/vajainti 5.webp'
     ],
     weightVariants: [
       { weight: 'Length 32 cm (30 g)', price: 278, originalPrice: 554, default: true }
@@ -2792,12 +2792,12 @@ export const PRODUCTS = [
     tag: 'Karungali Mala',
     artType: 'mala',
     fitMode: 'contain',
-    image: '/assets/Karungali mala/karungali 2.jpg',
+    image: '/assets/Karungali mala/karungali 2.webp',
     images: [
-      '/assets/Karungali mala/karungali 2.jpg',
-      '/assets/Karungali mala/karungali 3.jpg',
-      '/assets/Karungali mala/karungali 5.png',
-      '/assets/Karungali mala/karungali 6.png'
+      '/assets/Karungali mala/karungali 2.webp',
+      '/assets/Karungali mala/karungali 3.webp',
+      '/assets/Karungali mala/karungali 5.webp',
+      '/assets/Karungali mala/karungali 6.webp'
     ],
     weightVariants: [
       { weight: 'Length 42 cm (26 g)', price: 278, originalPrice: 554, default: true }
@@ -2860,13 +2860,13 @@ export const PRODUCTS = [
     tag: 'Wooden Damru',
     artType: 'damru',
     fitMode: 'contain',
-    image: '/assets/Damru/damru1.jpg',
+    image: '/assets/Damru/damru1.webp',
     images: [
-      '/assets/Damru/damru1.jpg',
-      '/assets/Damru/damru2.jpg',
-      '/assets/Damru/damru3.jpg',
-      '/assets/Damru/Damru4.jpg',
-      '/assets/Damru/Wooden Damru.png'
+      '/assets/Damru/damru1.webp',
+      '/assets/Damru/damru2.webp',
+      '/assets/Damru/damru3.webp',
+      '/assets/Damru/Damru4.webp',
+      '/assets/Damru/Wooden Damru.webp'
     ],
     weightVariants: [
       { weight: 'Size 5 Inch (60 g)', price: 278, originalPrice: 554, default: true }
@@ -2920,13 +2920,13 @@ export const PRODUCTS = [
     isComingSoon: true,
     artType: 'chawar',
     fitMode: 'contain',
-    image: '/assets/chawar/Chawar.jpg',
+    image: '/assets/chawar/Chawar.webp',
     images: [
-      '/assets/chawar/Chawar.jpg',
-      '/assets/chawar/chawar 1.jpg',
-      '/assets/chawar/chawar 2.jpg',
-      '/assets/chawar/chawar 3.jpg',
-      '/assets/chawar/chawr 4.png'
+      '/assets/chawar/Chawar.webp',
+      '/assets/chawar/chawar 1.webp',
+      '/assets/chawar/chawar 2.webp',
+      '/assets/chawar/chawar 3.webp',
+      '/assets/chawar/chawr 4.webp'
     ],
     weightVariants: [
       { weight: 'Small (12 Inch)' },
@@ -2980,13 +2980,13 @@ export const PRODUCTS = [
     isComingSoon: true,
     artType: 'bag',
     fitMode: 'contain',
-    image: '/assets/Jap Bag/Bag1.jpg',
+    image: '/assets/Jap Bag/Bag1.webp',
     images: [
-      '/assets/Jap Bag/Bag1.jpg',
-      '/assets/Jap Bag/Japa Bag.jpg',
-      '/assets/Jap Bag/bag2.png',
-      '/assets/Jap Bag/bag3.png',
-      '/assets/Jap Bag/bag4.png'
+      '/assets/Jap Bag/Bag1.webp',
+      '/assets/Jap Bag/Japa Bag.webp',
+      '/assets/Jap Bag/bag2.webp',
+      '/assets/Jap Bag/bag3.webp',
+      '/assets/Jap Bag/bag4.webp'
     ],
     weightVariants: [
       { weight: 'Single Pack (With Sakshi Counter)', default: true },
@@ -3044,13 +3044,13 @@ export const PRODUCTS = [
     isComingSoon: true,
     artType: 'asan',
     fitMode: 'contain',
-    image: '/assets/Velvet asan/asan1.png',
+    image: '/assets/Velvet asan/asan1.webp',
     images: [
-      '/assets/Velvet asan/asan1.png',
-      '/assets/Velvet asan/asan2.jpg',
-      '/assets/Velvet asan/asan3.png',
-      '/assets/Velvet asan/asan4.png',
-      '/assets/Velvet asan/asan5.jpg'
+      '/assets/Velvet asan/asan1.webp',
+      '/assets/Velvet asan/asan2.webp',
+      '/assets/Velvet asan/asan3.webp',
+      '/assets/Velvet asan/asan4.webp',
+      '/assets/Velvet asan/asan5.webp'
     ],
     weightVariants: [
       { weight: 'Pack of 3 (14 × 26 Inch)', default: true },
@@ -3105,13 +3105,13 @@ export const PRODUCTS = [
     isComingSoon: true,
     artType: 'shankh',
     fitMode: 'contain',
-    image: '/assets/Shankh/shankhD 2.jpg',
+    image: '/assets/Shankh/shankhD 2.webp',
     images: [
-      '/assets/Shankh/shankhD 2.jpg',
-      '/assets/Shankh/ShankhD1.jpg',
-      '/assets/Shankh/shankhD3.png',
-      '/assets/Shankh/shankhD4.jpg',
-      '/assets/Shankh/shankhD4.png'
+      '/assets/Shankh/shankhD 2.webp',
+      '/assets/Shankh/ShankhD1.webp',
+      '/assets/Shankh/shankhD3.webp',
+      '/assets/Shankh/shankhD4.webp',
+      '/assets/Shankh/shankhD4.webp'
     ],
     weightVariants: [
       { weight: 'Small (3 - 4 Inch)' },
@@ -3165,12 +3165,12 @@ export const PRODUCTS = [
     isComingSoon: true,
     artType: 'shankh',
     fitMode: 'contain',
-    image: '/assets/Shankh/ShankhV2.jpg',
+    image: '/assets/Shankh/ShankhV2.webp',
     images: [
-      '/assets/Shankh/ShankhV2.jpg',
-      '/assets/Shankh/shankhV1.png',
-      '/assets/Shankh/shankhV3.png',
-      '/assets/Shankh/shankhV4.png'
+      '/assets/Shankh/ShankhV2.webp',
+      '/assets/Shankh/shankhV1.webp',
+      '/assets/Shankh/shankhV3.webp',
+      '/assets/Shankh/shankhV4.webp'
     ],
     weightVariants: [
       { weight: 'Small Blowing (5 Inch)' },

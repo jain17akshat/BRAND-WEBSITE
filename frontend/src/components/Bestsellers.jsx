@@ -60,6 +60,7 @@ export const Bestsellers = ({
                     artType={product.artType}
                     fitMode={product.fitMode}
                     aspect="aspect-square"
+                    priority={idx < 4}
                   />
 
                   {/* Wishlist */}

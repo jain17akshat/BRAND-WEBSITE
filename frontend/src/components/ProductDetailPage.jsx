@@ -223,8 +223,9 @@ export const ProductDetailPage = ({
                 artType={product.artType}
                 fitMode={product.fitMode}
                 aspect="aspect-full"
-                className="w-full h-full"
+                className="w-full h-full object-contain"
                 priority={true}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
               />
 
               {/* Wishlist Button */}

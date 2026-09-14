@@ -1,313 +1,2724 @@
 {
   "results": [
     {
-      "file": "public/desktopvideo.jpeg",
-      "original": "523",
-      "webp": "126",
-      "savings": "76%",
+      "file": "frontend/public/amaazon.png",
+      "originalWidth": 577,
+      "originalKB": "76",
+      "baseWebpKB": "8",
+      "w400KB": "8",
+      "savingsPercent": "90%",
       "status": "converted"
     },
     {
-      "file": "public/mobilevideo.png",
-      "original": "1879",
-      "webp": "106",
-      "savings": "94%",
+      "file": "frontend/public/amazon logo.png",
+      "originalWidth": 1600,
+      "originalKB": "221",
+      "baseWebpKB": "23",
+      "w400KB": "6",
+      "savingsPercent": "97%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Pooja.png",
-      "original": "2570",
-      "webp": "150",
-      "savings": "94%",
+      "file": "frontend/public/assets/akhand jyot/akhand jyot  size.png",
+      "originalWidth": 1393,
+      "originalKB": "1387",
+      "baseWebpKB": "101",
+      "w400KB": "17",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Poojamobile.png",
-      "original": "2595",
-      "webp": "156",
-      "savings": "94%",
+      "file": "frontend/public/assets/akhand jyot/akhand jyot 1.png",
+      "originalWidth": 1086,
+      "originalKB": "2031",
+      "baseWebpKB": "119",
+      "w400KB": "24",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Candel.png",
-      "original": "2406",
-      "webp": "109",
-      "savings": "95%",
+      "file": "frontend/public/assets/akhand jyot/akhand jyot 2.png",
+      "originalWidth": 1086,
+      "originalKB": "1791",
+      "baseWebpKB": "96",
+      "w400KB": "23",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Candelmobile.png",
-      "original": "2368",
-      "webp": "109",
-      "savings": "95%",
+      "file": "frontend/public/assets/akhand jyot/akhand jyot 3.png",
+      "originalWidth": 1402,
+      "originalKB": "2120",
+      "baseWebpKB": "148",
+      "w400KB": "21",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Calm.png",
-      "original": "2081",
-      "webp": "60",
-      "savings": "97%",
+      "file": "frontend/public/assets/Brass aarti/aarti 3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "57",
+      "baseWebpKB": "27",
+      "w400KB": "6",
+      "savingsPercent": "89%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Calmmobile.png",
-      "original": "2180",
-      "webp": "63",
-      "savings": "97%",
+      "file": "frontend/public/assets/Brass aarti/aarti 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "111",
+      "baseWebpKB": "60",
+      "w400KB": "14",
+      "savingsPercent": "87%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO1.png",
-      "original": "2397",
-      "webp": "116",
-      "savings": "95%",
+      "file": "frontend/public/assets/Brass aarti/Aarti1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "57",
+      "baseWebpKB": "27",
+      "w400KB": "6",
+      "savingsPercent": "89%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO1MOBILEVIEW.png",
-      "original": "2404",
-      "webp": "133",
-      "savings": "94%",
+      "file": "frontend/public/assets/Brass aarti/aarti2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "81",
+      "baseWebpKB": "39",
+      "w400KB": "10",
+      "savingsPercent": "87%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO2.png",
-      "original": "2423",
-      "webp": "117",
-      "savings": "95%",
+      "file": "frontend/public/assets/brass bells/brass bell 1.png",
+      "originalWidth": 1086,
+      "originalKB": "1652",
+      "baseWebpKB": "49",
+      "w400KB": "9",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO2MBOILE.png",
-      "original": "2595",
-      "webp": "155",
-      "savings": "94%",
+      "file": "frontend/public/assets/brass bells/brass bell 2.png",
+      "originalWidth": 1402,
+      "originalKB": "1938",
+      "baseWebpKB": "113",
+      "w400KB": "17",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO3.png",
-      "original": "2285",
-      "webp": "91",
-      "savings": "96%",
+      "file": "frontend/public/assets/brass bells/brass bell 3.png",
+      "originalWidth": 1086,
+      "originalKB": "1890",
+      "baseWebpKB": "75",
+      "w400KB": "14",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO3MOBILE.png",
-      "original": "2412",
-      "webp": "115",
-      "savings": "95%",
+      "file": "frontend/public/assets/brass bells/brass bell 4.png",
+      "originalWidth": 1086,
+      "originalKB": "1878",
+      "baseWebpKB": "79",
+      "w400KB": "16",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO4.png",
-      "original": "2480",
-      "webp": "130",
-      "savings": "95%",
+      "file": "frontend/public/assets/brass bells/brassbell 5.png",
+      "originalWidth": 1536,
+      "originalKB": "1769",
+      "baseWebpKB": "119",
+      "w400KB": "16",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO4MOBILE.png",
-      "original": "2478",
-      "webp": "129",
-      "savings": "95%",
+      "file": "frontend/public/assets/brass bells/garduda 1.png",
+      "originalWidth": 1086,
+      "originalKB": "1767",
+      "baseWebpKB": "64",
+      "w400KB": "16",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO5.png",
-      "original": "1655",
-      "webp": "84",
-      "savings": "95%",
+      "file": "frontend/public/assets/brass bells/garud 3.png",
+      "originalWidth": 1536,
+      "originalKB": "1589",
+      "baseWebpKB": "119",
+      "w400KB": "16",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/HERO8.png",
-      "original": "2323",
-      "webp": "121",
-      "savings": "95%",
+      "file": "frontend/public/assets/brass bells/garuda 2.png",
+      "originalWidth": 1536,
+      "originalKB": "2133",
+      "baseWebpKB": "128",
+      "w400KB": "16",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Hero6.png",
-      "original": "1788",
-      "webp": "99",
-      "savings": "94%",
+      "file": "frontend/public/assets/brass bells/garuda 4.png",
+      "originalWidth": 1086,
+      "originalKB": "1747",
+      "baseWebpKB": "60",
+      "w400KB": "12",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/METALWARE.png",
-      "original": "2478",
-      "webp": "233",
-      "savings": "91%",
+      "file": "frontend/public/assets/brass bells/nandi 4.png",
+      "originalWidth": 1448,
+      "originalKB": "1909",
+      "baseWebpKB": "79",
+      "w400KB": "9",
+      "savingsPercent": "100%",
       "status": "converted"
     },
     {
-      "file": "public/Metalwaremobile.png",
-      "original": "2327",
-      "webp": "234",
-      "savings": "90%",
+      "file": "frontend/public/assets/brass bells/nandi 5.png",
+      "originalWidth": 1448,
+      "originalKB": "1581",
+      "baseWebpKB": "98",
+      "w400KB": "14",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/brasshero.png",
-      "original": "1967",
-      "webp": "133",
-      "savings": "93%",
+      "file": "frontend/public/assets/brass bells/nandi bell 1.jpg",
+      "originalWidth": 768,
+      "originalKB": "66",
+      "baseWebpKB": "34",
+      "w400KB": "11",
+      "savingsPercent": "84%",
       "status": "converted"
     },
     {
-      "file": "public/brassmobileview.png",
-      "original": "2217",
-      "webp": "173",
-      "savings": "92%",
+      "file": "frontend/public/assets/brass bells/nandi bell 2.jpg",
+      "originalWidth": 768,
+      "originalKB": "88",
+      "baseWebpKB": "43",
+      "w400KB": "17",
+      "savingsPercent": "81%",
       "status": "converted"
     },
     {
-      "file": "public/copperhero.png",
-      "original": "2181",
-      "webp": "160",
-      "savings": "93%",
+      "file": "frontend/public/assets/brass bells/nandi bell 3.png",
+      "originalWidth": 1086,
+      "originalKB": "2017",
+      "baseWebpKB": "100",
+      "w400KB": "17",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/coppermobileview.png",
-      "original": "2151",
-      "webp": "174",
-      "savings": "92%",
+      "file": "frontend/public/assets/brass bells/simple bell 1.jpg",
+      "originalWidth": 768,
+      "originalKB": "74",
+      "baseWebpKB": "35",
+      "w400KB": "12",
+      "savingsPercent": "84%",
       "status": "converted"
     },
     {
-      "file": "public/copperatepcview.png",
-      "original": "2638",
-      "webp": "208",
-      "savings": "92%",
+      "file": "frontend/public/assets/brass bells/simple bell 2.jpg",
+      "originalWidth": 768,
+      "originalKB": "80",
+      "baseWebpKB": "41",
+      "w400KB": "14",
+      "savingsPercent": "82%",
       "status": "converted"
     },
     {
-      "file": "public/copperatemobileview.png",
-      "original": "2298",
-      "webp": "138",
-      "savings": "94%",
+      "file": "frontend/public/assets/brass bells/simple bell 3.png",
+      "originalWidth": 1086,
+      "originalKB": "1858",
+      "baseWebpKB": "76",
+      "w400KB": "17",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/mandiressentials.png",
-      "original": "1897",
-      "webp": "118",
-      "savings": "94%",
+      "file": "frontend/public/assets/brass bells/simple bell 4.png",
+      "originalWidth": 1448,
+      "originalKB": "1122",
+      "baseWebpKB": "74",
+      "w400KB": "12",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/mandirphone view.png",
-      "original": "1944",
-      "webp": "123",
-      "savings": "94%",
+      "file": "frontend/public/assets/brass kalash/kalash1.png",
+      "originalWidth": 1254,
+      "originalKB": "1676",
+      "baseWebpKB": "43",
+      "w400KB": "6",
+      "savingsPercent": "100%",
       "status": "converted"
     },
     {
-      "file": "public/mandiressentialmobileview.png",
-      "original": "2028",
-      "webp": "105",
-      "savings": "95%",
+      "file": "frontend/public/assets/brass kalash/kalash2.png",
+      "originalWidth": 1536,
+      "originalKB": "1955",
+      "baseWebpKB": "78",
+      "w400KB": "10",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/brasscover.png",
-      "original": "2245",
-      "webp": "157",
-      "savings": "93%",
+      "file": "frontend/public/assets/brass kalash/kalash3.png",
+      "originalWidth": 1254,
+      "originalKB": "1916",
+      "baseWebpKB": "67",
+      "w400KB": "7",
+      "savingsPercent": "100%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Copper cover.png",
-      "original": "2167",
-      "webp": "134",
-      "savings": "94%",
+      "file": "frontend/public/assets/brass kalash/kalash4.png",
+      "originalWidth": 1024,
+      "originalKB": "2070",
+      "baseWebpKB": "115",
+      "w400KB": "25",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Incense cover.jpg",
-      "original": "3354",
-      "webp": "2965",
-      "savings": "12%",
+      "file": "frontend/public/assets/Brass kamandal/Brass Kamndal.jpg",
+      "originalWidth": 1254,
+      "originalKB": "156",
+      "baseWebpKB": "153",
+      "w400KB": "21",
+      "savingsPercent": "87%",
       "status": "converted"
     },
     {
-      "file": "public/assets/handcrafted cover.jpg",
-      "original": "4028",
-      "webp": "1880",
-      "savings": "53%",
+      "file": "frontend/public/assets/Brass kamandal/kamndal 3.png",
+      "originalWidth": 1254,
+      "originalKB": "2297",
+      "baseWebpKB": "191",
+      "w400KB": "30",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Launch2.png",
-      "original": "2667",
-      "webp": "173",
-      "savings": "94%",
+      "file": "frontend/public/assets/Brass kamandal/kamndal 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "448",
+      "baseWebpKB": "58",
+      "w400KB": "19",
+      "savingsPercent": "96%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Launch2mobile.png",
-      "original": "2549",
-      "webp": "161",
-      "savings": "94%",
+      "file": "frontend/public/assets/Brass kamandal/kamndal 5.png",
+      "originalWidth": 1254,
+      "originalKB": "1512",
+      "baseWebpKB": "152",
+      "w400KB": "20",
+      "savingsPercent": "99%",
       "status": "converted"
     },
     {
-      "file": "public/assets/Launchmobile.png",
-      "original": "2581",
-      "webp": "170",
-      "savings": "93%",
+      "file": "frontend/public/assets/Brass kamandal/kamndal1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "140",
+      "baseWebpKB": "50",
+      "w400KB": "11",
+      "savingsPercent": "92%",
       "status": "converted"
     },
     {
-      "file": "public/assets/launch3.png",
-      "original": "2531",
-      "webp": "170",
-      "savings": "93%",
+      "file": "frontend/public/assets/Brass kamandal/kanmdal2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "203",
+      "baseWebpKB": "33",
+      "w400KB": "7",
+      "savingsPercent": "96%",
       "status": "converted"
     },
     {
-      "file": "public/energystones mobile view.png",
-      "original": "2120",
-      "webp": "151",
-      "savings": "93%",
+      "file": "frontend/public/assets/Brass thali/Brass thali - Copy.jpg",
+      "originalWidth": 1080,
+      "originalKB": "173",
+      "baseWebpKB": "163",
+      "w400KB": "34",
+      "savingsPercent": "81%",
       "status": "converted"
     },
     {
-      "file": "public/incesne hero.png",
-      "original": "1827",
-      "webp": "103",
-      "savings": "94%",
+      "file": "frontend/public/assets/Brass thali/Brass thali.jpg",
+      "originalWidth": 1080,
+      "originalKB": "173",
+      "baseWebpKB": "163",
+      "w400KB": "34",
+      "savingsPercent": "81%",
       "status": "converted"
     },
     {
-      "file": "public/incenemobile hero.png",
-      "original": "1871",
-      "webp": "101",
-      "savings": "95%",
+      "file": "frontend/public/assets/Brass thali/thali 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "142",
+      "baseWebpKB": "77",
+      "w400KB": "12",
+      "savingsPercent": "92%",
       "status": "converted"
     },
     {
-      "file": "public/essentialhero.png",
-      "original": "2107",
-      "webp": "113",
-      "savings": "95%",
+      "file": "frontend/public/assets/Brass thali/thali 2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "232",
+      "baseWebpKB": "173",
+      "w400KB": "26",
+      "savingsPercent": "89%",
       "status": "converted"
     },
     {
-      "file": "public/braclet desktopview.png",
-      "original": "2320",
-      "webp": "195",
-      "savings": "92%",
+      "file": "frontend/public/assets/Brass thali/thali 3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "167",
+      "baseWebpKB": "112",
+      "w400KB": "17",
+      "savingsPercent": "90%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Brass thali/thali 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "159",
+      "baseWebpKB": "109",
+      "w400KB": "17",
+      "savingsPercent": "89%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/brasscover.png",
+      "originalWidth": 1536,
+      "originalKB": "2245",
+      "baseWebpKB": "157",
+      "w400KB": "22",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/brassdesign thali/design 2.png",
+      "originalWidth": 1254,
+      "originalKB": "2196",
+      "baseWebpKB": "172",
+      "w400KB": "24",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/brassdesign thali/design1.png",
+      "originalWidth": 1254,
+      "originalKB": "2481",
+      "baseWebpKB": "219",
+      "w400KB": "26",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/brassdesign thali/design3.png",
+      "originalWidth": 1254,
+      "originalKB": "2610",
+      "baseWebpKB": "263",
+      "w400KB": "43",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/brassdesign thali/design4.png",
+      "originalWidth": 1254,
+      "originalKB": "2481",
+      "baseWebpKB": "249",
+      "w400KB": "38",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Calm.png",
+      "originalWidth": 1536,
+      "originalKB": "2081",
+      "baseWebpKB": "60",
+      "w400KB": "11",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Calmmobile.png",
+      "originalWidth": 977,
+      "originalKB": "2180",
+      "baseWebpKB": "63",
+      "w400KB": "20",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Candel.png",
+      "originalWidth": 1535,
+      "originalKB": "2406",
+      "baseWebpKB": "109",
+      "w400KB": "19",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Candelmobile.png",
+      "originalWidth": 1024,
+      "originalKB": "2368",
+      "baseWebpKB": "109",
+      "w400KB": "30",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/chawar/chawar 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "119",
+      "baseWebpKB": "68",
+      "w400KB": "12",
+      "savingsPercent": "90%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/chawar/chawar 2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "117",
+      "baseWebpKB": "78",
+      "w400KB": "7",
+      "savingsPercent": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/chawar/chawar 3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "93",
+      "baseWebpKB": "60",
+      "w400KB": "4",
+      "savingsPercent": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/chawar/Chawar.jpg",
+      "originalWidth": 540,
+      "originalKB": "12",
+      "baseWebpKB": "9",
+      "w400KB": "5",
+      "savingsPercent": "56%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/chawar/chawr 4.png",
+      "originalWidth": 1367,
+      "originalKB": "1223",
+      "baseWebpKB": "41",
+      "w400KB": "5",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/commonbell/brass bell 1.png",
+      "originalWidth": 1086,
+      "originalKB": "1652",
+      "baseWebpKB": "49",
+      "w400KB": "9",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/commonbell/brass bell 2.png",
+      "originalWidth": 1402,
+      "originalKB": "1938",
+      "baseWebpKB": "113",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/commonbell/brass bell 3.png",
+      "originalWidth": 1086,
+      "originalKB": "1890",
+      "baseWebpKB": "75",
+      "w400KB": "14",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/commonbell/brass bell 4.png",
+      "originalWidth": 1086,
+      "originalKB": "1878",
+      "baseWebpKB": "79",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/commonbell/brassbell 5.png",
+      "originalWidth": 1536,
+      "originalKB": "1769",
+      "baseWebpKB": "119",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copper cover.png",
+      "originalWidth": 1536,
+      "originalKB": "2167",
+      "baseWebpKB": "134",
+      "w400KB": "21",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copper thali/copper thali  5.png",
+      "originalWidth": 1402,
+      "originalKB": "1784",
+      "baseWebpKB": "63",
+      "w400KB": "8",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copper thali/copper thali 1.png",
+      "originalWidth": 1314,
+      "originalKB": "1690",
+      "baseWebpKB": "54",
+      "w400KB": "10",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copper thali/copper thali 2.png",
+      "originalWidth": 1360,
+      "originalKB": "2114",
+      "baseWebpKB": "122",
+      "w400KB": "19",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copper thali/copper thali 3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "92",
+      "baseWebpKB": "51",
+      "w400KB": "15",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copper thali/copperthali6.png",
+      "originalWidth": 1254,
+      "originalKB": "1910",
+      "baseWebpKB": "73",
+      "w400KB": "11",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copperkalsh/copperkalash2.png",
+      "originalWidth": 1254,
+      "originalKB": "1834",
+      "baseWebpKB": "87",
+      "w400KB": "11",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copperkalsh/copperkalsh1.png",
+      "originalWidth": 1086,
+      "originalKB": "1736",
+      "baseWebpKB": "73",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copperkalsh/copperkalsh3.png",
+      "originalWidth": 1337,
+      "originalKB": "2005",
+      "baseWebpKB": "145",
+      "w400KB": "20",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Copperkalsh/copperkalsh5.png",
+      "originalWidth": 1536,
+      "originalKB": "1792",
+      "baseWebpKB": "116",
+      "w400KB": "15",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Cup jyot/akhand jyot cup 1.png",
+      "originalWidth": 1342,
+      "originalKB": "1963",
+      "baseWebpKB": "112",
+      "w400KB": "19",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Cup jyot/cup 2.png",
+      "originalWidth": 1402,
+      "originalKB": "1613",
+      "baseWebpKB": "48",
+      "w400KB": "8",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Cup jyot/cup 3.png",
+      "originalWidth": 1402,
+      "originalKB": "1852",
+      "baseWebpKB": "92",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Damru/damru1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "129",
+      "baseWebpKB": "71",
+      "w400KB": "16",
+      "savingsPercent": "88%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Damru/damru2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "173",
+      "baseWebpKB": "102",
+      "w400KB": "25",
+      "savingsPercent": "86%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Damru/damru3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "163",
+      "baseWebpKB": "101",
+      "w400KB": "21",
+      "savingsPercent": "87%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Damru/Damru4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "128",
+      "baseWebpKB": "76",
+      "w400KB": "20",
+      "savingsPercent": "85%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Damru/Wooden Damru.png",
+      "originalWidth": 867,
+      "originalKB": "658",
+      "baseWebpKB": "36",
+      "w400KB": "15",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/dhoop dani/dhoop dani 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "97",
+      "baseWebpKB": "54",
+      "w400KB": "15",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/dhoop dani/dhoop dani 2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "57",
+      "baseWebpKB": "25",
+      "w400KB": "6",
+      "savingsPercent": "89%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/dhoop dani/dhoop dani 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "68",
+      "baseWebpKB": "33",
+      "w400KB": "8",
+      "savingsPercent": "88%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/dhoop dani/dhoop dani 5.jpg",
+      "originalWidth": 1024,
+      "originalKB": "31",
+      "baseWebpKB": "13",
+      "w400KB": "3",
+      "savingsPercent": "89%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ganeshji/brass ganesh2.jpg",
+      "originalWidth": 768,
+      "originalKB": "110",
+      "baseWebpKB": "60",
+      "w400KB": "23",
+      "savingsPercent": "79%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ganeshji/brassganesh1.png",
+      "originalWidth": 1254,
+      "originalKB": "1858",
+      "baseWebpKB": "109",
+      "w400KB": "18",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ganeshji/brassganesh3.png",
+      "originalWidth": 1122,
+      "originalKB": "2166",
+      "baseWebpKB": "113",
+      "w400KB": "20",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ganeshji/brassganesh4.jpg",
+      "originalWidth": 768,
+      "originalKB": "72",
+      "baseWebpKB": "38",
+      "w400KB": "14",
+      "savingsPercent": "81%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ganeshji/brassganesh5.png",
+      "originalWidth": 1402,
+      "originalKB": "2242",
+      "baseWebpKB": "192",
+      "w400KB": "26",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Ganeshyantra/Ganesh 1.png",
+      "originalWidth": 1254,
+      "originalKB": "2444",
+      "baseWebpKB": "236",
+      "w400KB": "35",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Ganeshyantra/ganesh 3.png",
+      "originalWidth": 1254,
+      "originalKB": "2678",
+      "baseWebpKB": "254",
+      "w400KB": "37",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Ganeshyantra/Ganesh2.png",
+      "originalWidth": 1254,
+      "originalKB": "1732",
+      "baseWebpKB": "135",
+      "w400KB": "21",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Ganeshyantra/gNESH4.png",
+      "originalWidth": 1254,
+      "originalKB": "2821",
+      "baseWebpKB": "301",
+      "w400KB": "40",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/garud bell/garduda 1.png",
+      "originalWidth": 1086,
+      "originalKB": "1767",
+      "baseWebpKB": "64",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/garud bell/garud 3.png",
+      "originalWidth": 1536,
+      "originalKB": "1589",
+      "baseWebpKB": "119",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/garud bell/garuda 2.png",
+      "originalWidth": 1536,
+      "originalKB": "2133",
+      "baseWebpKB": "128",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/garud bell/garuda 4.png",
+      "originalWidth": 1086,
+      "originalKB": "1747",
+      "baseWebpKB": "60",
+      "w400KB": "12",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/glass shivling/Glass shivling 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "61",
+      "baseWebpKB": "30",
+      "w400KB": "8",
+      "savingsPercent": "87%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/glass shivling/glass shivling 2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "111",
+      "baseWebpKB": "63",
+      "w400KB": "16",
+      "savingsPercent": "86%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/glass shivling/glass shivlingg 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "125",
+      "baseWebpKB": "68",
+      "w400KB": "21",
+      "savingsPercent": "83%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/glass shivling/shivlin 3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "103",
+      "baseWebpKB": "55",
+      "w400KB": "17",
+      "savingsPercent": "83%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/glass shivling/shivling 5.jpg",
+      "originalWidth": 1024,
+      "originalKB": "116",
+      "baseWebpKB": "69",
+      "w400KB": "21",
+      "savingsPercent": "82%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/glassturtle/Glass turtle 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "76",
+      "baseWebpKB": "40",
+      "w400KB": "9",
+      "savingsPercent": "89%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/glassturtle/glass turtle 2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "89",
+      "baseWebpKB": "48",
+      "w400KB": "11",
+      "savingsPercent": "88%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/glassturtle/turtle4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "68",
+      "baseWebpKB": "37",
+      "w400KB": "10",
+      "savingsPercent": "86%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/glassturtle/turutle 3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "125",
+      "baseWebpKB": "73",
+      "w400KB": "17",
+      "savingsPercent": "86%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Glassyantra/glass 3.png",
+      "originalWidth": 1376,
+      "originalKB": "2079",
+      "baseWebpKB": "131",
+      "w400KB": "19",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Glassyantra/Glass1.png",
+      "originalWidth": 1254,
+      "originalKB": "2004",
+      "baseWebpKB": "98",
+      "w400KB": "19",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Glassyantra/glass2.png",
+      "originalWidth": 1388,
+      "originalKB": "1877",
+      "baseWebpKB": "77",
+      "w400KB": "12",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Glassyantra/glass4.png",
+      "originalWidth": 1402,
+      "originalKB": "1889",
+      "baseWebpKB": "96",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/gomukhi/shringi 2.jpg",
+      "originalWidth": 965,
+      "originalKB": "41",
+      "baseWebpKB": "15",
+      "w400KB": "4",
+      "savingsPercent": "90%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/gomukhi/shringi 3.jpg",
+      "originalWidth": 768,
+      "originalKB": "69",
+      "baseWebpKB": "35",
+      "w400KB": "13",
+      "savingsPercent": "81%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/gomukhi/shringi 4.jpg",
+      "originalWidth": 768,
+      "originalKB": "98",
+      "baseWebpKB": "54",
+      "w400KB": "23",
+      "savingsPercent": "77%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/gomukhi/shringi1.jpg",
+      "originalWidth": 965,
+      "originalKB": "69",
+      "baseWebpKB": "28",
+      "w400KB": "8",
+      "savingsPercent": "89%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/handcrafted cover.jpg",
+      "originalWidth": 6032,
+      "originalKB": "4028",
+      "baseWebpKB": "1880",
+      "w400KB": "30",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/hawankund/kund 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "66",
+      "baseWebpKB": "28",
+      "w400KB": "6",
+      "savingsPercent": "90%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/hawankund/kund 2.png",
+      "originalWidth": 1254,
+      "originalKB": "1255",
+      "baseWebpKB": "30",
+      "w400KB": "6",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/hawankund/kund 3.png",
+      "originalWidth": 1544,
+      "originalKB": "919",
+      "baseWebpKB": "34",
+      "w400KB": "5",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/hawankund/kund 4.png",
+      "originalWidth": 1537,
+      "originalKB": "1259",
+      "baseWebpKB": "39",
+      "w400KB": "6",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO1.png",
+      "originalWidth": 2048,
+      "originalKB": "2397",
+      "baseWebpKB": "116",
+      "w400KB": "10",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO1MOBILEVIEW.png",
+      "originalWidth": 1122,
+      "originalKB": "2404",
+      "baseWebpKB": "133",
+      "w400KB": "30",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO2.png",
+      "originalWidth": 1672,
+      "originalKB": "2423",
+      "baseWebpKB": "117",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO2MBOILE.png",
+      "originalWidth": 1092,
+      "originalKB": "2595",
+      "baseWebpKB": "155",
+      "w400KB": "37",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO3.png",
+      "originalWidth": 1672,
+      "originalKB": "2285",
+      "baseWebpKB": "91",
+      "w400KB": "12",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO3MOBILE.png",
+      "originalWidth": 1092,
+      "originalKB": "2412",
+      "baseWebpKB": "115",
+      "w400KB": "28",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO4.png",
+      "originalWidth": 1672,
+      "originalKB": "2480",
+      "baseWebpKB": "130",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO4MOBILE.png",
+      "originalWidth": 1092,
+      "originalKB": "2478",
+      "baseWebpKB": "129",
+      "w400KB": "30",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO5.png",
+      "originalWidth": 1672,
+      "originalKB": "1655",
+      "baseWebpKB": "84",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Hero6.png",
+      "originalWidth": 1659,
+      "originalKB": "1788",
+      "baseWebpKB": "99",
+      "w400KB": "15",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/HERO8.png",
+      "originalWidth": 1536,
+      "originalKB": "2323",
+      "baseWebpKB": "121",
+      "w400KB": "18",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Incense cover.jpg",
+      "originalWidth": 3000,
+      "originalKB": "3354",
+      "baseWebpKB": "2965",
+      "w400KB": "12",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Jap Bag/Bag1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "599",
+      "baseWebpKB": "28",
+      "w400KB": "6",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Jap Bag/bag2.png",
+      "originalWidth": 246,
+      "originalKB": "119",
+      "baseWebpKB": "13",
+      "w400KB": "13",
+      "savingsPercent": "89%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Jap Bag/bag3.png",
+      "originalWidth": 1402,
+      "originalKB": "2137",
+      "baseWebpKB": "132",
+      "w400KB": "19",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Jap Bag/bag4.png",
+      "originalWidth": 1254,
+      "originalKB": "2315",
+      "baseWebpKB": "141",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Jap Bag/Japa Bag.jpg",
+      "originalWidth": 1100,
+      "originalKB": "90",
+      "baseWebpKB": "79",
+      "w400KB": "14",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/kamdhenu/kamdhenu 2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "96",
+      "baseWebpKB": "57",
+      "w400KB": "14",
+      "savingsPercent": "85%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/kamdhenu/kamdhenu 3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "95",
+      "baseWebpKB": "51",
+      "w400KB": "12",
+      "savingsPercent": "87%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/kamdhenu/kamdhenu 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "103",
+      "baseWebpKB": "58",
+      "w400KB": "16",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/kamdhenu/kamdhenu1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "100",
+      "baseWebpKB": "57",
+      "w400KB": "14",
+      "savingsPercent": "86%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Karungali mala/karungali 2.jpg",
+      "originalWidth": 978,
+      "originalKB": "102",
+      "baseWebpKB": "45",
+      "w400KB": "13",
+      "savingsPercent": "88%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Karungali mala/karungali 3.jpg",
+      "originalWidth": 978,
+      "originalKB": "123",
+      "baseWebpKB": "55",
+      "w400KB": "18",
+      "savingsPercent": "85%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Karungali mala/karungali 5.png",
+      "originalWidth": 1402,
+      "originalKB": "2170",
+      "baseWebpKB": "134",
+      "w400KB": "23",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Karungali mala/karungali 6.png",
+      "originalWidth": 1402,
+      "originalKB": "1960",
+      "baseWebpKB": "95",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Kuber yantra/kuber 1.png",
+      "originalWidth": 1254,
+      "originalKB": "2775",
+      "baseWebpKB": "314",
+      "w400KB": "29",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Kuber yantra/kuber 2.png",
+      "originalWidth": 1254,
+      "originalKB": "2958",
+      "baseWebpKB": "340",
+      "w400KB": "45",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Kuber yantra/kuber 3.png",
+      "originalWidth": 1254,
+      "originalKB": "2900",
+      "baseWebpKB": "345",
+      "w400KB": "42",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Kuber yantra/kuber4.png",
+      "originalWidth": 1254,
+      "originalKB": "3005",
+      "baseWebpKB": "389",
+      "w400KB": "42",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Kuber yantra/laxmi 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "50",
+      "baseWebpKB": "19",
+      "w400KB": "2",
+      "savingsPercent": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Kuber yantra/Screenshot 2026-08-09 121703.png",
+      "originalWidth": 562,
+      "originalKB": "692",
+      "baseWebpKB": "84",
+      "w400KB": "39",
+      "savingsPercent": "94%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ladoo gopal/ladoo gopal 1.png",
+      "originalWidth": 1402,
+      "originalKB": "2055",
+      "baseWebpKB": "148",
+      "w400KB": "23",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ladoo gopal/ladoo5.png",
+      "originalWidth": 1331,
+      "originalKB": "2057",
+      "baseWebpKB": "120",
+      "w400KB": "22",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ladoo gopal/ladoogopal 2.png",
+      "originalWidth": 1254,
+      "originalKB": "1869",
+      "baseWebpKB": "102",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ladoo gopal/ladoogopal4.png",
+      "originalWidth": 1308,
+      "originalKB": "1791",
+      "baseWebpKB": "92",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/ladoo gopal/ladoogpal3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "379",
+      "baseWebpKB": "75",
+      "w400KB": "18",
+      "savingsPercent": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Launch2.png",
+      "originalWidth": 2051,
+      "originalKB": "2667",
+      "baseWebpKB": "186",
+      "w400KB": "14",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Launch2mobile.png",
+      "originalWidth": 975,
+      "originalKB": "2549",
+      "baseWebpKB": "176",
+      "w400KB": "48",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/launch3.png",
+      "originalWidth": 975,
+      "originalKB": "2531",
+      "baseWebpKB": "182",
+      "w400KB": "46",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Launchmobile.png",
+      "originalWidth": 977,
+      "originalKB": "2581",
+      "baseWebpKB": "182",
+      "w400KB": "43",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Logo/LOGO.png",
+      "originalWidth": 1254,
+      "originalKB": "1303",
+      "baseWebpKB": "103",
+      "w400KB": "22",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/luxmiyantra/laxmi 2.png",
+      "originalWidth": 1402,
+      "originalKB": "2956",
+      "baseWebpKB": "349",
+      "w400KB": "31",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/luxmiyantra/laxmi 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "50",
+      "baseWebpKB": "19",
+      "w400KB": "2",
+      "savingsPercent": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/luxmiyantra/laxmi1.png",
+      "originalWidth": 1254,
+      "originalKB": "2965",
+      "baseWebpKB": "345",
+      "w400KB": "31",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/luxmiyantra/laxmi5.png",
+      "originalWidth": 1254,
+      "originalKB": "2901",
+      "baseWebpKB": "359",
+      "w400KB": "47",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/luxmiyantra/luxmi3.png",
+      "originalWidth": 1254,
+      "originalKB": "2752",
+      "baseWebpKB": "302",
+      "w400KB": "34",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.png",
+      "originalWidth": 1254,
+      "originalKB": "1288",
+      "baseWebpKB": "91",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/mala counter/6723a7bc-a812-4ce3-92b7-134c3b0490e6.png",
+      "originalWidth": 1254,
+      "originalKB": "1257",
+      "baseWebpKB": "91",
+      "w400KB": "14",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/mala counter/72e9e401-501c-4c66-af99-33c2e75f835b.png",
+      "originalWidth": 1254,
+      "originalKB": "948",
+      "baseWebpKB": "38",
+      "w400KB": "8",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/mala counter/a2759320-ade5-4ca3-96b4-304fd2022217.png",
+      "originalWidth": 1254,
+      "originalKB": "1995",
+      "baseWebpKB": "182",
+      "w400KB": "30",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/nandi bell/nandi 4.png",
+      "originalWidth": 1448,
+      "originalKB": "1909",
+      "baseWebpKB": "79",
+      "w400KB": "9",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/nandi bell/nandi 5.png",
+      "originalWidth": 1448,
+      "originalKB": "1581",
+      "baseWebpKB": "98",
+      "w400KB": "14",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/nandi bell/nandi bell 1.jpg",
+      "originalWidth": 768,
+      "originalKB": "66",
+      "baseWebpKB": "34",
+      "w400KB": "11",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/nandi bell/nandi bell 2.jpg",
+      "originalWidth": 768,
+      "originalKB": "88",
+      "baseWebpKB": "43",
+      "w400KB": "17",
+      "savingsPercent": "81%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/nandi bell/nandi bell 3.png",
+      "originalWidth": 1086,
+      "originalKB": "2017",
+      "baseWebpKB": "100",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/pancpatra set/patra 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "92",
+      "baseWebpKB": "29",
+      "w400KB": "6",
+      "savingsPercent": "93%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/pancpatra set/patra 2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "345",
+      "baseWebpKB": "57",
+      "w400KB": "10",
+      "savingsPercent": "97%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/pancpatra set/patra 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "1430",
+      "baseWebpKB": "80",
+      "w400KB": "20",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/pancpatra set/patra 4.png",
+      "originalKB": "1704",
+      "webpKB": "80",
+      "status": "cached"
+    },
+    {
+      "file": "frontend/public/assets/pancpatra set/patra3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "201",
+      "baseWebpKB": "147",
+      "w400KB": "14",
+      "savingsPercent": "93%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Pooja box/poobjabox2.png",
+      "originalWidth": 1535,
+      "originalKB": "1253",
+      "baseWebpKB": "58",
+      "w400KB": "9",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Pooja box/pooja box 3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "67",
+      "baseWebpKB": "33",
+      "w400KB": "8",
+      "savingsPercent": "89%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Pooja box/pooja box 4.png",
+      "originalWidth": 1535,
+      "originalKB": "1084",
+      "baseWebpKB": "33",
+      "w400KB": "6",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Pooja box/Pooja box.jpg",
+      "originalWidth": 1500,
+      "originalKB": "95",
+      "baseWebpKB": "65",
+      "w400KB": "11",
+      "savingsPercent": "88%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Pooja box/poojabox1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "60",
+      "baseWebpKB": "29",
+      "w400KB": "6",
+      "savingsPercent": "90%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Pooja box/Poojafront.png",
+      "originalWidth": 1535,
+      "originalKB": "1632",
+      "baseWebpKB": "43",
+      "w400KB": "7",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Pooja.png",
+      "originalWidth": 1535,
+      "originalKB": "2570",
+      "baseWebpKB": "150",
+      "w400KB": "23",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Poojamobile.png",
+      "originalWidth": 1092,
+      "originalKB": "2595",
+      "baseWebpKB": "156",
+      "w400KB": "38",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/pyramid/pyramid 3.png",
+      "originalWidth": 1254,
+      "originalKB": "1782",
+      "baseWebpKB": "97",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/pyramid/pyramid1.png",
+      "originalWidth": 1402,
+      "originalKB": "1991",
+      "baseWebpKB": "132",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/pyramid/pyramid2.png",
+      "originalWidth": 1254,
+      "originalKB": "1829",
+      "baseWebpKB": "77",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/pyramid/pyramid4.png",
+      "originalWidth": 1316,
+      "originalKB": "1589",
+      "baseWebpKB": "57",
+      "w400KB": "11",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/radhakrishna/krishna1.jpg",
+      "originalWidth": 768,
+      "originalKB": "84",
+      "baseWebpKB": "46",
+      "w400KB": "16",
+      "savingsPercent": "80%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/radhakrishna/krishna2.png",
+      "originalWidth": 1402,
+      "originalKB": "2164",
+      "baseWebpKB": "190",
+      "w400KB": "27",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/radhakrishna/krishna3.png",
+      "originalWidth": 1122,
+      "originalKB": "1983",
+      "baseWebpKB": "101",
+      "w400KB": "18",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/radhakrishna/krishna4.png",
+      "originalWidth": 1086,
+      "originalKB": "2102",
+      "baseWebpKB": "125",
+      "w400KB": "26",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Rudraksh Mala/rudraksh 2.png",
+      "originalWidth": 1024,
+      "originalKB": "2203",
+      "baseWebpKB": "143",
+      "w400KB": "33",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Rudraksh Mala/rudraksh 6.png",
+      "originalWidth": 1402,
+      "originalKB": "1851",
+      "baseWebpKB": "75",
+      "w400KB": "10",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Rudraksh Mala/rudraksh mala 1.png",
+      "originalWidth": 1254,
+      "originalKB": "2425",
+      "baseWebpKB": "237",
+      "w400KB": "37",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Rudraksh Mala/rudraksh mala 4.png",
+      "originalWidth": 1402,
+      "originalKB": "2214",
+      "baseWebpKB": "220",
+      "w400KB": "29",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/shani yantra/laxmi 4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "50",
+      "baseWebpKB": "19",
+      "w400KB": "2",
+      "savingsPercent": "95%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/shani yantra/shani 4.png",
+      "originalWidth": 1402,
+      "originalKB": "2266",
+      "baseWebpKB": "150",
+      "w400KB": "18",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/shani yantra/shani1.png",
+      "originalWidth": 1305,
+      "originalKB": "2529",
+      "baseWebpKB": "230",
+      "w400KB": "28",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/shani yantra/shani3.png",
+      "originalWidth": 1402,
+      "originalKB": "2584",
+      "baseWebpKB": "242",
+      "w400KB": "27",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/shankhD 2.jpg",
+      "originalWidth": 869,
+      "originalKB": "38",
+      "baseWebpKB": "14",
+      "w400KB": "5",
+      "savingsPercent": "87%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/ShankhD1.jpg",
+      "originalWidth": 869,
+      "originalKB": "33",
+      "baseWebpKB": "11",
+      "w400KB": "4",
+      "savingsPercent": "89%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/shankhD3 - Copy.png",
+      "originalWidth": 1254,
+      "originalKB": "1825",
+      "baseWebpKB": "63",
+      "w400KB": "12",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/shankhD3.png",
+      "originalWidth": 1254,
+      "originalKB": "1825",
+      "baseWebpKB": "63",
+      "w400KB": "12",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/shankhD4.jpg",
+      "originalWidth": 869,
+      "originalKB": "35",
+      "baseWebpKB": "14",
+      "w400KB": "4",
+      "savingsPercent": "87%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/shankhD4.png",
+      "originalKB": "1761",
+      "webpKB": "14",
+      "status": "cached"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/shankhV1.png",
+      "originalWidth": 1254,
+      "originalKB": "1724",
+      "baseWebpKB": "45",
+      "w400KB": "8",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/ShankhV2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "35",
+      "baseWebpKB": "17",
+      "w400KB": "4",
+      "savingsPercent": "88%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/shankhV3 - Copy.png",
+      "originalWidth": 1441,
+      "originalKB": "1709",
+      "baseWebpKB": "60",
+      "w400KB": "9",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/shankhV3.png",
+      "originalWidth": 1441,
+      "originalKB": "1709",
+      "baseWebpKB": "60",
+      "w400KB": "9",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Shankh/shankhV4.png",
+      "originalWidth": 1402,
+      "originalKB": "1826",
+      "baseWebpKB": "54",
+      "w400KB": "9",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/simple bell/simple bell 1.jpg",
+      "originalWidth": 768,
+      "originalKB": "74",
+      "baseWebpKB": "35",
+      "w400KB": "12",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/simple bell/simple bell 3.png",
+      "originalWidth": 1086,
+      "originalKB": "1858",
+      "baseWebpKB": "76",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/simple bell/simple bell 4.png",
+      "originalWidth": 1448,
+      "originalKB": "1122",
+      "baseWebpKB": "74",
+      "w400KB": "12",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/simple bell/simple bell 5.png",
+      "originalWidth": 1122,
+      "originalKB": "1529",
+      "baseWebpKB": "48",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/singhasan/sighasan 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "106",
+      "baseWebpKB": "54",
+      "w400KB": "13",
+      "savingsPercent": "88%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/singhasan/sighasan 2.png",
+      "originalWidth": 950,
+      "originalKB": "2453",
+      "baseWebpKB": "215",
+      "w400KB": "46",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/singhasan/singhasan 3.png",
+      "originalWidth": 1536,
+      "originalKB": "2098",
+      "baseWebpKB": "144",
+      "w400KB": "20",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Sphatik mala/sphatik 1.jpg",
+      "originalWidth": 941,
+      "originalKB": "131",
+      "baseWebpKB": "82",
+      "w400KB": "16",
+      "savingsPercent": "88%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Sphatik mala/sphatik 2.png",
+      "originalWidth": 1122,
+      "originalKB": "2016",
+      "baseWebpKB": "111",
+      "w400KB": "22",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Sphatik mala/sphatik 3.jpg",
+      "originalWidth": 941,
+      "originalKB": "159",
+      "baseWebpKB": "110",
+      "w400KB": "16",
+      "savingsPercent": "90%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Sphatik mala/sphatik 4.png",
+      "originalWidth": 1086,
+      "originalKB": "2444",
+      "baseWebpKB": "192",
+      "w400KB": "41",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Sphatik mala/sphatik 5.png",
+      "originalWidth": 1402,
+      "originalKB": "1919",
+      "baseWebpKB": "110",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Sphatik mala/sphatik 6.png",
+      "originalWidth": 1114,
+      "originalKB": "1872",
+      "baseWebpKB": "62",
+      "w400KB": "15",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Trishul/trihsul 3.png",
+      "originalWidth": 1402,
+      "originalKB": "1473",
+      "baseWebpKB": "76",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Trishul/trishul 2.png",
+      "originalWidth": 1024,
+      "originalKB": "1810",
+      "baseWebpKB": "64",
+      "w400KB": "20",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Trishul/trishul 4.png",
+      "originalWidth": 1122,
+      "originalKB": "1832",
+      "baseWebpKB": "71",
+      "w400KB": "18",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Trishul/Trishul1.png",
+      "originalWidth": 1086,
+      "originalKB": "1593",
+      "baseWebpKB": "67",
+      "w400KB": "18",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Trishul with damru/trishul with damru1.png",
+      "originalWidth": 1223,
+      "originalKB": "1731",
+      "baseWebpKB": "63",
+      "w400KB": "13",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Trishul with damru/trishul with damru2.png",
+      "originalWidth": 1199,
+      "originalKB": "1977",
+      "baseWebpKB": "133",
+      "w400KB": "25",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Trishul with damru/trishul with damru3.png",
+      "originalWidth": 1122,
+      "originalKB": "1959",
+      "baseWebpKB": "97",
+      "w400KB": "21",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Tulsi mala/tulsi 5.png",
+      "originalWidth": 1122,
+      "originalKB": "1601",
+      "baseWebpKB": "44",
+      "w400KB": "10",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Tulsi mala/tulsi mala 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "646",
+      "baseWebpKB": "71",
+      "w400KB": "12",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Tulsi mala/tulsi mala 2.png",
+      "originalWidth": 1254,
+      "originalKB": "2053",
+      "baseWebpKB": "104",
+      "w400KB": "20",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Tulsi mala/tulsi mala 3.jpg",
+      "originalWidth": 1024,
+      "originalKB": "594",
+      "baseWebpKB": "100",
+      "w400KB": "26",
+      "savingsPercent": "96%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Tulsi mala/tulsi mala.png",
+      "originalWidth": 1254,
+      "originalKB": "2112",
+      "baseWebpKB": "129",
+      "w400KB": "19",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Vaijanti mala/vaijant 4.png",
+      "originalWidth": 1254,
+      "originalKB": "1915",
+      "baseWebpKB": "90",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Vaijanti mala/vaijanti 1.jpg",
+      "originalWidth": 1024,
+      "originalKB": "139",
+      "baseWebpKB": "83",
+      "w400KB": "23",
+      "savingsPercent": "83%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Vaijanti mala/vaijanti 2.jpg",
+      "originalWidth": 1024,
+      "originalKB": "124",
+      "baseWebpKB": "70",
+      "w400KB": "21",
+      "savingsPercent": "83%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Vaijanti mala/vajainti 5.png",
+      "originalWidth": 1402,
+      "originalKB": "1840",
+      "baseWebpKB": "66",
+      "w400KB": "10",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Velvet asan/asan1.png",
+      "originalWidth": 1254,
+      "originalKB": "2634",
+      "baseWebpKB": "311",
+      "w400KB": "45",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Velvet asan/asan2.jpg",
+      "originalWidth": 848,
+      "originalKB": "217",
+      "baseWebpKB": "154",
+      "w400KB": "50",
+      "savingsPercent": "77%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Velvet asan/asan3.png",
+      "originalWidth": 1402,
+      "originalKB": "3121",
+      "baseWebpKB": "426",
+      "w400KB": "50",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Velvet asan/asan4.png",
+      "originalWidth": 1402,
+      "originalKB": "3101",
+      "baseWebpKB": "401",
+      "w400KB": "51",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Velvet asan/asan5.jpg",
+      "originalWidth": 848,
+      "originalKB": "278",
+      "baseWebpKB": "205",
+      "w400KB": "61",
+      "savingsPercent": "78%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Wooden Choki/chowki 2.png",
+      "originalWidth": 1402,
+      "originalKB": "2813",
+      "baseWebpKB": "308",
+      "w400KB": "33",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Wooden Choki/chowki1.png",
+      "originalWidth": 1254,
+      "originalKB": "2725",
+      "baseWebpKB": "289",
+      "w400KB": "40",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Wooden Choki/chowki333.png",
+      "originalWidth": 1536,
+      "originalKB": "3417",
+      "baseWebpKB": "423",
+      "w400KB": "30",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Wooden Choki/chowki4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "128",
+      "baseWebpKB": "88",
+      "w400KB": "20",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Wooden Choki/chowki5.jpg",
+      "originalWidth": 1024,
+      "originalKB": "139",
+      "baseWebpKB": "93",
+      "w400KB": "19",
+      "savingsPercent": "87%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/Wooden Choki/chowki6.png",
+      "originalWidth": 1536,
+      "originalKB": "2873",
+      "baseWebpKB": "277",
+      "w400KB": "24",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/WoodenChowki Large/chowki4.jpg",
+      "originalWidth": 1024,
+      "originalKB": "128",
+      "baseWebpKB": "88",
+      "w400KB": "20",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/WoodenChowki Large/chowki444.png",
+      "originalWidth": 1254,
+      "originalKB": "3012",
+      "baseWebpKB": "373",
+      "w400KB": "44",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/WoodenChowki Large/chowki5.jpg",
+      "originalWidth": 1024,
+      "originalKB": "139",
+      "baseWebpKB": "93",
+      "w400KB": "19",
+      "savingsPercent": "87%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/WoodenChowki Large/chowki6.png",
+      "originalWidth": 1536,
+      "originalKB": "2873",
+      "baseWebpKB": "277",
+      "w400KB": "24",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/assets/WoodenChowki Large/sizechowki.png",
+      "originalWidth": 1402,
+      "originalKB": "1634",
+      "baseWebpKB": "157",
+      "w400KB": "20",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/braclet desktopview.png",
+      "originalWidth": 1448,
+      "originalKB": "2320",
+      "baseWebpKB": "195",
+      "w400KB": "30",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/brass bell 1.png",
+      "originalWidth": 1086,
+      "originalKB": "1652",
+      "baseWebpKB": "49",
+      "w400KB": "9",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/brass bell 2.png",
+      "originalWidth": 1402,
+      "originalKB": "1938",
+      "baseWebpKB": "113",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/brass bell 3.png",
+      "originalWidth": 1086,
+      "originalKB": "1890",
+      "baseWebpKB": "75",
+      "w400KB": "14",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/brass bell 4.png",
+      "originalWidth": 1086,
+      "originalKB": "1878",
+      "baseWebpKB": "79",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/Brass Collection Hero Image_files/9a226f2b-166a-42bf-8ddb-556d4bbf721a.png",
+      "originalWidth": 1708,
+      "originalKB": "1967",
+      "baseWebpKB": "133",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/Brass Collection Hero Image_files/aa.png",
+      "originalWidth": 120,
+      "originalKB": "1",
+      "baseWebpKB": "1",
+      "w400KB": "1",
+      "savingsPercent": "37%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/Brass Collection Hero Image_files/e78166bb-acba-4d3b-90e0-6007534f4cdf.png",
+      "originalWidth": 1536,
+      "originalKB": "2175",
+      "baseWebpKB": "143",
+      "w400KB": "19",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/brassbell 5.png",
+      "originalWidth": 1536,
+      "originalKB": "1769",
+      "baseWebpKB": "119",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/garduda 1.png",
+      "originalWidth": 1086,
+      "originalKB": "1767",
+      "baseWebpKB": "64",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/garud 3.png",
+      "originalWidth": 1536,
+      "originalKB": "1589",
+      "baseWebpKB": "119",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/garuda 2.png",
+      "originalWidth": 1536,
+      "originalKB": "2133",
+      "baseWebpKB": "128",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/garuda 4.png",
+      "originalWidth": 1086,
+      "originalKB": "1747",
+      "baseWebpKB": "60",
+      "w400KB": "12",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/nandi 4.png",
+      "originalWidth": 1448,
+      "originalKB": "1909",
+      "baseWebpKB": "79",
+      "w400KB": "9",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/nandi 5.png",
+      "originalWidth": 1448,
+      "originalKB": "1581",
+      "baseWebpKB": "98",
+      "w400KB": "14",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/nandi bell 1.jpg",
+      "originalWidth": 768,
+      "originalKB": "66",
+      "baseWebpKB": "34",
+      "w400KB": "11",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/nandi bell 2.jpg",
+      "originalWidth": 768,
+      "originalKB": "88",
+      "baseWebpKB": "43",
+      "w400KB": "17",
+      "savingsPercent": "81%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/nandi bell 3.png",
+      "originalWidth": 1086,
+      "originalKB": "2017",
+      "baseWebpKB": "100",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/simple bell 1.jpg",
+      "originalWidth": 768,
+      "originalKB": "74",
+      "baseWebpKB": "35",
+      "w400KB": "12",
+      "savingsPercent": "84%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/simple bell 2.jpg",
+      "originalWidth": 768,
+      "originalKB": "80",
+      "baseWebpKB": "41",
+      "w400KB": "14",
+      "savingsPercent": "82%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/simple bell 3.png",
+      "originalWidth": 1086,
+      "originalKB": "1858",
+      "baseWebpKB": "76",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brass bells/simple bell 4.png",
+      "originalWidth": 1448,
+      "originalKB": "1122",
+      "baseWebpKB": "74",
+      "w400KB": "12",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brasshero.png",
+      "originalWidth": 1708,
+      "originalKB": "1967",
+      "baseWebpKB": "133",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/brassmobileview.png",
+      "originalWidth": 864,
+      "originalKB": "2217",
+      "baseWebpKB": "173",
+      "w400KB": "60",
+      "savingsPercent": "97%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/copperatemobileview.png",
+      "originalWidth": 1024,
+      "originalKB": "2298",
+      "baseWebpKB": "138",
+      "w400KB": "34",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/copperatepcview.png",
+      "originalWidth": 1536,
+      "originalKB": "2638",
+      "baseWebpKB": "208",
+      "w400KB": "20",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/copperhero.png",
+      "originalWidth": 1536,
+      "originalKB": "2181",
+      "baseWebpKB": "160",
+      "w400KB": "24",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/coppermobileview.png",
+      "originalWidth": 941,
+      "originalKB": "2151",
+      "baseWebpKB": "174",
+      "w400KB": "55",
+      "savingsPercent": "97%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/desktopvideo.jpeg",
+      "originalWidth": 1672,
+      "originalKB": "523",
+      "baseWebpKB": "110",
+      "w400KB": "15",
+      "savingsPercent": "97%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/energystones mobile view.png",
+      "originalWidth": 941,
+      "originalKB": "2120",
+      "baseWebpKB": "151",
+      "w400KB": "47",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/essentialhero.png",
+      "originalWidth": 1536,
+      "originalKB": "2107",
+      "baseWebpKB": "113",
+      "w400KB": "14",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/flipkart logo.png",
+      "originalWidth": 447,
+      "originalKB": "13",
+      "baseWebpKB": "11",
+      "w400KB": "10",
+      "savingsPercent": "23%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/incenemobile hero.png",
+      "originalWidth": 941,
+      "originalKB": "1871",
+      "baseWebpKB": "101",
+      "w400KB": "37",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/incesne hero.png",
+      "originalWidth": 1672,
+      "originalKB": "1827",
+      "baseWebpKB": "103",
+      "w400KB": "16",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/logo name.png",
+      "originalWidth": 2135,
+      "originalKB": "1458",
+      "baseWebpKB": "65",
+      "w400KB": "6",
+      "savingsPercent": "100%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/mandiressentialmobileview.png",
+      "originalWidth": 941,
+      "originalKB": "2028",
+      "baseWebpKB": "105",
+      "w400KB": "29",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/mandiressentials.png",
+      "originalWidth": 1671,
+      "originalKB": "1897",
+      "baseWebpKB": "118",
+      "w400KB": "17",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/mandirphone view.png",
+      "originalWidth": 941,
+      "originalKB": "1944",
+      "baseWebpKB": "123",
+      "w400KB": "42",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/METALWARE.png",
+      "originalWidth": 1536,
+      "originalKB": "2478",
+      "baseWebpKB": "233",
+      "w400KB": "31",
+      "savingsPercent": "99%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/Metalwaremobile.png",
+      "originalWidth": 941,
+      "originalKB": "2327",
+      "baseWebpKB": "234",
+      "w400KB": "67",
+      "savingsPercent": "97%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/mobilevideo.png",
+      "originalWidth": 941,
+      "originalKB": "1879",
+      "baseWebpKB": "95",
+      "w400KB": "30",
+      "savingsPercent": "98%",
+      "status": "converted"
+    },
+    {
+      "file": "frontend/public/trasnparwtnt bg.png",
+      "originalWidth": 2135,
+      "originalKB": "821",
+      "baseWebpKB": "221",
+      "w400KB": "24",
+      "savingsPercent": "97%",
       "status": "converted"
     }
   ],
   "summary": {
-    "converted": 43,
-    "skipped": 0,
+    "converted": 300,
+    "cached": 2,
     "failed": 0,
-    "totalOrigMB": "96.0",
-    "totalWebpMB": "10.2",
-    "savedMB": "85.8"
+    "totalOrigMB": "419.7",
+    "totalWebpMB": "5.6",
+    "savedMB": "414.1"
   }
 }

@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, ShoppingBag, Heart, Eye, Check, Star, Sparkles }
 import { IncenseShowcase } from './IncenseShowcase';
 import { CategoryPageSkeleton } from './Skeleton';
 import { SafeImage } from './SafeImage';
+import { ProductImage } from './ProductImage';
 
 export const CategoryPage = ({
   category,
@@ -394,12 +395,13 @@ export const CategoryPage = ({
               <CategoryPageSkeleton count={8} />
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
-                {sortedProducts.map((product) => (
+                {sortedProducts.map((product, idx) => (
                   <CategoryProductCard
                     key={product.id}
                     product={product}
                     category={category}
                     isWishlisted={wishlistIds.includes(product.id)}
+                    priority={idx < 4}
                     onAddToCart={onAddToCart}
                     onToggleWishlist={onToggleWishlist}
                     onOpenQuickView={onOpenQuickView}
@@ -422,6 +424,7 @@ const CategoryProductCard = ({
   product,
   category,
   isWishlisted,
+  priority = false,
   onAddToCart,
   onToggleWishlist,
   onOpenQuickView,
@@ -440,46 +443,6 @@ const CategoryProductCard = ({
   };
 
   const [isHovered, setIsHovered] = useState(false);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [loadedMap, setLoadedMap] = useState({});
-
-  const cardImages = React.useMemo(() => {
-    if (product.images && product.images.length > 0) return product.images;
-    return [product.image || category.image || '/assets/Incense cover.jpg'];
-  }, [product, category]);
-
-  // Preload secondary hover images in background for zero flicker
-  React.useEffect(() => {
-    if (cardImages.length > 1) {
-      cardImages.slice(1).forEach((imgUrl) => {
-        if (imgUrl) {
-          const img = new Image();
-          img.src = imgUrl;
-        }
-      });
-    }
-  }, [cardImages]);
-
-  React.useEffect(() => {
-    let timer;
-    if (isHovered && cardImages.length > 1) {
-      setActiveImageIndex(1);
-      if (cardImages.length > 2) {
-        timer = setInterval(() => {
-          setActiveImageIndex((prev) => (prev + 1) % cardImages.length);
-        }, 1400);
-      }
-    } else {
-      setActiveImageIndex(0);
-    }
-    return () => clearInterval(timer);
-  }, [isHovered, cardImages]);
-
-  const handleImageLoad = (idx) => {
-    setLoadedMap((prev) => ({ ...prev, [idx]: true }));
-  };
-
-  const isPrimaryLoaded = !!loadedMap[0];
 
   return (
     <div
@@ -489,41 +452,19 @@ const CategoryProductCard = ({
     >
       {/* Image Header with Hover Quick Add Overlay */}
       <div
-        className={`relative aspect-[4/3] overflow-hidden cursor-pointer ${product.fitMode === 'contain' || (product.image && product.image.includes('brass bells'))
-          ? 'bg-[#F9F6F0]'
-          : 'bg-[#F4EFE6]'
-          }`}
+        className="relative aspect-[4/3] overflow-hidden cursor-pointer bg-[#F4EFE6]"
         onClick={handleClickCard}
       >
-        {!isPrimaryLoaded && <div className="absolute inset-0 skeleton-shimmer z-0" />}
-
-        {cardImages.map((imgSrc, idx) => {
-          const isThisLoaded = !!loadedMap[idx];
-          const isCurrent = idx === activeImageIndex;
-          return (
-            <img
-              key={imgSrc + idx}
-              src={imgSrc}
-              alt={`${product.name} view ${idx + 1}`}
-              loading="lazy"
-              decoding="async"
-              onLoad={() => handleImageLoad(idx)}
-              onError={(e) => {
-                if (e.target.src !== '/assets/Incense cover.jpg') {
-                  e.target.src = '/assets/Incense cover.jpg';
-                }
-              }}
-              className={`w-full h-full transform transition-all duration-500 ${
-                idx === 0 ? 'relative' : 'absolute inset-0'
-              } ${
-                isCurrent ? 'opacity-100 scale-105 z-10' : 'opacity-0 scale-100 z-0 pointer-events-none'
-              } ${product.fitMode === 'contain' || (product.image && product.image.includes('brass bells'))
-                ? 'object-contain p-3'
-                : 'object-cover'
-                }`}
-            />
-          );
-        })}
+        <ProductImage
+          src={product.image}
+          images={product.images}
+          alt={product.name}
+          artType={product.artType}
+          fitMode={product.fitMode}
+          aspect="aspect-full"
+          priority={priority}
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
+        />
 
         {/* Slide Indicator Dots or Coming Soon Badge */}
         {product.isComingSoon ? (

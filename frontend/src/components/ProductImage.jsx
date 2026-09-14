@@ -1,18 +1,15 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Image as ImageIcon } from 'lucide-react';
+import { getResponsiveImageSources } from '../utils/imageUtils';
 
 /**
  * ProductImage — Optimized image component
  * 
  * KEY PERFORMANCE FIXES:
- * 1. Renders ONLY the currently active image in the DOM (not all images simultaneously).
- *    Previously: all hover images rendered as opacity-0 <img> tags, causing browsers to
- *    download every hover image immediately even before the user hovers.
- *    Now: secondary image is only injected into DOM on hover.
- * 2. Memoized heavy isContain string-check logic (was running on every render).
- * 3. Proper lazy/eager loading — priority prop controls fetchpriority correctly.
- * 4. Hover preload uses link[rel=prefetch] for secondary images, not new Image() spam.
- * 5. No forced layout / no multiple simultaneous transitions.
+ * 1. Renders ONLY the currently active image in the DOM using responsive <picture> with WebP srcset.
+ * 2. Automatic resolution variant serving (-400w, -800w, -1200w).
+ * 3. Memoized heavy isContain string-check logic.
+ * 4. Proper lazy/eager loading — priority prop controls fetchpriority & loading attributes.
  */
 
 // Memoized heavy contain-check — runs ONCE per unique src string, not every render
@@ -51,7 +48,8 @@ export const ProductImage = ({
   className = '',
   aspect = 'aspect-square',
   fitMode,
-  priority = false
+  priority = false,
+  sizes
 }) => {
   const [imgError, setImgError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -72,15 +70,13 @@ export const ProductImage = ({
   // isContain: computed once via cache per src string
   const isContain = fitMode === 'contain' || checkIsContain(primarySrc || '');
 
-  // On hover: prefetch secondary image via link element (doesn't trigger layout)
-  // This is intentionally deferred to hover so primary images load first.
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
     if (secondarySrc && !secondaryPrefetchedRef.current) {
       secondaryPrefetchedRef.current = true;
-      // Use Image() only on hover (not on mount), so it doesn't block initial page load
       const img = new window.Image();
-      img.src = secondarySrc;
+      const sources = getResponsiveImageSources(secondarySrc);
+      img.src = sources.webpSrc || secondarySrc;
       img.onload = () => setSecondaryLoaded(true);
     }
   }, [secondarySrc]);
@@ -89,12 +85,9 @@ export const ProductImage = ({
     setIsHovered(false);
   }, []);
 
-  // Determine which src to show:
-  // - Not hovered: primary
-  // - Hovered + secondary ready: secondary
-  // - Hovered + secondary not ready yet: primary (no flash)
   const showSecondary = isHovered && secondarySrc && secondaryLoaded;
   const activeSrc = showSecondary ? secondarySrc : primarySrc;
+  const responsiveSources = React.useMemo(() => getResponsiveImageSources(activeSrc), [activeSrc]);
 
   if (src && !imgError) {
     return (
@@ -108,34 +101,36 @@ export const ProductImage = ({
           <div className="absolute inset-0 skeleton-shimmer z-0" aria-hidden="true" />
         )}
 
-        {/*
-          SINGLE active <img> tag — the key fix.
-          Previously: ALL images in imageList were rendered simultaneously as opacity-0 nodes,
-          causing browsers to download all hover images on initial page load.
-          Now: Only ONE <img> is in the DOM at a time.
-          The image src swaps on hover after the secondary is prefetched.
-        */}
-        <img
-          src={activeSrc}
-          alt={alt || 'Shraviko Sacred Product'}
-          width={800}
-          height={800}
-          loading={priority ? 'eager' : 'lazy'}
-          decoding={priority ? 'sync' : 'async'}
-          fetchpriority={priority ? 'high' : undefined}
-          onLoad={() => {
-            if (!primaryLoaded) setPrimaryLoaded(true);
-          }}
-          onError={() => setImgError(true)}
-          className={`w-full h-full transition-opacity duration-400 ${
-            priority || primaryLoaded ? 'opacity-100' : 'opacity-0'
-          } ${
-            isContain ? 'object-contain p-2 sm:p-3' : 'object-cover'
-          } ${
-            // Subtle scale-up on hover to keep premium feel
-            isHovered ? 'scale-105' : 'scale-100'
-          } transition-all duration-500`}
-        />
+        <picture className="w-full h-full block">
+          {responsiveSources.isResponsive && responsiveSources.webpSrcSet && (
+            <source
+              type="image/webp"
+              srcSet={responsiveSources.webpSrcSet}
+              sizes={sizes || "(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"}
+            />
+          )}
+          <img
+            src={responsiveSources.fallbackSrc || activeSrc}
+            alt={alt || 'Shraviko Sacred Product'}
+            width={400}
+            height={400}
+            loading={priority ? 'eager' : 'lazy'}
+            decoding={priority ? 'sync' : 'async'}
+            fetchpriority={priority ? 'high' : undefined}
+            onLoad={() => {
+              if (!primaryLoaded) setPrimaryLoaded(true);
+            }}
+            onError={() => setImgError(true)}
+            className={`w-full h-full transition-opacity duration-400 ${
+              priority || primaryLoaded ? 'opacity-100' : 'opacity-0'
+            } ${
+              isContain ? 'object-contain p-2 sm:p-3' : 'object-cover'
+            } ${
+              isHovered ? 'scale-105' : 'scale-100'
+            } transition-all duration-500`}
+          />
+        </picture>
+
 
         {/* Slide indicator dots — only shown on hover when multiple images exist */}
         {imageList.length > 1 && isHovered && (

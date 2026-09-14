@@ -10,40 +10,16 @@ const CATEGORY_META = {
   yantras:           { label: 'Custom & Handcrafted',   emoji: '✨', color: '#7B5E3A', bg: '#F5F0EB' },
 };
 
-function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSelectProduct }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [loadedMap, setLoadedMap] = useState({});
+import { ProductImage } from './ProductImage';
 
+function ProductCard({ product, priority = false, onAddToCart, onToggleWishlist, wishlistIds, onSelectProduct }) {
   const isWishlisted = wishlistIds?.includes(product.id);
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
-  const cardImages = React.useMemo(() => {
-    if (product.images && product.images.length > 0) return product.images;
-    return [product.image || '/assets/Incense cover.jpg'];
-  }, [product]);
-
-  React.useEffect(() => {
-    let timer;
-    if (isHovered && cardImages.length > 1) {
-      setActiveImageIndex(1);
-      if (cardImages.length > 2) {
-        timer = setInterval(() => {
-          setActiveImageIndex((prev) => (prev + 1) % cardImages.length);
-        }, 1400);
-      }
-    } else {
-      setActiveImageIndex(0);
-    }
-    return () => clearInterval(timer);
-  }, [isHovered, cardImages]);
-
   return (
     <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className="bg-white rounded-2xl overflow-hidden border border-[#EAE0CD] hover:border-[#C5A059]/50 hover:shadow-lg transition-all duration-300 group flex flex-col cursor-pointer"
     >
       {/* Image */}
@@ -52,26 +28,16 @@ function ProductCard({ product, onAddToCart, onToggleWishlist, wishlistIds, onSe
         style={{ aspectRatio: '1/1' }}
         onClick={() => onSelectProduct(product)}
       >
-        {!loadedMap[0] && <div className="absolute inset-0 skeleton-shimmer z-0" />}
-        {cardImages.map((imgSrc, idx) => {
-          const isCurrent = idx === activeImageIndex;
-          return (
-            <img
-              key={imgSrc + idx}
-              src={imgSrc}
-              alt={product.name}
-              loading="lazy"
-              decoding="async"
-              onLoad={() => setLoadedMap(prev => ({ ...prev, [idx]: true }))}
-              onError={e => { e.target.src = '/assets/Incense cover.jpg'; }}
-              className={`w-full h-full object-contain p-3 transition-all duration-500 ${
-                idx === 0 ? 'relative' : 'absolute inset-0'
-              } ${
-                isCurrent ? 'opacity-100 scale-105 z-10' : 'opacity-0 scale-100 z-0 pointer-events-none'
-              }`}
-            />
-          );
-        })}
+        <ProductImage
+          src={product.image}
+          images={product.images}
+          alt={product.name}
+          artType={product.artType}
+          fitMode={product.fitMode}
+          aspect="aspect-square"
+          priority={priority}
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
+        />
 
 
         {/* Top Left Badge if Coming Soon */}

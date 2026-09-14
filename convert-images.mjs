@@ -2,15 +2,15 @@
 /**
  * convert-images.mjs
  * 
- * Converts large PNG/JPG images in frontend/public to WebP format.
- * - sharp is resolved from frontend/node_modules (installed there)
- * - Generates WebP at quality 82-85
- * - Saves alongside original (e.g. HERO1.png -> HERO1.webp)  
- * - Does NOT delete originals (safe rollback)
- * - Reports before/after sizes
+ * Converts large PNG/JPG/JPEG images in frontend/public (and all subdirectories) to WebP format.
+ * Generates responsive variants:
+ *  - base .webp (original max dimensions, quality 82-85)
+ *  - -400w.webp (max width 400px, quality 82)
+ *  - -800w.webp (max width 800px, quality 82)
+ *  - -1200w.webp (max width 1200px, quality 82)
  * 
- * Usage (from E:\Brand website):
- *   node convert-images.mjs
+ * Skips processing when destination WebP files are already up-to-date.
+ * Outputs image-optimization-results.json.
  */
 
 import { promises as fs, existsSync } from 'fs';
@@ -18,27 +18,23 @@ import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const baseDir = __dirname; // E:\Brand website
+const baseDir = __dirname;
+const publicDir = path.join(baseDir, 'frontend', 'public');
 
-// Resolve sharp from frontend/node_modules since that's where it's installed
-const sharpPath = path.join(baseDir, 'frontend', 'node_modules', 'sharp', 'lib', 'index.cjs');
-const sharpPathAlt = path.join(baseDir, 'frontend', 'node_modules', 'sharp', 'lib', 'index.js');
+const sharpPath = path.join(baseDir, 'frontend', 'node_modules', 'sharp', 'dist', 'index.cjs');
+const sharpPathAlt = path.join(baseDir, 'frontend', 'node_modules', 'sharp', 'dist', 'index.js');
 
 async function loadSharp() {
-  // Try CJS entry point first (most reliable across node versions)
   if (existsSync(sharpPath)) {
     try {
       const { createRequire } = await import('module');
       const req = createRequire(import.meta.url);
-      // Point require at frontend/node_modules
-      const originalPaths = require?.resolve?.paths?.('sharp') || [];
       process.env.NODE_PATH = path.join(baseDir, 'frontend', 'node_modules');
       req.cache && Object.keys(req.cache).filter(k => k.includes('sharp')).forEach(k => delete req.cache[k]);
       return req(sharpPath);
     } catch (e) { /* fall through */ }
   }
 
-  // Try ESM dynamic import with full path
   for (const p of [sharpPath, sharpPathAlt]) {
     if (existsSync(p)) {
       try {
@@ -48,150 +44,169 @@ async function loadSharp() {
     }
   }
 
-  // Last resort: standard import (works if node_modules is in PATH)
   try {
     const mod = await import('sharp');
     return mod.default || mod;
   } catch (e) {
     console.error('\n❌ Cannot load sharp from frontend/node_modules.');
-    console.error('   Make sure you ran: cd frontend && npm install sharp --save-dev');
-    console.error('   Then retry: node convert-images.mjs\n');
     process.exit(1);
   }
 }
 
-// Target list: largest/most-loaded images, sorted by impact
-const TARGET_IMAGES = [
-  // Hero poster images (LCP candidates — highest priority)
-  { src: 'frontend/public/desktopvideo.jpeg', quality: 85 },
-  { src: 'frontend/public/mobilevideo.png',   quality: 85 },
-
-  // Hero slideshow images (2.3–2.7 MB each)
-  { src: 'frontend/public/assets/Pooja.png',            quality: 82 },
-  { src: 'frontend/public/assets/Poojamobile.png',      quality: 82 },
-  { src: 'frontend/public/assets/Candel.png',           quality: 82 },
-  { src: 'frontend/public/assets/Candelmobile.png',     quality: 82 },
-  { src: 'frontend/public/assets/Calm.png',             quality: 82 },
-  { src: 'frontend/public/assets/Calmmobile.png',       quality: 82 },
-  { src: 'frontend/public/assets/HERO1.png',            quality: 82 },
-  { src: 'frontend/public/assets/HERO1MOBILEVIEW.png',  quality: 82 },
-  { src: 'frontend/public/assets/HERO2.png',            quality: 82 },
-  { src: 'frontend/public/assets/HERO2MBOILE.png',      quality: 82 },
-  { src: 'frontend/public/assets/HERO3.png',            quality: 82 },
-  { src: 'frontend/public/assets/HERO3MOBILE.png',      quality: 82 },
-  { src: 'frontend/public/assets/HERO4.png',            quality: 82 },
-  { src: 'frontend/public/assets/HERO4MOBILE.png',      quality: 82 },
-  { src: 'frontend/public/assets/HERO5.png',            quality: 82 },
-  { src: 'frontend/public/assets/HERO8.png',            quality: 82 },
-  { src: 'frontend/public/assets/Hero6.png',            quality: 82 },
-
-  // Category cover images
-  { src: 'frontend/public/METALWARE.png',                    quality: 82 },
-  { src: 'frontend/public/Metalwaremobile.png',              quality: 82 },
-  { src: 'frontend/public/brasshero.png',                    quality: 82 },
-  { src: 'frontend/public/brassmobileview.png',              quality: 82 },
-  { src: 'frontend/public/copperhero.png',                   quality: 82 },
-  { src: 'frontend/public/coppermobileview.png',             quality: 82 },
-  { src: 'frontend/public/copperatepcview.png',              quality: 82 },
-  { src: 'frontend/public/copperatemobileview.png',          quality: 82 },
-  { src: 'frontend/public/mandiressentials.png',             quality: 82 },
-  { src: 'frontend/public/mandirphone view.png',             quality: 82 },
-  { src: 'frontend/public/mandiressentialmobileview.png',    quality: 82 },
-  { src: 'frontend/public/assets/brasscover.png',            quality: 82 },
-  { src: 'frontend/public/assets/Copper cover.png',          quality: 82 },
-  { src: 'frontend/public/assets/Incense cover.jpg',         quality: 82 },
-  { src: 'frontend/public/assets/handcrafted cover.jpg',     quality: 82 },
-
-  // Launch / banner
-  { src: 'frontend/public/assets/Launch2.png',       quality: 80 },
-  { src: 'frontend/public/assets/Launch2mobile.png', quality: 80 },
-  { src: 'frontend/public/assets/Launchmobile.png',  quality: 80 },
-  { src: 'frontend/public/assets/launch3.png',       quality: 80 },
-
-  // Energy stones / incense / essential
-  { src: 'frontend/public/energystones mobile view.png', quality: 82 },
-  { src: 'frontend/public/incesne hero.png',             quality: 82 },
-  { src: 'frontend/public/incenemobile hero.png',        quality: 82 },
-  { src: 'frontend/public/essentialhero.png',            quality: 82 },
-  { src: 'frontend/public/braclet desktopview.png',      quality: 82 },
-];
+async function getFilesRecursively(dir) {
+  let results = [];
+  const list = await fs.readdir(dir, { withFileTypes: true });
+  for (const file of list) {
+    const filePath = path.join(dir, file.name);
+    if (file.isDirectory()) {
+      results = results.concat(await getFilesRecursively(filePath));
+    } else {
+      const ext = path.extname(file.name).toLowerCase();
+      // Only process .png, .jpg, .jpeg — exclude already generated -400w/-800w/-1200w files or .webp
+      if (['.png', '.jpg', '.jpeg'].includes(ext) && !file.name.includes('-400w') && !file.name.includes('-800w') && !file.name.includes('-1200w')) {
+        results.push(filePath);
+      }
+    }
+  }
+  return results;
+}
 
 async function sizeKB(p) {
   try { return (await fs.stat(p)).size / 1024; }
   catch { return 0; }
 }
 
+async function isUpToDate(srcPath, destPaths) {
+  try {
+    const srcStat = await fs.stat(srcPath);
+    for (const d of destPaths) {
+      if (!existsSync(d)) return false;
+      const destStat = await fs.stat(d);
+      if (destStat.mtime < srcStat.mtime) return false;
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function main() {
-  console.log('\n🔄  SHRAVIKO Image → WebP Conversion Pipeline\n');
-  console.log('─'.repeat(68));
+  console.log('\n🔄  SHRAVIKO Recursive WebP + Multi-Resolution Variant Pipeline\n');
+  console.log('─'.repeat(72));
 
   const sharp = await loadSharp();
-  console.log('✅  sharp loaded from frontend/node_modules\n');
+  console.log('✅  sharp loaded successfully\n');
 
-  let totalOrig = 0, totalWebp = 0, converted = 0, skipped = 0, failed = 0;
+  const allImages = await getFilesRecursively(publicDir);
+  console.log(`🔍  Found ${allImages.length} PNG/JPG images in frontend/public\n`);
+
+  let convertedCount = 0;
+  let cachedCount = 0;
+  let failedCount = 0;
+  let totalOrigKB = 0;
+  let totalWebpKB = 0;
+
   const results = [];
 
-  for (const target of TARGET_IMAGES) {
-    const src = path.join(baseDir, target.src);
-    const ext = path.extname(src);
-    const dest = src.slice(0, -ext.length) + '.webp';
+  for (const srcPath of allImages) {
+    const relativePath = path.relative(baseDir, srcPath).replace(/\\/g, '/');
+    const dirName = path.dirname(srcPath);
+    const ext = path.extname(srcPath);
+    const baseName = path.basename(srcPath, ext);
 
-    // Source file must exist
-    if (!existsSync(src)) {
-      console.log(`⚠️   SKIP (not found): ${target.src}`);
-      skipped++;
+    const baseWebp = path.join(dirName, `${baseName}.webp`);
+    const w400Webp = path.join(dirName, `${baseName}-400w.webp`);
+    const w800Webp = path.join(dirName, `${baseName}-800w.webp`);
+    const w1200Webp = path.join(dirName, `${baseName}-1200w.webp`);
+
+    const destFiles = [baseWebp, w400Webp, w800Webp, w1200Webp];
+
+    const origKB = await sizeKB(srcPath);
+    totalOrigKB += origKB;
+
+    const cached = await isUpToDate(srcPath, destFiles);
+    if (cached) {
+      const wkb = await sizeKB(baseWebp);
+      totalWebpKB += wkb;
+      console.log(`☑️   CACHED: ${relativePath} (${origKB.toFixed(0)} KB → ${wkb.toFixed(0)} KB)`);
+      cachedCount++;
+      results.push({ file: relativePath, originalKB: origKB.toFixed(0), webpKB: wkb.toFixed(0), status: 'cached' });
       continue;
     }
 
-    const origKB = await sizeKB(src);
-
-    // Skip if WebP already up to date
-    if (existsSync(dest)) {
-      const [srcStat, destStat] = await Promise.all([fs.stat(src), fs.stat(dest)]);
-      if (destStat.mtime >= srcStat.mtime) {
-        const wkb = await sizeKB(dest);
-        console.log(`☑️   CACHED: ${path.basename(src)}  ${origKB.toFixed(0)} KB → ${wkb.toFixed(0)} KB`);
-        totalOrig += origKB; totalWebp += wkb;
-        results.push({ file: target.src, original: origKB.toFixed(0), webp: wkb.toFixed(0), status: 'cached' });
-        skipped++;
-        continue;
-      }
-    }
-
     try {
-      await sharp(src).webp({ quality: target.quality, effort: 4 }).toFile(dest);
-      const wkb = await sizeKB(dest);
-      const pct = (((origKB - wkb) / origKB) * 100).toFixed(0);
-      console.log(`✅  ${path.basename(src)}`);
-      console.log(`    ${origKB.toFixed(0)} KB  →  ${wkb.toFixed(0)} KB  (${pct}% smaller)`);
-      totalOrig += origKB; totalWebp += wkb;
-      results.push({ file: target.src, original: origKB.toFixed(0), webp: wkb.toFixed(0), savings: pct + '%', status: 'converted' });
-      converted++;
+      const image = sharp(srcPath);
+      const metadata = await image.metadata();
+      const origWidth = metadata.width || 1200;
+
+      // 1. Base WebP (original size, quality 82)
+      await image.clone().webp({ quality: 82, effort: 4 }).toFile(baseWebp);
+
+      // 2. 400w variant (max width 400)
+      if (origWidth > 400) {
+        await image.clone().resize({ width: 400, fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } }).webp({ quality: 82, effort: 4 }).toFile(w400Webp);
+      } else {
+        await image.clone().webp({ quality: 82, effort: 4 }).toFile(w400Webp);
+      }
+
+      // 3. 800w variant (max width 800)
+      if (origWidth > 800) {
+        await image.clone().resize({ width: 800, fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } }).webp({ quality: 82, effort: 4 }).toFile(w800Webp);
+      } else {
+        await image.clone().webp({ quality: 82, effort: 4 }).toFile(w800Webp);
+      }
+
+      // 4. 1200w variant (max width 1200)
+      if (origWidth > 1200) {
+        await image.clone().resize({ width: 1200, fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } }).webp({ quality: 82, effort: 4 }).toFile(w1200Webp);
+      } else {
+        await image.clone().webp({ quality: 82, effort: 4 }).toFile(w1200Webp);
+      }
+
+      const wkb = await sizeKB(baseWebp);
+      const w400kb = await sizeKB(w400Webp);
+      const pct = (((origKB - w400kb) / origKB) * 100).toFixed(0);
+
+      totalWebpKB += w400kb; // Using card thumbnail size for stats comparison
+      console.log(`✅  ${relativePath}`);
+      console.log(`    Orig: ${origKB.toFixed(0)} KB  | Base WebP: ${wkb.toFixed(0)} KB | 400w: ${w400kb.toFixed(0)} KB (${pct}% smaller)`);
+
+      convertedCount++;
+      results.push({
+        file: relativePath,
+        originalWidth: origWidth,
+        originalKB: origKB.toFixed(0),
+        baseWebpKB: wkb.toFixed(0),
+        w400KB: w400kb.toFixed(0),
+        savingsPercent: pct + '%',
+        status: 'converted'
+      });
     } catch (err) {
-      console.error(`❌  FAILED: ${target.src}:`, err.message);
-      results.push({ file: target.src, status: 'failed', error: err.message });
-      failed++;
+      console.error(`❌  FAILED: ${relativePath}:`, err.message);
+      failedCount++;
+      results.push({ file: relativePath, status: 'failed', error: err.message });
     }
   }
 
-  const savedMB = (totalOrig - totalWebp) / 1024;
-  const savedPct = ((savedMB / (totalOrig / 1024)) * 100).toFixed(0);
+  const savedMB = Math.max(0, (totalOrigKB - totalWebpKB) / 1024);
+  const savedPct = totalOrigKB > 0 ? ((savedMB / (totalOrigKB / 1024)) * 100).toFixed(0) : 0;
 
-  console.log('\n' + '─'.repeat(68));
+  console.log('\n' + '─'.repeat(72));
   console.log('📊  SUMMARY');
-  console.log('─'.repeat(68));
-  console.log(`    Converted : ${converted}`);
-  console.log(`    Skipped   : ${skipped}`);
-  console.log(`    Failed    : ${failed}`);
-  console.log(`\n    Original  : ${(totalOrig / 1024).toFixed(1)} MB`);
-  console.log(`    WebP      : ${(totalWebp / 1024).toFixed(1)} MB`);
-  console.log(`    Saved     : ${savedMB.toFixed(1)} MB  (${savedPct}% reduction)\n`);
+  console.log('─'.repeat(72));
+  console.log(`    Converted : ${convertedCount}`);
+  console.log(`    Cached    : ${cachedCount}`);
+  console.log(`    Failed    : ${failedCount}`);
+  console.log(`\n    Total Original : ${(totalOrigKB / 1024).toFixed(1)} MB`);
+  console.log(`    Card WebP (400w): ${(totalWebpKB / 1024).toFixed(1)} MB`);
+  console.log(`    Bandwidth Saved: ${savedMB.toFixed(1)} MB (${savedPct}% reduction)\n`);
 
   await fs.writeFile(
     path.join(baseDir, 'image-optimization-results.json'),
-    JSON.stringify({ results, summary: { converted, skipped, failed, totalOrigMB: (totalOrig/1024).toFixed(1), totalWebpMB: (totalWebp/1024).toFixed(1), savedMB: savedMB.toFixed(1) } }, null, 2)
+    JSON.stringify({ results, summary: { converted: convertedCount, cached: cachedCount, failed: failedCount, totalOrigMB: (totalOrigKB/1024).toFixed(1), totalWebpMB: (totalWebpKB/1024).toFixed(1), savedMB: savedMB.toFixed(1) } }, null, 2)
   );
-  console.log('📄  Results → image-optimization-results.json\n');
+  console.log('📄  Results saved to image-optimization-results.json\n');
 }
 
 main().catch(console.error);
+
