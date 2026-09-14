@@ -84,11 +84,11 @@ export const Navbar = ({
         style={{ pointerEvents: (isVisible && !hideNavbar) ? 'auto' : 'none' }}
       >
         {/* Solid White Floating Capsule with Curved Corners */}
-        <div className={`max-w-[1400px] mx-auto bg-white rounded-2xl sm:rounded-full border border-stone-200/80 overflow-hidden transition-all duration-300 ${isScrolled ? 'shadow-xl' : 'shadow-md'
+        <div className={`max-w-[1440px] mx-auto bg-white rounded-2xl sm:rounded-full border border-stone-200/80 transition-all duration-300 ${isScrolled ? 'shadow-xl' : 'shadow-md'
           }`}>
 
-          {/* ── Top bar: 52px Logo | Category Links | Action Buttons ── */}
-          <div className="px-5 sm:px-8 lg:px-12 xl:px-16 flex items-center justify-between relative" style={{ height: '68px' }}>
+          {/* ── Top bar: Logo | Category Links | Action Buttons ── */}
+          <div className="px-4 sm:px-6 lg:px-5 xl:px-8 flex items-center justify-between relative" style={{ height: '64px' }}>
 
             {/* LEFT — Mobile Toggle & Desktop Logo */}
             <div className="flex items-center gap-3 flex-shrink-0 z-10">
@@ -110,7 +110,7 @@ export const Navbar = ({
                   src="/trasnparwtnt bg.png"
                   alt="Shraviko"
                   priority={true}
-                  containerClassName="h-[52px] w-auto bg-transparent"
+                  containerClassName="h-[44px] xl:h-[48px] w-auto bg-transparent"
                   className="transition-transform duration-300 group-hover:scale-105 object-contain h-full"
                   style={{ filter: 'drop-shadow(0 2px 6px rgba(120,80,0,0.18))' }}
                 />
@@ -128,23 +128,23 @@ export const Navbar = ({
                 src="/trasnparwtnt bg.png"
                 alt="Shraviko"
                 priority={true}
-                containerClassName="h-[44px] w-auto bg-transparent"
+                containerClassName="h-[40px] w-auto bg-transparent"
                 className="object-contain h-full"
                 style={{ filter: 'drop-shadow(0 2px 4px rgba(120,80,0,0.18))' }}
               />
             </button>
 
-            {/* CENTER — Spacious Category Navigation Links */}
-            <nav className="hidden lg:flex items-center justify-center gap-2.5 lg:gap-3.5 xl:gap-5 mx-2 xl:mx-4">
+            {/* CENTER — Properly Scaled Category Navigation Links */}
+            <nav className="hidden lg:flex items-center justify-center gap-1.5 xl:gap-2.5 2xl:gap-3.5 mx-2 flex-1">
               {navLinks.map((link) => {
                 const isActive = activeCategory === link.category;
                 return (
                   <button
                     key={link.category}
                     onClick={() => onSelectCategory(link.category)}
-                    className={`text-[11px] xl:text-xs tracking-[0.1em] uppercase font-sans transition-all relative py-1.5 px-2 rounded-md whitespace-nowrap ${isActive
-                      ? 'text-[#2C1F06] font-bold bg-[#FAF5EB] border border-[#C5A059]/40'
-                      : 'text-[#2C1F06] hover:text-[#C5A059] font-semibold hover:bg-[#FAF5EB]/60'
+                    className={`text-[10px] xl:text-[11px] 2xl:text-xs tracking-wider uppercase font-sans transition-all relative py-1.5 px-2 xl:px-2.5 rounded-lg whitespace-nowrap ${isActive
+                      ? 'text-[#2C1F06] font-bold bg-[#FAF5EB] border border-[#C5A059]/40 shadow-xs'
+                      : 'text-[#2C1F06]/90 hover:text-[#C5A059] font-semibold hover:bg-[#FAF5EB]/60'
                       }`}
                   >
                     {link.label}
@@ -157,7 +157,7 @@ export const Navbar = ({
             </nav>
 
             {/* RIGHT — Action Buttons (Search, Wishlist) */}
-            <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+            <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 z-10">
               <button
                 onClick={onOpenSearch}
                 aria-label="Search products"
