@@ -12,7 +12,7 @@ export const WelcomeOfferModal = ({ onApplyCoupon }) => {
     if (!hasDismissed) {
       const timer = setTimeout(() => {
         setIsOpen(true);
-      }, 2200);
+      }, 12000);
 
       return () => clearTimeout(timer);
     }
