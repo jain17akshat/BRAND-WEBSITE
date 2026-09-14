@@ -1212,9 +1212,9 @@ export const PRODUCTS = [
     tag: 'Copper Hawan Kund',
     artType: 'hawankund',
     fitMode: 'contain',
-    image: '/assets/hawankund/kund 1.webp',
+    image: '/assets/hawankund/hawan1.webp',
     images: [
-      '/assets/hawankund/kund 1.webp',
+      '/assets/hawankund/hawan1.webp',
       '/assets/hawankund/kund 2.webp',
       '/assets/hawankund/kund 3.webp',
       '/assets/hawankund/kund 4.webp'
