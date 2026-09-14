@@ -14,7 +14,7 @@ export const PRODUCTS = [
   // 1. Garuda Headed Brass Bell
   {
     id: 'brass-bell-garuda',
-    name: 'Garud Headed Brass Pooja Bell',
+    name: 'Shraviko Garud Headed Brass Pooja Bell',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -75,7 +75,7 @@ export const PRODUCTS = [
   // 2. Nandi Headed Brass Bell
   {
     id: 'brass-bell-nandi',
-    name: 'Nandi Headed Brass Pooja Bell',
+    name: 'Shraviko Nandi Headed Brass Pooja Bell',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -137,7 +137,7 @@ export const PRODUCTS = [
   // 3. Simple Traditional Brass Bell
   {
     id: 'brass-bell-simple',
-    name: 'Traditional Brass Pooja Bell',
+    name: 'Shraviko Traditional Brass Pooja Bell',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -198,7 +198,7 @@ export const PRODUCTS = [
   // 4. Brass Ganesh Ghanti
   {
     id: 'brass-bell-carved',
-    name: 'Brass Ganesh Ghanti',
+    name: 'Shraviko Brass Ganesh Ghanti',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -261,7 +261,7 @@ export const PRODUCTS = [
   // 2. Brass Pooja Thali Set
   {
     id: 'brass-puja-thali-set',
-    name: 'Pure Brass Pooja Thali',
+    name: 'Shraviko Pure Brass Pooja Thali',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Puja Thali',
@@ -329,7 +329,7 @@ export const PRODUCTS = [
   // 4. Brass Kapoor Aarti Diya
   {
     id: 'brass-aarti-kapoor-diya',
-    name: 'Pure Brass Panchmukhi Aarti Diya',
+    name: 'Shraviko Pure Brass Panchmukhi Aarti Diya',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Aarti & Diyas',
@@ -396,7 +396,7 @@ export const PRODUCTS = [
   // 5. Brass Akhand Jyot Deep
   {
     id: 'brass-akhand-jyot-deepak',
-    name: 'Brass Akhand Jyot Diya with Protective Cover',
+    name: 'Shraviko Brass Akhand Jyot Diya with Protective Cover',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
@@ -533,7 +533,7 @@ export const PRODUCTS = [
   // 7. Brass Rishi Kamandal
   {
     id: 'brass-kamandal-holy-water-pot',
-    name: 'Brass Kamandal with Lid',
+    name: 'Shraviko Brass Kamandal with Lid',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Ritual Vessels',
@@ -602,7 +602,7 @@ export const PRODUCTS = [
   // 8. Brass Trishul
   {
     id: 'brass-trishul-with-damru',
-    name: 'Brass Trishul with Damru & Stand',
+    name: 'Shraviko Brass Trishul with Damru & Stand',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Symbols & Statues',
@@ -662,7 +662,7 @@ export const PRODUCTS = [
   // 9. Standing Altar Trishul
   {
     id: 'brass-trishul-standing-emblem',
-    name: 'Brass Trishul with Stand',
+    name: 'Shraviko Brass Trishul with Stand',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Symbols & Statues',
@@ -723,7 +723,7 @@ export const PRODUCTS = [
   // 9. Brass Gomukhi Shringi
   {
     id: 'brass-gomukhi-shringi-abhishekam',
-    name: 'Pure Brass Gaumukh Shringi',
+    name: 'Shraviko Pure Brass Gaumukh Shringi',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Abhishekam Vessels',
@@ -794,7 +794,7 @@ export const PRODUCTS = [
   // 10. Brass Simhasanam Throne
   {
     id: 'brass-singhasan-deity-throne',
-    name: 'Brass God Singhasan',
+    name: 'Shraviko Brass God Singhasan',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Altar Thrones',
@@ -928,7 +928,7 @@ export const PRODUCTS = [
   // 15B. Brass Kalash Pooja Vessel
   {
     id: 'brass-kalash-pooja-vessel',
-    name: 'Brass Pooja Kalash Lota',
+    name: 'Shraviko Brass Pooja Kalash Lota',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Kalash',
@@ -993,7 +993,7 @@ export const PRODUCTS = [
   // 15C. Hand-Engraved Artisanal Brass Design Puja Thali Set
   {
     id: 'brass-design-thali-set',
-    name: 'Brass Peacock Pooja Thali',
+    name: 'Shraviko Brass Peacock Pooja Thali',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Puja Thali',
@@ -1062,7 +1062,7 @@ export const PRODUCTS = [
   // 13. Copper Panchpatra Set
   {
     id: 'copper-panchpatra-pali-set',
-    name: 'Pure Copper Panchpatra Udharini Set with Snake Head Spoon',
+    name: 'Shraviko Pure Copper Panchpatra Udharini Set with Snake Head Spoon',
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Vessels',
@@ -1131,7 +1131,7 @@ export const PRODUCTS = [
   // 14. Copper Puja Thali Set
   {
     id: 'copper-puja-thali-set',
-    name: 'Pure Copper Pooja Thali',
+    name: 'Shraviko Pure Copper Pooja Thali',
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Puja Thali',
@@ -1201,7 +1201,7 @@ export const PRODUCTS = [
   // 15. Copper Hawan Kund
   {
     id: 'copper-hawan-kund-pyre',
-    name: 'Pure Copper Hawan Kund with Dual Handles',
+    name: 'Shraviko Pure Copper Hawan Kund with Dual Handles',
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Sacred Homa Vessels',
@@ -1270,7 +1270,7 @@ export const PRODUCTS = [
   // 15C. Copper Kalash Pooja Vessel
   {
     id: 'copper-kalash-pooja-vessel',
-    name: 'Pure Copper Kalash',
+    name: 'Shraviko Pure Copper Kalash',
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Kalash',
@@ -1336,7 +1336,7 @@ export const PRODUCTS = [
   // 16. Agarbatti (Without Bamboo)
   {
     id: 'incense-no-bamboo',
-    name: '100% Organic Bamboo-Free Temple Agarbatti',
+    name: 'Shraviko 100% Organic Bamboo-Free Temple Agarbatti',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Agarbatti (Without Bamboo)',
@@ -1364,7 +1364,7 @@ export const PRODUCTS = [
   // 17. Agarbatti (With Bamboo)
   {
     id: 'incense-with-bamboo',
-    name: 'Traditional Sacred Temple Agarbatti Sticks',
+    name: 'Shraviko Traditional Sacred Temple Agarbatti Sticks',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Agarbatti (With Bamboo)',
@@ -1392,7 +1392,7 @@ export const PRODUCTS = [
   // 18. Natural Dhoop Cones
   {
     id: 'dhoop-cones',
-    name: 'Sacred Natural Organic Dhoop Cones',
+    name: 'Shraviko Sacred Natural Organic Dhoop Cones',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Dhoop Cones',
@@ -1423,7 +1423,7 @@ export const PRODUCTS = [
   // 19. Charcoal-Free Dhoop Sticks
   {
     id: 'dhoop-sticks',
-    name: 'Charcoal-Free Herbal Dhoop Sticks',
+    name: 'Shraviko Charcoal-Free Herbal Dhoop Sticks',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Dhoop Sticks',
@@ -1451,7 +1451,7 @@ export const PRODUCTS = [
   // 20. Loban & Sambrani Cups
   {
     id: 'sambrani-cups',
-    name: 'Sacred Vedic Loban & Guggal Sambrani Cups',
+    name: 'Shraviko Sacred Vedic Loban & Guggal Sambrani Cups',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Sambrani Cups',
@@ -1479,7 +1479,7 @@ export const PRODUCTS = [
   // 21. Wooden Chowki (Bajot)
   {
     id: 'wooden-chowki-carved-01',
-    name: 'Wooden Pooja Chowki',
+    name: 'Shraviko Wooden Pooja Chowki',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Wooden Chowki',
@@ -1542,7 +1542,7 @@ export const PRODUCTS = [
   // 21B. Large Hand-Painted Wooden Chowki (15x15 Inch)
   {
     id: 'wooden-chowki-large-15x15',
-    name: 'Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)',
+    name: 'Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Wooden Chowki',
@@ -1605,7 +1605,7 @@ export const PRODUCTS = [
   // 22. Brass Dhoopdani
   {
     id: 'brass-dhoopdani-burner',
-    name: 'Metal Dhoop Dani with Handle',
+    name: 'Shraviko Metal Dhoop Dani with Handle',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Puja Accessories',
@@ -1673,7 +1673,7 @@ export const PRODUCTS = [
   // 25. Mala Counter Set
   {
     id: 'mandir-mala-counter-brass',
-    name: 'Digital Japa Counter',
+    name: 'Shraviko Digital Japa Counter',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Mala Counters',
@@ -1735,7 +1735,7 @@ export const PRODUCTS = [
   // 26. Pooja Box Organizer Chest
   {
     id: 'mandir-pooja-box-chest',
-    name: 'Stainless Steel Pooja Box with 7 Removable Containers',
+    name: 'Shraviko Stainless Steel Pooja Box with 7 Removable Containers',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Storage & Chests',
@@ -1803,7 +1803,7 @@ export const PRODUCTS = [
   // 28. Ganesh Siddha Yantra Frame
   {
     id: 'vastu-ganesh-siddha-yantra',
-    name: 'Pure Copper Ganesh Yantra',
+    name: 'Shraviko Pure Copper Ganesh Yantra',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Yantras',
@@ -1870,7 +1870,7 @@ export const PRODUCTS = [
   // 29. Kuber Dhan Prapti Yantra
   {
     id: 'vastu-kuber-dhan-prapti-yantra',
-    name: 'Pure Copper Kuber Yantra',
+    name: 'Shraviko Pure Copper Kuber Yantra',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Wealth Yantras',
@@ -1940,7 +1940,7 @@ export const PRODUCTS = [
   // 30. Sampoorna Mahalakshmi Siddha Yantra Frame
   {
     id: 'vastu-laxmi-siddha-yantra',
-    name: 'Pure Copper Lakshmi Kuber Yantra',
+    name: 'Shraviko Pure Copper Lakshmi Kuber Yantra',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Mahalakshmi Yantras',
@@ -2010,7 +2010,7 @@ export const PRODUCTS = [
   // 31. Shree Shani Yantra
   {
     id: 'vastu-shani-siddha-yantra',
-    name: 'Shree Shani Yantra',
+    name: 'Shraviko Shree Shani Yantra',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Shani Yantras',
@@ -2079,7 +2079,7 @@ export const PRODUCTS = [
   // 32. Crystal Glass Sri Vastu Yantra Plaque
   {
     id: 'vastu-crystal-glass-yantra',
-    name: 'Sphatik Shree Yantra Cone',
+    name: 'Shraviko Sphatik Shree Yantra Cone',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Glass Yantras',
@@ -2517,7 +2517,7 @@ export const PRODUCTS = [
   // 42. Panchmukhi Himalayan Rudraksha Mala
   {
     id: 'mandir-rudraksh-mala',
-    name: '5 Mukhi Rudraksh Mala',
+    name: 'Shraviko 5 Mukhi Rudraksh Mala',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2582,7 +2582,7 @@ export const PRODUCTS = [
   // 43. Natural Crystal Quartz Sphatik Mala
   {
     id: 'mandir-sphatik-mala',
-    name: 'Natural Sphatik Mala 108+1 Beads',
+    name: 'Shraviko Natural Sphatik Mala 108+1 Beads',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2648,7 +2648,7 @@ export const PRODUCTS = [
   // 44. Vrindavan Dham Pure Organic Tulsi Mala
   {
     id: 'mandir-tulsi-mala',
-    name: 'Original Tulsi Mala 108 Beads',
+    name: 'Shraviko Original Tulsi Mala 108 Beads',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2715,7 +2715,7 @@ export const PRODUCTS = [
   // 45. Natural White Seed Lord Krishna Vaijanti Mala
   {
     id: 'mandir-vaijanti-mala',
-    name: 'Original Vaijanti Mala 108+1 Beads with Rudraksha',
+    name: 'Shraviko Original Vaijanti Mala 108+1 Beads with Rudraksha',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2780,7 +2780,7 @@ export const PRODUCTS = [
   // 46. Natural Black Ebony Wood Karungali Mala
   {
     id: 'mandir-karungali-mala',
-    name: 'Original Natural Karungali Mala 108 Beads',
+    name: 'Shraviko Original Natural Karungali Mala 108 Beads',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2911,7 +2911,7 @@ export const PRODUCTS = [
   // Coming Soon Item - Temple Chawar Sahib
   {
     id: 'essentials-brass-chawar-whisk',
-    name: 'Premium Temple Chawar Sahib',
+    name: 'Shraviko Premium Temple Chawar Sahib',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Mandir Essentials',
@@ -2971,7 +2971,7 @@ export const PRODUCTS = [
   // Coming Soon Item - Jap Bag Gaumukhi
   {
     id: 'mandir-jap-bag-gaumukhi',
-    name: 'Pure Cotton Gomukhi Japa Mala Bag',
+    name: 'Shraviko Pure Cotton Gomukhi Japa Mala Bag',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Japa Bags & Pouches',
@@ -3035,7 +3035,7 @@ export const PRODUCTS = [
   // Coming Soon Item - Velvet Pooja Asan Mat
   {
     id: 'mandir-royal-velvet-asan-mat',
-    name: 'Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3',
+    name: 'Shraviko Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Asan Mats',
@@ -3237,22 +3237,24 @@ export const PRODUCTS = [
     ],
     purity: 'High Quality',
     inStock: true,
-    description: 'The SHRAVIKO Kaal Sarp Yog Dosh Nivaran Yantra is a sacred geometric diagram designed to help mitigate the effects of Kaal Sarp Dosh. Handcrafted with precision, it brings positive energy and spiritual harmony to your home or office space.',
+    description: 'The Kaal Sarp Yog Dosh Nivaran Yantra is traditionally associated with devotional practices intended to address Kaal Sarp Yog/Dosh and seek spiritual balance, peace, and stability. Devotees traditionally use this yantra as a spiritual focus for prayer and worship when they believe Kaal Sarp Yog may be affecting different areas of life. It is associated with seeking mental peace, stability, removal of perceived obstacles, and positive spiritual energy.',
     specifications: [
       { label: 'Product', value: 'Kaal Sarp Yog Dosh Nivaran Yantra' },
-      { label: 'Suitable For', value: 'Home, Office, Mandir' }
+      { label: 'Suitable For', value: 'Home temple, pooja room, office' }
     ],
     keyFeatures: [
-      'Sacred geometric design',
-      'Helps in spiritual harmony',
-      'Ideal for home mandir'
+      'Traditionally associated with seeking spiritual balance and peace',
+      'Used as a spiritual focus for prayer and worship',
+      'Believed to help address Kaal Sarp Yog/Dosh',
+      'Ideal for home temple, pooja room, or office'
     ],
     careInstructions: [
       'Wipe with a clean, dry cloth.',
       'Keep in a clean and sacred space.'
     ],
     faqs: [
-      { q: 'Where should this be placed?', a: 'It is best placed in the mandir or a sacred space in your home.' }
+      { q: 'Where should this be placed?', a: 'Place the yantra on a clean surface in a home temple, personal meditation space, or respectful devotional area.' },
+      { q: 'How is it traditionally used?', a: 'Incorporate it into your regular pooja, prayer, or meditation routine. Specific rituals may vary by tradition.' }
     ]
   },
   {
@@ -3280,22 +3282,24 @@ export const PRODUCTS = [
     ],
     purity: 'High Quality',
     inStock: true,
-    description: 'The SHRAVIKO Mangal Yantra is designed to bring auspiciousness and positive energy into your life. It is traditionally used to appease the planet Mars (Mangal) and bring courage, energy, and success.',
+    description: 'Mangal Yantra is traditionally associated with Mangal (Mars) and devotional practices connected with strength, courage, discipline, determination, and stability. Traditionally, devotees use Mangal Yantra when seeking spiritual support for courage, confidence, focus, determination, and overcoming challenges associated with Mangal.',
     specifications: [
       { label: 'Product', value: 'Mangal Yantra' },
-      { label: 'Suitable For', value: 'Home, Office, Mandir' }
+      { label: 'Suitable For', value: 'Home mandir, office, study' }
     ],
     keyFeatures: [
-      'Sacred geometric design',
-      'Helps in spiritual harmony',
-      'Ideal for home mandir'
+      'Traditionally associated with Mangal (Mars)',
+      'Used to seek spiritual support for courage and determination',
+      'Believed to assist in overcoming challenges',
+      'Suitable for home mandir, office, or study'
     ],
     careInstructions: [
       'Wipe with a clean, dry cloth.',
       'Keep in a clean and sacred space.'
     ],
     faqs: [
-      { q: 'Where should this be placed?', a: 'It is best placed in the mandir or a sacred space in your home.' }
+      { q: 'Where should this be placed?', a: 'It is commonly placed in a home mandir, pooja room, office, study, or meditation area.' },
+      { q: 'How is it traditionally used?', a: 'Keep the yantra in a clean space and include it in regular prayer or meditation. Consult a knowledgeable practitioner for specific rituals.' }
     ]
   },
   {
@@ -3323,22 +3327,24 @@ export const PRODUCTS = [
     ],
     purity: 'High Quality',
     inStock: true,
-    description: 'The SHRAVIKO Mahalakshmi Yantra is a powerful sacred geometry that invokes the blessings of Goddess Lakshmi. It is known to attract wealth, prosperity, and abundance into your home or business.',
+    description: 'Mahalakshmi Yantra is traditionally associated with Goddess Lakshmi, prosperity, abundance, good fortune, and household well-being. Devotees traditionally worship this yantra while seeking blessings associated with prosperity, financial stability, abundance, harmony, and good fortune.',
     specifications: [
       { label: 'Product', value: 'Mahalakshmi Yantra' },
-      { label: 'Suitable For', value: 'Home, Office, Mandir' }
+      { label: 'Suitable For', value: 'Home temple, office, business' }
     ],
     keyFeatures: [
-      'Sacred geometric design',
-      'Attracts wealth and prosperity',
-      'Ideal for home mandir'
+      'Traditionally associated with Goddess Lakshmi',
+      'Used to seek blessings for prosperity and abundance',
+      'Believed to support financial stability and good fortune',
+      'Ideal for home temple, office, or business workspace'
     ],
     careInstructions: [
       'Wipe with a clean, dry cloth.',
       'Keep in a clean and sacred space.'
     ],
     faqs: [
-      { q: 'Where should this be placed?', a: 'It is best placed in the mandir or a sacred space in your home.' }
+      { q: 'Where should this be placed?', a: 'Place it respectfully in a home temple, office, or any place used for Lakshmi worship.' },
+      { q: 'How is it traditionally used?', a: 'Use it as a focal point during prayer, meditation, and Lakshmi worship.' }
     ]
   },
   {
@@ -3354,36 +3360,81 @@ export const PRODUCTS = [
     tag: 'Success & Accomplishment',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/Sarv kary/image1.webp',
+    image: '/assets/Sarv kary/sarv1.webp',
     images: [
-      '/assets/Sarv kary/image1.webp',
-      '/assets/Sarv kary/image2.webp',
-      '/assets/Sarv kary/image3.webp',
-      '/assets/Sarv kary/image4.webp',
-      '/assets/Sarv kary/image5.webp',
-      '/assets/Sarv kary/image6.webp'
+      '/assets/Sarv kary/sarv1.webp',
+      '/assets/Sarv kary/sarv2.webp',
+      '/assets/Sarv kary/sarv3.webp',
+      '/assets/luxmiyantra/laxmi 4.webp'
     ],
     weightVariants: [
       { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
     ],
     purity: 'High Quality',
     inStock: true,
-    description: 'The SHRAVIKO Sarv Karya Siddhi Yantra is an extremely powerful yantra that brings success in all endeavors. It helps in overcoming obstacles and achieving your goals in personal and professional life.',
+    description: 'Sarv Karya Siddhi broadly refers to the traditional spiritual intention of seeking successful completion of important tasks and endeavors. This yantra is traditionally used by devotees seeking spiritual support for success, focus, determination, removal of obstacles, and completion of important work.',
     specifications: [
       { label: 'Product', value: 'Sarv Karya Siddhi Yantra' },
-      { label: 'Suitable For', value: 'Home, Office, Mandir' }
+      { label: 'Suitable For', value: 'Home, office, workspace' }
     ],
     keyFeatures: [
-      'Sacred geometric design',
-      'Helps in achieving success in all endeavors',
-      'Ideal for home mandir'
+      'Traditionally associated with successful completion of tasks',
+      'Used for seeking spiritual support for focus and determination',
+      'Believed to assist in the removal of obstacles',
+      'Suitable for home temple, office, or workspace'
     ],
     careInstructions: [
       'Wipe with a clean, dry cloth.',
       'Keep in a clean and sacred space.'
     ],
     faqs: [
-      { q: 'Where should this be placed?', a: 'It is best placed in the mandir or a sacred space in your home.' }
+      { q: 'Where should this be placed?', a: 'Keep the yantra in a clean and respectful location such as a home temple, office, or study room.' },
+      { q: 'How is it traditionally used?', a: 'Incorporate it into regular prayer or meditation, particularly when beginning an important task or undertaking.' }
+    ]
+  },
+  {
+    id: 'yantra-baglamukhi',
+    name: 'SHRAVIKO Shri Baglamukhi Mahayantra',
+    category: 'vastu',
+    categoryName: 'Vastu & Spiritual',
+    subcategory: 'Yantras',
+    price: 999,
+    originalPrice: 1499,
+    rating: 5.0,
+    reviewsCount: 0,
+    tag: 'Protection & Courage',
+    artType: 'yantra',
+    fitMode: 'contain',
+    image: '/assets/Bagalmukhi/bagalmukhi1.webp',
+    images: [
+      '/assets/Bagalmukhi/bagalmukhi1.webp',
+      '/assets/Bagalmukhi/mukhi2.webp',
+      '/assets/Bagalmukhi/mukhi3.webp',
+      '/assets/luxmiyantra/laxmi 4.webp'
+    ],
+    weightVariants: [
+      { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
+    ],
+    purity: 'High Quality',
+    inStock: true,
+    description: 'Baglamukhi Yantra is a sacred geometric representation associated with Maa Baglamukhi, one of the Dashamahavidyas. Traditional worship of Baglamukhi is associated with protection, courage, restraint, focused speech, inner strength, and overcoming difficult circumstances. Devotees traditionally use Baglamukhi Yantra as a focus for prayer, meditation, mantra practice, protection, confidence, and maintaining stability during challenging situations.',
+    specifications: [
+      { label: 'Product', value: 'Shri Baglamukhi Mahayantra' },
+      { label: 'Suitable For', value: 'Home temple, meditation space, office' }
+    ],
+    keyFeatures: [
+      'Traditionally associated with Maa Baglamukhi',
+      'Used for prayer, meditation, and mantra practice',
+      'Believed to support protection, courage, and inner strength',
+      'Ideal for a dedicated devotional area'
+    ],
+    careInstructions: [
+      'Wipe with a clean, dry cloth.',
+      'Keep in a clean and sacred space.'
+    ],
+    faqs: [
+      { q: 'Where should this be placed?', a: 'It is best placed in the home temple, pooja room, meditation space, or a dedicated devotional area.' },
+      { q: 'How is it traditionally used?', a: 'Use it as a visual focus during prayer, meditation, or devotional practice. Specialized rituals can vary by lineage.' }
     ]
   }
 ];
