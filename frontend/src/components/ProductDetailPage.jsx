@@ -52,6 +52,7 @@ export const ProductDetailPage = ({
 
   useEffect(() => {
     if (product) {
+      setIsLoading(true);
       setActiveImg(product.image || (product.images && product.images[0]) || '');
       if (product.weightVariants) {
         setSelectedVariant(product.weightVariants.find((v) => v.default) || product.weightVariants[0]);
@@ -84,6 +85,13 @@ export const ProductDetailPage = ({
           }
         });
       }
+
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      setIsLoading(false);
     }
   }, [product?.id]);
 
