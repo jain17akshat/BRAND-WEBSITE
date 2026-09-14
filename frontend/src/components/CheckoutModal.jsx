@@ -588,7 +588,7 @@ export const CheckoutModal = ({
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full min-h-[52px] py-3.5 bg-[#B8860B] hover:bg-[#9B7E52] text-white font-cinzel text-xs sm:text-sm font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg flex items-center justify-center gap-2.5 disabled:opacity-75 disabled:cursor-not-allowed active:scale-[0.99]"
+                  className="w-full min-h-[52px] py-3.5 bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] border border-[#C5A059]/40 font-cinzel text-xs sm:text-sm font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg flex items-center justify-center gap-2.5 disabled:opacity-75 disabled:cursor-not-allowed active:scale-[0.99]"
                 >
                   {isProcessing ? (
                     <>
@@ -597,15 +597,15 @@ export const CheckoutModal = ({
                     </>
                   ) : (
                     <>
-                      <Lock className="w-4 h-4" />
+                      <Lock className="w-4 h-4 text-[#E5C378]" />
                       <span>{paymentMethod === 'cod' ? `CONFIRM COD ORDER — ₹${grandTotal.toLocaleString('en-IN')}` : `PAY ₹${grandTotal.toLocaleString('en-IN')}`}</span>
                     </>
                   )}
                 </button>
 
                 {/* Trust reassurance */}
-                <div className="flex items-center justify-center gap-1.5 text-[10px] text-gray-500 font-sans pt-1">
-                  <Lock className="w-3 h-3 text-emerald-700" />
+                <div className="flex items-center justify-center gap-1.5 text-[10px] text-gray-600 font-sans pt-1">
+                  <Lock className="w-3 h-3 text-[#3B7A57]" />
                   <span>🔒 256-Bit Encrypted & Verified Secure Payment</span>
                 </div>
               </div>

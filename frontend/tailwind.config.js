@@ -48,6 +48,16 @@ export default {
           copper: '#B85D3B',
           sandal: '#D4A373',
           teak: '#4A3525'
+        },
+        brand: {
+          primary: 'var(--brand-primary)',
+          'primary-hover': 'var(--brand-primary-hover)',
+          dark: 'var(--brand-dark)',
+          'dark-hover': 'var(--brand-dark-hover)',
+          accent: 'var(--brand-accent)',
+          soft: 'var(--brand-soft)',
+          border: 'var(--brand-border)',
+          trust: 'var(--brand-trust)',
         }
       },
       fontFamily: {

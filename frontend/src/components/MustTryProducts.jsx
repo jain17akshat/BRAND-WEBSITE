@@ -139,10 +139,10 @@ const MustTryCard = ({
   return (
     <div
       onClick={() => (onSelectProduct ? onSelectProduct(product) : onOpenQuickView && onOpenQuickView(product))}
-      className="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#C5A059]/60 transition-all duration-300 group cursor-pointer flex flex-col justify-between"
+      className="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#C5A059]/60 transition-all duration-300 group cursor-pointer flex flex-col justify-between h-full"
     >
       {/* Product Image Area */}
-      <div className="relative aspect-square overflow-hidden bg-[#F9F6F0]">
+      <div className="product-card-image-wrapper aspect-square overflow-hidden bg-[#F9F6F0]">
         <ProductImage
           src={product.image}
           images={product.images}

@@ -46,11 +46,11 @@ export const Bestsellers = ({
               <div
                 key={product.id}
                 style={{ '--stagger-index': idx }}
-                className="group flex-none w-[72vw] sm:w-auto snap-start rounded-xl overflow-hidden bg-[#FDFAF7] border border-[#EAE0CD] hover:border-[#C5A059]/60 hover:shadow-lg transition-all duration-300 flex flex-col stagger-grid-item brass-hover-shimmer"
+                className="group flex-none w-[72vw] sm:w-auto snap-start rounded-xl overflow-hidden bg-[#FDFAF7] border border-[#EAE0CD] hover:border-[#C5A059]/60 hover:shadow-lg transition-all duration-300 flex flex-col h-full stagger-grid-item brass-hover-shimmer"
               >
                 {/* Image */}
                 <div
-                  className="relative overflow-hidden cursor-pointer"
+                  className="product-card-image-wrapper aspect-square overflow-hidden cursor-pointer bg-[#F9F6F0]"
                   onClick={() => handleCardClick(product)}
                 >
                   <ProductImage

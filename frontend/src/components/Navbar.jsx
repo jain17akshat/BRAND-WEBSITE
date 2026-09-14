@@ -142,14 +142,14 @@ export const Navbar = ({
                   <button
                     key={link.category}
                     onClick={() => onSelectCategory(link.category)}
-                    className={`text-[11px] xl:text-xs tracking-[0.1em] uppercase font-sans transition-all relative py-1.5 whitespace-nowrap ${isActive
-                      ? 'text-[#B8860B] font-bold'
-                      : 'text-[#3D2B1F] hover:text-[#B8860B] font-semibold'
+                    className={`text-[11px] xl:text-xs tracking-[0.1em] uppercase font-sans transition-all relative py-1.5 px-2 rounded-md whitespace-nowrap ${isActive
+                      ? 'text-[#2C1F06] font-bold bg-[#FAF5EB] border border-[#C5A059]/40'
+                      : 'text-[#2C1F06] hover:text-[#C5A059] font-semibold hover:bg-[#FAF5EB]/60'
                       }`}
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#B8860B] via-[#E5C378] to-[#B8860B] rounded-full animate-fade-in" />
+                      <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-[#C5A059] rounded-full animate-fade-in" />
                     )}
                   </button>
                 );

@@ -12,33 +12,6 @@ import { getResponsiveImageSources } from '../utils/imageUtils';
  * 4. Proper lazy/eager loading — priority prop controls fetchpriority & loading attributes.
  */
 
-// Memoized heavy contain-check — runs ONCE per unique src string, not every render
-const containCache = new Map();
-function checkIsContain(src) {
-  if (!src) return false;
-  if (containCache.has(src)) return containCache.get(src);
-  const s = src.toLowerCase();
-  const result = (
-    s.includes('brass bells') || s.includes('garud bell') || s.includes('nandi bell') ||
-    s.includes('simple bell') || s.includes('commonbell') || s.includes('wooden choki') ||
-    s.includes('woodenchowki') || s.includes('pyramid') || s.includes('trishul') ||
-    s.includes('brass aarti') || s.includes('aarti') || s.includes('akhand jyot') ||
-    s.includes('cup jyot') || s.includes('kamandal') || s.includes('pancpatra') ||
-    s.includes('thali') || s.includes('gomukhi') || s.includes('singhasan') ||
-    s.includes('hawankund') || s.includes('chawar') || s.includes('jap bag') ||
-    s.includes('mala counter') || s.includes('pooja box') || s.includes('shankh') ||
-    s.includes('velvet asan') || s.includes('ganeshyantra') || s.includes('glassyantra') ||
-    s.includes('kuber yantra') || s.includes('laxmi') || s.includes('luxmiyantra') ||
-    s.includes('shani') || s.includes('ladoo') || s.includes('gopal') ||
-    s.includes('kamdhenu') || s.includes('ganeshji') || s.includes('radhakrishna') ||
-    s.includes('glassturtle') || s.includes('dhoop dani') || s.includes('glass shivling') ||
-    s.includes('rudraksh') || s.includes('sphatik') || s.includes('tulsi') ||
-    s.includes('vaijanti') || s.includes('karungali') || s.includes('damru') || s.includes('mala')
-  );
-  containCache.set(src, result);
-  return result;
-}
-
 export const ProductImage = ({
   src,
   hoverSrc,
@@ -47,7 +20,7 @@ export const ProductImage = ({
   artType = 'brass',
   className = '',
   aspect = 'aspect-square',
-  fitMode,
+  fitMode = 'cover',
   priority = false,
   sizes
 }) => {
@@ -67,8 +40,7 @@ export const ProductImage = ({
   const primarySrc = imageList[0];
   const secondarySrc = imageList.length > 1 ? imageList[1] : null;
 
-  // isContain: Default to contain mode for all products to prevent cropping top/bottom/sides
-  const isContain = fitMode ? fitMode === 'contain' : (fitMode !== 'cover');
+  const isCover = fitMode !== 'contain';
 
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
@@ -94,14 +66,14 @@ export const ProductImage = ({
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`relative overflow-hidden ${aspect} ${className} ${isContain ? 'bg-[#F9F6F0]' : 'bg-[#F4EFE6]'}`}
+        className={`product-card-image-wrapper ${aspect} ${className} bg-[#F9F6F0]`}
       >
         {/* Skeleton shimmer — visible only until primary image loads */}
         {!primaryLoaded && (
           <div className="absolute inset-0 skeleton-shimmer z-0" aria-hidden="true" />
         )}
 
-        <picture className="w-full h-full block">
+        <picture className="w-full h-full block flex items-center justify-center">
           {responsiveSources.isResponsive && responsiveSources.webpSrcSet && (
             <source
               type="image/webp"
@@ -121,10 +93,10 @@ export const ProductImage = ({
               if (!primaryLoaded) setPrimaryLoaded(true);
             }}
             onError={() => setImgError(true)}
-            className={`w-full h-full transition-opacity duration-400 ${
+            className={`product-card-image ${
+              isCover ? 'object-cover' : 'object-contain p-2 sm:p-3'
+            } transition-opacity duration-400 ${
               priority || primaryLoaded ? 'opacity-100' : 'opacity-0'
-            } ${
-              isContain ? 'object-contain p-2 sm:p-3' : 'object-cover'
             } ${
               isHovered ? 'scale-105' : 'scale-100'
             } transition-all duration-500`}

@@ -828,10 +828,10 @@ export function App() {
                 <Collections onSelectCategory={handleSelectCategory} />
               </div>
 
-              {/* 4. Most Loved Products — Glass Shivling, Nandi Bell, Brass Pyramid, Copper Kalash */}
+              {/* 4. Most Loved Products — Glass Shivling, Sphatik Shree Yantra, Brass Pyramid, Crystal Turtle */}
               <div className="smooth-reveal">
                 <Bestsellers
-                  products={['vastu-crystal-glass-shivling', 'brass-bell-nandi', 'vastu-brass-pyramid-multitier', 'copper-kalash-pooja-vessel']
+                  products={['vastu-crystal-glass-shivling', 'vastu-crystal-glass-yantra', 'vastu-brass-pyramid-multitier', 'vastu-crystal-glass-turtle']
                     .map(id => PRODUCTS.find(p => p.id === id))
                     .filter(Boolean)}
                   heading="Most Loved"

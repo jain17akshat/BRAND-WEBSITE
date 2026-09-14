@@ -380,29 +380,29 @@ export const CartDrawer = ({
                 )}
                 <div className="flex justify-between">
                   <span>Shipping</span>
-                  <span className={shippingFee === 0 ? "text-emerald-700 font-semibold uppercase" : "font-semibold text-[#2C2623]"}>
+                  <span className={shippingFee === 0 ? "text-[#3B7A57] font-semibold uppercase" : "font-semibold text-[#2C2623]"}>
                     {shippingFee === 0 ? 'FREE' : `₹${shippingFee}`}
                   </span>
                 </div>
                 {prepaidSaving > 0 && (
-                  <div className="flex justify-between text-emerald-700 font-medium">
+                  <div className="flex justify-between text-[#3B7A57] font-medium">
                     <span>Prepaid Saving 💸</span>
                     <span className="font-bold">-₹{prepaidSaving.toLocaleString('en-IN')}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-sm font-cinzel font-bold text-[#2C2623] pt-2 border-t border-[#EAE0CD]">
                   <span>Total Payable</span>
-                  <span className="text-base text-[#967433]">₹{finalTotal.toLocaleString('en-IN')}</span>
+                  <span className="text-base text-[#C5A059]">₹{finalTotal.toLocaleString('en-IN')}</span>
                 </div>
               </div>
 
               {/* Checkout Button */}
               <button
                 onClick={onProceedToCheckout}
-                className="w-full py-3.5 bg-[#231E1C] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-md hover:bg-[#3A3431] shadow-lg transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40"
+                className="w-full py-3.5 bg-[#2C1F06] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-md hover:bg-[#3D2B0A] shadow-lg transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40"
               >
                 <span>Proceed to Checkout</span>
-                <ArrowRight className="w-4 h-4 text-[#C5A059]" />
+                <ArrowRight className="w-4 h-4 text-[#E5C378]" />
               </button>
 
               <div className="flex justify-center pt-1">

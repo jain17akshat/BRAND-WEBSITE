@@ -345,14 +345,14 @@ export const CategoryPage = ({
                     onClick={() => setSelectedSubcategory(card.subcatKey)}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-cinzel font-semibold transition-all whitespace-nowrap border cursor-pointer ${
                       isActive
-                        ? 'bg-[#2C1F06] text-[#E5C378] border-[#C5A059] shadow-md scale-[1.02]'
-                        : 'bg-white text-[#5A4D41] border-[#EAE0CD] hover:border-[#C5A059]/50 hover:bg-[#FDFBF7]'
+                        ? 'active-category bg-[#FAF5EB] text-[#2C1F06] border-[#C5A059] font-bold shadow-xs scale-[1.02]'
+                        : 'bg-white text-[#5A4D41] border-[#EAE0CD] hover:border-[#C5A059]/50 hover:bg-[#FAF5EB]/50'
                     }`}
                   >
                     <span>{card.title}</span>
                     {card.badge && (
                       <span className={`text-[9px] px-2 py-0.5 rounded-full font-sans font-medium ${
-                        isActive ? 'bg-[#C5A059]/30 text-[#FFF2D4]' : 'bg-[#F4EFE6] text-[#8C7A6B]'
+                        isActive ? 'bg-[#C5A059]/20 text-[#2C1F06]' : 'bg-[#FAF5EB] text-[#8C7A6B]'
                       }`}>
                         {card.badge}
                       </span>
@@ -448,11 +448,11 @@ const CategoryProductCard = ({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+      className="group relative bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full"
     >
       {/* Image Header with Hover Quick Add Overlay */}
       <div
-        className="relative aspect-[4/3] overflow-hidden cursor-pointer bg-[#F4EFE6]"
+        className="product-card-image-wrapper aspect-square overflow-hidden cursor-pointer bg-[#F9F6F0]"
         onClick={handleClickCard}
       >
         <ProductImage
@@ -461,7 +461,7 @@ const CategoryProductCard = ({
           alt={product.name}
           artType={product.artType}
           fitMode={product.fitMode}
-          aspect="aspect-full"
+          aspect="aspect-square"
           priority={priority}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
         />
@@ -561,7 +561,7 @@ const CategoryProductCard = ({
         </div>
 
         {/* Price & Add to Cart Footer */}
-        <div className="pt-2.5 border-t border-[#EAE0CD] flex items-center justify-between gap-2">
+        <div className="pt-2.5 border-t border-[#EAE0CD] flex items-center justify-between gap-2 mt-auto">
           {!product.isComingSoon ? (
             <div className="flex items-baseline gap-1.5 flex-wrap">
               {product.weightVariants && product.weightVariants[0]?.price ? (

@@ -20,12 +20,11 @@ function ProductCard({ product, priority = false, onAddToCart, onToggleWishlist,
 
   return (
     <div
-      className="bg-white rounded-2xl overflow-hidden border border-[#EAE0CD] hover:border-[#C5A059]/50 hover:shadow-lg transition-all duration-300 group flex flex-col cursor-pointer"
+      className="bg-white rounded-2xl overflow-hidden border border-[#EAE0CD] hover:border-[#C5A059]/50 hover:shadow-lg transition-all duration-300 group flex flex-col justify-between h-full cursor-pointer"
     >
       {/* Image */}
       <div
-        className="relative overflow-hidden bg-[#F9F5EE]"
-        style={{ aspectRatio: '1/1' }}
+        className="product-card-image-wrapper aspect-square overflow-hidden bg-[#F9F6F0]"
         onClick={() => onSelectProduct(product)}
       >
         <ProductImage

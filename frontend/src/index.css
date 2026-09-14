@@ -2,10 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hero button floating animation */
-@keyframes heroFloat {
-  0%,  100% { transform: translateY(0px);   }
-  50%        { transform: translateY(-8px);  }
+:root {
+  /* Primary Brand */
+  --brand-primary: #C5A059;        /* Sacred Brass Gold */
+  --brand-primary-hover: #A8823B;  /* Deep Warm Gold */
+
+  /* Dark Brand Neutral */
+  --brand-dark: #2C1F06;           /* Obsidian Charcoal */
+  --brand-dark-hover: #3D2B0A;     /* Deep Obsidian */
+
+  /* Highlight */
+  --brand-accent: #E5C378;         /* Champagne Gold */
+
+  /* Soft Background */
+  --brand-soft: #FAF5EB;           /* Warm Ivory */
+
+  /* Borders */
+  --brand-border: #EAE0CD;         /* Warm Subtle Border */
+
+  /* Trust */
+  --brand-trust: #3B7A57;          /* Trust Green */
+}
+
+/* ── SHRAVIKO Brand Utility Classes ── */
+.btn-brand-primary {
+  background-color: var(--brand-primary);
+  color: var(--brand-dark);
+  border: 1px solid var(--brand-primary);
+  transition: all 0.3s ease;
+}
+.btn-brand-primary:hover {
+  background-color: var(--brand-primary-hover);
+  border-color: var(--brand-primary-hover);
+}
+
+.btn-brand-outline {
+  background-color: transparent;
+  color: var(--brand-dark);
+  border: 1px solid var(--brand-primary);
+  transition: all 0.3s ease;
+}
+.btn-brand-outline:hover {
+  background-color: var(--brand-soft);
+  border-color: var(--brand-primary-hover);
+}
+
+.text-brand { color: var(--brand-primary); }
+.text-brand-dark { color: var(--brand-dark); }
+.text-brand-accent { color: var(--brand-accent); }
+.text-brand-trust { color: var(--brand-trust); }
+.bg-brand-soft { background-color: var(--brand-soft); }
+.border-brand { border-color: var(--brand-border); }
+.brand-divider { height: 1px; background-color: var(--brand-border); }
+
+.active-category {
+  background-color: var(--brand-soft);
+  color: var(--brand-dark);
+  border-color: var(--brand-primary);
 }
 
 @layer base {
@@ -1361,3 +1414,25 @@ img[width][height] {
 img {
   max-width: 100%;
 }
+
+/* ── Standardized Product Card Image Container & Scaling ── */
+.product-card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  background-color: #F9F6F0;
+  box-sizing: border-box;
+}
+
+.product-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+

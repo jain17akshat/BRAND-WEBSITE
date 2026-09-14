@@ -351,15 +351,15 @@ export const ProductDetailPage = ({
             {!product.isComingSoon && (
               <div className="space-y-2.5">
                 {/* Delivery Timeline */}
-                <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-xl border border-emerald-200">
-                  <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                    <Truck className="w-4 h-4 text-emerald-700" />
+                <div className="flex items-center gap-3 p-3 bg-[#FAF5EB] rounded-xl border border-[#3B7A57]/30">
+                  <div className="w-8 h-8 rounded-full bg-[#3B7A57]/15 flex items-center justify-center shrink-0">
+                    <Truck className="w-4 h-4 text-[#3B7A57]" />
                   </div>
                   <div>
-                    <span className="text-xs font-cinzel font-bold text-emerald-800 block">
+                    <span className="text-xs font-cinzel font-bold text-[#2C1F06] block">
                       Estimated Delivery: 3–5 Business Days
                     </span>
-                    <span className="text-[10px] text-emerald-700 font-sans">
+                    <span className="text-[10px] text-[#3B7A57] font-sans font-semibold">
                       Free shipping on orders above ₹999 · Pan-India Express Delivery
                     </span>
                   </div>
@@ -370,10 +370,10 @@ export const ProductDetailPage = ({
                   {/* Heritage Craft */}
                   <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF7F2] rounded-xl border border-[#EAE0CD]">
                     <div className="w-7 h-7 rounded-lg bg-[#C5A059]/15 border border-[#C5A059]/30 flex items-center justify-center shrink-0">
-                      <Sparkles className="w-3.5 h-3.5 text-[#9B7E52]" />
+                      <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-cinzel font-bold text-[#2C2623] block uppercase tracking-wider">
+                      <span className="text-[10px] font-cinzel font-bold text-[#2C1F06] block uppercase tracking-wider">
                         Heritage Craft
                       </span>
                       <span className="text-[9px] text-[#6B5840] font-sans">100% Solid & Sacred</span>
@@ -383,10 +383,10 @@ export const ProductDetailPage = ({
                   {/* Express Delivery */}
                   <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF7F2] rounded-xl border border-[#EAE0CD]">
                     <div className="w-7 h-7 rounded-lg bg-[#C5A059]/15 border border-[#C5A059]/30 flex items-center justify-center shrink-0">
-                      <ShieldCheck className="w-3.5 h-3.5 text-[#9B7E52]" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-cinzel font-bold text-[#2C2623] block uppercase tracking-wider">
+                      <span className="text-[10px] font-cinzel font-bold text-[#2C1F06] block uppercase tracking-wider">
                         Secure Transit
                       </span>
                       <span className="text-[9px] text-[#6B5840] font-sans">Insured & Express Delivery</span>
@@ -409,20 +409,20 @@ export const ProductDetailPage = ({
             ) : (
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-4">
-                  <span className="text-xs font-cinzel font-bold text-[#2C2623] uppercase tracking-wider">Quantity:</span>
+                  <span className="text-xs font-cinzel font-bold text-[#2C1F06] uppercase tracking-wider">Quantity:</span>
                   <div className="flex items-center border border-[#EAE0CD] rounded-xl bg-white p-1">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       aria-label="Decrease quantity"
-                      className="w-9 h-9 rounded-lg bg-[#F6F1E7] text-[#2C2623] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
+                      className="w-9 h-9 rounded-lg bg-[#FAF5EB] text-[#2C1F06] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
                     >
                       -
                     </button>
-                    <span className="px-4 text-sm font-cinzel font-bold text-[#2C2623]">{quantity}</span>
+                    <span className="px-4 text-sm font-cinzel font-bold text-[#2C1F06]">{quantity}</span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
                       aria-label="Increase quantity"
-                      className="w-9 h-9 rounded-lg bg-[#F6F1E7] text-[#2C2623] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
+                      className="w-9 h-9 rounded-lg bg-[#FAF5EB] text-[#2C1F06] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
                     >
                       +
                     </button>
@@ -432,9 +432,9 @@ export const ProductDetailPage = ({
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={handleAddToCart}
-                    className="flex-1 py-3.5 sm:py-4 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40 transform hover:scale-[1.01] active:scale-95"
+                    className="flex-1 py-3.5 sm:py-4 bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40 transform hover:scale-[1.01] active:scale-95"
                   >
-                    <ShoppingBag className="w-4 h-4 text-[#C5A059]" />
+                    <ShoppingBag className="w-4 h-4 text-[#E5C378]" />
                     <span>Add to Sacred Cart — ₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
                   </button>
                 </div>
@@ -449,11 +449,11 @@ export const ProductDetailPage = ({
                   onClick={() => setActiveTab('description')}
                   className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                     activeTab === 'description'
-                      ? 'bg-[#2C2623] text-[#D4AF37] shadow-md scale-[1.01]'
-                      : 'text-[#6E645E] hover:text-[#2C2623] hover:bg-white/70'
+                      ? 'bg-[#2C1F06] text-[#E5C378] shadow-md scale-[1.01]'
+                      : 'text-[#6E645E] hover:text-[#2C1F06] hover:bg-white/70'
                   }`}
                 >
-                  <FileText className={`w-3.5 h-3.5 ${activeTab === 'description' ? 'text-[#D4AF37]' : 'text-[#8C6929]'}`} />
+                  <FileText className={`w-3.5 h-3.5 ${activeTab === 'description' ? 'text-[#E5C378]' : 'text-[#C5A059]'}`} />
                   <span>Overview</span>
                 </button>
 
@@ -461,11 +461,11 @@ export const ProductDetailPage = ({
                   onClick={() => setActiveTab('specs')}
                   className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                     activeTab === 'specs'
-                      ? 'bg-[#2C2623] text-[#D4AF37] shadow-md scale-[1.01]'
-                      : 'text-[#6E645E] hover:text-[#2C2623] hover:bg-white/70'
+                      ? 'bg-[#2C1F06] text-[#E5C378] shadow-md scale-[1.01]'
+                      : 'text-[#6E645E] hover:text-[#2C1F06] hover:bg-white/70'
                   }`}
                 >
-                  <Sliders className={`w-3.5 h-3.5 ${activeTab === 'specs' ? 'text-[#D4AF37]' : 'text-[#8C6929]'}`} />
+                  <Sliders className={`w-3.5 h-3.5 ${activeTab === 'specs' ? 'text-[#E5C378]' : 'text-[#C5A059]'}`} />
                   <span>Specs</span>
                 </button>
 
@@ -474,11 +474,11 @@ export const ProductDetailPage = ({
                     onClick={() => setActiveTab('care')}
                     className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                       activeTab === 'care'
-                        ? 'bg-[#2C2623] text-[#D4AF37] shadow-md scale-[1.01]'
-                        : 'text-[#6E645E] hover:text-[#2C2623] hover:bg-white/70'
+                        ? 'bg-[#2C1F06] text-[#E5C378] shadow-md scale-[1.01]'
+                        : 'text-[#6E645E] hover:text-[#2C1F06] hover:bg-white/70'
                     }`}
                   >
-                    <Shield className={`w-3.5 h-3.5 ${activeTab === 'care' ? 'text-[#D4AF37]' : 'text-[#8C6929]'}`} />
+                    <Shield className={`w-3.5 h-3.5 ${activeTab === 'care' ? 'text-[#E5C378]' : 'text-[#C5A059]'}`} />
                     <span>Care</span>
                   </button>
                 )}
@@ -488,11 +488,11 @@ export const ProductDetailPage = ({
                     onClick={() => setActiveTab('faqs')}
                     className={`flex-1 min-w-[100px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                       activeTab === 'faqs'
-                        ? 'bg-[#2C2623] text-[#D4AF37] shadow-md scale-[1.01]'
-                        : 'text-[#6E645E] hover:text-[#2C2623] hover:bg-white/70'
+                        ? 'bg-[#2C1F06] text-[#E5C378] shadow-md scale-[1.01]'
+                        : 'text-[#6E645E] hover:text-[#2C1F06] hover:bg-white/70'
                     }`}
                   >
-                    <HelpCircle className={`w-3.5 h-3.5 ${activeTab === 'faqs' ? 'text-[#D4AF37]' : 'text-[#8C6929]'}`} />
+                    <HelpCircle className={`w-3.5 h-3.5 ${activeTab === 'faqs' ? 'text-[#E5C378]' : 'text-[#C5A059]'}`} />
                     <span>FAQs</span>
                   </button>
                 )}
@@ -695,18 +695,19 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
               <div
                 key={product.id}
                 onClick={() => onSelectProduct(product)}
-                className="bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#C5A059]/60 transition-all duration-300 cursor-pointer group flex flex-col"
+                className="bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#C5A059]/60 transition-all duration-300 cursor-pointer group flex flex-col justify-between h-full"
               >
                 {/* Image */}
-                <div className="relative aspect-square bg-[#F9F6F0] overflow-hidden">
-                  <img
+                <div className="product-card-image-wrapper aspect-square overflow-hidden bg-[#F9F6F0]">
+                  <ProductImage
                     src={product.image}
+                    images={product.images}
                     alt={product.name}
-                    loading="lazy"
-                    className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
+                    artType={product.artType}
+                    fitMode="contain"
+                    aspect="aspect-square"
+                    sizes="(max-width: 640px) 50vw, 250px"
                   />
-
                 </div>
 
                 {/* Info */}
@@ -720,7 +721,7 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
                     </h3>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2 border-t border-[#F0E8DC]">
+                  <div className="flex items-center justify-between pt-2 border-t border-[#F0E8DC] mt-auto">
                     <div>
                       <span className="text-xs font-bold text-[#2C1F06]">
                         ₹{product.price?.toLocaleString('en-IN')}
