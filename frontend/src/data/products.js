@@ -2466,13 +2466,12 @@ export const PRODUCTS = [
     tag: 'Sphatik Shivling',
     artType: 'shivling',
     fitMode: 'contain',
-    image: '/assets/glass shivling/Glass shivling 1.webp',
+    image: '/assets/glass shivling/shivji1.webp',
     images: [
-      '/assets/glass shivling/Glass shivling 1.webp',
-      '/assets/glass shivling/glass shivling 2.webp',
-      '/assets/glass shivling/shivlin 3.webp',
-      '/assets/glass shivling/glass shivlingg 4.webp',
-      '/assets/glass shivling/shivling 5.webp'
+      '/assets/glass shivling/shivji1.webp',
+      '/assets/glass shivling/shivji2.webp',
+      '/assets/glass shivling/shiv3.webp',
+      '/assets/glass shivling/shiv4.webp'
     ],
     weightVariants: [
       { weight: 'L 6 cm × B 6 cm × H 6 cm (90 g)', price: 411, originalPrice: 999, default: true }
@@ -2727,10 +2726,10 @@ export const PRODUCTS = [
     tag: 'Vaijanti Mala',
     artType: 'mala',
     fitMode: 'contain',
-    image: '/assets/Vaijanti mala/vaijanti 1.webp',
+    image: '/assets/Vaijanti mala/shraviko_mala.webp',
     images: [
-      '/assets/Vaijanti mala/vaijanti 1.webp',
-      '/assets/Vaijanti mala/vaijanti 2.webp',
+      '/assets/Vaijanti mala/shraviko_mala.webp',
+      '/assets/Vaijanti mala/shraviko_mala_minimalist.webp',
       '/assets/Vaijanti mala/vaijant 4.webp',
       '/assets/Vaijanti mala/vajainti 5.webp'
     ],
@@ -2792,10 +2791,10 @@ export const PRODUCTS = [
     tag: 'Karungali Mala',
     artType: 'mala',
     fitMode: 'contain',
-    image: '/assets/Karungali mala/karungali 2.webp',
+    image: '/assets/Karungali mala/kali1.webp',
     images: [
-      '/assets/Karungali mala/karungali 2.webp',
-      '/assets/Karungali mala/karungali 3.webp',
+      '/assets/Karungali mala/kali1.webp',
+      '/assets/Karungali mala/kali2.webp',
       '/assets/Karungali mala/karungali 5.webp',
       '/assets/Karungali mala/karungali 6.webp'
     ],

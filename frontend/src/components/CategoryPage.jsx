@@ -466,23 +466,12 @@ const CategoryProductCard = ({
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
         />
 
-        {/* Slide Indicator Dots or Coming Soon Badge */}
-        {product.isComingSoon ? (
+        {/* Coming Soon Badge */}
+        {product.isComingSoon && (
           <div className="absolute top-3 left-3 z-10 bg-[#2C1F06]/90 text-[#E5C378] text-[9px] sm:text-[10px] font-cinzel font-bold tracking-widest uppercase px-2.5 py-1 rounded-full border border-[#E5C378]/40 shadow-lg backdrop-blur-md">
             Coming Soon
           </div>
-        ) : cardImages.length > 1 && isHovered ? (
-          <div className="absolute top-3 left-3 flex gap-1 z-10">
-            {cardImages.map((_, dotIdx) => (
-              <span
-                key={dotIdx}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  dotIdx === activeImageIndex ? 'w-4 bg-[#C5A059]' : 'w-1.5 bg-black/40'
-                }`}
-              />
-            ))}
-          </div>
-        ) : null}
+        )}
 
         {/* Top Right Wishlist & Quick View Buttons */}
         <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
