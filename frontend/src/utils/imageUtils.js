@@ -25,14 +25,11 @@ export function getResponsiveImageSources(src) {
 
   const webpSrc = `${cleanBasePath}.webp`;
   const webpSrcSet = `${cleanBasePath}-400w.webp 400w, ${cleanBasePath}-800w.webp 800w, ${cleanBasePath}-1200w.webp 1200w`;
-  
-  // Fallback to original image or PNG
-  const fallbackSrc = ext === '.webp' ? `${cleanBasePath}.png` : src;
 
   return {
     webpSrc,
     webpSrcSet,
-    fallbackSrc,
+    fallbackSrc: src,
     isResponsive: true
   };
 }
