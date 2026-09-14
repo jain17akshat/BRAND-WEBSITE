@@ -3211,6 +3211,180 @@ export const PRODUCTS = [
       { q: 'Are all shells identical in shape and color?', a: 'No, because each shell is naturally formed in the ocean, subtle variations in size, shape, markings, and texture are natural.' },
       { q: 'How should I clean the Shankh after blowing?', a: 'Rinse with clean water, wipe gently with a soft cloth, and let it dry completely in a clean space.' }
     ]
+  },
+  {
+    id: 'yantra-kaal-sarp',
+    name: 'SHRAVIKO Kaal Sarp Yog Dosh Nivaran Yantra',
+    category: 'vastu',
+    categoryName: 'Vastu & Spiritual',
+    subcategory: 'Yantras',
+    price: 999,
+    originalPrice: 1499,
+    rating: 4.9,
+    reviewsCount: 15,
+    tag: 'Spiritual Yantra',
+    artType: 'yantra',
+    fitMode: 'contain',
+    image: '/assets/Sarpyoh/image1.webp',
+    images: [
+      '/assets/Sarpyoh/image1.webp',
+      '/assets/Sarpyoh/image2.webp',
+      '/assets/Sarpyoh/image3.webp',
+      '/assets/Sarpyoh/image4.webp'
+    ],
+    weightVariants: [
+      { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
+    ],
+    purity: 'High Quality',
+    inStock: true,
+    description: 'The SHRAVIKO Kaal Sarp Yog Dosh Nivaran Yantra is a sacred geometric diagram designed to help mitigate the effects of Kaal Sarp Dosh. Handcrafted with precision, it brings positive energy and spiritual harmony to your home or office space.',
+    specifications: [
+      { label: 'Product', value: 'Kaal Sarp Yog Dosh Nivaran Yantra' },
+      { label: 'Suitable For', value: 'Home, Office, Mandir' }
+    ],
+    keyFeatures: [
+      'Sacred geometric design',
+      'Helps in spiritual harmony',
+      'Ideal for home mandir'
+    ],
+    careInstructions: [
+      'Wipe with a clean, dry cloth.',
+      'Keep in a clean and sacred space.'
+    ],
+    faqs: [
+      { q: 'Where should this be placed?', a: 'It is best placed in the mandir or a sacred space in your home.' }
+    ]
+  },
+  {
+    id: 'yantra-mangal',
+    name: 'SHRAVIKO Mangal Yantra',
+    category: 'vastu',
+    categoryName: 'Vastu & Spiritual',
+    subcategory: 'Yantras',
+    price: 999,
+    originalPrice: 1499,
+    rating: 4.9,
+    reviewsCount: 12,
+    tag: 'Spiritual Yantra',
+    artType: 'yantra',
+    fitMode: 'contain',
+    image: '/assets/Mangal yantra/image1.webp',
+    images: [
+      '/assets/Mangal yantra/image1.webp',
+      '/assets/Mangal yantra/image2.webp',
+      '/assets/Mangal yantra/image3.webp',
+      '/assets/Mangal yantra/image4.webp'
+    ],
+    weightVariants: [
+      { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
+    ],
+    purity: 'High Quality',
+    inStock: true,
+    description: 'The SHRAVIKO Mangal Yantra is designed to bring auspiciousness and positive energy into your life. It is traditionally used to appease the planet Mars (Mangal) and bring courage, energy, and success.',
+    specifications: [
+      { label: 'Product', value: 'Mangal Yantra' },
+      { label: 'Suitable For', value: 'Home, Office, Mandir' }
+    ],
+    keyFeatures: [
+      'Sacred geometric design',
+      'Helps in spiritual harmony',
+      'Ideal for home mandir'
+    ],
+    careInstructions: [
+      'Wipe with a clean, dry cloth.',
+      'Keep in a clean and sacred space.'
+    ],
+    faqs: [
+      { q: 'Where should this be placed?', a: 'It is best placed in the mandir or a sacred space in your home.' }
+    ]
+  },
+  {
+    id: 'yantra-mahalakshmi',
+    name: 'SHRAVIKO Mahalakshmi Yantra',
+    category: 'vastu',
+    categoryName: 'Vastu & Spiritual',
+    subcategory: 'Yantras',
+    price: 999,
+    originalPrice: 1499,
+    rating: 5.0,
+    reviewsCount: 20,
+    tag: 'Wealth & Prosperity',
+    artType: 'yantra',
+    fitMode: 'contain',
+    image: '/assets/MahaMrityunjay/image1.webp',
+    images: [
+      '/assets/MahaMrityunjay/image1.webp',
+      '/assets/MahaMrityunjay/image2.webp',
+      '/assets/MahaMrityunjay/image3.webp',
+      '/assets/MahaMrityunjay/image4.webp'
+    ],
+    weightVariants: [
+      { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
+    ],
+    purity: 'High Quality',
+    inStock: true,
+    description: 'The SHRAVIKO Mahalakshmi Yantra is a powerful sacred geometry that invokes the blessings of Goddess Lakshmi. It is known to attract wealth, prosperity, and abundance into your home or business.',
+    specifications: [
+      { label: 'Product', value: 'Mahalakshmi Yantra' },
+      { label: 'Suitable For', value: 'Home, Office, Mandir' }
+    ],
+    keyFeatures: [
+      'Sacred geometric design',
+      'Attracts wealth and prosperity',
+      'Ideal for home mandir'
+    ],
+    careInstructions: [
+      'Wipe with a clean, dry cloth.',
+      'Keep in a clean and sacred space.'
+    ],
+    faqs: [
+      { q: 'Where should this be placed?', a: 'It is best placed in the mandir or a sacred space in your home.' }
+    ]
+  },
+  {
+    id: 'yantra-sarv-karya',
+    name: 'SHRAVIKO Sarv Karya Siddhi Yantra',
+    category: 'vastu',
+    categoryName: 'Vastu & Spiritual',
+    subcategory: 'Yantras',
+    price: 999,
+    originalPrice: 1499,
+    rating: 4.8,
+    reviewsCount: 18,
+    tag: 'Success & Accomplishment',
+    artType: 'yantra',
+    fitMode: 'contain',
+    image: '/assets/Sarv kary/image1.webp',
+    images: [
+      '/assets/Sarv kary/image1.webp',
+      '/assets/Sarv kary/image2.webp',
+      '/assets/Sarv kary/image3.webp',
+      '/assets/Sarv kary/image4.webp',
+      '/assets/Sarv kary/image5.webp',
+      '/assets/Sarv kary/image6.webp'
+    ],
+    weightVariants: [
+      { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
+    ],
+    purity: 'High Quality',
+    inStock: true,
+    description: 'The SHRAVIKO Sarv Karya Siddhi Yantra is an extremely powerful yantra that brings success in all endeavors. It helps in overcoming obstacles and achieving your goals in personal and professional life.',
+    specifications: [
+      { label: 'Product', value: 'Sarv Karya Siddhi Yantra' },
+      { label: 'Suitable For', value: 'Home, Office, Mandir' }
+    ],
+    keyFeatures: [
+      'Sacred geometric design',
+      'Helps in achieving success in all endeavors',
+      'Ideal for home mandir'
+    ],
+    careInstructions: [
+      'Wipe with a clean, dry cloth.',
+      'Keep in a clean and sacred space.'
+    ],
+    faqs: [
+      { q: 'Where should this be placed?', a: 'It is best placed in the mandir or a sacred space in your home.' }
+    ]
   }
 ];
 
