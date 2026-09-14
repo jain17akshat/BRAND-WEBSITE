@@ -220,18 +220,14 @@ export const ProductDetailPage = ({
           <div className="lg:col-span-6 space-y-4">
             
             {/* Main Stage Image Frame */}
-            <div className={`relative aspect-[4/3] sm:aspect-[1/1] rounded-2xl overflow-hidden shadow-xl border border-[#EAE0CD] ${
-              product.fitMode === 'contain' || (activeImg && activeImg.includes('brass bells'))
-                ? 'bg-[#F9F6F0]'
-                : 'bg-[#F4EFE6]'
-            }`}>
+            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl border border-[#EAE0CD] bg-[#F9F6F0]">
               <ProductImage
                 src={activeImg}
                 alt={product.name}
                 artType={product.artType}
-                fitMode={product.fitMode}
-                aspect="aspect-full"
-                className="w-full h-full object-contain"
+                fitMode="contain"
+                aspect="aspect-square"
+                className="w-full h-full p-2 sm:p-4"
                 priority={true}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
               />

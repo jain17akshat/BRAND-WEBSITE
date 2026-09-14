@@ -67,8 +67,8 @@ export const ProductImage = ({
   const primarySrc = imageList[0];
   const secondarySrc = imageList.length > 1 ? imageList[1] : null;
 
-  // isContain: computed once via cache per src string
-  const isContain = fitMode === 'contain' || checkIsContain(primarySrc || '');
+  // isContain: Default to contain mode for all products to prevent cropping top/bottom/sides
+  const isContain = fitMode ? fitMode === 'contain' : (fitMode !== 'cover');
 
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
