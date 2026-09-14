@@ -3225,10 +3225,10 @@ export const PRODUCTS = [
     tag: 'Spiritual Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/Sarpyoh/image2.webp',
+    image: '/assets/Sarpyoh/image1.webp',
     images: [
-      '/assets/Sarpyoh/image2.webp',
       '/assets/Sarpyoh/image1.webp',
+      '/assets/Sarpyoh/image2.webp',
       '/assets/Sarpyoh/image3.webp',
       '/assets/luxmiyantra/laxmi 4-1200w.webp'
     ],
