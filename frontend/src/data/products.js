@@ -3225,12 +3225,12 @@ export const PRODUCTS = [
     tag: 'Spiritual Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/Sarpyoh/image1.webp',
+    image: '/assets/Sarpyoh/image2.webp',
     images: [
-      '/assets/Sarpyoh/image1.webp',
       '/assets/Sarpyoh/image2.webp',
+      '/assets/Sarpyoh/image1.webp',
       '/assets/Sarpyoh/image3.webp',
-      '/assets/Sarpyoh/image4.webp'
+      '/assets/luxmiyantra/laxmi 4-1200w.webp'
     ],
     weightVariants: [
       { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
@@ -3275,7 +3275,8 @@ export const PRODUCTS = [
       '/assets/Mangal yantra/image1.webp',
       '/assets/Mangal yantra/image2.webp',
       '/assets/Mangal yantra/image3.webp',
-      '/assets/Mangal yantra/image4.webp'
+      '/assets/Mangal yantra/image4.webp',
+      '/assets/luxmiyantra/laxmi 4-1200w.webp'
     ],
     weightVariants: [
       { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
@@ -3302,51 +3303,7 @@ export const PRODUCTS = [
       { q: 'How is it traditionally used?', a: 'Keep the yantra in a clean space and include it in regular prayer or meditation. Consult a knowledgeable practitioner for specific rituals.' }
     ]
   },
-  {
-    id: 'yantra-mahalakshmi',
-    name: 'SHRAVIKO Mahalakshmi Yantra',
-    category: 'vastu',
-    categoryName: 'Vastu & Spiritual',
-    subcategory: 'Yantras',
-    price: 999,
-    originalPrice: 1499,
-    rating: 5.0,
-    reviewsCount: 20,
-    tag: 'Wealth & Prosperity',
-    artType: 'yantra',
-    fitMode: 'contain',
-    image: '/assets/MahaMrityunjay/image1.webp',
-    images: [
-      '/assets/MahaMrityunjay/image1.webp',
-      '/assets/MahaMrityunjay/image2.webp',
-      '/assets/MahaMrityunjay/image3.webp',
-      '/assets/MahaMrityunjay/image4.webp'
-    ],
-    weightVariants: [
-      { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
-    ],
-    purity: 'High Quality',
-    inStock: true,
-    description: 'Mahalakshmi Yantra is traditionally associated with Goddess Lakshmi, prosperity, abundance, good fortune, and household well-being. Devotees traditionally worship this yantra while seeking blessings associated with prosperity, financial stability, abundance, harmony, and good fortune.',
-    specifications: [
-      { label: 'Product', value: 'Mahalakshmi Yantra' },
-      { label: 'Suitable For', value: 'Home temple, office, business' }
-    ],
-    keyFeatures: [
-      'Traditionally associated with Goddess Lakshmi',
-      'Used to seek blessings for prosperity and abundance',
-      'Believed to support financial stability and good fortune',
-      'Ideal for home temple, office, or business workspace'
-    ],
-    careInstructions: [
-      'Wipe with a clean, dry cloth.',
-      'Keep in a clean and sacred space.'
-    ],
-    faqs: [
-      { q: 'Where should this be placed?', a: 'Place it respectfully in a home temple, office, or any place used for Lakshmi worship.' },
-      { q: 'How is it traditionally used?', a: 'Use it as a focal point during prayer, meditation, and Lakshmi worship.' }
-    ]
-  },
+
   {
     id: 'yantra-sarv-karya',
     name: 'SHRAVIKO Sarv Karya Siddhi Yantra',
@@ -3365,7 +3322,7 @@ export const PRODUCTS = [
       '/assets/Sarv kary/sarv1.webp',
       '/assets/Sarv kary/sarv2.webp',
       '/assets/Sarv kary/sarv3.webp',
-      '/assets/luxmiyantra/laxmi 4.webp'
+      '/assets/luxmiyantra/laxmi 4-1200w.webp'
     ],
     weightVariants: [
       { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
@@ -3410,7 +3367,7 @@ export const PRODUCTS = [
       '/assets/Bagalmukhi/bagalmukhi1.webp',
       '/assets/Bagalmukhi/mukhi2.webp',
       '/assets/Bagalmukhi/mukhi3.webp',
-      '/assets/luxmiyantra/laxmi 4.webp'
+      '/assets/luxmiyantra/laxmi 4-1200w.webp'
     ],
     weightVariants: [
       { weight: 'Standard', price: 999, originalPrice: 1499, default: true }
