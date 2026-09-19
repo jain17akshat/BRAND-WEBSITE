@@ -324,50 +324,53 @@ router.post(
         const internalOrderId = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
         const totalAmount = authoritativePayable;
 
-        // Generate sequential invoice number
-        const { generateInvoiceNumber } = require('../database/db');
-        const invoiceNumber = await generateInvoiceNumber();
-        const invoiceDate = new Date().toISOString();
-
         // Deduct inventory atomically (fails with 409 OUT_OF_STOCK if insufficient)
         const { deductInventoryForCart } = require('../data/catalog');
         await deductInventoryForCart(sanitizedCart);
 
-        // Generate Invoice PDF Buffer independently
-        let invoiceBuffer = null;
-        try {
-          const { generateInvoice } = require('../services/invoiceService');
-          invoiceBuffer = await generateInvoice({
-            order_id: internalOrderId,
-            customer_name: customer?.name || 'Valued Customer',
-            customer_email: customer?.email,
-            customer_phone: customer?.phone,
-            payment_method: shiprocketPaymentMethod,
-            shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
-            state: customer?.state,
-            items: sanitizedCart,
-          }, invoiceNumber);
-          console.log(`📄 Invoice generated successfully for ${internalOrderId}: ${invoiceNumber}`);
-        } catch (invErr) {
-          console.error(`⚠️ Failed to generate invoice PDF for ${internalOrderId}:`, invErr.message);
-        }
+        // ────────────────────────────────────────────────────────────
+        // INVOICE STRATEGY:
+        //   COD  → Generate & save invoice NOW (payment is collected on delivery).
+        //   Prepaid → Do NOT generate invoice yet. It will be generated
+        //             when the Razorpay webhook confirms payment.captured.
+        //             This ensures invoices are never based solely on a
+        //             frontend payment-success callback.
+        // ────────────────────────────────────────────────────────────
+        let invoiceNumber = null;
+        let invoiceDate = null;
 
-        if (customer?.email) {
-          const { sendOrderConfirmationEmail, sendPrepaidPaymentReceivedEmail } = require('../services/emailService');
-          if (isCOD) {
-            sendOrderConfirmationEmail({
-              to: customer.email,
-              customerName: customer.name || 'Valued Customer',
-              orderId: internalOrderId,
+        if (isCOD) {
+          const { generateInvoiceNumber } = require('../database/db');
+          invoiceNumber = await generateInvoiceNumber();
+          invoiceDate = new Date().toISOString();
+
+          let invoiceBuffer = null;
+          try {
+            const { generateAndSaveInvoice } = require('../services/invoiceService');
+            const result = await generateAndSaveInvoice({
+              order_id: internalOrderId,
+              customer_name: customer?.name || 'Valued Customer',
+              customer_email: customer?.email,
+              customer_phone: customer?.phone,
+              payment_method: shiprocketPaymentMethod,
+              shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
+              state: customer?.state,
               items: sanitizedCart,
-              totalAmount,
-              shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
-              phone: customer.phone || '7742320607',
-              paymentMethod: 'Cash on Delivery (COD)',
-              invoiceBuffer,
-              invoiceNumber,
-            }).catch(err => console.error('Failed to send COD confirmation email:', err));
-          } else {
+            }, invoiceNumber);
+            invoiceBuffer = result.buffer;
+            console.log(`📄 COD Invoice generated & saved for ${internalOrderId}: ${invoiceNumber}`);
+          } catch (invErr) {
+            console.error(`⚠️ Failed to generate COD invoice PDF for ${internalOrderId}:`, invErr.message);
+          }
+
+          // Do NOT send the email inline. The queue will handle it.
+          // We will set the DB status to PENDING when adding the order below.
+        } else {
+          // PREPAID: Send a lightweight "payment received" email WITHOUT invoice.
+          // The actual Invoice email is handled by the webhook.
+          // We can still do this inline since it's just a lightweight receipt, not the official invoice.
+          if (customer?.email) {
+            const { sendPrepaidPaymentReceivedEmail } = require('../services/emailService');
             sendPrepaidPaymentReceivedEmail({
               to: customer.email,
               customerName: customer.name || 'Valued Customer',
@@ -377,8 +380,6 @@ router.post(
               totalAmount,
               shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
               phone: customer.phone || '7742320607',
-              invoiceBuffer,
-              invoiceNumber,
             }).catch(err => console.error('Failed to send prepaid payment received email:', err));
           }
         }
@@ -387,7 +388,7 @@ router.post(
           razorpay_order_id,
           razorpay_payment_id,
           internalOrderId,
-          invoiceNumber,
+          invoiceNumber: invoiceNumber || 'DEFERRED_TO_WEBHOOK',
           customer: customer?.name,
         });
 
@@ -483,7 +484,14 @@ router.post(
           inventory_deducted: true,
           invoice_number: invoiceNumber,
           invoice_date: invoiceDate,
+          customer_email_status: isCOD ? 'PENDING' : 'NONE', // Prepaid invoice emails triggered via webhook
+          business_email_status: isCOD ? 'PENDING' : 'NONE',
         });
+
+        if (isCOD) {
+          const emailQueue = require('../services/emailQueue');
+          emailQueue.triggerImmediate(internalOrderId);
+        }
 
         const sanitizedResponse = {
           success:             true,
@@ -616,6 +624,59 @@ router.post('/webhook', async (req, res, next) => {
         console.log('  → Payment captured:', paymentEntity.id, 'Order:', internalOrderId);
         if (internalOrderId) {
           await markOrderPaid(internalOrderId, { payment_id: paymentEntity.id });
+
+          // ── PREPAID INVOICE GENERATION (authoritative trigger) ──
+          // The invoice is ONLY generated here, after Razorpay confirms
+          // payment.captured. It is NOT generated from the /verify route.
+          try {
+            const { findOrderById } = require('../services/orderStore');
+            const order = await findOrderById(internalOrderId);
+
+            if (order && !order.invoice_number) {
+              const { generateInvoiceNumber } = require('../database/db');
+              const invoiceNumber = await generateInvoiceNumber();
+              const invoiceDate = new Date().toISOString();
+
+              // Use items_raw which preserves the full HSN/GST enriched data
+              // (formatCachedOrder simplifies items for frontend display)
+              let orderItems = order.items_raw || order.items;
+              if (typeof orderItems === 'string') {
+                try { orderItems = JSON.parse(orderItems); } catch { orderItems = []; }
+              }
+
+              // Generate & persist the invoice PDF to disk FIRST
+              const { generateAndSaveInvoice } = require('../services/invoiceService');
+              const { buffer: invoiceBuffer } = await generateAndSaveInvoice({
+                order_id: order.order_id || internalOrderId,
+                customer_name: order.customer_name || 'Valued Customer',
+                customer_email: order.customer_email,
+                customer_phone: order.customer_phone,
+                payment_method: order.payment_method || 'Prepaid',
+                shipping_address: order.shipping_address || '',
+                state: order.state || order.shipping_address?.split(',').pop()?.trim() || '',
+                items: orderItems,
+              }, invoiceNumber);
+
+              console.log(`📄 Prepaid Invoice generated & saved via webhook for ${internalOrderId}: ${invoiceNumber}`);
+
+              // Update the order record with invoice details
+              const { updateOrderInvoice, updateEmailStatus } = require('../services/orderStore');
+              await updateOrderInvoice(internalOrderId, invoiceNumber, invoiceDate);
+
+              // Set statuses to PENDING for the queue to pick up
+              await updateEmailStatus(internalOrderId, 'customer', { status: 'PENDING' });
+              await updateEmailStatus(internalOrderId, 'business', { status: 'PENDING' });
+
+              // Trigger the queue immediately
+              const emailQueue = require('../services/emailQueue');
+              emailQueue.triggerImmediate(internalOrderId);
+            } else if (order?.invoice_number) {
+              console.log(`  → Invoice already generated for ${internalOrderId}: ${order.invoice_number} (skipping duplicate)`);
+            }
+          } catch (invErr) {
+            console.error(`⚠️ Webhook invoice generation failed for ${internalOrderId}:`, invErr.message);
+            // The order is still marked PAID; invoice can be regenerated manually
+          }
         }
         break;
       }

@@ -877,6 +877,63 @@ async function sendReviewRequestEmail({ to, customerName, orderId, productName, 
   }
 }
 
+/**
+ * 9. sendBusinessInvoiceEmail — Separate Accounting/GST Email for Shraviko
+ */
+async function sendBusinessInvoiceEmail({ orderId, invoiceNumber, invoiceBuffer, totalAmount }) {
+  const transporter = getTransporter();
+  const cleanId = orderId || 'UNKNOWN';
+  const cleanInvoice = invoiceNumber || 'UNKNOWN';
+  const businessEmail = 'shraviko@gmail.com';
+
+  const htmlTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Business Invoice Record</title>
+    </head>
+    <body style="font-family: monospace; color: #333; padding: 20px;">
+      <h2>Business Invoice Record</h2>
+      <p><strong>Order ID:</strong> ${escapeHtml(cleanId)}</p>
+      <p><strong>Invoice Number:</strong> ${escapeHtml(cleanInvoice)}</p>
+      <p><strong>Total Amount:</strong> ₹${Number(totalAmount || 0).toLocaleString('en-IN')}</p>
+      <p>Please find the official GST invoice attached for accounting records.</p>
+    </body>
+    </html>
+  `;
+
+  if (!transporter) {
+    console.log(`\n📧 [EMAIL MOCK] Business Invoice Email generated for ${businessEmail}:`);
+    console.log(`   Order ID: ${cleanId} | Invoice: ${cleanInvoice}\n`);
+    return { success: true, mock: true };
+  }
+
+  try {
+    const attachments = [];
+    if (invoiceBuffer) {
+      attachments.push({
+        filename: `Invoice_${cleanInvoice.replace(/\//g, '_')}.pdf`,
+        content: invoiceBuffer,
+        contentType: 'application/pdf',
+      });
+    }
+
+    const info = await transporter.sendMail({
+      from: `"Shraviko Accounts" <${process.env.EMAIL_USER}>`,
+      to: businessEmail,
+      subject: `Invoice ${cleanInvoice} | Order ${cleanId}`,
+      html: htmlTemplate,
+      attachments,
+    });
+    console.log(`✅ Business invoice email sent to ${businessEmail}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err) {
+    console.error(`❌ Business invoice email failed: ${err.message}`);
+    return { success: false, error: err.message };
+  }
+}
+
 module.exports = {
   sendOrderConfirmationEmail,
   sendPrepaidPaymentReceivedEmail,
@@ -886,4 +943,5 @@ module.exports = {
   sendReturnNotificationToAdmin,
   sendCorporateEnquiryNotificationToAdmin,
   sendReviewRequestEmail,
+  sendBusinessInvoiceEmail,
 };

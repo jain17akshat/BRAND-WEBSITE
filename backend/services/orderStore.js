@@ -72,6 +72,18 @@ async function addOrder(orderData) {
     shiprocket_order_id: orderData.shiprocket_order_id || null,
     shipment_id: orderData.shipment_id || null,
     shiprocket_sync_status: orderData.shiprocket_sync_status || 'PENDING',
+    invoice_number: orderData.invoice_number || null,
+    invoice_date: orderData.invoice_date || null,
+    customer_email_status: orderData.customer_email_status || 'NONE',
+    customer_email_sent_at: orderData.customer_email_sent_at || null,
+    customer_email_error: orderData.customer_email_error || null,
+    customer_email_retry_count: orderData.customer_email_retry_count || 0,
+    customer_email_next_retry_at: orderData.customer_email_next_retry_at || null,
+    business_email_status: orderData.business_email_status || 'NONE',
+    business_email_sent_at: orderData.business_email_sent_at || null,
+    business_email_error: orderData.business_email_error || null,
+    business_email_retry_count: orderData.business_email_retry_count || 0,
+    business_email_next_retry_at: orderData.business_email_next_retry_at || null,
     created_at: new Date().toISOString(),
   };
 
@@ -206,6 +218,197 @@ async function findOrder(orderId, phone, email) {
   }
 
   return order;
+}
+
+/**
+ * Find an order by ID only — for internal/webhook use where phone/email
+ * ownership verification is not required.
+ */
+async function findOrderById(orderId) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  if (!cleanId) return null;
+
+  // Check in-memory first
+  const cached = recentOrders.get(cleanId);
+  if (cached) return formatCachedOrder(cached);
+
+  // Check DB
+  const pool = getPool();
+  if (pool) {
+    try {
+      const [rows] = await pool.query('SELECT * FROM orders WHERE UPPER(order_id) = ? LIMIT 1', [cleanId]);
+      if (rows && rows.length > 0) {
+        const row = rows[0];
+        let items = [];
+        try { items = typeof row.items_json === 'string' ? JSON.parse(row.items_json) : row.items_json; } catch {}
+        return formatCachedOrder({
+          id: row.order_id,
+          order_id: row.order_id,
+          customer_name: row.customer_name,
+          customer_email: row.customer_email,
+          customer_phone: row.customer_phone,
+          total_amount: row.total_amount,
+          payment_method: row.payment_method,
+          payment_status: row.payment_status,
+          shipping_address: row.shipping_address,
+          city: row.city || '',
+          state: row.state || '',
+          items,
+          shiprocket_order_id: row.shiprocket_order_id || null,
+          shipment_id: row.shipment_id || null,
+          shiprocket_sync_status: row.shiprocket_sync_status || 'PENDING',
+          inventory_deducted: !!row.inventory_deducted,
+          invoice_number: row.invoice_number || null,
+          invoice_date: row.invoice_date || null,
+          customer_email_status: row.customer_email_status || 'NONE',
+          customer_email_sent_at: row.customer_email_sent_at || null,
+          customer_email_error: row.customer_email_error || null,
+          customer_email_retry_count: row.customer_email_retry_count || 0,
+          customer_email_next_retry_at: row.customer_email_next_retry_at || null,
+          business_email_status: row.business_email_status || 'NONE',
+          business_email_sent_at: row.business_email_sent_at || null,
+          business_email_error: row.business_email_error || null,
+          business_email_retry_count: row.business_email_retry_count || 0,
+          business_email_next_retry_at: row.business_email_next_retry_at || null,
+          status: row.status,
+          created_at: row.created_at,
+        });
+      }
+    } catch (err) {
+      console.error('OrderStore DB findOrderById error:', err.message);
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Update invoice details on an existing order (in-memory + DB).
+ * Called from the webhook after invoice is generated.
+ */
+async function updateOrderInvoice(orderId, invoiceNumber, invoiceDate) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  if (!cleanId) return;
+
+  // Update in-memory record
+  let record = recentOrders.get(cleanId);
+  if (!record) {
+    for (const [k, cached] of recentOrders.entries()) {
+      if (k.toUpperCase() === cleanId) {
+        record = cached;
+        break;
+      }
+    }
+  }
+  if (record) {
+    record.invoice_number = invoiceNumber;
+    record.invoice_date = invoiceDate;
+    recentOrders.set(record.id || cleanId, record);
+    persistOrders();
+  }
+
+  // Update DB
+  const pool = getPool();
+  if (pool) {
+    try {
+      await pool.query(
+        `UPDATE orders SET invoice_number = ?, invoice_date = ? WHERE UPPER(order_id) = ?`,
+        [invoiceNumber, invoiceDate, cleanId]
+      );
+    } catch (err) {
+      console.error('OrderStore DB updateOrderInvoice error:', err.message);
+    }
+  }
+}
+
+/**
+ * Safely updates the email tracking status for either 'customer' or 'business' emails.
+ * Never regenerates the invoice or modifies order status.
+ */
+async function updateEmailStatus(orderId, type, statusData) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  if (!cleanId || (type !== 'customer' && type !== 'business')) return;
+
+  const statusField = `${type}_email_status`;
+  const sentAtField = `${type}_email_sent_at`;
+  const errorField = `${type}_email_error`;
+  const retryCountField = `${type}_email_retry_count`;
+  const nextRetryField = `${type}_email_next_retry_at`;
+
+  // Update in-memory record
+  let record = recentOrders.get(cleanId);
+  if (!record) {
+    for (const [k, cached] of recentOrders.entries()) {
+      if (k.toUpperCase() === cleanId) {
+        record = cached;
+        break;
+      }
+    }
+  }
+
+  if (record) {
+    if (statusData.status !== undefined) record[statusField] = statusData.status;
+    if (statusData.sent_at !== undefined) record[sentAtField] = statusData.sent_at;
+    if (statusData.error !== undefined) record[errorField] = statusData.error;
+    if (statusData.retry_count !== undefined) record[retryCountField] = statusData.retry_count;
+    if (statusData.next_retry_at !== undefined) record[nextRetryField] = statusData.next_retry_at;
+    recentOrders.set(record.id || cleanId, record);
+    persistOrders();
+  }
+
+  // Update MySQL DB
+  const pool = getPool();
+  if (pool) {
+    try {
+      const updates = [];
+      const params = [];
+      
+      if (statusData.status !== undefined) { updates.push(`${statusField} = ?`); params.push(statusData.status); }
+      if (statusData.sent_at !== undefined) { updates.push(`${sentAtField} = ?`); params.push(statusData.sent_at); }
+      if (statusData.error !== undefined) { updates.push(`${errorField} = ?`); params.push(statusData.error); }
+      if (statusData.retry_count !== undefined) { updates.push(`${retryCountField} = ?`); params.push(statusData.retry_count); }
+      if (statusData.next_retry_at !== undefined) { updates.push(`${nextRetryField} = ?`); params.push(statusData.next_retry_at); }
+      
+      if (updates.length > 0) {
+        params.push(cleanId);
+        await pool.query(
+          `UPDATE orders SET ${updates.join(', ')} WHERE UPPER(order_id) = ?`,
+          params
+        );
+      }
+    } catch (err) {
+      console.error(`OrderStore DB updateEmailStatus error (${type}):`, err.message);
+    }
+  }
+}
+
+/**
+ * Fetches orders that need their emails sent or retried.
+ */
+async function getPendingEmails() {
+  const pool = getPool();
+  if (!pool) return [];
+
+  try {
+    const [rows] = await pool.query(`
+      SELECT order_id, invoice_number, 
+             customer_email_status, customer_email_retry_count, customer_email_next_retry_at,
+             business_email_status, business_email_retry_count, business_email_next_retry_at
+      FROM orders 
+      WHERE (
+        (customer_email_status IN ('PENDING', 'FAILED') AND customer_email_retry_count < 3 AND (customer_email_next_retry_at IS NULL OR customer_email_next_retry_at <= NOW()))
+        OR
+        (business_email_status IN ('PENDING', 'FAILED') AND business_email_retry_count < 3 AND (business_email_next_retry_at IS NULL OR business_email_next_retry_at <= NOW()))
+      )
+      AND invoice_number IS NOT NULL
+      ORDER BY id ASC
+      LIMIT 50
+    `);
+    return rows;
+  } catch (err) {
+    console.error('OrderStore DB getPendingEmails error:', err.message);
+    return [];
+  }
 }
 
 async function markOrderReturned(orderId, returnData = {}) {
@@ -491,6 +694,13 @@ function formatCachedOrder(cached) {
     shipment_id: cached.shipment_id || null,
     shiprocket_sync_status: cached.shiprocket_sync_status || 'PENDING',
     shiprocket_return_id: cached.shiprocket_return_id || null,
+    invoice_number: cached.invoice_number || null,
+    invoice_date: cached.invoice_date || null,
+    customer_email_status: cached.customer_email_status || 'NONE',
+    customer_email_retry_count: cached.customer_email_retry_count || 0,
+    business_email_status: cached.business_email_status || 'NONE',
+    business_email_retry_count: cached.business_email_retry_count || 0,
+    items_raw: cached.items || [], // raw items with HSN/GST data for invoice generation
     courier: 'Shiprocket Express Logistics (Delhivery / BlueDart)',
     timeline,
   };
@@ -641,6 +851,7 @@ async function getAllOrders(limit = 100) {
 module.exports = {
   addOrder,
   findOrder,
+  findOrderById,
   findOrders,
   getAllOrders,
   updateShiprocketSync,
@@ -649,4 +860,7 @@ module.exports = {
   markOrderPaid,
   markOrderPaymentFailed,
   markOrderRefunded,
+  updateOrderInvoice,
+  updateEmailStatus,
+  getPendingEmails,
 };

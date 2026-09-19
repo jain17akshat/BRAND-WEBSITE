@@ -271,12 +271,17 @@ router.get('/:id/invoice', async (req, res, next) => {
       return next(new AppError('Order not found or unauthorized access.', 404, 'ORDER_NOT_FOUND'));
     }
 
-    const path = require('path');
-    const fs = require('fs');
-    const invoicePath = path.join(__dirname, `../data/invoices/Invoice_${existingOrder.order_id || id}.pdf`);
+    const { getInvoicePath } = require('../services/invoiceService');
+    const invoicePath = getInvoicePath(existingOrder.order_id || existingOrder.orderId || id);
 
-    if (!fs.existsSync(invoicePath)) {
-      return next(new AppError('Invoice not found or has not been generated for this order yet.', 404, 'INVOICE_NOT_FOUND'));
+    if (!invoicePath) {
+      // For prepaid orders, the invoice may not be generated yet if
+      // the payment.captured webhook hasn't been received.
+      return next(new AppError(
+        'Invoice not available yet. For prepaid orders, the invoice is generated after payment confirmation from the payment gateway. Please try again shortly.',
+        404,
+        'INVOICE_NOT_FOUND'
+      ));
     }
 
     res.download(invoicePath, `Invoice_${existingOrder.order_id || id}.pdf`);

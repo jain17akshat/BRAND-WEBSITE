@@ -1,7 +1,6 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
-const config = require('../config');
 
 // Ensure invoices directory exists
 const INVOICES_DIR = path.join(__dirname, '../data/invoices');
@@ -10,7 +9,8 @@ if (!fs.existsSync(INVOICES_DIR)) {
 }
 
 /**
- * Generates a PDF invoice for an order.
+ * Generates a PDF invoice buffer for an order.
+ * This does NOT save the file — use generateAndSaveInvoice() for that.
  * @param {Object} order - The order object with customer and items data
  * @param {string} invoiceNumber - The generated sequential invoice number
  * @returns {Promise<Buffer>} - Resolves with the PDF buffer
@@ -149,9 +149,6 @@ async function generateInvoice(order, invoiceNumber) {
       doc.text('Thank you for shopping with SHRAVIKO.', 50, doc.y);
       doc.text('This is a computer-generated invoice and does not require a signature.', 50, doc.y);
 
-      // Save a local copy
-      const localPdfPath = path.join(INVOICES_DIR, `Invoice_${order.order_id}.pdf`);
-      
       doc.end();
     } catch (error) {
       reject(error);
@@ -159,6 +156,39 @@ async function generateInvoice(order, invoiceNumber) {
   });
 }
 
+/**
+ * Generates a PDF invoice, saves it to disk, and returns the buffer.
+ * Invoice is persisted FIRST so it remains available via GET /api/orders/:id/invoice
+ * even if subsequent email delivery fails.
+ *
+ * @param {Object} order - The order object with customer and items data
+ * @param {string} invoiceNumber - The generated sequential invoice number
+ * @returns {Promise<{ buffer: Buffer, filePath: string }>}
+ */
+async function generateAndSaveInvoice(order, invoiceNumber) {
+  const buffer = await generateInvoice(order, invoiceNumber);
+
+  // Persist to disk immediately
+  const fileName = `Invoice_${order.order_id}.pdf`;
+  const filePath = path.join(INVOICES_DIR, fileName);
+  fs.writeFileSync(filePath, buffer);
+  console.log(`💾 Invoice saved to disk: ${filePath}`);
+
+  return { buffer, filePath };
+}
+
+/**
+ * Check if an invoice PDF exists on disk for a given order ID.
+ * @param {string} orderId
+ * @returns {string|null} - The file path if it exists, null otherwise
+ */
+function getInvoicePath(orderId) {
+  const filePath = path.join(INVOICES_DIR, `Invoice_${orderId}.pdf`);
+  return fs.existsSync(filePath) ? filePath : null;
+}
+
 module.exports = {
-  generateInvoice
+  generateInvoice,
+  generateAndSaveInvoice,
+  getInvoicePath,
 };

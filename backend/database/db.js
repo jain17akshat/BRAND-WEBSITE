@@ -161,9 +161,19 @@ async function initDatabase() {
       await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS inventory_deducted TINYINT(1) DEFAULT 0`);
       await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS invoice_number VARCHAR(100)`);
       await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS invoice_date TIMESTAMP`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS customer_email_status VARCHAR(20) DEFAULT 'NONE'`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS customer_email_sent_at TIMESTAMP NULL`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS customer_email_error TEXT`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS customer_email_retry_count INT DEFAULT 0`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS customer_email_next_retry_at TIMESTAMP NULL`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS business_email_status VARCHAR(20) DEFAULT 'NONE'`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS business_email_sent_at TIMESTAMP NULL`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS business_email_error TEXT`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS business_email_retry_count INT DEFAULT 0`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS business_email_next_retry_at TIMESTAMP NULL`);
     } catch (colErr) {
       if (!colErr.message.includes('Duplicate column')) {
-        console.warn('⚠️ Column migration notice for inventory_deducted/invoice_number:', colErr.message);
+        console.warn('⚠️ Column migration notice for inventory_deducted/invoice_number/emails:', colErr.message);
       }
     }
 

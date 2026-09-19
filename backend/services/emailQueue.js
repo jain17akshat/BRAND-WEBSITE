@@ -1,0 +1,224 @@
+/**
+ * services/emailQueue.js
+ * ─────────────────────────────────────────────────────────
+ * Reliable, Idempotent Email Delivery Queue for Shraviko.
+ * Processes Customer and Business invoice emails independently.
+ */
+
+const fs = require('fs');
+const { getPendingEmails, updateEmailStatus, findOrderById } = require('./orderStore');
+const { getInvoicePath } = require('./invoiceService');
+const emailService = require('./emailService');
+
+// Retry delays in milliseconds: 1 min, 5 min, 15 min
+const RETRY_DELAYS = [60 * 1000, 5 * 60 * 1000, 15 * 60 * 1000];
+const MAX_RETRIES = 3;
+
+/**
+ * Calculates the next retry timestamp based on the current retry count.
+ */
+function getNextRetryTime(currentRetryCount) {
+  if (currentRetryCount >= MAX_RETRIES) return null;
+  const delay = RETRY_DELAYS[currentRetryCount] || RETRY_DELAYS[RETRY_DELAYS.length - 1];
+  return new Date(Date.now() + delay).toISOString().slice(0, 19).replace('T', ' '); // MySQL format
+}
+
+/**
+ * Process the customer email job independently.
+ */
+async function processCustomerEmail(row) {
+  try {
+    const order = await findOrderById(row.order_id);
+    if (!order || !order.customer_email) {
+      await updateEmailStatus(row.order_id, 'customer', { 
+        status: 'FAILED', 
+        error: 'Order or customer email not found',
+        retry_count: MAX_RETRIES // Prevent further retries
+      });
+      return;
+    }
+
+    const invoicePath = getInvoicePath(row.order_id);
+    if (!invoicePath || !fs.existsSync(invoicePath)) {
+      throw new Error('Invoice PDF not found on disk');
+    }
+    const invoiceBuffer = fs.readFileSync(invoicePath);
+
+    let result;
+    if (String(order.payment_method).toUpperCase() === 'COD') {
+      result = await emailService.sendOrderConfirmationEmail({
+        to: order.customer_email,
+        customerName: order.customer_name,
+        orderId: row.order_id,
+        items: order.items_raw || order.items,
+        totalAmount: order.total_amount,
+        shippingAddress: order.shipping_address,
+        phone: order.customer_phone,
+        paymentMethod: 'Cash on Delivery (COD)',
+        invoiceBuffer,
+        invoiceNumber: row.invoice_number,
+      });
+    } else {
+      result = await emailService.sendPrepaidPaymentReceivedEmail({
+        to: order.customer_email,
+        customerName: order.customer_name,
+        orderId: row.order_id,
+        paymentId: 'Online Payment', 
+        items: order.items_raw || order.items,
+        totalAmount: order.total_amount,
+        shippingAddress: order.shipping_address,
+        phone: order.customer_phone,
+        invoiceBuffer,
+        invoiceNumber: row.invoice_number,
+        isInvoiceEmail: true,
+      });
+    }
+
+    if (result.success) {
+      await updateEmailStatus(row.order_id, 'customer', {
+        status: 'SENT',
+        sent_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        error: null
+      });
+      console.log(`✅ Customer invoice email marked SENT for ${row.order_id}`);
+    } else {
+      throw new Error(result.error || 'Unknown email service error');
+    }
+
+  } catch (err) {
+    const nextCount = (row.customer_email_retry_count || 0) + 1;
+    const nextTime = getNextRetryTime(row.customer_email_retry_count || 0);
+    console.error(`⚠️ Customer email failed for ${row.order_id} (Attempt ${nextCount}/${MAX_RETRIES}):`, err.message);
+    
+    await updateEmailStatus(row.order_id, 'customer', {
+      status: 'FAILED',
+      error: err.message,
+      retry_count: nextCount,
+      next_retry_at: nextTime
+    });
+  }
+}
+
+/**
+ * Process the business email job independently.
+ */
+async function processBusinessEmail(row) {
+  try {
+    const order = await findOrderById(row.order_id);
+    if (!order) {
+      await updateEmailStatus(row.order_id, 'business', { 
+        status: 'FAILED', 
+        error: 'Order not found',
+        retry_count: MAX_RETRIES
+      });
+      return;
+    }
+
+    const invoicePath = getInvoicePath(row.order_id);
+    if (!invoicePath || !fs.existsSync(invoicePath)) {
+      throw new Error('Invoice PDF not found on disk');
+    }
+    const invoiceBuffer = fs.readFileSync(invoicePath);
+
+    const result = await emailService.sendBusinessInvoiceEmail({
+      orderId: row.order_id,
+      invoiceNumber: row.invoice_number,
+      invoiceBuffer,
+      totalAmount: order.total_amount,
+    });
+
+    if (result.success) {
+      await updateEmailStatus(row.order_id, 'business', {
+        status: 'SENT',
+        sent_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        error: null
+      });
+      console.log(`✅ Business invoice email marked SENT for ${row.order_id}`);
+    } else {
+      throw new Error(result.error || 'Unknown email service error');
+    }
+
+  } catch (err) {
+    const nextCount = (row.business_email_retry_count || 0) + 1;
+    const nextTime = getNextRetryTime(row.business_email_retry_count || 0);
+    console.error(`⚠️ Business email failed for ${row.order_id} (Attempt ${nextCount}/${MAX_RETRIES}):`, err.message);
+    
+    await updateEmailStatus(row.order_id, 'business', {
+      status: 'FAILED',
+      error: err.message,
+      retry_count: nextCount,
+      next_retry_at: nextTime
+    });
+  }
+}
+
+let isProcessing = false;
+
+/**
+ * Sweeps the database for pending/retryable emails and processes them.
+ */
+async function processQueue() {
+  if (isProcessing) return;
+  isProcessing = true;
+
+  try {
+    const pending = await getPendingEmails();
+    if (!pending || pending.length === 0) {
+      isProcessing = false;
+      return;
+    }
+
+    // Process all jobs in parallel but independently
+    const promises = [];
+
+    for (const row of pending) {
+      // Check Customer Email
+      const needsCustomer = (row.customer_email_status === 'PENDING' || row.customer_email_status === 'FAILED') 
+                            && row.customer_email_retry_count < MAX_RETRIES 
+                            && (!row.customer_email_next_retry_at || new Date(row.customer_email_next_retry_at) <= new Date());
+      
+      if (needsCustomer) {
+        promises.push(processCustomerEmail(row));
+      }
+
+      // Check Business Email
+      const needsBusiness = (row.business_email_status === 'PENDING' || row.business_email_status === 'FAILED') 
+                            && row.business_email_retry_count < MAX_RETRIES 
+                            && (!row.business_email_next_retry_at || new Date(row.business_email_next_retry_at) <= new Date());
+      
+      if (needsBusiness) {
+        promises.push(processBusinessEmail(row));
+      }
+    }
+
+    if (promises.length > 0) {
+      await Promise.allSettled(promises);
+    }
+
+  } catch (err) {
+    console.error('Queue Processing Error:', err);
+  } finally {
+    isProcessing = false;
+  }
+}
+
+/**
+ * Kick off processing immediately for a specific order to avoid waiting for the cron loop.
+ */
+function triggerImmediate(orderId) {
+  setTimeout(processQueue, 100);
+}
+
+/**
+ * Starts the background polling interval (e.g. every 1 minute)
+ */
+function startPolling() {
+  setInterval(processQueue, 60 * 1000);
+  console.log('📬 Email Retry Queue polling started (60s interval)');
+}
+
+module.exports = {
+  processQueue,
+  triggerImmediate,
+  startPolling,
+};
