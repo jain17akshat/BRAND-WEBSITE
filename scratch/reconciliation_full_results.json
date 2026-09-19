@@ -1,0 +1,891 @@
+{
+  "totalMasterProducts": 56,
+  "matchedCount": 39,
+  "missingFromWebsiteCount": 16,
+  "mismatchedCount": 1,
+  "websiteOnlyCount": 10,
+  "duplicateSkusCount": 0,
+  "missingTaxDataCount": 40,
+  "wrongAssociationCount": 0,
+  "unresolvedCount": 1,
+  "reportMatched": [
+    {
+      "sku": "SHR-CHN6",
+      "productName": "Chandan Sandalwood Bamboo-Free Incense Sticks",
+      "hsn": "33074100",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-RSE-4",
+      "productName": "Rose Incense Sticks (100 g)",
+      "hsn": "33074100",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SH-G-15",
+      "productName": "Guggul Sambrani Cups",
+      "hsn": "33074100",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-CM-01",
+      "productName": "SHR-CM-01 (200 g)",
+      "hsn": "33074100",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-BRS-THL-06",
+      "productName": "Brass Pooja Thali",
+      "hsn": "73239420",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-GI-BR-055-1P",
+      "productName": "Brass Ganesha Idol",
+      "hsn": "74198030",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-SPM-108-78",
+      "productName": "Natural Sphatik Jaap Mala",
+      "hsn": "71161000",
+      "gstRate": "3%",
+      "taxCode": "GST_3"
+    },
+    {
+      "sku": "SHR-CGY-03IN-001",
+      "productName": "Copper Ganesh Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-BRS-PTH-PK",
+      "productName": "Brass Peacock Pooja Thali",
+      "hsn": "73239420",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-WOD-CHW-001",
+      "productName": "Wooden Pooja Chowki",
+      "hsn": "44219119",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-SPH-SHL-25",
+      "productName": "Sphatik Shivling",
+      "hsn": "70189010",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-CLY-03IN-001",
+      "productName": "Copper Lakshmi Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-BR-TRI-DMR-10CM-001",
+      "productName": "Brass Trishul with Damru & Stand",
+      "hsn": "74198030",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CKY-03IN-001",
+      "productName": "Copper Kuber Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-TUL-MAL",
+      "productName": "Tulsi Mala",
+      "hsn": "71179090",
+      "gstRate": "3%",
+      "taxCode": "GST_3"
+    },
+    {
+      "sku": "SHR-BRS-PYR-3L",
+      "productName": "Brass Vastu Pyramid",
+      "hsn": "74199930",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-DDM-H01-GD",
+      "productName": "Metal Dhoop Dani with Handle",
+      "hsn": "73269099",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CSHY-03IN-001",
+      "productName": "Copper Shani Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-WD-DMR-001",
+      "productName": "Wooden Damaru",
+      "hsn": "92060000",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-SYC-GL-04-1P",
+      "productName": "Glass Shree Yantra Cone",
+      "hsn": "70189010",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-PCS-SH01-70",
+      "productName": "Pure Copper Panchpatra Udharini Set",
+      "hsn": "74181022",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-TC-COMP-WG-01",
+      "productName": "Digital Tally Counter with Compass",
+      "hsn": "95062900",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-VJM-108-RD-36",
+      "productName": "Beads Wood Necklace",
+      "hsn": "71179090",
+      "gstRate": "3%",
+      "taxCode": "GST_3"
+    },
+    {
+      "sku": "SHR-LGI-BR-06-1P",
+      "productName": "Brass Laddu Gopal Idol",
+      "hsn": "74198030",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-BDIYA-001",
+      "productName": "Panchmukhi Aarti Diya",
+      "hsn": "69120090",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-RDM-5M-108-GMB",
+      "productName": "5 Mukhi Rudraksha Jaap Mala",
+      "hsn": "71179090",
+      "gstRate": "3%",
+      "taxCode": "GST_3"
+    },
+    {
+      "sku": "SHR-KGM-108-08",
+      "productName": "Natural Karungali Wooden Jaap Mala",
+      "hsn": "442199",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-WCH-SQ-L-01",
+      "productName": "Square Wooden Chowki",
+      "hsn": "44219119",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-CPT-006",
+      "productName": "Pure Copper Pooja Thali 11\"",
+      "hsn": "74198090",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-AJ-004",
+      "productName": "Brass Akhand Jyot Diya",
+      "hsn": "74199930",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-RKI-BR-03X02X03-1P",
+      "productName": "Brass Radha Krishna Idol",
+      "hsn": "74198030",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-POO-BOX",
+      "productName": "Stainless Steel Pooja Box with 7 Containers",
+      "hsn": "73239390",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-GLS-TUR-15",
+      "productName": "Glass Turtle Showpiece",
+      "hsn": "70189010",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-GHB-05IN-001",
+      "productName": "Brass Hand Bell 4 Inch",
+      "hsn": "74199930",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-BRS-KLS-LTA",
+      "productName": "Brass Pooja Kalash Lota",
+      "hsn": "74181022",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-GB-05IN-001",
+      "productName": "Brass Garuda Head Bell",
+      "hsn": "74199930",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-BRS-KMD-105",
+      "productName": "Brass Kamandal",
+      "hsn": "74198030",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-BB-RND-03IN-001",
+      "productName": "Bell Nandi-4",
+      "hsn": "74199930",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-HK-11-001",
+      "productName": "SHR-HK-11 (500 g)",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    }
+  ],
+  "reportMissingFromWebsite": [
+    {
+      "sku": "SHR-NMY-COP-003",
+      "productName": "SHRAVIKO SarvKarya Siddhi Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-L-01",
+      "productName": "SHR-L-01 (100 g)",
+      "hsn": "33042000",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-SAF-1",
+      "productName": "SHR-SAF-1 (100 g)",
+      "hsn": "33042000",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CAM-01",
+      "productName": "SHR-CAM-01 (100 g)",
+      "hsn": "29142100",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-BAG-001",
+      "productName": "Shri Baglamukhi Mahayantra – Copper",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-MY-04",
+      "productName": "Mangal Yantra – Copper 3×3 Inch",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-YAN-MMR-001",
+      "productName": "Shri Mahamrityunjay Maha Yantram – Copper",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-KSY-01",
+      "productName": "Kaal Sarp Yog Dosh Nivaran Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-YAN-KSY-001",
+      "productName": "Kaal Sarp Yog Dosh Nivaran Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-YAN-MULTI-001",
+      "productName": "Multi-Yantra Copper Plaque",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-MMY-001",
+      "productName": "Mahamrityunjay Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-YAN-MNG-001",
+      "productName": "Shri Mangal Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-YAN-MULTI-002",
+      "productName": "Multi Yantra Copper Plaque",
+      "hsn": "74199990",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CNY-03IN-001",
+      "productName": "Copper Navgraha Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CSY-03IN-001",
+      "productName": "Copper Saraswati Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": "18%",
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-BB-N4-05IN-001",
+      "productName": "Brass Pooja Bell 4 Inch",
+      "hsn": "74199930",
+      "gstRate": "5%",
+      "taxCode": "GST_5"
+    }
+  ],
+  "reportMismatched": [
+    {
+      "sku": "SHR-GS-BR-07X05X09-1P",
+      "productName": "Brass God Singhasan",
+      "masterHsn": "74198030",
+      "masterGst": "5%",
+      "backendData": {
+        "title": "Singhasan Brass 7x5x9 Inch",
+        "hsn": "74198030",
+        "tax": "GST_Old_12_New_5"
+      },
+      "excelData": {
+        "hsn": "74198030",
+        "taxCode": "GST_Old_12_New_5"
+      },
+      "discrepancies": [
+        "GST Rate mismatch: Master (5%) vs Backend JSON (GST_Old_12_New_5%)"
+      ]
+    }
+  ],
+  "reportWebsiteOnly": [
+    {
+      "websiteId": "brass-kamdhenu-cow-statue",
+      "productName": "Shraviko Brass Kamdhenu Cow with Calf Idol",
+      "price": 2767,
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    },
+    {
+      "websiteId": "essentials-brass-chawar-whisk",
+      "productName": "Shraviko Premium Temple Chawar Sahib",
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    },
+    {
+      "websiteId": "mandir-jap-bag-gaumukhi",
+      "productName": "Shraviko Pure Cotton Gomukhi Japa Mala Bag",
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    },
+    {
+      "websiteId": "mandir-royal-velvet-asan-mat",
+      "productName": "Shraviko Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3",
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    },
+    {
+      "websiteId": "mandir-dakshinavarti-shankh",
+      "productName": "Shraviko Natural Dakshinavarti Shankh",
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    },
+    {
+      "websiteId": "mandir-vamavarti-shankh",
+      "productName": "Shraviko Vamavarti Blowing Shankh",
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    },
+    {
+      "websiteId": "yantra-kaal-sarp",
+      "productName": "SHRAVIKO Kaal Sarp Yog Dosh Nivaran Yantra",
+      "price": 999,
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    },
+    {
+      "websiteId": "yantra-mangal",
+      "productName": "SHRAVIKO Mangal Yantra",
+      "price": 999,
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    },
+    {
+      "websiteId": "yantra-sarv-karya",
+      "productName": "SHRAVIKO Sarv Karya Siddhi Yantra",
+      "price": 999,
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    },
+    {
+      "websiteId": "yantra-baglamukhi",
+      "productName": "SHRAVIKO Shri Baglamukhi Mahayantra",
+      "price": 999,
+      "reason": "Website product has no corresponding SKU in Master (56 products)"
+    }
+  ],
+  "reportDuplicateSkus": [],
+  "reportMissingTaxData": [
+    {
+      "websiteId": "incense-no-bamboo",
+      "websiteName": "Shraviko 100% Organic Bamboo-Free Temple Agarbatti",
+      "mappedSku": "SHR-CHN6",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "incense-with-bamboo",
+      "websiteName": "Shraviko Traditional Sacred Temple Agarbatti Sticks",
+      "mappedSku": "SHR-RSE-4",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "sambrani-cups",
+      "websiteName": "Shraviko Sacred Vedic Loban & Guggal Sambrani Cups",
+      "mappedSku": "SH-G-15",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "dhoop-cones",
+      "websiteName": "Shraviko Sacred Natural Organic Dhoop Cones",
+      "mappedSku": "SHR-CM-01",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-puja-thali-set",
+      "websiteName": "Shraviko Pure Brass Pooja Thali",
+      "mappedSku": "SHR-BRS-THL-06",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-ganesh-ji-statue",
+      "websiteName": "Shraviko Pure Brass Lord Ganesha Idol",
+      "mappedSku": "SHR-GI-BR-055-1P",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "mandir-sphatik-mala",
+      "websiteName": "Shraviko Natural Sphatik Mala 108+1 Beads",
+      "mappedSku": "SHR-SPM-108-78",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "vastu-ganesh-siddha-yantra",
+      "websiteName": "Shraviko Pure Copper Ganesh Yantra",
+      "mappedSku": "SHR-CGY-03IN-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-design-thali-set",
+      "websiteName": "Shraviko Brass Peacock Pooja Thali",
+      "mappedSku": "SHR-BRS-PTH-PK",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "wooden-chowki-carved-01",
+      "websiteName": "Shraviko Wooden Pooja Chowki",
+      "mappedSku": "SHR-WOD-CHW-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "vastu-crystal-glass-shivling",
+      "websiteName": "Shraviko Natural Sphatik Shivling",
+      "mappedSku": "SHR-SPH-SHL-25",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "vastu-laxmi-siddha-yantra",
+      "websiteName": "Shraviko Pure Copper Lakshmi Kuber Yantra",
+      "mappedSku": "SHR-CLY-03IN-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-trishul-with-damru",
+      "websiteName": "Shraviko Brass Trishul with Damru & Stand",
+      "mappedSku": "SHR-BR-TRI-DMR-10CM-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "vastu-kuber-dhan-prapti-yantra",
+      "websiteName": "Shraviko Pure Copper Kuber Yantra",
+      "mappedSku": "SHR-CKY-03IN-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "mandir-tulsi-mala",
+      "websiteName": "Shraviko Original Tulsi Mala 108 Beads",
+      "mappedSku": "SHR-TUL-MAL",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "vastu-brass-pyramid-multitier",
+      "websiteName": "Shraviko Premium Brass Vastu Pyramid",
+      "mappedSku": "SHR-BRS-PYR-3L",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-dhoopdani-burner",
+      "websiteName": "Shraviko Metal Dhoop Dani with Handle",
+      "mappedSku": "SHR-DDM-H01-GD",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "vastu-shani-siddha-yantra",
+      "websiteName": "Shraviko Shree Shani Yantra",
+      "mappedSku": "SHR-CSHY-03IN-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "mandir-wooden-damru-shiva",
+      "websiteName": "Shraviko Wooden Damru",
+      "mappedSku": "SHR-WD-DMR-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "vastu-crystal-glass-yantra",
+      "websiteName": "Shraviko Sphatik Shree Yantra Cone",
+      "mappedSku": "SHR-SYC-GL-04-1P",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "copper-panchpatra-pali-set",
+      "websiteName": "Shraviko Pure Copper Panchpatra Udharini Set with Snake Head Spoon",
+      "mappedSku": "SHR-PCS-SH01-70",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "mandir-mala-counter-brass",
+      "websiteName": "Shraviko Digital Japa Counter",
+      "mappedSku": "SHR-TC-COMP-WG-01",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "mandir-vaijanti-mala",
+      "websiteName": "Shraviko Original Vaijanti Mala 108+1 Beads with Rudraksha",
+      "mappedSku": "SHR-VJM-108-RD-36",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-ladoo-gopal-statue",
+      "websiteName": "Shraviko Brass Laddu Gopal Idol",
+      "mappedSku": "SHR-LGI-BR-06-1P",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-aarti-kapoor-diya",
+      "websiteName": "Shraviko Pure Brass Panchmukhi Aarti Diya",
+      "mappedSku": "SHR-BDIYA-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "mandir-rudraksh-mala",
+      "websiteName": "Shraviko 5 Mukhi Rudraksh Mala",
+      "mappedSku": "SHR-RDM-5M-108-GMB",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "mandir-karungali-mala",
+      "websiteName": "Shraviko Original Natural Karungali Mala 108 Beads",
+      "mappedSku": "SHR-KGM-108-08",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "wooden-chowki-large-15x15",
+      "websiteName": "Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)",
+      "mappedSku": "SHR-WCH-SQ-L-01",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "copper-puja-thali-set",
+      "websiteName": "Shraviko Pure Copper Pooja Thali",
+      "mappedSku": "SHR-CPT-006",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-akhand-jyot-deepak",
+      "websiteName": "Shraviko Brass Akhand Jyot Diya with Protective Cover",
+      "mappedSku": "SHR-AJ-004",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-radha-krishna-statue",
+      "websiteName": "Shraviko Pure Brass Radha Krishna Idol",
+      "mappedSku": "SHR-RKI-BR-03X02X03-1P",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "mandir-pooja-box-chest",
+      "websiteName": "Shraviko Stainless Steel Pooja Box with 7 Removable Containers",
+      "mappedSku": "SHR-POO-BOX",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-singhasan-deity-throne",
+      "websiteName": "Shraviko Brass God Singhasan",
+      "mappedSku": "SHR-GS-BR-07X05X09-1P",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "vastu-crystal-glass-turtle",
+      "websiteName": "Shraviko Crystal Turtle with Glass Plate",
+      "mappedSku": "SHR-GLS-TUR-15",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-bell-simple",
+      "websiteName": "Shraviko Traditional Brass Pooja Bell",
+      "mappedSku": "SHR-GHB-05IN-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-gomukhi-shringi-abhishekam",
+      "websiteName": "Shraviko Pure Brass Gaumukh Shringi",
+      "mappedSku": "SHR-BRS-KLS-LTA",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-bell-garuda",
+      "websiteName": "Shraviko Garud Headed Brass Pooja Bell",
+      "mappedSku": "SHR-GB-05IN-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-kamandal-holy-water-pot",
+      "websiteName": "Shraviko Brass Kamandal with Lid",
+      "mappedSku": "SHR-BRS-KMD-105",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "brass-bell-nandi",
+      "websiteName": "Shraviko Nandi Headed Brass Pooja Bell",
+      "mappedSku": "SHR-BB-RND-03IN-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    },
+    {
+      "websiteId": "copper-hawan-kund-pyre",
+      "websiteName": "Shraviko Pure Copper Hawan Kund with Dual Handles",
+      "mappedSku": "SHR-HK-11-001",
+      "missingFields": [
+        "SKU (website product uses slug ID without SKU property)",
+        "HSN (missing on frontend product object)",
+        "GST Rate (missing on frontend product object)"
+      ]
+    }
+  ],
+  "reportWrongAssociation": [],
+  "reportUnresolved": [
+    {
+      "sku": "SHR-GS-BR-07X05X09-1P",
+      "productName": "Brass God Singhasan",
+      "hsn": "74198030",
+      "masterGstRate": "5%",
+      "excelTaxCode": "GST_Old_12_New_5",
+      "reason": "Flagged as UNRESOLVED tax mapping (GST_Old_12_New_5 / 5% vs 12% discrepancy)."
+    }
+  ]
+}

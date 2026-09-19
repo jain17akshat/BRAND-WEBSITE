@@ -24,8 +24,18 @@ async function generateInvoice(order, invoiceNumber) {
       doc.on('end', () => resolve(Buffer.concat(buffers)));
       doc.on('error', reject);
 
+      // --- Sample / Test Banner (Only rendered for sample/test invoices) ---
+      const isSample = order.isSample || order.status === 'TEST_SAMPLE_ONLY' || (order.order_id && String(order.order_id).includes('SAMPLE'));
+      if (isSample) {
+        doc.save();
+        doc.rect(50, 20, 495, 22).fill('#FFF3CD');
+        doc.fillColor('#856404').fontSize(10).font('Helvetica-Bold').text('*** SAMPLE / TEST INVOICE — NOT FOR COMMERCIAL USE ***', 50, 26, { align: 'center', width: 495 });
+        doc.restore();
+        doc.moveDown(1.5);
+      }
+
       // --- Header ---
-      doc.fontSize(20).text('TAX INVOICE', { align: 'center' });
+      doc.fontSize(20).font('Helvetica-Bold').fillColor('#000000').text('TAX INVOICE', { align: 'center' });
       doc.moveDown();
 
       // --- Seller Details ---

@@ -21,6 +21,20 @@ function getPool() {
     return null;
   }
 
+  // Safety guard for test environment
+  if (process.env.NODE_ENV === 'test') {
+    const dbName = config.db.name || process.env.DB_NAME;
+    const dbHost = config.db.host || process.env.DB_HOST;
+    const dbPort = config.db.port || process.env.DB_PORT;
+
+    if (!dbName || dbName !== 'shraviko_test') {
+      throw new Error(`❌ FATAL SAFETY GUARD TRIGGERED: NODE_ENV is 'test' but DB_NAME is '${dbName}'. Test environment MUST connect to 'shraviko_test'. Halting execution to prevent accidental production database modification.`);
+    }
+    if (dbPort && Number(dbPort) === 3306 && dbHost && (dbHost.includes('hostinger') || dbHost.includes('srv'))) {
+      throw new Error(`❌ FATAL SAFETY GUARD TRIGGERED: Refusal to connect test suite to production database host '${dbHost}:${dbPort}'. Execution halted.`);
+    }
+  }
+
   const { host: rawHost, port, name, user, password } = config.db;
   const host = (!rawHost || rawHost === 'localhost') ? '127.0.0.1' : rawHost;
 
@@ -655,12 +669,9 @@ async function restoreStockAtomic(productId, quantity) {
 }
 
 /**
- * generateInvoiceNumber — atomically gets the next sequential invoice number for the current FY
+ * Helper to generate financial year invoice string using an active DB connection
  */
-async function generateInvoiceNumber() {
-  const p = getPool();
-  
-  // Calculate current financial year (April to March)
+async function generateInvoiceNumberWithConn(conn) {
   const today = new Date();
   const year = today.getFullYear();
   const month = today.getMonth(); // 0 = Jan
@@ -672,23 +683,96 @@ async function generateInvoiceNumber() {
   }
   const fyStr = `${String(fyStart).slice(-2)}-${String(fyEnd).slice(-2)}`; // e.g. 26-27
 
+  await conn.query(`INSERT INTO invoice_sequences (financial_year, current_value) VALUES (?, 0) ON DUPLICATE KEY UPDATE id=id`, [fyStr]);
+  await conn.query(`UPDATE invoice_sequences SET current_value = current_value + 1 WHERE financial_year = ?`, [fyStr]);
+  const [rows] = await conn.query(`SELECT current_value FROM invoice_sequences WHERE financial_year = ?`, [fyStr]);
+  const val = rows[0].current_value;
+  const formattedVal = String(val).padStart(5, '0');
+  return `SHR/${fyStr}/${formattedVal}`;
+}
+
+/**
+ * generateInvoiceNumber — atomically gets the next sequential invoice number for the current FY
+ */
+async function generateInvoiceNumber() {
+  const p = getPool();
+  
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  let fyStart = year;
+  let fyEnd = year + 1;
+  if (month < 3) {
+    fyStart = year - 1;
+    fyEnd = year;
+  }
+  const fyStr = `${String(fyStart).slice(-2)}-${String(fyEnd).slice(-2)}`;
+
   if (!p) {
-    // Mock or no-db fallback
     return `SHR/${fyStr}/MOCK-${Math.floor(1000 + Math.random() * 9000)}`;
   }
 
   try {
     const conn = await p.getConnection();
-    await conn.query(`INSERT INTO invoice_sequences (financial_year, current_value) VALUES (?, 0) ON DUPLICATE KEY UPDATE id=id`, [fyStr]);
-    await conn.query(`UPDATE invoice_sequences SET current_value = current_value + 1 WHERE financial_year = ?`, [fyStr]);
-    const [rows] = await conn.query(`SELECT current_value FROM invoice_sequences WHERE financial_year = ?`, [fyStr]);
+    const invoiceNumber = await generateInvoiceNumberWithConn(conn);
     conn.release();
-    const val = rows[0].current_value;
-    const formattedVal = String(val).padStart(5, '0');
-    return `SHR/${fyStr}/${formattedVal}`;
+    return invoiceNumber;
   } catch (err) {
     console.error('⚠️ Could not generate invoice number from DB:', err.message);
     return `SHR/${fyStr}/ERR-${Math.floor(1000 + Math.random() * 9000)}`;
+  }
+}
+
+/**
+ * getOrAssignInvoiceNumberAtomic — atomically gets or assigns an invoice number for an order using DB row locking.
+ * Prevents duplicate invoice generation under concurrent webhooks.
+ */
+async function getOrAssignInvoiceNumberAtomic(orderId) {
+  const p = getPool();
+  if (!p) {
+    const invNum = await generateInvoiceNumber();
+    return { invoiceNumber: invNum, invoiceDate: new Date().toISOString(), isNew: true };
+  }
+
+  const conn = await p.getConnection();
+  try {
+    await conn.beginTransaction();
+
+    const cleanId = String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase();
+    const [rows] = await conn.query(
+      `SELECT invoice_number, invoice_date FROM orders WHERE UPPER(order_id) = ? FOR UPDATE`,
+      [cleanId]
+    );
+
+    if (rows.length > 0 && rows[0].invoice_number) {
+      await conn.commit();
+      conn.release();
+      return {
+        invoiceNumber: rows[0].invoice_number,
+        invoiceDate: rows[0].invoice_date,
+        isNew: false
+      };
+    }
+
+    const newInvoiceNumber = await generateInvoiceNumberWithConn(conn);
+    const invoiceDate = new Date().toISOString();
+
+    await conn.query(
+      `UPDATE orders SET invoice_number = ?, invoice_date = ? WHERE UPPER(order_id) = ? AND (invoice_number IS NULL OR invoice_number = '')`,
+      [newInvoiceNumber, invoiceDate, cleanId]
+    );
+
+    await conn.commit();
+    conn.release();
+    return {
+      invoiceNumber: newInvoiceNumber,
+      invoiceDate,
+      isNew: true
+    };
+  } catch (err) {
+    await conn.rollback();
+    conn.release();
+    throw err;
   }
 }
 
@@ -708,5 +792,6 @@ module.exports = {
   saveSubscriber,
   getSubscribers,
   generateInvoiceNumber,
+  getOrAssignInvoiceNumberAtomic,
 };
 

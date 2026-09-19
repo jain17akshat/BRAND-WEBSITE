@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  local-mysql:
+    image: mysql:8.0
+    container_name: shraviko-local-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword123
+      MYSQL_DATABASE: u220633661_shraviko_db
+      MYSQL_USER: u220633661_shraviko_user
+      MYSQL_PASSWORD: Shraviko2026Db
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword123"]
+      timeout: 20s
+      retries: 10

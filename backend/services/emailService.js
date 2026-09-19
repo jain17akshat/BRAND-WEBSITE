@@ -51,14 +51,11 @@ function getTransporter() {
 }
 
 /**
- * Returns merged recipient list (Customer + Admin copy)
+ * Returns clean recipient email (Customer only for customer emails)
  */
 function getRecipients(to) {
-  const list = [to, config.email.adminEmail, config.email.user]
-    .filter(Boolean)
-    .map(e => String(e).trim())
-    .filter(e => e.includes('@'));
-  return Array.from(new Set(list)).join(', ');
+  if (!to) return '';
+  return String(to).trim();
 }
 
 /**
@@ -149,7 +146,7 @@ function renderItemsTable(items) {
 /**
  * 1. sendOrderConfirmationEmail — Simple & Elegant Order Confirmation (COD / General)
  */
-async function sendOrderConfirmationEmail({ to, customerName, orderId, items, totalAmount, shippingAddress, phone, paymentMethod }) {
+async function sendOrderConfirmationEmail({ to, customerName, orderId, items, totalAmount, shippingAddress, phone, paymentMethod, invoiceBuffer, invoiceNumber }) {
   const transporter = getTransporter();
   const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
   const cleanId = orderId || `SHR${Math.floor(100000 + Math.random() * 900000)}`;
@@ -254,10 +251,10 @@ async function sendOrderConfirmationEmail({ to, customerName, orderId, items, to
 
   try {
     const attachments = [];
-    if (orderData.invoiceBuffer) {
+    if (invoiceBuffer) {
       attachments.push({
-        filename: `Invoice_${orderData.invoiceNumber || orderData.orderId}.pdf`,
-        content: orderData.invoiceBuffer,
+        filename: `Invoice_${invoiceNumber || cleanId}.pdf`,
+        content: invoiceBuffer,
         contentType: 'application/pdf',
       });
     }
@@ -281,7 +278,7 @@ async function sendOrderConfirmationEmail({ to, customerName, orderId, items, to
 /**
  * 2. sendPrepaidPaymentReceivedEmail — Simple & Elegant Email for Online / Prepaid Payments
  */
-async function sendPrepaidPaymentReceivedEmail({ to, customerName, orderId, paymentId, items, totalAmount, shippingAddress, phone }) {
+async function sendPrepaidPaymentReceivedEmail({ to, customerName, orderId, paymentId, items, totalAmount, shippingAddress, phone, invoiceBuffer, invoiceNumber }) {
   const transporter = getTransporter();
   const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
   const cleanId = orderId || `SHR${Math.floor(100000 + Math.random() * 900000)}`;
@@ -390,10 +387,10 @@ async function sendPrepaidPaymentReceivedEmail({ to, customerName, orderId, paym
 
   try {
     const attachments = [];
-    if (orderData.invoiceBuffer) {
+    if (invoiceBuffer) {
       attachments.push({
-        filename: `Invoice_${orderData.invoiceNumber || orderData.orderId}.pdf`,
-        content: orderData.invoiceBuffer,
+        filename: `Invoice_${invoiceNumber || cleanId}.pdf`,
+        content: invoiceBuffer,
         contentType: 'application/pdf',
       });
     }

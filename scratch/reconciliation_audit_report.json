@@ -1,0 +1,460 @@
+{
+  "summary": {
+    "totalMasterProducts": 56,
+    "matchedCount": 55,
+    "missingFromWebsiteCount": 0,
+    "mismatchedCount": 1,
+    "websiteOnlyCount": 6,
+    "duplicateSkusCount": 0,
+    "missingTaxDataCount": 0,
+    "unresolvedCount": 1
+  },
+  "reportMatched": [
+    {
+      "sku": "SHR-NMY-COP-003",
+      "title": "SHRAVIKO SarvKarya Siddhi Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CHN6",
+      "title": "Chandan Sandalwood Bamboo-Free Incense Sticks",
+      "hsn": "33074100",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-L-01",
+      "title": "SHR-L-01 (100 g)",
+      "hsn": "33042000",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-SAF-1",
+      "title": "SHR-SAF-1 (100 g)",
+      "hsn": "33042000",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CAM-01",
+      "title": "SHR-CAM-01 (100 g)",
+      "hsn": "29142100",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-RSE-4",
+      "title": "Rose Incense Sticks (100 g)",
+      "hsn": "33074100",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-BAG-001",
+      "title": "Shri Baglamukhi Mahayantra – Copper",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-MY-04",
+      "title": "Mangal Yantra – Copper 3×3 Inch",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SH-G-15",
+      "title": "Guggul Sambrani Cups",
+      "hsn": "33074100",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-CM-01",
+      "title": "SHR-CM-01 (200 g)",
+      "hsn": "33074100",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-BRS-THL-06",
+      "title": "Brass Pooja Thali",
+      "hsn": "73239420",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-YAN-MMR-001",
+      "title": "Shri Mahamrityunjay Maha Yantram – Copper",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-GI-BR-055-1P",
+      "title": "Brass Ganesha Idol",
+      "hsn": "74198030",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-KSY-01",
+      "title": "Kaal Sarp Yog Dosh Nivaran Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-SPM-108-78",
+      "title": "Natural Sphatik Jaap Mala",
+      "hsn": "71161000",
+      "gstRate": 3,
+      "taxCode": "GST_3"
+    },
+    {
+      "sku": "SHR-YAN-KSY-001",
+      "title": "Kaal Sarp Yog Dosh Nivaran Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-YAN-MULTI-001",
+      "title": "Multi-Yantra Copper Plaque",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-MMY-001",
+      "title": "Mahamrityunjay Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-YAN-MNG-001",
+      "title": "Shri Mangal Yantra – Copper",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-YAN-MULTI-002",
+      "title": "Multi Yantra Copper Plaque",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CGY-03IN-001",
+      "title": "Copper Ganesh Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-BRS-PTH-PK",
+      "title": "Brass Peacock Pooja Thali",
+      "hsn": "73239420",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-WOD-CHW-001",
+      "title": "Wooden Pooja Chowki",
+      "hsn": "44219119",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-SPH-SHL-25",
+      "title": "Sphatik Shivling",
+      "hsn": "70189010",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-CLY-03IN-001",
+      "title": "Copper Lakshmi Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-BR-TRI-DMR-10CM-001",
+      "title": "Brass Trishul with Damru & Stand",
+      "hsn": "74198030",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CNY-03IN-001",
+      "title": "Copper Navgraha Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CSY-03IN-001",
+      "title": "Copper Saraswati Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CKY-03IN-001",
+      "title": "Copper Kuber Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-TUL-MAL",
+      "title": "Tulsi Mala",
+      "hsn": "71179090",
+      "gstRate": 3,
+      "taxCode": "GST_3"
+    },
+    {
+      "sku": "SHR-BRS-PYR-3L",
+      "title": "Brass Vastu Pyramid",
+      "hsn": "74199930",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-DDM-H01-GD",
+      "title": "Metal Dhoop Dani with Handle",
+      "hsn": "73269099",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-CSHY-03IN-001",
+      "title": "Copper Shani Yantra 3×3 Inch",
+      "hsn": "74198040",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-WD-DMR-001",
+      "title": "Wooden Damaru",
+      "hsn": "92060000",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-SYC-GL-04-1P",
+      "title": "Glass Shree Yantra Cone",
+      "hsn": "70189010",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-PCS-SH01-70",
+      "title": "Pure Copper Panchpatra Udharini Set",
+      "hsn": "74181022",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-TC-COMP-WG-01",
+      "title": "Digital Tally Counter with Compass",
+      "hsn": "95062900",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-VJM-108-RD-36",
+      "title": "Beads Wood Necklace",
+      "hsn": "71179090",
+      "gstRate": 3,
+      "taxCode": "GST_3"
+    },
+    {
+      "sku": "SHR-LGI-BR-06-1P",
+      "title": "Brass Laddu Gopal Idol",
+      "hsn": "74198030",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-BDIYA-001",
+      "title": "Panchmukhi Aarti Diya",
+      "hsn": "69120090",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-RDM-5M-108-GMB",
+      "title": "5 Mukhi Rudraksha Jaap Mala",
+      "hsn": "71179090",
+      "gstRate": 3,
+      "taxCode": "GST_3"
+    },
+    {
+      "sku": "SHR-KGM-108-08",
+      "title": "Natural Karungali Wooden Jaap Mala",
+      "hsn": "442199",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-WCH-SQ-L-01",
+      "title": "Square Wooden Chowki",
+      "hsn": "44219119",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-CPT-006",
+      "title": "Pure Copper Pooja Thali 11\"",
+      "hsn": "74198090",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-AJ-004",
+      "title": "Brass Akhand Jyot Diya",
+      "hsn": "74199930",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-RKI-BR-03X02X03-1P",
+      "title": "Brass Radha Krishna Idol",
+      "hsn": "74198030",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-POO-BOX",
+      "title": "Stainless Steel Pooja Box with 7 Containers",
+      "hsn": "73239390",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-GLS-TUR-15",
+      "title": "Glass Turtle Showpiece",
+      "hsn": "70189010",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-GHB-05IN-001",
+      "title": "Brass Hand Bell 4 Inch",
+      "hsn": "74199930",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-BRS-KLS-LTA",
+      "title": "Brass Pooja Kalash Lota",
+      "hsn": "74181022",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-GB-05IN-001",
+      "title": "Brass Garuda Head Bell",
+      "hsn": "74199930",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-BRS-KMD-105",
+      "title": "Brass Kamandal",
+      "hsn": "74198030",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-BB-RND-03IN-001",
+      "title": "Bell Nandi-4",
+      "hsn": "74199930",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    },
+    {
+      "sku": "SHR-HK-11-001",
+      "title": "SHR-HK-11 (500 g)",
+      "hsn": "74199990",
+      "gstRate": 18,
+      "taxCode": "GST_18"
+    },
+    {
+      "sku": "SHR-BB-N4-05IN-001",
+      "title": "Brass Pooja Bell 4 Inch",
+      "hsn": "74199930",
+      "gstRate": 5,
+      "taxCode": "GST_5"
+    }
+  ],
+  "reportMissingFromWebsite": [],
+  "reportMismatched": [
+    {
+      "sku": "SHR-GS-BR-07X05X09-1P",
+      "title": "Brass God Singhasan",
+      "masterHsn": "74198030",
+      "masterGst": 5,
+      "backendTax": {
+        "title": "Singhasan Brass 7x5x9 Inch",
+        "hsn": "74198030",
+        "tax": "GST_Old_12_New_5"
+      },
+      "reasons": [
+        "GST Mismatch: Master (5%) vs Backend (GST_Old_12_New_5%)"
+      ]
+    }
+  ],
+  "reportWebsiteOnly": [
+    {
+      "source": "frontend (slug id without SKU mapping)",
+      "id": "mandir-dakshinavarti-shankh",
+      "name": "Shraviko Natural Dakshinavarti Shankh"
+    },
+    {
+      "source": "frontend (slug id without SKU mapping)",
+      "id": "mandir-vamavarti-shankh",
+      "name": "Shraviko Vamavarti Blowing Shankh"
+    },
+    {
+      "source": "frontend (slug id without SKU mapping)",
+      "id": "yantra-kaal-sarp",
+      "name": "SHRAVIKO Kaal Sarp Yog Dosh Nivaran Yantra"
+    },
+    {
+      "source": "frontend (slug id without SKU mapping)",
+      "id": "yantra-mangal",
+      "name": "SHRAVIKO Mangal Yantra"
+    },
+    {
+      "source": "frontend (slug id without SKU mapping)",
+      "id": "yantra-sarv-karya",
+      "name": "SHRAVIKO Sarv Karya Siddhi Yantra"
+    },
+    {
+      "source": "frontend (slug id without SKU mapping)",
+      "id": "yantra-baglamukhi",
+      "name": "SHRAVIKO Shri Baglamukhi Mahayantra"
+    }
+  ],
+  "reportDuplicateSkus": [],
+  "reportMissingTaxData": [],
+  "reportUnresolved": [
+    {
+      "sku": "SHR-GS-BR-07X05X09-1P",
+      "title": "Brass God Singhasan",
+      "hsn": "74198030",
+      "masterGst": "5%",
+      "excelTaxCode": "GST_Old_12_New_5",
+      "reason": "Flagged as unresolved GST mapping (GST_Old_12_New_5 requirement)"
+    }
+  ]
+}

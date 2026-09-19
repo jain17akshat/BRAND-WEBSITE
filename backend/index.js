@@ -157,6 +157,10 @@ async function startServer() {
       console.log(`\n🚀 Shraviko server running on port ${PORT}`);
       console.log(`   Environment: ${config.nodeEnv}`);
       console.log(`   Frontend:    ${config.frontendUrl}\n`);
+      
+      // Start background email queue polling
+      const emailQueue = require('./services/emailQueue');
+      emailQueue.startPolling();
     });
   }
 }

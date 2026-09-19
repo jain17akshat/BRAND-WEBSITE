@@ -27,6 +27,7 @@ try {
 const catalog = {
   // Brass Articles
   'brass-bell-garuda': 722,            // was 650
+  'SHR-GB-05IN-001': 722,              // SKU alias for Brass Garuda Head Bell
   'brass-bell-nandi': 722,             // was 650
   'brass-bell-simple': 722,            // was 650
   'brass-bell-carved': 722,            // was 650
@@ -246,9 +247,14 @@ function enrichCartItemWithTax(item, customerState) {
     throw new AppError(`Missing HSN or GST mapping for product "${item.name || rawId}". Order cannot be finalized without tax data.`, 400, 'MISSING_TAX_DATA');
   }
 
-  // Verification step for the specific Singhasan entry as requested.
-  if (taxInfo.tax === '**Verify**' || taxInfo.tax === 'Verify') {
-    throw new AppError(`GST rate for product "${item.name || rawId}" requires manual verification before invoice generation.`, 400, 'UNVERIFIED_TAX_DATA');
+  // Verification step for unverified or ambiguous tax mappings (e.g. GST_Old_12_New_5 or **Verify**)
+  if (typeof taxInfo.tax === 'string' && (
+      taxInfo.tax.includes('Verify') || 
+      taxInfo.tax.includes('GST_Old') || 
+      taxInfo.tax.includes('Unresolved') ||
+      isNaN(parseFloat(taxInfo.tax))
+  )) {
+    throw new AppError(`GST rate for product "${item.name || rawId}" requires manual verification before invoice generation. Tax Code: ${taxInfo.tax}`, 400, 'UNVERIFIED_TAX_DATA');
   }
 
   const authoritativePrice = getProductPrice(item); // inclusive of GST

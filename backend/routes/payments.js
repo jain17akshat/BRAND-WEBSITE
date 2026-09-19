@@ -632,46 +632,46 @@ router.post('/webhook', async (req, res, next) => {
             const { findOrderById } = require('../services/orderStore');
             const order = await findOrderById(internalOrderId);
 
-            if (order && !order.invoice_number) {
-              const { generateInvoiceNumber } = require('../database/db');
-              const invoiceNumber = await generateInvoiceNumber();
-              const invoiceDate = new Date().toISOString();
+            if (order) {
+              const { getOrAssignInvoiceNumberAtomic } = require('../database/db');
+              const { invoiceNumber, invoiceDate, isNew } = await getOrAssignInvoiceNumberAtomic(internalOrderId);
 
-              // Use items_raw which preserves the full HSN/GST enriched data
-              // (formatCachedOrder simplifies items for frontend display)
-              let orderItems = order.items_raw || order.items;
-              if (typeof orderItems === 'string') {
-                try { orderItems = JSON.parse(orderItems); } catch { orderItems = []; }
+              if (isNew) {
+                // Use items_raw which preserves the full HSN/GST enriched data
+                let orderItems = order.items_raw || order.items;
+                if (typeof orderItems === 'string') {
+                  try { orderItems = JSON.parse(orderItems); } catch { orderItems = []; }
+                }
+
+                // Generate & persist the invoice PDF to disk FIRST
+                const { generateAndSaveInvoice } = require('../services/invoiceService');
+                const { buffer: invoiceBuffer } = await generateAndSaveInvoice({
+                  order_id: order.order_id || internalOrderId,
+                  customer_name: order.customer_name || 'Valued Customer',
+                  customer_email: order.customer_email,
+                  customer_phone: order.customer_phone,
+                  payment_method: order.payment_method || 'Prepaid',
+                  shipping_address: order.shipping_address || '',
+                  state: order.state || order.shipping_address?.split(',').pop()?.trim() || '',
+                  items: orderItems,
+                }, invoiceNumber);
+
+                console.log(`📄 Prepaid Invoice generated & saved via webhook for ${internalOrderId}: ${invoiceNumber}`);
+
+                // Update the in-memory/DB order record with invoice details
+                const { updateOrderInvoice, updateEmailStatus } = require('../services/orderStore');
+                await updateOrderInvoice(internalOrderId, invoiceNumber, invoiceDate);
+
+                // Set statuses to PENDING for the queue to pick up
+                await updateEmailStatus(internalOrderId, 'customer', { status: 'PENDING' });
+                await updateEmailStatus(internalOrderId, 'business', { status: 'PENDING' });
+
+                // Trigger the queue immediately
+                const emailQueue = require('../services/emailQueue');
+                emailQueue.triggerImmediate(internalOrderId);
+              } else {
+                console.log(`  → Invoice already generated for ${internalOrderId}: ${invoiceNumber} (skipping duplicate)`);
               }
-
-              // Generate & persist the invoice PDF to disk FIRST
-              const { generateAndSaveInvoice } = require('../services/invoiceService');
-              const { buffer: invoiceBuffer } = await generateAndSaveInvoice({
-                order_id: order.order_id || internalOrderId,
-                customer_name: order.customer_name || 'Valued Customer',
-                customer_email: order.customer_email,
-                customer_phone: order.customer_phone,
-                payment_method: order.payment_method || 'Prepaid',
-                shipping_address: order.shipping_address || '',
-                state: order.state || order.shipping_address?.split(',').pop()?.trim() || '',
-                items: orderItems,
-              }, invoiceNumber);
-
-              console.log(`📄 Prepaid Invoice generated & saved via webhook for ${internalOrderId}: ${invoiceNumber}`);
-
-              // Update the order record with invoice details
-              const { updateOrderInvoice, updateEmailStatus } = require('../services/orderStore');
-              await updateOrderInvoice(internalOrderId, invoiceNumber, invoiceDate);
-
-              // Set statuses to PENDING for the queue to pick up
-              await updateEmailStatus(internalOrderId, 'customer', { status: 'PENDING' });
-              await updateEmailStatus(internalOrderId, 'business', { status: 'PENDING' });
-
-              // Trigger the queue immediately
-              const emailQueue = require('../services/emailQueue');
-              emailQueue.triggerImmediate(internalOrderId);
-            } else if (order?.invoice_number) {
-              console.log(`  → Invoice already generated for ${internalOrderId}: ${order.invoice_number} (skipping duplicate)`);
             }
           } catch (invErr) {
             console.error(`⚠️ Webhook invoice generation failed for ${internalOrderId}:`, invErr.message);
