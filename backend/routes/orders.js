@@ -254,4 +254,35 @@ router.post('/:id/cancel', async (req, res, next) => {
   }
 });
 
+// ── GET /api/orders/:id/invoice ───────────────────────────
+router.get('/:id/invoice', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { phone, email } = req.query;
+
+    if (!id || !/^[a-zA-Z0-9_-]+$/.test(String(id).trim())) {
+      return next(new AppError('Invalid order ID format.', 400, 'INVALID_INPUT'));
+    }
+
+    const { findOrder } = require('../services/orderStore');
+    const existingOrder = await findOrder(id, phone, email);
+
+    if (!existingOrder) {
+      return next(new AppError('Order not found or unauthorized access.', 404, 'ORDER_NOT_FOUND'));
+    }
+
+    const path = require('path');
+    const fs = require('fs');
+    const invoicePath = path.join(__dirname, `../data/invoices/Invoice_${existingOrder.order_id || id}.pdf`);
+
+    if (!fs.existsSync(invoicePath)) {
+      return next(new AppError('Invoice not found or has not been generated for this order yet.', 404, 'INVOICE_NOT_FOUND'));
+    }
+
+    res.download(invoicePath, `Invoice_${existingOrder.order_id || id}.pdf`);
+  } catch (err) {
+    next(new AppError(`Invoice download failed: ${err.message}`, 500, 'SERVER_ERROR'));
+  }
+});
+
 module.exports = router;

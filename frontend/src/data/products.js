@@ -2083,8 +2083,8 @@ export const PRODUCTS = [
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Glass Yantras',
-    price: 1767,
-    originalPrice: 2211,
+    price: 450,
+    originalPrice: 799,
     rating: 4.98,
     reviewsCount: 162,
     tag: 'Shree Yantra',
@@ -2098,7 +2098,7 @@ export const PRODUCTS = [
       '/assets/Glassyantra/glass4.webp'
     ],
     weightVariants: [
-      { weight: '5 × 4 × 5 cm (70 g Meru)', price: 1767, originalPrice: 2211, default: true }
+      { weight: '5 × 4 × 5 cm (70 g Meru)', price: 450, originalPrice: 799, default: true }
     ],
     purity: 'High-Clarity Sphatik Crystal Glass (70 g)',
     inStock: true,

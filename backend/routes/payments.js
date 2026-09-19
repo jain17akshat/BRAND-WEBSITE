@@ -205,13 +205,11 @@ router.post(
           throw new AppError(`Unrecognized or invalid product in cart: ${item.id || item.name}`, 400, 'INVALID_PRODUCT');
         }
 
-        sanitizedCart.push({
-          ...item,
-          price: authoritativePrice,
-          quantity: qty,
-        });
+        const enrichedItem = require('../data/catalog').enrichCartItemWithTax(item, customer?.state);
 
-        verifiedSubtotal += authoritativePrice * qty;
+        sanitizedCart.push(enrichedItem);
+
+        verifiedSubtotal += enrichedItem.total_item_amount;
       }
 
       // 3. Server-side coupon validation (e.g. WELCOME10)
@@ -326,9 +324,33 @@ router.post(
         const internalOrderId = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
         const totalAmount = authoritativePayable;
 
+        // Generate sequential invoice number
+        const { generateInvoiceNumber } = require('../database/db');
+        const invoiceNumber = await generateInvoiceNumber();
+        const invoiceDate = new Date().toISOString();
+
         // Deduct inventory atomically (fails with 409 OUT_OF_STOCK if insufficient)
         const { deductInventoryForCart } = require('../data/catalog');
         await deductInventoryForCart(sanitizedCart);
+
+        // Generate Invoice PDF Buffer independently
+        let invoiceBuffer = null;
+        try {
+          const { generateInvoice } = require('../services/invoiceService');
+          invoiceBuffer = await generateInvoice({
+            order_id: internalOrderId,
+            customer_name: customer?.name || 'Valued Customer',
+            customer_email: customer?.email,
+            customer_phone: customer?.phone,
+            payment_method: shiprocketPaymentMethod,
+            shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
+            state: customer?.state,
+            items: sanitizedCart,
+          }, invoiceNumber);
+          console.log(`📄 Invoice generated successfully for ${internalOrderId}: ${invoiceNumber}`);
+        } catch (invErr) {
+          console.error(`⚠️ Failed to generate invoice PDF for ${internalOrderId}:`, invErr.message);
+        }
 
         if (customer?.email) {
           const { sendOrderConfirmationEmail, sendPrepaidPaymentReceivedEmail } = require('../services/emailService');
@@ -342,6 +364,8 @@ router.post(
               shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
               phone: customer.phone || '7742320607',
               paymentMethod: 'Cash on Delivery (COD)',
+              invoiceBuffer,
+              invoiceNumber,
             }).catch(err => console.error('Failed to send COD confirmation email:', err));
           } else {
             sendPrepaidPaymentReceivedEmail({
@@ -353,6 +377,8 @@ router.post(
               totalAmount,
               shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
               phone: customer.phone || '7742320607',
+              invoiceBuffer,
+              invoiceNumber,
             }).catch(err => console.error('Failed to send prepaid payment received email:', err));
           }
         }
@@ -361,6 +387,7 @@ router.post(
           razorpay_order_id,
           razorpay_payment_id,
           internalOrderId,
+          invoiceNumber,
           customer: customer?.name,
         });
 
@@ -454,6 +481,8 @@ router.post(
           shipment_id: srShipmentId,
           shiprocket_sync_status: shiprocketSyncStatus,
           inventory_deducted: true,
+          invoice_number: invoiceNumber,
+          invoice_date: invoiceDate,
         });
 
         const sanitizedResponse = {

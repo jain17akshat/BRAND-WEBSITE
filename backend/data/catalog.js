@@ -14,6 +14,16 @@
  *   These values are final and should only be changed manually.
  */
 
+const fs = require('fs');
+const path = require('path');
+let productsTaxMap = {};
+try {
+  productsTaxMap = JSON.parse(fs.readFileSync(path.join(__dirname, 'products_tax.json'), 'utf8'));
+} catch (err) {
+  console.warn('⚠️ Could not load products_tax.json. Invoice tax calculation will fail if products are not found.', err.message);
+}
+
+
 const catalog = {
   // Brass Articles
   'brass-bell-garuda': 722,            // was 650
@@ -223,6 +233,70 @@ function calculateCartSubtotal(cart) {
   }, 0);
 }
 
+/**
+ * Validates and enriches a cart item with HSN, GST rate, and reverse-calculated taxable values.
+ * Assumes the authoritative selling price is GST inclusive.
+ */
+function enrichCartItemWithTax(item, customerState) {
+  const rawId = String(item.id || item.productId || item.sku || '').trim();
+  const taxInfo = productsTaxMap[rawId];
+
+  // Some items might be explicitly tax-exempt, but for this project, all items MUST have a mapping.
+  if (!taxInfo || !taxInfo.hsn || taxInfo.tax === undefined || taxInfo.tax === null) {
+    throw new AppError(`Missing HSN or GST mapping for product "${item.name || rawId}". Order cannot be finalized without tax data.`, 400, 'MISSING_TAX_DATA');
+  }
+
+  // Verification step for the specific Singhasan entry as requested.
+  if (taxInfo.tax === '**Verify**' || taxInfo.tax === 'Verify') {
+    throw new AppError(`GST rate for product "${item.name || rawId}" requires manual verification before invoice generation.`, 400, 'UNVERIFIED_TAX_DATA');
+  }
+
+  const authoritativePrice = getProductPrice(item); // inclusive of GST
+  const qty = Math.max(1, parseInt(item.quantity || item.units || 1, 10));
+  const gstRatePercent = parseFloat(taxInfo.tax);
+
+  if (isNaN(gstRatePercent)) {
+    throw new AppError(`Invalid GST rate for product "${item.name || rawId}".`, 400, 'INVALID_TAX_DATA');
+  }
+
+  // Reverse calculate taxable value
+  // Formula: Taxable Value = Inclusive Price / (1 + GST_Rate / 100)
+  const taxableValuePerUnit = authoritativePrice / (1 + (gstRatePercent / 100));
+  const totalTaxableValue = taxableValuePerUnit * qty;
+  const totalItemAmount = authoritativePrice * qty; // Total inclusive
+  const totalGstAmount = totalItemAmount - totalTaxableValue;
+
+  // Determine intra-state vs inter-state
+  // Seller State: Rajasthan (from GST image)
+  const isIntraState = customerState && customerState.trim().toLowerCase() === 'rajasthan';
+
+  let cgst = 0, sgst = 0, igst = 0;
+  if (isIntraState) {
+    cgst = totalGstAmount / 2;
+    sgst = totalGstAmount / 2;
+  } else {
+    igst = totalGstAmount;
+  }
+
+  return {
+    ...item,
+    sku: rawId,
+    name: taxInfo.title || item.name, // prefer master name if available
+    hsn: taxInfo.hsn,
+    gst_rate: gstRatePercent,
+    price: authoritativePrice, // inclusive
+    taxable_value: parseFloat(totalTaxableValue.toFixed(2)),
+    taxable_value_per_unit: parseFloat(taxableValuePerUnit.toFixed(2)),
+    cgst: parseFloat(cgst.toFixed(2)),
+    sgst: parseFloat(sgst.toFixed(2)),
+    igst: parseFloat(igst.toFixed(2)),
+    total_tax_amount: parseFloat(totalGstAmount.toFixed(2)),
+    total_item_amount: totalItemAmount,
+    quantity: qty,
+    units: qty
+  };
+}
+
 // ── In-Memory Stock Control (Initial Documented Default: 100 units/item) ──
 const stockRegistry = new Map();
 
@@ -301,4 +375,5 @@ module.exports = {
   setProductStock,
   deductInventoryForCart,
   restoreInventoryForCart,
+  enrichCartItemWithTax,
 };

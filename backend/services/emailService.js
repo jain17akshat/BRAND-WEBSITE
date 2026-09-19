@@ -253,11 +253,21 @@ async function sendOrderConfirmationEmail({ to, customerName, orderId, items, to
   }
 
   try {
+    const attachments = [];
+    if (orderData.invoiceBuffer) {
+      attachments.push({
+        filename: `Invoice_${orderData.invoiceNumber || orderData.orderId}.pdf`,
+        content: orderData.invoiceBuffer,
+        contentType: 'application/pdf',
+      });
+    }
+
     const info = await transporter.sendMail({
       from: `"Shraviko" <${process.env.EMAIL_USER}>`,
       to: recipients,
-      subject: `Order Confirmed: #${sanitizeHeader(cleanId)} — Shraviko`,
+      subject: `Order Confirmation #${sanitizeHeader(cleanId)} — Shraviko`,
       html: htmlTemplate,
+      attachments,
     });
     console.log(`✅ Order confirmation email sent to ${recipients}: ${info.messageId}`);
     return { success: true, messageId: info.messageId };
@@ -379,11 +389,21 @@ async function sendPrepaidPaymentReceivedEmail({ to, customerName, orderId, paym
   }
 
   try {
+    const attachments = [];
+    if (orderData.invoiceBuffer) {
+      attachments.push({
+        filename: `Invoice_${orderData.invoiceNumber || orderData.orderId}.pdf`,
+        content: orderData.invoiceBuffer,
+        contentType: 'application/pdf',
+      });
+    }
+
     const info = await transporter.sendMail({
       from: `"Shraviko" <${process.env.EMAIL_USER}>`,
       to: recipients,
       subject: `We have received your payment for Order #${sanitizeHeader(cleanId)} — Shraviko`,
       html: htmlTemplate,
+      attachments,
     });
     console.log(`✅ Prepaid payment receipt email sent to ${recipients}: ${info.messageId}`);
     return { success: true, messageId: info.messageId };

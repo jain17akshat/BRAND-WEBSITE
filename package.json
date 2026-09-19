@@ -10,5 +10,8 @@
     "build:frontend": "npm --prefix frontend install --production=false && npm --prefix frontend run build",
     "start": "npm --prefix backend start",
     "start:backend": "npm --prefix backend start"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
   }
 }

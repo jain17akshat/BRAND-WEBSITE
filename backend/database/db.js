@@ -138,6 +138,15 @@ async function initDatabase() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
+    // 3b. Create invoice sequences table
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS invoice_sequences (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        financial_year VARCHAR(10) UNIQUE NOT NULL,
+        current_value INT DEFAULT 0
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
     // 4. Create products table (for atomic inventory control)
     await conn.query(`
       CREATE TABLE IF NOT EXISTS products (
@@ -150,9 +159,11 @@ async function initDatabase() {
 
     try {
       await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS inventory_deducted TINYINT(1) DEFAULT 0`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS invoice_number VARCHAR(100)`);
+      await conn.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS invoice_date TIMESTAMP`);
     } catch (colErr) {
       if (!colErr.message.includes('Duplicate column')) {
-        console.warn('⚠️ Column migration notice for inventory_deducted:', colErr.message);
+        console.warn('⚠️ Column migration notice for inventory_deducted/invoice_number:', colErr.message);
       }
     }
 
@@ -223,8 +234,8 @@ async function saveOrder(orderData) {
   try {
     const [result] = await p.query(
       `INSERT INTO orders 
-       (order_id, customer_name, customer_email, customer_phone, total_amount, payment_method, payment_status, status, shipping_address, items_json, shiprocket_order_id, shipment_id, shiprocket_sync_status)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       (order_id, customer_name, customer_email, customer_phone, total_amount, payment_method, payment_status, status, shipping_address, items_json, shiprocket_order_id, shipment_id, shiprocket_sync_status, invoice_number, invoice_date)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
        ON DUPLICATE KEY UPDATE 
          payment_status = VALUES(payment_status),
          status = COALESCE(VALUES(status), status),
@@ -245,6 +256,8 @@ async function saveOrder(orderData) {
         orderData.shiprocket_order_id || null,
         orderData.shipment_id || null,
         orderData.shiprocket_sync_status || 'PENDING',
+        orderData.invoice_number || null,
+        orderData.invoice_date || null
       ]
     );
 
@@ -631,6 +644,44 @@ async function restoreStockAtomic(productId, quantity) {
   }
 }
 
+/**
+ * generateInvoiceNumber — atomically gets the next sequential invoice number for the current FY
+ */
+async function generateInvoiceNumber() {
+  const p = getPool();
+  
+  // Calculate current financial year (April to March)
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth(); // 0 = Jan
+  let fyStart = year;
+  let fyEnd = year + 1;
+  if (month < 3) {
+    fyStart = year - 1;
+    fyEnd = year;
+  }
+  const fyStr = `${String(fyStart).slice(-2)}-${String(fyEnd).slice(-2)}`; // e.g. 26-27
+
+  if (!p) {
+    // Mock or no-db fallback
+    return `SHR/${fyStr}/MOCK-${Math.floor(1000 + Math.random() * 9000)}`;
+  }
+
+  try {
+    const conn = await p.getConnection();
+    await conn.query(`INSERT INTO invoice_sequences (financial_year, current_value) VALUES (?, 0) ON DUPLICATE KEY UPDATE id=id`, [fyStr]);
+    await conn.query(`UPDATE invoice_sequences SET current_value = current_value + 1 WHERE financial_year = ?`, [fyStr]);
+    const [rows] = await conn.query(`SELECT current_value FROM invoice_sequences WHERE financial_year = ?`, [fyStr]);
+    conn.release();
+    const val = rows[0].current_value;
+    const formattedVal = String(val).padStart(5, '0');
+    return `SHR/${fyStr}/${formattedVal}`;
+  } catch (err) {
+    console.error('⚠️ Could not generate invoice number from DB:', err.message);
+    return `SHR/${fyStr}/ERR-${Math.floor(1000 + Math.random() * 9000)}`;
+  }
+}
+
 module.exports = {
   getPool,
   initDatabase,
@@ -646,5 +697,6 @@ module.exports = {
   getCorporateEnquiries,
   saveSubscriber,
   getSubscribers,
+  generateInvoiceNumber,
 };
 
