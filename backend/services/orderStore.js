@@ -16,6 +16,7 @@ const STORE_FILE = path.join(__dirname, '../data/orders_store.json');
 const recentOrders = new Map();
 
 function loadPersistedOrders() {
+  if (config.isProd) return; // Production must never load orders_store.json into memory
   try {
     if (fs.existsSync(STORE_FILE)) {
       const data = fs.readFileSync(STORE_FILE, 'utf8');
