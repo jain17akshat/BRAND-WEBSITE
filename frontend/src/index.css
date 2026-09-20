@@ -1436,3 +1436,7 @@ img {
   display: block;
 }
 
+.product-card-image.object-contain {
+  object-fit: contain !important;
+}
+

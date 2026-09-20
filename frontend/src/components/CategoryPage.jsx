@@ -532,18 +532,16 @@ const CategoryProductCard = ({
       </div>
 
       {/* Body Details */}
-      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between space-y-2.5">
+      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between">
         <div>
           {/* Subtle Category/Art Tag if available */}
-          {product.categoryName && (
-            <p className="text-[9px] sm:text-[10px] font-cinzel tracking-[0.25em] text-[#9B7E52] uppercase mb-1 font-medium">
-              {product.categoryName}
-            </p>
-          )}
+          <p className="text-[9px] sm:text-[10px] font-cinzel tracking-[0.25em] text-[#9B7E52] uppercase mb-1 font-medium min-h-[16px] flex items-center">
+            {product.categoryName || '\u00A0'}
+          </p>
           {/* Elegant Product Title */}
           <h3
             onClick={handleClickCard}
-            className="font-cinzel font-semibold text-xs sm:text-[15px] text-[#2C2623] hover:text-[#C5A059] transition-colors cursor-pointer line-clamp-2 leading-snug tracking-tight"
+            className="font-cinzel font-semibold text-xs sm:text-[15px] text-[#2C2623] hover:text-[#C5A059] transition-colors cursor-pointer line-clamp-2 leading-snug tracking-tight min-h-[2.25rem] sm:min-h-[2.625rem] flex items-start"
           >
             {product.name}
           </h3>

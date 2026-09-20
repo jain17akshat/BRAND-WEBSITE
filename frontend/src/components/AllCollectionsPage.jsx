@@ -68,18 +68,18 @@ function ProductCard({ product, priority = false, onAddToCart, onToggleWishlist,
       </div>
 
       {/* Info */}
-      <div className="p-3 flex flex-col gap-2 flex-1">
-        {product.categoryName && (
-          <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#7A5B1D] uppercase font-bold">
-            {product.categoryName}
+      <div className="p-3.5 flex flex-col justify-between flex-1">
+        <div>
+          <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#7A5B1D] uppercase font-bold mb-1 min-h-[16px] flex items-center">
+            {product.categoryName || '\u00A0'}
           </p>
-        )}
-        <h3
-          className="text-xs font-cinzel font-semibold text-[#2C2623] leading-snug line-clamp-2 cursor-pointer hover:text-[#C5A059] transition-colors tracking-tight"
-          onClick={() => onSelectProduct(product)}
-        >
-          {product.name}
-        </h3>
+          <h3
+            className="text-xs sm:text-sm font-cinzel font-semibold text-[#2C2623] leading-snug line-clamp-2 cursor-pointer hover:text-[#C5A059] transition-colors tracking-tight min-h-[2.25rem] sm:min-h-[2.5rem] flex items-start"
+            onClick={() => onSelectProduct(product)}
+          >
+            {product.name}
+          </h3>
+        </div>
         {!product.isComingSoon && (
           <div className="flex items-baseline gap-1.5 mt-auto pt-2 border-t border-[#EAE0CD]">
             {product.weightVariants && product.weightVariants[0]?.price ? (

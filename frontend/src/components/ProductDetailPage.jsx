@@ -225,7 +225,7 @@ export const ProductDetailPage = ({
                 src={activeImg}
                 alt={product.name}
                 artType={product.artType}
-                fitMode="contain"
+                fitMode={product.fitMode || "contain"}
                 aspect="aspect-square"
                 className="w-full h-full p-2 sm:p-4"
                 priority={true}
@@ -711,12 +711,12 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
                 </div>
 
                 {/* Info */}
-                <div className="p-3 flex flex-col flex-1 justify-between gap-2">
+                <div className="p-3 flex flex-col flex-1 justify-between">
                   <div>
-                    <span className="text-[9px] font-cinzel font-bold text-[#C5A059] uppercase tracking-wider block mb-0.5">
-                      {product.categoryName || product.category}
+                    <span className="text-[9px] font-cinzel font-bold text-[#C5A059] uppercase tracking-wider mb-1 min-h-[16px] flex items-center">
+                      {product.categoryName || product.category || '\u00A0'}
                     </span>
-                    <h3 className="font-cinzel font-semibold text-xs text-[#2C1F06] line-clamp-2 leading-snug group-hover:text-[#B8860B] transition-colors">
+                    <h3 className="font-cinzel font-semibold text-xs text-[#2C1F06] line-clamp-2 leading-snug group-hover:text-[#B8860B] transition-colors min-h-[2.25rem] flex items-start">
                       {product.name}
                     </h3>
                   </div>

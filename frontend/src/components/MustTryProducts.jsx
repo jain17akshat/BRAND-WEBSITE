@@ -176,17 +176,15 @@ const MustTryCard = ({
       </div>
 
       {/* Product Content Details */}
-      <div className="p-4 flex flex-col flex-1 justify-between gap-2.5 bg-white">
+      <div className="p-4 flex flex-col flex-1 justify-between bg-white">
         <div>
           {/* Category */}
-          <div className="flex items-center justify-between text-[10px] text-stone-500 mb-1">
-            <span className="uppercase font-cinzel font-bold text-[#7A5B1D] tracking-wider truncate">
-              {product.category || 'Sacred Item'}
-            </span>
-          </div>
+          <p className="text-[10px] font-cinzel font-bold text-[#7A5B1D] uppercase tracking-wider mb-1 min-h-[16px] flex items-center truncate">
+            {product.categoryName || product.category || 'Sacred Item'}
+          </p>
 
           {/* Product Name */}
-          <h3 className="font-cinzel font-semibold text-xs sm:text-sm text-[#2C1F06] line-clamp-2 leading-snug group-hover:text-[#B8860B] transition-colors">
+          <h3 className="font-cinzel font-semibold text-xs sm:text-sm text-[#2C1F06] line-clamp-2 leading-snug group-hover:text-[#B8860B] transition-colors min-h-[2.25rem] sm:min-h-[2.5rem] flex items-start">
             {product.name}
           </h3>
         </div>

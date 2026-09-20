@@ -151,9 +151,11 @@ export const PRODUCTS = [
     image: '/assets/simple bell/simple bell 5.webp',
     images: [
       '/assets/simple bell/simple bell 5.webp',
-      '/assets/simple bell/simple bell 4.webp',
+      '/assets/simple bell/simple bell 1.webp',
+
       '/assets/simple bell/simple bell 3.webp',
-      '/assets/simple bell/simple bell 1.webp'
+       '/assets/simple bell/simple bell 4.webp',
+
     ],
     weightVariants: [
       { weight: '90 g', price: 722, originalPrice: 1389, default: true }
@@ -340,8 +342,9 @@ export const PRODUCTS = [
     tag: '5-Wick Panchmukhi',
     artType: 'aarti',
     fitMode: 'contain',
-    image: '/assets/Brass aarti/Aarti1.webp',
+    image: '/assets/Brass aarti/arrittti1.webp',
     images: [
+      '/assets/Brass aarti/arrittti1.webp',
       '/assets/Brass aarti/Aarti1.webp',
       '/assets/Brass aarti/aarti2.webp',
       '/assets/Brass aarti/aarti 3.webp',
@@ -471,8 +474,9 @@ export const PRODUCTS = [
     tag: 'Akhand Deepak',
     artType: 'jyot',
     fitMode: 'contain',
-    image: '/assets/Cup jyot/cup 2.webp',
+    image: '/assets/Cup jyot/cup66.webp',
     images: [
+      '/assets/Cup jyot/cup66.webp',
       '/assets/Cup jyot/cup 2.webp',
       '/assets/Cup jyot/akhand jyot cup 1.webp',
       '/assets/Cup jyot/cup 3.webp'
@@ -673,8 +677,9 @@ export const PRODUCTS = [
     tag: 'Standing Trishul',
     artType: 'trishul',
     fitMode: 'contain',
-    image: '/assets/Trishul/trishul 2.webp',
+    image: '/assets/Trishul/trishull11.webp',
     images: [
+      '/assets/Trishul/trishull11.webp',
       '/assets/Trishul/trishul 2.webp',
       '/assets/Trishul/Trishul1.webp',
       '/assets/Trishul/trihsul 3.webp',
@@ -1553,8 +1558,9 @@ export const PRODUCTS = [
     tag: '15×15" Large Bajot',
     artType: 'chowki',
     fitMode: 'contain',
-    image: '/assets/WoodenChowki Large/chowki4.webp',
+    image: '/assets/WoodenChowki Large/mainchowki.webp',
     images: [
+      '/assets/WoodenChowki Large/mainchowki.webp',
       '/assets/WoodenChowki Large/chowki4.webp',
       '/assets/WoodenChowki Large/chowki5.webp',
       '/assets/WoodenChowki Large/chowki444.webp',
@@ -1616,8 +1622,9 @@ export const PRODUCTS = [
     tag: 'Dhoop Dani',
     artType: 'diffuser',
     fitMode: 'contain',
-    image: '/assets/dhoop dani/dhoop dani 1.webp',
+    image: '/assets/dhoop dani/dhoop1.webp',
     images: [
+      '/assets/dhoop dani/dhoop1.webp',
       '/assets/dhoop dani/dhoop dani 1.webp',
       '/assets/dhoop dani/dhoop dani 2.webp',
       '/assets/dhoop dani/dhoop dani 4.webp',
@@ -1746,8 +1753,9 @@ export const PRODUCTS = [
     tag: '7-in-1 Pooja Box',
     artType: 'box',
     fitMode: 'contain',
-    image: '/assets/Pooja box/Poojafront.webp',
+    image: '/assets/Pooja box/Pooja2.webp',
     images: [
+      '/assets/Pooja box/Pooja2.webp',
       '/assets/Pooja box/Poojafront.webp',
       '/assets/Pooja box/poojabox1.webp',
       '/assets/Pooja box/poobjabox2.webp',
@@ -2021,8 +2029,9 @@ export const PRODUCTS = [
     tag: 'Shani Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/shani yantra/shani1.webp',
+    image: '/assets/shani yantra/shanimain.webp',
     images: [
+      '/assets/shani yantra/shanimain.webp',
       '/assets/shani yantra/shani1.webp',
       '/assets/shani yantra/shani3.webp',
       '/assets/shani yantra/shani 4.webp',
@@ -2216,8 +2225,9 @@ export const PRODUCTS = [
     tag: 'Vastu Kurma',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/glassturtle/Glass turtle 1.webp',
+    image: '/assets/glassturtle/glass main.webp',
     images: [
+      '/assets/glassturtle/glass main.webp',
       '/assets/glassturtle/Glass turtle 1.webp',
       '/assets/glassturtle/glass turtle 2.webp',
       '/assets/glassturtle/turutle 3.webp',
@@ -3225,8 +3235,9 @@ export const PRODUCTS = [
     tag: 'Spiritual Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/Sarpyoh/image1.webp',
+    image: '/assets/Sarpyoh/mainimage.webp',
     images: [
+      '/assets/Sarpyoh/mainimage.webp',
       '/assets/Sarpyoh/image1.webp',
       '/assets/Sarpyoh/image2.webp',
       '/assets/Sarpyoh/image3.webp',
@@ -3270,11 +3281,11 @@ export const PRODUCTS = [
     tag: 'Spiritual Yantra',
     artType: 'yantra',
     fitMode: 'contain',
-    image: '/assets/Mangal yantra/image1.webp',
+    image: '/assets/Mangal yantra/image3.webp',
     images: [
+      '/assets/Mangal yantra/image3.webp',
       '/assets/Mangal yantra/image1.webp',
       '/assets/Mangal yantra/image2.webp',
-      '/assets/Mangal yantra/image3.webp',
       '/assets/Mangal yantra/image4.webp',
       '/assets/luxmiyantra/laxmi 4-1200w.webp'
     ],
@@ -3407,8 +3418,9 @@ export const PRODUCTS = [
     tag: 'Pure Sandalwood',
     artType: 'chandan',
     fitMode: 'contain',
-    image: '/assets/Safed Chandan/Safed 1.webp',
+    image: '/assets/Safed Chandan/SAfed 111.webp',
     images: [
+      '/assets/Safed Chandan/SAfed 111.webp',
       '/assets/Safed Chandan/Safed 1.webp',
       '/assets/Safed Chandan/Safed2.webp',
       '/assets/Safed Chandan/Safed3.webp',
@@ -3507,12 +3519,12 @@ export const PRODUCTS = [
     tag: 'Smokeless Aarti',
     artType: 'kapoor',
     fitMode: 'contain',
-    image: '/assets/Kapoor/Camphor1.webp',
+    image: '/assets/Kapoor/Camphor1.png',
     images: [
-      '/assets/Kapoor/Camphor1.webp',
-      '/assets/Kapoor/Camphor2.webp',
-      '/assets/Kapoor/Camphor3.webp',
-      '/assets/Kapoor/Camphor 3.webp'
+      '/assets/Kapoor/Camphor1.png',
+      '/assets/Kapoor/Camphor2.png',
+      '/assets/Kapoor/Camphor3.png',
+      '/assets/Kapoor/Camphor 3.png'
     ],
     weightVariants: [
       { weight: '100 g Jar', price: 199, originalPrice: 349, default: true },
@@ -3650,8 +3662,9 @@ export const PRODUCTS = [
     tag: '51 Sacred Herbs',
     artType: 'hawan',
     fitMode: 'contain',
-    image: '/assets/Hawan Samgri/Hawan1.webp',
+    image: '/assets/Hawan Samgri/hawannn2.webp',
     images: [
+      '/assets/Hawan Samgri/hawannn2.webp',
       '/assets/Hawan Samgri/Hawan1.webp',
       '/assets/Hawan Samgri/Hawan2.webp',
       '/assets/Hawan Samgri/Hawan3.webp',
@@ -3684,6 +3697,49 @@ export const PRODUCTS = [
     ],
     faqs: [
       { q: 'Does it contain pure Guggal and Loban?', a: 'Yes, enriched with natural Guggal, Loban, Jatamansi, and dry rose petals.' }
+    ]
+  },
+  {
+    id: 'yantra-maha-mrityunjay',
+    name: 'SHRAVIKO Shri Mahamrityunjay Yantra',
+    category: 'vastu',
+    categoryName: 'Vastu & Spiritual',
+    subcategory: 'Sacred Yantras',
+    price: 499,
+    originalPrice: 899,
+    rating: 4.98,
+    reviewsCount: 114,
+    tag: 'Copper Yantra',
+    artType: 'yantra',
+    fitMode: 'contain',
+    image: '/assets/MahaMrityunjay/mahamritunjay.webp',
+    images: [
+      '/assets/MahaMrityunjay/mahamritunjay.webp'
+    ],
+    weightVariants: [
+      { weight: 'Standard 3x3 Inch Copper Yantra', price: 499, originalPrice: 899, default: true }
+    ],
+    purity: '100% Pure Embossed Copper Plate',
+    inStock: true,
+    description: 'Invoke divine health, protection, and spiritual liberation with the SHRAVIKO Shri Mahamrityunjay Yantra. Crafted on pure copper, this sacred geometric emblem carries the potent vibrations of Lord Shiva (Mahadev) to dispel illness, fear of premature death, and negative energies from your home.',
+    specifications: [
+      { label: 'Product', value: 'Shri Mahamrityunjay Yantra' },
+      { label: 'Material', value: 'Pure Solid Copper' },
+      { label: 'Deity', value: 'Lord Shiva (Mahadev)' },
+      { label: 'Suitable For', value: 'Pooja Ghar, Altar, Health & Healing Rituals' },
+      { label: 'Country of Origin', value: 'Made in India' }
+    ],
+    keyFeatures: [
+      'Sacred Mahamrityunjay geometric inscription',
+      'Etched on pure copper with polished finish',
+      'Dispels health obstacles and negative energy',
+      'Ideal for home mandir, altar, and gifting'
+    ],
+    careInstructions: [
+      'Wipe clean with a soft dry cloth. Keep away from harsh acidic cleaners.'
+    ],
+    faqs: [
+      { q: 'Which direction should this Yantra be placed in?', a: 'Place it facing East or North in your home mandir or worship area.' }
     ]
   }
 ];

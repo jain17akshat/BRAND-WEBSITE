@@ -103,15 +103,13 @@ export const Bestsellers = ({
                 {/* Info */}
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
-                    {product.categoryName && (
-                      <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#7A5B1D] uppercase mb-1 font-bold">
-                        {product.categoryName}
-                      </p>
-                    )}
+                    <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#7A5B1D] uppercase mb-1 font-bold min-h-[16px] flex items-center">
+                      {product.categoryName || '\u00A0'}
+                    </p>
                     {/* Elegant Product Title */}
                     <h3
                       onClick={() => handleCardClick(product)}
-                      className="font-cinzel font-semibold text-xs sm:text-sm text-[#2C2623] hover:text-[#C5A059] transition-colors line-clamp-2 cursor-pointer leading-snug tracking-tight mb-3"
+                      className="font-cinzel font-semibold text-xs sm:text-sm text-[#2C2623] hover:text-[#C5A059] transition-colors line-clamp-2 cursor-pointer leading-snug tracking-tight min-h-[2.25rem] sm:min-h-[2.5rem] flex items-start"
                     >
                       {product.name}
                     </h3>
