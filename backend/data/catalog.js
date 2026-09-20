@@ -68,6 +68,12 @@ const catalog = {
   'mandir-royal-velvet-asan-mat': 544,  // was 490
   'brass-aarti-bell-ghanti': 722,      // was 650
   'mandir-copper-akhand-jyot': 1433,   // was 1290
+  'mandir-safed-chandan': 299,
+  'mandir-lal-chandan': 329,
+  'mandir-pure-camphor': 199,
+  'mandir-bhimseni-kapoor': 349,
+  'mandir-cow-dung-cake': 249,
+  'mandir-hawan-samagri': 279,
 
   // Vastu & Spiritual
   'vastu-ganesh-siddha-yantra': 388,   // was 349
@@ -78,6 +84,9 @@ const catalog = {
   'vastu-brass-pyramid-multitier': 443, // was 399
   'vastu-crystal-glass-turtle': 388,   // was 349
   'brass-kamdhenu-cow-statue': 2767,   // was 2490
+  'SHR-KA-001': 2767,                  // SKU alias for Brass Kamdhenu Cow Statue
+  'yantra-kaal-sarp': 388,
+  'SHR-KSY-01': 388,                   // SKU for Kaal Sarp Yog Dosh Nivaran Yantra
   'brass-ganesh-ji-statue': 2544,      // was 2290
   'brass-radha-krishna-statue': 3211,  // was 2890
   'vastu-crystal-glass-shivling': 411, // was 370

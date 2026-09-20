@@ -69,20 +69,15 @@
     "hsn": "74199990",
     "tax": 18
   },
+  "SHR-KA-001": {
+    "title": "Brass Kamdhenu Cow Statue",
+    "hsn": "74198030",
+    "tax": 5
+  },
   "SHR-SPM-108-78": {
     "title": "Natural Sphatik Jaap Mala",
     "hsn": "71161000",
     "tax": 3
-  },
-  "SHR-YAN-KSY-001": {
-    "title": "Kaal Sarp Yog Dosh Nivaran Yantra \u2013 Copper",
-    "hsn": "74199990",
-    "tax": 18
-  },
-  "SHR-YAN-MULTI-001": {
-    "title": "Multi-Yantra Copper Plaque",
-    "hsn": "74199990",
-    "tax": 18
   },
   "SHR-MMY-001": {
     "title": "Mahamrityunjay Yantra \u2013 Copper",
@@ -91,11 +86,6 @@
   },
   "SHR-YAN-MNG-001": {
     "title": "Shri Mangal Yantra \u2013 Copper",
-    "hsn": "74199990",
-    "tax": 18
-  },
-  "SHR-YAN-MULTI-002": {
-    "title": "Multi Yantra Copper Plaque",
     "hsn": "74199990",
     "tax": 18
   },
@@ -283,5 +273,35 @@
     "title": "Singhasan Brass 7x5x9 Inch",
     "hsn": "74198030",
     "tax": "GST_Old_12_New_5"
+  },
+  "mandir-safed-chandan": {
+    "title": "Shraviko Pure Safed Chandan",
+    "hsn": "33042000",
+    "tax": 18
+  },
+  "mandir-lal-chandan": {
+    "title": "Shraviko Pure Lal Chandan",
+    "hsn": "33042000",
+    "tax": 18
+  },
+  "mandir-pure-camphor": {
+    "title": "Shraviko Pure Shuddh Kapoor",
+    "hsn": "29142100",
+    "tax": 18
+  },
+  "mandir-bhimseni-kapoor": {
+    "title": "Shraviko Organic Bhimseni Kapoor",
+    "hsn": "29142100",
+    "tax": 18
+  },
+  "mandir-cow-dung-cake": {
+    "title": "Shraviko Pure Desi Cow Dung Cakes",
+    "hsn": "31010099",
+    "tax": 5
+  },
+  "mandir-hawan-samagri": {
+    "title": "Shraviko Sacred Ayurvedic Hawan Samagri",
+    "hsn": "33074100",
+    "tax": 5
   }
 }

@@ -101,7 +101,6 @@ for (const p of feProducts) {
   const sentSku = p.sku || 'NONE'; // What frontend currently sends
   const intendedSku = intendedSkuMap[slug];
 
-  const masterRef = intendedSku ? masterMapBySku[intendedSku] : null;
 
   let status = 'SKU MISSING';
   let matchedSku = 'NONE';
