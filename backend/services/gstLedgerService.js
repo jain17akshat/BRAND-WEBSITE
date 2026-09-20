@@ -32,7 +32,24 @@ async function postSaleLedger(order, invoiceNumber, invoiceDate) {
 
   const taxCalc = calculateOrderTax(items, custState, custGstin);
 
+  const p = getPool();
   for (const item of taxCalc.items) {
+    // Idempotency check: skip if SALE transaction for this invoice + order + sku already exists
+    if (p) {
+      try {
+        const [existing] = await p.query(
+          `SELECT id FROM gst_transactions WHERE transaction_type = 'SALE' AND UPPER(order_id) = ? AND invoice_number = ? AND sku = ? LIMIT 1`,
+          [String(orderId).toUpperCase(), invoiceNumber, item.sku]
+        );
+        if (existing && existing.length > 0) {
+          console.log(`ℹ️ GST SALE ledger entry already exists for Order #${orderId} SKU ${item.sku} (${invoiceNumber}). Skipping duplicate.`);
+          continue;
+        }
+      } catch (checkErr) {
+        // Proceed to save attempt if query fails
+      }
+    }
+
     const txRecord = {
       transaction_type: 'SALE',
       order_id: orderId,
@@ -89,8 +106,25 @@ async function postCreditNoteLedger(cnData) {
   if (!cnData || !cnData.credit_note_number) return;
 
   const items = typeof cnData.items === 'string' ? JSON.parse(cnData.items) : (cnData.items || []);
+  const p = getPool();
 
   for (const item of items) {
+    const sku = item.sku || 'SKU-RET';
+    if (p) {
+      try {
+        const [existing] = await p.query(
+          `SELECT id FROM gst_transactions WHERE transaction_type = 'CREDIT_NOTE' AND UPPER(order_id) = ? AND credit_note_number = ? AND sku = ? LIMIT 1`,
+          [String(cnData.order_id).toUpperCase(), cnData.credit_note_number, sku]
+        );
+        if (existing && existing.length > 0) {
+          console.log(`ℹ️ GST CREDIT_NOTE ledger entry already exists for Order #${cnData.order_id} SKU ${sku} (${cnData.credit_note_number}). Skipping duplicate.`);
+          continue;
+        }
+      } catch (checkErr) {
+        // Proceed to save attempt if query fails
+      }
+    }
+
     const txRecord = {
       transaction_type: 'CREDIT_NOTE',
       order_id: cnData.order_id,

@@ -320,6 +320,7 @@ router.post(
         promise: dedupePromise,
       });
 
+      let inventoryDeducted = false;
       try {
         const internalOrderId = `SHR${Math.floor(100000 + Math.random() * 900000)}`;
         const totalAmount = authoritativePayable;
@@ -327,6 +328,7 @@ router.post(
         // Deduct inventory atomically (fails with 409 OUT_OF_STOCK if insufficient)
         const { deductInventoryForCart } = require('../data/catalog');
         await deductInventoryForCart(sanitizedCart);
+        inventoryDeducted = true;
 
         // ────────────────────────────────────────────────────────────
         // INVOICE STRATEGY:
@@ -516,6 +518,15 @@ router.post(
         resolvePromise(sanitizedResponse);
         return res.json(sanitizedResponse);
       } catch (execErr) {
+        if (inventoryDeducted) {
+          try {
+            const { restoreInventoryForCart } = require('../data/catalog');
+            await restoreInventoryForCart(sanitizedCart);
+            console.log(`🔄 Inventory restored for failed order creation attempt (${fingerprint})`);
+          } catch (rollbackErr) {
+            console.error('❌ Failed to restore inventory on order failure:', rollbackErr.message);
+          }
+        }
         recentOrderDedupeMap.delete(fingerprint);
         rejectPromise(execErr);
         throw execErr;

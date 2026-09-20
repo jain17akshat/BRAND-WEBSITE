@@ -175,6 +175,37 @@ async function processBusinessEmail(row) {
 let isProcessing = false;
 
 /**
+ * NOTE: Exactly-once email delivery cannot be mathematically guaranteed across server crashes
+ * without provider-side idempotency keys. To handle crashes gracefully, stale PROCESSING jobs
+ * (>15 mins old) are reset to FAILED so they can be retried while respecting max retry limits.
+ */
+async function recoverStaleEmailJobs() {
+  const { getPool } = require('../database/db');
+  const pool = getPool();
+  if (!pool) return;
+
+  try {
+    await pool.query(`
+      UPDATE orders 
+      SET customer_email_status = 'FAILED',
+          customer_email_error = 'Recovered from stuck PROCESSING state'
+      WHERE customer_email_status = 'PROCESSING'
+        AND created_at < DATE_SUB(NOW(), INTERVAL 15 MINUTE)
+    `);
+
+    await pool.query(`
+      UPDATE orders 
+      SET business_email_status = 'FAILED',
+          business_email_error = 'Recovered from stuck PROCESSING state'
+      WHERE business_email_status = 'PROCESSING'
+        AND created_at < DATE_SUB(NOW(), INTERVAL 15 MINUTE)
+    `);
+  } catch (err) {
+    console.error('⚠️ Stale email job recovery error:', err.message);
+  }
+}
+
+/**
  * Sweeps the database for pending/retryable emails and processes them.
  */
 async function processQueue() {
@@ -182,6 +213,8 @@ async function processQueue() {
   isProcessing = true;
 
   try {
+    await recoverStaleEmailJobs();
+
     const pending = await getPendingEmails();
     if (!pending || pending.length === 0) {
       isProcessing = false;

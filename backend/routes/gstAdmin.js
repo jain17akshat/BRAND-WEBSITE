@@ -13,9 +13,13 @@
 
 const express = require('express');
 const router = express.Router();
+const requireAdminAuth = require('../middleware/adminAuth');
 const { reconcileGST, generateGSTCSVReport } = require('../services/gstLedgerService');
 const { getAuditTrail } = require('../services/auditLogService');
 const { AppError } = require('../middleware/errorHandler');
+
+// Require admin authentication for all administrative GST endpoints
+router.use(requireAdminAuth);
 
 // ── GET /api/gst/reconcile ────────────────────────────────
 router.get('/reconcile', async (req, res, next) => {

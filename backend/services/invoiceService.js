@@ -1,6 +1,7 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
+const { formatDate } = require('../utils/dateUtils');
 
 // Ensure invoices directory exists (supports persistent storage mount via INVOICE_STORAGE_DIR)
 const INVOICES_DIR = process.env.INVOICE_STORAGE_DIR
@@ -15,23 +16,6 @@ try {
   console.log(`📁 Hostinger Persistent Invoice Storage verified & writable: ${INVOICES_DIR}`);
 } catch (dirErr) {
   console.error(`⚠️ Hostinger Persistent Storage directory error for ${INVOICES_DIR}:`, dirErr.message);
-}
-
-/**
- * Formats a date string or timestamp into DD-MM-YYYY format
- */
-function formatDate(dateInput) {
-  if (!dateInput) return new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-  try {
-    const d = new Date(dateInput);
-    if (isNaN(d.getTime())) return String(dateInput);
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const year = d.getFullYear();
-    return `${day}-${month}-${year}`;
-  } catch {
-    return String(dateInput);
-  }
 }
 
 /**
@@ -204,7 +188,8 @@ async function generateInvoice(order, invoiceNumber) {
         const qty = item.quantity || item.units || 1;
         const unitPrice = item.price || item.selling_price || 0;
         const discount = item.discount || 0;
-        const taxableVal = item.taxable_value !== undefined ? Number(item.taxable_value) : (unitPrice * qty / (1 + (item.gst_rate || 5)/100));
+        const gstRateVal = item.gst_rate !== undefined && item.gst_rate !== null ? Number(item.gst_rate) : 0;
+        const taxableVal = item.taxable_value !== undefined ? Number(item.taxable_value) : (gstRateVal > 0 ? (unitPrice * qty / (1 + (gstRateVal / 100))) : (unitPrice * qty));
         const gstVal = item.total_tax_amount !== undefined ? Number(item.total_tax_amount) : ((item.cgst || 0) + (item.sgst || 0) + (item.igst || 0)) || ((unitPrice * qty) - taxableVal);
         const itemTotal = item.total_item_amount !== undefined ? Number(item.total_item_amount) : (unitPrice * qty);
 
@@ -377,7 +362,20 @@ async function generateAndSaveInvoice(order, invoiceNumber) {
       metadata: { filePath, total_amount: order.total_amount || order.total }
     });
   } catch (gstErr) {
-    console.error(`⚠️ Notice: GST SALE ledger / Audit log auto-post note for ${order.order_id}:`, gstErr.message);
+    console.error(`❌ GST SALE ledger posting failed for order ${order.order_id} (${invoiceNumber}):`, gstErr.message);
+    try {
+      const { logEvent } = require('./auditLogService');
+      await logEvent({
+        eventType: 'GST_LEDGER_FAILED',
+        entityType: 'GST_TRANSACTION',
+        entityId: invoiceNumber,
+        orderId: order.order_id,
+        invoiceNumber,
+        metadata: { error: gstErr.message, status: 'FAILED' }
+      });
+    } catch (auditErr) {
+      console.error('⚠️ Could not log GST_LEDGER_FAILED audit event:', auditErr.message);
+    }
   }
 
   return { buffer, filePath };
@@ -445,7 +443,6 @@ async function getOrGenerateInvoicePath(order) {
 }
 
 module.exports = {
-  generateInvoice,
   generateAndSaveInvoice,
   getInvoicePath,
   getOrGenerateInvoicePath,

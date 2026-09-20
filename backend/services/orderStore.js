@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const config = require('../config');
 const { saveOrder: saveToDb, getPool } = require('../database/db');
 const { getProductPrice } = require('../data/catalog');
 
@@ -40,6 +41,7 @@ function loadPersistedOrders() {
 }
 
 function persistOrders() {
+  if (config.isProd) return; // Prevent unnecessary production writes to orders_store.json
   try {
     const list = Array.from(recentOrders.values());
     fs.writeFileSync(STORE_FILE, JSON.stringify(list, null, 2), 'utf8');

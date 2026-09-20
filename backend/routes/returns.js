@@ -8,6 +8,7 @@ const express      = require('express');
 const router       = express.Router();
 const srClient     = require('../shiprocket/client');
 const validateBody = require('../middleware/validateBody');
+const requireAdminAuth = require('../middleware/adminAuth');
 const { AppError } = require('../middleware/errorHandler');
 
 // ── POST /api/returns/request ─────────────────────────────
@@ -209,7 +210,7 @@ router.post('/request', validateBody({
 });
 
 // ── POST /api/returns/accept (Processes Return Acceptance & Credit Note) ────
-router.post('/accept', async (req, res, next) => {
+router.post('/accept', requireAdminAuth, async (req, res, next) => {
   try {
     const { return_id, order_id, items = [], reason = 'Return accepted' } = req.body;
     if (!order_id) {

@@ -63,7 +63,7 @@ const config = {
   },
 
   admin: {
-    apiKey: process.env.ADMIN_API_KEY || process.env.ADMIN_TOKEN || 'shraviko-admin-secret-key-2026',
+    apiKey: process.env.ADMIN_API_KEY || process.env.ADMIN_TOKEN || '',
   },
 
   storage: {
@@ -78,6 +78,7 @@ if (isProd) {
   if (config.shiprocket.isMock) unconfigured.push('Shiprocket (SHIPROCKET_EMAIL / SHIPROCKET_PASSWORD missing)');
   if (config.db.isMock) unconfigured.push('Database (DB_HOST / DB_NAME / DB_USER missing)');
   if (config.email.isMock) unconfigured.push('Email (EMAIL_USER / EMAIL_PASS missing)');
+  if (!config.admin.apiKey) unconfigured.push('Admin Secret (ADMIN_API_KEY / ADMIN_TOKEN missing)');
   if (!config.razorpay.webhookSecret) unconfigured.push('Razorpay Webhook Secret (RAZORPAY_WEBHOOK_SECRET missing)');
   if (!config.shiprocket.webhookToken) unconfigured.push('Shiprocket Webhook Token (SHIPROCKET_WEBHOOK_TOKEN missing)');
   if (!process.env.FRONTEND_URL) unconfigured.push('Frontend URL (FRONTEND_URL missing)');

@@ -377,6 +377,26 @@ async function initDatabase() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
+    // Guarded schema & index migrations (M3, L3, C3)
+    const guardedMigrations = [
+      `ALTER TABLE orders ADD INDEX idx_orders_phone (customer_phone)`,
+      `ALTER TABLE orders ADD INDEX idx_orders_email (customer_email)`,
+      `ALTER TABLE orders ADD INDEX idx_orders_invoice (invoice_number)`,
+      `ALTER TABLE orders MODIFY COLUMN invoice_date DATETIME NULL`,
+      `ALTER TABLE gst_transactions ADD UNIQUE INDEX idx_unique_gst_sale (transaction_type, order_id, invoice_number, sku)`,
+      `ALTER TABLE gst_transactions ADD UNIQUE INDEX idx_unique_gst_cn (transaction_type, order_id, credit_note_number, sku)`
+    ];
+
+    for (const sql of guardedMigrations) {
+      try {
+        await conn.query(sql);
+      } catch (migErr) {
+        if (!migErr.message.includes('Duplicate key name') && !migErr.message.includes('already exists') && !migErr.message.includes('Duplicate entry')) {
+          console.warn('⚠️ Guarded migration notice:', migErr.message);
+        }
+      }
+    }
+
     conn.release();
     console.log(`✅ Hostinger MySQL Database connected & tables verified! (${process.env.DB_NAME})`);
     return true;
@@ -711,6 +731,14 @@ async function getOrAssignCreditNoteNumberAtomic(orderId, returnId = null) {
     const newCreditNoteNumber = await generateCreditNoteNumberWithConn(conn);
     const creditNoteDate = new Date().toISOString();
 
+    // Insert atomic placeholder in credit_notes table within the same transaction (M1 gap prevention)
+    await conn.query(
+      `INSERT INTO credit_notes (credit_note_number, credit_note_date, order_id, return_id, original_invoice_number, items_json, taxable_value, total_tax, total_amount, status)
+       VALUES (?, ?, ?, ?, 'PENDING', '[]', 0, 0, 0, 'INITIALIZING')
+       ON DUPLICATE KEY UPDATE status = COALESCE(status, 'INITIALIZING')`,
+      [newCreditNoteNumber, creditNoteDate, cleanId, cleanReturnId]
+    );
+
     await conn.commit();
     conn.release();
     return {
@@ -842,6 +870,10 @@ async function saveGstTransaction(txData) {
     );
     return res;
   } catch (err) {
+    if (err.code === 'ER_DUP_ENTRY' || err.errno === 1062 || (err.message && err.message.includes('Duplicate entry'))) {
+      console.log(`ℹ️ Duplicate GST transaction blocked by DB constraint for Order #${txData.order_id} SKU ${txData.sku}. Skipping.`);
+      return txData;
+    }
     console.error('⚠️ Could not save GST transaction to DB:', err.message);
     return txData;
   }
