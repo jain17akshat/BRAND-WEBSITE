@@ -2,6 +2,7 @@
  * database/db.js
  * ─────────────────────────────────────────────────────────
  * Hostinger MySQL Database Manager & Table Auto-Initializer.
+ * Master Order & Financial Record Store.
  */
 
 const config = require('../config');
@@ -94,6 +95,8 @@ async function initDatabase() {
       `ALTER TABLE orders ADD COLUMN IF NOT EXISTS shipment_id VARCHAR(100)`,
       `ALTER TABLE orders ADD COLUMN IF NOT EXISTS shiprocket_sync_status VARCHAR(50) DEFAULT 'PENDING'`,
       `ALTER TABLE orders ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'PROCESSING'`,
+      `ALTER TABLE orders ADD COLUMN IF NOT EXISTS credit_note_number VARCHAR(100)`,
+      `ALTER TABLE orders ADD COLUMN IF NOT EXISTS refund_id VARCHAR(100)`,
     ];
     for (const sql of alterColumns) {
       try {
@@ -161,6 +164,15 @@ async function initDatabase() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
+    // 3c. Create credit note sequences table
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS credit_note_sequences (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        financial_year VARCHAR(10) UNIQUE NOT NULL,
+        current_value INT DEFAULT 0
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
     // 4. Create products table (for atomic inventory control)
     await conn.query(`
       CREATE TABLE IF NOT EXISTS products (
@@ -191,7 +203,7 @@ async function initDatabase() {
       }
     }
 
-    // 4. Create product_reviews table
+    // 5. Create product_reviews table
     await conn.query(`
       CREATE TABLE IF NOT EXISTS product_reviews (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -206,7 +218,7 @@ async function initDatabase() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
-    // 5. Create corporate_enquiries table
+    // 6. Create corporate_enquiries table
     await conn.query(`
       CREATE TABLE IF NOT EXISTS corporate_enquiries (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -223,7 +235,7 @@ async function initDatabase() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
-    // 6. Create subscribers table
+    // 7. Create subscribers table
     await conn.query(`
       CREATE TABLE IF NOT EXISTS subscribers (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -231,6 +243,137 @@ async function initDatabase() {
         email VARCHAR(255) NOT NULL,
         purpose VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
+    // 8. Create gst_transactions table
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS gst_transactions (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        transaction_type VARCHAR(50) NOT NULL,
+        order_id VARCHAR(50) NOT NULL,
+        invoice_id INT,
+        invoice_number VARCHAR(100),
+        invoice_date TIMESTAMP NULL,
+        credit_note_id INT,
+        credit_note_number VARCHAR(100),
+        credit_note_date TIMESTAMP NULL,
+        transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        customer_name VARCHAR(255),
+        customer_gstin VARCHAR(20),
+        billing_state VARCHAR(100),
+        shipping_state VARCHAR(100),
+        place_of_supply VARCHAR(100) NOT NULL,
+        supply_type VARCHAR(20) NOT NULL,
+        b2b_b2c VARCHAR(10) NOT NULL,
+        payment_mode VARCHAR(50),
+        sku VARCHAR(100),
+        product_title VARCHAR(255),
+        hsn_sac VARCHAR(20),
+        quantity INT DEFAULT 1,
+        unit_price DECIMAL(10,2) DEFAULT 0.00,
+        discount DECIMAL(10,2) DEFAULT 0.00,
+        taxable_value DECIMAL(10,2) NOT NULL,
+        gst_rate DECIMAL(5,2) NOT NULL,
+        cgst DECIMAL(10,2) DEFAULT 0.00,
+        sgst DECIMAL(10,2) DEFAULT 0.00,
+        igst DECIMAL(10,2) DEFAULT 0.00,
+        cess DECIMAL(10,2) DEFAULT 0.00,
+        total_tax DECIMAL(10,2) NOT NULL,
+        total_value DECIMAL(10,2) NOT NULL,
+        return_id VARCHAR(50),
+        refund_id VARCHAR(100),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_tx_type (transaction_type),
+        INDEX idx_order_id (order_id),
+        INDEX idx_inv_num (invoice_number),
+        INDEX idx_cn_num (credit_note_number),
+        INDEX idx_tx_date (transaction_date)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
+    // 9. Create credit_notes table
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS credit_notes (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        credit_note_number VARCHAR(100) UNIQUE NOT NULL,
+        credit_note_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        order_id VARCHAR(50) NOT NULL,
+        original_invoice_number VARCHAR(100) NOT NULL,
+        original_invoice_date TIMESTAMP NULL,
+        return_id VARCHAR(50),
+        customer_name VARCHAR(255),
+        customer_gstin VARCHAR(20),
+        customer_email VARCHAR(255),
+        customer_phone VARCHAR(50),
+        billing_address TEXT,
+        shipping_address TEXT,
+        state VARCHAR(100),
+        place_of_supply VARCHAR(100),
+        items_json JSON NOT NULL,
+        subtotal DECIMAL(10,2) DEFAULT 0.00,
+        discount DECIMAL(10,2) DEFAULT 0.00,
+        taxable_value DECIMAL(10,2) NOT NULL,
+        cgst DECIMAL(10,2) DEFAULT 0.00,
+        sgst DECIMAL(10,2) DEFAULT 0.00,
+        igst DECIMAL(10,2) DEFAULT 0.00,
+        total_tax DECIMAL(10,2) NOT NULL,
+        total_amount DECIMAL(10,2) NOT NULL,
+        reason TEXT,
+        status VARCHAR(50) DEFAULT 'ISSUED',
+        refund_id VARCHAR(100),
+        refund_amount DECIMAL(10,2) DEFAULT 0.00,
+        refund_status VARCHAR(50) DEFAULT 'PENDING',
+        pdf_path VARCHAR(550),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        INDEX idx_cn_order (order_id),
+        INDEX idx_cn_inv (original_invoice_number)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
+    // 10. Create refunds table
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS refunds (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        refund_id VARCHAR(100) UNIQUE NOT NULL,
+        order_id VARCHAR(50) NOT NULL,
+        credit_note_id INT,
+        credit_note_number VARCHAR(100),
+        amount DECIMAL(10,2) NOT NULL,
+        currency VARCHAR(10) DEFAULT 'INR',
+        status VARCHAR(50) NOT NULL,
+        payment_method VARCHAR(50),
+        razorpay_payment_id VARCHAR(100),
+        razorpay_refund_id VARCHAR(100),
+        bank_details_json JSON,
+        reason TEXT,
+        initiated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        completed_at TIMESTAMP NULL,
+        error_message TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_ref_order (order_id),
+        INDEX idx_ref_rzp (razorpay_refund_id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `);
+
+    // 11. Create financial_audit_log table
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS financial_audit_log (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        event_type VARCHAR(100) NOT NULL,
+        entity_type VARCHAR(50) NOT NULL,
+        entity_id VARCHAR(100) NOT NULL,
+        order_id VARCHAR(50),
+        invoice_number VARCHAR(100),
+        credit_note_number VARCHAR(100),
+        previous_status VARCHAR(50),
+        new_status VARCHAR(50),
+        metadata_json JSON,
+        source VARCHAR(50) DEFAULT 'SYSTEM',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_audit_event (event_type),
+        INDEX idx_audit_order (order_id)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
 
@@ -243,10 +386,13 @@ async function initDatabase() {
   }
 }
 
-// In-memory fallback storage for product reviews, corporate enquiries, and subscribers when DB is offline
+// In-memory fallback storage
 const inMemoryReviews = [];
 const inMemoryCorporateEnquiries = [];
 const inMemorySubscribers = [];
+const inMemoryCreditNotes = new Map();
+const inMemoryGstTransactions = [];
+const inMemoryRefunds = new Map();
 
 /**
  * saveOrder — helper to insert/update order into MySQL
@@ -258,14 +404,16 @@ async function saveOrder(orderData) {
   try {
     const [result] = await p.query(
       `INSERT INTO orders 
-       (order_id, customer_name, customer_email, customer_phone, total_amount, payment_method, payment_status, status, shipping_address, items_json, shiprocket_order_id, shipment_id, shiprocket_sync_status, invoice_number, invoice_date)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       (order_id, customer_name, customer_email, customer_phone, total_amount, payment_method, payment_status, status, shipping_address, items_json, shiprocket_order_id, shipment_id, shiprocket_sync_status, invoice_number, invoice_date, credit_note_number, refund_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
        ON DUPLICATE KEY UPDATE 
          payment_status = VALUES(payment_status),
          status = COALESCE(VALUES(status), status),
          shiprocket_order_id = COALESCE(VALUES(shiprocket_order_id), shiprocket_order_id),
          shipment_id = COALESCE(VALUES(shipment_id), shipment_id),
-         shiprocket_sync_status = COALESCE(VALUES(shiprocket_sync_status), shiprocket_sync_status)`,
+         shiprocket_sync_status = COALESCE(VALUES(shiprocket_sync_status), shiprocket_sync_status),
+         credit_note_number = COALESCE(VALUES(credit_note_number), credit_note_number),
+         refund_id = COALESCE(VALUES(refund_id), refund_id)`,
       [
         orderData.order_id,
         orderData.customer_name || 'Valued Customer',
@@ -281,7 +429,9 @@ async function saveOrder(orderData) {
         orderData.shipment_id || null,
         orderData.shiprocket_sync_status || 'PENDING',
         orderData.invoice_number || null,
-        orderData.invoice_date || null
+        orderData.invoice_date || null,
+        orderData.credit_note_number || null,
+        orderData.refund_id || null
       ]
     );
 
@@ -345,7 +495,6 @@ async function saveReturnRequest(returnData) {
   if (!p) return { success: true, mock: true };
 
   try {
-    // Check if a return request for this order_id already exists in DB
     const cleanId = String(returnData.order_id || '').trim().toUpperCase();
     if (cleanId) {
       const [existing] = await p.query(
@@ -384,294 +533,9 @@ async function saveReturnRequest(returnData) {
 }
 
 /**
- * saveReview — helper to persist a product review to MySQL (and in-memory)
+ * Helper to generate financial year sequence string using an active DB connection
  */
-async function saveReview(reviewData) {
-  const record = {
-    id: Date.now(),
-    product_id: String(reviewData.product_id || reviewData.productId || 'ALL').trim(),
-    rating: parseInt(reviewData.rating || 5, 10),
-    title: reviewData.title || '',
-    comment: reviewData.comment || reviewData.review_text || '',
-    customer_name: reviewData.customer_name || reviewData.name || 'Valued Devotee',
-    customer_email: reviewData.customer_email || reviewData.email || '',
-    verified_buyer: reviewData.verified_buyer !== false ? 1 : 0,
-    created_at: new Date().toISOString(),
-  };
-
-  inMemoryReviews.unshift(record);
-
-  const p = getPool();
-  if (!p) return record;
-
-  try {
-    const [res] = await p.query(
-      `INSERT INTO product_reviews 
-       (product_id, rating, title, comment, customer_name, customer_email, verified_buyer)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [
-        record.product_id,
-        record.rating,
-        record.title,
-        record.comment,
-        record.customer_name,
-        record.customer_email,
-        record.verified_buyer,
-      ]
-    );
-    record.id = res.insertId;
-    return record;
-  } catch (err) {
-    console.error('⚠️ Could not save review to DB:', err.message);
-    return record;
-  }
-}
-
-/**
- * getReviewsByProduct — fetches all reviews for a product from DB & memory
- */
-async function getReviewsByProduct(productId) {
-  const cleanId = String(productId || '').trim();
-  const p = getPool();
-
-  if (p) {
-    try {
-      let query = `SELECT * FROM product_reviews ORDER BY id DESC LIMIT 100`;
-      let params = [];
-      if (cleanId && cleanId.toUpperCase() !== 'ALL') {
-        query = `SELECT * FROM product_reviews WHERE product_id = ? OR product_id = 'ALL' ORDER BY id DESC LIMIT 100`;
-        params = [cleanId];
-      }
-      const [rows] = await p.query(query, params);
-      if (rows && rows.length > 0) {
-        return rows;
-      }
-    } catch (err) {
-      console.error('⚠️ Could not fetch reviews from DB:', err.message);
-    }
-  }
-
-  // Fallback to in-memory reviews
-  if (cleanId && cleanId.toUpperCase() !== 'ALL') {
-    return inMemoryReviews.filter(r => r.product_id === cleanId || r.product_id === 'ALL');
-  }
-  return inMemoryReviews;
-}
-
-/**
- * saveCorporateEnquiry — helper to persist corporate bulk enquiry to MySQL (and in-memory)
- */
-async function saveCorporateEnquiry(enquiryData) {
-  const record = {
-    id: enquiryData.enquiryId || enquiryData.id,
-    enquiryId: enquiryData.enquiryId || enquiryData.id,
-    fullName: enquiryData.fullName || '',
-    companyName: enquiryData.companyName || '',
-    email: enquiryData.email || '',
-    phone: enquiryData.phone || '',
-    quantity: enquiryData.quantity || '50-100',
-    budget: enquiryData.budget || '1000-2500',
-    occasion: enquiryData.occasion || 'Corporate Gifting',
-    message: enquiryData.message || '',
-    createdAt: new Date().toISOString(),
-  };
-
-  inMemoryCorporateEnquiries.unshift(record);
-
-  const p = getPool();
-  if (!p) return record;
-
-  try {
-    await p.query(
-      `INSERT INTO corporate_enquiries
-       (enquiry_id, full_name, company_name, email, phone, quantity, budget, occasion, message)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        record.enquiryId,
-        record.fullName,
-        record.companyName,
-        record.email,
-        record.phone,
-        record.quantity,
-        record.budget,
-        record.occasion,
-        record.message,
-      ]
-    );
-    return record;
-  } catch (err) {
-    console.error('⚠️ Could not save corporate enquiry to DB:', err.message);
-    return record;
-  }
-}
-
-/**
- * getCorporateEnquiries — fetches recent corporate enquiries from DB & memory
- */
-async function getCorporateEnquiries() {
-  const p = getPool();
-  if (p) {
-    try {
-      const [rows] = await p.query(`SELECT * FROM corporate_enquiries ORDER BY id DESC LIMIT 100`);
-      if (rows && rows.length > 0) {
-        return rows.map(r => ({
-          id: r.enquiry_id || r.id,
-          enquiryId: r.enquiry_id,
-          fullName: r.full_name,
-          companyName: r.company_name,
-          email: r.email,
-          phone: r.phone,
-          quantity: r.quantity,
-          budget: r.budget,
-          occasion: r.occasion,
-          message: r.message,
-          createdAt: r.created_at,
-        }));
-      }
-    } catch (err) {
-      console.error('⚠️ Could not fetch corporate enquiries from DB:', err.message);
-    }
-  }
-
-  return inMemoryCorporateEnquiries;
-}
-
-/**
- * saveSubscriber — helper to persist launch subscriber to MySQL (and in-memory)
- */
-async function saveSubscriber(subscriberData) {
-  const record = {
-    id: subscriberData.subscriberId || subscriberData.id,
-    subscriberId: subscriberData.subscriberId || subscriberData.id,
-    email: subscriberData.email || '',
-    purpose: subscriberData.purpose || 'General Energy Stones',
-    createdAt: new Date().toISOString(),
-  };
-
-  inMemorySubscribers.unshift(record);
-
-  const p = getPool();
-  if (!p) return record;
-
-  try {
-    await p.query(
-      `INSERT INTO subscribers (subscriber_id, email, purpose) VALUES (?, ?, ?)`,
-      [record.subscriberId, record.email, record.purpose]
-    );
-    return record;
-  } catch (err) {
-    console.error('⚠️ Could not save subscriber to DB:', err.message);
-    return record;
-  }
-}
-
-/**
- * getSubscribers — fetches subscribers list from DB & memory
- */
-async function getSubscribers() {
-  const p = getPool();
-  if (p) {
-    try {
-      const [rows] = await p.query(`SELECT * FROM subscribers ORDER BY id DESC LIMIT 1000`);
-      if (rows && rows.length > 0) {
-        return rows.map(r => ({
-          id: r.subscriber_id || r.id,
-          subscriberId: r.subscriber_id,
-          email: r.email,
-          purpose: r.purpose,
-          createdAt: r.created_at,
-        }));
-      }
-    } catch (err) {
-      console.error('⚠️ Could not fetch subscribers from DB:', err.message);
-    }
-  }
-
-  return inMemorySubscribers;
-}
-
-/**
- * getReturnRequestsByPhone — fetches return records from DB for a customer phone number
- */
-async function getReturnRequestsByPhone(phone) {
-  const cleanPhone = phone ? String(phone).replace(/\D/g, '').slice(-10) : '';
-  if (!cleanPhone) return [];
-
-  const p = getPool();
-  if (p) {
-    try {
-      const [rows] = await p.query(
-        `SELECT * FROM returns WHERE customer_phone LIKE ? ORDER BY id DESC LIMIT 50`,
-        [`%${cleanPhone}`]
-      );
-      if (rows && rows.length > 0) {
-        return rows.map(r => {
-          let details = {};
-          try { details = typeof r.bank_details_json === 'string' ? JSON.parse(r.bank_details_json) : (r.bank_details_json || {}); } catch {}
-          return {
-            id: r.return_id,
-            return_id: r.return_id,
-            order_id: r.order_id,
-            customer_name: r.customer_name,
-            customer_email: r.customer_email,
-            customer_phone: r.customer_phone,
-            reason: r.reason,
-            bank_details: details,
-            shiprocket_return_id: r.shiprocket_return_id,
-            status: r.status || 'APPROVED',
-            created_at: r.created_at,
-          };
-        });
-      }
-    } catch (err) {
-      console.error('⚠️ Could not fetch return requests from DB:', err.message);
-    }
-  }
-  return [];
-}
-
-async function deductStockAtomic(productId, quantity) {
-  const p = getPool();
-  if (!p) return true;
-
-  try {
-    await p.query(
-      `INSERT INTO products (id, name, stock_quantity) VALUES (?, ?, 100) ON DUPLICATE KEY UPDATE id=id`,
-      [productId, productId]
-    );
-
-    const [res] = await p.query(
-      `UPDATE products SET stock_quantity = stock_quantity - ? WHERE id = ? AND stock_quantity >= ?`,
-      [quantity, productId, quantity]
-    );
-
-    return res.affectedRows > 0;
-  } catch (err) {
-    console.error(`DB deductStockAtomic error for ${productId}:`, err.message);
-    return false;
-  }
-}
-
-async function restoreStockAtomic(productId, quantity) {
-  const p = getPool();
-  if (!p) return true;
-
-  try {
-    await p.query(
-      `UPDATE products SET stock_quantity = stock_quantity + ? WHERE id = ?`,
-      [quantity, productId]
-    );
-    return true;
-  } catch (err) {
-    console.error(`DB restoreStockAtomic error for ${productId}:`, err.message);
-    return false;
-  }
-}
-
-/**
- * Helper to generate financial year invoice string using an active DB connection
- */
-async function generateInvoiceNumberWithConn(conn) {
+async function generateSequenceNumberWithConn(conn, tableName, prefix) {
   const today = new Date();
   const year = today.getFullYear();
   const month = today.getMonth(); // 0 = Jan
@@ -681,22 +545,26 @@ async function generateInvoiceNumberWithConn(conn) {
     fyStart = year - 1;
     fyEnd = year;
   }
-  const fyStr = `${String(fyStart).slice(-2)}-${String(fyEnd).slice(-2)}`; // e.g. 26-27
+  const fyStr = `${String(fyStart).slice(-2)}-${String(fyEnd).slice(-2)}`;
 
-  await conn.query(`INSERT INTO invoice_sequences (financial_year, current_value) VALUES (?, 0) ON DUPLICATE KEY UPDATE id=id`, [fyStr]);
-  await conn.query(`UPDATE invoice_sequences SET current_value = current_value + 1 WHERE financial_year = ?`, [fyStr]);
-  const [rows] = await conn.query(`SELECT current_value FROM invoice_sequences WHERE financial_year = ?`, [fyStr]);
+  await conn.query(`INSERT INTO ${tableName} (financial_year, current_value) VALUES (?, 0) ON DUPLICATE KEY UPDATE id=id`, [fyStr]);
+  await conn.query(`UPDATE ${tableName} SET current_value = current_value + 1 WHERE financial_year = ?`, [fyStr]);
+  const [rows] = await conn.query(`SELECT current_value FROM ${tableName} WHERE financial_year = ?`, [fyStr]);
   const val = rows[0].current_value;
   const formattedVal = String(val).padStart(5, '0');
-  return `SHR/${fyStr}/${formattedVal}`;
+  return `${prefix}/${fyStr}/${formattedVal}`;
 }
 
-/**
- * generateInvoiceNumber — atomically gets the next sequential invoice number for the current FY
- */
+async function generateInvoiceNumberWithConn(conn) {
+  return generateSequenceNumberWithConn(conn, 'invoice_sequences', 'SHR');
+}
+
+async function generateCreditNoteNumberWithConn(conn) {
+  return generateSequenceNumberWithConn(conn, 'credit_note_sequences', 'CN');
+}
+
 async function generateInvoiceNumber() {
   const p = getPool();
-  
   const today = new Date();
   const year = today.getFullYear();
   const month = today.getMonth();
@@ -723,9 +591,36 @@ async function generateInvoiceNumber() {
   }
 }
 
+async function generateCreditNoteNumber() {
+  const p = getPool();
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  let fyStart = year;
+  let fyEnd = year + 1;
+  if (month < 3) {
+    fyStart = year - 1;
+    fyEnd = year;
+  }
+  const fyStr = `${String(fyStart).slice(-2)}-${String(fyEnd).slice(-2)}`;
+
+  if (!p) {
+    return `CN/${fyStr}/MOCK-${Math.floor(1000 + Math.random() * 9000)}`;
+  }
+
+  try {
+    const conn = await p.getConnection();
+    const cnNumber = await generateCreditNoteNumberWithConn(conn);
+    conn.release();
+    return cnNumber;
+  } catch (err) {
+    console.error('⚠️ Could not generate credit note number from DB:', err.message);
+    return `CN/${fyStr}/ERR-${Math.floor(1000 + Math.random() * 9000)}`;
+  }
+}
+
 /**
  * getOrAssignInvoiceNumberAtomic — atomically gets or assigns an invoice number for an order using DB row locking.
- * Prevents duplicate invoice generation under concurrent webhooks.
  */
 async function getOrAssignInvoiceNumberAtomic(orderId) {
   const p = getPool();
@@ -776,22 +671,244 @@ async function getOrAssignInvoiceNumberAtomic(orderId) {
   }
 }
 
+/**
+ * getOrAssignCreditNoteNumberAtomic — atomically gets or assigns a Credit Note number for an order/return using DB row locking.
+ */
+async function getOrAssignCreditNoteNumberAtomic(orderId, returnId = null) {
+  const p = getPool();
+  if (!p) {
+    const cnNum = await generateCreditNoteNumber();
+    return { creditNoteNumber: cnNum, creditNoteDate: new Date().toISOString(), isNew: true };
+  }
+
+  const conn = await p.getConnection();
+  try {
+    await conn.beginTransaction();
+
+    const cleanId = String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase();
+    const cleanReturnId = returnId ? String(returnId).trim().toUpperCase() : null;
+
+    let query = `SELECT credit_note_number, credit_note_date FROM credit_notes WHERE UPPER(order_id) = ?`;
+    const params = [cleanId];
+    if (cleanReturnId) {
+      query += ` AND UPPER(return_id) = ?`;
+      params.push(cleanReturnId);
+    }
+    query += ` FOR UPDATE`;
+
+    const [rows] = await conn.query(query, params);
+
+    if (rows.length > 0 && rows[0].credit_note_number) {
+      await conn.commit();
+      conn.release();
+      return {
+        creditNoteNumber: rows[0].credit_note_number,
+        creditNoteDate: rows[0].credit_note_date,
+        isNew: false
+      };
+    }
+
+    const newCreditNoteNumber = await generateCreditNoteNumberWithConn(conn);
+    const creditNoteDate = new Date().toISOString();
+
+    await conn.commit();
+    conn.release();
+    return {
+      creditNoteNumber: newCreditNoteNumber,
+      creditNoteDate,
+      isNew: true
+    };
+  } catch (err) {
+    await conn.rollback();
+    conn.release();
+    throw err;
+  }
+}
+
+/**
+ * saveCreditNoteRecord — helper to persist Credit Note to MySQL (and memory)
+ */
+async function saveCreditNoteRecord(cnData) {
+  inMemoryCreditNotes.set(cnData.credit_note_number, cnData);
+
+  const p = getPool();
+  if (!p) return cnData;
+
+  try {
+    const [res] = await p.query(
+      `INSERT INTO credit_notes 
+       (credit_note_number, credit_note_date, order_id, original_invoice_number, original_invoice_date, return_id, customer_name, customer_gstin, customer_email, customer_phone, billing_address, shipping_address, state, place_of_supply, items_json, subtotal, discount, taxable_value, cgst, sgst, igst, total_tax, total_amount, reason, status, refund_id, refund_amount, refund_status, pdf_path)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       ON DUPLICATE KEY UPDATE 
+         pdf_path = VALUES(pdf_path),
+         status = VALUES(status),
+         refund_id = VALUES(refund_id),
+         refund_status = VALUES(refund_status)`,
+      [
+        cnData.credit_note_number,
+        cnData.credit_note_date || new Date().toISOString(),
+        cnData.order_id,
+        cnData.original_invoice_number,
+        cnData.original_invoice_date || null,
+        cnData.return_id || null,
+        cnData.customer_name || 'Valued Customer',
+        cnData.customer_gstin || null,
+        cnData.customer_email || '',
+        cnData.customer_phone || '',
+        cnData.billing_address || '',
+        cnData.shipping_address || '',
+        cnData.state || 'Rajasthan',
+        cnData.place_of_supply || '08-Rajasthan',
+        JSON.stringify(cnData.items || []),
+        cnData.subtotal || 0,
+        cnData.discount || 0,
+        cnData.taxable_value || 0,
+        cnData.cgst || 0,
+        cnData.sgst || 0,
+        cnData.igst || 0,
+        cnData.total_tax || 0,
+        cnData.total_amount || 0,
+        cnData.reason || 'Goods Returned',
+        cnData.status || 'ISSUED',
+        cnData.refund_id || null,
+        cnData.refund_amount || 0,
+        cnData.refund_status || 'PENDING',
+        cnData.pdf_path || null
+      ]
+    );
+
+    // Also link credit_note_number to orders table
+    await p.query(
+      `UPDATE orders SET credit_note_number = ? WHERE UPPER(order_id) = ?`,
+      [cnData.credit_note_number, String(cnData.order_id).toUpperCase()]
+    ).catch(() => {});
+
+    return res;
+  } catch (err) {
+    console.error('⚠️ Could not save Credit Note to DB:', err.message);
+    return cnData;
+  }
+}
+
+/**
+ * saveGstTransaction — helper to post GST transaction record into ledger
+ */
+async function saveGstTransaction(txData) {
+  inMemoryGstTransactions.unshift(txData);
+
+  const p = getPool();
+  if (!p) return txData;
+
+  try {
+    const [res] = await p.query(
+      `INSERT INTO gst_transactions
+       (transaction_type, order_id, invoice_id, invoice_number, invoice_date, credit_note_id, credit_note_number, credit_note_date, transaction_date, customer_name, customer_gstin, billing_state, shipping_state, place_of_supply, supply_type, b2b_b2c, payment_mode, sku, product_title, hsn_sac, quantity, unit_price, discount, taxable_value, gst_rate, cgst, sgst, igst, cess, total_tax, total_value, return_id, refund_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        txData.transaction_type,
+        txData.order_id,
+        txData.invoice_id || null,
+        txData.invoice_number || null,
+        txData.invoice_date || null,
+        txData.credit_note_id || null,
+        txData.credit_note_number || null,
+        txData.credit_note_date || null,
+        txData.transaction_date || new Date().toISOString(),
+        txData.customer_name || 'Valued Customer',
+        txData.customer_gstin || null,
+        txData.billing_state || 'Rajasthan',
+        txData.shipping_state || 'Rajasthan',
+        txData.place_of_supply || '08-Rajasthan',
+        txData.supply_type || 'INTRA_STATE',
+        txData.b2b_b2c || 'B2C',
+        txData.payment_mode || 'Prepaid',
+        txData.sku || 'SKU-ITEM',
+        txData.product_title || 'Sacred Item',
+        txData.hsn_sac || '83061000',
+        txData.quantity || 1,
+        txData.unit_price || 0,
+        txData.discount || 0,
+        txData.taxable_value || 0,
+        txData.gst_rate || 18,
+        txData.cgst || 0,
+        txData.sgst || 0,
+        txData.igst || 0,
+        txData.cess || 0,
+        txData.total_tax || 0,
+        txData.total_value || 0,
+        txData.return_id || null,
+        txData.refund_id || null
+      ]
+    );
+    return res;
+  } catch (err) {
+    console.error('⚠️ Could not save GST transaction to DB:', err.message);
+    return txData;
+  }
+}
+
+/**
+ * saveRefundRecord — helper to persist refund record to MySQL
+ */
+async function saveRefundRecord(refData) {
+  inMemoryRefunds.set(refData.refund_id, refData);
+
+  const p = getPool();
+  if (!p) return refData;
+
+  try {
+    const [res] = await p.query(
+      `INSERT INTO refunds
+       (refund_id, order_id, credit_note_id, credit_note_number, amount, currency, status, payment_method, razorpay_payment_id, razorpay_refund_id, bank_details_json, reason, initiated_at, completed_at, error_message)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       ON DUPLICATE KEY UPDATE
+         status = VALUES(status),
+         completed_at = VALUES(completed_at),
+         razorpay_refund_id = COALESCE(VALUES(razorpay_refund_id), razorpay_refund_id),
+         error_message = VALUES(error_message)`,
+      [
+        refData.refund_id,
+        refData.order_id,
+        refData.credit_note_id || null,
+        refData.credit_note_number || null,
+        refData.amount || 0,
+        refData.currency || 'INR',
+        refData.status || 'INITIATED',
+        refData.payment_method || 'Prepaid',
+        refData.razorpay_payment_id || null,
+        refData.razorpay_refund_id || null,
+        JSON.stringify(refData.bank_details || {}),
+        refData.reason || 'Customer Refund',
+        refData.initiated_at || new Date().toISOString(),
+        refData.completed_at || null,
+        refData.error_message || null
+      ]
+    );
+
+    // Update orders table with refund_id
+    await p.query(
+      `UPDATE orders SET refund_id = ? WHERE UPPER(order_id) = ?`,
+      [refData.refund_id, String(refData.order_id).toUpperCase()]
+    ).catch(() => {});
+
+    return res;
+  } catch (err) {
+    console.error('⚠️ Could not save refund record to DB:', err.message);
+    return refData;
+  }
+}
+
 module.exports = {
   getPool,
   initDatabase,
   saveOrder,
   updateOrderShiprocketInfo,
-  deductStockAtomic,
-  restoreStockAtomic,
   saveReturnRequest,
-  getReturnRequestsByPhone,
-  saveReview,
-  getReviewsByProduct,
-  saveCorporateEnquiry,
-  getCorporateEnquiries,
-  saveSubscriber,
-  getSubscribers,
   generateInvoiceNumber,
   getOrAssignInvoiceNumberAtomic,
+  generateCreditNoteNumber,
+  getOrAssignCreditNoteNumberAtomic,
+  saveCreditNoteRecord,
+  saveGstTransaction,
+  saveRefundRecord
 };
-

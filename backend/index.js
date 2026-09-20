@@ -87,6 +87,8 @@ app.get('/api/health', (req, res) => {
 });
 
 // ── Routes ────────────────────────────────────────────────
+const gstAdminRouter = require('./routes/gstAdmin');
+app.use('/api/gst', gstAdminRouter);
 app.use('/api/payments', rateLimiter.payments, paymentsRouter);
 app.use('/api/track', rateLimiter.track, trackRouter);
 app.use('/api/orders', rateLimiter.orders, ordersRouter);

@@ -383,6 +383,112 @@ async function updateEmailStatus(orderId, type, statusData) {
 }
 
 /**
+ * Atomically marks an order's email status as PENDING ONLY if it is currently NONE or NULL.
+ * Prevents resetting PROCESSING or SENT status back to PENDING under concurrent webhooks/requests.
+ */
+async function markEmailPendingAtomic(orderId, type) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  if (!cleanId || (type !== 'customer' && type !== 'business')) return false;
+
+  const statusField = `${type}_email_status`;
+
+  let record = recentOrders.get(cleanId);
+  if (!record) {
+    for (const [k, cached] of recentOrders.entries()) {
+      if (k.toUpperCase() === cleanId) {
+        record = cached;
+        break;
+      }
+    }
+  }
+
+  const pool = getPool();
+  if (pool) {
+    try {
+      const [res] = await pool.query(
+        `UPDATE orders 
+         SET ${statusField} = 'PENDING' 
+         WHERE UPPER(order_id) = ? 
+           AND (${statusField} IS NULL OR ${statusField} = 'NONE')`,
+        [cleanId]
+      );
+      if (res.affectedRows > 0) {
+        if (record) record[statusField] = 'PENDING';
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.error(`OrderStore DB markEmailPendingAtomic error (${type}):`, err.message);
+      return false;
+    }
+  }
+
+  if (record) {
+    const current = record[statusField];
+    if (!current || current === 'NONE') {
+      record[statusField] = 'PENDING';
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Atomically claims an email job for processing if its status is PENDING or FAILED.
+ * Transitions status from PENDING/FAILED to PROCESSING in a single atomic SQL statement
+ * to guarantee that exactly ONE worker/trigger processes the email job.
+ */
+async function claimEmailJobAtomic(orderId, type) {
+  const cleanId = orderId ? String(orderId).replace(/^[#\s]+/, '').trim().toUpperCase() : '';
+  if (!cleanId || (type !== 'customer' && type !== 'business')) return false;
+
+  const statusField = `${type}_email_status`;
+  const retryCountField = `${type}_email_retry_count`;
+
+  let record = recentOrders.get(cleanId);
+  if (!record) {
+    for (const [k, cached] of recentOrders.entries()) {
+      if (k.toUpperCase() === cleanId) {
+        record = cached;
+        break;
+      }
+    }
+  }
+
+  const pool = getPool();
+  if (pool) {
+    try {
+      const [res] = await pool.query(
+        `UPDATE orders 
+         SET ${statusField} = 'PROCESSING' 
+         WHERE UPPER(order_id) = ? 
+           AND ${statusField} IN ('PENDING', 'FAILED')
+           AND ${retryCountField} < 3`,
+        [cleanId]
+      );
+
+      if (res.affectedRows > 0) {
+        if (record) record[statusField] = 'PROCESSING';
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.error(`OrderStore DB claimEmailJobAtomic error (${type}):`, err.message);
+      return false;
+    }
+  }
+
+  if (record) {
+    const currentStatus = record[statusField];
+    if (currentStatus === 'PENDING' || currentStatus === 'FAILED') {
+      record[statusField] = 'PROCESSING';
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
  * Fetches orders that need their emails sent or retried.
  */
 async function getPendingEmails() {
@@ -862,5 +968,7 @@ module.exports = {
   markOrderRefunded,
   updateOrderInvoice,
   updateEmailStatus,
+  markEmailPendingAtomic,
+  claimEmailJobAtomic,
   getPendingEmails,
 };

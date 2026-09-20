@@ -330,65 +330,66 @@ router.post(
 
         // ────────────────────────────────────────────────────────────
         // INVOICE STRATEGY:
-        //   COD  → Generate & save invoice NOW (payment is collected on delivery).
-        //   Prepaid → Do NOT generate invoice yet. It will be generated
-        //             when the Razorpay webhook confirms payment.captured.
-        //             This ensures invoices are never based solely on a
-        //             frontend payment-success callback.
+        // Prepaid → Generate invoice immediately after successful /verify.
+        //           Payment has already been verified through Razorpay.
+        //
+        // COD → Do not generate invoice at order placement.
+        //       Generate invoice only after confirmed delivery/payment collection.
+        //
+        // Razorpay webhook → Safety net for prepaid invoices if /verify
+        //                    completed payment verification but invoice creation
+        //                    failed or was interrupted.
         // ────────────────────────────────────────────────────────────
         let invoiceNumber = null;
         let invoiceDate = null;
+        let invoiceDocumentReady = false;
 
-        if (isCOD) {
-          const { generateInvoiceNumber } = require('../database/db');
-          invoiceNumber = await generateInvoiceNumber();
-          invoiceDate = new Date().toISOString();
-
-          let invoiceBuffer = null;
+        if (!isCOD) {
+          // PREPAID: Generate invoice immediately — payment is already verified above.
           try {
-            const { generateAndSaveInvoice } = require('../services/invoiceService');
-            const result = await generateAndSaveInvoice({
-              order_id: internalOrderId,
-              customer_name: customer?.name || 'Valued Customer',
-              customer_email: customer?.email,
-              customer_phone: customer?.phone,
-              payment_method: shiprocketPaymentMethod,
-              shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
-              state: customer?.state,
-              items: sanitizedCart,
-            }, invoiceNumber);
-            invoiceBuffer = result.buffer;
-            console.log(`📄 COD Invoice generated & saved for ${internalOrderId}: ${invoiceNumber}`);
-          } catch (invErr) {
-            console.error(`⚠️ Failed to generate COD invoice PDF for ${internalOrderId}:`, invErr.message);
-          }
+            const { getOrAssignInvoiceNumberAtomic } = require('../database/db');
+            const invoiceResult = await getOrAssignInvoiceNumberAtomic(internalOrderId);
+            invoiceNumber = invoiceResult.invoiceNumber;
+            invoiceDate = invoiceResult.invoiceDate;
 
-          // Do NOT send the email inline. The queue will handle it.
-          // We will set the DB status to PENDING when adding the order below.
-        } else {
-          // PREPAID: Send a lightweight "payment received" email WITHOUT invoice.
-          // The actual Invoice email is handled by the webhook.
-          // We can still do this inline since it's just a lightweight receipt, not the official invoice.
-          if (customer?.email) {
-            const { sendPrepaidPaymentReceivedEmail } = require('../services/emailService');
-            sendPrepaidPaymentReceivedEmail({
-              to: customer.email,
-              customerName: customer.name || 'Valued Customer',
-              orderId: internalOrderId,
-              paymentId: razorpay_payment_id,
-              items: sanitizedCart,
-              totalAmount,
-              shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
-              phone: customer.phone || '7742320607',
-            }).catch(err => console.error('Failed to send prepaid payment received email:', err));
+            // Check if the PDF already exists on disk (handles isNew === false
+            // where a previous attempt already generated the document).
+            const { getInvoicePath, generateAndSaveInvoice } = require('../services/invoiceService');
+            const existingPdf = getInvoicePath(internalOrderId);
+
+            if (existingPdf) {
+              // Invoice number AND document both exist — fully ready.
+              invoiceDocumentReady = true;
+              console.log(`📄 Invoice already complete for ${internalOrderId}: ${invoiceNumber}`);
+            } else {
+              // Invoice number assigned but PDF missing (first attempt, or previous PDF failure).
+              await generateAndSaveInvoice({
+                order_id: internalOrderId,
+                customer_name: customer?.name || 'Valued Customer',
+                customer_email: customer?.email,
+                customer_phone: customer?.phone,
+                payment_method: shiprocketPaymentMethod,
+                shipping_address: `${customer?.address || ''}, ${customer?.city || ''}, ${customer?.state || ''} - ${customer?.pincode || ''}`,
+                state: customer?.state,
+                items: sanitizedCart,
+              }, invoiceNumber);
+              invoiceDocumentReady = true;
+              console.log(`📄 Prepaid Invoice generated & saved for ${internalOrderId}: ${invoiceNumber}`);
+            }
+          } catch (invErr) {
+            console.error(`⚠️ Failed to generate prepaid invoice for ${internalOrderId}:`, invErr.message);
+            // Payment is still valid. invoiceDocumentReady remains false.
+            // Webhook safety net will detect the missing PDF and retry.
           }
         }
+        // COD: No invoice at placement. Invoice generated after delivery/payment collection.
 
         console.log(`✅ Order verified (${shiprocketPaymentMethod}) & Confirmation Email triggered:`, {
           razorpay_order_id,
           razorpay_payment_id,
           internalOrderId,
-          invoiceNumber: invoiceNumber || 'DEFERRED_TO_WEBHOOK',
+          invoiceNumber: invoiceNumber || (isCOD ? 'DEFERRED_TO_DELIVERY' : 'DEFERRED_TO_WEBHOOK'),
+          invoiceDocumentReady,
           customer: customer?.name,
         });
 
@@ -484,11 +485,13 @@ router.post(
           inventory_deducted: true,
           invoice_number: invoiceNumber,
           invoice_date: invoiceDate,
-          customer_email_status: isCOD ? 'PENDING' : 'NONE', // Prepaid invoice emails triggered via webhook
-          business_email_status: isCOD ? 'PENDING' : 'NONE',
+          // Email is only PENDING when invoice document is confirmed saved to disk
+          customer_email_status: (invoiceDocumentReady) ? 'PENDING' : 'NONE',
+          business_email_status: (invoiceDocumentReady) ? 'PENDING' : 'NONE',
         });
 
-        if (isCOD) {
+        // Trigger email queue only when invoice document is confirmed ready
+        if (invoiceDocumentReady) {
           const emailQueue = require('../services/emailQueue');
           emailQueue.triggerImmediate(internalOrderId);
         }
@@ -534,37 +537,122 @@ router.post(
   }),
   async (req, res, next) => {
     try {
-      const { payment_id, amount, reason = 'Customer requested refund' } = req.body;
+      const { payment_id, amount, reason = 'Customer requested refund', order_id = null } = req.body;
       const amountInPaise = Math.round(amount * 100);
 
-      if (req.mock.razorpay) {
-        return res.json({
-          success: true,
-          refund:  mockRazorpayRefund(payment_id, amountInPaise),
-          _mock:   true,
-        });
+      const { findOrderById, markOrderRefunded } = require('../services/orderStore');
+      const { saveRefundRecord } = require('../database/db');
+      const { generateAndSaveCreditNote } = require('../services/creditNoteService');
+      const { postCreditNoteLedger } = require('../services/gstLedgerService');
+      const { logEvent } = require('../services/auditLogService');
+
+      let targetOrder = null;
+      if (order_id) {
+        targetOrder = await findOrderById(order_id);
       }
 
-      const razorpay = getClient();
-      const refund = await razorpay.payments.refund(payment_id, {
-        amount: amountInPaise,
-        notes:  { reason },
+      const internalRefundId = `RFND_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}`;
+
+      let razorpayRefundId = null;
+      let mockResult = false;
+
+      if (req.mock.razorpay) {
+        const m = mockRazorpayRefund(payment_id, amountInPaise);
+        razorpayRefundId = m.id;
+        mockResult = true;
+      } else {
+        const razorpay = getClient();
+        const rzpRefund = await razorpay.payments.refund(payment_id, {
+          amount: amountInPaise,
+          notes:  { reason, order_id: order_id || '' },
+        });
+        razorpayRefundId = rzpRefund.id;
+      }
+
+      // Persist Refund Record
+      await saveRefundRecord({
+        refund_id: internalRefundId,
+        order_id: order_id || targetOrder?.order_id || 'UNKNOWN',
+        amount,
+        currency: 'INR',
+        status: 'PROCESSED',
+        payment_method: 'Prepaid',
+        razorpay_payment_id: payment_id,
+        razorpay_refund_id: razorpayRefundId,
+        reason,
+        completed_at: new Date().toISOString()
+      });
+
+      if (targetOrder) {
+        await markOrderRefunded(targetOrder.order_id, { refund_id: razorpayRefundId });
+      }
+
+      // ──────────────────────────────────────────────────────────
+      // INVOICE / CREDIT NOTE SAFETY CHECK:
+      // If the order has an existing invoice_number:
+      //   - The original invoice remains 100% IMMUTABLE.
+      //   - Issue a separate Credit Note (CN/FY/XXXXX).
+      //   - Post CREDIT_NOTE transaction to GST ledger.
+      //
+      // If cancelled/refunded BEFORE invoice generation:
+      //   - NO invoice generated.
+      //   - NO GST SALE or CREDIT_NOTE ledger entry created.
+      // ──────────────────────────────────────────────────────────
+      let creditNoteResult = null;
+      if (targetOrder && targetOrder.invoice_number) {
+        try {
+          const itemsToReverse = targetOrder.items || [];
+          const cnRes = await generateAndSaveCreditNote({
+            order: targetOrder,
+            originalInvoiceNumber: targetOrder.invoice_number,
+            originalInvoiceDate: targetOrder.invoice_date,
+            returnedItems: itemsToReverse,
+            reason,
+            refundId: razorpayRefundId || internalRefundId
+          });
+
+          await postCreditNoteLedger(cnRes.cnData);
+          creditNoteResult = cnRes.cnData;
+          console.log(`📄 Credit Note generated for refunded order ${targetOrder.order_id}: ${cnRes.cnData.credit_note_number}`);
+        } catch (cnErr) {
+          console.error(`⚠️ Failed to generate Credit Note during refund for ${targetOrder.order_id}:`, cnErr.message);
+        }
+      }
+
+      await logEvent({
+        eventType: 'REFUND_COMPLETED',
+        entityType: 'REFUND',
+        entityId: razorpayRefundId || internalRefundId,
+        orderId: order_id || targetOrder?.order_id,
+        invoiceNumber: targetOrder?.invoice_number,
+        creditNoteNumber: creditNoteResult?.credit_note_number,
+        metadata: { amount, payment_id, razorpay_refund_id: razorpayRefundId, reason }
       });
 
       // Send branded refund email trigger if email present
-      if (req.body.email) {
+      if (req.body.email || targetOrder?.customer_email) {
         const { sendRefundConfirmationEmail } = require('../services/emailService');
         sendRefundConfirmationEmail({
-          to: req.body.email,
-          customerName: req.body.customerName || 'Valued Customer',
-          refundId: refund.id || `rfnd_${Date.now()}`,
+          to: req.body.email || targetOrder.customer_email,
+          customerName: req.body.customerName || targetOrder?.customer_name || 'Valued Customer',
+          refundId: razorpayRefundId || internalRefundId,
           paymentId: payment_id,
           amount,
           reason,
         }).catch(err => console.error('Failed to send refund email:', err));
       }
 
-      res.json({ success: true, refund });
+      res.json({
+        success: true,
+        refund_id: internalRefundId,
+        razorpay_refund_id: razorpayRefundId,
+        credit_note: creditNoteResult ? {
+          credit_note_number: creditNoteResult.credit_note_number,
+          total_amount: creditNoteResult.total_amount,
+          pdf_path: creditNoteResult.pdf_path
+        } : null,
+        _mock: mockResult
+      });
     } catch (err) {
       next(new AppError(
         `Refund initiation failed: ${err.message}`,
@@ -625,56 +713,69 @@ router.post('/webhook', async (req, res, next) => {
         if (internalOrderId) {
           await markOrderPaid(internalOrderId, { payment_id: paymentEntity.id });
 
-          // ── PREPAID INVOICE GENERATION (authoritative trigger) ──
-          // The invoice is ONLY generated here, after Razorpay confirms
-          // payment.captured. It is NOT generated from the /verify route.
+          // ── PREPAID INVOICE SAFETY NET ──
+          // The primary invoice is generated at /verify. This webhook acts
+          // as a safety net for two scenarios:
+          //   (A) /verify assigned an invoice number but PDF generation failed.
+          //   (B) /verify failed entirely (no invoice number assigned).
+          // In both cases the webhook completes the missing work.
           try {
             const { findOrderById } = require('../services/orderStore');
             const order = await findOrderById(internalOrderId);
 
             if (order) {
-              const { getOrAssignInvoiceNumberAtomic } = require('../database/db');
-              const { invoiceNumber, invoiceDate, isNew } = await getOrAssignInvoiceNumberAtomic(internalOrderId);
-
-              if (isNew) {
-                // Use items_raw which preserves the full HSN/GST enriched data
-                let orderItems = order.items_raw || order.items;
-                if (typeof orderItems === 'string') {
-                  try { orderItems = JSON.parse(orderItems); } catch { orderItems = []; }
-                }
-
-                // Generate & persist the invoice PDF to disk FIRST
-                const { generateAndSaveInvoice } = require('../services/invoiceService');
-                const { buffer: invoiceBuffer } = await generateAndSaveInvoice({
-                  order_id: order.order_id || internalOrderId,
-                  customer_name: order.customer_name || 'Valued Customer',
-                  customer_email: order.customer_email,
-                  customer_phone: order.customer_phone,
-                  payment_method: order.payment_method || 'Prepaid',
-                  shipping_address: order.shipping_address || '',
-                  state: order.state || order.shipping_address?.split(',').pop()?.trim() || '',
-                  items: orderItems,
-                }, invoiceNumber);
-
-                console.log(`📄 Prepaid Invoice generated & saved via webhook for ${internalOrderId}: ${invoiceNumber}`);
-
-                // Update the in-memory/DB order record with invoice details
-                const { updateOrderInvoice, updateEmailStatus } = require('../services/orderStore');
-                await updateOrderInvoice(internalOrderId, invoiceNumber, invoiceDate);
-
-                // Set statuses to PENDING for the queue to pick up
-                await updateEmailStatus(internalOrderId, 'customer', { status: 'PENDING' });
-                await updateEmailStatus(internalOrderId, 'business', { status: 'PENDING' });
-
-                // Trigger the queue immediately
-                const emailQueue = require('../services/emailQueue');
-                emailQueue.triggerImmediate(internalOrderId);
+              // Skip COD orders — COD invoices are generated after delivery
+              if (String(order.payment_method).toUpperCase() === 'COD') {
+                console.log(`  → Skipping invoice for COD order ${internalOrderId} (deferred to delivery)`);
               } else {
-                console.log(`  → Invoice already generated for ${internalOrderId}: ${invoiceNumber} (skipping duplicate)`);
+                const { getOrAssignInvoiceNumberAtomic } = require('../database/db');
+                const { getInvoicePath, generateAndSaveInvoice } = require('../services/invoiceService');
+                const { invoiceNumber, invoiceDate, isNew } = await getOrAssignInvoiceNumberAtomic(internalOrderId);
+
+                // Check document-level readiness: does the PDF actually exist on disk?
+                const existingPdf = getInvoicePath(internalOrderId);
+
+                if (existingPdf) {
+                  // Case A: Invoice number AND document both exist — fully complete.
+                  console.log(`  → Invoice fully complete for ${internalOrderId}: ${invoiceNumber} (webhook skipping)`);
+                } else {
+                  // Case B (isNew) or Case C (!isNew but PDF missing): generate the document.
+                  let orderItems = order.items_raw || order.items;
+                  if (typeof orderItems === 'string') {
+                    try { orderItems = JSON.parse(orderItems); } catch { orderItems = []; }
+                  }
+
+                  await generateAndSaveInvoice({
+                    order_id: order.order_id || internalOrderId,
+                    customer_name: order.customer_name || 'Valued Customer',
+                    customer_email: order.customer_email,
+                    customer_phone: order.customer_phone,
+                    payment_method: order.payment_method || 'Prepaid',
+                    shipping_address: order.shipping_address || '',
+                    state: order.state || order.shipping_address?.split(',').pop()?.trim() || '',
+                    items: orderItems,
+                  }, invoiceNumber);
+
+                  console.log(`📄 [SAFETY NET] Prepaid Invoice generated via webhook for ${internalOrderId}: ${invoiceNumber} (isNew=${isNew})`);
+
+                  // Persist invoice details if this was a new invoice number
+                  if (isNew) {
+                    const { updateOrderInvoice } = require('../services/orderStore');
+                    await updateOrderInvoice(internalOrderId, invoiceNumber, invoiceDate);
+                  }
+
+                  // Only set email to PENDING atomically if not already queued/sent
+                  const { markEmailPendingAtomic } = require('../services/orderStore');
+                  await markEmailPendingAtomic(internalOrderId, 'customer');
+                  await markEmailPendingAtomic(internalOrderId, 'business');
+
+                  const emailQueue = require('../services/emailQueue');
+                  emailQueue.triggerImmediate(internalOrderId);
+                }
               }
             }
           } catch (invErr) {
-            console.error(`⚠️ Webhook invoice generation failed for ${internalOrderId}:`, invErr.message);
+            console.error(`⚠️ Webhook invoice safety-net failed for ${internalOrderId}:`, invErr.message);
             // The order is still marked PAID; invoice can be regenerated manually
           }
         }

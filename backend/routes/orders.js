@@ -271,14 +271,14 @@ router.get('/:id/invoice', async (req, res, next) => {
       return next(new AppError('Order not found or unauthorized access.', 404, 'ORDER_NOT_FOUND'));
     }
 
-    const { getInvoicePath } = require('../services/invoiceService');
-    const invoicePath = getInvoicePath(existingOrder.order_id || existingOrder.orderId || id);
+    const { getOrGenerateInvoicePath } = require('../services/invoiceService');
+    const invoicePath = await getOrGenerateInvoicePath(existingOrder);
 
     if (!invoicePath) {
       // For prepaid orders, the invoice may not be generated yet if
-      // the payment.captured webhook hasn't been received.
+      // the payment verification has not completed.
       return next(new AppError(
-        'Invoice not available yet. For prepaid orders, the invoice is generated after payment confirmation from the payment gateway. Please try again shortly.',
+        'Invoice not available yet. For prepaid orders, the invoice is generated after payment confirmation. Please try again shortly.',
         404,
         'INVOICE_NOT_FOUND'
       ));

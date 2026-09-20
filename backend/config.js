@@ -65,6 +65,10 @@ const config = {
   admin: {
     apiKey: process.env.ADMIN_API_KEY || process.env.ADMIN_TOKEN || 'shraviko-admin-secret-key-2026',
   },
+
+  storage: {
+    invoiceDir: process.env.INVOICE_STORAGE_DIR || '',
+  },
 };
 
 // Production Mock Gate: Refuse to run in production if critical services resolve to mock mode

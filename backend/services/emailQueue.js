@@ -6,8 +6,8 @@
  */
 
 const fs = require('fs');
-const { getPendingEmails, updateEmailStatus, findOrderById } = require('./orderStore');
-const { getInvoicePath } = require('./invoiceService');
+const { getPendingEmails, updateEmailStatus, claimEmailJobAtomic, findOrderById } = require('./orderStore');
+const { getInvoicePath, getOrGenerateInvoicePath } = require('./invoiceService');
 const emailService = require('./emailService');
 
 // Retry delays in milliseconds: 1 min, 5 min, 15 min
@@ -27,6 +27,13 @@ function getNextRetryTime(currentRetryCount) {
  * Process the customer email job independently.
  */
 async function processCustomerEmail(row) {
+  // Atomically claim the job to prevent duplicate dispatches under race conditions
+  const claimed = await claimEmailJobAtomic(row.order_id, 'customer');
+  if (!claimed) {
+    console.log(`ℹ️ Customer email job for ${row.order_id} already claimed or completed by another process.`);
+    return;
+  }
+
   try {
     const order = await findOrderById(row.order_id);
     if (!order || !order.customer_email) {
@@ -38,11 +45,14 @@ async function processCustomerEmail(row) {
       return;
     }
 
-    const invoicePath = getInvoicePath(row.order_id);
+    const invoicePath = await getOrGenerateInvoicePath(order);
     if (!invoicePath || !fs.existsSync(invoicePath)) {
-      throw new Error('Invoice PDF not found on disk');
+      throw new Error('Invoice PDF not available on disk');
     }
     const invoiceBuffer = fs.readFileSync(invoicePath);
+    if (!invoiceBuffer || invoiceBuffer.length < 100 || !invoiceBuffer.toString('utf8', 0, 4).startsWith('%PDF')) {
+      throw new Error('Invoice PDF buffer is invalid or corrupted');
+    }
 
     let result;
     if (String(order.payment_method).toUpperCase() === 'COD') {
@@ -103,6 +113,13 @@ async function processCustomerEmail(row) {
  * Process the business email job independently.
  */
 async function processBusinessEmail(row) {
+  // Atomically claim the job to prevent duplicate dispatches under race conditions
+  const claimed = await claimEmailJobAtomic(row.order_id, 'business');
+  if (!claimed) {
+    console.log(`ℹ️ Business email job for ${row.order_id} already claimed or completed by another process.`);
+    return;
+  }
+
   try {
     const order = await findOrderById(row.order_id);
     if (!order) {
@@ -114,11 +131,14 @@ async function processBusinessEmail(row) {
       return;
     }
 
-    const invoicePath = getInvoicePath(row.order_id);
+    const invoicePath = await getOrGenerateInvoicePath(order);
     if (!invoicePath || !fs.existsSync(invoicePath)) {
-      throw new Error('Invoice PDF not found on disk');
+      throw new Error('Invoice PDF not available on disk');
     }
     const invoiceBuffer = fs.readFileSync(invoicePath);
+    if (!invoiceBuffer || invoiceBuffer.length < 100 || !invoiceBuffer.toString('utf8', 0, 4).startsWith('%PDF')) {
+      throw new Error('Invoice PDF buffer is invalid or corrupted');
+    }
 
     const result = await emailService.sendBusinessInvoiceEmail({
       orderId: row.order_id,

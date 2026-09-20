@@ -81,6 +81,7 @@ const catalog = {
   'vastu-laxmi-siddha-yantra': 388,    // was 349
   'vastu-shani-siddha-yantra': 388,    // was 349
   'vastu-crystal-glass-yantra': 1767,  // was 1590
+  'SHR-SYC-GL-04-1P': 1767,            // SKU for Glass Shree Yantra Cone
   'vastu-brass-pyramid-multitier': 443, // was 399
   'vastu-crystal-glass-turtle': 388,   // was 349
   'brass-kamdhenu-cow-statue': 2767,   // was 2490

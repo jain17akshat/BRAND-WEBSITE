@@ -167,6 +167,8 @@ router.post('/request', validateBody({
     }).catch(err => console.error('Failed to notify admin of return:', err));
 
     const { saveReturnRequest } = require('../database/db');
+    const { logEvent } = require('../services/auditLogService');
+
     await saveReturnRequest({
       return_id: returnId,
       order_id: cleanOrderId,
@@ -176,6 +178,16 @@ router.post('/request', validateBody({
       reason,
       bank_details: details,
       shiprocket_return_id: srReturnId,
+    });
+
+    await logEvent({
+      eventType: 'RETURN_REQUESTED',
+      entityType: 'RETURN',
+      entityId: returnId,
+      orderId: cleanOrderId,
+      previousStatus: existingOrder.status,
+      newStatus: 'RETURN_INITIATED',
+      metadata: { reason, refund_type, shiprocket_return_id: srReturnId }
     });
 
     res.json({
@@ -193,6 +205,75 @@ router.post('/request', validateBody({
       `Return request failed: ${err.response?.data?.message || err.message}`,
       502, 'SHIPROCKET_ERROR'
     ));
+  }
+});
+
+// ── POST /api/returns/accept (Processes Return Acceptance & Credit Note) ────
+router.post('/accept', async (req, res, next) => {
+  try {
+    const { return_id, order_id, items = [], reason = 'Return accepted' } = req.body;
+    if (!order_id) {
+      return next(new AppError('order_id is required to accept return.', 400, 'INVALID_INPUT'));
+    }
+
+    const { findOrderById, markOrderReturned } = require('../services/orderStore');
+    const { generateAndSaveCreditNote } = require('../services/creditNoteService');
+    const { postCreditNoteLedger } = require('../services/gstLedgerService');
+    const { logEvent } = require('../services/auditLogService');
+
+    const order = await findOrderById(order_id);
+    if (!order) {
+      return next(new AppError('Order not found.', 404, 'ORDER_NOT_FOUND'));
+    }
+
+    // Determine returned items (full or partial return)
+    const returnedItems = (Array.isArray(items) && items.length > 0) ? items : (order.items || []);
+
+    if (!order.invoice_number) {
+      return next(new AppError('Cannot issue Credit Note: Original order has no invoice.', 400, 'NO_INVOICE'));
+    }
+
+    // 1. Generate Credit Note & PDF
+    const { cnData, filePath } = await generateAndSaveCreditNote({
+      order,
+      originalInvoiceNumber: order.invoice_number,
+      originalInvoiceDate: order.invoice_date,
+      returnId: return_id || `RET_${Date.now()}`,
+      returnedItems,
+      reason
+    });
+
+    // 2. Post CREDIT_NOTE transaction to GST ledger
+    await postCreditNoteLedger(cnData);
+
+    // 3. Mark Order as RETURNED
+    await markOrderReturned(order.order_id, {
+      status: 'RETURNED',
+      credit_note_number: cnData.credit_note_number
+    });
+
+    // 4. Log Audit Event
+    await logEvent({
+      eventType: 'RETURN_ACCEPTED',
+      entityType: 'RETURN',
+      entityId: return_id || cnData.credit_note_number,
+      orderId: order.order_id,
+      invoiceNumber: order.invoice_number,
+      creditNoteNumber: cnData.credit_note_number,
+      previousStatus: order.status,
+      newStatus: 'RETURNED',
+      metadata: { total_reversed: cnData.total_amount, pdf_path: filePath }
+    });
+
+    res.json({
+      success: true,
+      credit_note_number: cnData.credit_note_number,
+      credit_note_amount: cnData.total_amount,
+      pdf_path: filePath,
+      status: 'RETURNED'
+    });
+  } catch (err) {
+    next(err);
   }
 });
 
