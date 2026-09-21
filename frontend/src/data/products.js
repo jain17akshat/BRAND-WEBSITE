@@ -1481,331 +1481,6 @@ export const PRODUCTS = [
     ]
   },
 
-  // 21. Wooden Chowki (Bajot)
-  {
-    id: 'wooden-chowki-carved-01',
-    name: 'Shraviko Wooden Pooja Chowki',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Wooden Chowki',
-    price: 554,
-    originalPrice: 1110,
-    rating: 4.98,
-    reviewsCount: 124,
-    tag: 'Pooja Chowki',
-    artType: 'chowki',
-    fitMode: 'contain',
-    image: '/assets/Wooden Choki/chowki1.webp',
-    images: [
-      '/assets/Wooden Choki/chowki1.webp',
-      '/assets/Wooden Choki/chowki 2.webp',
-      '/assets/Wooden Choki/chowki333.webp',
-      '/assets/Wooden Choki/chowki6.webp'
-    ],
-    weightVariants: [
-      { weight: 'L 38 cm × B 12 cm × H 5 cm (350 g)', price: 554, originalPrice: 1110, default: true }
-    ],
-    purity: 'Handcrafted Wood with Traditional Painting',
-    inStock: true,
-    description: 'The Shraviko Wooden Pooja Chowki is a beautifully crafted traditional platform designed for home temples, pooja rooms and festive arrangements. Made from wood and finished with detailed hand-painted artwork, it combines traditional Indian aesthetics with practical everyday use. Use it as a base for God idols, Kalash, Diyas, Panchpatra, Shankh, Pooja Thali and other sacred accessories. Its sturdy tabletop construction provides a stable surface while the decorative artwork adds character to your mandir setup. Suitable for daily pooja, Diwali, Navratri, Ganesh Chaturthi, Janmashtami, and housewarming ceremonies.',
-    shortDescription: 'Add a traditional touch to your pooja space with this handcrafted Wooden Pooja Chowki. Designed with traditional painted detailing, it provides an elegant and stable platform for idols, Kalash, diyas and other pooja essentials.',
-    seoTitle: 'Wooden Pooja Chowki | Hand-Painted Wooden Bajot for Mandir | Shraviko',
-    metaDescription: 'Shop Shraviko Handcrafted Wooden Pooja Chowki for home temples, god idols, kalash and pooja thalis. Traditional hand-painted wooden bajot for mandir.',
-    specifications: [
-      { label: 'Product Type', value: 'Wooden Pooja Chowki' },
-      { label: 'Material', value: 'Wood' },
-      { label: 'Dimensions', value: '38 cm (L) × 12 cm (B) × 5 cm (H)' },
-      { label: 'Weight', value: '350 g' },
-      { label: 'Finish', value: 'Hand Painted' },
-      { label: 'Colour', value: 'Multicolor' },
-      { label: 'Shape', value: 'Rectangle' },
-      { label: 'Mounting', value: 'Tabletop' },
-      { label: 'Handmade', value: 'Yes' },
-      { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Wooden Pooja Chowki' }
-    ],
-    keyFeatures: [
-      'Handcrafted Wooden Construction – Made from quality seasoned wood for durability and stability.',
-      'Traditional Hand-Painted Artwork – Detailed artisanal painting adds vibrant traditional character to your mandir.',
-      'Stable Tabletop Design – Sturdy 4-leg construction ensures steady placement of sacred items.',
-      'Ideal for Idols & Pooja Essentials – Perfect base for God Idols, Kalash, Diyas, Panchpatra, Shankh, and Pooja Thalis.',
-      'Suitable for Daily & Festive Pooja – Ideal for daily worship, Diwali, Navratri, Ganesh Chaturthi, Janmashtami, and Griha Pravesh.',
-      'Made in India – Authentic traditional Indian devotional craftsmanship.'
-    ],
-    careInstructions: [
-      'Wipe gently with a soft, dry cloth.',
-      'Keep away from prolonged exposure to water and excessive moisture to preserve the wooden surface and painted detailing.'
-    ],
-    faqs: [
-      { q: 'What can be placed on this wooden chowki?', a: 'It is designed as a base for deity idols, Kalash, diyas, Panchpatra, Shankh, and pooja thalis.' },
-      { q: 'What size is this chowki?', a: 'The dimensions are 12 × 8 inches with a weight of approx. 350 g.' },
-      { q: 'How do I clean and maintain the painted wooden chowki?', a: 'Wipe gently with a soft dry cloth and avoid water or prolonged moisture to protect the hand-painted artwork.' },
-      { q: 'Is it suitable for festive celebrations and housewarmings?', a: 'Yes, it makes an elegant traditional platform for Diwali, Navratri, Janmashtami, Ganesh Chaturthi, and housewarming ceremonies.' }
-    ]
-  },
-
-  // 21B. Large Hand-Painted Wooden Chowki (15x15 Inch)
-  {
-    id: 'wooden-chowki-large-15x15',
-    name: 'Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Wooden Chowki',
-    price: 1500,
-    originalPrice: 2110,
-    rating: 4.99,
-    reviewsCount: 156,
-    tag: '15×15" Large Bajot',
-    artType: 'chowki',
-    fitMode: 'contain',
-    image: '/assets/WoodenChowki Large/mainchowki.webp',
-    images: [
-      '/assets/WoodenChowki Large/mainchowki.webp',
-      '/assets/WoodenChowki Large/chowki4.webp',
-      '/assets/WoodenChowki Large/chowki5.webp',
-      '/assets/WoodenChowki Large/chowki444.webp',
-      '/assets/WoodenChowki Large/sizechowki.webp',
-      '/assets/WoodenChowki Large/chowki6.webp'
-    ],
-    weightVariants: [
-      { weight: '2 kg Heavy Bajot', price: 1500, originalPrice: 2110, default: true }
-    ],
-    purity: 'Seasoned Solid Wood with Hand-Painted Art & 2 kg Heavy Weight',
-    inStock: true,
-    description: 'The Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch) is a premium, heavy-duty traditional platform designed for home temples, mandir altars, god idol seating, and grand festive ceremonies. Crafted from seasoned solid wood and weighing 2 kg, this large square Bajot features vibrant traditional Indian hand-painted artwork with intricate floral circular mandala motifs and golden foil accent borders. With generous dimensions of 15 inches length, 15 inches width, and 5 inches height, it provides an elevated and stable surface for seating larger deity idols, Kalash sthapana, brass pooja thalis, diwali mandap setups, and religious ceremonies.',
-    shortDescription: 'Grand 15×15 inch handcrafted Wooden Pooja Chowki weighing 2 kg with intricate hand-painted floral artwork and 5-inch sturdy legs. Designed for home temples, god idols, Kalash sthapana, and festive worship.',
-    seoTitle: 'Large Hand-Painted Wooden Pooja Chowki 15x15 Inch (2 kg Heavy Bajot) | Shraviko',
-    metaDescription: 'Shop Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch, 5 Inch Height, 2 kg weight). Handcrafted wooden bajot for home mandir, deity idols, and pooja thalis.',
-    specifications: [
-      { label: 'Product Type', value: 'Large Wooden Pooja Chowki / Bajot' },
-      { label: 'Material', value: 'Seasoned Solid Wood' },
-      { label: 'Finish', value: 'Traditional Hand-Painted Floral Art with Gold Accents' },
-      { label: 'Dimensions', value: '15 Inch (L) × 15 Inch (W) × 5 Inch (H)' },
-      { label: 'Weight', value: '2.0 kg (Heavy Solid Wood)' },
-      { label: 'Shape', value: 'Square' },
-      { label: 'Height / Elevation', value: '5 Inches' },
-      { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)' }
-    ],
-    keyFeatures: [
-      'Generous 15×15 Inch Square Surface – Provides ample room for large god idols, thalis, Kalash sthapana, and pooja arrangements.',
-      '2 kg Heavy-Duty Solid Wood – Robust 2 kg weight structure ensuring complete stability and longevity.',
-      '5 Inch Elevated Legs – Sturdy 4-leg support raising sacred items 5 inches above floor level.',
-      'Intricate Hand-Painted Art – Vibrant traditional floral mandala artwork and decorated side legs.',
-      'Ideal for Daily & Festive Worship – Perfect for Diwali, Navratri, Janmashtami, Ganesh Chaturthi, and Griha Pravesh.',
-      'Made in India – Authentic traditional Indian devotional woodwork.'
-    ],
-    careInstructions: [
-      'Wipe gently with a soft, dry cloth.',
-      'Keep away from direct water, prolonged moisture, and direct flame.',
-      'Store in a clean, dry area to protect the hand-painted finish.'
-    ],
-    faqs: [
-      { q: 'What are the exact dimensions and weight of this Large Chowki?', a: 'It measures 15 inches in length, 15 inches in width, 5 inches in height, and weighs 2 kg.' },
-      { q: 'What items can be placed on this 15×15 inch chowki?', a: 'It is ideal for large deity idols (Laddu Gopal, Ganesh, Laxmi), Kalash sthapana, heavy brass pooja thalis, and festive mandap setups.' },
-      { q: 'How do I clean and maintain the hand-painted surface?', a: 'Wipe gently with a soft dry cloth. Avoid water wash or abrasive scrubbers to preserve the painted artwork and gold foil.' },
-      { q: 'Is it suitable for housewarmings and gifting?', a: 'Yes, it makes an exquisite luxury devotional gift for Griha Pravesh, Diwali, weddings, and festivals.' }
-    ]
-  },
-
-  // 22. Brass Dhoopdani
-  {
-    id: 'brass-dhoopdani-burner',
-    name: 'Shraviko Metal Dhoop Dani with Handle',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Puja Accessories',
-    price: 554,
-    originalPrice: 1110,
-    rating: 4.96,
-    reviewsCount: 185,
-    tag: 'Dhoop Dani',
-    artType: 'diffuser',
-    fitMode: 'contain',
-    image: '/assets/dhoop dani/dhoop1.webp',
-    images: [
-      '/assets/dhoop dani/dhoop1.webp',
-      '/assets/dhoop dani/dhoop dani 1.webp',
-      '/assets/dhoop dani/dhoop dani 2.webp',
-      '/assets/dhoop dani/dhoop dani 4.webp',
-      '/assets/dhoop dani/dhoop dani 5.webp'
-    ],
-    weightVariants: [
-      { weight: 'L 25 cm × B 12 cm × H 16 cm (300 g)', price: 554, originalPrice: 1110, default: true }
-    ],
-    purity: 'Polished Metal with Gold Finish',
-    inStock: true,
-    description: 'The Shraviko Metal Dhoop Dani is designed for traditional dhuni and incense rituals at home, in temples and during festive ceremonies. Its classic metal construction and decorative gold finish give it a traditional appearance that complements your pooja setup. The sturdy handle makes it convenient to carry while performing dhuni around your home or pooja space. The perforated lid allows airflow while helping keep burning material and ash contained. Suitable for Loban, Sambrani, Guggal, Bakhoor, Dhoop Powder, Camphor and other suitable incense materials.',
-    shortDescription: 'Bring a traditional touch to your daily pooja with this Metal Dhoop Dani. Designed with a convenient handle and ventilated lid, it is suitable for burning dhoop, loban, sambrani, guggal, bakhoor and other incense materials.',
-    seoTitle: 'Metal Dhoop Dani with Handle | Traditional Incense & Loban Burner | Shraviko',
-    metaDescription: 'Shop Shraviko Metal Dhoop Dani with handle for loban, sambrani, dhoop, guggal and camphor. Traditional gold finish incense burner for home mandir.',
-    specifications: [
-      { label: 'Product Type', value: 'Metal Dhoop Dani' },
-      { label: 'Material', value: 'Metal' },
-      { label: 'Dimensions', value: '25 cm (L) × 12 cm (B) × 16 cm (H)' },
-      { label: 'Weight', value: '300 g' },
-      { label: 'Colour', value: 'Gold' },
-      { label: 'Finish', value: 'Polished' },
-      { label: 'Shape', value: 'Round' },
-      { label: 'Handle', value: 'Yes (Insulated Grip)' },
-      { label: 'Reusable', value: 'Yes' },
-      { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Metal Dhoop Dani' }
-    ],
-    keyFeatures: [
-      'Durable Metal Construction – Crafted from quality metal with a polished gold finish.',
-      'Convenient Handle – Sturdy handle makes it easy to carry around the home for dhuni rituals.',
-      'Ventilated Perforated Lid – Allows steady smoke dispersion while keeping active ash contained.',
-      'Multi-Incense Compatibility – Ideal for Loban, Sambrani cups, Guggal, Bakhoor, Dhoop powder, and Camphor.',
-      'Reusable & Easy to Clean – Simple ash removal and easy wiping after cooling.',
-      'Made in India – Traditional Indian artisanal incense burner craftsmanship.'
-    ],
-    careInstructions: [
-      'Allow the burner to cool completely before handling or cleaning.',
-      'Remove ash after each use and wipe the surface with a soft, dry cloth.',
-      'Keep the product dry when not in use.'
-    ],
-    faqs: [
-      { q: 'What incense materials can be burned in this dhoop dani?', a: 'It is suitable for dhoop cones/sticks, loban, sambrani cups, guggal, bakhoor, dhoop powder, and camphor.' },
-      { q: 'Is the handle safe to hold while performing dhuni?', a: 'Yes, the sturdy handle allows you to carry the burner safely around the home while performing dhuni.' },
-      { q: 'How do I clean and remove ash from the burner?', a: 'Allow it to cool completely, empty the ash, and wipe with a soft dry cloth.' },
-      { q: 'What are the dimensions and weight of this dhoop dani?', a: 'Dimensions are 25 × 11 × 16 cm with an approximate weight of 370 g.' }
-    ]
-  },
-
-
-
-
-
-  // 25. Mala Counter Set
-  {
-    id: 'mandir-mala-counter-brass',
-    name: 'Shraviko Digital Japa Counter',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Mala Counters',
-    price: 388,
-    originalPrice: 888,
-    rating: 4.98,
-    reviewsCount: 182,
-    tag: 'Digital Counter',
-    artType: 'counter',
-    fitMode: 'contain',
-    image: '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.webp',
-    images: [
-      '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.webp',
-      '/assets/mala counter/72e9e401-501c-4c66-af99-33c2e75f835b.webp',
-      '/assets/mala counter/6723a7bc-a812-4ce3-92b7-134c3b0490e6.webp',
-      '/assets/mala counter/a2759320-ade5-4ca3-96b4-304fd2022217.webp'
-    ],
-    weightVariants: [
-      { weight: 'L 10 cm × B 10 cm × H 10 cm (25 g)', price: 388, originalPrice: 888, default: true }
-    ],
-    purity: 'Digital LCD Finger Tally Counter',
-    inStock: true,
-    description: 'The Shraviko Digital Japa Counter is a compact counting device designed to help you keep track of repetitions during mantra chanting, Naam Jaap, meditation, prayer and Mala Jaap. Designed to be worn on the finger, it allows you to count repetitions with a simple click while keeping your attention on your practice. The LCD display makes the current count easy to read, and the compact design makes the counter convenient to carry in a pocket or pooja bag. Whether used at home, in a temple, during satsang, meditation or while travelling, this digital counter is a practical accessory.',
-    shortDescription: 'Keep track of your mantra chanting, Naam Jaap, Mala Jaap and prayer counts with this compact Digital Japa Counter. Its finger-friendly design and clear LCD display make counting simple and convenient during daily spiritual practice.',
-    seoTitle: 'Digital Japa Counter | Finger Tally Counter for Naam & Mantra Jaap | Shraviko',
-    metaDescription: 'Shop Shraviko Digital Japa Counter for Mantra Jaap, Naam Jaap, Mala counting, meditation and prayer. Compact finger tally counter with LCD display.',
-    specifications: [
-      { label: 'Product Type', value: 'Digital Japa Counter' },
-      { label: 'Dimensions', value: '10 cm (L) × 10 cm (B) × 10 cm (H)' },
-      { label: 'Weight', value: '25 g' },
-      { label: 'Display', value: 'Clear Digital LCD' },
-      { label: 'Operation', value: 'Finger Click Button' },
-      { label: 'Design', value: 'Ergonomic Finger Counter / Tally Ring' },
-      { label: 'Power Source', value: 'Button Cell Battery Included' },
-      { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Digital Japa Counter' }
-    ],
-    keyFeatures: [
-      'Digital LCD Display – Clear, high-visibility digital LCD screen for effortless count reading.',
-      'Easy Finger-Click Operation – Ergonomic soft-strap finger counter for seamless click counting.',
-      'Compact & Lightweight – Ultra-lightweight (20-30g) and compact for carrying in pockets or pooja bags.',
-      'Simple Reset Function – One-touch quick reset button to clear counts for new chanting rounds.',
-      'Multi-Purpose Chanting – Ideal for Mantra Jaap, Naam Jaap, Mala Jaap, meditation, prayer, and Tasbeeh counting.',
-      'Long-Lasting Battery – Powered by reliable button cell battery for extended daily spiritual practice.'
-    ],
-    careInstructions: [
-      'Keep the counter away from excessive moisture and water.',
-      'Store it in a dry place when not in use.',
-      'Avoid dropping or applying excessive pressure to the display and buttons.'
-    ],
-    faqs: [
-      { q: 'What is this Digital Japa Counter used for?', a: 'It is used to keep accurate digital count during Mantra Jaap, Naam Jaap, Mala Jaap, meditation, prayer, and Tasbeeh counting.' },
-      { q: 'How does the finger counter work?', a: 'You wear the soft adjustable strap on your finger and press the main click button with your thumb for each chant repetition.' },
-      { q: 'Does it have a reset button?', a: 'Yes, it includes a simple one-click reset button to restart counting whenever needed.' },
-      { q: 'Is a battery included with the counter?', a: 'Yes, it comes pre-fitted with a long-lasting button cell battery ready for immediate use.' }
-    ]
-  },
-
-  // 26. Pooja Box Organizer Chest
-  {
-    id: 'mandir-pooja-box-chest',
-    name: 'Shraviko Stainless Steel Pooja Box with 7 Removable Containers',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Pooja Storage & Chests',
-    price: 500,
-    originalPrice: 888,
-    rating: 4.99,
-    reviewsCount: 196,
-    tag: '7-in-1 Pooja Box',
-    artType: 'box',
-    fitMode: 'contain',
-    image: '/assets/Pooja box/Pooja2.webp',
-    images: [
-      '/assets/Pooja box/Pooja2.webp',
-      '/assets/Pooja box/Poojafront.webp',
-      '/assets/Pooja box/poojabox1.webp',
-      '/assets/Pooja box/poobjabox2.webp',
-      '/assets/Pooja box/Pooja box.webp',
-      '/assets/Pooja box/pooja box 3.webp',
-      '/assets/Pooja box/pooja box 4.webp'
-    ],
-    weightVariants: [
-      { weight: 'L 15 cm × B 15 cm × H 2 cm (300 g)', price: 500, originalPrice: 888, default: true }
-    ],
-    purity: 'Premium Stainless Steel with 7 Removable Cups',
-    inStock: true,
-    description: '7 Essentials. One Elegant Pooja Box. The Shraviko Stainless Steel Pooja Box is designed to keep your commonly used pooja materials organized and easily accessible. It comes with 7 individual removable containers, allowing you to separate different pooja essentials instead of keeping them in multiple loose boxes. Use the containers for roli, kumkum, sindoor, haldi, chawal, chandan, akshat and other frequently used pooja samagri. Made from stainless steel with a classic silver finish that fits conveniently on a mandir shelf, pooja cabinet, drawer or travel pooja kit.',
-    shortDescription: 'Keep your daily pooja essentials neatly organized with this Stainless Steel Pooja Box featuring 7 removable containers. Its compact round design is ideal for storing roli, kumkum, haldi, chawal, chandan, sindoor and other pooja samagri in one convenient place.',
-    seoTitle: 'Stainless Steel Pooja Box with 7 Removable Containers | Shraviko',
-    metaDescription: 'Shop Shraviko Stainless Steel Pooja Box with 7 removable containers. Ideal for storing roli, kumkum, haldi, chawal, chandan and pooja samagri.',
-    specifications: [
-      { label: 'Product Type', value: 'Stainless Steel Pooja Box' },
-      { label: 'Material', value: 'Durable Stainless Steel' },
-      { label: 'Dimensions', value: '15 cm (L) × 15 cm (B) × 2 cm (H)' },
-      { label: 'Weight', value: '300 g' },
-      { label: 'Colour', value: 'Polished Silver' },
-      { label: 'Shape', value: 'Round' },
-      { label: 'Number of Containers', value: '7 Removable Containers' },
-      { label: 'Lid Type', value: 'Lift-Off Lid' },
-      { label: 'Usage', value: 'Pooja, Mandir, Travel & Gifting' },
-      { label: 'Country of Origin', value: 'India' },
-      { label: 'What\'s Included', value: '1 × Stainless Steel Pooja Box, 7 × Removable Inner Containers' }
-    ],
-    keyFeatures: [
-      '7 Removable Inner Containers – Includes 7 individual removable cups for effortless organization and separate samagri storage.',
-      'Durable Stainless Steel Construction – Premium stainless steel with a classic polished silver finish.',
-      'Compact Round Design – Space-saving round container (11 cm diameter × 4 cm height) fitting mandir shelves and travel kits.',
-      'Lift-Off Protective Lid – Keeps roli, kumkum, haldi, chawal, chandan, sindoor, and akshat clean and spill-free.',
-      'Easy to Organize & Carry – Ideal for home mandirs, daily worship, travel pooja kits, and festive rituals.',
-      'Ideal for Religious Gifting – Practical and elegant gift for housewarmings, weddings, and festive occasions.'
-    ],
-    careInstructions: [
-      'Wipe the box and containers with a soft, dry or slightly damp cloth after use.',
-      'Keep the box dry before storing pooja materials inside.',
-      'Avoid abrasive cleaning materials that may scratch the stainless-steel surface.'
-    ],
-    faqs: [
-      { q: 'How many containers are included inside the pooja box?', a: 'It includes 7 individual removable inner containers.' },
-      { q: 'What can be stored inside the 7 containers?', a: 'It is ideal for storing roli, kumkum, sindoor, haldi, chawal, akshat, and chandan.' },
-      { q: 'What are the dimensions of this pooja box?', a: 'Approx. 11 cm in diameter and 4 cm in height.' },
-      { q: 'Is it suitable for travel pooja kits?', a: 'Yes, its compact round covered design makes it ideal for travel pooja setups and home mandir storage.' }
-    ]
-  },
-
 
 
   // 28. Ganesh Siddha Yantra Frame
@@ -3048,6 +2723,327 @@ export const PRODUCTS = [
     faqs: [
       { q: 'Is this 100% pure sandalwood?', a: 'Yes, crafted from pure natural white sandalwood without synthetic dyes or additives.' },
       { q: 'How is it prepared for deity Tilak?', a: 'Mix a small amount of powder with Gangajal or clean water to create a smooth cooling paste.' }
+    ]
+  },
+
+  // 21. Wooden Chowki (Bajot)
+  {
+    id: 'wooden-chowki-carved-01',
+    name: 'Shraviko Wooden Pooja Chowki',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Wooden Chowki',
+    price: 554,
+    originalPrice: 1110,
+    rating: 4.98,
+    reviewsCount: 124,
+    tag: 'Pooja Chowki',
+    artType: 'chowki',
+    fitMode: 'contain',
+    image: '/assets/Wooden Choki/chowki1.webp',
+    images: [
+      '/assets/Wooden Choki/chowki1.webp',
+      '/assets/Wooden Choki/chowki 2.webp',
+      '/assets/Wooden Choki/chowki333.webp',
+      '/assets/Wooden Choki/chowki6.webp'
+    ],
+    weightVariants: [
+      { weight: 'L 38 cm × B 12 cm × H 5 cm (350 g)', price: 554, originalPrice: 1110, default: true }
+    ],
+    purity: 'Handcrafted Wood with Traditional Painting',
+    inStock: true,
+    description: 'The Shraviko Wooden Pooja Chowki is a beautifully crafted traditional platform designed for home temples, pooja rooms and festive arrangements. Made from wood and finished with detailed hand-painted artwork, it combines traditional Indian aesthetics with practical everyday use. Use it as a base for God idols, Kalash, Diyas, Panchpatra, Shankh, Pooja Thali and other sacred accessories. Its sturdy tabletop construction provides a stable surface while the decorative artwork adds character to your mandir setup. Suitable for daily pooja, Diwali, Navratri, Ganesh Chaturthi, Janmashtami, and housewarming ceremonies.',
+    shortDescription: 'Add a traditional touch to your pooja space with this handcrafted Wooden Pooja Chowki. Designed with traditional painted detailing, it provides an elegant and stable platform for idols, Kalash, diyas and other pooja essentials.',
+    seoTitle: 'Wooden Pooja Chowki | Hand-Painted Wooden Bajot for Mandir | Shraviko',
+    metaDescription: 'Shop Shraviko Handcrafted Wooden Pooja Chowki for home temples, god idols, kalash and pooja thalis. Traditional hand-painted wooden bajot for mandir.',
+    specifications: [
+      { label: 'Product Type', value: 'Wooden Pooja Chowki' },
+      { label: 'Material', value: 'Wood' },
+      { label: 'Dimensions', value: '38 cm (L) × 12 cm (B) × 5 cm (H)' },
+      { label: 'Weight', value: '350 g' },
+      { label: 'Finish', value: 'Hand Painted' },
+      { label: 'Colour', value: 'Multicolor' },
+      { label: 'Shape', value: 'Rectangle' },
+      { label: 'Mounting', value: 'Tabletop' },
+      { label: 'Handmade', value: 'Yes' },
+      { label: 'Country of Origin', value: 'India' },
+      { label: 'What\'s Included', value: '1 × Wooden Pooja Chowki' }
+    ],
+    keyFeatures: [
+      'Handcrafted Wooden Construction – Made from quality seasoned wood for durability and stability.',
+      'Traditional Hand-Painted Artwork – Detailed artisanal painting adds vibrant traditional character to your mandir.',
+      'Stable Tabletop Design – Sturdy 4-leg construction ensures steady placement of sacred items.',
+      'Ideal for Idols & Pooja Essentials – Perfect base for God Idols, Kalash, Diyas, Panchpatra, Shankh, and Pooja Thalis.',
+      'Suitable for Daily & Festive Pooja – Ideal for daily worship, Diwali, Navratri, Ganesh Chaturthi, Janmashtami, and Griha Pravesh.',
+      'Made in India – Authentic traditional Indian devotional craftsmanship.'
+    ],
+    careInstructions: [
+      'Wipe gently with a soft, dry cloth.',
+      'Keep away from prolonged exposure to water and excessive moisture to preserve the wooden surface and painted detailing.'
+    ],
+    faqs: [
+      { q: 'What can be placed on this wooden chowki?', a: 'It is designed as a base for deity idols, Kalash, diyas, Panchpatra, Shankh, and pooja thalis.' },
+      { q: 'What size is this chowki?', a: 'The dimensions are 12 × 8 inches with a weight of approx. 350 g.' },
+      { q: 'How do I clean and maintain the painted wooden chowki?', a: 'Wipe gently with a soft dry cloth and avoid water or prolonged moisture to protect the hand-painted artwork.' },
+      { q: 'Is it suitable for festive celebrations and housewarmings?', a: 'Yes, it makes an elegant traditional platform for Diwali, Navratri, Janmashtami, Ganesh Chaturthi, and housewarming ceremonies.' }
+    ]
+  },
+
+  // 21B. Large Hand-Painted Wooden Chowki (15x15 Inch)
+  {
+    id: 'wooden-chowki-large-15x15',
+    name: 'Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Wooden Chowki',
+    price: 1500,
+    originalPrice: 2110,
+    rating: 4.99,
+    reviewsCount: 156,
+    tag: '15×15" Large Bajot',
+    artType: 'chowki',
+    fitMode: 'contain',
+    image: '/assets/WoodenChowki Large/mainchowki.webp',
+    images: [
+      '/assets/WoodenChowki Large/mainchowki.webp',
+      '/assets/WoodenChowki Large/chowki4.webp',
+      '/assets/WoodenChowki Large/chowki5.webp',
+      '/assets/WoodenChowki Large/chowki444.webp',
+      '/assets/WoodenChowki Large/sizechowki.webp',
+      '/assets/WoodenChowki Large/chowki6.webp'
+    ],
+    weightVariants: [
+      { weight: '2 kg Heavy Bajot', price: 1500, originalPrice: 2110, default: true }
+    ],
+    purity: 'Seasoned Solid Wood with Hand-Painted Art & 2 kg Heavy Weight',
+    inStock: true,
+    description: 'The Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch) is a premium, heavy-duty traditional platform designed for home temples, mandir altars, god idol seating, and grand festive ceremonies. Crafted from seasoned solid wood and weighing 2 kg, this large square Bajot features vibrant traditional Indian hand-painted artwork with intricate floral circular mandala motifs and golden foil accent borders. With generous dimensions of 15 inches length, 15 inches width, and 5 inches height, it provides an elevated and stable surface for seating larger deity idols, Kalash sthapana, brass pooja thalis, diwali mandap setups, and religious ceremonies.',
+    shortDescription: 'Grand 15×15 inch handcrafted Wooden Pooja Chowki weighing 2 kg with intricate hand-painted floral artwork and 5-inch sturdy legs. Designed for home temples, god idols, Kalash sthapana, and festive worship.',
+    seoTitle: 'Large Hand-Painted Wooden Pooja Chowki 15x15 Inch (2 kg Heavy Bajot) | Shraviko',
+    metaDescription: 'Shop Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch, 5 Inch Height, 2 kg weight). Handcrafted wooden bajot for home mandir, deity idols, and pooja thalis.',
+    specifications: [
+      { label: 'Product Type', value: 'Large Wooden Pooja Chowki / Bajot' },
+      { label: 'Material', value: 'Seasoned Solid Wood' },
+      { label: 'Finish', value: 'Traditional Hand-Painted Floral Art with Gold Accents' },
+      { label: 'Dimensions', value: '15 Inch (L) × 15 Inch (W) × 5 Inch (H)' },
+      { label: 'Weight', value: '2.0 kg (Heavy Solid Wood)' },
+      { label: 'Shape', value: 'Square' },
+      { label: 'Height / Elevation', value: '5 Inches' },
+      { label: 'Country of Origin', value: 'India' },
+      { label: 'What\'s Included', value: '1 × Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)' }
+    ],
+    keyFeatures: [
+      'Generous 15×15 Inch Square Surface – Provides ample room for large god idols, thalis, Kalash sthapana, and pooja arrangements.',
+      '2 kg Heavy-Duty Solid Wood – Robust 2 kg weight structure ensuring complete stability and longevity.',
+      '5 Inch Elevated Legs – Sturdy 4-leg support raising sacred items 5 inches above floor level.',
+      'Intricate Hand-Painted Art – Vibrant traditional floral mandala artwork and decorated side legs.',
+      'Ideal for Daily & Festive Worship – Perfect for Diwali, Navratri, Janmashtami, Ganesh Chaturthi, and Griha Pravesh.',
+      'Made in India – Authentic traditional Indian devotional woodwork.'
+    ],
+    careInstructions: [
+      'Wipe gently with a soft, dry cloth.',
+      'Keep away from direct water, prolonged moisture, and direct flame.',
+      'Store in a clean, dry area to protect the hand-painted finish.'
+    ],
+    faqs: [
+      { q: 'What are the exact dimensions and weight of this Large Chowki?', a: 'It measures 15 inches in length, 15 inches in width, 5 inches in height, and weighs 2 kg.' },
+      { q: 'What items can be placed on this 15×15 inch chowki?', a: 'It is ideal for large deity idols (Laddu Gopal, Ganesh, Laxmi), Kalash sthapana, heavy brass pooja thalis, and festive mandap setups.' },
+      { q: 'How do I clean and maintain the hand-painted surface?', a: 'Wipe gently with a soft dry cloth. Avoid water wash or abrasive scrubbers to preserve the painted artwork and gold foil.' },
+      { q: 'Is it suitable for housewarmings and gifting?', a: 'Yes, it makes an exquisite luxury devotional gift for Griha Pravesh, Diwali, weddings, and festivals.' }
+    ]
+  },
+
+  // 22. Brass Dhoopdani
+  {
+    id: 'brass-dhoopdani-burner',
+    name: 'Shraviko Metal Dhoop Dani with Handle',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Puja Accessories',
+    price: 554,
+    originalPrice: 1110,
+    rating: 4.96,
+    reviewsCount: 185,
+    tag: 'Dhoop Dani',
+    artType: 'diffuser',
+    fitMode: 'contain',
+    image: '/assets/dhoop dani/dhoop1.webp',
+    images: [
+      '/assets/dhoop dani/dhoop1.webp',
+      '/assets/dhoop dani/dhoop dani 1.webp',
+      '/assets/dhoop dani/dhoop dani 2.webp',
+      '/assets/dhoop dani/dhoop dani 4.webp',
+      '/assets/dhoop dani/dhoop dani 5.webp'
+    ],
+    weightVariants: [
+      { weight: 'L 25 cm × B 12 cm × H 16 cm (300 g)', price: 554, originalPrice: 1110, default: true }
+    ],
+    purity: 'Polished Metal with Gold Finish',
+    inStock: true,
+    description: 'The Shraviko Metal Dhoop Dani is designed for traditional dhuni and incense rituals at home, in temples and during festive ceremonies. Its classic metal construction and decorative gold finish give it a traditional appearance that complements your pooja setup. The sturdy handle makes it convenient to carry while performing dhuni around your home or pooja space. The perforated lid allows airflow while helping keep burning material and ash contained. Suitable for Loban, Sambrani, Guggal, Bakhoor, Dhoop Powder, Camphor and other suitable incense materials.',
+    shortDescription: 'Bring a traditional touch to your daily pooja with this Metal Dhoop Dani. Designed with a convenient handle and ventilated lid, it is suitable for burning dhoop, loban, sambrani, guggal, bakhoor and other incense materials.',
+    seoTitle: 'Metal Dhoop Dani with Handle | Traditional Incense & Loban Burner | Shraviko',
+    metaDescription: 'Shop Shraviko Metal Dhoop Dani with handle for loban, sambrani, dhoop, guggal and camphor. Traditional gold finish incense burner for home mandir.',
+    specifications: [
+      { label: 'Product Type', value: 'Metal Dhoop Dani' },
+      { label: 'Material', value: 'Metal' },
+      { label: 'Dimensions', value: '25 cm (L) × 12 cm (B) × 16 cm (H)' },
+      { label: 'Weight', value: '300 g' },
+      { label: 'Colour', value: 'Gold' },
+      { label: 'Finish', value: 'Polished' },
+      { label: 'Shape', value: 'Round' },
+      { label: 'Handle', value: 'Yes (Insulated Grip)' },
+      { label: 'Reusable', value: 'Yes' },
+      { label: 'Country of Origin', value: 'India' },
+      { label: 'What\'s Included', value: '1 × Metal Dhoop Dani' }
+    ],
+    keyFeatures: [
+      'Durable Metal Construction – Crafted from quality metal with a polished gold finish.',
+      'Convenient Handle – Sturdy handle makes it easy to carry around the home for dhuni rituals.',
+      'Ventilated Perforated Lid – Allows steady smoke dispersion while keeping active ash contained.',
+      'Multi-Incense Compatibility – Ideal for Loban, Sambrani cups, Guggal, Bakhoor, Dhoop powder, and Camphor.',
+      'Reusable & Easy to Clean – Simple ash removal and easy wiping after cooling.',
+      'Made in India – Traditional Indian artisanal incense burner craftsmanship.'
+    ],
+    careInstructions: [
+      'Allow the burner to cool completely before handling or cleaning.',
+      'Remove ash after each use and wipe the surface with a soft, dry cloth.',
+      'Keep the product dry when not in use.'
+    ],
+    faqs: [
+      { q: 'What incense materials can be burned in this dhoop dani?', a: 'It is suitable for dhoop cones/sticks, loban, sambrani cups, guggal, bakhoor, dhoop powder, and camphor.' },
+      { q: 'Is the handle safe to hold while performing dhuni?', a: 'Yes, the sturdy handle allows you to carry the burner safely around the home while performing dhuni.' },
+      { q: 'How do I clean and remove ash from the burner?', a: 'Allow it to cool completely, empty the ash, and wipe with a soft dry cloth.' },
+      { q: 'What are the dimensions and weight of this dhoop dani?', a: 'Dimensions are 25 × 11 × 16 cm with an approximate weight of 370 g.' }
+    ]
+  },
+
+  // 25. Mala Counter Set
+  {
+    id: 'mandir-mala-counter-brass',
+    name: 'Shraviko Digital Japa Counter',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Mala Counters',
+    price: 388,
+    originalPrice: 888,
+    rating: 4.98,
+    reviewsCount: 182,
+    tag: 'Digital Counter',
+    artType: 'counter',
+    fitMode: 'contain',
+    image: '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.webp',
+    images: [
+      '/assets/mala counter/52bd0cff-554a-4b27-8433-685570ae112f.webp',
+      '/assets/mala counter/72e9e401-501c-4c66-af99-33c2e75f835b.webp',
+      '/assets/mala counter/6723a7bc-a812-4ce3-92b7-134c3b0490e6.webp',
+      '/assets/mala counter/a2759320-ade5-4ca3-96b4-304fd2022217.webp'
+    ],
+    weightVariants: [
+      { weight: 'L 10 cm × B 10 cm × H 10 cm (25 g)', price: 388, originalPrice: 888, default: true }
+    ],
+    purity: 'Digital LCD Finger Tally Counter',
+    inStock: true,
+    description: 'The Shraviko Digital Japa Counter is a compact counting device designed to help you keep track of repetitions during mantra chanting, Naam Jaap, meditation, prayer and Mala Jaap. Designed to be worn on the finger, it allows you to count repetitions with a simple click while keeping your attention on your practice. The LCD display makes the current count easy to read, and the compact design makes the counter convenient to carry in a pocket or pooja bag. Whether used at home, in a temple, during satsang, meditation or while travelling, this digital counter is a practical accessory.',
+    shortDescription: 'Keep track of your mantra chanting, Naam Jaap, Mala Jaap and prayer counts with this compact Digital Japa Counter. Its finger-friendly design and clear LCD display make counting simple and convenient during daily spiritual practice.',
+    seoTitle: 'Digital Japa Counter | Finger Tally Counter for Naam & Mantra Jaap | Shraviko',
+    metaDescription: 'Shop Shraviko Digital Japa Counter for Mantra Jaap, Naam Jaap, Mala counting, meditation and prayer. Compact finger tally counter with LCD display.',
+    specifications: [
+      { label: 'Product Type', value: 'Digital Japa Counter' },
+      { label: 'Dimensions', value: '10 cm (L) × 10 cm (B) × 10 cm (H)' },
+      { label: 'Weight', value: '25 g' },
+      { label: 'Display', value: 'Clear Digital LCD' },
+      { label: 'Operation', value: 'Finger Click Button' },
+      { label: 'Design', value: 'Ergonomic Finger Counter / Tally Ring' },
+      { label: 'Power Source', value: 'Button Cell Battery Included' },
+      { label: 'Country of Origin', value: 'India' },
+      { label: 'What\'s Included', value: '1 × Digital Japa Counter' }
+    ],
+    keyFeatures: [
+      'Digital LCD Display – Clear, high-visibility digital LCD screen for effortless count reading.',
+      'Easy Finger-Click Operation – Ergonomic soft-strap finger counter for seamless click counting.',
+      'Compact & Lightweight – Ultra-lightweight (20-30g) and compact for carrying in pockets or pooja bags.',
+      'Simple Reset Function – One-touch quick reset button to clear counts for new chanting rounds.',
+      'Multi-Purpose Chanting – Ideal for Mantra Jaap, Naam Jaap, Mala Jaap, meditation, prayer, and Tasbeeh counting.',
+      'Long-Lasting Battery – Powered by reliable button cell battery for extended daily spiritual practice.'
+    ],
+    careInstructions: [
+      'Keep the counter away from excessive moisture and water.',
+      'Store it in a dry place when not in use.',
+      'Avoid dropping or applying excessive pressure to the display and buttons.'
+    ],
+    faqs: [
+      { q: 'What is this Digital Japa Counter used for?', a: 'It is used to keep accurate digital count during Mantra Jaap, Naam Jaap, Mala Jaap, meditation, prayer, and Tasbeeh counting.' },
+      { q: 'How does the finger counter work?', a: 'You wear the soft adjustable strap on your finger and press the main click button with your thumb for each chant repetition.' },
+      { q: 'Does it have a reset button?', a: 'Yes, it includes a simple one-click reset button to restart counting whenever needed.' },
+      { q: 'Is a battery included with the counter?', a: 'Yes, it comes pre-fitted with a long-lasting button cell battery ready for immediate use.' }
+    ]
+  },
+
+  // 26. Pooja Box Organizer Chest
+  {
+    id: 'mandir-pooja-box-chest',
+    name: 'Shraviko Stainless Steel Pooja Box with 7 Removable Containers',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Pooja Storage & Chests',
+    price: 500,
+    originalPrice: 888,
+    rating: 4.99,
+    reviewsCount: 196,
+    tag: '7-in-1 Pooja Box',
+    artType: 'box',
+    fitMode: 'contain',
+    image: '/assets/Pooja box/Pooja2.webp',
+    images: [
+      '/assets/Pooja box/Pooja2.webp',
+      '/assets/Pooja box/Poojafront.webp',
+      '/assets/Pooja box/poojabox1.webp',
+      '/assets/Pooja box/poobjabox2.webp',
+      '/assets/Pooja box/Pooja box.webp',
+      '/assets/Pooja box/pooja box 3.webp',
+      '/assets/Pooja box/pooja box 4.webp'
+    ],
+    weightVariants: [
+      { weight: 'L 15 cm × B 15 cm × H 2 cm (300 g)', price: 500, originalPrice: 888, default: true }
+    ],
+    purity: 'Premium Stainless Steel with 7 Removable Cups',
+    inStock: true,
+    description: '7 Essentials. One Elegant Pooja Box. The Shraviko Stainless Steel Pooja Box is designed to keep your commonly used pooja materials organized and easily accessible. It comes with 7 individual removable containers, allowing you to separate different pooja essentials instead of keeping them in multiple loose boxes. Use the containers for roli, kumkum, sindoor, haldi, chawal, chandan, akshat and other frequently used pooja samagri. Made from stainless steel with a classic silver finish that fits conveniently on a mandir shelf, pooja cabinet, drawer or travel pooja kit.',
+    shortDescription: 'Keep your daily pooja essentials neatly organized with this Stainless Steel Pooja Box featuring 7 removable containers. Its compact round design is ideal for storing roli, kumkum, haldi, chawal, chandan, sindoor and other pooja samagri in one convenient place.',
+    seoTitle: 'Stainless Steel Pooja Box with 7 Removable Containers | Shraviko',
+    metaDescription: 'Shop Shraviko Stainless Steel Pooja Box with 7 removable containers. Ideal for storing roli, kumkum, haldi, chawal, chandan and pooja samagri.',
+    specifications: [
+      { label: 'Product Type', value: 'Stainless Steel Pooja Box' },
+      { label: 'Material', value: 'Durable Stainless Steel' },
+      { label: 'Dimensions', value: '15 cm (L) × 15 cm (B) × 2 cm (H)' },
+      { label: 'Weight', value: '300 g' },
+      { label: 'Colour', value: 'Polished Silver' },
+      { label: 'Shape', value: 'Round' },
+      { label: 'Number of Containers', value: '7 Removable Containers' },
+      { label: 'Lid Type', value: 'Lift-Off Lid' },
+      { label: 'Usage', value: 'Pooja, Mandir, Travel & Gifting' },
+      { label: 'Country of Origin', value: 'India' },
+      { label: 'What\'s Included', value: '1 × Stainless Steel Pooja Box, 7 × Removable Inner Containers' }
+    ],
+    keyFeatures: [
+      '7 Removable Inner Containers – Includes 7 individual removable cups for effortless organization and separate samagri storage.',
+      'Durable Stainless Steel Construction – Premium stainless steel with a classic polished silver finish.',
+      'Compact Round Design – Space-saving round container (11 cm diameter × 4 cm height) fitting mandir shelves and travel kits.',
+      'Lift-Off Protective Lid – Keeps roli, kumkum, haldi, chawal, chandan, sindoor, and akshat clean and spill-free.',
+      'Easy to Organize & Carry – Ideal for home mandirs, daily worship, travel pooja kits, and festive rituals.',
+      'Ideal for Religious Gifting – Practical and elegant gift for housewarmings, weddings, and festive occasions.'
+    ],
+    careInstructions: [
+      'Wipe the box and containers with a soft, dry or slightly damp cloth after use.',
+      'Keep the box dry before storing pooja materials inside.',
+      'Avoid abrasive cleaning materials that may scratch the stainless-steel surface.'
+    ],
+    faqs: [
+      { q: 'How many containers are included inside the pooja box?', a: 'It includes 7 individual removable inner containers.' },
+      { q: 'What can be stored inside the 7 containers?', a: 'It is ideal for storing roli, kumkum, sindoor, haldi, chawal, akshat, and chandan.' },
+      { q: 'What are the dimensions of this pooja box?', a: 'Approx. 11 cm in diameter and 4 cm in height.' },
+      { q: 'Is it suitable for travel pooja kits?', a: 'Yes, its compact round covered design makes it ideal for travel pooja setups and home mandir storage.' }
     ]
   },
 

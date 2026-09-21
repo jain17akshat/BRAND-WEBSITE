@@ -20,13 +20,17 @@ export const CategoryPage = ({
   const [sortBy, setSortBy] = useState('featured');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Scroll to top only when switching between main categories
   React.useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    window.scrollTo(0, 0);
+  }, [category?.id]);
+
+  // Loading state when filter or sort changes
+  React.useEffect(() => {
     setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 250);
+    const timer = setTimeout(() => setIsLoading(false), 200);
     return () => clearTimeout(timer);
-  }, [category?.id, selectedSubcategory, sortBy]);
+  }, [selectedSubcategory, sortBy]);
 
   // Filter products by category
   const categoryProducts = products.filter(
@@ -64,6 +68,19 @@ export const CategoryPage = ({
         if (aIsYantra && !bIsYantra) return -1;
         if (!aIsYantra && bIsYantra) return 1;
       }
+
+      // Featured default order for Mandir Essentials: Malas first, Chandan/Kapoor second, Chowki & others third
+      if (category.id === 'mandir-essentials') {
+        const getRank = (p) => {
+          if (p.artType === 'mala' || p.subcategory === 'Sacred Malas & Rosaries' || p.name?.toLowerCase().includes('mala')) return 1;
+          if (p.artType === 'chandan' || p.artType === 'kapoor' || p.name?.toLowerCase().includes('chandan') || p.name?.toLowerCase().includes('kapoor')) return 2;
+          return 3;
+        };
+        const rankA = getRank(a);
+        const rankB = getRank(b);
+        if (rankA !== rankB) return rankA - rankB;
+      }
+
       return 0; // featured default order
     });
 
