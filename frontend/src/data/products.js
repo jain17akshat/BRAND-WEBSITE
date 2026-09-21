@@ -680,7 +680,6 @@ export const PRODUCTS = [
     image: '/assets/Trishul/trishull11.webp',
     images: [
       '/assets/Trishul/trishull11.webp',
-      '/assets/Trishul/trishul 2.webp',
       '/assets/Trishul/Trishul1.webp',
       '/assets/Trishul/trihsul 3.webp',
       '/assets/Trishul/trishul 4.webp'
