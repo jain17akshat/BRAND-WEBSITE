@@ -100,7 +100,7 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
             <h3 className="text-xs font-cinzel font-bold tracking-[0.2em] uppercase text-[#6B5840]">
-              Mandir Essentials — Moving Catalog
+              Mandir Essentials
             </h3>
           </div>
           <span className="text-[10px] font-cinzel text-[#9B7E52] uppercase tracking-wider hidden sm:inline">

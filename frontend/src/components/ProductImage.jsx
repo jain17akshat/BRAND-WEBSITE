@@ -74,11 +74,11 @@ export const ProductImage = ({
         )}
 
         <picture className="w-full h-full block flex items-center justify-center">
-          {responsiveSources.isResponsive && responsiveSources.webpSrcSet && (
+          {responsiveSources.webpSrc && (
             <source
               type="image/webp"
-              srcSet={responsiveSources.webpSrcSet}
-              sizes={sizes || "(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"}
+              srcSet={responsiveSources.webpSrcSet || responsiveSources.webpSrc}
+              sizes={responsiveSources.webpSrcSet ? (sizes || "(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px") : undefined}
             />
           )}
           <img

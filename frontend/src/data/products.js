@@ -2854,6 +2854,202 @@ export const PRODUCTS = [
       { q: 'Does every mala look exactly the same?', a: 'No. Natural wood can have slight variations in colour, grain and texture, which adds to the natural character of each piece.' }
     ]
   },
+  {
+    id: 'mandir-lal-chandan',
+    name: 'Shraviko Pure Lal Chandan (Rakta Chandan Powder)',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Pooja Ingredients & Samagri',
+    price: 329,
+    originalPrice: 549,
+    rating: 4.96,
+    reviewsCount: 74,
+    tag: 'Red Sandalwood',
+    artType: 'chandan',
+    fitMode: 'contain',
+    image: '/assets/Lal Chanda/Lal1.webp',
+    images: [
+      '/assets/Lal Chanda/Lal1.webp',
+      '/assets/Lal Chanda/LAl2.webp',
+      '/assets/Lal Chanda/Lal3.webp',
+      '/assets/Lal Chanda/Lal4.webp',
+      '/assets/Lal Chanda/Lal5.webp'
+    ],
+    weightVariants: [
+      { weight: '100 g Pack', price: 329, originalPrice: 549, default: true },
+      { weight: '250 g Value Pack', price: 699, originalPrice: 1099 }
+    ],
+    purity: '100% Pure Natural Red Sandalwood',
+    inStock: true,
+    description: 'Bring sacred divine energy to your mandir with Shraviko Pure Lal Chandan (Rakta Chandan Powder). Renowned in Vedic traditions for Devi worship, Mahalakshmi puja, and Hanumanji Abhishek, this vibrant red sandalwood powder carries sacred spiritual significance.',
+    specifications: [
+      { label: 'Product', value: 'Pure Lal Chandan / Rakta Chandan Powder' },
+      { label: 'Category', value: 'Mandir Essentials / Pooja Samagri' },
+      { label: 'Form', value: 'Fine Ground Natural Red Sandalwood' },
+      { label: 'Suitable For', value: 'Devi Puja, Yantra Archana, Hanumanji Tilak & Abhishek' },
+      { label: 'Country of Origin', value: 'Made in India' }
+    ],
+    keyFeatures: [
+      'Authentic Rakta Chandan (Red Sandalwood) powder',
+      'Sacred ingredient for Devi and Hanuman worship',
+      'Natural deep red color without synthetic chemical dyes',
+      'Ideal for Yantra writing and special Vedic Havans'
+    ],
+    careInstructions: [
+      'Keep sealed in an airtight container in a dry worship space.',
+      'Prepare freshly with Gangajal before rituals.'
+    ],
+    faqs: [
+      { q: 'What is Rakta Chandan used for?', a: 'It is traditionally used for Devi Durga, Goddess Lakshmi, Lord Hanuman puja, and Yantra Archana.' }
+    ]
+  },
+  {
+    id: 'mandir-pure-camphor',
+    name: 'Shraviko Pure Shuddh Kapoor (Camphor Tablets for Aarti)',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Pooja Ingredients & Samagri',
+    price: 199,
+    originalPrice: 349,
+    rating: 4.98,
+    reviewsCount: 112,
+    tag: 'Smokeless Aarti',
+    artType: 'kapoor',
+    fitMode: 'contain',
+    image: '/assets/Kapoor/Camphor1.png',
+    images: [
+      '/assets/Kapoor/Camphor1.png',
+      '/assets/Kapoor/Camphor2.png',
+      '/assets/Kapoor/Camphor3.png',
+      '/assets/Kapoor/Camphor 3.png'
+    ],
+    weightVariants: [
+      { weight: '100 g Jar', price: 299, originalPrice: 599, default: true },
+      { weight: '250 g Jar', price: 449, originalPrice: 699 }
+    ],
+    purity: '100% Pure Shuddh Camphor',
+    inStock: true,
+    description: 'Illuminate your daily Aarti with Shraviko Pure Shuddh Kapoor. Formulated to burn cleanly without black smoke or residue, these pure camphor tablets create a divine atmospheric aroma while purifying the room energy.',
+    specifications: [
+      { label: 'Product', value: 'Pure Shuddh Camphor Tablets' },
+      { label: 'Category', value: 'Mandir Essentials / Aarti Samagri' },
+      { label: 'Burn Quality', value: 'Leaves Zero Ash Residue & Zero Black Smoke' },
+      { label: 'Suitable For', value: 'Daily Morning/Evening Aarti & Hawan' },
+      { label: 'Country of Origin', value: 'Made in India' }
+    ],
+    keyFeatures: [
+      'Burns completely with zero ash residue',
+      'Clean atmospheric fragrance without toxic black smoke',
+      'Purifies surrounding air energy during prayer',
+      'Ideal for brass Aarti Kapoor burners'
+    ],
+    careInstructions: [
+      'Store in an airtight jar in a cool place to prevent sublimation.'
+    ],
+    faqs: [
+      { q: 'Does it leave black residue on brass Aarti burners?', a: 'No, pure camphor burns cleanly leaving zero black residue or toxic ash.' }
+    ]
+  },
+  {
+    id: 'mandir-bhimseni-kapoor',
+    name: 'Shraviko Organic Bhimseni Kapoor (Natural Crystal Camphor)',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Pooja Ingredients & Samagri',
+    price: 349,
+    originalPrice: 599,
+    rating: 4.99,
+    reviewsCount: 135,
+    tag: 'Organic Bhimseni',
+    artType: 'kapoor',
+    fitMode: 'contain',
+    image: '/assets/Bheemseni kapoor/bheem1.webp',
+    images: [
+      '/assets/Bheemseni kapoor/bheem1.webp',
+      '/assets/Bheemseni kapoor/bheem2.webp',
+      '/assets/Bheemseni kapoor/bheem 3.webp',
+      '/assets/Bheemseni kapoor/bheem 4.webp',
+      '/assets/Bheemseni kapoor/bheem5.webp'
+    ],
+    weightVariants: [
+      { weight: '100 g Pack', price: 349, originalPrice: 599, default: true },
+      { weight: '500 g Pack', price: 799, originalPrice: 1199 }
+    ],
+    purity: '100% Edible-Grade Natural Bhimseni Flakes',
+    inStock: true,
+    description: 'Experience pure traditional healing fragrance with Shraviko Organic Bhimseni Kapoor. Sourced from pine trees, raw Bhimseni camphor crystals feature irregular natural shapes that burn completely clean with a soothing, crisp pine scent.',
+    specifications: [
+      { label: 'Product', value: 'Organic Bhimseni Camphor Crystals' },
+      { label: 'Category', value: 'Mandir Essentials / Sacred Camphor' },
+      { label: 'Grade', value: '100% Pure Natural Bhimseni' },
+      { label: 'Suitable For', value: 'Sacred Aarti, Diffusers, Meditation & Air Cleansing' },
+      { label: 'Country of Origin', value: 'Made in India' }
+    ],
+    keyFeatures: [
+      'Unrefined natural crystal flakes of Bhimseni camphor',
+      'Refreshes air and dispels negative energies',
+      'Ideal for aromatic electrical and candle diffusers',
+      'Zero synthetic chemicals or wax binders'
+    ],
+    careInstructions: [
+      'Keep airtight sealed in a cool, dry location.'
+    ],
+    faqs: [
+      { q: 'What is the difference between regular camphor and Bhimseni camphor?', a: 'Bhimseni camphor is 100% natural, unpressed tree-derived crystal camphor known for higher purity and therapeutic aroma.' }
+    ]
+  },
+  {
+    id: 'mandir-safed-chandan',
+    name: 'Shraviko Pure Safed Chandan (White Sandalwood Powder)',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Pooja Ingredients & Samagri',
+    price: 299,
+    originalPrice: 499,
+    rating: 4.97,
+    reviewsCount: 88,
+    tag: 'Pure Sandalwood',
+    artType: 'chandan',
+    fitMode: 'contain',
+    image: '/assets/Safed Chandan/SAfed 111.webp',
+    images: [
+      '/assets/Safed Chandan/SAfed 111.webp',
+      '/assets/Safed Chandan/Safed 1.webp',
+      '/assets/Safed Chandan/Safed2.webp',
+      '/assets/Safed Chandan/Safed3.webp',
+      '/assets/Safed Chandan/Safed4.webp'
+    ],
+    weightVariants: [
+      { weight: '100 g Pack', price: 299, originalPrice: 499, default: true },
+      { weight: '250 g Value Pack', price: 649, originalPrice: 999 }
+    ],
+    purity: '100% Pure Natural Mysore Sandalwood',
+    inStock: true,
+    description: 'Elevate your daily worship with Shraviko Pure Safed Chandan (White Sandalwood Powder). Sourced from high-grade natural sandalwood, this sacred paste/powder creates a serene, cooling fragrance ideal for deity Tilak, daily Abhishek, daily puja rituals, and meditation.',
+    specifications: [
+      { label: 'Product', value: 'Pure Safed Chandan Powder' },
+      { label: 'Category', value: 'Mandir Essentials / Pooja Samagri' },
+      { label: 'Form', value: 'Fine Ground Pure Powder' },
+      { label: 'Aroma', value: 'Natural Soft Woody Mysore Fragrance' },
+      { label: 'Suitable For', value: 'Deity Tilak, Daily Puja, Abhishek & Meditation' },
+      { label: 'Country of Origin', value: 'Made in India' }
+    ],
+    keyFeatures: [
+      '100% natural pure white sandalwood powder',
+      'Gentle cooling property ideal for deity Tilak',
+      'Free from chemical additives and artificial colors',
+      'Provides a soothing traditional sandalwood fragrance',
+      'Sealed moisture-proof packaging for freshness'
+    ],
+    careInstructions: [
+      'Store in a cool, dry place away from direct sunlight.',
+      'Mix with pure Gangajal or rose water to prepare fresh paste.'
+    ],
+    faqs: [
+      { q: 'Is this 100% pure sandalwood?', a: 'Yes, crafted from pure natural white sandalwood without synthetic dyes or additives.' },
+      { q: 'How is it prepared for deity Tilak?', a: 'Mix a small amount of powder with Gangajal or clean water to create a smooth cooling paste.' }
+    ]
+  },
 
   // 47. Shraviko Wooden Damru
   {
@@ -3405,202 +3601,7 @@ export const PRODUCTS = [
       { q: 'How is it traditionally used?', a: 'Use it as a visual focus during prayer, meditation, or devotional practice. Specialized rituals can vary by lineage.' }
     ]
   },
-  {
-    id: 'mandir-safed-chandan',
-    name: 'Shraviko Pure Safed Chandan (White Sandalwood Powder)',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Pooja Ingredients & Samagri',
-    price: 299,
-    originalPrice: 499,
-    rating: 4.97,
-    reviewsCount: 88,
-    tag: 'Pure Sandalwood',
-    artType: 'chandan',
-    fitMode: 'contain',
-    image: '/assets/Safed Chandan/SAfed 111.webp',
-    images: [
-      '/assets/Safed Chandan/SAfed 111.webp',
-      '/assets/Safed Chandan/Safed 1.webp',
-      '/assets/Safed Chandan/Safed2.webp',
-      '/assets/Safed Chandan/Safed3.webp',
-      '/assets/Safed Chandan/Safed4.webp'
-    ],
-    weightVariants: [
-      { weight: '100 g Pack', price: 299, originalPrice: 499, default: true },
-      { weight: '250 g Value Pack', price: 649, originalPrice: 999 }
-    ],
-    purity: '100% Pure Natural Mysore Sandalwood',
-    inStock: true,
-    description: 'Elevate your daily worship with Shraviko Pure Safed Chandan (White Sandalwood Powder). Sourced from high-grade natural sandalwood, this sacred paste/powder creates a serene, cooling fragrance ideal for deity Tilak, daily Abhishek, daily puja rituals, and meditation.',
-    specifications: [
-      { label: 'Product', value: 'Pure Safed Chandan Powder' },
-      { label: 'Category', value: 'Mandir Essentials / Pooja Samagri' },
-      { label: 'Form', value: 'Fine Ground Pure Powder' },
-      { label: 'Aroma', value: 'Natural Soft Woody Mysore Fragrance' },
-      { label: 'Suitable For', value: 'Deity Tilak, Daily Puja, Abhishek & Meditation' },
-      { label: 'Country of Origin', value: 'Made in India' }
-    ],
-    keyFeatures: [
-      '100% natural pure white sandalwood powder',
-      'Gentle cooling property ideal for deity Tilak',
-      'Free from chemical additives and artificial colors',
-      'Provides a soothing traditional sandalwood fragrance',
-      'Sealed moisture-proof packaging for freshness'
-    ],
-    careInstructions: [
-      'Store in a cool, dry place away from direct sunlight.',
-      'Mix with pure Gangajal or rose water to prepare fresh paste.'
-    ],
-    faqs: [
-      { q: 'Is this 100% pure sandalwood?', a: 'Yes, crafted from pure natural white sandalwood without synthetic dyes or additives.' },
-      { q: 'How is it prepared for deity Tilak?', a: 'Mix a small amount of powder with Gangajal or clean water to create a smooth cooling paste.' }
-    ]
-  },
-  {
-    id: 'mandir-lal-chandan',
-    name: 'Shraviko Pure Lal Chandan (Rakta Chandan Powder)',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Pooja Ingredients & Samagri',
-    price: 329,
-    originalPrice: 549,
-    rating: 4.96,
-    reviewsCount: 74,
-    tag: 'Red Sandalwood',
-    artType: 'chandan',
-    fitMode: 'contain',
-    image: '/assets/Lal Chanda/Lal1.webp',
-    images: [
-      '/assets/Lal Chanda/Lal1.webp',
-      '/assets/Lal Chanda/LAl2.webp',
-      '/assets/Lal Chanda/Lal3.webp',
-      '/assets/Lal Chanda/Lal4.webp',
-      '/assets/Lal Chanda/Lal5.webp'
-    ],
-    weightVariants: [
-      { weight: '100 g Pack', price: 329, originalPrice: 549, default: true },
-      { weight: '250 g Value Pack', price: 699, originalPrice: 1099 }
-    ],
-    purity: '100% Pure Natural Red Sandalwood',
-    inStock: true,
-    description: 'Bring sacred divine energy to your mandir with Shraviko Pure Lal Chandan (Rakta Chandan Powder). Renowned in Vedic traditions for Devi worship, Mahalakshmi puja, and Hanumanji Abhishek, this vibrant red sandalwood powder carries sacred spiritual significance.',
-    specifications: [
-      { label: 'Product', value: 'Pure Lal Chandan / Rakta Chandan Powder' },
-      { label: 'Category', value: 'Mandir Essentials / Pooja Samagri' },
-      { label: 'Form', value: 'Fine Ground Natural Red Sandalwood' },
-      { label: 'Suitable For', value: 'Devi Puja, Yantra Archana, Hanumanji Tilak & Abhishek' },
-      { label: 'Country of Origin', value: 'Made in India' }
-    ],
-    keyFeatures: [
-      'Authentic Rakta Chandan (Red Sandalwood) powder',
-      'Sacred ingredient for Devi and Hanuman worship',
-      'Natural deep red color without synthetic chemical dyes',
-      'Ideal for Yantra writing and special Vedic Havans'
-    ],
-    careInstructions: [
-      'Keep sealed in an airtight container in a dry worship space.',
-      'Prepare freshly with Gangajal before rituals.'
-    ],
-    faqs: [
-      { q: 'What is Rakta Chandan used for?', a: 'It is traditionally used for Devi Durga, Goddess Lakshmi, Lord Hanuman puja, and Yantra Archana.' }
-    ]
-  },
-  {
-    id: 'mandir-pure-camphor',
-    name: 'Shraviko Pure Shuddh Kapoor (Camphor Tablets for Aarti)',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Pooja Ingredients & Samagri',
-    price: 199,
-    originalPrice: 349,
-    rating: 4.98,
-    reviewsCount: 112,
-    tag: 'Smokeless Aarti',
-    artType: 'kapoor',
-    fitMode: 'contain',
-    image: '/assets/Kapoor/Camphor1.png',
-    images: [
-      '/assets/Kapoor/Camphor1.png',
-      '/assets/Kapoor/Camphor2.png',
-      '/assets/Kapoor/Camphor3.png',
-      '/assets/Kapoor/Camphor 3.png'
-    ],
-    weightVariants: [
-      { weight: '100 g Jar', price: 199, originalPrice: 349, default: true },
-      { weight: '250 g Jar', price: 449, originalPrice: 699 }
-    ],
-    purity: '100% Pure Shuddh Camphor',
-    inStock: true,
-    description: 'Illuminate your daily Aarti with Shraviko Pure Shuddh Kapoor. Formulated to burn cleanly without black smoke or residue, these pure camphor tablets create a divine atmospheric aroma while purifying the room energy.',
-    specifications: [
-      { label: 'Product', value: 'Pure Shuddh Camphor Tablets' },
-      { label: 'Category', value: 'Mandir Essentials / Aarti Samagri' },
-      { label: 'Burn Quality', value: 'Leaves Zero Ash Residue & Zero Black Smoke' },
-      { label: 'Suitable For', value: 'Daily Morning/Evening Aarti & Hawan' },
-      { label: 'Country of Origin', value: 'Made in India' }
-    ],
-    keyFeatures: [
-      'Burns completely with zero ash residue',
-      'Clean atmospheric fragrance without toxic black smoke',
-      'Purifies surrounding air energy during prayer',
-      'Ideal for brass Aarti Kapoor burners'
-    ],
-    careInstructions: [
-      'Store in an airtight jar in a cool place to prevent sublimation.'
-    ],
-    faqs: [
-      { q: 'Does it leave black residue on brass Aarti burners?', a: 'No, pure camphor burns cleanly leaving zero black residue or toxic ash.' }
-    ]
-  },
-  {
-    id: 'mandir-bhimseni-kapoor',
-    name: 'Shraviko Organic Bhimseni Kapoor (Natural Crystal Camphor)',
-    category: 'mandir-essentials',
-    categoryName: 'Mandir Essentials',
-    subcategory: 'Pooja Ingredients & Samagri',
-    price: 349,
-    originalPrice: 599,
-    rating: 4.99,
-    reviewsCount: 135,
-    tag: 'Organic Bhimseni',
-    artType: 'kapoor',
-    fitMode: 'contain',
-    image: '/assets/Bheemseni kapoor/bheem1.webp',
-    images: [
-      '/assets/Bheemseni kapoor/bheem1.webp',
-      '/assets/Bheemseni kapoor/bheem2.webp',
-      '/assets/Bheemseni kapoor/bheem 3.webp',
-      '/assets/Bheemseni kapoor/bheem 4.webp',
-      '/assets/Bheemseni kapoor/bheem5.webp'
-    ],
-    weightVariants: [
-      { weight: '100 g Pack', price: 349, originalPrice: 599, default: true },
-      { weight: '250 g Pack', price: 799, originalPrice: 1199 }
-    ],
-    purity: '100% Edible-Grade Natural Bhimseni Flakes',
-    inStock: true,
-    description: 'Experience pure traditional healing fragrance with Shraviko Organic Bhimseni Kapoor. Sourced from pine trees, raw Bhimseni camphor crystals feature irregular natural shapes that burn completely clean with a soothing, crisp pine scent.',
-    specifications: [
-      { label: 'Product', value: 'Organic Bhimseni Camphor Crystals' },
-      { label: 'Category', value: 'Mandir Essentials / Sacred Camphor' },
-      { label: 'Grade', value: '100% Pure Natural Bhimseni' },
-      { label: 'Suitable For', value: 'Sacred Aarti, Diffusers, Meditation & Air Cleansing' },
-      { label: 'Country of Origin', value: 'Made in India' }
-    ],
-    keyFeatures: [
-      'Unrefined natural crystal flakes of Bhimseni camphor',
-      'Refreshes air and dispels negative energies',
-      'Ideal for aromatic electrical and candle diffusers',
-      'Zero synthetic chemicals or wax binders'
-    ],
-    careInstructions: [
-      'Keep airtight sealed in a cool, dry location.'
-    ],
-    faqs: [
-      { q: 'What is the difference between regular camphor and Bhimseni camphor?', a: 'Bhimseni camphor is 100% natural, unpressed tree-derived crystal camphor known for higher purity and therapeutic aroma.' }
-    ]
-  },
+
   {
     id: 'mandir-cow-dung-cake',
     name: 'Shraviko Pure Desi Cow Dung Cakes (Organic Gau Upla for Hawan)',
@@ -3623,8 +3624,7 @@ export const PRODUCTS = [
       '/assets/Cow dung/cow4.webp'
     ],
     weightVariants: [
-      { weight: 'Pack of 12 Cakes', price: 249, originalPrice: 399, default: true },
-      { weight: 'Pack of 24 Cakes', price: 449, originalPrice: 699 }
+      { weight: 'Pack of 6 Cakes', price: 249, originalPrice: 399, default: true },
     ],
     purity: '100% Pure Indian Desi Cow Dung',
     inStock: true,
@@ -3673,8 +3673,8 @@ export const PRODUCTS = [
       '/assets/Hawan Samgri/Hawan6.webp'
     ],
     weightVariants: [
-      { weight: '500 g Pack', price: 279, originalPrice: 449, default: true },
-      { weight: '1 kg Family Pack', price: 499, originalPrice: 799 }
+      { weight: '500 g Pack', price: 379, originalPrice: 499, default: true },
+      { weight: '1 kg Pack', price: 599, originalPrice: 999 }
     ],
     purity: '100% Natural Ayurvedic Herbal Blend',
     inStock: true,

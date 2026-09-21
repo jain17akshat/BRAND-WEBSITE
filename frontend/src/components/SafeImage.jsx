@@ -67,11 +67,11 @@ export const SafeImage = ({
 
       {/* ── Main Image ── */}
       <picture className="w-full h-full block">
-        {responsiveSources.isResponsive && (srcSet || responsiveSources.webpSrcSet) && (
+        {responsiveSources.webpSrc && (
           <source
             type="image/webp"
-            srcSet={srcSet || responsiveSources.webpSrcSet}
-            sizes={sizes || "(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"}
+            srcSet={srcSet || responsiveSources.webpSrcSet || responsiveSources.webpSrc}
+            sizes={responsiveSources.webpSrcSet ? (sizes || "(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px") : undefined}
           />
         )}
         <img

@@ -831,10 +831,11 @@ export function App() {
               {/* 4. Most Loved Products — Glass Shivling, Sphatik Shree Yantra, Brass Pyramid, Crystal Turtle */}
               <div className="smooth-reveal">
                 <Bestsellers
-                  products={['vastu-crystal-glass-shivling', 'vastu-crystal-glass-yantra', 'vastu-brass-pyramid-multitier', 'vastu-crystal-glass-turtle']
+                  products={['vastu-crystal-glass-shivling', 'vastu-crystal-glass-yantra', 'mandir-sphatik-mala', 'vastu-crystal-glass-turtle']
                     .map(id => PRODUCTS.find(p => p.id === id))
                     .filter(Boolean)}
-                  heading="Most Loved"
+                  heading="OUR SELECTION
+EXPLORE SHRAVIKO"
                   limit={4}
                   onAddToCart={handleAddToCart}
                   onToggleWishlist={handleToggleWishlist}

@@ -23,13 +23,14 @@ export function getResponsiveImageSources(src) {
   const cleanBasePath = basePath.replace(/-(400w|800w|1200w)$/, '');
   const ext = src.substring(lastDotIdx).toLowerCase();
 
-  const webpSrc = `${cleanBasePath}.webp`;
-  const webpSrcSet = `${cleanBasePath}-400w.webp 400w, ${cleanBasePath}-800w.webp 800w, ${cleanBasePath}-1200w.webp 1200w`;
+  const webpSrc = ext === '.webp' ? src : `${cleanBasePath}.webp`;
+  const isResponsiveVariant = src.match(/-(400w|800w|1200w)/);
+  const webpSrcSet = isResponsiveVariant ? `${cleanBasePath}-400w.webp 400w, ${cleanBasePath}-800w.webp 800w, ${cleanBasePath}-1200w.webp 1200w` : '';
 
   return {
     webpSrc,
     webpSrcSet,
     fallbackSrc: src,
-    isResponsive: true
+    isResponsive: !!webpSrcSet
   };
 }
