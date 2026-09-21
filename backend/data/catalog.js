@@ -25,6 +25,8 @@ try {
 
 
 const catalog = {
+  'mandir-pure-loban': 249,
+  'mandir-pure-kumkum': 199,
   // Brass Articles
   'brass-bell-garuda': 722,            // was 650
   'SHR-GB-05IN-001': 722,              // SKU alias for Brass Garuda Head Bell
@@ -32,23 +34,23 @@ const catalog = {
   'brass-bell-simple': 722,            // was 650
   'brass-bell-carved': 722,            // was 650
   'brass-puja-thali-set': 554,         // was 499
-  'brass-aarti-kapoor-diya': 1878,     // was 1690
+  'brass-aarti-kapoor-diya': 449,     // was 1690
   'brass-akhand-jyot-deepak': 500,     // was 450
   'brass-cup-jyot-diya': 500,          // was 450
-  'brass-kamandal-holy-water-pot': 2767,// was 2490
-  'brass-trishul-with-damru': 3211,    // was 2890
-  'brass-trishul-standing-emblem': 2100,// was 1890
+  'brass-kamandal-holy-water-pot': 0,// was 2490
+  'brass-trishul-with-damru': 499,    // was 2890
+  'brass-trishul-standing-emblem': 499,// was 1890
   'brass-gomukhi-shringi-abhishekam': 1656, // was 1490
-  'brass-singhasan-deity-throne': 3211, // was 2890
-  'brass-ladoo-gopal-statue': 2000,    // was 1800
-  'brass-kalash-pooja-vessel': 1544,   // was 1390
+  'brass-singhasan-deity-throne': 699, // was 2890
+  'brass-ladoo-gopal-statue': 1500,    // was 1800
+  'brass-kalash-pooja-vessel': 499,   // was 1390
   'brass-design-thali-set': 611,       // was 550
 
   // Copper Articles
   'copper-panchpatra-pali-set': 333,   // was 300
-  'copper-puja-thali-set': 1333,       // was 1200
+  'copper-puja-thali-set': 1499,       // was 1200
   'copper-hawan-kund-pyre': 2444,      // was 2200
-  'copper-kalash-pooja-vessel': 1656,  // was 1490
+  'copper-kalash-pooja-vessel': 799,  // was 1490
 
   // Incense & Dhoop
   'incense-no-bamboo': 166,            // was 149
@@ -68,12 +70,12 @@ const catalog = {
   'mandir-royal-velvet-asan-mat': 544,  // was 490
   'brass-aarti-bell-ghanti': 722,      // was 650
   'mandir-copper-akhand-jyot': 1433,   // was 1290
-  'mandir-safed-chandan': 299,
-  'mandir-lal-chandan': 329,
-  'mandir-pure-camphor': 199,
-  'mandir-bhimseni-kapoor': 349,
+  'mandir-safed-chandan': 199,
+  'mandir-lal-chandan': 199,
+  'mandir-pure-camphor': 249,
+  'mandir-bhimseni-kapoor': 249,
   'mandir-cow-dung-cake': 249,
-  'mandir-hawan-samagri': 279,
+  'mandir-hawan-samagri': 199,
 
   // Vastu & Spiritual
   'vastu-ganesh-siddha-yantra': 388,   // was 349
@@ -84,17 +86,17 @@ const catalog = {
   'SHR-SYC-GL-04-1P': 1767,            // SKU for Glass Shree Yantra Cone
   'vastu-brass-pyramid-multitier': 443, // was 399
   'vastu-crystal-glass-turtle': 388,   // was 349
-  'brass-kamdhenu-cow-statue': 2767,   // was 2490
+  'brass-kamdhenu-cow-statue': 649,   // was 2490
   'SHR-KA-001': 2767,                  // SKU alias for Brass Kamdhenu Cow Statue
   'yantra-kaal-sarp': 388,
   'SHR-KSY-01': 388,                   // SKU for Kaal Sarp Yog Dosh Nivaran Yantra
-  'brass-ganesh-ji-statue': 2544,      // was 2290
-  'brass-radha-krishna-statue': 3211,  // was 2890
+  'brass-ganesh-ji-statue': 649,      // was 2290
+  'brass-radha-krishna-statue': 649,  // was 2890
   'vastu-crystal-glass-shivling': 411, // was 370
 
   // Malas
   'mandir-rudraksh-mala': 777,         // was 699
-  'mandir-sphatik-mala': 1888,         // was 1699
+  'mandir-sphatik-mala': 1599,         // was 1699
   'mandir-tulsi-mala': 278,            // was 250
   'mandir-vaijanti-mala': 278,         // was 250
   'mandir-karungali-mala': 278,        // was 250

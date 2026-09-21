@@ -335,8 +335,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Aarti & Diyas',
-    price: 1878,
-    originalPrice: 2433,
+    price: 449,
+    originalPrice: 799,
     rating: 4.98,
     reviewsCount: 134,
     tag: '5-Wick Panchmukhi',
@@ -351,7 +351,7 @@ export const PRODUCTS = [
       '/assets/Brass aarti/aarti 4.webp'
     ],
     weightVariants: [
-      { weight: 'L 14 cm × B 12 cm × H 6 Inch (150 g)', price: 1878, originalPrice: 2433, default: true }
+      { weight: 'L 14 cm × B 12 cm × H 6 Inch (150 g)', price: 449, originalPrice: 799, default: true }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -537,15 +537,14 @@ export const PRODUCTS = [
   // 7. Brass Rishi Kamandal
   {
     id: 'brass-kamandal-holy-water-pot',
+    isComingSoon: true,
     name: 'Shraviko Brass Kamandal with Lid',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Ritual Vessels',
-    price: 2767,
-    originalPrice: 3544,
     rating: 4.98,
     reviewsCount: 146,
-    tag: 'Gangajali Vessel',
+    tag: 'Coming Soon',
     artType: 'kamandal',
     fitMode: 'contain',
     image: '/assets/Brass kamandal/kamndal1.webp',
@@ -558,9 +557,9 @@ export const PRODUCTS = [
       '/assets/Brass kamandal/kamndal 5.webp'
     ],
     weightVariants: [
-      { weight: '500 ML (0.5 L)', price: 1878, originalPrice: 2433 },
-      { weight: '1 Litre (1.0 L)', price: 2767, originalPrice: 3544, default: true },
-      { weight: '2 Litres (2.0 L)', price: 4322, originalPrice: 5211 }
+      { weight: '500 ML (0.5 L)' },
+      { weight: '1 Litre (1.0 L)', default: true },
+      { weight: '2 Litres (2.0 L)' }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -610,8 +609,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Symbols & Statues',
-    price: 3211,
-    originalPrice: 3989,
+    price: 499,
+    originalPrice: 799,
     rating: 4.99,
     reviewsCount: 162,
     tag: 'Shiva Emblem',
@@ -624,7 +623,7 @@ export const PRODUCTS = [
       '/assets/Trishul with damru/trishul with damru3.webp'
     ],
     weightVariants: [
-      { weight: 'L 20 cm × B 6 cm × H 20 cm (90 g)', price: 3211, originalPrice: 3989, default: true }
+      { weight: 'Standard', price: 499, originalPrice: 799, default: true }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -670,8 +669,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Symbols & Statues',
-    price: 2100,
-    originalPrice: 2767,
+    price: 499,
+    originalPrice: 799,
     rating: 4.98,
     reviewsCount: 145,
     tag: 'Standing Trishul',
@@ -685,9 +684,9 @@ export const PRODUCTS = [
       '/assets/Trishul/trishul 4.webp'
     ],
     weightVariants: [
-      { weight: '6 Inch Altar Trishul', price: 1433, originalPrice: 1878 },
-      { weight: '9 Inch Heavy Trishul', price: 2100, originalPrice: 2767, default: true },
-      { weight: '12 Inch Temple Trishul', price: 3322, originalPrice: 4211 }
+      { weight: '6 Inch Altar Trishul', price: 499, originalPrice: 799 },
+      { weight: '9 Inch Heavy Trishul', price: 499, originalPrice: 799, default: true },
+      { weight: '12 Inch Temple Trishul', price: 499, originalPrice: 799 }
     ],
     purity: '100% Pure Solid Brass',
     inStock: true,
@@ -802,8 +801,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Altar Thrones',
-    price: 3211,
-    originalPrice: 4100,
+    price: 699,
+    originalPrice: 1199,
     rating: 4.99,
     reviewsCount: 168,
     tag: 'Brass Singhasan',
@@ -816,7 +815,7 @@ export const PRODUCTS = [
       '/assets/singhasan/singhasan 3.webp'
     ],
     weightVariants: [
-      { weight: 'L 18 cm × B 13 cm × H 23 cm (280 g)', price: 3211, originalPrice: 4100, default: true }
+      { weight: 'L 18 cm × B 13 cm × H 23 cm (280 g)', price: 699, originalPrice: 1199, default: true }
     ],
     purity: '100% Solid Brass with Polished Finish',
     inStock: true,
@@ -870,8 +869,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Idols',
-    price: 2000,
-    originalPrice: 2888,
+    price: 1500,
+    originalPrice: 1999,
     rating: 4.99,
     reviewsCount: 192,
     tag: 'Laddu Gopal Idol',
@@ -885,7 +884,7 @@ export const PRODUCTS = [
       '/assets/ladoo gopal/ladoo5.webp'
     ],
     weightVariants: [
-      { weight: 'L 13 cm × B 13 cm × H 10 cm (800 g)', price: 2000, originalPrice: 2888, default: true }
+      { weight: 'L 13 cm × B 13 cm × H 10 cm (800 g)', price: 1500, originalPrice: 1999, default: true }
     ],
     purity: '100% Solid Brass with Traditional Finish',
     inStock: true,
@@ -936,8 +935,8 @@ export const PRODUCTS = [
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Kalash',
-    price: 1544,
-    originalPrice: 1989,
+    price: 499,
+    originalPrice: 799,
     rating: 4.98,
     reviewsCount: 145,
     tag: 'Pure Brass Kalash',
@@ -951,7 +950,7 @@ export const PRODUCTS = [
       '/assets/brass kalash/kalash4.webp'
     ],
     weightVariants: [
-      { weight: 'Size 4 Inch (100 g)', price: 1544, originalPrice: 1989, default: true }
+      { weight: 'Size 4 Inch (100 g)', price: 499, originalPrice: 799, default: true }
     ],
     purity: '100% Solid Brass with Polished Finish',
     inStock: true,
@@ -1139,8 +1138,8 @@ export const PRODUCTS = [
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Puja Thali',
-    price: 1333,
-    originalPrice: 1889,
+    price: 1499,
+    originalPrice: 1999,
     rating: 4.98,
     reviewsCount: 164,
     tag: 'Pure Copper Thali',
@@ -1156,7 +1155,7 @@ export const PRODUCTS = [
       '/assets/Copper thali/copper thali  5.webp'
     ],
     weightVariants: [
-      { weight: '11 Inch (360 g)', price: 1333, originalPrice: 1889, default: true }
+      { weight: '11 Inch (360 g)', price: 1499, originalPrice: 1999, default: true }
     ],
     purity: '100% Pure Copper with Traditional Finish',
     inStock: true,
@@ -1278,8 +1277,8 @@ export const PRODUCTS = [
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Kalash',
-    price: 1656,
-    originalPrice: 2100,
+    price: 799,
+    originalPrice: 1299,
     rating: 4.99,
     reviewsCount: 168,
     tag: 'Pure Copper Kalash',
@@ -1293,8 +1292,8 @@ export const PRODUCTS = [
       '/assets/Copperkalsh/copperkalsh5.webp'
     ],
     weightVariants: [
-      { weight: '64 g (Small / Daily Pooja)', price: 878, originalPrice: 1100 },
-      { weight: '240 g (Large / Sthapana & Ceremonies)', price: 1656, originalPrice: 2100, default: true }
+      { weight: '64 g (Small / Daily Pooja)', price: 499, originalPrice: 799 },
+      { weight: '240 g (Large / Sthapana & Ceremonies)', price: 799, originalPrice: 1299, default: true }
     ],
     purity: '100% Pure Copper',
     inStock: true,
@@ -1956,8 +1955,8 @@ export const PRODUCTS = [
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
-    price: 2767,
-    originalPrice: 3544,
+    price: 649,
+    originalPrice: 999,
     rating: 4.98,
     reviewsCount: 165,
     tag: 'Handcrafted Brass',
@@ -1971,9 +1970,9 @@ export const PRODUCTS = [
       '/assets/kamdhenu/kamdhenu 4.webp'
     ],
     weightVariants: [
-      { weight: 'Compact (7 × 3 × 5 cm - 70 G)', price: 1656, originalPrice: 2100 },
-      { weight: 'Medium (450 G - 5 Inch)', price: 2767, originalPrice: 3544, default: true },
-      { weight: 'Royal Large (850 G - 7 Inch)', price: 4322, originalPrice: 5322 }
+      { weight: 'Compact (7 × 3 × 5 cm - 70 G)', price: 499, originalPrice: 799 },
+      { weight: 'Medium (450 G - 5 Inch)', price: 649, originalPrice: 999, default: true },
+      { weight: 'Royal Large (850 G - 7 Inch)', price: 1299, originalPrice: 1899 }
     ],
     purity: '100% Solid Heavy Virgin Brass',
     inStock: true,
@@ -2020,8 +2019,8 @@ export const PRODUCTS = [
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
-    price: 2544,
-    originalPrice: 3211,
+    price: 649,
+    originalPrice: 999,
     rating: 5.0,
     reviewsCount: 210,
     tag: 'Handcrafted Brass',
@@ -2036,7 +2035,7 @@ export const PRODUCTS = [
       '/assets/ganeshji/brassganesh5.webp'
     ],
     weightVariants: [
-      { weight: 'L 8 cm × B 5 cm × H 7 cm (130 g)', price: 2544, originalPrice: 3211, default: true }
+      { weight: 'L 8 cm × B 5 cm × H 7 cm (130 g)', price: 649, originalPrice: 999, default: true }
     ],
     purity: '100% Solid Heavy Golden Brass',
     inStock: true,
@@ -2082,8 +2081,8 @@ export const PRODUCTS = [
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
-    price: 3211,
-    originalPrice: 4100,
+    price: 649,
+    originalPrice: 999,
     rating: 5.0,
     reviewsCount: 248,
     tag: 'Handcrafted Brass',
@@ -2097,7 +2096,7 @@ export const PRODUCTS = [
       '/assets/radhakrishna/krishna4.webp'
     ],
     weightVariants: [
-      { weight: 'L 8 cm × B 5 cm × H 8 cm (130 g)', price: 3211, originalPrice: 4100, default: true }
+      { weight: 'L 8 cm × B 5 cm × H 8 cm (130 g)', price: 649, originalPrice: 999, default: true }
     ],
     purity: '100% Solid Heavy Polished Brass',
     inStock: true,
@@ -2270,8 +2269,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
-    price: 1888,
-    originalPrice: 2221,
+    price: 1599,
+    originalPrice: 1999,
     rating: 4.98,
     reviewsCount: 198,
     tag: 'Sphatik Mala',
@@ -2287,7 +2286,7 @@ export const PRODUCTS = [
       '/assets/Sphatik mala/sphatik 6.webp'
     ],
     weightVariants: [
-      { weight: 'Length 34 cm (30 g)', price: 1888, originalPrice: 2221, default: true }
+      { weight: 'Length 34 cm (30 g)', price: 1599, originalPrice: 1999, default: true }
     ],
     purity: 'Natural Crystal Quartz (Sphatik) Beads',
     inStock: true,
@@ -2534,8 +2533,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
-    price: 329,
-    originalPrice: 549,
+    price: 199,
+    originalPrice: 299,
     rating: 4.96,
     reviewsCount: 74,
     tag: 'Red Sandalwood',
@@ -2550,8 +2549,8 @@ export const PRODUCTS = [
       '/assets/Lal Chanda/Lal5.webp'
     ],
     weightVariants: [
-      { weight: '100 g Pack', price: 329, originalPrice: 549, default: true },
-      { weight: '250 g Value Pack', price: 699, originalPrice: 1099 }
+      { weight: '100 g Pack', price: 199, originalPrice: 299, default: true },
+      { weight: '250 g Value Pack', price: 269, originalPrice: 499 }
     ],
     purity: '100% Pure Natural Red Sandalwood',
     inStock: true,
@@ -2583,8 +2582,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
-    price: 199,
-    originalPrice: 349,
+    price: 249,
+    originalPrice: 399,
     rating: 4.98,
     reviewsCount: 112,
     tag: 'Smokeless Aarti',
@@ -2598,8 +2597,8 @@ export const PRODUCTS = [
       '/assets/Kapoor/Camphor 3.png'
     ],
     weightVariants: [
-      { weight: '100 g Jar', price: 299, originalPrice: 599, default: true },
-      { weight: '250 g Jar', price: 449, originalPrice: 699 }
+      { weight: '100 g Jar', price: 249, originalPrice: 399, default: true },
+      { weight: '250 g Jar', price: 349, originalPrice: 499 }
     ],
     purity: '100% Pure Shuddh Camphor',
     inStock: true,
@@ -2630,8 +2629,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
-    price: 349,
-    originalPrice: 599,
+    price: 249,
+    originalPrice: 399,
     rating: 4.99,
     reviewsCount: 135,
     tag: 'Organic Bhimseni',
@@ -2646,8 +2645,8 @@ export const PRODUCTS = [
       '/assets/Bheemseni kapoor/bheem5.webp'
     ],
     weightVariants: [
-      { weight: '100 g Pack', price: 349, originalPrice: 599, default: true },
-      { weight: '500 g Pack', price: 799, originalPrice: 1199 }
+      { weight: '100 g Pack', price: 249, originalPrice: 399, default: true },
+      { weight: '500 g Pack', price: 599, originalPrice: 999 }
     ],
     purity: '100% Edible-Grade Natural Bhimseni Flakes',
     inStock: true,
@@ -2678,8 +2677,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
-    price: 299,
-    originalPrice: 499,
+    price: 199,
+    originalPrice: 299,
     rating: 4.97,
     reviewsCount: 88,
     tag: 'Pure Sandalwood',
@@ -2694,8 +2693,8 @@ export const PRODUCTS = [
       '/assets/Safed Chandan/Safed4.webp'
     ],
     weightVariants: [
-      { weight: '100 g Pack', price: 299, originalPrice: 499, default: true },
-      { weight: '250 g Value Pack', price: 649, originalPrice: 999 }
+      { weight: '100 g Pack', price: 199, originalPrice: 299, default: true },
+      { weight: '250 g Value Pack', price: 269, originalPrice: 499 }
     ],
     purity: '100% Pure Natural Mysore Sandalwood',
     inStock: true,
@@ -3650,8 +3649,8 @@ export const PRODUCTS = [
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
-    price: 279,
-    originalPrice: 449,
+    price: 199,
+    originalPrice: 299,
     rating: 4.98,
     reviewsCount: 142,
     tag: '51 Sacred Herbs',
@@ -3668,8 +3667,9 @@ export const PRODUCTS = [
       '/assets/Hawan Samgri/Hawan6.webp'
     ],
     weightVariants: [
-      { weight: '500 g Pack', price: 379, originalPrice: 499, default: true },
-      { weight: '1 kg Pack', price: 599, originalPrice: 999 }
+      { weight: '100 g Pack', price: 199, originalPrice: 299, default: true },
+      { weight: '250 g Pack', price: 299, originalPrice: 499 },
+      { weight: '1 kg Pack', price: 599, originalPrice: 799 }
     ],
     purity: '100% Natural Ayurvedic Herbal Blend',
     inStock: true,
@@ -3777,4 +3777,72 @@ export const TESTIMONIALS = [
     verified: true,
     productPurchased: 'Griha Pravesh Luxury Pooja Hamper'
   }
+
+  // Pure Roli Kumkum Powder
+  {
+    id: 'mandir-pure-kumkum',
+    name: 'Shraviko Pure Roli Kumkum Powder',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Pooja Ingredients & Samagri',
+    price: 199,
+    originalPrice: 499,
+    rating: 4.98,
+    reviewsCount: 112,
+    tag: 'Pure Kumkum',
+    artType: 'chandan',
+    fitMode: 'contain',
+    image: '/assets/KumKum/KumKum1.webp',
+    images: [
+      '/assets/KumKum/KumKum1.webp',
+      '/assets/KumKum/KumKum2.webp',
+      '/assets/KumKum/Kumkum3.webp',
+      '/assets/KumKum/kumkum4.webp',
+      '/assets/KumKum/kumkum5.webp'
+    ],
+    weightVariants: [
+      { weight: '250 g Pack', price: 199, originalPrice: 499, default: true }
+    ],
+    purity: '100% Pure Natural Sacred Kumkum',
+    inStock: true,
+    description: 'Shraviko Pure Roli Kumkum Powder is crafted for daily worship, tilak, and auspicious rituals. Made from traditional natural ingredients, it offers a rich vibrant colour suitable for home mandir and festive occasions.',
+    shortDescription: 'Pure traditional Roli Kumkum powder for daily worship, tilak, bhog, and festive ceremonies.',
+    seoTitle: 'Pure Roli Kumkum Powder 250g | Shraviko',
+    metaDescription: 'Shop Shraviko 100% Pure Roli Kumkum Powder 250g for daily worship, tilak, and religious ceremonies.'
+  },
+
+  // Pure Natural Loban Granules
+  {
+    id: 'mandir-pure-loban',
+    name: 'Shraviko Sacred Natural Loban Dhoop Granules',
+    category: 'mandir-essentials',
+    categoryName: 'Mandir Essentials',
+    subcategory: 'Pooja Ingredients & Samagri',
+    price: 249,
+    originalPrice: 499,
+    rating: 4.97,
+    reviewsCount: 145,
+    tag: 'Natural Loban',
+    artType: 'dhoop',
+    fitMode: 'contain',
+    image: '/assets/Loban/Loban1.webp',
+    images: [
+      '/assets/Loban/Loban1.webp',
+      '/assets/Loban/Loban2.webp',
+      '/assets/Loban/Loban3.webp',
+      '/assets/Loban/Loban4.webp',
+      '/assets/Loban/Loban5.webp'
+    ],
+    weightVariants: [
+      { weight: '100 g Pack', price: 249, originalPrice: 499, default: true },
+      { weight: '500 g Pack', price: 449, originalPrice: 799 },
+      { weight: '1 kg Pack', price: 599, originalPrice: 999 }
+    ],
+    purity: '100% Pure Natural Resin Loban',
+    inStock: true,
+    description: 'Shraviko Pure Natural Loban Dhoop Granules produce a soothing, aromatic smoke ideal for daily dhuni, home purification, and spiritual rituals.',
+    shortDescription: 'Natural pure Loban dhoop granules for daily dhuni, home cleansing, and temple worship.',
+    seoTitle: 'Pure Natural Loban Dhoop Granules | Shraviko',
+    metaDescription: 'Shop Shraviko Pure Natural Loban dhoop granules for home dhuni, purification, and daily worship.'
+  },
 ];
