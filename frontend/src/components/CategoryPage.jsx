@@ -350,7 +350,7 @@ export const CategoryPage = ({
       {category.id === 'incense' ? (
         <IncenseShowcase />
       ) : (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <div id="category-products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           {/* Subcategory Visual Filter Pills */}
           {subcategoryVisualCards && subcategoryVisualCards.length > 0 && (
             <div className="mb-6 flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
@@ -359,7 +359,15 @@ export const CategoryPage = ({
                 return (
                   <button
                     key={card.id}
-                    onClick={() => setSelectedSubcategory(card.subcatKey)}
+                    onClick={() => {
+                      setSelectedSubcategory(card.subcatKey);
+                      const gridEl = document.getElementById('category-products-grid');
+                      if (gridEl) {
+                        const yOffset = -100;
+                        const y = gridEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                      }
+                    }}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-cinzel font-semibold transition-all whitespace-nowrap border cursor-pointer ${
                       isActive
                         ? 'active-category bg-[#FAF5EB] text-[#2C1F06] border-[#C5A059] font-bold shadow-xs scale-[1.02]'
@@ -407,7 +415,7 @@ export const CategoryPage = ({
           </div>
 
           {/* Product Grid - 2 columns on mobile, 3 on tablet, 4 on desktop */}
-          <div className="mt-8">
+          <div id="category-products-grid" className="mt-8">
             {isLoading ? (
               <CategoryPageSkeleton count={8} />
             ) : (
