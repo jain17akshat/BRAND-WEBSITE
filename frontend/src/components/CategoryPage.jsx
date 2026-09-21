@@ -46,7 +46,9 @@ export const CategoryPage = ({
     : categoryProducts.filter((p) => p.subcategory === selectedSubcategory ||
         (selectedSubcategory === 'brass' && p.category === 'brass') ||
         (selectedSubcategory === 'copper' && p.category === 'copper') ||
-        (selectedSubcategory === 'Sacred Malas & Rosaries' && (p.subcategory === 'Sacred Malas & Rosaries' || p.name.toLowerCase().includes('mala'))));
+        (selectedSubcategory === 'Puja Accessories' && (p.subcategory === 'Puja Accessories' || p.artType === 'diffuser' || p.id?.includes('dhoopdani'))) ||
+        (selectedSubcategory === 'Japa Bags & Pouches' && (p.subcategory === 'Japa Bags & Pouches' || p.subcategory === 'Mala Counters' || p.artType === 'counter' || p.artType === 'bag')) ||
+        (selectedSubcategory === 'Sacred Malas & Rosaries' && (p.subcategory === 'Sacred Malas & Rosaries' || p.artType === 'mala' || p.name?.toLowerCase().includes('mala'))));
 
   // Helper check for Yantra plates/frames vs other Vastu items
   const isYantraPlate = (p) =>
