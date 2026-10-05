@@ -1,4 +1,4 @@
-export const CATEGORIES = [
+const CATEGORIES = [
   { id: 'all', name: 'All Collections' },
   { id: 'metalware', name: 'Metalware', count: 21 },
   { id: 'brass', name: 'Brass Articles', count: 17 },
@@ -10,7 +10,7 @@ export const CATEGORIES = [
   { id: 'yantras', name: 'Custom & Handcrafted', count: 3 }
 ];
 
-export const PRODUCTS = [
+module.exports.PRODUCTS = [
   // 1. Garuda Headed Brass Bell
   {
     id: 'brass-bell-garuda',
@@ -3736,7 +3736,47 @@ export const PRODUCTS = [
     faqs: [
       { q: 'Which direction should this Yantra be placed in?', a: 'Place it facing East or North in your home mandir or worship area.' }
     ]
+  }
+];
+
+const FRAGRANCE_SAMPLERS = [
+  { id: 'f1', name: 'Temple Sandalwood', notes: 'Woody • Warm • Sacred', desc: 'Sourced from Mysore groves, calming for deep meditation.' },
+  { id: 'f2', name: 'Kashmir White Mogra', notes: 'Floral • Sweet • Serene', desc: 'Wild jasmine flowers harvested at midnight under full moon.' },
+  { id: 'f3', name: 'Assam Royal Oudh', notes: 'Deep • Smoky • Luxurious', desc: 'Resinous agarwood creating an opulent spiritual atmosphere.' },
+  { id: 'f4', name: 'Vedic Sambrani & Guggal', notes: 'Earthy • Herbal • Cleansing', desc: 'Ancient tree resins traditionally burned for home energy purification.' }
+];
+
+const TESTIMONIALS = [
+  {
+    id: 1,
+    name: 'Ananya Deshmukh',
+    location: 'Mumbai, Maharashtra',
+    rating: 5,
+    title: 'Breathtaking Craftsmanship & Weight!',
+    review: 'I ordered the Astha Lakshmi Brass Pooja Thali for our new apartment. The solid weight, hand-etched details, and warm luster are beyond anything available in regular markets. It feels like an heirloom piece.',
+    verified: true,
+    productPurchased: 'Royal Astha Lakshmi Brass Pooja Thali Set'
   },
+  {
+    id: 2,
+    name: 'Vikram & Radhika Sharma',
+    location: 'Bengaluru, Karnataka',
+    rating: 5,
+    title: 'The Incense is Truly Zero Smoke',
+    review: 'Most commercial agarbattis give me headaches due to synthetic perfume and charcoal. Shraviko’s Temple Sandalwood incense has a gentle, soothing aroma that lingers softly without filling the room with black smoke.',
+    verified: true,
+    productPurchased: 'Vedic Sandalwood & Sacred Lotus Incense'
+  },
+  {
+    id: 3,
+    name: 'Priya Sundaram',
+    location: 'Chennai, Tamil Nadu',
+    rating: 5,
+    title: 'Exquisite Gift Packaging',
+    review: 'Sent the Griha Pravesh hamper to my brother in Delhi for his housewarming. He was stunned by the velvet presentation box and the purity of the pure brass diya and copper items.',
+    verified: true,
+    productPurchased: 'Griha Pravesh Luxury Pooja Hamper'
+  }
 
   // Pure Roli Kumkum Powder
   {
@@ -3804,45 +3844,5 @@ export const PRODUCTS = [
     shortDescription: 'Natural pure Loban dhoop granules for daily dhuni, home cleansing, and temple worship.',
     seoTitle: 'Pure Natural Loban Dhoop Granules | Shraviko',
     metaDescription: 'Shop Shraviko Pure Natural Loban dhoop granules for home dhuni, purification, and daily worship.'
-  }
-];
-
-export const FRAGRANCE_SAMPLERS = [
-  { id: 'f1', name: 'Temple Sandalwood', notes: 'Woody • Warm • Sacred', desc: 'Sourced from Mysore groves, calming for deep meditation.' },
-  { id: 'f2', name: 'Kashmir White Mogra', notes: 'Floral • Sweet • Serene', desc: 'Wild jasmine flowers harvested at midnight under full moon.' },
-  { id: 'f3', name: 'Assam Royal Oudh', notes: 'Deep • Smoky • Luxurious', desc: 'Resinous agarwood creating an opulent spiritual atmosphere.' },
-  { id: 'f4', name: 'Vedic Sambrani & Guggal', notes: 'Earthy • Herbal • Cleansing', desc: 'Ancient tree resins traditionally burned for home energy purification.' }
-];
-
-export const TESTIMONIALS = [
-  {
-    id: 1,
-    name: 'Ananya Deshmukh',
-    location: 'Mumbai, Maharashtra',
-    rating: 5,
-    title: 'Breathtaking Craftsmanship & Weight!',
-    review: 'I ordered the Astha Lakshmi Brass Pooja Thali for our new apartment. The solid weight, hand-etched details, and warm luster are beyond anything available in regular markets. It feels like an heirloom piece.',
-    verified: true,
-    productPurchased: 'Royal Astha Lakshmi Brass Pooja Thali Set'
   },
-  {
-    id: 2,
-    name: 'Vikram & Radhika Sharma',
-    location: 'Bengaluru, Karnataka',
-    rating: 5,
-    title: 'The Incense is Truly Zero Smoke',
-    review: 'Most commercial agarbattis give me headaches due to synthetic perfume and charcoal. Shraviko’s Temple Sandalwood incense has a gentle, soothing aroma that lingers softly without filling the room with black smoke.',
-    verified: true,
-    productPurchased: 'Vedic Sandalwood & Sacred Lotus Incense'
-  },
-  {
-    id: 3,
-    name: 'Priya Sundaram',
-    location: 'Chennai, Tamil Nadu',
-    rating: 5,
-    title: 'Exquisite Gift Packaging',
-    review: 'Sent the Griha Pravesh hamper to my brother in Delhi for his housewarming. He was stunned by the velvet presentation box and the purity of the pure brass diya and copper items.',
-    verified: true,
-    productPurchased: 'Griha Pravesh Luxury Pooja Hamper'
-  }
 ];
