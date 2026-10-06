@@ -1,0 +1,714 @@
+[
+  {
+    "index": 1,
+    "id": "brass-bell-garuda",
+    "name": "Garud Headed Brass Pooja Bell",
+    "category": "brass",
+    "subcategory": "Brass Bells",
+    "sku": "LSTGBLHQNPQZUMQG4DQNHFZQT"
+  },
+  {
+    "index": 2,
+    "id": "brass-bell-nandi",
+    "name": "Nandi Headed Brass Pooja Bell",
+    "category": "brass",
+    "subcategory": "Brass Bells",
+    "sku": "LSTGBLHQNPC5R8PHYGHOZSCVW"
+  },
+  {
+    "index": 3,
+    "id": "brass-bell-simple",
+    "name": "Traditional Brass Pooja Bell",
+    "category": "brass",
+    "subcategory": "Brass Bells",
+    "sku": "LSTGBLHQNPC5R8PHYGHOZSCVW"
+  },
+  {
+    "index": 4,
+    "id": "brass-bell-carved",
+    "name": "Brass Ganesh Ghanti",
+    "category": "brass",
+    "subcategory": "Brass Bells",
+    "sku": "LSTGBLHRP68KDBY8WVW4NOEGQ"
+  },
+  {
+    "index": 5,
+    "id": "brass-puja-thali-set",
+    "name": "Pure Brass Pooja Thali",
+    "category": "brass",
+    "subcategory": "Brass Puja Thali",
+    "sku": "LSTDIYHRPRGJTJKN89UY9C9HN"
+  },
+  {
+    "index": 6,
+    "id": "brass-aarti-kapoor-diya",
+    "name": "Panchmukhi Aarti Diya",
+    "category": "brass",
+    "subcategory": "Brass Aarti & Diyas",
+    "sku": "LSTDIYHQHBZW7UFVGT7YQUCGZ"
+  },
+  {
+    "index": 7,
+    "id": "brass-akhand-jyot-deepak",
+    "name": "Brass Akhand Jyot Diya with Protective Cover",
+    "category": "brass",
+    "subcategory": "Akhand Jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6"
+  },
+  {
+    "index": 8,
+    "id": "brass-cup-jyot-diya",
+    "name": "Brass Akhand Jyot Deepak",
+    "category": "brass",
+    "subcategory": "Akhand Jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6"
+  },
+  {
+    "index": 9,
+    "id": "brass-kamandal-holy-water-pot",
+    "name": "Brass Kamandal with Lid",
+    "category": "brass",
+    "subcategory": "Sacred Ritual Vessels",
+    "sku": "LSTIHRHRZA5YT5RFUUZSI9UZD"
+  },
+  {
+    "index": 10,
+    "id": "brass-trishul-with-damru",
+    "name": "Brass Trishul with Damru & Stand",
+    "category": "brass",
+    "subcategory": "Brass Symbols & Statues",
+    "sku": "LSTSHIHQNJ3YCJJMFHA7DNO6H"
+  },
+  {
+    "index": 11,
+    "id": "brass-trishul-standing-emblem",
+    "name": "Brass Trishul with Stand",
+    "category": "brass",
+    "subcategory": "Brass Symbols & Statues",
+    "sku": "LSTSHIHQNJ3YCJJMFHA7DNO6H"
+  },
+  {
+    "index": 12,
+    "id": "brass-gomukhi-shringi-abhishekam",
+    "name": "Shraviko Gomukhi Patra",
+    "category": "brass",
+    "subcategory": "Sacred Abhishekam Vessels",
+    "sku": "LSTDIYHRPRGJTJKN89UY9C9HN"
+  },
+  {
+    "index": 13,
+    "id": "brass-singhasan-deity-throne",
+    "name": "Shraviko Brass Singhasan",
+    "category": "brass",
+    "subcategory": "Sacred Altar Thrones",
+    "sku": "LSTSHIHQPNSFZJBFWB5MZA3PJ"
+  },
+  {
+    "index": 14,
+    "id": "brass-ladoo-gopal-statue",
+    "name": "Shraviko Laddu Gopal Idol",
+    "category": "brass",
+    "subcategory": "Brass Idols",
+    "sku": "LSTSHIHQPN8HYXNYKZEPV2WRP"
+  },
+  {
+    "index": 15,
+    "id": "brass-kalash-pooja-vessel",
+    "name": "Shraviko Pure Brass Kalash",
+    "category": "brass",
+    "subcategory": "Brass Kalash",
+    "sku": "LSTKALHQMJEMZJZ8R4U96KVCO"
+  },
+  {
+    "index": 16,
+    "id": "brass-design-thali-set",
+    "name": "Brass Peacock Pooja Thali",
+    "category": "brass",
+    "subcategory": "Brass Puja Thali",
+    "sku": "LSTPJTHQMSYGDG679QC5DEFCW"
+  },
+  {
+    "index": 17,
+    "id": "copper-panchpatra-pali-set",
+    "name": "Pure Copper Panchpatra Udharini Set",
+    "category": "copper",
+    "subcategory": "Copper Vessels",
+    "sku": "LSTKALHQP3QFWY3JGNFW5KWBK"
+  },
+  {
+    "index": 18,
+    "id": "copper-puja-thali-set",
+    "name": "Pure Copper Pooja Thali",
+    "category": "copper",
+    "subcategory": "Copper Puja Thali",
+    "sku": "LSTPJTHQZNFMMXHN2FTTPJQVH"
+  },
+  {
+    "index": 19,
+    "id": "copper-hawan-kund-pyre",
+    "name": "Shraviko Pure Copper Hawan Kund with Dual Handles",
+    "category": "copper",
+    "subcategory": "Sacred Homa Vessels",
+    "sku": "N/A"
+  },
+  {
+    "index": 20,
+    "id": "copper-kalash-pooja-vessel",
+    "name": "Pure Copper Kalash",
+    "category": "copper",
+    "subcategory": "Copper Kalash",
+    "sku": "LSTKALHQP3QFWY3JGNFW5KWBK"
+  },
+  {
+    "index": 21,
+    "id": "vastu-ganesh-siddha-yantra",
+    "name": "Ganesh Yantra",
+    "category": "vastu",
+    "subcategory": "Vastu Yantras",
+    "sku": "LSTYNTHQNYMGYBF8Q7BNBTRQT"
+  },
+  {
+    "index": 22,
+    "id": "vastu-kuber-dhan-prapti-yantra",
+    "name": "Kuber Yantra",
+    "category": "vastu",
+    "subcategory": "Wealth Yantras",
+    "sku": "LSTYNTHQZFAGZJZWAYPWGTBC1"
+  },
+  {
+    "index": 23,
+    "id": "vastu-laxmi-siddha-yantra",
+    "name": "Lakshmi Kuber Yantra",
+    "category": "vastu",
+    "subcategory": "Mahalakshmi Yantras",
+    "sku": "LSTYNTHQZFAFG36WGSRPCGHYU"
+  },
+  {
+    "index": 24,
+    "id": "vastu-shani-siddha-yantra",
+    "name": "Shree Shani Yantra",
+    "category": "vastu",
+    "subcategory": "Shani Yantras",
+    "sku": "LSTYNTHQZFAJXWENNVT6YOJTI"
+  },
+  {
+    "index": 25,
+    "id": "vastu-crystal-glass-yantra",
+    "name": "Shree Yantra Cone Meru",
+    "category": "vastu",
+    "subcategory": "Vastu Glass Yantras",
+    "sku": "LSTSHIHQPMR2YKH36HUCGUGFJ"
+  },
+  {
+    "index": 26,
+    "id": "vastu-brass-pyramid-multitier",
+    "name": "Shraviko Vastu Energy",
+    "category": "vastu",
+    "subcategory": "Vastu Pyramids",
+    "sku": "LSTSHIHQNKSUSYFQVQRA8B6QX"
+  },
+  {
+    "index": 27,
+    "id": "vastu-crystal-glass-turtle",
+    "name": "Crystal Turtle with Glass Plate",
+    "category": "vastu",
+    "subcategory": "Vastu Energy Items",
+    "sku": "LSTSHIHQMCVJKCZEGXUCTML92"
+  },
+  {
+    "index": 28,
+    "id": "brass-kamdhenu-cow-statue",
+    "name": "Shraviko Brass Kamdhenu Cow with Calf Idol",
+    "category": "yantras",
+    "subcategory": "Handcrafted Idols",
+    "sku": "N/A"
+  },
+  {
+    "index": 29,
+    "id": "brass-ganesh-ji-statue",
+    "name": "Lord Ganesha Idol",
+    "category": "yantras",
+    "subcategory": "Handcrafted Idols",
+    "sku": "LSTSHIHQPPHJJFEZBG7FKKKYW"
+  },
+  {
+    "index": 30,
+    "id": "brass-radha-krishna-statue",
+    "name": "Radha Krishna Idol",
+    "category": "yantras",
+    "subcategory": "Handcrafted Idols",
+    "sku": "LSTSHIHQPPQYTMXANFWMKEOC5"
+  },
+  {
+    "index": 31,
+    "id": "vastu-crystal-glass-shivling",
+    "name": "Sphatik Shivling",
+    "category": "vastu",
+    "subcategory": "Vastu Energy Items",
+    "sku": "LSTSHIHQMCDBHYUFBHESVJAQG"
+  },
+  {
+    "index": 32,
+    "id": "mandir-rudraksh-mala",
+    "name": "Shraviko Rudraksha Mala",
+    "category": "mandir-essentials",
+    "subcategory": "Sacred Malas & Rosaries",
+    "sku": "LSTNKCHQZZY7ZZZD7RENCFUKH"
+  },
+  {
+    "index": 33,
+    "id": "mandir-sphatik-mala",
+    "name": "Shraviko Sphatik Mala",
+    "category": "mandir-essentials",
+    "subcategory": "Sacred Malas & Rosaries",
+    "sku": "LSTNKCHQZQFGMKGZQKTPSIYBN"
+  },
+  {
+    "index": 34,
+    "id": "mandir-tulsi-mala",
+    "name": "Shraviko Tulsi Mala",
+    "category": "mandir-essentials",
+    "subcategory": "Sacred Malas & Rosaries",
+    "sku": "LSTNKCHQMGCZU6GHWZ3FVFLWG"
+  },
+  {
+    "index": 35,
+    "id": "mandir-vaijanti-mala",
+    "name": "Shraviko Vaijanti Mala",
+    "category": "mandir-essentials",
+    "subcategory": "Sacred Malas & Rosaries",
+    "sku": "LSTNKCHQZQFGMKGZQKTPSIYBN"
+  },
+  {
+    "index": 36,
+    "id": "mandir-karungali-mala",
+    "name": "Shraviko Karungali Mala",
+    "category": "mandir-essentials",
+    "subcategory": "Sacred Malas & Rosaries",
+    "sku": "LSTNKCHQZQFGMKGZQKTPSIYBN"
+  },
+  {
+    "index": 37,
+    "id": "mandir-lal-chandan",
+    "name": "Pure Lal Chandan / Rakta Chandan Powder",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Ingredients & Samagri",
+    "sku": "LSTHAIHRCWGVET3FS3EKGMV3K"
+  },
+  {
+    "index": 38,
+    "id": "mandir-pure-camphor",
+    "name": "Pure Shuddh Camphor Tablets",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Ingredients & Samagri",
+    "sku": "LSTHAIHRCXNRSHJF9UQPD5ACU"
+  },
+  {
+    "index": 39,
+    "id": "mandir-bhimseni-kapoor",
+    "name": "Shraviko Organic Bhimseni Kapoor (Natural Crystal Camphor)",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Ingredients & Samagri",
+    "sku": "N/A"
+  },
+  {
+    "index": 40,
+    "id": "mandir-safed-chandan",
+    "name": "Pure Safed Chandan Powder",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Ingredients & Samagri",
+    "sku": "LSTHAIHRCYZX6YPSPTGUZ0QB4"
+  },
+  {
+    "index": 41,
+    "id": "wooden-chowki-carved-01",
+    "name": "Shraviko Pooja Chowki",
+    "category": "mandir-essentials",
+    "subcategory": "Wooden Chowki",
+    "sku": "LSTCKIHQM9PNR5VXYJ3T4GMXE"
+  },
+  {
+    "index": 42,
+    "id": "wooden-chowki-large-15x15",
+    "name": "Shraviko 15×15\" Large Bajot",
+    "category": "mandir-essentials",
+    "subcategory": "Wooden Chowki",
+    "sku": "LSTCKIHQM9PNR5VXYJ3T4GMXE"
+  },
+  {
+    "index": 43,
+    "id": "brass-dhoopdani-burner",
+    "name": "Shraviko Dhoop Dani",
+    "category": "brass",
+    "subcategory": "Puja Accessories",
+    "sku": "LSTIHRHQZWFKHDPMZMRRCEDS2"
+  },
+  {
+    "index": 44,
+    "id": "mandir-mala-counter-brass",
+    "name": "Shraviko Digital Counter",
+    "category": "mandir-essentials",
+    "subcategory": "Mala Counters",
+    "sku": "LSTTYCHRYRBFM9WB43ALSVO8S"
+  },
+  {
+    "index": 45,
+    "id": "mandir-pooja-box-chest",
+    "name": "Shraviko 7-in-1 Pooja Box",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Storage & Chests",
+    "sku": "LSTPJTHQMG8N9NQZT7N8BN4MB"
+  },
+  {
+    "index": 46,
+    "id": "mandir-wooden-damru-shiva",
+    "name": "Wooden Damru / Damaru",
+    "category": "mandir-essentials",
+    "subcategory": "Devotional Instruments",
+    "sku": "LSTIHRHRTTDVNETRKKGMVZWU5"
+  },
+  {
+    "index": 47,
+    "id": "essentials-brass-chawar-whisk",
+    "name": "Shraviko Premium Temple Chawar Sahib",
+    "category": "mandir-essentials",
+    "subcategory": "Mandir Essentials",
+    "sku": "N/A"
+  },
+  {
+    "index": 48,
+    "id": "mandir-jap-bag-gaumukhi",
+    "name": "Shraviko Pure Cotton Gomukhi Japa Mala Bag",
+    "category": "mandir-essentials",
+    "subcategory": "Japa Bags & Pouches",
+    "sku": "N/A"
+  },
+  {
+    "index": 49,
+    "id": "mandir-royal-velvet-asan-mat",
+    "name": "Shraviko Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Asan Mats",
+    "sku": "N/A"
+  },
+  {
+    "index": 50,
+    "id": "mandir-dakshinavarti-shankh",
+    "name": "Shraviko Natural Dakshinavarti Shankh",
+    "category": "vastu",
+    "subcategory": "Sacred Conch Shells",
+    "sku": "N/A"
+  },
+  {
+    "index": 51,
+    "id": "mandir-vamavarti-shankh",
+    "name": "Shraviko Vamavarti Blowing Shankh",
+    "category": "vastu",
+    "subcategory": "Sacred Conch Shells",
+    "sku": "N/A"
+  },
+  {
+    "index": 52,
+    "id": "yantra-kaal-sarp",
+    "name": "Kaal Sarp Yog Dosh Nivaran Yantra",
+    "category": "vastu",
+    "subcategory": "Yantras",
+    "sku": "LSTYNTHR7GEDK7HD63GJLI6RY"
+  },
+  {
+    "index": 53,
+    "id": "yantra-mangal",
+    "name": "Mangal Yantra",
+    "category": "vastu",
+    "subcategory": "Yantras",
+    "sku": "LSTYNTHR7F4DH5KYBUEHRXXRY"
+  },
+  {
+    "index": 54,
+    "id": "yantra-sarv-karya",
+    "name": "Sarv Karya Siddhi Yantra",
+    "category": "vastu",
+    "subcategory": "Yantras",
+    "sku": "LSTYNTHR7G4U3HZPWS8XXLYSE"
+  },
+  {
+    "index": 55,
+    "id": "yantra-baglamukhi",
+    "name": "Shri Baglamukhi Mahayantra",
+    "category": "vastu",
+    "subcategory": "Yantras",
+    "sku": "LSTYNTHR7NQVXFATDQHIDXLLD"
+  },
+  {
+    "index": 56,
+    "id": "mandir-cow-dung-cake",
+    "name": "Desi Cow Dung Cakes (Gau Upla)",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Ingredients & Samagri",
+    "sku": "LSTHAIHRCYN7NTJRWJGIEY7GH"
+  },
+  {
+    "index": 57,
+    "id": "mandir-hawan-samagri",
+    "name": "Shraviko Sacred Ayurvedic Hawan Samagri (51 Herbs Blend)",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Ingredients & Samagri",
+    "sku": "N/A"
+  },
+  {
+    "index": 58,
+    "id": "yantra-maha-mrityunjay",
+    "name": "Shri Mahamrityunjay Yantra",
+    "category": "vastu",
+    "subcategory": "Sacred Yantras",
+    "sku": "LSTYNTHR7ERMWHJPTETDDLPVF"
+  },
+  {
+    "index": 59,
+    "id": "mandir-pure-kumkum",
+    "name": "Shraviko Pure Kumkum",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Ingredients & Samagri",
+    "sku": "LSTHAIHRCX2XKKZHGQFM3NRHH"
+  },
+  {
+    "index": 60,
+    "id": "mandir-pure-loban",
+    "name": "Shraviko Natural Loban",
+    "category": "mandir-essentials",
+    "subcategory": "Pooja Ingredients & Samagri",
+    "sku": "LSTIHRHRTTDVNETRKKGMVZWU5"
+  },
+  {
+    "index": 61,
+    "id": "shraviko-bakhoor-incense-sticks",
+    "name": "Shraviko Arabic Aroma",
+    "category": "incense",
+    "subcategory": "Incense Sticks",
+    "sku": "LSTINSHRBZ4TVFKWPHHC0LVFJ"
+  },
+  {
+    "index": 62,
+    "id": "shraviko-kesar-incense-sticks",
+    "name": "Shraviko Saffron Fragrance",
+    "category": "incense",
+    "subcategory": "Incense Sticks",
+    "sku": "LSTINSHRCYBJESJA6PTW707VD"
+  },
+  {
+    "index": 63,
+    "id": "shraviko-lavender-incense-sticks",
+    "name": "Shraviko Soothing Aroma",
+    "category": "incense",
+    "subcategory": "Incense Sticks",
+    "sku": "LSTINSHRBWYRUUKVTSK0WMEMN"
+  },
+  {
+    "index": 64,
+    "id": "shraviko-oudh-incense-sticks",
+    "name": "Shraviko Royal Fragrance",
+    "category": "incense",
+    "subcategory": "Incense Sticks",
+    "sku": "LSTINSHRBZWTBPZWXG50SVHYX"
+  },
+  {
+    "index": 65,
+    "id": "shraviko-chandan-dhoop-cups",
+    "name": "Shraviko Pure Sandalwood",
+    "category": "incense",
+    "subcategory": "Dhoop Cups",
+    "sku": "LSTDCEHRBUMYDB8WHDGNSVPEA"
+  },
+  {
+    "index": 66,
+    "id": "shraviko-guggul-dhoop-cups",
+    "name": "Shraviko Sacred Guggul",
+    "category": "incense",
+    "subcategory": "Dhoop Cups",
+    "sku": "LSTDCEHRBFZPFZVFCZ49W7HTC"
+  },
+  {
+    "index": 67,
+    "id": "shraviko-rose-dhoop-cups",
+    "name": "Shraviko Fresh Rose",
+    "category": "incense",
+    "subcategory": "Dhoop Cups",
+    "sku": "LSTDCEHRBVF8ZUZHXSYL8EPZC"
+  },
+  {
+    "index": 68,
+    "id": "shraviko-sandalwood-incense-sticks",
+    "name": "Shraviko Pure Chandan",
+    "category": "incense",
+    "subcategory": "Incense Sticks",
+    "sku": "LSTINSHR8U5GNYMJZ9XFGQFPP"
+  },
+  {
+    "index": 69,
+    "id": "shraviko-rose-incense-sticks",
+    "name": "Shraviko Desi Gulab",
+    "category": "incense",
+    "subcategory": "Incense Sticks",
+    "sku": "LSTINSHR8SNEVKFPXXEVBHD6O"
+  },
+  {
+    "index": 70,
+    "id": "shraviko-chandan-camphor-fly-cone",
+    "name": "Shraviko Camphor & Chandan",
+    "category": "incense",
+    "subcategory": "Camphor Cones",
+    "sku": "LSTAIRHRE2GHC3H9VCQ4OAFDZ"
+  },
+  {
+    "index": 71,
+    "id": "shraviko-lavender-camphor-fly-cone",
+    "name": "Shraviko Camphor & Lavender",
+    "category": "incense",
+    "subcategory": "Camphor Cones",
+    "sku": "LSTAIRHRE3ZZZZV3YR84WITFH"
+  },
+  {
+    "index": 72,
+    "id": "shraviko-brass-dhoop-dani",
+    "name": "Shraviko Solid Brass",
+    "category": "brass",
+    "subcategory": "Puja Accessories",
+    "sku": "LSTIHRHRTTDVNETRKKGMVZWU5"
+  },
+  {
+    "index": 73,
+    "id": "shraviko-brass-handle-dhoop",
+    "name": "Shraviko Handled Burner",
+    "category": "brass",
+    "subcategory": "Puja Accessories",
+    "sku": "LSTIHRHRTTDVNETRKKGMVZWU5"
+  },
+  {
+    "index": 74,
+    "id": "shraviko-brass-bhog-thali",
+    "name": "Shraviko Bhog Thali Set",
+    "category": "brass",
+    "subcategory": "Brass Thali",
+    "sku": "LSTPJTHRHK7HZPXUNJKVRU3HE"
+  },
+  {
+    "index": 75,
+    "id": "shraviko-brass-puja-bell",
+    "name": "Shraviko Classic Ghanti",
+    "category": "brass",
+    "subcategory": "Brass Bells",
+    "sku": "LSTGBLHRTQZGZKT8ZJ3AKF6JS"
+  },
+  {
+    "index": 76,
+    "id": "shraviko-spiritual-engraved-bell",
+    "name": "Shraviko Carved Bell",
+    "category": "brass",
+    "subcategory": "Brass Bells",
+    "sku": "LSTGBLHRTQZGZKT8ZJ3AKF6JS"
+  },
+  {
+    "index": 77,
+    "id": "shraviko-brass-diya-set5",
+    "name": "Shraviko Diya Set",
+    "category": "brass",
+    "subcategory": "Brass Diyas",
+    "sku": "LSTDIYHRPQXT93U8P5AZCXCQK"
+  },
+  {
+    "index": 78,
+    "id": "shraviko-carved-brass-diya",
+    "name": "Shraviko Carved Diya",
+    "category": "brass",
+    "subcategory": "Brass Diyas",
+    "sku": "LSTDIYHQHBZW7UFVGT7YQUCGZ"
+  },
+  {
+    "index": 79,
+    "id": "shraviko-brass-cup-deepak",
+    "name": "Shraviko Cup Diya",
+    "category": "brass",
+    "subcategory": "Brass Diyas",
+    "sku": "LSTDIYHQHBZW7UFVGT7YQUCGZ"
+  },
+  {
+    "index": 80,
+    "id": "shraviko-peacock-brass-stand-diya",
+    "name": "Shraviko Peacock Finial",
+    "category": "brass",
+    "subcategory": "Brass Standing Diyas",
+    "sku": "LSTDIYHRPRGJTJKN89UY9C9HN"
+  },
+  {
+    "index": 81,
+    "id": "shraviko-spire-brass-stand-diya",
+    "name": "Shraviko Spire Finial",
+    "category": "brass",
+    "subcategory": "Brass Standing Diyas",
+    "sku": "LSTDIYHRPRGJTJKN89UY9C9HN"
+  },
+  {
+    "index": 82,
+    "id": "shraviko-stainless-steel-dibbi",
+    "name": "Shraviko Pure Stainless Steel Puja Container Dibbi",
+    "category": "mandir-essentials",
+    "subcategory": "Puja Accessories",
+    "sku": "N/A"
+  },
+  {
+    "index": 83,
+    "id": "shraviko-brass-footprints",
+    "name": "Shraviko Sacred Brass Lakshmi Charan Paduka Footprints",
+    "category": "vastu",
+    "subcategory": "Sacred Symbols",
+    "sku": "N/A"
+  },
+  {
+    "index": 84,
+    "id": "shraviko-silver-footprints",
+    "name": "Shraviko Pure Silver Plated Goddess Lakshmi Charan Paduka",
+    "category": "vastu",
+    "subcategory": "Sacred Symbols",
+    "sku": "N/A"
+  },
+  {
+    "index": 85,
+    "id": "shraviko-diamond-akhand-jyot",
+    "name": "Shraviko Diamond Cut Glass",
+    "category": "brass",
+    "subcategory": "Akhand Jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6"
+  },
+  {
+    "index": 86,
+    "id": "shraviko-crystal-glass-akhand-jyot",
+    "name": "Shraviko Akhand Jyot",
+    "category": "brass",
+    "subcategory": "Akhand Jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6"
+  },
+  {
+    "index": 87,
+    "id": "shraviko-lotus-brass-akhand-jyot",
+    "name": "Shraviko Lotus Design",
+    "category": "brass",
+    "subcategory": "Akhand Jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6"
+  },
+  {
+    "index": 88,
+    "id": "shraviko-om-top-glass-akhand-jyot",
+    "name": "Shraviko OM Engraved",
+    "category": "brass",
+    "subcategory": "Akhand Jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6"
+  },
+  {
+    "index": 89,
+    "id": "shraviko-brass-glass-akhand-jyot-cover",
+    "name": "Shraviko Pure Brass Akhand Jyot Deepak with Protective Glass Cover",
+    "category": "brass",
+    "subcategory": "Brass Diyas",
+    "sku": "N/A"
+  }
+]

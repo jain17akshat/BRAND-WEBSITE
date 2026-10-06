@@ -1,6 +1,6 @@
 {
   "SHR-NMY-COP-003": {
-    "title": "SHRAVIKO SarvKarya Siddhi Yantra \u2013 Copper",
+    "title": "SHRAVIKO SarvKarya Siddhi Yantra – Copper",
     "hsn": "74199990",
     "tax": 18
   },
@@ -30,12 +30,12 @@
     "tax": 5
   },
   "SHR-BAG-001": {
-    "title": "Shri Baglamukhi Mahayantra \u2013 Copper",
+    "title": "Shri Baglamukhi Mahayantra – Copper",
     "hsn": "74199990",
     "tax": 18
   },
   "SHR-MY-04": {
-    "title": "Mangal Yantra \u2013 Copper 3\u00d73 Inch",
+    "title": "Mangal Yantra – Copper 3×3 Inch",
     "hsn": "74199990",
     "tax": 18
   },
@@ -55,7 +55,7 @@
     "tax": 5
   },
   "SHR-YAN-MMR-001": {
-    "title": "Shri Mahamrityunjay Maha Yantram \u2013 Copper",
+    "title": "Shri Mahamrityunjay Maha Yantram – Copper",
     "hsn": "74199990",
     "tax": 18
   },
@@ -65,7 +65,7 @@
     "tax": 5
   },
   "SHR-KSY-01": {
-    "title": "Kaal Sarp Yog Dosh Nivaran Yantra \u2013 Copper",
+    "title": "Kaal Sarp Yog Dosh Nivaran Yantra – Copper",
     "hsn": "74199990",
     "tax": 18
   },
@@ -80,17 +80,17 @@
     "tax": 3
   },
   "SHR-MMY-001": {
-    "title": "Mahamrityunjay Yantra \u2013 Copper",
+    "title": "Mahamrityunjay Yantra – Copper",
     "hsn": "74199990",
     "tax": 18
   },
   "SHR-YAN-MNG-001": {
-    "title": "Shri Mangal Yantra \u2013 Copper",
+    "title": "Shri Mangal Yantra – Copper",
     "hsn": "74199990",
     "tax": 18
   },
   "SHR-CGY-03IN-001": {
-    "title": "Copper Ganesh Yantra 3\u00d73 Inch",
+    "title": "Copper Ganesh Yantra 3×3 Inch",
     "hsn": "74198040",
     "tax": 18
   },
@@ -110,7 +110,7 @@
     "tax": 5
   },
   "SHR-CLY-03IN-001": {
-    "title": "Copper Lakshmi Yantra 3\u00d73 Inch",
+    "title": "Copper Lakshmi Yantra 3×3 Inch",
     "hsn": "74198040",
     "tax": 18
   },
@@ -120,17 +120,17 @@
     "tax": 18
   },
   "SHR-CNY-03IN-001": {
-    "title": "Copper Navgraha Yantra 3\u00d73 Inch",
+    "title": "Copper Navgraha Yantra 3×3 Inch",
     "hsn": "74198040",
     "tax": 18
   },
   "SHR-CSY-03IN-001": {
-    "title": "Copper Saraswati Yantra 3\u00d73 Inch",
+    "title": "Copper Saraswati Yantra 3×3 Inch",
     "hsn": "74198040",
     "tax": 18
   },
   "SHR-CKY-03IN-001": {
-    "title": "Copper Kuber Yantra 3\u00d73 Inch",
+    "title": "Copper Kuber Yantra 3×3 Inch",
     "hsn": "74198040",
     "tax": 5
   },
@@ -150,7 +150,7 @@
     "tax": 18
   },
   "SHR-CSHY-03IN-001": {
-    "title": "Copper Shani Yantra 3\u00d73 Inch",
+    "title": "Copper Shani Yantra 3×3 Inch",
     "hsn": "74198040",
     "tax": 18
   },
@@ -225,9 +225,9 @@
     "tax": 5
   },
   "SHR-GS-BR-07X05X09-1P": {
-    "title": "Brass God Singhasan",
+    "title": "Singhasan Brass 7x5x9 Inch",
     "hsn": "74198030",
-    "tax": 5
+    "tax": "GST_Old_12_New_5"
   },
   "SHR-GLS-TUR-15": {
     "title": "Glass Turtle Showpiece",
@@ -269,39 +269,729 @@
     "hsn": "74199930",
     "tax": 5
   },
-  "SHR-GS-BR-07X05X09-1P": {
-    "title": "Singhasan Brass 7x5x9 Inch",
-    "hsn": "74198030",
-    "tax": "GST_Old_12_New_5"
-  },
   "mandir-safed-chandan": {
-    "title": "Shraviko Pure Safed Chandan",
-    "hsn": "33042000",
-    "tax": 18
+    "title": "Pure Safed Chandan Powder",
+    "hsn": "33074900",
+    "tax": 5
   },
   "mandir-lal-chandan": {
-    "title": "Shraviko Pure Lal Chandan",
-    "hsn": "33042000",
-    "tax": 18
+    "title": "Pure Lal Chandan / Rakta Chandan Powder",
+    "hsn": "33074900",
+    "tax": 5
   },
   "mandir-pure-camphor": {
-    "title": "Shraviko Pure Shuddh Kapoor",
+    "title": "Pure Shuddh Camphor Tablets",
     "hsn": "29142100",
     "tax": 18
   },
   "mandir-bhimseni-kapoor": {
-    "title": "Shraviko Organic Bhimseni Kapoor",
+    "title": "Shraviko Organic Bhimseni Kapoor (Natural Crystal Camphor)",
     "hsn": "29142100",
     "tax": 18
   },
   "mandir-cow-dung-cake": {
-    "title": "Shraviko Pure Desi Cow Dung Cakes",
+    "title": "Desi Cow Dung Cakes (Gau Upla)",
     "hsn": "31010099",
     "tax": 5
   },
   "mandir-hawan-samagri": {
-    "title": "Shraviko Sacred Ayurvedic Hawan Samagri",
+    "title": "Shraviko Sacred Ayurvedic Hawan Samagri (51 Herbs Blend)",
+    "hsn": "33074900",
+    "tax": 5
+  },
+  "brass-bell-garuda": {
+    "title": "Garud Headed Brass Pooja Bell",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTGBLHQNPQZUMQG4DQNHFZQT": {
+    "title": "Garud Headed Brass Pooja Bell",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-bell-nandi": {
+    "title": "Nandi Headed Brass Pooja Bell",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTGBLHQNPC5R8PHYGHOZSCVW": {
+    "title": "Traditional Brass Pooja Bell",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-bell-simple": {
+    "title": "Traditional Brass Pooja Bell",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-bell-carved": {
+    "title": "Brass Ganesh Ghanti",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTGBLHRP68KDBY8WVW4NOEGQ": {
+    "title": "Brass Ganesh Ghanti",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-puja-thali-set": {
+    "title": "Pure Brass Pooja Thali",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTDIYHRPRGJTJKN89UY9C9HN": {
+    "title": "Shraviko Spire Finial",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-aarti-kapoor-diya": {
+    "title": "Panchmukhi Aarti Diya",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTDIYHQHBZW7UFVGT7YQUCGZ": {
+    "title": "Shraviko Cup Diya",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-akhand-jyot-deepak": {
+    "title": "Brass Akhand Jyot Diya with Protective Cover",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTDIYHRUFUNSD4K9RN61DZC6": {
+    "title": "Shraviko OM Engraved",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-cup-jyot-diya": {
+    "title": "Brass Akhand Jyot Deepak",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-kamandal-holy-water-pot": {
+    "title": "Brass Kamandal with Lid",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTIHRHRZA5YT5RFUUZSI9UZD": {
+    "title": "Brass Kamandal with Lid",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-trishul-with-damru": {
+    "title": "Brass Trishul with Damru & Stand",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTSHIHQNJ3YCJJMFHA7DNO6H": {
+    "title": "Brass Trishul with Stand",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-trishul-standing-emblem": {
+    "title": "Brass Trishul with Stand",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-gomukhi-shringi-abhishekam": {
+    "title": "Shraviko Gomukhi Patra",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-singhasan-deity-throne": {
+    "title": "Shraviko Brass Singhasan",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTSHIHQPNSFZJBFWB5MZA3PJ": {
+    "title": "Shraviko Brass Singhasan",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-ladoo-gopal-statue": {
+    "title": "Shraviko Laddu Gopal Idol",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTSHIHQPN8HYXNYKZEPV2WRP": {
+    "title": "Shraviko Laddu Gopal Idol",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-kalash-pooja-vessel": {
+    "title": "Shraviko Pure Brass Kalash",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTKALHQMJEMZJZ8R4U96KVCO": {
+    "title": "Shraviko Pure Brass Kalash",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-design-thali-set": {
+    "title": "Brass Peacock Pooja Thali",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTPJTHQMSYGDG679QC5DEFCW": {
+    "title": "Brass Peacock Pooja Thali",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "copper-panchpatra-pali-set": {
+    "title": "Pure Copper Panchpatra Udharini Set",
+    "hsn": "74181010",
+    "tax": 5
+  },
+  "LSTKALHQP3QFWY3JGNFW5KWBK": {
+    "title": "Pure Copper Kalash",
+    "hsn": "74181010",
+    "tax": 5
+  },
+  "copper-puja-thali-set": {
+    "title": "Pure Copper Pooja Thali",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTPJTHQZNFMMXHN2FTTPJQVH": {
+    "title": "Pure Copper Pooja Thali",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "copper-hawan-kund-pyre": {
+    "title": "Shraviko Pure Copper Hawan Kund with Dual Handles",
+    "hsn": "74181010",
+    "tax": 5
+  },
+  "copper-kalash-pooja-vessel": {
+    "title": "Pure Copper Kalash",
+    "hsn": "74181010",
+    "tax": 5
+  },
+  "vastu-ganesh-siddha-yantra": {
+    "title": "Ganesh Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTYNTHQNYMGYBF8Q7BNBTRQT": {
+    "title": "Ganesh Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "vastu-kuber-dhan-prapti-yantra": {
+    "title": "Kuber Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTYNTHQZFAGZJZWAYPWGTBC1": {
+    "title": "Kuber Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "vastu-laxmi-siddha-yantra": {
+    "title": "Lakshmi Kuber Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTYNTHQZFAFG36WGSRPCGHYU": {
+    "title": "Lakshmi Kuber Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "vastu-shani-siddha-yantra": {
+    "title": "Shree Shani Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTYNTHQZFAJXWENNVT6YOJTI": {
+    "title": "Shree Shani Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "vastu-crystal-glass-yantra": {
+    "title": "Shree Yantra Cone Meru",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTSHIHQPMR2YKH36HUCGUGFJ": {
+    "title": "Shree Yantra Cone Meru",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "vastu-brass-pyramid-multitier": {
+    "title": "Shraviko Vastu Energy",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTSHIHQNKSUSYFQVQRA8B6QX": {
+    "title": "Shraviko Vastu Energy",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "vastu-crystal-glass-turtle": {
+    "title": "Crystal Turtle with Glass Plate",
+    "hsn": "70189010",
+    "tax": 18
+  },
+  "LSTSHIHQMCVJKCZEGXUCTML92": {
+    "title": "Crystal Turtle with Glass Plate",
+    "hsn": "70189010",
+    "tax": 18
+  },
+  "brass-kamdhenu-cow-statue": {
+    "title": "Shraviko Brass Kamdhenu Cow with Calf Idol",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-ganesh-ji-statue": {
+    "title": "Lord Ganesha Idol",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTSHIHQPPHJJFEZBG7FKKKYW": {
+    "title": "Lord Ganesha Idol",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "brass-radha-krishna-statue": {
+    "title": "Radha Krishna Idol",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTSHIHQPPQYTMXANFWMKEOC5": {
+    "title": "Radha Krishna Idol",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "vastu-crystal-glass-shivling": {
+    "title": "Sphatik Shivling",
+    "hsn": "70189010",
+    "tax": 18
+  },
+  "LSTSHIHQMCDBHYUFBHESVJAQG": {
+    "title": "Sphatik Shivling",
+    "hsn": "70189010",
+    "tax": 18
+  },
+  "mandir-rudraksh-mala": {
+    "title": "Shraviko Rudraksha Mala",
+    "hsn": "71179090",
+    "tax": 5
+  },
+  "LSTNKCHQZZY7ZZZD7RENCFUKH": {
+    "title": "Shraviko Rudraksha Mala",
+    "hsn": "71179090",
+    "tax": 5
+  },
+  "mandir-sphatik-mala": {
+    "title": "Shraviko Sphatik Mala",
+    "hsn": "71161000",
+    "tax": 3
+  },
+  "LSTNKCHQZQFGMKGZQKTPSIYBN": {
+    "title": "Shraviko Karungali Mala",
+    "hsn": "71179090",
+    "tax": 5
+  },
+  "mandir-tulsi-mala": {
+    "title": "Shraviko Tulsi Mala",
+    "hsn": "71179090",
+    "tax": 5
+  },
+  "LSTNKCHQMGCZU6GHWZ3FVFLWG": {
+    "title": "Shraviko Tulsi Mala",
+    "hsn": "71179090",
+    "tax": 5
+  },
+  "mandir-vaijanti-mala": {
+    "title": "Shraviko Vaijanti Mala",
+    "hsn": "71179090",
+    "tax": 5
+  },
+  "mandir-karungali-mala": {
+    "title": "Shraviko Karungali Mala",
+    "hsn": "71179090",
+    "tax": 5
+  },
+  "LSTHAIHRCWGVET3FS3EKGMV3K": {
+    "title": "Pure Lal Chandan / Rakta Chandan Powder",
+    "hsn": "33074900",
+    "tax": 5
+  },
+  "LSTHAIHRCXNRSHJF9UQPD5ACU": {
+    "title": "Pure Shuddh Camphor Tablets",
+    "hsn": "29142100",
+    "tax": 18
+  },
+  "LSTHAIHRCYZX6YPSPTGUZ0QB4": {
+    "title": "Pure Safed Chandan Powder",
+    "hsn": "33074900",
+    "tax": 5
+  },
+  "wooden-chowki-carved-01": {
+    "title": "Shraviko Pooja Chowki",
+    "hsn": "44219990",
+    "tax": 12
+  },
+  "LSTCKIHQM9PNR5VXYJ3T4GMXE": {
+    "title": "Shraviko 15×15\" Large Bajot",
+    "hsn": "44219990",
+    "tax": 12
+  },
+  "wooden-chowki-large-15x15": {
+    "title": "Shraviko 15×15\" Large Bajot",
+    "hsn": "44219990",
+    "tax": 12
+  },
+  "brass-dhoopdani-burner": {
+    "title": "Shraviko Dhoop Dani",
     "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTIHRHQZWFKHDPMZMRRCEDS2": {
+    "title": "Shraviko Dhoop Dani",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "mandir-mala-counter-brass": {
+    "title": "Shraviko Digital Counter",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTTYCHRYRBFM9WB43ALSVO8S": {
+    "title": "Shraviko Digital Counter",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "mandir-pooja-box-chest": {
+    "title": "Shraviko 7-in-1 Pooja Box",
+    "hsn": "44219990",
+    "tax": 12
+  },
+  "LSTPJTHQMG8N9NQZT7N8BN4MB": {
+    "title": "Shraviko 7-in-1 Pooja Box",
+    "hsn": "44219990",
+    "tax": 12
+  },
+  "mandir-wooden-damru-shiva": {
+    "title": "Wooden Damru / Damaru",
+    "hsn": "44219990",
+    "tax": 12
+  },
+  "LSTIHRHRTTDVNETRKKGMVZWU5": {
+    "title": "Shraviko Handled Burner",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "essentials-brass-chawar-whisk": {
+    "title": "Shraviko Premium Temple Chawar Sahib",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "mandir-jap-bag-gaumukhi": {
+    "title": "Shraviko Pure Cotton Gomukhi Japa Mala Bag",
+    "hsn": "63079090",
+    "tax": 5
+  },
+  "mandir-royal-velvet-asan-mat": {
+    "title": "Shraviko Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3",
+    "hsn": "63079090",
+    "tax": 5
+  },
+  "mandir-dakshinavarti-shankh": {
+    "title": "Shraviko Natural Dakshinavarti Shankh",
+    "hsn": "05080010",
+    "tax": 5
+  },
+  "mandir-vamavarti-shankh": {
+    "title": "Shraviko Vamavarti Blowing Shankh",
+    "hsn": "05080010",
+    "tax": 5
+  },
+  "yantra-kaal-sarp": {
+    "title": "Kaal Sarp Yog Dosh Nivaran Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTYNTHR7GEDK7HD63GJLI6RY": {
+    "title": "Kaal Sarp Yog Dosh Nivaran Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "yantra-mangal": {
+    "title": "Mangal Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTYNTHR7F4DH5KYBUEHRXXRY": {
+    "title": "Mangal Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "yantra-sarv-karya": {
+    "title": "Sarv Karya Siddhi Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTYNTHR7G4U3HZPWS8XXLYSE": {
+    "title": "Sarv Karya Siddhi Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "yantra-baglamukhi": {
+    "title": "Shri Baglamukhi Mahayantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTYNTHR7NQVXFATDQHIDXLLD": {
+    "title": "Shri Baglamukhi Mahayantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTHAIHRCYN7NTJRWJGIEY7GH": {
+    "title": "Desi Cow Dung Cakes (Gau Upla)",
+    "hsn": "31010099",
+    "tax": 5
+  },
+  "yantra-maha-mrityunjay": {
+    "title": "Shri Mahamrityunjay Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "LSTYNTHR7ERMWHJPTETDDLPVF": {
+    "title": "Shri Mahamrityunjay Yantra",
+    "hsn": "83062900",
+    "tax": 12
+  },
+  "mandir-pure-kumkum": {
+    "title": "Shraviko Pure Kumkum",
+    "hsn": "33074900",
+    "tax": 5
+  },
+  "LSTHAIHRCX2XKKZHGQFM3NRHH": {
+    "title": "Shraviko Pure Kumkum",
+    "hsn": "33074900",
+    "tax": 5
+  },
+  "mandir-pure-loban": {
+    "title": "Shraviko Natural Loban",
+    "hsn": "33074900",
+    "tax": 5
+  },
+  "shraviko-bakhoor-incense-sticks": {
+    "title": "Shraviko Arabic Aroma",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTINSHRBZ4TVFKWPHHC0LVFJ": {
+    "title": "Shraviko Arabic Aroma",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-kesar-incense-sticks": {
+    "title": "Shraviko Saffron Fragrance",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTINSHRCYBJESJA6PTW707VD": {
+    "title": "Shraviko Saffron Fragrance",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-lavender-incense-sticks": {
+    "title": "Shraviko Soothing Aroma",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTINSHRBWYRUUKVTSK0WMEMN": {
+    "title": "Shraviko Soothing Aroma",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-oudh-incense-sticks": {
+    "title": "Shraviko Royal Fragrance",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTINSHRBZWTBPZWXG50SVHYX": {
+    "title": "Shraviko Royal Fragrance",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-chandan-dhoop-cups": {
+    "title": "Shraviko Pure Sandalwood",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTDCEHRBUMYDB8WHDGNSVPEA": {
+    "title": "Shraviko Pure Sandalwood",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-guggul-dhoop-cups": {
+    "title": "Shraviko Sacred Guggul",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTDCEHRBFZPFZVFCZ49W7HTC": {
+    "title": "Shraviko Sacred Guggul",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-rose-dhoop-cups": {
+    "title": "Shraviko Fresh Rose",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTDCEHRBVF8ZUZHXSYL8EPZC": {
+    "title": "Shraviko Fresh Rose",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-sandalwood-incense-sticks": {
+    "title": "Shraviko Pure Chandan",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTINSHR8U5GNYMJZ9XFGQFPP": {
+    "title": "Shraviko Pure Chandan",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-rose-incense-sticks": {
+    "title": "Shraviko Desi Gulab",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTINSHR8SNEVKFPXXEVBHD6O": {
+    "title": "Shraviko Desi Gulab",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-chandan-camphor-fly-cone": {
+    "title": "Shraviko Camphor & Chandan",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTAIRHRE2GHC3H9VCQ4OAFDZ": {
+    "title": "Shraviko Camphor & Chandan",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-lavender-camphor-fly-cone": {
+    "title": "Shraviko Camphor & Lavender",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "LSTAIRHRE3ZZZZV3YR84WITFH": {
+    "title": "Shraviko Camphor & Lavender",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-brass-dhoop-dani": {
+    "title": "Shraviko Solid Brass",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-brass-handle-dhoop": {
+    "title": "Shraviko Handled Burner",
+    "hsn": "33074100",
+    "tax": 5
+  },
+  "shraviko-brass-bhog-thali": {
+    "title": "Shraviko Bhog Thali Set",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTPJTHRHK7HZPXUNJKVRU3HE": {
+    "title": "Shraviko Bhog Thali Set",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-brass-puja-bell": {
+    "title": "Shraviko Classic Ghanti",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTGBLHRTQZGZKT8ZJ3AKF6JS": {
+    "title": "Shraviko Carved Bell",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-spiritual-engraved-bell": {
+    "title": "Shraviko Carved Bell",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-brass-diya-set5": {
+    "title": "Shraviko Diya Set",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "LSTDIYHRPQXT93U8P5AZCXCQK": {
+    "title": "Shraviko Diya Set",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-carved-brass-diya": {
+    "title": "Shraviko Carved Diya",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-brass-cup-deepak": {
+    "title": "Shraviko Cup Diya",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-peacock-brass-stand-diya": {
+    "title": "Shraviko Peacock Finial",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-spire-brass-stand-diya": {
+    "title": "Shraviko Spire Finial",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-stainless-steel-dibbi": {
+    "title": "Shraviko Pure Stainless Steel Puja Container Dibbi",
+    "hsn": "73239390",
+    "tax": 12
+  },
+  "shraviko-brass-footprints": {
+    "title": "Shraviko Sacred Brass Lakshmi Charan Paduka Footprints",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-silver-footprints": {
+    "title": "Shraviko Pure Silver Plated Goddess Lakshmi Charan Paduka",
+    "hsn": "71179090",
+    "tax": 12
+  },
+  "shraviko-diamond-akhand-jyot": {
+    "title": "Shraviko Diamond Cut Glass",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-crystal-glass-akhand-jyot": {
+    "title": "Shraviko Akhand Jyot",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-lotus-brass-akhand-jyot": {
+    "title": "Shraviko Lotus Design",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-om-top-glass-akhand-jyot": {
+    "title": "Shraviko OM Engraved",
+    "hsn": "74181021",
+    "tax": 5
+  },
+  "shraviko-brass-glass-akhand-jyot-cover": {
+    "title": "Shraviko Pure Brass Akhand Jyot Deepak with Protective Glass Cover",
+    "hsn": "74181021",
     "tax": 5
   }
 }

@@ -1,0 +1,892 @@
+[
+  {
+    "srNo": 1,
+    "id": "brass-bell-garuda",
+    "sku": "LSTGBLHQNPQZUMQG4DQNHFZQT",
+    "name": "Garud Headed Brass Pooja Bell",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 2,
+    "id": "brass-bell-nandi",
+    "sku": "LSTGBLHQNPC5R8PHYGHOZSCVW",
+    "name": "Nandi Headed Brass Pooja Bell",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 3,
+    "id": "brass-bell-simple",
+    "sku": "LSTGBLHQNPC5R8PHYGHOZSCVW",
+    "name": "Traditional Brass Pooja Bell",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 4,
+    "id": "brass-bell-carved",
+    "sku": "LSTGBLHRP68KDBY8WVW4NOEGQ",
+    "name": "Brass Ganesh Ghanti",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 5,
+    "id": "brass-puja-thali-set",
+    "sku": "LSTDIYHRPRGJTJKN89UY9C9HN",
+    "name": "Pure Brass Pooja Thali",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 6,
+    "id": "brass-aarti-kapoor-diya",
+    "sku": "LSTDIYHQHBZW7UFVGT7YQUCGZ",
+    "name": "Panchmukhi Aarti Diya",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 7,
+    "id": "brass-akhand-jyot-deepak",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6",
+    "name": "Brass Akhand Jyot Diya with Protective Cover",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 8,
+    "id": "brass-cup-jyot-diya",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6",
+    "name": "Brass Akhand Jyot Deepak",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 9,
+    "id": "brass-kamandal-holy-water-pot",
+    "sku": "LSTIHRHRZA5YT5RFUUZSI9UZD",
+    "name": "Brass Kamandal with Lid",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 10,
+    "id": "brass-trishul-with-damru",
+    "sku": "LSTSHIHQNJ3YCJJMFHA7DNO6H",
+    "name": "Brass Trishul with Damru & Stand",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 11,
+    "id": "brass-trishul-standing-emblem",
+    "sku": "LSTSHIHQNJ3YCJJMFHA7DNO6H",
+    "name": "Brass Trishul with Stand",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 12,
+    "id": "brass-gomukhi-shringi-abhishekam",
+    "sku": "LSTDIYHRPRGJTJKN89UY9C9HN",
+    "name": "Shraviko Gomukhi Patra",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 13,
+    "id": "brass-singhasan-deity-throne",
+    "sku": "LSTSHIHQPNSFZJBFWB5MZA3PJ",
+    "name": "Shraviko Brass Singhasan",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 14,
+    "id": "brass-ladoo-gopal-statue",
+    "sku": "LSTSHIHQPN8HYXNYKZEPV2WRP",
+    "name": "Shraviko Laddu Gopal Idol",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 15,
+    "id": "brass-kalash-pooja-vessel",
+    "sku": "LSTKALHQMJEMZJZ8R4U96KVCO",
+    "name": "Shraviko Pure Brass Kalash",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 16,
+    "id": "brass-design-thali-set",
+    "sku": "LSTPJTHQMSYGDG679QC5DEFCW",
+    "name": "Brass Peacock Pooja Thali",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 17,
+    "id": "copper-panchpatra-pali-set",
+    "sku": "LSTKALHQP3QFWY3JGNFW5KWBK",
+    "name": "Pure Copper Panchpatra Udharini Set",
+    "categoryLabel": "Copper Articles",
+    "hsn": "74181010",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 18,
+    "id": "copper-puja-thali-set",
+    "sku": "LSTPJTHQZNFMMXHN2FTTPJQVH",
+    "name": "Pure Copper Pooja Thali",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 19,
+    "id": "copper-hawan-kund-pyre",
+    "sku": "N/A",
+    "name": "Shraviko Pure Copper Hawan Kund with Dual Handles",
+    "categoryLabel": "Copper Articles",
+    "hsn": "74181010",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 20,
+    "id": "copper-kalash-pooja-vessel",
+    "sku": "LSTKALHQP3QFWY3JGNFW5KWBK",
+    "name": "Pure Copper Kalash",
+    "categoryLabel": "Copper Articles",
+    "hsn": "74181010",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 21,
+    "id": "vastu-ganesh-siddha-yantra",
+    "sku": "LSTYNTHQNYMGYBF8Q7BNBTRQT",
+    "name": "Ganesh Yantra",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 22,
+    "id": "vastu-kuber-dhan-prapti-yantra",
+    "sku": "LSTYNTHQZFAGZJZWAYPWGTBC1",
+    "name": "Kuber Yantra",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 23,
+    "id": "vastu-laxmi-siddha-yantra",
+    "sku": "LSTYNTHQZFAFG36WGSRPCGHYU",
+    "name": "Lakshmi Kuber Yantra",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 24,
+    "id": "vastu-shani-siddha-yantra",
+    "sku": "LSTYNTHQZFAJXWENNVT6YOJTI",
+    "name": "Shree Shani Yantra",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 25,
+    "id": "vastu-crystal-glass-yantra",
+    "sku": "LSTSHIHQPMR2YKH36HUCGUGFJ",
+    "name": "Shree Yantra Cone Meru",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 26,
+    "id": "vastu-brass-pyramid-multitier",
+    "sku": "LSTSHIHQNKSUSYFQVQRA8B6QX",
+    "name": "Shraviko Vastu Energy",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 27,
+    "id": "vastu-crystal-glass-turtle",
+    "sku": "LSTSHIHQMCVJKCZEGXUCTML92",
+    "name": "Crystal Turtle with Glass Plate",
+    "categoryLabel": "Vastu & Crystal Articles",
+    "hsn": "70189010",
+    "taxRate": "18%",
+    "taxCode": "GST_18"
+  },
+  {
+    "srNo": 28,
+    "id": "brass-kamdhenu-cow-statue",
+    "sku": "N/A",
+    "name": "Shraviko Brass Kamdhenu Cow with Calf Idol",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 29,
+    "id": "brass-ganesh-ji-statue",
+    "sku": "LSTSHIHQPPHJJFEZBG7FKKKYW",
+    "name": "Lord Ganesha Idol",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 30,
+    "id": "brass-radha-krishna-statue",
+    "sku": "LSTSHIHQPPQYTMXANFWMKEOC5",
+    "name": "Radha Krishna Idol",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 31,
+    "id": "vastu-crystal-glass-shivling",
+    "sku": "LSTSHIHQMCDBHYUFBHESVJAQG",
+    "name": "Sphatik Shivling",
+    "categoryLabel": "Vastu & Crystal Articles",
+    "hsn": "70189010",
+    "taxRate": "18%",
+    "taxCode": "GST_18"
+  },
+  {
+    "srNo": 32,
+    "id": "mandir-rudraksh-mala",
+    "sku": "LSTNKCHQZZY7ZZZD7RENCFUKH",
+    "name": "Shraviko Rudraksha Mala",
+    "categoryLabel": "Mandir Essentials (Malas)",
+    "hsn": "71179090",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 33,
+    "id": "mandir-sphatik-mala",
+    "sku": "LSTNKCHQZQFGMKGZQKTPSIYBN",
+    "name": "Shraviko Sphatik Mala",
+    "categoryLabel": "Mandir Essentials (Malas)",
+    "hsn": "71161000",
+    "taxRate": "3%",
+    "taxCode": "GST_3"
+  },
+  {
+    "srNo": 34,
+    "id": "mandir-tulsi-mala",
+    "sku": "LSTNKCHQMGCZU6GHWZ3FVFLWG",
+    "name": "Shraviko Tulsi Mala",
+    "categoryLabel": "Mandir Essentials (Malas)",
+    "hsn": "71179090",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 35,
+    "id": "mandir-vaijanti-mala",
+    "sku": "LSTNKCHQZQFGMKGZQKTPSIYBN",
+    "name": "Shraviko Vaijanti Mala",
+    "categoryLabel": "Mandir Essentials (Malas)",
+    "hsn": "71179090",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 36,
+    "id": "mandir-karungali-mala",
+    "sku": "LSTNKCHQZQFGMKGZQKTPSIYBN",
+    "name": "Shraviko Karungali Mala",
+    "categoryLabel": "Mandir Essentials (Malas)",
+    "hsn": "71179090",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 37,
+    "id": "mandir-lal-chandan",
+    "sku": "LSTHAIHRCWGVET3FS3EKGMV3K",
+    "name": "Pure Lal Chandan / Rakta Chandan Powder",
+    "categoryLabel": "Mandir Essentials (Pooja Ingredients)",
+    "hsn": "33074900",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 38,
+    "id": "mandir-pure-camphor",
+    "sku": "LSTHAIHRCXNRSHJF9UQPD5ACU",
+    "name": "Pure Shuddh Camphor Tablets",
+    "categoryLabel": "Mandir Essentials (Camphor)",
+    "hsn": "29142100",
+    "taxRate": "18%",
+    "taxCode": "GST_18"
+  },
+  {
+    "srNo": 39,
+    "id": "mandir-bhimseni-kapoor",
+    "sku": "N/A",
+    "name": "Shraviko Organic Bhimseni Kapoor (Natural Crystal Camphor)",
+    "categoryLabel": "Mandir Essentials (Camphor)",
+    "hsn": "29142100",
+    "taxRate": "18%",
+    "taxCode": "GST_18"
+  },
+  {
+    "srNo": 40,
+    "id": "mandir-safed-chandan",
+    "sku": "LSTHAIHRCYZX6YPSPTGUZ0QB4",
+    "name": "Pure Safed Chandan Powder",
+    "categoryLabel": "Mandir Essentials (Pooja Ingredients)",
+    "hsn": "33074900",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 41,
+    "id": "wooden-chowki-carved-01",
+    "sku": "LSTCKIHQM9PNR5VXYJ3T4GMXE",
+    "name": "Shraviko Pooja Chowki",
+    "categoryLabel": "Wooden Articles",
+    "hsn": "44219990",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 42,
+    "id": "wooden-chowki-large-15x15",
+    "sku": "LSTCKIHQM9PNR5VXYJ3T4GMXE",
+    "name": "Shraviko 15×15\" Large Bajot",
+    "categoryLabel": "Wooden Articles",
+    "hsn": "44219990",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 43,
+    "id": "brass-dhoopdani-burner",
+    "sku": "LSTIHRHQZWFKHDPMZMRRCEDS2",
+    "name": "Shraviko Dhoop Dani",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 44,
+    "id": "mandir-mala-counter-brass",
+    "sku": "LSTTYCHRYRBFM9WB43ALSVO8S",
+    "name": "Shraviko Digital Counter",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 45,
+    "id": "mandir-pooja-box-chest",
+    "sku": "LSTPJTHQMG8N9NQZT7N8BN4MB",
+    "name": "Shraviko 7-in-1 Pooja Box",
+    "categoryLabel": "Wooden Articles",
+    "hsn": "44219990",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 46,
+    "id": "mandir-wooden-damru-shiva",
+    "sku": "LSTIHRHRTTDVNETRKKGMVZWU5",
+    "name": "Wooden Damru / Damaru",
+    "categoryLabel": "Wooden Articles",
+    "hsn": "44219990",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 47,
+    "id": "essentials-brass-chawar-whisk",
+    "sku": "N/A",
+    "name": "Shraviko Premium Temple Chawar Sahib",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 48,
+    "id": "mandir-jap-bag-gaumukhi",
+    "sku": "N/A",
+    "name": "Shraviko Pure Cotton Gomukhi Japa Mala Bag",
+    "categoryLabel": "Mandir Essentials",
+    "hsn": "63079090",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 49,
+    "id": "mandir-royal-velvet-asan-mat",
+    "sku": "N/A",
+    "name": "Shraviko Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3",
+    "categoryLabel": "Mandir Essentials",
+    "hsn": "63079090",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 50,
+    "id": "mandir-dakshinavarti-shankh",
+    "sku": "N/A",
+    "name": "Shraviko Natural Dakshinavarti Shankh",
+    "categoryLabel": "Mandir Essentials (Shankh)",
+    "hsn": "05080010",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 51,
+    "id": "mandir-vamavarti-shankh",
+    "sku": "N/A",
+    "name": "Shraviko Vamavarti Blowing Shankh",
+    "categoryLabel": "Mandir Essentials (Shankh)",
+    "hsn": "05080010",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 52,
+    "id": "yantra-kaal-sarp",
+    "sku": "LSTYNTHR7GEDK7HD63GJLI6RY",
+    "name": "Kaal Sarp Yog Dosh Nivaran Yantra",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 53,
+    "id": "yantra-mangal",
+    "sku": "LSTYNTHR7F4DH5KYBUEHRXXRY",
+    "name": "Mangal Yantra",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 54,
+    "id": "yantra-sarv-karya",
+    "sku": "LSTYNTHR7G4U3HZPWS8XXLYSE",
+    "name": "Sarv Karya Siddhi Yantra",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 55,
+    "id": "yantra-baglamukhi",
+    "sku": "LSTYNTHR7NQVXFATDQHIDXLLD",
+    "name": "Shri Baglamukhi Mahayantra",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 56,
+    "id": "mandir-cow-dung-cake",
+    "sku": "LSTHAIHRCYN7NTJRWJGIEY7GH",
+    "name": "Desi Cow Dung Cakes (Gau Upla)",
+    "categoryLabel": "Mandir Essentials",
+    "hsn": "31010099",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 57,
+    "id": "mandir-hawan-samagri",
+    "sku": "N/A",
+    "name": "Shraviko Sacred Ayurvedic Hawan Samagri (51 Herbs Blend)",
+    "categoryLabel": "Mandir Essentials (Pooja Ingredients)",
+    "hsn": "33074900",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 58,
+    "id": "yantra-maha-mrityunjay",
+    "sku": "LSTYNTHR7ERMWHJPTETDDLPVF",
+    "name": "Shri Mahamrityunjay Yantra",
+    "categoryLabel": "Vastu & Yantras",
+    "hsn": "83062900",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 59,
+    "id": "mandir-pure-kumkum",
+    "sku": "LSTHAIHRCX2XKKZHGQFM3NRHH",
+    "name": "Shraviko Pure Kumkum",
+    "categoryLabel": "Mandir Essentials (Pooja Ingredients)",
+    "hsn": "33074900",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 60,
+    "id": "mandir-pure-loban",
+    "sku": "LSTIHRHRTTDVNETRKKGMVZWU5",
+    "name": "Shraviko Natural Loban",
+    "categoryLabel": "Mandir Essentials (Pooja Ingredients)",
+    "hsn": "33074900",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 61,
+    "id": "shraviko-bakhoor-incense-sticks",
+    "sku": "LSTINSHRBZ4TVFKWPHHC0LVFJ",
+    "name": "Shraviko Arabic Aroma",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 62,
+    "id": "shraviko-kesar-incense-sticks",
+    "sku": "LSTINSHRCYBJESJA6PTW707VD",
+    "name": "Shraviko Saffron Fragrance",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 63,
+    "id": "shraviko-lavender-incense-sticks",
+    "sku": "LSTINSHRBWYRUUKVTSK0WMEMN",
+    "name": "Shraviko Soothing Aroma",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 64,
+    "id": "shraviko-oudh-incense-sticks",
+    "sku": "LSTINSHRBZWTBPZWXG50SVHYX",
+    "name": "Shraviko Royal Fragrance",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 65,
+    "id": "shraviko-chandan-dhoop-cups",
+    "sku": "LSTDCEHRBUMYDB8WHDGNSVPEA",
+    "name": "Shraviko Pure Sandalwood",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 66,
+    "id": "shraviko-guggul-dhoop-cups",
+    "sku": "LSTDCEHRBFZPFZVFCZ49W7HTC",
+    "name": "Shraviko Sacred Guggul",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 67,
+    "id": "shraviko-rose-dhoop-cups",
+    "sku": "LSTDCEHRBVF8ZUZHXSYL8EPZC",
+    "name": "Shraviko Fresh Rose",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 68,
+    "id": "shraviko-sandalwood-incense-sticks",
+    "sku": "LSTINSHR8U5GNYMJZ9XFGQFPP",
+    "name": "Shraviko Pure Chandan",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 69,
+    "id": "shraviko-rose-incense-sticks",
+    "sku": "LSTINSHR8SNEVKFPXXEVBHD6O",
+    "name": "Shraviko Desi Gulab",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 70,
+    "id": "shraviko-chandan-camphor-fly-cone",
+    "sku": "LSTAIRHRE2GHC3H9VCQ4OAFDZ",
+    "name": "Shraviko Camphor & Chandan",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 71,
+    "id": "shraviko-lavender-camphor-fly-cone",
+    "sku": "LSTAIRHRE3ZZZZV3YR84WITFH",
+    "name": "Shraviko Camphor & Lavender",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 72,
+    "id": "shraviko-brass-dhoop-dani",
+    "sku": "LSTIHRHRTTDVNETRKKGMVZWU5",
+    "name": "Shraviko Solid Brass",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 73,
+    "id": "shraviko-brass-handle-dhoop",
+    "sku": "LSTIHRHRTTDVNETRKKGMVZWU5",
+    "name": "Shraviko Handled Burner",
+    "categoryLabel": "Incense & Dhoop",
+    "hsn": "33074100",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 74,
+    "id": "shraviko-brass-bhog-thali",
+    "sku": "LSTPJTHRHK7HZPXUNJKVRU3HE",
+    "name": "Shraviko Bhog Thali Set",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 75,
+    "id": "shraviko-brass-puja-bell",
+    "sku": "LSTGBLHRTQZGZKT8ZJ3AKF6JS",
+    "name": "Shraviko Classic Ghanti",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 76,
+    "id": "shraviko-spiritual-engraved-bell",
+    "sku": "LSTGBLHRTQZGZKT8ZJ3AKF6JS",
+    "name": "Shraviko Carved Bell",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 77,
+    "id": "shraviko-brass-diya-set5",
+    "sku": "LSTDIYHRPQXT93U8P5AZCXCQK",
+    "name": "Shraviko Diya Set",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 78,
+    "id": "shraviko-carved-brass-diya",
+    "sku": "LSTDIYHQHBZW7UFVGT7YQUCGZ",
+    "name": "Shraviko Carved Diya",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 79,
+    "id": "shraviko-brass-cup-deepak",
+    "sku": "LSTDIYHQHBZW7UFVGT7YQUCGZ",
+    "name": "Shraviko Cup Diya",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 80,
+    "id": "shraviko-peacock-brass-stand-diya",
+    "sku": "LSTDIYHRPRGJTJKN89UY9C9HN",
+    "name": "Shraviko Peacock Finial",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 81,
+    "id": "shraviko-spire-brass-stand-diya",
+    "sku": "LSTDIYHRPRGJTJKN89UY9C9HN",
+    "name": "Shraviko Spire Finial",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 82,
+    "id": "shraviko-stainless-steel-dibbi",
+    "sku": "N/A",
+    "name": "Shraviko Pure Stainless Steel Puja Container Dibbi",
+    "categoryLabel": "Mandir Essentials",
+    "hsn": "73239390",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 83,
+    "id": "shraviko-brass-footprints",
+    "sku": "N/A",
+    "name": "Shraviko Sacred Brass Lakshmi Charan Paduka Footprints",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 84,
+    "id": "shraviko-silver-footprints",
+    "sku": "N/A",
+    "name": "Shraviko Pure Silver Plated Goddess Lakshmi Charan Paduka",
+    "categoryLabel": "Vastu Articles",
+    "hsn": "71179090",
+    "taxRate": "12%",
+    "taxCode": "GST_12"
+  },
+  {
+    "srNo": 85,
+    "id": "shraviko-diamond-akhand-jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6",
+    "name": "Shraviko Diamond Cut Glass",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 86,
+    "id": "shraviko-crystal-glass-akhand-jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6",
+    "name": "Shraviko Akhand Jyot",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 87,
+    "id": "shraviko-lotus-brass-akhand-jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6",
+    "name": "Shraviko Lotus Design",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 88,
+    "id": "shraviko-om-top-glass-akhand-jyot",
+    "sku": "LSTDIYHRUFUNSD4K9RN61DZC6",
+    "name": "Shraviko OM Engraved",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  },
+  {
+    "srNo": 89,
+    "id": "shraviko-brass-glass-akhand-jyot-cover",
+    "sku": "N/A",
+    "name": "Shraviko Pure Brass Akhand Jyot Deepak with Protective Glass Cover",
+    "categoryLabel": "Brass Articles",
+    "hsn": "74181021",
+    "taxRate": "5%",
+    "taxCode": "GST_5"
+  }
+]
