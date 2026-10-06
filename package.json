@@ -12,6 +12,7 @@
     "start:backend": "npm --prefix backend start"
   },
   "dependencies": {
+    "sharp": "^0.35.5",
     "xlsx": "^0.18.5"
   }
 }

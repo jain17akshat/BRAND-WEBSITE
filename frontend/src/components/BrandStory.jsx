@@ -18,7 +18,7 @@ export const BrandStory = ({ onDiscover }) => {
             {/* Main Primary Image */}
             <div className="layered-composition-main img-reveal-curtain overflow-hidden rounded-xl shadow-md border border-[#EAE0CD]" style={{ aspectRatio: '4/3' }}>
               <SafeImage
-                src="/brasshero.webp"
+                src="/Outside images/brasshero.webp"
                 alt="Shraviko — Handcrafted in India"
                 fallbackSrc="/assets/brasscover.webp"
                 containerClassName="w-full h-full"

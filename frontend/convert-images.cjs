@@ -57,6 +57,8 @@ const TARGET_IMAGES = [
   { src: 'public/mandiressentials.png',          quality: 82 },
   { src: 'public/mandirphone view.png',          quality: 82 },
   { src: 'public/mandiressentialmobileview.png', quality: 82 },
+  { src: 'public/Pooja esentials.png',           quality: 82 },
+  { src: 'public/pooja essentials.png',          quality: 82 },
   { src: 'public/assets/brasscover.png',         quality: 82 },
   { src: 'public/assets/Copper cover.png',       quality: 82 },
   { src: 'public/assets/Incense cover.jpg',      quality: 82 },

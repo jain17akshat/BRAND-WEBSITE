@@ -4,19 +4,19 @@ import { SafeImage } from './SafeImage';
 export const VisualGallery = () => {
   const images = [
     {
-      src: '/brasshero.webp',
+      src: '/Outside images/brasshero.webp',
       alt: 'Brass Craftsmanship',
       fallback: '/assets/brasscover.webp',
       position: 'center 60%',
     },
     {
-      src: '/copperhero.webp',
+      src: '/Outside images/copperhero.webp',
       alt: 'Pure Copper Vessels',
       fallback: '/assets/Copper cover.webp',
       position: 'center 40%',
     },
     {
-      src: '/mandiressentials.webp',
+      src: '/pooja essentials.webp',
       alt: 'Mandir Essentials Setup',
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       position: 'center 35%',

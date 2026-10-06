@@ -19,14 +19,28 @@ export const IncenseShowcase = () => {
       
       {/* High-Res Background Image Layer */}
       <div className="absolute inset-0 w-full h-full">
-        <SafeImage
-          src="/assets/Incense cover.jpg"
-          alt="Sacred Incense & Natural Dhoop"
-          priority={true}
-          dark={true}
-          containerClassName="w-full h-full"
-          className="w-full h-full object-cover object-[center_65%] opacity-35 hero-image-crisp scale-105"
-        />
+        {/* Mobile View Image */}
+        <div className="block sm:hidden absolute inset-0 w-full h-full">
+          <SafeImage
+            src="/Outside images/incnesestickmobile.webp"
+            alt="Sacred Incense & Natural Dhoop"
+            priority={true}
+            dark={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-center opacity-35 hero-image-crisp scale-105"
+          />
+        </div>
+        {/* Desktop View Image */}
+        <div className="hidden sm:block absolute inset-0 w-full h-full">
+          <SafeImage
+            src="/Outside images/incenseimagedesktop.webp"
+            alt="Sacred Incense & Natural Dhoop"
+            priority={true}
+            dark={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-[center_65%] opacity-35 hero-image-crisp scale-105"
+          />
+        </div>
       </div>
 
       {/* Dark Ambient Glass Overlay */}

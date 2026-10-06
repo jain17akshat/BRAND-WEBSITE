@@ -140,7 +140,7 @@ export function AboutUsPage({ onBackToHome }) {
             <div ref={addRef} className="about-hidden relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#EAE0CD]" style={{ aspectRatio: '4/3' }}>
                 <img
-                  src="/brasshero.webp"
+                  src="/Outside images/brasshero.webp"
                   alt="Shraviko Sacred Craftsmanship"
                   onError={e => { e.target.src = '/assets/brasscover.webp'; }}
                   className="absolute inset-0 w-full h-full object-cover"

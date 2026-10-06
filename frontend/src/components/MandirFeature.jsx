@@ -42,9 +42,9 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
             {/* Mobile View Image */}
             <div className="block sm:hidden absolute inset-0 w-full h-full">
               <SafeImage
-                src="/mandirphone view.webp"
+                src="/Pooja esentials.webp"
                 alt="Mandir Essentials Collection"
-                fallbackSrc="/mandiressentials.webp"
+                fallbackSrc="/pooja essentials.webp"
                 dark={true}
                 containerClassName="w-full h-full"
                 className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
@@ -53,9 +53,9 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
             {/* Desktop View Image */}
             <div className="hidden sm:block absolute inset-0 w-full h-full">
               <SafeImage
-                src="/mandiressentials.webp"
+                src="/pooja essentials.webp"
                 alt="Mandir Essentials Collection"
-                fallbackSrc="/mandirphone view.webp"
+                fallbackSrc="/Pooja esentials.webp"
                 dark={true}
                 containerClassName="w-full h-full"
                 className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"

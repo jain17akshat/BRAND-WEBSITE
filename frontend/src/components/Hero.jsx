@@ -19,11 +19,11 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
   const heroSlides = [
     {
       id: 'hero-launch',
-      mobileVideo: '/Logo_animation_for_luxury_brand_202609091407.mp4',
-      desktopVideo: '/Logo_animation_on_ivory_paper_202609091440.mp4',
-      mobileImage: '/mobilevideo.webp',
-      desktopImage: '/desktopvideo.webp',
-      fallback: '/desktopvideo.webp',
+      mobileVideo: '/Outside images/Logo_animation_for_luxury_brand_202609091407.mp4',
+      desktopVideo: '/Outside images/Logo_animation_on_ivory_paper_202609091440.mp4',
+      mobileImage: '/Outside images/mobilevideo.webp',
+      desktopImage: '/Outside images/desktopvideo.webp',
+      fallback: '/Outside images/desktopvideo.webp',
       mobilePosition: 'center top',
       desktopPosition: 'center center',
       duration: 12000, // Longer for video playback
@@ -93,8 +93,8 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
     },
     {
       id: 'hero-copper',
-      mobileImage: '/coppermobileview.webp',
-      desktopImage: '/copperhero.webp',
+      mobileImage: '/Outside images/coppermobileview.webp',
+      desktopImage: '/Outside images/copperhero.webp',
       fallback: '/assets/Copper cover.webp',
       mobilePosition: 'center center',
       desktopPosition: 'center center',
@@ -102,8 +102,8 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
     },
     {
       id: 'hero-mandir',
-      mobileImage: '/mandirphone view.webp',
-      desktopImage: '/mandiressentials.webp',
+      mobileImage: '/Pooja esentials.webp',
+      desktopImage: '/pooja essentials.webp',
       fallback: '/assets/Rudraksh Mala/rudraksh mala 1.png',
       mobilePosition: 'center 45%',
       desktopPosition: 'center 45%',
@@ -245,7 +245,11 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
                 muted
                 playsInline
                 autoPlay
-                preload="metadata"
+                loop
+                preload="auto"
+                onLoadedData={(e) => {
+                  if (isActive) e.currentTarget.play().catch(() => {});
+                }}
                 className="
                   absolute inset-0
                   h-full w-full
@@ -265,7 +269,11 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
                 muted
                 playsInline
                 autoPlay
-                preload="metadata"
+                loop
+                preload="auto"
+                onLoadedData={(e) => {
+                  if (isActive) e.currentTarget.play().catch(() => {});
+                }}
                 className="
                   absolute inset-0
                   h-full w-full

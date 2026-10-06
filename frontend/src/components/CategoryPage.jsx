@@ -120,6 +120,14 @@ export const CategoryPage = ({
       badge: 'Full Collection'
     },
     {
+      id: 'incense-sticks',
+      title: 'Premium Incense Sticks',
+      subtitle: 'Bakhoor, Kesar, Lavender & Oudh',
+      subcatKey: 'Incense Sticks',
+      image: '/assets/Bakhoor sticks/Bakhoor4.webp',
+      badge: 'Flora Sticks'
+    },
+    {
       id: 'no-bamboo',
       title: 'Bamboo-Free Agarbatti',
       subtitle: '50, 80 & 100 Sticks',
@@ -260,23 +268,6 @@ export const CategoryPage = ({
     }
   ] : [];
 
-  if (category.id === 'incense') {
-    return (
-      <div className="min-h-screen bg-[#1C1715]">
-        <IncenseShowcase />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-center relative z-20">
-          <button
-            onClick={onBackToHome}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs font-bold uppercase tracking-wider rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] shadow-md transition-all active:scale-95 group"
-          >
-            <ArrowLeft className="w-4 h-4 text-[#E5C378] group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Home</span>
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-[#FBF9F5] pb-24 text-[#2C2623]">
 
@@ -294,7 +285,7 @@ export const CategoryPage = ({
         {/* Mobile Image — shown below sm breakpoint (< 640px) */}
         <div className="block sm:hidden absolute inset-0 h-full w-full">
           <SafeImage
-            src={category.mobileImage || category.image || '/brasshero.webp'}
+            src={category.mobileImage || category.image || '/Outside images/brasshero.webp'}
             alt={category.title || 'Category Collection'}
             fallbackSrc={category.fallbackImage || '/assets/brasscover.webp'}
             priority={true}
@@ -308,7 +299,7 @@ export const CategoryPage = ({
         {/* Desktop Image — shown from sm breakpoint (≥ 640px) */}
         <div className="hidden sm:block absolute inset-0 h-full w-full">
           <SafeImage
-            src={category.image || '/brasshero.webp'}
+            src={category.image || '/Outside images/brasshero.webp'}
             alt={category.title || 'Category Collection'}
             fallbackSrc={category.fallbackImage || '/assets/brasscover.webp'}
             priority={true}
@@ -349,10 +340,7 @@ export const CategoryPage = ({
       </div>
 
       {/* Main Content Area */}
-      {category.id === 'incense' ? (
-        <IncenseShowcase />
-      ) : (
-        <div id="category-products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <div id="category-products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           {/* Subcategory Visual Filter Pills */}
           {subcategoryVisualCards && subcategoryVisualCards.length > 0 && (
             <div className="mb-6 flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">

@@ -152,7 +152,7 @@ export const EnergyStonesSection = () => {
           {/* Mobile View Image */}
           <div className="block sm:hidden absolute inset-0 w-full h-full">
             <SafeImage
-              src="/energystones mobile view.webp"
+              src="/Outside images/energystones mobile view.webp"
               alt="Energy Stones & Crystal Bracelets"
               dark={true}
               containerClassName="w-full h-full"
@@ -162,7 +162,7 @@ export const EnergyStonesSection = () => {
           {/* Desktop View Image */}
           <div className="hidden sm:block absolute inset-0 w-full h-full">
             <SafeImage
-              src="/braclet desktopview.webp"
+              src="/Outside images/braclet desktopview.webp"
               alt="Energy Stones & Crystal Bracelets"
               dark={true}
               containerClassName="w-full h-full"

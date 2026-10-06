@@ -1,14 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 
-const file = path.join(__dirname, '..', 'frontend', 'src', 'data', 'products.js');
-const content = fs.readFileSync(file, 'utf8');
+const productsFilePath = path.join(__dirname, '..', 'frontend', 'src', 'data', 'products.js');
+let content = fs.readFileSync(productsFilePath, 'utf8');
+
+// Strip 'export ' to test in CommonJS Function context
+content = content.replace(/export const/g, 'const');
 
 try {
-  const testCode = content.replace(/export const/g, 'const');
-  new Function(testCode)();
-  console.log("SYNTAX VALIDATION PASSED! No errors in products.js");
+  new Function(content);
+  console.log('SYNTAX CHECK PASSED! products.js is syntactically valid JS.');
 } catch (e) {
-  console.error("SYNTAX ERROR:", e.message);
-  console.error("Stack:", e.stack);
+  console.error('SYNTAX CHECK FAILED!', e.message);
 }
