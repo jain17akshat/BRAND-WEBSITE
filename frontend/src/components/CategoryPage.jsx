@@ -4,6 +4,7 @@ import { IncenseShowcase } from './IncenseShowcase';
 import { CategoryPageSkeleton } from './Skeleton';
 import { SafeImage } from './SafeImage';
 import { ProductImage } from './ProductImage';
+import { IncenseWisdomSection } from './IncenseWisdomSection';
 
 export const CategoryPage = ({
   category,
@@ -44,6 +45,9 @@ export const CategoryPage = ({
   const filteredProducts = selectedSubcategory === 'all'
     ? categoryProducts
     : categoryProducts.filter((p) => p.subcategory === selectedSubcategory ||
+        (selectedSubcategory === 'Incense Sticks' && (p.subcategory === 'Incense Sticks' || p.name?.toLowerCase().includes('sticks') || (p.artType === 'incense' && !p.id?.includes('camphor') && !p.subcategory?.includes('Cup')))) ||
+        (selectedSubcategory === 'Dhoop Cups' && (p.subcategory?.includes('Cup') || p.subcategory?.includes('Dhoop') || p.subcategory?.includes('Cone') || (p.artType === 'dhoop' && !p.id?.includes('camphor')))) ||
+        (selectedSubcategory === 'Camphor Cones' && (p.subcategory?.includes('Camphor') || p.id?.includes('camphor') || p.name?.toLowerCase().includes('camphor'))) ||
         (selectedSubcategory === 'brass' && p.category === 'brass') ||
         (selectedSubcategory === 'copper' && p.category === 'copper') ||
         (selectedSubcategory === 'Puja Accessories' && (p.subcategory === 'Puja Accessories' || p.artType === 'diffuser' || p.id?.includes('dhoopdani'))) ||
@@ -62,6 +66,44 @@ export const CategoryPage = ({
       if (sortBy === 'price-low') return a.price - b.price;
       if (sortBy === 'price-high') return b.price - a.price;
       if (sortBy === 'rating') return b.rating - a.rating;
+
+      // Featured default order for Incense category:
+      // Group 1: All Incense Sticks
+      // Group 2: Dhoop Cups & Dhoop Cones
+      // Group 3: Camphor Cones
+      if (category.id === 'incense') {
+        const getIncenseGroupRank = (p) => {
+          if (
+            p.subcategory === 'Incense Sticks' ||
+            p.name?.toLowerCase().includes('sticks') ||
+            p.id?.includes('sticks') ||
+            (p.artType === 'incense' && !p.id?.includes('camphor') && !p.subcategory?.includes('Cup') && !p.subcategory?.includes('Cone'))
+          ) {
+            return 1;
+          }
+          if (
+            p.subcategory?.includes('Cup') ||
+            p.subcategory?.includes('Dhoop') ||
+            p.subcategory?.includes('Cone') ||
+            p.name?.toLowerCase().includes('dhoop') ||
+            (p.artType === 'dhoop' && !p.id?.includes('camphor'))
+          ) {
+            return 2;
+          }
+          if (
+            p.subcategory?.includes('Camphor') ||
+            p.name?.toLowerCase().includes('camphor') ||
+            p.id?.includes('camphor')
+          ) {
+            return 3;
+          }
+          return 4;
+        };
+
+        const rankA = getIncenseGroupRank(a);
+        const rankB = getIncenseGroupRank(b);
+        if (rankA !== rankB) return rankA - rankB;
+      }
 
       // Featured default order: For Vastu category, show Yantras first then other products
       if (category.id === 'vastu') {
@@ -113,59 +155,35 @@ export const CategoryPage = ({
   ] : category.id === 'incense' ? [
     {
       id: 'all',
-      title: 'All Varieties',
-      subtitle: '16 Total Pack Options',
+      title: 'All Incense & Dhoop',
+      subtitle: 'Complete Sensory Range',
       subcatKey: 'all',
-      image: '/assets/Incense cover.jpg',
+      image: '/Outside images/incenseimagedesktop.webp',
       badge: 'Full Collection'
     },
     {
       id: 'incense-sticks',
-      title: 'Premium Incense Sticks',
-      subtitle: 'Bakhoor, Kesar, Lavender & Oudh',
+      title: '1. Incense Sticks',
+      subtitle: 'Bakhoor, Sandalwood, Kesar, Lavender, Oudh & Rose',
       subcatKey: 'Incense Sticks',
-      image: '/assets/Bakhoor sticks/Bakhoor4.webp',
-      badge: 'Flora Sticks'
+      image: '/assets/Bakhoor sticks/bakhoormain.webp',
+      badge: 'Charcoal-Free'
     },
     {
-      id: 'no-bamboo',
-      title: 'Bamboo-Free Agarbatti',
-      subtitle: '50, 80 & 100 Sticks',
-      subcatKey: 'Agarbatti (Without Bamboo)',
-      image: '/assets/Incense cover.jpg',
-      badge: '100% Organic'
-    },
-    {
-      id: 'with-bamboo',
-      title: 'Traditional Agarbatti',
-      subtitle: '50, 80 & 100 Sticks',
-      subcatKey: 'Agarbatti (With Bamboo)',
-      image: '/assets/Incense cover.jpg',
-      badge: 'Classic Aroma'
-    },
-    {
-      id: 'dhoop-cones',
-      title: 'Natural Dhoop Cones',
-      subtitle: '12, 24, 40, 50, 100 & 200 Cones',
-      subcatKey: 'Dhoop Cones',
-      image: '/assets/Incense cover.jpg',
-      badge: '6 Pack Sizes'
-    },
-    {
-      id: 'dhoop-sticks',
-      title: 'Charcoal-Free Dhoop Sticks',
-      subtitle: '20, 50 & 100 Sticks',
-      subcatKey: 'Dhoop Sticks',
-      image: '/assets/Incense cover.jpg',
+      id: 'dhoop-cups',
+      title: '2. Dhoop Cups & Cones',
+      subtitle: 'Organic Chandan, Guggul & Rose Cups',
+      subcatKey: 'Dhoop Cups',
+      image: '/assets/Chandan Cup/ChandanCup1.webp',
       badge: 'Natural Resin'
     },
     {
-      id: 'sambrani',
-      title: 'Loban & Sambrani Cups',
-      subtitle: '12, 24 & 48 Cups',
-      subcatKey: 'Sambrani Cups',
-      image: '/assets/Incense cover.jpg',
-      badge: 'Guggal & Ghee'
+      id: 'camphor-cones',
+      title: '3. Camphor Cones',
+      subtitle: 'Chandan & Lavender Kapoor Cones',
+      subcatKey: 'Camphor Cones',
+      image: '/assets/Camphor fly cone \'/flycone1.webp',
+      badge: 'Air Purifying'
     }
   ] : category.id === 'brass' ? [
     {
@@ -426,6 +444,13 @@ export const CategoryPage = ({
               </div>
             )}
           </div>
+
+          {/* Sacred Wisdom & Importance Section for Incense Category */}
+          {category.id === 'incense' && (
+            <div className="mt-16 -mx-4 sm:-mx-6 lg:-mx-8">
+              <IncenseWisdomSection />
+            </div>
+          )}
 
         </div>
       )}

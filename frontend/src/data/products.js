@@ -14,7 +14,7 @@ export const PRODUCTS = [
   // 1. Garuda Headed Brass Bell
   {
     id: 'brass-bell-garuda',
-    name: 'Shraviko Garud Headed Brass Pooja Bell',
+    sku: 'LSTGBLHQNPQZUMQG4DQNHFZQT',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -75,7 +75,7 @@ export const PRODUCTS = [
   // 2. Nandi Headed Brass Bell
   {
     id: 'brass-bell-nandi',
-    name: 'Shraviko Nandi Headed Brass Pooja Bell',
+    sku: 'LSTGBLHQNPC5R8PHYGHOZSCVW',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -137,7 +137,7 @@ export const PRODUCTS = [
   // 3. Simple Traditional Brass Bell
   {
     id: 'brass-bell-simple',
-    name: 'Shraviko Traditional Brass Pooja Bell',
+    sku: 'LSTGBLHQNPC5R8PHYGHOZSCVW',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -200,7 +200,7 @@ export const PRODUCTS = [
   // 4. Brass Ganesh Ghanti
   {
     id: 'brass-bell-carved',
-    name: 'Shraviko Brass Ganesh Ghanti',
+    sku: 'LSTGBLHRP68KDBY8WVW4NOEGQ',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -263,7 +263,7 @@ export const PRODUCTS = [
   // 2. Brass Pooja Thali Set
   {
     id: 'brass-puja-thali-set',
-    name: 'Shraviko Pure Brass Pooja Thali',
+    sku: 'LSTDIYHRPRGJTJKN89UY9C9HN',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Puja Thali',
@@ -331,7 +331,7 @@ export const PRODUCTS = [
   // 4. Brass Kapoor Aarti Diya
   {
     id: 'brass-aarti-kapoor-diya',
-    name: 'Shraviko Pure Brass Panchmukhi Aarti Diya',
+    sku: 'LSTDIYHQHBZW7UFVGT7YQUCGZ',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Aarti & Diyas',
@@ -399,7 +399,7 @@ export const PRODUCTS = [
   // 5. Brass Akhand Jyot Deep
   {
     id: 'brass-akhand-jyot-deepak',
-    name: 'Shraviko Brass Akhand Jyot Diya with Protective Cover',
+    sku: 'LSTDIYHRUFUNSD4K9RN61DZC6',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
@@ -462,7 +462,7 @@ export const PRODUCTS = [
   // 6. Brass Cup Jyot Diya (Brass Akhand Jyot Deepak)
   {
     id: 'brass-cup-jyot-diya',
-    name: 'Shraviko Brass Akhand Jyot Deepak',
+    sku: 'LSTDIYHRUFUNSD4K9RN61DZC6',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
@@ -536,8 +536,7 @@ export const PRODUCTS = [
   // 7. Brass Rishi Kamandal
   {
     id: 'brass-kamandal-holy-water-pot',
-    isComingSoon: true,
-    name: 'Shraviko Brass Kamandal with Lid',
+    sku: 'LSTIHRHRZA5YT5RFUUZSI9UZD',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Ritual Vessels',
@@ -604,7 +603,7 @@ export const PRODUCTS = [
   // 8. Brass Trishul
   {
     id: 'brass-trishul-with-damru',
-    name: 'Shraviko Brass Trishul with Damru & Stand',
+    sku: 'LSTSHIHQNJ3YCJJMFHA7DNO6H',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Symbols & Statues',
@@ -664,7 +663,7 @@ export const PRODUCTS = [
   // 9. Standing Altar Trishul
   {
     id: 'brass-trishul-standing-emblem',
-    name: 'Shraviko Brass Trishul with Stand',
+    sku: 'LSTSHIHQNJ3YCJJMFHA7DNO6H',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Symbols & Statues',
@@ -725,7 +724,7 @@ export const PRODUCTS = [
   // 9. Brass Gomukhi Shringi
   {
     id: 'brass-gomukhi-shringi-abhishekam',
-    name: 'Shraviko Pure Brass Gaumukh Shringi',
+    sku: 'LSTDIYHRPRGJTJKN89UY9C9HN',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Abhishekam Vessels',
@@ -796,7 +795,7 @@ export const PRODUCTS = [
   // 10. Brass Simhasanam Throne
   {
     id: 'brass-singhasan-deity-throne',
-    name: 'Shraviko Brass God Singhasan',
+    sku: 'LSTSHIHQPNSFZJBFWB5MZA3PJ',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Sacred Altar Thrones',
@@ -864,7 +863,7 @@ export const PRODUCTS = [
   // 11. Laddu Gopal Brass Idol
   {
     id: 'brass-ladoo-gopal-statue',
-    name: 'Shraviko Brass Laddu Gopal Idol',
+    sku: 'LSTSHIHQPN8HYXNYKZEPV2WRP',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Idols',
@@ -930,7 +929,7 @@ export const PRODUCTS = [
   // 15B. Brass Kalash Pooja Vessel
   {
     id: 'brass-kalash-pooja-vessel',
-    name: 'Shraviko Brass Pooja Kalash Lota',
+    sku: 'LSTKALHQMJEMZJZ8R4U96KVCO',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Kalash',
@@ -995,7 +994,7 @@ export const PRODUCTS = [
   // 15C. Hand-Engraved Artisanal Brass Design Puja Thali Set
   {
     id: 'brass-design-thali-set',
-    name: 'Shraviko Brass Peacock Pooja Thali',
+    sku: 'LSTPJTHQMSYGDG679QC5DEFCW',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Puja Thali',
@@ -1064,7 +1063,7 @@ export const PRODUCTS = [
   // 13. Copper Panchpatra Set
   {
     id: 'copper-panchpatra-pali-set',
-    name: 'Shraviko Pure Copper Panchpatra Udharini Set with Snake Head Spoon',
+    sku: 'LSTKALHQP3QFWY3JGNFW5KWBK',
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Vessels',
@@ -1133,7 +1132,7 @@ export const PRODUCTS = [
   // 14. Copper Puja Thali Set
   {
     id: 'copper-puja-thali-set',
-    name: 'Shraviko Pure Copper Pooja Thali',
+    sku: 'LSTPJTHQZNFMMXHN2FTTPJQVH',
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Puja Thali',
@@ -1272,7 +1271,7 @@ export const PRODUCTS = [
   // 15C. Copper Kalash Pooja Vessel
   {
     id: 'copper-kalash-pooja-vessel',
-    name: 'Shraviko Pure Copper Kalash',
+    sku: 'LSTKALHQP3QFWY3JGNFW5KWBK',
     category: 'copper',
     categoryName: 'Copper Articles',
     subcategory: 'Copper Kalash',
@@ -1341,7 +1340,7 @@ export const PRODUCTS = [
   // 28. Ganesh Siddha Yantra Frame
   {
     id: 'vastu-ganesh-siddha-yantra',
-    name: 'Shraviko Pure Copper Ganesh Yantra',
+    sku: 'LSTYNTHQNYMGYBF8Q7BNBTRQT',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Yantras',
@@ -1408,7 +1407,7 @@ export const PRODUCTS = [
   // 29. Kuber Dhan Prapti Yantra
   {
     id: 'vastu-kuber-dhan-prapti-yantra',
-    name: 'Shraviko Pure Copper Kuber Yantra',
+    sku: 'LSTYNTHQZFAGZJZWAYPWGTBC1',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Wealth Yantras',
@@ -1478,7 +1477,7 @@ export const PRODUCTS = [
   // 30. Sampoorna Mahalakshmi Siddha Yantra Frame
   {
     id: 'vastu-laxmi-siddha-yantra',
-    name: 'Shraviko Pure Copper Lakshmi Kuber Yantra',
+    sku: 'LSTYNTHQZFAFG36WGSRPCGHYU',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Mahalakshmi Yantras',
@@ -1548,7 +1547,7 @@ export const PRODUCTS = [
   // 31. Shree Shani Yantra
   {
     id: 'vastu-shani-siddha-yantra',
-    name: 'Shraviko Shree Shani Yantra',
+    sku: 'LSTYNTHQZFAJXWENNVT6YOJTI',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Shani Yantras',
@@ -1618,7 +1617,7 @@ export const PRODUCTS = [
   // 32. Crystal Glass Sri Vastu Yantra Plaque
   {
     id: 'vastu-crystal-glass-yantra',
-    name: 'Shraviko Sphatik Shree Yantra Cone',
+    sku: 'LSTSHIHQPMR2YKH36HUCGUGFJ',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Glass Yantras',
@@ -1684,7 +1683,7 @@ export const PRODUCTS = [
   // 33. Vastu Brass Pyramid
   {
     id: 'vastu-brass-pyramid-multitier',
-    name: 'Shraviko Premium Brass Vastu Pyramid',
+    sku: 'LSTSHIHQNKSUSYFQVQRA8B6QX',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Pyramids',
@@ -1744,7 +1743,7 @@ export const PRODUCTS = [
   // 34. Crystal Glass Vastu Turtle
   {
     id: 'vastu-crystal-glass-turtle',
-    name: 'Shraviko Crystal Turtle with Glass Plate',
+    sku: 'LSTSHIHQMCVJKCZEGXUCTML92',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
@@ -1872,7 +1871,7 @@ export const PRODUCTS = [
   // 38. Siddhi Vinayak Ganesh Ji
   {
     id: 'brass-ganesh-ji-statue',
-    name: 'Shraviko Pure Brass Lord Ganesha Idol',
+    sku: 'LSTSHIHQPPHJJFEZBG7FKKKYW',
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
@@ -1934,7 +1933,7 @@ export const PRODUCTS = [
   // 39. Radha Krishna Divine Idol
   {
     id: 'brass-radha-krishna-statue',
-    name: 'Shraviko Pure Brass Radha Krishna Idol',
+    sku: 'LSTSHIHQPPQYTMXANFWMKEOC5',
     category: 'yantras',
     categoryName: 'Custom & Handcrafted',
     subcategory: 'Handcrafted Idols',
@@ -1995,7 +1994,7 @@ export const PRODUCTS = [
   // 41. Glass Shivling
   {
     id: 'vastu-crystal-glass-shivling',
-    name: 'Shraviko Natural Sphatik Shivling',
+    sku: 'LSTSHIHQMCDBHYUFBHESVJAQG',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Vastu Energy Items',
@@ -2057,7 +2056,7 @@ export const PRODUCTS = [
   // 42. Panchmukhi Himalayan Rudraksha Mala
   {
     id: 'mandir-rudraksh-mala',
-    name: 'Shraviko 5 Mukhi Rudraksh Mala',
+    sku: 'LSTNKCHQZZY7ZZZD7RENCFUKH',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2122,7 +2121,7 @@ export const PRODUCTS = [
   // 43. Natural Crystal Quartz Sphatik Mala
   {
     id: 'mandir-sphatik-mala',
-    name: 'Shraviko Natural Sphatik Mala 108+1 Beads',
+    sku: 'LSTNKCHQZQFGMKGZQKTPSIYBN',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2188,7 +2187,7 @@ export const PRODUCTS = [
   // 44. Vrindavan Dham Pure Organic Tulsi Mala
   {
     id: 'mandir-tulsi-mala',
-    name: 'Shraviko Original Tulsi Mala 108 Beads',
+    sku: 'LSTNKCHQMGCZU6GHWZ3FVFLWG',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2255,7 +2254,7 @@ export const PRODUCTS = [
   // 45. Natural White Seed Lord Krishna Vaijanti Mala
   {
     id: 'mandir-vaijanti-mala',
-    name: 'Shraviko Original Vaijanti Mala 108+1 Beads with Rudraksha',
+    sku: 'LSTNKCHQZQFGMKGZQKTPSIYBN',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2320,7 +2319,7 @@ export const PRODUCTS = [
   // 46. Natural Black Ebony Wood Karungali Mala
   {
     id: 'mandir-karungali-mala',
-    name: 'Shraviko Original Natural Karungali Mala 108 Beads',
+    sku: 'LSTNKCHQZQFGMKGZQKTPSIYBN',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Sacred Malas & Rosaries',
@@ -2386,7 +2385,7 @@ export const PRODUCTS = [
   },
   {
     id: 'mandir-lal-chandan',
-    name: 'Shraviko Pure Lal Chandan (Rakta Chandan Powder)',
+    sku: 'LSTHAIHRCWGVET3FS3EKGMV3K',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
@@ -2435,7 +2434,7 @@ export const PRODUCTS = [
   },
   {
     id: 'mandir-pure-camphor',
-    name: 'Shraviko Pure Shuddh Kapoor (Camphor Tablets for Aarti)',
+    sku: 'LSTHAIHRCXNRSHJF9UQPD5ACU',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
@@ -2530,7 +2529,7 @@ export const PRODUCTS = [
   },
   {
     id: 'mandir-safed-chandan',
-    name: 'Shraviko Pure Safed Chandan (White Sandalwood Powder)',
+    sku: 'LSTHAIHRCYZX6YPSPTGUZ0QB4',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
@@ -2584,7 +2583,7 @@ export const PRODUCTS = [
   // 21. Wooden Chowki (Bajot)
   {
     id: 'wooden-chowki-carved-01',
-    name: 'Shraviko Wooden Pooja Chowki',
+    sku: 'LSTCKIHQM9PNR5VXYJ3T4GMXE',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Wooden Chowki',
@@ -2647,7 +2646,7 @@ export const PRODUCTS = [
   // 21B. Large Hand-Painted Wooden Chowki (15x15 Inch)
   {
     id: 'wooden-chowki-large-15x15',
-    name: 'Shraviko Large Hand-Painted Wooden Pooja Chowki (15×15 Inch)',
+    sku: 'LSTCKIHQM9PNR5VXYJ3T4GMXE',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Wooden Chowki',
@@ -2711,7 +2710,7 @@ export const PRODUCTS = [
   // 22. Brass Dhoopdani
   {
     id: 'brass-dhoopdani-burner',
-    name: 'Shraviko Metal Dhoop Dani with Handle',
+    sku: 'LSTIHRHQZWFKHDPMZMRRCEDS2',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Puja Accessories',
@@ -2776,7 +2775,7 @@ export const PRODUCTS = [
   // 25. Mala Counter Set
   {
     id: 'mandir-mala-counter-brass',
-    name: 'Shraviko Digital Japa Counter',
+    sku: 'LSTTYCHRYRBFM9WB43ALSVO8S',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Mala Counters',
@@ -2838,7 +2837,7 @@ export const PRODUCTS = [
   // 26. Pooja Box Organizer Chest
   {
     id: 'mandir-pooja-box-chest',
-    name: 'Shraviko Stainless Steel Pooja Box with 7 Removable Containers',
+    sku: 'LSTPJTHQMG8N9NQZT7N8BN4MB',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Storage & Chests',
@@ -2905,7 +2904,7 @@ export const PRODUCTS = [
   // 47. Shraviko Wooden Damru
   {
     id: 'mandir-wooden-damru-shiva',
-    name: 'Shraviko Wooden Damru',
+    sku: 'LSTIHRHRTTDVNETRKKGMVZWU5',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Devotional Instruments',
@@ -3271,7 +3270,7 @@ export const PRODUCTS = [
   },
   {
     id: 'yantra-kaal-sarp',
-    name: 'SHRAVIKO Kaal Sarp Yog Dosh Nivaran Yantra',
+    sku: 'LSTYNTHR7GEDK7HD63GJLI6RY',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Yantras',
@@ -3317,7 +3316,7 @@ export const PRODUCTS = [
   },
   {
     id: 'yantra-mangal',
-    name: 'SHRAVIKO Mangal Yantra',
+    sku: 'LSTYNTHR7F4DH5KYBUEHRXXRY',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Yantras',
@@ -3364,7 +3363,7 @@ export const PRODUCTS = [
 
   {
     id: 'yantra-sarv-karya',
-    name: 'SHRAVIKO Sarv Karya Siddhi Yantra',
+    sku: 'LSTYNTHR7G4U3HZPWS8XXLYSE',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Yantras',
@@ -3409,7 +3408,7 @@ export const PRODUCTS = [
   },
   {
     id: 'yantra-baglamukhi',
-    name: 'SHRAVIKO Shri Baglamukhi Mahayantra',
+    sku: 'LSTYNTHR7NQVXFATDQHIDXLLD',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Yantras',
@@ -3455,7 +3454,7 @@ export const PRODUCTS = [
 
   {
     id: 'mandir-cow-dung-cake',
-    name: 'Shraviko Pure Desi Cow Dung Cakes (Organic Gau Upla for Hawan)',
+    sku: 'LSTHAIHRCYN7NTJRWJGIEY7GH',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
@@ -3553,7 +3552,7 @@ export const PRODUCTS = [
   },
   {
     id: 'yantra-maha-mrityunjay',
-    name: 'SHRAVIKO Shri Mahamrityunjay Yantra',
+    sku: 'LSTYNTHR7ERMWHJPTETDDLPVF',
     category: 'vastu',
     categoryName: 'Vastu & Spiritual',
     subcategory: 'Sacred Yantras',
@@ -3598,7 +3597,7 @@ export const PRODUCTS = [
   // Pure Roli Kumkum Powder
   {
     id: 'mandir-pure-kumkum',
-    name: 'Shraviko Pure Roli Kumkum Powder',
+    sku: 'LSTHAIHRCX2XKKZHGQFM3NRHH',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
@@ -3631,7 +3630,7 @@ export const PRODUCTS = [
   // Pure Natural Loban Granules
   {
     id: 'mandir-pure-loban',
-    name: 'Shraviko Sacred Natural Loban Dhoop Granules',
+    sku: 'LSTIHRHRTTDVNETRKKGMVZWU5',
     category: 'mandir-essentials',
     categoryName: 'Mandir Essentials',
     subcategory: 'Pooja Ingredients & Samagri',
@@ -3666,7 +3665,7 @@ export const PRODUCTS = [
   // 1. Bakhoor Incense Sticks
   {
     id: 'shraviko-bakhoor-incense-sticks',
-    name: 'Shraviko Premium Bakhoor Charcoal-Free Incense Sticks',
+    sku: 'LSTINSHRBZ4TVFKWPHHC0LVFJ',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Incense Sticks',
@@ -3677,12 +3676,14 @@ export const PRODUCTS = [
     tag: 'Arabic Aroma',
     artType: 'incense',
     fitMode: 'contain',
-    image: '/assets/Bakhoor sticks/Bakhoor4.webp',
+    image: '/assets/Gulab/bakhoor incense.webp',
     images: [
+      '/assets/Gulab/bakhoor incense.webp',
+      '/assets/Bakhoor sticks/bakhoormain.webp',
+      '/assets/Bakhoor sticks/Bakhoor3.webp',
       '/assets/Bakhoor sticks/Bakhoor4.webp',
       '/assets/Bakhoor sticks/Bakhoor 1.webp',
       '/assets/Bakhoor sticks/Bakhoor2.webp',
-      '/assets/Bakhoor sticks/Bakhoor3.webp',
       '/assets/Bakhoor sticks/Bakhoor5.webp'
     ],
     purity: '100% Charcoal-Free Organic Flora',
@@ -3704,7 +3705,7 @@ export const PRODUCTS = [
   // 2. Kesar Incense Sticks
   {
     id: 'shraviko-kesar-incense-sticks',
-    name: 'Shraviko Kesar Chandan Natural Incense Sticks',
+    sku: 'LSTINSHRCYBJESJA6PTW707VD',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Incense Sticks',
@@ -3715,8 +3716,9 @@ export const PRODUCTS = [
     tag: 'Saffron Fragrance',
     artType: 'incense',
     fitMode: 'contain',
-    image: '/assets/Kesar sticks/Kesar1.webp',
+    image: '/assets/Gulab/kesarincnese.webp',
     images: [
+      '/assets/Gulab/kesarincnese.webp',
       '/assets/Kesar sticks/Kesar1.webp',
       '/assets/Kesar sticks/11a6d1ca-fb66-4ffa-80a0-5607d00b6e00.webp',
       '/assets/Kesar sticks/2fddb686-b57b-4313-805e-aedd15f6d406.webp',
@@ -3741,7 +3743,7 @@ export const PRODUCTS = [
   // 3. Lavender Incense Sticks
   {
     id: 'shraviko-lavender-incense-sticks',
-    name: 'Shraviko Relaxing French Lavender Incense Sticks',
+    sku: 'LSTINSHRBWYRUUKVTSK0WMEMN',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Incense Sticks',
@@ -3752,8 +3754,9 @@ export const PRODUCTS = [
     tag: 'Soothing Aroma',
     artType: 'incense',
     fitMode: 'contain',
-    image: '/assets/Lavender sticks/Lavender 1.webp',
+    image: '/assets/Gulab/lavenderincne.webp',
     images: [
+      '/assets/Gulab/lavenderincne.webp',
       '/assets/Lavender sticks/Lavender 1.webp',
       '/assets/Lavender sticks/Lavender 2.webp',
       '/assets/Lavender sticks/Lavender 3.webp',
@@ -3780,7 +3783,7 @@ export const PRODUCTS = [
   // 4. Oudh Incense Sticks
   {
     id: 'shraviko-oudh-incense-sticks',
-    name: 'Shraviko Royal Regal Oudh Incense Sticks',
+    sku: 'LSTINSHRBZWTBPZWXG50SVHYX',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Incense Sticks',
@@ -3791,8 +3794,9 @@ export const PRODUCTS = [
     tag: 'Royal Fragrance',
     artType: 'incense',
     fitMode: 'contain',
-    image: '/assets/Oudh sticks/Oudh1.webp',
+    image: '/assets/Gulab/oudhincsense.webp',
     images: [
+      '/assets/Gulab/oudhincsense.webp',
       '/assets/Oudh sticks/Oudh1.webp',
       '/assets/Oudh sticks/Oudh2.webp',
       '/assets/Oudh sticks/Oudh3.webp',
@@ -3818,7 +3822,7 @@ export const PRODUCTS = [
   // 5. Chandan Dhoop Cups
   {
     id: 'shraviko-chandan-dhoop-cups',
-    name: 'Shraviko Organic Chandan Sambrani Dhoop Cups',
+    sku: 'LSTDCEHRBUMYDB8WHDGNSVPEA',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Dhoop Cups',
@@ -3857,7 +3861,7 @@ export const PRODUCTS = [
   // 6. Guggul Dhoop Cups
   {
     id: 'shraviko-guggul-dhoop-cups',
-    name: 'Shraviko Sacred Pure Guggul Dhoop Cups',
+    sku: 'LSTDCEHRBFZPFZVFCZ49W7HTC',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Dhoop Cups',
@@ -3895,7 +3899,7 @@ export const PRODUCTS = [
   // 7. Rose (Gulab) Dhoop Cups
   {
     id: 'shraviko-rose-dhoop-cups',
-    name: 'Shraviko Divine Gulab (Rose) Organic Dhoop Cups',
+    sku: 'LSTDCEHRBVF8ZUZHXSYL8EPZC',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Dhoop Cups',
@@ -3930,10 +3934,103 @@ export const PRODUCTS = [
       'Perfect for temple offerings & evening puja'
     ]
   },
+  // 7a. Sandalwood (Chandan) Incense Sticks
+  {
+    id: 'shraviko-sandalwood-incense-sticks',
+    sku: 'LSTINSHR8U5GNYMJZ9XFGQFPP',
+    category: 'incense',
+    categoryName: 'Incense & Dhoop',
+    subcategory: 'Incense Sticks',
+    price: 229,
+    originalPrice: 449,
+    rating: 4.97,
+    reviewsCount: 112,
+    tag: 'Pure Chandan',
+    artType: 'incense',
+    fitMode: 'contain',
+    image: '/assets/Sandal/sandal main.webp',
+    images: [
+      '/assets/Sandal/sandal main.webp',
+      '/assets/Sandal/0fc63376-4b6d-447c-9009-8af0cebf81e5.webp',
+      '/assets/Sandal/302cf94e-af09-4fb7-bc59-2505f510f220.webp',
+      '/assets/Sandal/6696d95e-6fac-4a57-a149-3cc32256e6a4.webp',
+      '/assets/Sandal/6aa9f893-048f-485a-97d3-461f2d19f20e.webp'
+    ],
+    weightVariants: [
+      { weight: 'Pack of 1 Box (approx. 50 sticks)', price: 229, originalPrice: 449, default: true },
+      { weight: 'Pack of 3 Boxes (approx. 150 sticks)', price: 599, originalPrice: 1199 }
+    ],
+    purity: '100% Charcoal-Free Natural Sandalwood Flora',
+    inStock: true,
+    description: 'Purify your sacred altar with the timeless, woody scent of Shraviko Vedic Sandalwood (Chandan) Incense Sticks. Hand-rolled with natural Mysore sandalwood extracts, aromatic barks, and floral gums, these charcoal-free sticks create a serene environment for meditation and daily worship.',
+    shortDescription: 'Natural charcoal-free Sandalwood (Chandan) incense sticks crafted with pure sandalwood extracts for daily worship and meditation.',
+    seoTitle: 'Vedic Sandalwood Chandan Incense Sticks | Shraviko',
+    metaDescription: 'Shop Shraviko Vedic Sandalwood (Chandan) charcoal-free incense sticks for daily mandir worship, meditation, and spiritual elevation.',
+    specifications: [
+      { label: 'Fragrance', value: 'Vedic Sandalwood (Chandan)' },
+      { label: 'Type', value: '100% Charcoal-Free Bamboo Sticks' },
+      { label: 'Burn Time', value: '45-50 Minutes per stick' },
+      { label: 'Country of Origin', value: 'Made in India' }
+    ],
+    keyFeatures: [
+      'Authentic Mysore sandalwood aroma',
+      '100% charcoal-free clean & non-toxic burn',
+      'Relieves mental fatigue and enhances concentration',
+      'Ideal for morning & evening Aarti'
+    ]
+  },
+
+  // 7b. Rose (Desi Gulab) Incense Sticks
+  {
+    id: 'shraviko-rose-incense-sticks',
+    sku: 'LSTINSHR8SNEVKFPXXEVBHD6O',
+    category: 'incense',
+    categoryName: 'Incense & Dhoop',
+    subcategory: 'Incense Sticks',
+    price: 219,
+    originalPrice: 429,
+    rating: 4.96,
+    reviewsCount: 98,
+    tag: 'Desi Gulab',
+    artType: 'incense',
+    fitMode: 'contain',
+    image: '/assets/Gulab/gulabmain.webp',
+    images: [
+      '/assets/Gulab/gulabmain.webp',
+      '/assets/Gulab/in hand.webp',
+      '/assets/Gulab/rose 3.webp',
+      '/assets/Gulab/rose 6.webp',
+      '/assets/Gulab/rose incense.webp',
+      '/assets/Gulab/rose.webp'
+    ],
+    weightVariants: [
+      { weight: 'Pack of 1 Box (approx. 50 sticks)', price: 219, originalPrice: 429, default: true },
+      { weight: 'Pack of 3 Boxes (approx. 150 sticks)', price: 549, originalPrice: 1099 }
+    ],
+    purity: '100% Organic Temple Flower Petals & Rose Oil',
+    inStock: true,
+    description: 'Fill your home with the romantic, soothing fragrance of Shraviko Divine Desi Gulab Incense Sticks. Handcrafted using recycled sacred temple rose petals and natural floral essential oils, these charcoal-free agarbatti sticks produce a soft, heavenly smoke that brings tranquility and devotion.',
+    shortDescription: 'Organic charcoal-free Desi Gulab (Rose) incense sticks made from sacred temple flowers and natural rose oils.',
+    seoTitle: 'Divine Desi Gulab Rose Incense Sticks | Shraviko',
+    metaDescription: 'Shop Shraviko Divine Desi Gulab (Rose) charcoal-free incense sticks crafted with temple flower petals for home mandir and prayer.',
+    specifications: [
+      { label: 'Fragrance', value: 'Desi Gulab (Indian Rose)' },
+      { label: 'Type', value: 'Organic Temple Flower Sticks' },
+      { label: 'Burn Time', value: '45 Minutes per stick' },
+      { label: 'Country of Origin', value: 'Made in India' }
+    ],
+    keyFeatures: [
+      'Made from recycled sacred temple roses',
+      'Charcoal-free & non-toxic formulation',
+      'Uplifting floral fragrance creates divine mood',
+      'Perfect for daily puja and festive gifting'
+    ]
+  },
+
   // 8. Chandan Camphor Fly Cone
   {
     id: 'shraviko-chandan-camphor-fly-cone',
-    name: 'Shraviko Natural Chandan Camphor Air Purifying Fly Cones',
+    sku: 'LSTAIRHRE2GHC3H9VCQ4OAFDZ',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Camphor Cones',
@@ -3972,7 +4069,7 @@ export const PRODUCTS = [
   // 9. Lavender Camphor Fly Cone
   {
     id: 'shraviko-lavender-camphor-fly-cone',
-    name: 'Shraviko Natural Lavender Camphor Air Purifying Fly Cones',
+    sku: 'LSTAIRHRE3ZZZZV3YR84WITFH',
     category: 'incense',
     categoryName: 'Incense & Dhoop',
     subcategory: 'Camphor Cones',
@@ -3983,10 +4080,10 @@ export const PRODUCTS = [
     tag: 'Camphor & Lavender',
     artType: 'incense',
     fitMode: 'contain',
-    image: '/assets/Camphor fly cone \'/LAVfly1.webp',
+    image: '/assets/Camphor fly cone \'/Lav2.webp',
     images: [
-      '/assets/Camphor fly cone \'/LAVfly1.webp',
       '/assets/Camphor fly cone \'/Lav2.webp',
+      '/assets/Camphor fly cone \'/LAVfly1.webp',
       '/assets/Camphor fly cone \'/Lav3.webp',
       '/assets/Camphor fly cone \'/Lav4.webp',
       '/assets/Camphor fly cone \'/LAv5.webp',
@@ -4011,7 +4108,7 @@ export const PRODUCTS = [
   // 10. Heavy Brass Dhoop Dani
   {
     id: 'shraviko-brass-dhoop-dani',
-    name: 'Shraviko Traditional Heavy Brass Dhoop Dani Incense Burner',
+    sku: 'LSTIHRHRTTDVNETRKKGMVZWU5',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Puja Accessories',
@@ -4048,7 +4145,7 @@ export const PRODUCTS = [
   // 11. Brass Handle Dhoop Burner
   {
     id: 'shraviko-brass-handle-dhoop',
-    name: 'Shraviko Handled Brass Dhoop Dani & Aarti Burner',
+    sku: 'LSTIHRHRTTDVNETRKKGMVZWU5',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Puja Accessories',
@@ -4086,7 +4183,7 @@ export const PRODUCTS = [
   // 12. Brass Bhog Thali Set
   {
     id: 'shraviko-brass-bhog-thali',
-    name: 'Shraviko Traditional Brass Bhog Thali Set for Laddu Gopal',
+    sku: 'LSTPJTHRHK7HZPXUNJKVRU3HE',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Thali',
@@ -4124,7 +4221,7 @@ export const PRODUCTS = [
   // 13. Handcrafted Pure Brass Puja Bell
   {
     id: 'shraviko-brass-puja-bell',
-    name: 'Shraviko Classic Handcrafted Brass Pooja Bell',
+    sku: 'LSTGBLHRTQZGZKT8ZJ3AKF6JS',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -4161,7 +4258,7 @@ export const PRODUCTS = [
   // 14. Spiritual Symbol Engraved Brass Bell
   {
     id: 'shraviko-spiritual-engraved-bell',
-    name: 'Shraviko Spiritual Carved Emblem Brass Pooja Bell',
+    sku: 'LSTGBLHRTQZGZKT8ZJ3AKF6JS',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Bells',
@@ -4199,7 +4296,7 @@ export const PRODUCTS = [
   // 15. Panch Aarti Brass Diya Set of 5
   {
     id: 'shraviko-brass-diya-set5',
-    name: 'Shraviko Panch Aarti Brass Diya Set of 5',
+    sku: 'LSTDIYHRPQXT93U8P5AZCXCQK',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Diyas',
@@ -4237,7 +4334,7 @@ export const PRODUCTS = [
   // 16. Royal Carved Brass Kuber Diya
   {
     id: 'shraviko-carved-brass-diya',
-    name: 'Shraviko Royal Carved Brass Kuber Deepak',
+    sku: 'LSTDIYHQHBZW7UFVGT7YQUCGZ',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Diyas',
@@ -4275,7 +4372,7 @@ export const PRODUCTS = [
   // 17. Brass Cup Deepak with Base
   {
     id: 'shraviko-brass-cup-deepak',
-    name: 'Shraviko Heavy Brass Cup Deepak with Pedestal',
+    sku: 'LSTDIYHQHBZW7UFVGT7YQUCGZ',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Brass Diyas',
@@ -4311,42 +4408,121 @@ export const PRODUCTS = [
       'Ideal for long daily worship hours'
     ]
   },
-  // 18. Brass Stand Diya Pillar
+  // 18a. Peacock Finial Brass Stand Diya (Mayur Kutthu Vilakku)
   {
-    id: 'shraviko-brass-stand-diya',
-    name: 'Shraviko Traditional Brass Stand Diya Pillar Lamp',
+    id: 'shraviko-peacock-brass-stand-diya',
+    sku: 'LSTDIYHRPRGJTJKN89UY9C9HN',
     category: 'brass',
     categoryName: 'Brass Articles',
-    subcategory: 'Brass Diyas',
-    price: 999,
-    originalPrice: 1899,
+    subcategory: 'Brass Standing Diyas',
+    price: 1299,
+    originalPrice: 2499,
     rating: 4.98,
-    reviewsCount: 140,
-    tag: 'Stand Diya',
+    reviewsCount: 164,
+    tag: 'Peacock Finial',
     artType: 'diya',
     fitMode: 'contain',
     image: '/assets/Stand diyas/1ece5a44-32a5-4537-8c81-a057579514f9.webp',
     images: [
       '/assets/Stand diyas/1ece5a44-32a5-4537-8c81-a057579514f9.webp',
-      '/assets/Stand diyas/507ac811-895e-43e7-8ffd-0330cdb4f6ed.webp',
-      '/assets/Stand diyas/78eafd19-da26-4f34-9334-bdbc8242ffe9.webp',
-      '/assets/Stand diyas/8479b7a9-a59f-4e81-89e5-610aaec86b79.webp',
-      '/assets/Stand diyas/89a8b721-b2e9-45f1-bf16-197fc5fd69c2.webp'
+      '/assets/Stand diyas/a0b65d5f-fc4c-496c-856e-e85e9f222981.webp',
+      '/assets/Stand diyas/89a8b721-b2e9-45f1-bf16-197fc5fd69c2.webp',
+      '/assets/Stand diyas/8f8b9b97-c748-4aac-96cd-1bcc6d03a252.webp',
+      '/assets/Stand diyas/78eafd19-da26-4f34-9334-bdbc8242ffe9.webp'
+    ],
+    weightVariants: [
+      { weight: 'Single Diya (12 Inch / ~750 g)', price: 1299, originalPrice: 2499, default: true },
+      { weight: 'Pair of 2 Diyas (12 Inch / ~1.5 kg)', price: 2399, originalPrice: 4799 }
     ],
     purity: '100% Solid Heavy Brass',
     inStock: true,
-    description: 'Add majestic temple elegance to your home mandir with Shraviko Traditional Brass Stand Diya Pillar Lamp. Standing gracefully on a carved brass pillar, this lamp provides elevated lighting for your deities during major festival celebrations.',
+    description: 'Handcrafted from 100% solid brass, the Shraviko Mayur Peacock Brass Stand Diya (Kutthu Vilakku) features a beautifully sculpted peacock (Annam) finial at its apex with a 5-wick deep oil reservoir. Supported by a heavy carved brass pillar stem and a wide anti-topple pedestal base, this standing pillar lamp elevates your home mandir and festive Aarti with majestic traditional grandeur.',
+    shortDescription: 'Handcrafted 100% solid brass Mayur Peacock Stand Diya (Kutthu Vilakku) with 5-wick oil reservoir, carved pillar stem, and anti-topple pedestal base.',
+    seoTitle: 'Mayur Peacock Brass Stand Diya | Traditional 5-Wick Kutthu Vilakku',
+    metaDescription: 'Shop Shraviko Mayur Peacock Brass Stand Diya with 5-wick oil lamp and solid brass pillar stand for home mandir, Diwali, and festive worship.',
     specifications: [
-      { label: 'Material', value: '100% Solid Brass' },
-      { label: 'Height', value: '8-10 Inches' },
-      { label: 'Structure', value: 'Multi-tiered Pillar Stand' },
+      { label: 'Product Type', value: 'Mayur Peacock Brass Stand Diya (Kutthu Vilakku)' },
+      { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Finial Motif', value: 'Sculpted Mayur Peacock (Annam)' },
+      { label: 'Wicks Capacity', value: '5 Oil Wicks Deep Reservoir' },
+      { label: 'Height', value: '12 Inches (~30 cm)' },
+      { label: 'Base', value: 'Wide Anti-Topple Carved Pedestal Base' },
       { label: 'Country of Origin', value: 'Made in India' }
     ],
     keyFeatures: [
-      'Stately pillar stand design',
-      'Holds flame at majestic altar height',
-      'Solid heavy brass weight prevents tipping',
-      'Grand centerpiece for festive mandir décor'
+      'Ornate Mayur Peacock (Annam) top finial design',
+      '5-wick oil grooves for bright, warm ritual illumination',
+      'Heavy solid brass construction prevents accidental tipping',
+      'Carved lathe-turned pillar stem with polished golden luster',
+      'Ideal for home mandir, Aarti, Diwali, Navratri & housewarmings'
+    ],
+    careInstructions: [
+      'Wipe clean with a soft dry cloth after daily use.',
+      'Clean periodically with Pitambari powder or lemon & salt for long-lasting shine.',
+      'Avoid harsh chemical scrubbers that may scratch the polished brass finish.'
+    ],
+    faqs: [
+      { q: 'How many wicks does this peacock stand diya hold?', a: 'It features 5 deep wick grooves for burning cotton wicks with ghee or oil.' },
+      { q: 'Is it stable on the altar floor?', a: 'Yes, it is cast with a heavy weighted bottom base to ensure maximum stability.' }
+    ]
+  },
+
+  // 18b. Classic Gopuram Spire Brass Stand Diya (Gopuram Kutthu Vilakku)
+  {
+    id: 'shraviko-spire-brass-stand-diya',
+    sku: 'LSTDIYHRPRGJTJKN89UY9C9HN',
+    category: 'brass',
+    categoryName: 'Brass Articles',
+    subcategory: 'Brass Standing Diyas',
+    price: 1199,
+    originalPrice: 2299,
+    rating: 4.97,
+    reviewsCount: 148,
+    tag: 'Spire Finial',
+    artType: 'diya',
+    fitMode: 'contain',
+    image: '/assets/Stand diyas/507ac811-895e-43e7-8ffd-0330cdb4f6ed.webp',
+    images: [
+      '/assets/Stand diyas/507ac811-895e-43e7-8ffd-0330cdb4f6ed.webp',
+      '/assets/Stand diyas/bb7748c1-7aa8-4623-979d-eef6f242d734.webp',
+      '/assets/Stand diyas/8479b7a9-a59f-4e81-89e5-610aaec86b79.webp',
+      '/assets/Stand diyas/bbe1b4c4-d1fa-4428-b918-521a59f7673e.webp',
+      '/assets/Stand diyas/c1c40ec4-403e-4bad-811e-a28215d2f64c.webp'
+    ],
+    weightVariants: [
+      { weight: 'Single Diya (12 Inch / ~700 g)', price: 1199, originalPrice: 2299, default: true },
+      { weight: 'Pair of 2 Diyas (12 Inch / ~1.4 kg)', price: 2199, originalPrice: 4399 }
+    ],
+    purity: '100% Solid Heavy Brass',
+    inStock: true,
+    description: 'Adorn your sacred temple space with the Shraviko Classic Gopuram Spire Brass Stand Diya (Kutthu Vilakku). Featuring a traditional temple spire (gopuram) finial, 5-wick deep oil grooves, and a solid lathe-turned brass pillar stem, this free-standing diya creates a warm, divine ambiance for daily morning Aarti, Navratri, Diwali, and traditional housewarmings.',
+    shortDescription: 'Classic Gopuram Spire Brass Stand Diya (Kutthu Vilakku) with 5-wick oil lamp, fluted brass pillar stem, and stable base.',
+    seoTitle: 'Classic Gopuram Spire Brass Stand Diya | Traditional Kutthu Vilakku',
+    metaDescription: 'Shop Shraviko Classic Gopuram Spire Brass Stand Diya with 5-wick oil lamp for home mandir, temple rituals, and festive gifting.',
+    specifications: [
+      { label: 'Product Type', value: 'Classic Spire Brass Stand Diya (Kutthu Vilakku)' },
+      { label: 'Material', value: '100% Solid Heavy Brass' },
+      { label: 'Finial Motif', value: 'Traditional Temple Gopuram Spire' },
+      { label: 'Wicks Capacity', value: '5 Oil Wicks Deep Reservoir' },
+      { label: 'Height', value: '12 Inches (~30 cm)' },
+      { label: 'Base', value: 'Stable Lathe-Turned Circular Base' },
+      { label: 'Country of Origin', value: 'Made in India' }
+    ],
+    keyFeatures: [
+      'Classic temple gopuram spire top finial',
+      '5-wick multi-lamp oil grooves for radiant Aarti illumination',
+      'Solid heavy brass pillar stem with polished golden shine',
+      'Stable wide base prevents tipping or oil spilling',
+      'Perfect for daily temple worship, Diwali, Navratri & religious ceremonies'
+    ],
+    careInstructions: [
+      'Wipe clean with a soft dry cloth after daily worship.',
+      'Clean periodically with Pitambari powder or lemon juice for mirror shine.',
+      'Store in a clean, dry place when not in use.'
+    ],
+    faqs: [
+      { q: 'Can this diya be disassembled for cleaning?', a: 'Yes, the components unscrew smoothly for effortless cleaning and polishing.' },
+      { q: 'Is a pair available for home mandir entrance?', a: 'Yes, you can choose the Pair variant to place on both sides of your mandir altar.' }
     ]
   },
   // 19. Stainless Steel Puja Dibbi Container
@@ -4464,7 +4640,7 @@ export const PRODUCTS = [
   // 22. Diamond Cut Crystal & Brass Akhand Jyot
   {
     id: 'shraviko-diamond-akhand-jyot',
-    name: 'Shraviko Diamond Cut Glass Brass Akhand Jyot Deepak',
+    sku: 'LSTDIYHRUFUNSD4K9RN61DZC6',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
@@ -4502,7 +4678,7 @@ export const PRODUCTS = [
   // 23. Crystal Glass Brass Akhand Jyot
   {
     id: 'shraviko-crystal-glass-akhand-jyot',
-    name: 'Shraviko Crystal Clear Borosilicate Glass Brass Akhand Jyot',
+    sku: 'LSTDIYHRUFUNSD4K9RN61DZC6',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
@@ -4540,7 +4716,7 @@ export const PRODUCTS = [
   // 24. Lotus Pattern Brass Akhand Jyot
   {
     id: 'shraviko-lotus-brass-akhand-jyot',
-    name: 'Shraviko Lotus Petal Brass Glass Akhand Jyot Deepak',
+    sku: 'LSTDIYHRUFUNSD4K9RN61DZC6',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',
@@ -4578,7 +4754,7 @@ export const PRODUCTS = [
   // 25. OM Top Brass Glass Akhand Jyot
   {
     id: 'shraviko-om-top-glass-akhand-jyot',
-    name: 'Shraviko Sacred OM Engraved Brass Glass Akhand Jyot',
+    sku: 'LSTDIYHRUFUNSD4K9RN61DZC6',
     category: 'brass',
     categoryName: 'Brass Articles',
     subcategory: 'Akhand Jyot',

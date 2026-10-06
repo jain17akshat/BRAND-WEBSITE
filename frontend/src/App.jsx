@@ -870,13 +870,13 @@ EXPLORE SHRAVIKO"
                 <section className="py-14 sm:py-20 bg-[#1C1715] text-white relative overflow-hidden">
                   {/* Background image */}
                   <img
-                    src="/mandiressentialmobileview.webp"
+                    src="/Outside images/mandiressentialmobileview.webp"
                     alt="Corporate Gifting"
                     className="block sm:hidden absolute inset-0 w-full h-full object-cover opacity-25 hero-image-crisp"
                     style={{ objectPosition: 'center center' }}
                   />
                   <img
-                    src="/essentialhero.webp"
+                    src="/Outside images/essentialhero.webp"
                     alt="Corporate Gifting"
                     className="hidden sm:block absolute inset-0 w-full h-full object-cover opacity-20 hero-image-crisp"
                     style={{ objectPosition: 'center center' }}
