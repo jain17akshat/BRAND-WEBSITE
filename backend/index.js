@@ -123,11 +123,14 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 // ── Start HTTP Server Immediately (Required by Hostinger 3s Timeout) ──
+const PORT = config.port;
+
 const server = app.listen(PORT, () => {
   console.log(`\n🚀 Shraviko server running on port ${PORT}`);
   console.log(`   Environment: ${config.nodeEnv}`);
   console.log(`   Frontend:    ${config.frontendUrl}\n`);
 });
+
 
 // ── Run Async Initialization Tasks in Background ──────────────────────────
 (async () => {
