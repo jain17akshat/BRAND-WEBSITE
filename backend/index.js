@@ -122,18 +122,20 @@ app.use(notFoundHandler);
 // ── Global error handler (must be last) ───────────────────
 app.use(errorHandler);
 
-// ─────────────────────────────────────────────────────────
-const PORT = config.port;
+// ── Start HTTP Server Immediately (Required by Hostinger 3s Timeout) ──
+const server = app.listen(PORT, () => {
+  console.log(`\n🚀 Shraviko server running on port ${PORT}`);
+  console.log(`   Environment: ${config.nodeEnv}`);
+  console.log(`   Frontend:    ${config.frontendUrl}\n`);
+});
 
-async function startServer() {
+// ── Run Async Initialization Tasks in Background ──────────────────────────
+(async () => {
   try {
     const { initDatabase } = require('./database/db');
-    const dbSuccess = await initDatabase();
-    if (dbSuccess === false) {
-      console.warn('⚠️ Hostinger MySQL database connection unavailable or pending setup. Server continuing in fallback mode.');
-    }
+    await initDatabase();
   } catch (err) {
-    console.warn('⚠️ Database initialization error:', err.message);
+    console.warn('⚠️ Database initialization warning:', err.message);
   }
 
   if (!config.shiprocket.isMock) {
@@ -145,21 +147,14 @@ async function startServer() {
     }
   }
 
-  const isEntryPoint = require.main === module || (require.main && require.main.filename && (require.main.filename.endsWith('index.js')));
-  if (isEntryPoint) {
-    app.listen(PORT, () => {
-      console.log(`\n🚀 Shraviko server running on port ${PORT}`);
-      console.log(`   Environment: ${config.nodeEnv}`);
-      console.log(`   Frontend:    ${config.frontendUrl}\n`);
-      
-      // Start background email queue polling
-      const emailQueue = require('./services/emailQueue');
-      emailQueue.startPolling();
-    });
+  try {
+    const emailQueue = require('./services/emailQueue');
+    emailQueue.startPolling();
+  } catch (err) {
+    console.warn('⚠️ Email queue polling warning:', err.message);
   }
-}
-
-startServer();
+})();
 
 module.exports = app;
+
 
