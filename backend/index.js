@@ -130,19 +130,10 @@ async function startServer() {
     const { initDatabase } = require('./database/db');
     const dbSuccess = await initDatabase();
     if (dbSuccess === false) {
-      if (config.isProd) {
-        console.error('❌ FATAL: Database initialization returned false. Halting server startup in PRODUCTION.');
-        process.exit(1);
-      } else {
-        console.warn('⚠️ MySQL database connection unavailable. Falling back to local JSON order storage (development mode).');
-      }
+      console.warn('⚠️ Hostinger MySQL database connection unavailable or pending setup. Server continuing in fallback mode.');
     }
   } catch (err) {
-    console.error('⚠️ Database initialization error:', err.message);
-    if (config.isProd) {
-      console.error('❌ FATAL: Database initialization failed. Halting server startup in PRODUCTION.');
-      process.exit(1);
-    }
+    console.warn('⚠️ Database initialization error:', err.message);
   }
 
   if (!config.shiprocket.isMock) {
@@ -154,7 +145,8 @@ async function startServer() {
     }
   }
 
-  if (require.main === module) {
+  const isEntryPoint = require.main === module || (require.main && require.main.filename && (require.main.filename.endsWith('index.js')));
+  if (isEntryPoint) {
     app.listen(PORT, () => {
       console.log(`\n🚀 Shraviko server running on port ${PORT}`);
       console.log(`   Environment: ${config.nodeEnv}`);
@@ -170,3 +162,4 @@ async function startServer() {
 startServer();
 
 module.exports = app;
+
