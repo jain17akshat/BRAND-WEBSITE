@@ -97,8 +97,9 @@ const catalog = {
   // Malas
   'mandir-rudraksh-mala': 777,         // was 699
   'mandir-sphatik-mala': 1599,         // was 1699
-  'mandir-tulsi-mala': 278,            // was 250
+  'mandir-tulsi-mala': 2,              // Test order price ₹2
   'mandir-vaijanti-mala': 278,         // was 250
+
   'mandir-karungali-mala': 278,        // was 250
   'mandir-wooden-damru-shiva': 433,    // was 390
 };

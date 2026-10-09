@@ -3922,7 +3922,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Sacred Malas & Rosaries",
-    "price": 278,
+    "price": 2,
     "originalPrice": 443,
     "rating": 5,
     "reviewsCount": 310,
@@ -3940,11 +3940,12 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Length 40 cm (20 g)",
-        "price": 278,
+        "price": 2,
         "originalPrice": 443,
         "default": true
       }
     ],
+
     "purity": "Natural Organic Tulsi Wood",
     "inStock": true,
     "description": "Bring the timeless tradition of Tulsi into your daily spiritual practice with this Original Tulsi Mala, crafted from natural Tulsi wood beads and designed with the traditional 108-bead configuration. Tulsi has an important place in Hindu devotional traditions and is commonly associated with devotion, purity and worship. This mala can be used for mantra chanting, jaap, meditation, yoga, pooja, bhajan, kirtan and temple visits. The smooth, lightweight beads provide a comfortable grip during chanting and make the mala suitable for regular devotional use. Its traditional appearance also makes it suitable to wear as a spiritual accessory.",
