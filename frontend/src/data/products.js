@@ -8037,6 +8037,42 @@ export const PRODUCTS = [
   }
 ];
 
+const PRODUCT_TITLE_FALLBACKS = {
+  'mandir-pure-kumkum': 'Pure Shuddh Roli Kumkum',
+  'mandir-pure-loban': 'Natural Pure Sambrani Loban Resin',
+  'shraviko-bakhoor-incense-sticks': 'Shraviko Royal Bakhoor Oudh Incense Sticks',
+  'shraviko-kesar-incense-sticks': 'Shraviko Kesar Chandan Saffron Incense Sticks',
+  'shraviko-lavender-incense-sticks': 'Shraviko French Lavender Organic Incense Sticks',
+  'shraviko-oudh-incense-sticks': 'Shraviko Regal Agarwood Oudh Incense Sticks',
+  'shraviko-chandan-dhoop-cups': 'Shraviko Pure Chandan Dhoop Cups with Sambrani',
+  'shraviko-guggul-dhoop-cups': 'Shraviko Sacred Guggul Dhoop Cups with Sambrani',
+  'shraviko-rose-dhoop-cups': 'Shraviko Desi Gulab Rose Dhoop Cups with Sambrani',
+  'shraviko-sandalwood-incense-sticks': 'Shraviko Vedic Sandalwood (Chandan) Incense Sticks',
+  'shraviko-rose-incense-sticks': 'Shraviko Desi Gulab Indian Rose Incense Sticks',
+  'shraviko-chandan-camphor-fly-cone': 'Shraviko Chandan & Camphor Organic Dhoop Cones',
+  'shraviko-lavender-camphor-fly-cone': 'Shraviko Lavender & Camphor Organic Dhoop Cones',
+  'shraviko-brass-dhoop-dani': 'Shraviko Traditional Brass Dhoop Dani Burner',
+  'shraviko-brass-handle-dhoop': 'Shraviko Handled Brass Dhoop Dani & Camphor Burner',
+  'shraviko-brass-bhog-thali': 'Shraviko Handcrafted Brass Bhog Thali Set',
+  'shraviko-brass-puja-bell': 'Shraviko Classic Solid Brass Pooja Bell (Ghanti)',
+  'shraviko-spiritual-engraved-bell': 'Shraviko Hand-Carved Spiritual Brass Pooja Bell',
+  'shraviko-brass-diya-set5': 'Shraviko Handcrafted Brass Diya (Set of 5)',
+  'shraviko-carved-brass-diya': 'Shraviko Hand-Carved Traditional Brass Diya',
+  'shraviko-brass-cup-deepak': 'Shraviko Heavy Brass Cup Deepak Diya',
+  'shraviko-diamond-akhand-jyot': 'Shraviko Diamond Cut Glass Brass Akhand Jyot Diya',
+  'shraviko-crystal-glass-akhand-jyot': 'Shraviko Crystal Glass Brass Akhand Jyot Deepak',
+  'shraviko-lotus-brass-akhand-jyot': 'Shraviko Lotus Petal Brass Akhand Jyot Diya',
+  'shraviko-om-top-glass-akhand-jyot': 'Shraviko Sacred OM Glass Chimney Brass Akhand Jyot',
+};
+
+// Guarantee clean, descriptive product name across all components & SEO tools
+PRODUCTS.forEach((p) => {
+  if (!p.name) {
+    const specName = p.specifications?.find((s) => ['Product', 'Product Name', 'Item', 'Product Title', 'Product Type'].includes(s.label))?.value;
+    p.name = specName || PRODUCT_TITLE_FALLBACKS[p.id] || p.id.replace(/^shraviko-/, '').split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  }
+});
+
 export const FRAGRANCE_SAMPLERS = [
   { id: 'f1', name: 'Temple Sandalwood', notes: 'Woody • Warm • Sacred', desc: 'Sourced from Mysore groves, calming for deep meditation.' },
   { id: 'f2', name: 'Kashmir White Mogra', notes: 'Floral • Sweet • Serene', desc: 'Wild jasmine flowers harvested at midnight under full moon.' },

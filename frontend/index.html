@@ -7,9 +7,13 @@
   <link rel="shortcut icon" type="image/png" href="/assets/Logo/LOGO.png" />
   <link rel="apple-touch-icon" href="/assets/Logo/LOGO.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SHRAVIKO — Curated Indian Living</title>
+  
+  <!-- SEO Primary Meta Tags -->
+  <title>SHRAVIKO — Handcrafted Indian Pooja Essentials &amp; Brassware</title>
   <meta name="description"
-    content="SHRAVIKO brings Indian tradition into modern living through thoughtfully curated products, timeless craftsmanship, meaningful rituals, and contemporary design." />
+    content="Elevate your daily rituals with Shraviko. Shop pure heavy brassware, copper vessels, organic temple flower incense, handcrafted pooja thalis, and sacred yantras." />
+  <link rel="canonical" href="https://shraviko.com/" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
   <!-- Google Fonts — Shraviko Brand Typography System (Cinzel, Cinzel Decorative, Plus Jakarta Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,24 +23,71 @@
     rel="stylesheet">
 
   <!-- Preload actual LCP resources: the hero FIRST SLIDE poster images (WebP for max speed) -->
-  <!-- Slide 0 is the video slide; its poster is the real LCP candidate -->
   <link rel="preload" as="image" href="/mobilevideo.webp" media="(max-width: 639px)" fetchpriority="high" />
   <link rel="preload" as="image" href="/desktopvideo.webp" media="(min-width: 640px)" fetchpriority="high" />
-  <!-- Preload official logo -->
   <link rel="preload" as="image" href="/assets/Logo/LOGO.png" />
 
-  <!-- OpenGraph / WhatsApp Link Preview -->
+  <!-- OpenGraph / Social Link Previews -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="SHRAVIKO — Curated Indian Living" />
-  <meta property="og:description" content="Elevate daily rituals with Shraviko. Pure brassware, heavy copper vessels, organic temple flower incense, handcrafted pooja thalis, and sacred yantras." />
+  <meta property="og:site_name" content="SHRAVIKO" />
+  <meta property="og:title" content="SHRAVIKO — Handcrafted Indian Pooja Essentials &amp; Brassware" />
+  <meta property="og:description" content="Elevate your daily rituals with Shraviko. Shop pure heavy brassware, copper vessels, organic temple flower incense, handcrafted pooja thalis, and sacred yantras." />
   <meta property="og:image" content="https://shraviko.com/assets/Logo/LOGO.png" />
-  <meta property="og:url" content="https://shraviko.com" />
+  <meta property="og:url" content="https://shraviko.com/" />
+  <meta property="og:locale" content="en_IN" />
 
-  <!-- Twitter Card -->
+  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SHRAVIKO — Curated Indian Living" />
-  <meta name="twitter:description" content="SHRAVIKO brings Indian tradition into modern living through thoughtfully curated products, timeless craftsmanship, meaningful rituals, and contemporary design." />
+  <meta name="twitter:title" content="SHRAVIKO — Handcrafted Indian Pooja Essentials &amp; Brassware" />
+  <meta name="twitter:description" content="Elevate your daily rituals with Shraviko. Shop pure heavy brassware, copper vessels, organic temple flower incense, handcrafted pooja thalis, and sacred yantras." />
   <meta name="twitter:image" content="https://shraviko.com/assets/Logo/LOGO.png" />
+
+  <!-- Structured Data: Organization & WebSite Schemas (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://shraviko.com/#organization",
+        "name": "SHRAVIKO",
+        "url": "https://shraviko.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://shraviko.com/assets/Logo/LOGO.png"
+        },
+        "description": "Premium Indian pooja essentials — handcrafted brassware, pure copper vessels, sacred yantras, Rudraksha malas, and organic incense. Made in India.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+917742320607",
+          "contactType": "customer service",
+          "email": "info@shraviko.com",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi"]
+        },
+        "sameAs": [
+          "https://www.instagram.com/shraviko/",
+          "https://www.facebook.com/profile.php?id=61593917600311",
+          "https://www.amazon.in/s?k=shraviko"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://shraviko.com/#website",
+        "url": "https://shraviko.com",
+        "name": "SHRAVIKO",
+        "publisher": {
+          "@id": "https://shraviko.com/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://shraviko.com/all-collections?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
 
   <!-- Content Security Policy (CSP) for client-side script hardening (Configured for Razorpay SDK & Fonts) -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://cdn.razorpay.com https://api.razorpay.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob: https://cdn.razorpay.com; connect-src 'self' http: https: ws: wss: https://lumberjack-cx.razorpay.com https://api.razorpay.com https://checkout.razorpay.com; frame-src 'self' https://api.razorpay.com https://checkout.razorpay.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
@@ -44,7 +95,25 @@
 
 <body
   class="bg-[#FBF9F5] text-[#2C2623] font-sans selection:bg-[#C5A059] selection:text-white antialiased overflow-x-hidden">
-  <div id="root"></div>
+  <div id="root">
+    <!-- Server-rendered crawlable semantic fallback (Hydrated by React on mount) -->
+    <header style="padding: 1rem; text-align: center; background: #1C1715; color: #FAF9F5;">
+      <p style="font-family: serif; font-size: 1.25rem; font-weight: bold; letter-spacing: 0.1em; color: #C5A059; margin: 0;">SHRAVIKO</p>
+      <nav aria-label="Main Navigation" style="margin-top: 0.5rem; font-size: 0.875rem;">
+        <a href="/all-collections" style="color: #FAF9F5; margin: 0 0.75rem; text-decoration: none;">All Collections</a>
+        <a href="/category/brass" style="color: #FAF9F5; margin: 0 0.75rem; text-decoration: none;">Brass Articles</a>
+        <a href="/category/copper" style="color: #FAF9F5; margin: 0 0.75rem; text-decoration: none;">Copper Vessels</a>
+        <a href="/category/incense" style="color: #FAF9F5; margin: 0 0.75rem; text-decoration: none;">Incense &amp; Dhoop</a>
+        <a href="/about" style="color: #FAF9F5; margin: 0 0.75rem; text-decoration: none;">Our Story</a>
+      </nav>
+    </header>
+    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+      <h1 style="font-family: serif; font-size: 2rem; color: #2C2623; margin-bottom: 1rem;">SHRAVIKO — Handcrafted Indian Pooja Essentials &amp; Sacred Living</h1>
+      <p style="color: #5A4D41; line-height: 1.6; font-size: 1rem;">
+        Discover handcrafted, sacred lifestyle essentials rooted in centuries of Indian heritage. From heavy brass pooja bells, akhand diyas, and authentic copper vessels to charcoal-free organic temple flower agarbatti and consecrated energy malas — each Shraviko piece is crafted to bring purity, grace, and sacred intent into your home.
+      </p>
+    </main>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

@@ -1,0 +1,15 @@
+# Robots.txt for SHRAVIKO (https://shraviko.com)
+# Standard crawler directives allowing full indexing of products, categories & brand pages.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /checkout
+Disallow: /cart
+Disallow: /track-order
+Disallow: /orders
+Disallow: /fulfillment-updates
+Disallow: /shiprocket-webhook
+
+# Sitemap location
+Sitemap: https://shraviko.com/sitemap.xml

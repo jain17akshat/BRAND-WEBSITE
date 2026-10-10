@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node generate-sitemap.mjs",
-    "build": "npx vite build",
+    "build": "npx vite build && node prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

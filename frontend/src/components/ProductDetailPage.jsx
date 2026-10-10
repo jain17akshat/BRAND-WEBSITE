@@ -144,7 +144,8 @@ export const ProductDetailPage = ({
     url: `https://shraviko.com/product/${product.id}`,
     image: product.image ? [`https://shraviko.com${product.image}`] : (product.images ? product.images.map(img => `https://shraviko.com${img}`) : []),
     description: product.metaDescription || product.shortDescription || (product.description ? product.description.substring(0, 160) : ''),
-    sku: product.id,
+    sku: product.sku || product.id,
+    mpn: product.sku || product.id,
     brand: {
       '@type': 'Brand',
       name: 'SHRAVIKO'
@@ -154,6 +155,7 @@ export const ProductDetailPage = ({
       url: `https://shraviko.com/product/${product.id}`,
       priceCurrency: 'INR',
       price: currentPrice || product.price,
+      priceValidUntil: '2027-12-31',
       availability: product.inStock !== false ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
       itemCondition: 'https://schema.org/NewCondition',
       seller: {
@@ -165,9 +167,36 @@ export const ProductDetailPage = ({
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: product.rating,
-        reviewCount: product.reviewsCount || 12
+        reviewCount: product.reviewsCount || 12,
+        bestRating: '5',
+        worstRating: '1'
       }
     } : {})
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://shraviko.com'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: product.categoryName || 'Collection',
+        item: `https://shraviko.com/category/${product.category}`
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: product.name,
+        item: `https://shraviko.com/product/${product.id}`
+      }
+    ]
   };
 
   const faqSchema = product.faqs && product.faqs.length > 0 ? {
@@ -175,17 +204,17 @@ export const ProductDetailPage = ({
     '@type': 'FAQPage',
     mainEntity: product.faqs.map(faq => ({
       '@type': 'Question',
-      name: faq.question,
+      name: faq.q || faq.question,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: faq.answer
+        text: faq.a || faq.answer
       }
     }))
   } : null;
 
   return (
     <div className="min-h-screen bg-[#FBF9F5] pb-24 text-[#2C2623]">
-      <JsonLd data={[productSchema, ...(faqSchema ? [faqSchema] : [])]} />
+      <JsonLd data={[productSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]} />
       
       {/* Top Header Navigation Bar */}
       <div className="bg-[#1C1715] border-b border-[#3A322C] pt-24 sm:pt-28 pb-4 px-4 sm:px-6 lg:px-8">

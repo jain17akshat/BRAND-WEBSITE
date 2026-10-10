@@ -453,7 +453,6 @@ export const CategoryPage = ({
           )}
 
         </div>
-      )}
 
     </div>
   );

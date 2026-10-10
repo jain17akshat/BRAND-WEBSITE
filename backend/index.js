@@ -47,6 +47,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// ── Security Headers (Audit Fix 6) ─────────────────────────
+app.use((req, res, next) => {
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
 // 1. Raw body — must be before express.json()
 app.use(rawBody);
 
@@ -101,18 +110,53 @@ app.use('/fulfillment-updates', rateLimiter.webhook, shiprocketWebhookRouter);
 app.use('/api/shiprocket-webhook', rateLimiter.webhook, shiprocketWebhookRouter);
 app.use('/shiprocket-webhook', rateLimiter.webhook, shiprocketWebhookRouter);
 
-// ── Serve Static Frontend (Combined Deployment on Hostinger) ──
+// ── Crawlability Endpoints: robots.txt & sitemap.xml (Audit Fix 1 & 2) ──
 const path = require('path');
 const fs = require('fs');
 const frontendDistPath = path.join(__dirname, '../frontend/dist');
+const { handleSeoRequest } = require('./services/seoRenderer');
 
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  const distRobots = path.join(frontendDistPath, 'robots.txt');
+  const publicRobots = path.join(__dirname, '../frontend/public/robots.txt');
+  if (fs.existsSync(distRobots)) return res.sendFile(distRobots);
+  if (fs.existsSync(publicRobots)) return res.sendFile(publicRobots);
+  res.send(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /checkout\nDisallow: /cart\nDisallow: /track-order\nDisallow: /orders\nDisallow: /fulfillment-updates\nDisallow: /shiprocket-webhook\n\nSitemap: https://shraviko.com/sitemap.xml\n`);
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  const distSitemap = path.join(frontendDistPath, 'sitemap.xml');
+  const publicSitemap = path.join(__dirname, '../frontend/public/sitemap.xml');
+  if (fs.existsSync(distSitemap)) return res.sendFile(distSitemap);
+  if (fs.existsSync(publicSitemap)) return res.sendFile(publicSitemap);
+  res.status(404).send('Sitemap not found');
+});
+
+// ── Serve Static Frontend with Caching & SSR Fallback (Combined Deployment on Hostinger) ──
 if (fs.existsSync(frontendDistPath)) {
-  app.use(express.static(frontendDistPath));
+  // Serve static assets with 1-year immutable caching for fingerprinted JS/CSS/media
+  app.use(express.static(frontendDistPath, {
+    redirect: false,
+    maxAge: '1y',
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.html') || filePath.endsWith('.xml') || filePath.endsWith('.txt')) {
+        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+      } else if (filePath.match(/\.(js|css|webp|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$/)) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+    }
+  }));
+
+  // Dynamic SEO & Prerendered HTML Catch-All
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api') || req.path.startsWith('/fulfillment-updates') || req.path.startsWith('/shiprocket-webhook')) {
       return next();
     }
-    res.sendFile(path.join(frontendDistPath, 'index.html'));
+    handleSeoRequest(req, res, frontendDistPath);
   });
 }
 

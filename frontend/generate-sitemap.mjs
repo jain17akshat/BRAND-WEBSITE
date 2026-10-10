@@ -6,7 +6,7 @@
  * Automatically runs before `vite build` via the "prebuild" npm script.
  */
 
-import { writeFileSync } from 'fs';
+import { writeFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { PRODUCTS, CATEGORIES } from './src/data/products.js';
@@ -82,11 +82,17 @@ for (const prodId of uniqueProductIds) {
 xml += `</urlset>
 `;
 
-const outputPath = resolve(__dirname, 'public/sitemap.xml');
-writeFileSync(outputPath, xml, 'utf-8');
+const publicOutputPath = resolve(__dirname, 'public/sitemap.xml');
+writeFileSync(publicOutputPath, xml, 'utf-8');
 
-console.log(`✅ Sitemap generated: ${outputPath}`);
+const distDir = resolve(__dirname, 'dist');
+if (existsSync(distDir)) {
+  writeFileSync(resolve(distDir, 'sitemap.xml'), xml, 'utf-8');
+}
+
+console.log(`✅ Sitemap generated: ${publicOutputPath}`);
 console.log(`   → ${staticPages.length} static pages`);
 console.log(`   → ${uniqueCategoryIds.length} category pages`);
 console.log(`   → ${uniqueProductIds.length} product pages`);
 console.log(`   → ${staticPages.length + uniqueCategoryIds.length + uniqueProductIds.length} total URLs`);
+
