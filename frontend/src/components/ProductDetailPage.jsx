@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { ArrowLeft, Star, Heart, ShoppingBag, ShieldCheck, Truck, RotateCcw, Sparkles, Check, ChevronRight, Flame, Clock, Eye, Zap, FileText, Sliders, Shield, HelpCircle, CheckCircle2, Info } from 'lucide-react';
 import { ProductImage } from './ProductImage';
+import { ProductCard } from './ProductCard';
 import { ProductDetailSkeleton } from './Skeleton';
 import { SafeImage } from './SafeImage';
 import { PRODUCTS } from '../data/products';
@@ -30,6 +31,7 @@ export const ProductDetailPage = ({
   const [selectedVariant, setSelectedVariant] = useState(defaultVariant);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
+  const [addedFeedback, setAddedFeedback] = useState(false);
 
   // Urgency: random stock left + viewer count (stable per product load)
   const urgencyData = useMemo(() => ({
@@ -125,6 +127,8 @@ export const ProductDetailPage = ({
       : product;
 
     onAddToCart(itemToAdd, quantity);
+    setAddedFeedback(true);
+    setTimeout(() => setAddedFeedback(false), 2200);
   };
 
   const handleBack = () => {
@@ -213,20 +217,20 @@ export const ProductDetailPage = ({
   } : null;
 
   return (
-    <div className="min-h-screen bg-[#FBF9F5] pb-24 text-[#2C2623]">
+    <div className="min-h-screen bg-[#FAF7F2] pb-24 text-[#2C221E] font-manrope">
       <JsonLd data={[productSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]} />
       
       {/* Top Header Navigation Bar */}
-      <div className="bg-[#1C1715] border-b border-[#3A322C] pt-24 sm:pt-28 pb-4 px-4 sm:px-6 lg:px-8">
+      <div className="bg-[#FAF7F2] border-b border-[#EAE0CD] pt-24 sm:pt-28 pb-4 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs font-cinzel tracking-wider text-[#C5A059] uppercase overflow-x-auto scrollbar-none">
-            <button onClick={onBackToHome} className="hover:text-white transition-colors cursor-pointer">Home</button>
-            <ChevronRight className="w-3 h-3 text-gray-500" />
-            <button onClick={() => onBackToCategory?.(product.category)} className="hover:text-white transition-colors cursor-pointer">
+          <div className="flex items-center gap-2 text-xs font-manrope font-medium text-[#6B5E57] overflow-x-auto scrollbar-none">
+            <button onClick={onBackToHome} className="hover:text-[#57324F] transition-colors cursor-pointer">Home</button>
+            <ChevronRight className="w-3.5 h-3.5 text-[#A8988F]" />
+            <button onClick={() => onBackToCategory?.(product.category)} className="hover:text-[#57324F] transition-colors cursor-pointer">
               {product.categoryName || 'Collection'}
             </button>
-            <ChevronRight className="w-3 h-3 text-gray-500" />
-            <span className="text-white font-semibold line-clamp-1">{product.name}</span>
+            <ChevronRight className="w-3.5 h-3.5 text-[#A8988F]" />
+            <span className="text-[#2C221E] font-semibold line-clamp-1">{product.name}</span>
           </div>
 
         </div>
@@ -237,9 +241,9 @@ export const ProductDetailPage = ({
         <div className="mb-6">
           <button
             onClick={handleBack}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-wider rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] transition-all shadow-md active:scale-95 group cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-[#FBEAE5] text-[#57324F] font-manrope text-xs font-semibold tracking-wide rounded-[12px] border border-[#57324F]/30 hover:border-[#57324F] transition-all shadow-xs active:scale-95 group cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4 text-[#E5C378] group-hover:-translate-x-1 transition-transform" />
+            <ArrowLeft className="w-4 h-4 text-[#57324F] group-hover:-translate-x-1 transition-transform" />
             <span>Back</span>
           </button>
         </div>
@@ -249,13 +253,21 @@ export const ProductDetailPage = ({
           <div className="lg:col-span-6 space-y-4">
             
             {/* Main Stage Image Frame */}
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl border border-[#EAE0CD] bg-[#F9F6F0]">
+            <div className={`relative aspect-square rounded-2xl overflow-hidden shadow-xl border border-[#EAE0CD] ${
+              product.imageBackground === 'white'
+                ? 'bg-white'
+                : product.imageBackground === 'transparent'
+                ? 'bg-[#FAF6EC]'
+                : 'bg-[#FAF7F2]'
+            }`}>
               <ProductImage
                 src={activeImg}
                 alt={product.name}
                 artType={product.artType}
                 fitMode={product.fitMode || "contain"}
                 aspect="aspect-square"
+                imageBackground={product.imageBackground}
+                silhouetteShadow={product.imageBackground === 'transparent'}
                 className="w-full h-full p-2 sm:p-4"
                 priority={true}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
@@ -335,39 +347,39 @@ export const ProductDetailPage = ({
             {/* Header Info */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-xs font-cinzel uppercase tracking-[0.25em] text-[#8C6929] font-bold">
+                <span className="text-[11px] font-manrope uppercase tracking-[0.2em] text-[#8C7A70] font-semibold">
                   {product.categoryName || 'Sacred Collection'}
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-4xl font-cinzel font-bold text-[#2C2623] leading-snug">
+              <h1 className="text-2xl sm:text-4xl font-fraunces font-medium text-[#2C221E] leading-tight">
                 {product.name}
               </h1>
 
-              <p className="text-xs sm:text-sm text-[#755722] font-cinzel font-semibold flex items-center gap-1.5 pt-1">
-                <Sparkles className="w-4 h-4 text-[#8C6929]" />
+              <p className="text-xs sm:text-sm text-[#6B5E57] font-manrope font-medium flex items-center gap-1.5 pt-1">
+                <Sparkles className="w-4 h-4 text-[#57324F]" />
                 <span>{product.purity || '100% Pure Virgin Brass'}</span>
               </p>
             </div>
 
             {/* Price Showcase / Coming Soon */}
-            <div className="p-4 bg-white rounded-2xl border border-[#EAE0CD] flex items-center justify-between shadow-sm">
+            <div className="p-4 bg-white rounded-2xl border border-[#EAE0CD] flex items-center justify-between shadow-xs">
               {product.isComingSoon ? (
                 <div>
-                  <span className="text-xs text-gray-500 font-cinzel block mb-0.5">Availability</span>
-                  <span className="text-xl sm:text-2xl font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
+                  <span className="text-xs text-[#8C7A70] font-manrope block mb-0.5">Availability</span>
+                  <span className="text-xl sm:text-2xl font-fraunces font-medium text-[#57324F] tracking-tight">
                     Coming Soon
                   </span>
                 </div>
               ) : (
                 <div>
-                  <span className="text-xs text-gray-500 font-cinzel block mb-0.5">Special Price</span>
+                  <span className="text-xs text-[#8C7A70] font-manrope block mb-0.5">Price</span>
                   <div className="flex items-baseline gap-3">
-                    <span className="text-3xl sm:text-4xl font-sans font-bold text-[#2C2623]">
+                    <span className="text-3xl sm:text-4xl font-manrope font-bold text-[#2C221E]">
                       ₹{(currentPrice || 0).toLocaleString('en-IN')}
                     </span>
                     {currentOrigPrice && (
-                      <span className="text-base font-sans text-gray-600 line-through font-medium">
+                      <span className="text-base font-manrope text-[#8C7A70] line-through font-normal">
                         ₹{currentOrigPrice.toLocaleString('en-IN')}
                       </span>
                     )}
@@ -376,19 +388,57 @@ export const ProductDetailPage = ({
               )}
             </div>
 
-            {/* ── Delivery Timeline + Urgency (Above the Fold) ── */}
+            {/* Weight / Variant Selector Chips */}
+            {product.weightVariants && product.weightVariants.length > 0 && !product.isComingSoon && (
+              <div className="space-y-2.5 pt-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-manrope font-semibold text-[#4A3E39] uppercase tracking-wider">
+                    Select Option:
+                  </span>
+                  <span className="text-xs font-manrope font-bold text-[#57324F]">
+                    {selectedVariant?.weight}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2.5">
+                  {product.weightVariants.map((variant, i) => {
+                    const isSelected = selectedVariant?.weight === variant.weight;
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setSelectedVariant(variant)}
+                        className={`px-4 py-2.5 rounded-[12px] text-xs font-manrope font-semibold border transition-all ${
+                          isSelected
+                            ? 'bg-[#57324F] text-white border-[#57324F] shadow-xs'
+                            : 'bg-white text-[#2C221E] border-[#EAE0CD] hover:border-[#57324F]/50 hover:bg-[#FBEAE5]/30'
+                        }`}
+                      >
+                        <span>{variant.weight}</span>
+                        {variant.price && (
+                          <span className={`ml-1.5 text-[11px] ${isSelected ? 'text-white/85' : 'text-[#8C7A70]'}`}>
+                            ₹{variant.price.toLocaleString('en-IN')}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* ── Delivery Timeline + Assurance (Above the Fold) ── */}
             {!product.isComingSoon && (
               <div className="space-y-2.5">
                 {/* Delivery Timeline */}
-                <div className="flex items-center gap-3 p-3 bg-[#FAF5EB] rounded-xl border border-[#3B7A57]/30">
+                <div className="flex items-center gap-3 p-3 bg-[#EBF2EB]/50 rounded-xl border border-[#C5D9C5]">
                   <div className="w-8 h-8 rounded-full bg-[#3B7A57]/15 flex items-center justify-center shrink-0">
                     <Truck className="w-4 h-4 text-[#3B7A57]" />
                   </div>
                   <div>
-                    <span className="text-xs font-cinzel font-bold text-[#2C1F06] block">
+                    <span className="text-xs font-manrope font-semibold text-[#2C221E] block">
                       Estimated Delivery: 3–5 Business Days
                     </span>
-                    <span className="text-[10px] text-[#3B7A57] font-sans font-semibold">
+                    <span className="text-[11px] text-[#3B7A57] font-manrope font-medium">
                       Free shipping on orders above ₹999 · Pan-India Express Delivery
                     </span>
                   </div>
@@ -397,28 +447,28 @@ export const ProductDetailPage = ({
                 {/* Brand Assurance Row */}
                 <div className="grid grid-cols-2 gap-2.5">
                   {/* Heritage Craft */}
-                  <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF7F2] rounded-xl border border-[#EAE0CD]">
-                    <div className="w-7 h-7 rounded-lg bg-[#C5A059]/15 border border-[#C5A059]/30 flex items-center justify-center shrink-0">
-                      <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+                  <div className="flex items-center gap-2.5 p-2.5 bg-white rounded-xl border border-[#EAE0CD]">
+                    <div className="w-7 h-7 rounded-lg bg-[#FAF7F2] border border-[#EAE0CD] flex items-center justify-center shrink-0">
+                      <Sparkles className="w-3.5 h-3.5 text-[#57324F]" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-cinzel font-bold text-[#2C1F06] block uppercase tracking-wider">
+                      <span className="text-[10px] font-manrope font-bold text-[#2C221E] block uppercase tracking-wider">
                         Heritage Craft
                       </span>
-                      <span className="text-[9px] text-[#6B5840] font-sans">100% Solid & Sacred</span>
+                      <span className="text-[10px] text-[#8C7A70] font-manrope">100% Solid & Sacred</span>
                     </div>
                   </div>
 
                   {/* Express Delivery */}
-                  <div className="flex items-center gap-2.5 p-2.5 bg-[#FAF7F2] rounded-xl border border-[#EAE0CD]">
-                    <div className="w-7 h-7 rounded-lg bg-[#C5A059]/15 border border-[#C5A059]/30 flex items-center justify-center shrink-0">
-                      <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
+                  <div className="flex items-center gap-2.5 p-2.5 bg-white rounded-xl border border-[#EAE0CD]">
+                    <div className="w-7 h-7 rounded-lg bg-[#FAF7F2] border border-[#EAE0CD] flex items-center justify-center shrink-0">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#57324F]" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-cinzel font-bold text-[#2C1F06] block uppercase tracking-wider">
+                      <span className="text-[10px] font-manrope font-bold text-[#2C221E] block uppercase tracking-wider">
                         Secure Transit
                       </span>
-                      <span className="text-[9px] text-[#6B5840] font-sans">Insured & Express Delivery</span>
+                      <span className="text-[10px] text-[#8C7A70] font-manrope">Insured Express Courier</span>
                     </div>
                   </div>
                 </div>
@@ -430,7 +480,7 @@ export const ProductDetailPage = ({
               <div className="pt-2">
                 <button
                   disabled
-                  className="w-full py-4 bg-[#C5A059]/20 text-[#8C6D2D] font-cinzel text-xs sm:text-sm uppercase font-bold tracking-widest rounded-xl border border-[#C5A059]/40 cursor-not-allowed text-center shadow-inner"
+                  className="w-full min-h-[50px] py-3.5 bg-[#FAF7F2] text-[#8C7A70] font-manrope text-xs sm:text-sm font-semibold rounded-[12px] border border-[#EAE0CD] cursor-not-allowed text-center"
                 >
                   Collection Launching Soon
                 </button>
@@ -438,20 +488,20 @@ export const ProductDetailPage = ({
             ) : (
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-4">
-                  <span className="text-xs font-cinzel font-bold text-[#2C1F06] uppercase tracking-wider">Quantity:</span>
-                  <div className="flex items-center border border-[#EAE0CD] rounded-xl bg-white p-1">
+                  <span className="text-xs font-manrope font-semibold text-[#4A3E39] uppercase tracking-wider">Quantity:</span>
+                  <div className="flex items-center border border-[#EAE0CD] rounded-[12px] bg-white p-1">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       aria-label="Decrease quantity"
-                      className="w-9 h-9 rounded-lg bg-[#FAF5EB] text-[#2C1F06] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
+                      className="w-9 h-9 rounded-lg bg-[#FAF7F2] text-[#2C221E] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
                     >
                       -
                     </button>
-                    <span className="px-4 text-sm font-cinzel font-bold text-[#2C1F06]">{quantity}</span>
+                    <span className="px-4 text-sm font-manrope font-bold text-[#2C221E]">{quantity}</span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
                       aria-label="Increase quantity"
-                      className="w-9 h-9 rounded-lg bg-[#FAF5EB] text-[#2C1F06] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
+                      className="w-9 h-9 rounded-lg bg-[#FAF7F2] text-[#2C221E] font-bold text-base flex items-center justify-center hover:bg-[#EAE0CD] transition-colors"
                     >
                       +
                     </button>
@@ -461,10 +511,24 @@ export const ProductDetailPage = ({
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={handleAddToCart}
-                    className="flex-1 py-3.5 sm:py-4 bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40 transform hover:scale-[1.01] active:scale-95"
+                    aria-label={addedFeedback ? "Added to cart" : "Add to cart"}
+                    className={`flex-1 min-h-[50px] py-3.5 px-6 font-manrope text-sm font-semibold rounded-[12px] shadow-sm transition-all flex items-center justify-center gap-2 active:scale-98 ${
+                      addedFeedback
+                        ? 'bg-emerald-700 text-white'
+                        : 'bg-[#57324F] hover:bg-[#42253C] text-white'
+                    }`}
                   >
-                    <ShoppingBag className="w-4 h-4 text-[#E5C378]" />
-                    <span>Add to Sacred Cart — ₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
+                    {addedFeedback ? (
+                      <>
+                        <Check className="w-5 h-5 text-white" />
+                        <span>Added to Cart!</span>
+                      </>
+                    ) : (
+                      <>
+                        <ShoppingBag className="w-4 h-4 text-white" />
+                        <span>Add to Cart — ₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
@@ -473,41 +537,41 @@ export const ProductDetailPage = ({
             {/* Accordion & Info Tabs */}
             <div className="border-t border-[#EAE0CD] pt-6 space-y-4">
               {/* Tab Navigation */}
-              <div className="bg-[#FAF7F2] p-1.5 rounded-2xl border border-[#EAE0CD]/80 shadow-inner flex flex-wrap sm:flex-nowrap gap-1.5">
+              <div className="bg-[#FAF7F2] p-1.5 rounded-2xl border border-[#EAE0CD] flex flex-wrap sm:flex-nowrap gap-1.5">
                 <button
                   onClick={() => setActiveTab('description')}
-                  className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
+                  className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-manrope text-xs font-semibold tracking-wide transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                     activeTab === 'description'
-                      ? 'bg-[#2C1F06] text-[#E5C378] shadow-md scale-[1.01]'
-                      : 'text-[#6E645E] hover:text-[#2C1F06] hover:bg-white/70'
+                      ? 'bg-[#57324F] text-white shadow-xs'
+                      : 'text-[#6B5E57] hover:text-[#57324F] hover:bg-white/70'
                   }`}
                 >
-                  <FileText className={`w-3.5 h-3.5 ${activeTab === 'description' ? 'text-[#E5C378]' : 'text-[#C5A059]'}`} />
+                  <FileText className={`w-3.5 h-3.5 ${activeTab === 'description' ? 'text-white' : 'text-[#57324F]'}`} />
                   <span>Overview</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab('specs')}
-                  className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
+                  className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-manrope text-xs font-semibold tracking-wide transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                     activeTab === 'specs'
-                      ? 'bg-[#2C1F06] text-[#E5C378] shadow-md scale-[1.01]'
-                      : 'text-[#6E645E] hover:text-[#2C1F06] hover:bg-white/70'
+                      ? 'bg-[#57324F] text-white shadow-xs'
+                      : 'text-[#6B5E57] hover:text-[#57324F] hover:bg-white/70'
                   }`}
                 >
-                  <Sliders className={`w-3.5 h-3.5 ${activeTab === 'specs' ? 'text-[#E5C378]' : 'text-[#C5A059]'}`} />
+                  <Sliders className={`w-3.5 h-3.5 ${activeTab === 'specs' ? 'text-white' : 'text-[#57324F]'}`} />
                   <span>Specs</span>
                 </button>
 
                 {product.careInstructions && (
                   <button
                     onClick={() => setActiveTab('care')}
-                    className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
+                    className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl font-manrope text-xs font-semibold tracking-wide transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                       activeTab === 'care'
-                        ? 'bg-[#2C1F06] text-[#E5C378] shadow-md scale-[1.01]'
-                        : 'text-[#6E645E] hover:text-[#2C1F06] hover:bg-white/70'
+                        ? 'bg-[#57324F] text-white shadow-xs'
+                        : 'text-[#6B5E57] hover:text-[#57324F] hover:bg-white/70'
                     }`}
                   >
-                    <Shield className={`w-3.5 h-3.5 ${activeTab === 'care' ? 'text-[#E5C378]' : 'text-[#C5A059]'}`} />
+                    <Shield className={`w-3.5 h-3.5 ${activeTab === 'care' ? 'text-white' : 'text-[#57324F]'}`} />
                     <span>Care</span>
                   </button>
                 )}
@@ -515,13 +579,13 @@ export const ProductDetailPage = ({
                 {product.faqs && (
                   <button
                     onClick={() => setActiveTab('faqs')}
-                    className={`flex-1 min-w-[100px] py-2.5 px-3 rounded-xl font-cinzel text-[11px] sm:text-xs uppercase font-bold tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
+                    className={`flex-1 min-w-[100px] py-2.5 px-3 rounded-xl font-manrope text-xs font-semibold tracking-wide transition-all duration-200 flex items-center justify-center gap-1.5 whitespace-nowrap ${
                       activeTab === 'faqs'
-                        ? 'bg-[#2C1F06] text-[#E5C378] shadow-md scale-[1.01]'
-                        : 'text-[#6E645E] hover:text-[#2C1F06] hover:bg-white/70'
+                        ? 'bg-[#57324F] text-white shadow-xs'
+                        : 'text-[#6B5E57] hover:text-[#57324F] hover:bg-white/70'
                     }`}
                   >
-                    <HelpCircle className={`w-3.5 h-3.5 ${activeTab === 'faqs' ? 'text-[#E5C378]' : 'text-[#C5A059]'}`} />
+                    <HelpCircle className={`w-3.5 h-3.5 ${activeTab === 'faqs' ? 'text-white' : 'text-[#57324F]'}`} />
                     <span>FAQs</span>
                   </button>
                 )}
@@ -665,16 +729,16 @@ export const ProductDetailPage = ({
 
       {/* Mobile Sticky Bottom Purchase Bar */}
       {!product.isComingSoon && (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-[#1C1715] border-t border-[#C5A059]/40 z-30 shadow-2xl flex items-center justify-between gap-3 backdrop-blur-md">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-[#FAF7F2]/95 border-t border-[#EAE0CD] z-30 shadow-lg flex items-center justify-between gap-3 backdrop-blur-md">
           <div>
-            <span className="text-[10px] font-cinzel text-[#C5A059] uppercase block font-semibold">Total Price</span>
-            <span className="text-base font-cinzel font-bold text-white">₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
+            <span className="text-[10px] font-manrope text-[#8C7A70] uppercase block font-semibold">Total Price</span>
+            <span className="text-base font-manrope font-bold text-[#2C221E]">₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
           </div>
           <button
             onClick={handleAddToCart}
-            className="flex-1 py-2.5 px-4 bg-[#C5A059] hover:bg-[#B58F47] text-[#171312] font-cinzel text-xs uppercase font-bold tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"
+            className="flex-1 min-h-[46px] py-2.5 px-4 bg-[#57324F] hover:bg-[#42253C] text-white font-manrope text-xs font-semibold rounded-[12px] shadow-xs flex items-center justify-center gap-2 active:scale-95 transition-all"
           >
-            <ShoppingBag className="w-4 h-4" />
+            <ShoppingBag className="w-4 h-4 text-white" />
             <span>Add to Cart</span>
           </button>
         </div>
@@ -697,92 +761,33 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
   if (related.length === 0) return null;
 
   return (
-    <section className="bg-[#FBF9F5] border-t border-[#EAE0CD] py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+    <section className="bg-white border-t border-[#EAE0CD] py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF0D9] border border-[#E0CEAA] mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#B8860B]" />
-            <span className="text-[11px] font-cinzel font-bold text-[#755722] uppercase tracking-[0.2em]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF7F2] border border-[#EAE0CD] mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-[#57324F]" />
+            <span className="text-[11px] font-manrope font-semibold text-[#57324F] uppercase tracking-[0.18em]">
               You May Also Like
             </span>
           </div>
-          <h2 className="font-cinzel font-bold text-xl sm:text-2xl text-[#2C1F06] uppercase tracking-wide">
+          <h2 className="font-fraunces font-medium text-2xl sm:text-3xl text-[#2C221E]">
             Complete Your Sacred Collection
           </h2>
         </div>
 
         {/* Product Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5">
-          {related.map((product) => {
-            const discount = product.originalPrice
-              ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-              : null;
-            const isAdded = added === product.id;
-
-            return (
-              <div
-                key={product.id}
-                onClick={() => onSelectProduct(product)}
-                className="bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#C5A059]/60 transition-all duration-300 cursor-pointer group flex flex-col justify-between h-full"
-              >
-                {/* Image */}
-                <div className="product-card-image-wrapper aspect-square overflow-hidden bg-[#F9F6F0]">
-                  <ProductImage
-                    src={product.image}
-                    images={product.images}
-                    alt={product.name}
-                    artType={product.artType}
-                    fitMode="contain"
-                    aspect="aspect-square"
-                    sizes="(max-width: 640px) 50vw, 250px"
-                  />
-                </div>
-
-                {/* Info */}
-                <div className="p-3 flex flex-col flex-1 justify-between">
-                  <div>
-                    <span className="text-[9px] font-cinzel font-bold text-[#C5A059] uppercase tracking-wider mb-1 min-h-[16px] flex items-center">
-                      {product.categoryName || product.category || '\u00A0'}
-                    </span>
-                    <h3 className="font-cinzel font-semibold text-xs text-[#2C1F06] line-clamp-2 leading-snug group-hover:text-[#B8860B] transition-colors min-h-[2.25rem] flex items-start">
-                      {product.name}
-                    </h3>
-                  </div>
-
-                  <div className="flex items-center justify-between pt-2 border-t border-[#F0E8DC] mt-auto">
-                    <div>
-                      <span className="text-xs font-bold text-[#2C1F06]">
-                        ₹{product.price?.toLocaleString('en-IN')}
-                      </span>
-                      {product.originalPrice && (
-                        <span className="text-[10px] text-stone-600 line-through ml-1 font-medium">
-                          ₹{product.originalPrice?.toLocaleString('en-IN')}
-                        </span>
-                      )}
-                    </div>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onAddToCart(product, 1);
-                        setAdded(product.id);
-                        setTimeout(() => setAdded(null), 1500);
-                      }}
-                      aria-label={`Add ${product.name} to cart`}
-                      className={`px-2.5 py-1.5 rounded-lg text-[10px] font-cinzel font-bold uppercase tracking-wide transition-all flex items-center gap-1 active:scale-95 ${
-                        isAdded
-                          ? 'bg-emerald-600 text-white'
-                          : 'bg-[#FAF5EB] text-[#755722] hover:bg-[#C5A059] hover:text-white border border-[#E0CEAA]'
-                      }`}
-                    >
-                      {isAdded ? <Check className="w-3 h-3" /> : <ShoppingBag className="w-3 h-3" />}
-                      {isAdded ? 'Added' : 'Add'}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {related.map((prod, idx) => (
+            <ProductCard
+              key={prod.id}
+              product={prod}
+              onSelectProduct={onSelectProduct}
+              onAddToCart={(p) => onAddToCart(p, 1)}
+              onToggleWishlist={onToggleWishlist}
+              priority={idx < 2}
+            />
+          ))}
         </div>
       </div>
     </section>

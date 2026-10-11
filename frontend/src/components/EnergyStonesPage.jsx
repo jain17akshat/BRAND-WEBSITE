@@ -203,57 +203,44 @@ export const EnergyStonesPage = ({ onBackToHome }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <button
           onClick={onBackToHome}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs font-bold uppercase tracking-wider rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] shadow-md transition-all active:scale-95 group"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-[#FBEAE5] text-[#57324F] font-manrope text-xs font-semibold rounded-xl border border-[#57324F]/25 shadow-xs transition-all active:scale-95 group"
         >
-          <ArrowLeft className="w-4 h-4 text-[#E5C378] group-hover:-translate-x-1 transition-transform" />
+          <ArrowLeft className="w-4 h-4 text-[#57324F] group-hover:-translate-x-1 transition-transform" />
           <span>Back to Home</span>
         </button>
       </div>
       {/* ── Main Container: Pure "Coming Soon" Teaser Showcase ── */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <main className="space-y-8">
-          {/* Main Luxury "Coming Soon • Stay Tuned" Showcase Hero Box */}
-          <div className="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#2C1F06] via-[#3D2B0A] to-[#1C1505] text-[#E5C378] border border-[#E5C378]/40 shadow-2xl overflow-hidden text-center">
+          {/* Main Showcase Hero Box */}
+          <div className="relative rounded-3xl p-8 sm:p-12 bg-[#1A1418] text-white border border-white/10 shadow-xl overflow-hidden text-center">
             
-            {/* Background Sacred Sun Aura */}
-            <div className="absolute inset-0 opacity-15 pointer-events-none animate-spin-slow flex items-center justify-center">
-              <svg className="w-[500px] h-[500px] text-[#E5C378]" viewBox="0 0 200 200" fill="currentColor">
-                <g transform="translate(100,100)">
-                  <circle r="90" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
-                  <circle r="78" fill="none" stroke="currentColor" strokeWidth="1" />
-                  {[...Array(12)].map((_, i) => (
-                    <path key={i} d="M 0,-65 Q 12,-40 0,-15 Q -12,-40 0,-65" fill="none" stroke="currentColor" strokeWidth="1" transform={`rotate(${i * 30})`} />
-                  ))}
-                </g>
-              </svg>
-            </div>
-
             <div className="relative z-10 max-w-2xl mx-auto space-y-6">
               
               {/* Gem Icon Aura */}
-              <div className="w-20 h-20 mx-auto rounded-full bg-[#E5C378]/15 border border-[#E5C378]/50 flex items-center justify-center text-[#E5C378] shadow-2xl">
-                <Gem className="w-10 h-10 animate-pulse" />
+              <div className="w-20 h-20 mx-auto rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-[#FBEAE5] shadow-lg">
+                <Gem className="w-10 h-10" />
               </div>
 
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E5C378]/20 border border-[#E5C378]/50 text-white text-xs font-cinzel font-bold uppercase tracking-widest">
-                <Hourglass className="w-3.5 h-3.5 text-[#E5C378] animate-spin" style={{ animationDuration: '4s' }} />
-                <span>Collection Launching Soon • Stay Tuned</span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#FBEAE5] text-xs font-manrope font-semibold tracking-wide">
+                <Hourglass className="w-3.5 h-3.5 text-[#FBEAE5]" />
+                <span>Collection Launching Soon · Stay Tuned</span>
               </div>
 
               {/* Headline */}
-              <h2 className="text-2xl sm:text-4xl font-cinzel font-bold text-white tracking-wide leading-tight">
-                Sacred Energy Stones & Crystal Bracelets
+              <h2 className="text-2xl sm:text-4xl font-fraunces font-bold text-white tracking-wide leading-tight">
+                Sacred Energy Stones &amp; Crystal Bracelets
               </h2>
 
               {/* Description */}
-              <p className="text-xs sm:text-base text-[#D9C49E] font-light leading-relaxed">
+              <p className="text-xs sm:text-base text-[#D4C3D0] font-manrope font-light leading-relaxed">
                 We are hand-selecting 100% authentic gemstones, crystal bracelets, orgone pyramids, and sacred Japa malas purified with Ganga Jal and consecrated with Vedic mantras.
               </p>
 
               {/* Coming Soon Badge */}
-              <div className="pt-6 border-t border-[#E5C378]/30 max-w-md mx-auto flex justify-center">
-                <div className="px-6 py-2.5 rounded-full bg-[#E5C378]/15 border border-[#E5C378]/50 text-[#E5C378] font-cinzel font-bold text-xs sm:text-sm uppercase tracking-[0.25em] shadow-lg flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[#E5C378]" />
+              <div className="pt-6 border-t border-white/10 max-w-md mx-auto flex justify-center">
+                <div className="px-6 py-2.5 rounded-full bg-[#57324F] text-white font-manrope font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-md flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-[#FBEAE5]" />
                   <span>Coming Soon</span>
                 </div>
               </div>

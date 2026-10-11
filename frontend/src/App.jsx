@@ -900,7 +900,7 @@ EXPLORE SHRAVIKO"
                       </div>
                       <button
                         onClick={() => handleSelectCategory('kits')}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#C5A059] text-[#1C1715] text-xs font-cinzel font-bold tracking-widest uppercase rounded hover:bg-[#E5C378] transition-all duration-300 active:scale-95 group"
+                        className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#57324F] hover:bg-[#42253C] active:bg-[#351C30] text-white text-xs font-manrope font-semibold rounded-xl transition-all duration-200 active:scale-95 group min-h-[48px]"
                       >
                         Explore Corporate Gifting
                         <span className="transform group-hover:translate-x-1 transition-transform">→</span>
@@ -996,38 +996,36 @@ EXPLORE SHRAVIKO"
 
                     {/* CENTER — Big & Bold Message with Animated Appearance & Royal Color Palette */}
                     <div className="flex-1 text-center px-1 sm:px-4 flex flex-col items-center justify-center">
-                      {/* 1. Top Tagline with Gold Flourish & Smooth Entrance */}
-                      <div className="flex items-center justify-center gap-2 mb-1 sm:mb-1.5 w-full animate-text-appear-1">
-                        <span className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent to-[#8C6521]/70 hidden xs:inline-block" />
-                        <p className="font-cinzel font-extrabold text-[0.65rem] sm:text-xs lg:text-sm tracking-[0.25em] uppercase sm:whitespace-nowrap text-[#8C6521]">
-                          ✦ WHERE TRADITION MEETS POSITIVE ENERGY ✦
+                      {/* 1. Top Tagline */}
+                      <div className="flex items-center justify-center gap-2 mb-1 sm:mb-1.5 w-full">
+                        <span className="h-[1.5px] w-6 sm:w-10 bg-[#57324F]/30 hidden xs:inline-block" />
+                        <p className="font-manrope font-semibold text-[0.68rem] sm:text-xs lg:text-sm tracking-[0.2em] uppercase sm:whitespace-nowrap text-[#57324F]">
+                          ✦ Where Tradition Meets Positive Energy ✦
                         </p>
-                        <span className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-l from-transparent to-[#8C6521]/70 hidden xs:inline-block" />
+                        <span className="h-[1.5px] w-6 sm:w-10 bg-[#57324F]/30 hidden xs:inline-block" />
                       </div>
 
-                      {/* 2. Main Crimson Headline with Staggered Fade-Up */}
+                      {/* 2. Main Headline */}
                       <h2
-                        className="font-cinzel font-black text-[#681521] leading-tight tracking-[0.05em] uppercase sm:whitespace-nowrap animate-text-appear-2"
+                        className="font-fraunces font-bold text-[#2C2623] leading-tight tracking-tight sm:whitespace-nowrap"
                         style={{
-                          fontSize: 'clamp(0.9rem, 2.7vw, 2.25rem)',
-                          textShadow: '0 2px 6px rgba(104,21,33,0.15)',
+                          fontSize: 'clamp(1rem, 2.7vw, 2.25rem)',
                         }}
                       >
                         From Daily Pooja to Festive Rituals
                       </h2>
 
-                      {/* 3. Bottom Statement with Metallic Gold Glow & Entrance */}
-                      <div className="mt-1 sm:mt-1.5 animate-text-appear-3">
+                      {/* 3. Bottom Statement */}
+                      <div className="mt-1 sm:mt-1.5">
                         <p
-                          className="font-cinzel font-black text-[#916922] tracking-[0.28em] uppercase sm:whitespace-nowrap"
+                          className="font-fraunces font-bold text-[#57324F] tracking-wide uppercase sm:whitespace-nowrap"
                           style={{
-                            fontSize: 'clamp(0.95rem, 3.2vw, 2.4rem)',
-                            textShadow: '0 2px 6px rgba(145,105,34,0.18)',
+                            fontSize: 'clamp(0.95rem, 3.2vw, 2.2rem)',
                           }}
                         >
-                          WE HAVE IT ALL
+                          We Have It All
                         </p>
-                        <div className="w-20 sm:w-32 h-[2px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent mx-auto mt-1 sm:mt-1.5" />
+                        <div className="w-16 sm:w-24 h-[2px] bg-[#57324F]/30 mx-auto mt-1 sm:mt-1.5" />
                       </div>
                     </div>
 

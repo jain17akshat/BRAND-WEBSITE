@@ -10,114 +10,7 @@ const CATEGORY_META = {
   yantras:           { label: 'Custom & Handcrafted',   emoji: '✨', color: '#7B5E3A', bg: '#F5F0EB' },
 };
 
-import { ProductImage } from './ProductImage';
-
-function ProductCard({ product, priority = false, onAddToCart, onToggleWishlist, wishlistIds, onSelectProduct }) {
-  const isWishlisted = wishlistIds?.includes(product.id);
-  const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-    : 0;
-
-  return (
-    <div
-      className="bg-white rounded-2xl overflow-hidden border border-[#EAE0CD] hover:border-[#C5A059]/50 hover:shadow-lg transition-all duration-300 group flex flex-col justify-between h-full cursor-pointer"
-    >
-      {/* Image */}
-      <div
-        className="product-card-image-wrapper aspect-square overflow-hidden bg-[#F9F6F0]"
-        onClick={() => onSelectProduct(product)}
-      >
-        <ProductImage
-          src={product.image}
-          images={product.images}
-          alt={product.name}
-          artType={product.artType}
-          fitMode={product.fitMode}
-          aspect="aspect-square"
-          priority={priority}
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
-        />
-
-
-        {/* Top Left Badge if Coming Soon */}
-        {product.isComingSoon && (
-          <div className="absolute top-2.5 left-2.5 z-10 bg-[#2C1F06]/90 text-[#E5C378] text-[9px] font-cinzel font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border border-[#E5C378]/40 shadow-md backdrop-blur-md">
-            Coming Soon
-          </div>
-        )}
-
-        {/* Hover actions */}
-        <div className="absolute inset-x-0 bottom-0 flex gap-1 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <button
-            onClick={e => { e.stopPropagation(); onToggleWishlist(product); }}
-            aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-            className={`flex-1 flex items-center justify-center gap-1 py-2 rounded-xl text-[10px] font-cinzel font-bold tracking-wide border transition-all ${isWishlisted ? 'bg-rose-50 border-rose-200 text-rose-500' : 'bg-white/95 border-[#EAE0CD] text-[#6B5840] hover:border-[#C5A059] hover:text-[#C5A059]'}`}
-          >
-            <Heart className={`w-3 h-3 ${isWishlisted ? 'fill-rose-400' : ''}`} />
-            {isWishlisted ? 'Saved' : 'Save'}
-          </button>
-          <button
-            onClick={e => { e.stopPropagation(); onSelectProduct(product); }}
-            aria-label={`View details for ${product.name}`}
-            className="flex-1 flex items-center justify-center gap-1 py-2 rounded-xl bg-white/95 border border-[#EAE0CD] text-[#6B5840] text-[10px] font-cinzel font-bold tracking-wide hover:border-[#C5A059] hover:text-[#C5A059] transition-all"
-          >
-            <Eye className="w-3 h-3" />
-            Details
-          </button>
-        </div>
-      </div>
-
-      {/* Info */}
-      <div className="p-3.5 flex flex-col justify-between flex-1">
-        <div>
-          <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#7A5B1D] uppercase font-bold mb-1 min-h-[16px] flex items-center">
-            {product.categoryName || '\u00A0'}
-          </p>
-          <h3
-            className="text-xs sm:text-sm font-cinzel font-semibold text-[#2C2623] leading-snug line-clamp-2 cursor-pointer hover:text-[#C5A059] transition-colors tracking-tight min-h-[2.25rem] sm:min-h-[2.5rem] flex items-start"
-            onClick={() => onSelectProduct(product)}
-          >
-            {product.name}
-          </h3>
-        </div>
-        {!product.isComingSoon && (
-          <div className="flex items-baseline gap-1.5 mt-auto pt-2 border-t border-[#EAE0CD]">
-            {product.weightVariants && product.weightVariants[0]?.price ? (
-              <div className="flex items-baseline gap-1">
-                <span className="text-[10px] font-sans text-[#52453A] font-medium lowercase">from</span>
-                <span className="font-cinzel font-bold text-[#2C2623] text-xs sm:text-sm">
-                  ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
-                </span>
-              </div>
-            ) : product.price ? (
-              <span className="font-cinzel font-bold text-[#2C2623] text-xs sm:text-sm">
-                ₹{product.price.toLocaleString('en-IN')}
-              </span>
-            ) : null}
-            {product.originalPrice && (
-              <span className="text-[10px] text-stone-600 line-through font-sans font-medium">
-                ₹{product.originalPrice.toLocaleString('en-IN')}
-              </span>
-            )}
-          </div>
-        )}
-        {product.isComingSoon ? (
-          <div className="w-full text-center py-2 rounded-xl bg-[#C5A059]/15 text-[#7A5B1D] text-[10px] font-cinzel font-bold tracking-widest uppercase border border-[#C5A059]/30">
-            Coming Soon
-          </div>
-        ) : (
-          <button
-            onClick={() => onAddToCart(product)}
-            className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl bg-[#1C140F] text-white text-[10px] font-cinzel font-bold tracking-widest uppercase hover:bg-[#C5A059] transition-all duration-300 active:scale-95"
-          >
-            <ShoppingBag className="w-3 h-3" />
-            Add to Cart
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
+import { ProductCard } from './ProductCard';
 
 export function AllCollectionsPage({
   products = [],
@@ -163,51 +56,48 @@ export function AllCollectionsPage({
   ).length;
 
   return (
-    <div className="min-h-screen bg-[#FBF9F5]">
+    <div className="min-h-screen bg-[#FAF7F2] font-manrope">
 
       {/* ── HERO HEADER ── */}
       <div
         className="relative py-16 sm:py-20 text-center overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #1C140F 0%, #2D1F10 50%, #1C140F 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #2C221E 0%, #3D2D27 50%, #2C221E 100%)' }}
       >
-        <div
-          className="absolute inset-0 opacity-[0.05] pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C5A059'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3Ccircle cx='30' cy='30' r='12' stroke='%23C5A059' stroke-width='0.6' fill='none'/%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '60px 60px',
-          }}
-        />
         <div className="relative z-10 max-w-3xl mx-auto px-4">
           <button
             onClick={onBackToHome}
-            className="inline-flex items-center gap-1.5 text-[#9B7E52] text-xs font-cinzel tracking-widest uppercase mb-6 hover:text-[#C5A059] transition-colors"
+            className="inline-flex items-center gap-1.5 text-white/80 text-xs font-manrope font-medium tracking-wide mb-6 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             Back to Home
           </button>
-          <p className="text-[10px] font-cinzel tracking-[0.4em] text-[#C5A059] uppercase mb-4">Sacred Collections</p>
+          <p className="text-[11px] font-manrope font-semibold tracking-[0.2em] text-[#FBEAE5] uppercase mb-3">Boutique Catalogue</p>
           <h1
-            className="font-cinzel font-bold text-white mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)' }}
+            className="font-fraunces font-medium text-white mb-3 tracking-tight"
+            style={{ fontSize: 'clamp(2rem, 5vw, 3.25rem)' }}
           >
             Shop All Collections
           </h1>
-          <p className="text-[#D4C3A3]/80 font-light text-sm">
+          <p className="text-[#FAF7F2]/80 font-normal text-sm max-w-md mx-auto">
             {totalCount} sacred products across {catsToShow.length} categories — handcrafted in India
           </p>
         </div>
       </div>
 
       {/* ── FILTERS + SORT BAR ── */}
-      <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#EAE0CD] shadow-sm">
+      <div className="sticky top-0 z-30 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#EAE0CD] shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
 
           {/* Category filters */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 w-full sm:w-auto no-scrollbar">
-            <SlidersHorizontal className="w-3.5 h-3.5 text-[#9B7E52] flex-shrink-0" />
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 w-full sm:w-auto scrollbar-none">
+            <SlidersHorizontal className="w-3.5 h-3.5 text-[#57324F] flex-shrink-0" />
             <button
               onClick={() => setActiveFilter('all')}
-              className={`flex-shrink-0 px-3 py-1.5 rounded-full font-cinzel text-[10px] tracking-widest uppercase border transition-all ${activeFilter === 'all' ? 'bg-[#1C140F] text-white border-[#1C140F]' : 'bg-white text-[#6B5840] border-[#EAE0CD] hover:border-[#C5A059]'}`}
+              className={`flex-shrink-0 px-3.5 py-1.5 rounded-full font-manrope text-xs font-semibold tracking-wide border transition-all ${
+                activeFilter === 'all'
+                  ? 'bg-[#57324F] text-white border-[#57324F] shadow-xs'
+                  : 'bg-white text-[#4A3E39] border-[#EAE0CD] hover:border-[#57324F]/40 hover:bg-[#FBEAE5]/30'
+              }`}
             >
               All
             </button>
@@ -216,7 +106,11 @@ export function AllCollectionsPage({
                 <button
                   key={id}
                   onClick={() => setActiveFilter(id)}
-                  className={`flex-shrink-0 px-3 py-1.5 rounded-full font-cinzel text-[10px] tracking-wide border transition-all ${activeFilter === id ? 'bg-[#1C140F] text-white border-[#1C140F]' : 'bg-white text-[#2C2623] border-[#2C2623]/40 hover:border-[#1C140F] hover:text-[#1C140F] font-semibold'}`}
+                  className={`flex-shrink-0 px-3.5 py-1.5 rounded-full font-manrope text-xs font-semibold tracking-wide border transition-all ${
+                    activeFilter === id
+                      ? 'bg-[#57324F] text-white border-[#57324F] shadow-xs'
+                      : 'bg-white text-[#4A3E39] border-[#EAE0CD] hover:border-[#57324F]/40 hover:bg-[#FBEAE5]/30'
+                  }`}
                 >
                   {label}
                 </button>
@@ -226,11 +120,11 @@ export function AllCollectionsPage({
 
           {/* Sort */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            <span className="text-[10px] font-cinzel text-[#9B7E52] tracking-widest uppercase">Sort</span>
+            <span className="text-xs font-manrope font-semibold text-[#8C7A70] uppercase tracking-wider">Sort</span>
             <select
               value={sortBy}
               onChange={e => setSortBy(e.target.value)}
-              className="text-[11px] font-cinzel border border-[#EAE0CD] rounded-lg px-2.5 py-1.5 text-[#2C2623] bg-white focus:outline-none focus:border-[#C5A059] cursor-pointer"
+              className="text-xs font-manrope border border-[#EAE0CD] rounded-[12px] px-3 py-1.5 text-[#2C221E] bg-white focus:outline-none focus:border-[#57324F] cursor-pointer"
             >
               <option value="default">Featured</option>
               <option value="price-asc">Price: Low to High</option>
@@ -244,7 +138,7 @@ export function AllCollectionsPage({
       {/* ── PRODUCTS BY CATEGORY ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-14">
         {catsToShow.map(cat => {
-          const meta = CATEGORY_META[cat] || { label: cat, emoji: '✨', color: '#C5A059', bg: '#FBF5E6' };
+          const meta = CATEGORY_META[cat] || { label: cat, emoji: '✨', color: '#57324F', bg: '#FAF7F2' };
           const prods = sortProducts(grouped[cat] || []);
           const isExpanded = expandedCats[cat] !== false; // default expanded
           const PREVIEW = 4;
@@ -255,23 +149,23 @@ export function AllCollectionsPage({
               <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#EAE0CD]">
                 <div className="flex items-center gap-3">
                   <div>
-                    <h2 className="font-cinzel font-bold text-[#2C2623]" style={{ fontSize: 'clamp(1rem, 2vw, 1.3rem)' }}>
+                    <h2 className="font-fraunces font-medium text-xl sm:text-2xl text-[#2C221E]">
                       {meta.label}
                     </h2>
-                    <p className="text-[10px] text-[#9B7E52] font-cinzel tracking-widest">{prods.length} products</p>
+                    <p className="text-[11px] text-[#8C7A70] font-manrope tracking-wider">{prods.length} products</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => onSelectCategory(cat)}
-                    className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-cinzel tracking-widest uppercase text-[#8C6929] border border-[#C5A059]/40 px-3 py-1.5 rounded-full hover:bg-[#C5A059]/10 hover:border-[#C5A059] transition-all font-bold"
+                    className="hidden sm:inline-flex items-center gap-1.5 text-xs font-manrope tracking-wide text-[#57324F] border border-[#57324F]/30 px-3.5 py-1.5 rounded-full hover:bg-[#FBEAE5] transition-all font-semibold"
                   >
                     View All →
                   </button>
                   <button
                     onClick={() => toggleCat(cat)}
                     aria-label={isExpanded ? `Collapse ${meta.label} category` : `Expand ${meta.label} category`}
-                    className="p-1.5 rounded-full border border-[#EAE0CD] text-[#7A5B1D] hover:border-[#C5A059] hover:text-[#C5A059] transition-all"
+                    className="p-1.5 rounded-full border border-[#EAE0CD] text-[#57324F] hover:bg-[#FBEAE5] transition-all"
                   >
                     {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                   </button>
@@ -294,10 +188,10 @@ export function AllCollectionsPage({
                     ))}
                   </div>
                   {prods.length > PREVIEW && (
-                    <div className="mt-5 text-center">
+                    <div className="mt-6 text-center">
                       <button
                         onClick={() => onSelectCategory(cat)}
-                        className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#C5A059]/50 text-[#8C6929] text-[10px] font-cinzel tracking-[0.2em] uppercase font-bold rounded-full hover:bg-[#C5A059] hover:text-white transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#57324F]/30 text-[#57324F] text-xs font-manrope font-semibold rounded-full hover:bg-[#FBEAE5] transition-all"
                       >
                         See all {prods.length} {meta.label} →
                       </button>
@@ -311,18 +205,17 @@ export function AllCollectionsPage({
       </div>
 
       {/* ── BOTTOM CTA ── */}
-      <div
-        className="py-14 text-center"
-        style={{ background: 'linear-gradient(135deg, #1C140F, #2D1F10)' }}
-      >
-        <p className="text-[10px] font-cinzel tracking-[0.4em] text-[#C5A059] uppercase mb-3">Looking for something specific?</p>
-        <h3 className="font-cinzel font-bold text-white text-xl mb-6">Can't find what you need?</h3>
-        <button
-          onClick={onBackToHome}
-          className="inline-flex items-center gap-2 px-7 py-3 bg-[#C5A059] text-[#1C140F] font-cinzel font-bold text-xs tracking-[0.2em] uppercase rounded-full hover:bg-[#E5C378] transition-all hover:scale-105 active:scale-95"
-        >
-          Back to Homepage
-        </button>
+      <div className="py-14 sm:py-16 text-center bg-[#FBEAE5]/40 border-t border-[#EAE0CD]">
+        <div className="max-w-xl mx-auto px-4">
+          <p className="text-[11px] font-manrope font-semibold tracking-[0.2em] text-[#57324F] uppercase mb-2">Looking for something specific?</p>
+          <h3 className="font-fraunces font-medium text-2xl sm:text-3xl text-[#2C221E] mb-6">Can't find what you need?</h3>
+          <button
+            onClick={onBackToHome}
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#57324F] hover:bg-[#42253C] text-white font-manrope font-semibold text-xs tracking-wider uppercase rounded-[12px] shadow-sm transition-all active:scale-95"
+          >
+            Back to Homepage
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,161 +1,65 @@
 import React from 'react';
-import { Star, ShoppingBag, Heart, Eye, ArrowRight } from 'lucide-react';
-import { ProductImage } from './ProductImage';
+import { ArrowRight } from 'lucide-react';
+import { ProductCard } from './ProductCard';
 
 export const Bestsellers = ({
-  products,
+  products = [],
   onAddToCart,
   onToggleWishlist,
   wishlistIds = [],
   onOpenQuickView,
   onSelectProduct,
-  heading = 'Most Loved',
-  subheading = null,
+  onSelectCategory,
+  heading = 'Most Loved Sacred Pieces',
+  subheading = 'Artisanal brassware, resonant bells and pure ritual vessels cherished across India.',
   limit = 4,
   filterFn = null,
 }) => {
   // Apply optional filter, then take `limit` items
-  const displayProducts = (filterFn ? products.filter(filterFn) : products)
-    .slice(0, limit);
-
-  const handleCardClick = (product) => {
-    if (onSelectProduct) onSelectProduct(product);
-    else if (onOpenQuickView) onOpenQuickView(product);
-  };
+  const displayProducts = (filterFn ? products.filter(filterFn) : products).slice(0, limit);
 
   return (
-    <section className="py-14 sm:py-20 bg-white border-b border-[#EAE0CD]">
+    <section className="py-14 sm:py-20 lg:py-24 bg-white border-b border-[#EAE2D7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="mb-8 sm:mb-12 scroll-reveal-up">
-          <p className="text-[10px] font-cinzel tracking-[0.3em] text-[#9B7E52] uppercase mb-2">Our Selection</p>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-cinzel font-bold text-[#2C2623] tracking-wide heading-gold-line">
-            {heading}
-          </h2>
-          {subheading && (
-            <p className="mt-2 text-sm text-[#6B5840] font-light">{subheading}</p>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
+          <div>
+            <p className="text-[11px] sm:text-xs font-manrope font-semibold tracking-[0.18em] text-[#8C7D75] uppercase mb-1.5">
+              Customer Favorites
+            </p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-fraunces font-semibold text-[#2A221E] leading-tight">
+              {heading}
+            </h2>
+            {subheading && (
+              <p className="mt-2 text-sm text-[#685951] font-manrope max-w-2xl">{subheading}</p>
+            )}
+          </div>
+          {onSelectCategory && (
+            <button
+              onClick={() => onSelectCategory('all-collections')}
+              className="link-action text-sm self-start sm:self-auto cursor-pointer"
+            >
+              <span>Explore all</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           )}
         </div>
 
-        {/* Product Grid — 4-col desktop, 2-col tablet, horizontal scroll on mobile */}
-        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4 sm:gap-6 scrollbar-none">
-          {displayProducts.map((product, idx) => {
-            const isWishlisted = wishlistIds.includes(product.id);
-            return (
-              <div
-                key={product.id}
-                style={{ '--stagger-index': idx }}
-                className="group flex-none w-[72vw] sm:w-auto snap-start rounded-xl overflow-hidden bg-[#FDFAF7] border border-[#EAE0CD] hover:border-[#C5A059]/60 hover:shadow-lg transition-all duration-300 flex flex-col h-full stagger-grid-item brass-hover-shimmer"
-              >
-                {/* Image */}
-                <div
-                  className="product-card-image-wrapper aspect-square overflow-hidden cursor-pointer bg-[#F9F6F0]"
-                  onClick={() => handleCardClick(product)}
-                >
-                  <ProductImage
-                    src={product.image}
-                    images={product.images}
-                    alt={product.name}
-                    artType={product.artType}
-                    fitMode={product.fitMode}
-                    aspect="aspect-square"
-                    priority={idx < 4}
-                  />
-
-                  {/* Wishlist */}
-                  <button
-                    onClick={(e) => { e.stopPropagation(); onToggleWishlist(product); }}
-                    aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-                    className={`absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 text-[#2C2623] hover:text-[#A63A2B] flex items-center justify-center transition-colors shadow-sm magnetic-hover ${isWishlisted ? 'wishlist-heart-pop' : ''}`}
-                    title={isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
-                  >
-                    <Heart className={`w-4 h-4 transition-transform duration-300 ${isWishlisted ? 'fill-[#A63A2B] text-[#A63A2B]' : ''}`} />
-                  </button>
-
-                  {/* Hover Quick Add Overlay */}
-                  <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-2 z-10">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onAddToCart(product);
-                      }}
-                      className="flex-1 py-1.5 px-2.5 rounded-lg bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] text-[11px] font-semibold shadow-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95 border border-[#E5C378]/30"
-                    >
-                      <ShoppingBag className="w-3.5 h-3.5" />
-                      <span>Quick Add</span>
-                    </button>
-
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (onOpenQuickView) onOpenQuickView(product);
-                      }}
-                      aria-label={`Quick view ${product.name}`}
-                      className="p-1.5 rounded-lg bg-white/90 hover:bg-white text-[#2C2623] text-xs font-medium shadow-lg transition-transform active:scale-95"
-                      title="Quick View"
-                    >
-                      <Eye className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Info */}
-                <div className="p-4 flex-1 flex flex-col justify-between">
-                  <div>
-                    <p className="text-[9px] font-cinzel tracking-[0.25em] text-[#7A5B1D] uppercase mb-1 font-bold min-h-[16px] flex items-center">
-                      {product.categoryName || '\u00A0'}
-                    </p>
-                    {/* Elegant Product Title */}
-                    <h3
-                      onClick={() => handleCardClick(product)}
-                      className="font-cinzel font-semibold text-xs sm:text-sm text-[#2C2623] hover:text-[#C5A059] transition-colors line-clamp-2 cursor-pointer leading-snug tracking-tight min-h-[2.25rem] sm:min-h-[2.5rem] flex items-start"
-                    >
-                      {product.name}
-                    </h3>
-                  </div>
-
-                  {/* Price + View Details */}
-                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#EAE0CD] gap-2">
-                    <div className="flex items-baseline gap-1">
-                      {product.isComingSoon ? (
-                        <span className="text-xs font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
-                          Coming Soon
-                        </span>
-                      ) : product.weightVariants && product.weightVariants[0]?.price ? (
-                        <>
-                          <span className="text-[10px] font-sans text-[#52453A] font-medium lowercase">from</span>
-                          <span className="text-sm font-sans font-bold text-[#2C2623]">
-                            ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
-                          </span>
-                        </>
-                      ) : product.price ? (
-                        <span className="text-sm font-sans font-bold text-[#2C2623]">
-                          ₹{product.price.toLocaleString('en-IN')}
-                        </span>
-                      ) : null}
-                      {!product.isComingSoon && product.originalPrice && (
-                        <span className="text-[10px] text-stone-600 line-through font-sans ml-1 font-medium">
-                          ₹{product.originalPrice.toLocaleString('en-IN')}
-                        </span>
-                      )}
-                    </div>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCardClick(product);
-                      }}
-                      className="px-3 py-1.5 rounded-lg bg-[#2C1F06] text-[#E5C378] hover:bg-[#3D2B0A] transition-all active:scale-95 shadow-sm text-xs font-medium flex items-center gap-1.5 border border-[#E5C378]/20"
-                      title="View product details"
-                    >
-                      <span>Details</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        {/* Product Grid — 2-col on mobile, 4-col on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+          {displayProducts.map((product, idx) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onSelectProduct={onSelectProduct}
+              onAddToCart={onAddToCart}
+              onToggleWishlist={onToggleWishlist}
+              isWishlisted={wishlistIds.includes(product.id)}
+              onOpenQuickView={onOpenQuickView}
+              priority={idx < 4}
+            />
+          ))}
         </div>
 
       </div>

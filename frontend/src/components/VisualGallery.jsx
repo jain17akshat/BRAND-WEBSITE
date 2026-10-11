@@ -30,13 +30,13 @@ export const VisualGallery = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-[#FBF9F5]">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#FAF7F2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-6 sm:mb-10 text-center sm:text-left">
-          <p className="text-[9px] sm:text-[10px] font-cinzel tracking-[0.28em] text-[#9B7E52] uppercase mb-1.5">
+          <p className="text-xs font-manrope font-semibold tracking-wider text-[#57324F] uppercase mb-1.5">
             Visual Story
           </p>
-          <h2 className="text-xl sm:text-2xl lg:text-4xl font-cinzel font-bold text-[#2C2623] tracking-wide">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-fraunces font-bold text-[#2C2623]">
             From the Shraviko World
           </h2>
         </div>
@@ -46,7 +46,7 @@ export const VisualGallery = () => {
           {images.map((img, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-xl aspect-square sm:aspect-[4/5] shadow-xs"
+              className="group relative overflow-hidden rounded-2xl aspect-square sm:aspect-[4/5] shadow-xs"
             >
               <SafeImage
                 src={img.src}

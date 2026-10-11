@@ -32,30 +32,30 @@ export function QuickTrackSection({ onGoSupport }) {
   };
 
   return (
-    <section className="py-14 sm:py-20 bg-[#FAF7F2] relative overflow-hidden border-t border-b border-[#E8DFC7]/60">
+    <section className="py-14 sm:py-20 bg-[#FAF7F2] relative overflow-hidden border-t border-b border-[#EAE0CD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5EFE0] border border-[#DAB97B] text-[#5C420D] text-xs font-cinzel tracking-widest uppercase font-bold mb-4 shadow-xs">
-            <Truck className="w-3.5 h-3.5 text-[#5C420D]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FBEAE5] border border-[#57324F]/15 text-[#57324F] text-xs font-manrope font-semibold tracking-wide mb-4">
+            <Truck className="w-3.5 h-3.5 text-[#57324F]" />
             <span>Shiprocket Live Tracking</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-cinzel font-bold text-[#1C140F] tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-4xl font-fraunces font-bold text-[#2C2623] tracking-tight mb-3">
             Track Your Sacred Order
           </h2>
-          <p className="text-xs sm:text-sm text-[#3D2E24] font-semibold max-w-lg mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#5C4A3E] font-manrope font-light max-w-lg mx-auto leading-relaxed">
             Enter your registered 10-digit mobile number to fetch real-time dispatch, AWB, and courier delivery updates.
           </p>
         </div>
 
         {/* Input Card */}
-        <div className="max-w-2xl mx-auto bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-[#C5A059]/40 relative">
+        <div className="max-w-2xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-[#EAE0CD] relative">
           <form onSubmit={handleTrackSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
               <div>
-                <label className="block text-xs font-cinzel uppercase tracking-wider text-[#1C140F] font-bold mb-1.5">
+                <label className="block text-xs font-manrope uppercase tracking-wider text-[#2C2623] font-semibold mb-1.5">
                   Mobile Number *
                 </label>
                 <input
@@ -64,20 +64,20 @@ export function QuickTrackSection({ onGoSupport }) {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-[#B89B67] focus:outline-none focus:ring-2 focus:ring-[#8C6D27] text-sm text-[#1C140F] font-bold placeholder-[#7D6E63] bg-[#FAF7F2] focus:bg-white transition-all shadow-xs"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#EAE0CD] focus:outline-none focus:border-[#57324F] focus:ring-2 focus:ring-[#57324F]/15 text-sm text-[#2C2623] font-manrope placeholder-[#8A796B] bg-[#FAF7F2] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-cinzel uppercase tracking-wider text-[#1C140F] font-bold mb-1.5">
-                  Order ID <span className="text-gray-500 font-normal lowercase">(optional)</span>
+                <label className="block text-xs font-manrope uppercase tracking-wider text-[#2C2623] font-semibold mb-1.5">
+                  Order ID <span className="text-[#8A796B] font-normal lowercase">(optional)</span>
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. SHR278696"
                   value={orderId}
                   onChange={(e) => setOrderId(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#B89B67] focus:outline-none focus:ring-2 focus:ring-[#8C6D27] text-sm text-[#1C140F] font-bold placeholder-[#7D6E63] bg-[#FAF7F2] focus:bg-white transition-all shadow-xs"
+                  className="w-full px-4 py-3.5 rounded-xl border border-[#EAE0CD] focus:outline-none focus:border-[#57324F] focus:ring-2 focus:ring-[#57324F]/15 text-sm text-[#2C2623] font-manrope placeholder-[#8A796B] bg-[#FAF7F2] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
@@ -86,10 +86,10 @@ export function QuickTrackSection({ onGoSupport }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 px-6 bg-[#3D2B1F] hover:bg-[#2C1F06] text-[#E5C378] font-cinzel font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg transition-all duration-300 active:scale-98 flex items-center justify-center gap-2 min-h-[48px] disabled:opacity-60"
+              className="w-full py-3.5 px-6 bg-[#57324F] hover:bg-[#42253C] active:bg-[#351C30] text-white font-manrope font-semibold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all duration-200 active:scale-98 flex items-center justify-center gap-2 min-h-[50px] disabled:opacity-60"
             >
               {loading ? (
-                <div className="w-5 h-5 border-2 border-[#E5C378] border-t-transparent rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : (
                 <>
                   <Search className="w-4 h-4" />
@@ -99,67 +99,34 @@ export function QuickTrackSection({ onGoSupport }) {
             </button>
           </form>
 
-          {/* Quick hint */}
-          <div className="mt-4 pt-4 border-t border-[#F0E8D8] flex items-center justify-between text-xs text-[#7A6859]">
-            <span>Need help with returns or refunds?</span>
-            <button
-              onClick={onGoSupport}
-              className="text-[#B8860B] hover:underline font-semibold font-cinzel uppercase tracking-wider text-[11px] inline-flex items-center gap-1"
-            >
-              <span>My Orders &amp; Returns Portal</span>
-              <ArrowRight className="w-3 h-3" />
-            </button>
-          </div>
-
-          {/* Error Banner */}
+          {/* Error Message */}
           {errorMsg && (
-            <div className="mt-4 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2.5">
-              <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-500" />
+            <div className="mt-4 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-manrope flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{errorMsg}</span>
             </div>
           )}
 
-          {/* Live Order Result Display */}
+          {/* Quick Result if order returned */}
           {orderData && (
-            <div className="mt-6 pt-6 border-t border-[#E8DFC7] space-y-5 animate-fade-in">
-              <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-xl bg-[#F8F5EF] border border-[#DAB97B]/40">
-                <div>
-                  <span className="text-[10px] uppercase font-cinzel text-gray-500 tracking-wider">Order Status</span>
-                  <div className="font-cinzel font-bold text-[#2C1F06] text-base capitalize mt-0.5">
-                    {orderData.status}
-                  </div>
-                </div>
-
-                {orderData.courier && (
-                  <div className="text-right">
-                    <span className="text-[10px] uppercase font-cinzel text-gray-500 tracking-wider">Courier Partner</span>
-                    <div className="font-semibold text-xs text-[#3D2B1F] mt-0.5">
-                      {orderData.courier} {orderData.awb ? `(AWB: ${orderData.awb})` : ''}
-                    </div>
-                  </div>
-                )}
+            <div className="mt-6 pt-6 border-t border-[#EAE0CD] space-y-3 font-manrope text-xs">
+              <div className="flex items-center justify-between">
+                <span className="font-semibold text-[#2C2623]">Order #{orderData.id || orderData.orderId}</span>
+                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-bold uppercase text-[10px]">
+                  {orderData.status || 'Active'}
+                </span>
               </div>
-
-              {/* Timeline Steps */}
-              {orderData.timeline && orderData.timeline.length > 0 && (
-                <div className="space-y-3 pl-2">
-                  {orderData.timeline.map((step, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <div className={`w-5 h-5 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0 ${
-                        step.done ? 'bg-[#B8860B] text-white' : 'bg-gray-200 text-gray-400'
-                      }`}>
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                      </div>
-                      <div>
-                        <p className={`text-xs font-semibold ${step.done ? 'text-[#2C1F06]' : 'text-gray-400'}`}>
-                          {step.label}
-                        </p>
-                        {step.date && <p className="text-[11px] text-gray-500">{step.date}</p>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+              <p className="text-[#5C4A3E]">
+                Courier: <strong>{orderData.courier || 'Shiprocket Partner'}</strong> · AWB: {orderData.awb || 'Generated'}
+              </p>
+              <button
+                type="button"
+                onClick={onGoSupport}
+                className="text-[#57324F] hover:underline font-semibold flex items-center gap-1 pt-1"
+              >
+                <span>View Full Timeline in Customer Portal</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           )}
         </div>

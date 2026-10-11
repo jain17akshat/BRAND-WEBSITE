@@ -1,13 +1,49 @@
 export const CATEGORIES = [
-  { id: 'all', name: 'All Collections' },
-  { id: 'metalware', name: 'Metalware', count: 21 },
-  { id: 'brass', name: 'Brass Articles', count: 17 },
-  { id: 'copper', name: 'Copper Articles', count: 4 },
-  { id: 'mandir-essentials', name: 'Mandir Essentials', count: 20 },
-  { id: 'energy-stones', name: 'Energy Stones', count: 39, isComingSoon: true },
-  { id: 'incense', name: 'Incense & Dhoop', count: 16 },
-  { id: 'vastu', name: 'Vastu & Spiritual', count: 9 },
-  { id: 'yantras', name: 'Custom & Handcrafted', count: 3 }
+  {
+    "id": "all",
+    "name": "All Collections"
+  },
+  {
+    "id": "metalware",
+    "name": "Metalware",
+    "count": 21
+  },
+  {
+    "id": "brass",
+    "name": "Brass Articles",
+    "count": 17
+  },
+  {
+    "id": "copper",
+    "name": "Copper Articles",
+    "count": 4
+  },
+  {
+    "id": "mandir-essentials",
+    "name": "Mandir Essentials",
+    "count": 20
+  },
+  {
+    "id": "energy-stones",
+    "name": "Energy Stones",
+    "count": 39,
+    "isComingSoon": true
+  },
+  {
+    "id": "incense",
+    "name": "Incense & Dhoop",
+    "count": 16
+  },
+  {
+    "id": "vastu",
+    "name": "Vastu & Spiritual",
+    "count": 9
+  },
+  {
+    "id": "yantras",
+    "name": "Custom & Handcrafted",
+    "count": 3
+  }
 ];
 
 export const PRODUCTS = [
@@ -116,7 +152,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Garud Headed Brass Pooja Bell",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-bell-nandi",
@@ -224,7 +262,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Nandi Headed Brass Pooja Bell",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-bell-simple",
@@ -331,7 +371,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Traditional Brass Pooja Bell",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-bell-carved",
@@ -439,7 +481,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Brass Ganesh Ghanti",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-puja-thali-set",
@@ -555,7 +599,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Pure Brass Pooja Thali",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-aarti-kapoor-diya",
@@ -683,7 +729,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Panchmukhi Aarti Diya",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-akhand-jyot-deepak",
@@ -698,11 +746,13 @@ export const PRODUCTS = [
     "tag": "Akhand Jyot",
     "artType": "jyot",
     "fitMode": "contain",
-    "image": "/assets/akhand jyot/akhand jyot 2.webp",
+    "image": "/assets/akhand jyot/618c8df0-e6c0-46e8-95c6-c261e80bc847.webp",
     "images": [
+      "/assets/akhand jyot/618c8df0-e6c0-46e8-95c6-c261e80bc847.webp",
       "/assets/akhand jyot/akhand jyot 2.webp",
       "/assets/akhand jyot/akhand jyot 1.webp",
-      "/assets/akhand jyot/akhand jyot 3.webp"
+      "/assets/akhand jyot/akhand jyot 3.webp",
+      "/assets/akhand jyot/akhand jyot  size.webp"
     ],
     "weightVariants": [
       {
@@ -794,7 +844,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Brass Akhand Jyot Diya with Protective Cover",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-cup-jyot-diya",
@@ -934,7 +986,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Brass Akhand Jyot Deepak",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-kamandal-holy-water-pot",
@@ -1045,7 +1099,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Brass Kamandal with Lid",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-trishul-with-damru",
@@ -1150,7 +1206,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Brass Trishul with Damru & Stand",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-trishul-standing-emblem",
@@ -1258,7 +1316,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Brass Trishul with Stand",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-gomukhi-shringi-abhishekam",
@@ -1396,7 +1456,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Gaumukh Shringi / Gomukhi Abhishek Patra",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-singhasan-deity-throne",
@@ -1515,7 +1577,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "God Singhasan / Pooja Chowki",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-ladoo-gopal-statue",
@@ -1635,7 +1699,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Devotional Idol",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-kalash-pooja-vessel",
@@ -1751,7 +1817,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Pooja Kalash Lota",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-design-thali-set",
@@ -1880,7 +1948,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Brass Peacock Pooja Thali",
+    "imageBackground": "photo"
   },
   {
     "id": "copper-panchpatra-pali-set",
@@ -2006,7 +2076,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181010",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Pure Copper Panchpatra Udharini Set",
+    "imageBackground": "photo"
   },
   {
     "id": "copper-puja-thali-set",
@@ -2130,7 +2202,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Pure Copper Pooja Thali",
+    "imageBackground": "photo"
   },
   {
     "id": "copper-hawan-kund-pyre",
@@ -2253,7 +2327,8 @@ export const PRODUCTS = [
     ],
     "hsn": "74181010",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   },
   {
     "id": "copper-kalash-pooja-vessel",
@@ -2374,7 +2449,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181010",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Pure Copper Kalash",
+    "imageBackground": "photo"
   },
   {
     "id": "vastu-ganesh-siddha-yantra",
@@ -2501,7 +2578,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Ganesh Yantra",
+    "imageBackground": "white"
   },
   {
     "id": "vastu-kuber-dhan-prapti-yantra",
@@ -2634,7 +2713,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Kuber Yantra",
+    "imageBackground": "photo"
   },
   {
     "id": "vastu-laxmi-siddha-yantra",
@@ -2767,7 +2848,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Lakshmi Kuber Yantra",
+    "imageBackground": "photo"
   },
   {
     "id": "vastu-shani-siddha-yantra",
@@ -2900,7 +2983,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Shree Shani Yantra",
+    "imageBackground": "photo"
   },
   {
     "id": "vastu-crystal-glass-yantra",
@@ -3023,7 +3108,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Shree Yantra Cone Meru",
+    "imageBackground": "transparent"
   },
   {
     "id": "vastu-brass-pyramid-multitier",
@@ -3125,7 +3212,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Vastu Brass Pyramid",
+    "imageBackground": "photo"
   },
   {
     "id": "vastu-crystal-glass-turtle",
@@ -3232,7 +3321,9 @@ export const PRODUCTS = [
     ],
     "hsn": "70189010",
     "taxRate": 18,
-    "taxCode": "GST_18"
+    "taxCode": "GST_18",
+    "name": "Crystal Turtle with Glass Plate",
+    "imageBackground": "transparent"
   },
   {
     "id": "brass-kamdhenu-cow-statue",
@@ -3352,7 +3443,8 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-ganesh-ji-statue",
@@ -3459,7 +3551,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Lord Ganesha Idol",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-radha-krishna-statue",
@@ -3565,7 +3659,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Radha Krishna Idol",
+    "imageBackground": "photo"
   },
   {
     "id": "vastu-crystal-glass-shivling",
@@ -3675,7 +3771,9 @@ export const PRODUCTS = [
     ],
     "hsn": "70189010",
     "taxRate": 18,
-    "taxCode": "GST_18"
+    "taxCode": "GST_18",
+    "name": "Sphatik Shivling",
+    "imageBackground": "transparent"
   },
   {
     "id": "mandir-rudraksh-mala",
@@ -3794,7 +3892,9 @@ export const PRODUCTS = [
     ],
     "hsn": "71179090",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Rudraksha Jaap Mala",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-sphatik-mala",
@@ -3914,7 +4014,9 @@ export const PRODUCTS = [
     ],
     "hsn": "71161000",
     "taxRate": 3,
-    "taxCode": "GST_3"
+    "taxCode": "GST_3",
+    "name": "Sphatik Jaap Mala",
+    "imageBackground": "transparent"
   },
   {
     "id": "mandir-tulsi-mala",
@@ -3945,7 +4047,6 @@ export const PRODUCTS = [
         "default": true
       }
     ],
-
     "purity": "Natural Organic Tulsi Wood",
     "inStock": true,
     "description": "Bring the timeless tradition of Tulsi into your daily spiritual practice with this Original Tulsi Mala, crafted from natural Tulsi wood beads and designed with the traditional 108-bead configuration. Tulsi has an important place in Hindu devotional traditions and is commonly associated with devotion, purity and worship. This mala can be used for mantra chanting, jaap, meditation, yoga, pooja, bhajan, kirtan and temple visits. The smooth, lightweight beads provide a comfortable grip during chanting and make the mala suitable for regular devotional use. Its traditional appearance also makes it suitable to wear as a spiritual accessory.",
@@ -4039,7 +4140,9 @@ export const PRODUCTS = [
     ],
     "hsn": "71179090",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Tulsi Jaap Mala",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-vaijanti-mala",
@@ -4158,7 +4261,9 @@ export const PRODUCTS = [
     ],
     "hsn": "71179090",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Vaijanti Jaap Mala",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-karungali-mala",
@@ -4286,7 +4391,9 @@ export const PRODUCTS = [
     ],
     "hsn": "71179090",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Karungali Jaap Mala",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-lal-chandan",
@@ -4365,7 +4472,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074900",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Pure Lal Chandan / Rakta Chandan Powder",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-pure-camphor",
@@ -4442,7 +4551,9 @@ export const PRODUCTS = [
     ],
     "hsn": "29142100",
     "taxRate": 18,
-    "taxCode": "GST_18"
+    "taxCode": "GST_18",
+    "name": "Pure Shuddh Camphor Tablets",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-bhimseni-kapoor",
@@ -4520,7 +4631,8 @@ export const PRODUCTS = [
     ],
     "hsn": "29142100",
     "taxRate": 18,
-    "taxCode": "GST_18"
+    "taxCode": "GST_18",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-safed-chandan",
@@ -4608,7 +4720,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074900",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Pure Safed Chandan Powder",
+    "imageBackground": "photo"
   },
   {
     "id": "wooden-chowki-carved-01",
@@ -4722,7 +4836,9 @@ export const PRODUCTS = [
     ],
     "hsn": "44219990",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Wooden Pooja Chowki",
+    "imageBackground": "photo"
   },
   {
     "id": "wooden-chowki-large-15x15",
@@ -4831,7 +4947,9 @@ export const PRODUCTS = [
     ],
     "hsn": "44219990",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Large Wooden Pooja Chowki / Bajot",
+    "imageBackground": "photo"
   },
   {
     "id": "brass-dhoopdani-burner",
@@ -4947,7 +5065,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Metal Dhoop Dani",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-mala-counter-brass",
@@ -5054,7 +5174,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Digital Japa Counter",
+    "imageBackground": "white"
   },
   {
     "id": "mandir-pooja-box-chest",
@@ -5172,7 +5294,9 @@ export const PRODUCTS = [
     ],
     "hsn": "44219990",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Stainless Steel Pooja Box",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-wooden-damru-shiva",
@@ -5283,7 +5407,9 @@ export const PRODUCTS = [
     ],
     "hsn": "44219990",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Wooden Damru / Damaru",
+    "imageBackground": "photo"
   },
   {
     "id": "essentials-brass-chawar-whisk",
@@ -5387,7 +5513,8 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-jap-bag-gaumukhi",
@@ -5504,7 +5631,8 @@ export const PRODUCTS = [
     ],
     "hsn": "63079090",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-royal-velvet-asan-mat",
@@ -5610,7 +5738,8 @@ export const PRODUCTS = [
     ],
     "hsn": "63079090",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-dakshinavarti-shankh",
@@ -5714,7 +5843,8 @@ export const PRODUCTS = [
     ],
     "hsn": "05080010",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-vamavarti-shankh",
@@ -5821,7 +5951,8 @@ export const PRODUCTS = [
     ],
     "hsn": "05080010",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   },
   {
     "id": "yantra-kaal-sarp",
@@ -5887,7 +6018,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Kaal Sarp Yog Dosh Nivaran Yantra",
+    "imageBackground": "photo"
   },
   {
     "id": "yantra-mangal",
@@ -5953,7 +6086,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Mangal Yantra",
+    "imageBackground": "photo"
   },
   {
     "id": "yantra-sarv-karya",
@@ -6018,7 +6153,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Sarv Karya Siddhi Yantra",
+    "imageBackground": "photo"
   },
   {
     "id": "yantra-baglamukhi",
@@ -6083,7 +6220,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Shri Baglamukhi Mahayantra",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-cow-dung-cake",
@@ -6156,7 +6295,9 @@ export const PRODUCTS = [
     ],
     "hsn": "31010099",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Desi Cow Dung Cakes (Gau Upla)",
+    "imageBackground": "white"
   },
   {
     "id": "mandir-hawan-samagri",
@@ -6241,7 +6382,8 @@ export const PRODUCTS = [
     ],
     "hsn": "33074900",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   },
   {
     "id": "yantra-maha-mrityunjay",
@@ -6310,7 +6452,9 @@ export const PRODUCTS = [
     ],
     "hsn": "83062900",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "name": "Shri Mahamrityunjay Yantra",
+    "imageBackground": "photo"
   },
   {
     "id": "mandir-pure-kumkum",
@@ -6325,8 +6469,9 @@ export const PRODUCTS = [
     "tag": "Pure Kumkum",
     "artType": "chandan",
     "fitMode": "contain",
-    "image": "/assets/KumKum/KumKum1.webp",
+    "image": "/assets/KumKum/1c39226d-9e81-44a4-b89a-145aa3a11c4e.webp",
     "images": [
+      "/assets/KumKum/1c39226d-9e81-44a4-b89a-145aa3a11c4e.webp",
       "/assets/KumKum/KumKum1.webp",
       "/assets/KumKum/KumKum2.webp",
       "/assets/KumKum/Kumkum3.webp",
@@ -6349,7 +6494,9 @@ export const PRODUCTS = [
     "metaDescription": "Shop Shraviko 100% Pure Roli Kumkum Powder 250g for daily worship, tilak, and religious ceremonies.",
     "hsn": "33074900",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Pure Shuddh Roli Kumkum",
+    "imageBackground": "white"
   },
   {
     "id": "mandir-pure-loban",
@@ -6398,7 +6545,9 @@ export const PRODUCTS = [
     "metaDescription": "Shop Shraviko Pure Natural Loban dhoop granules for home dhuni, purification, and daily worship.",
     "hsn": "33074900",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Natural Pure Sambrani Loban Resin",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-bakhoor-incense-sticks",
@@ -6452,7 +6601,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-kesar-incense-sticks",
@@ -6504,7 +6655,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Kesar Chandan Saffron Incense Sticks",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-lavender-incense-sticks",
@@ -6558,7 +6711,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko French Lavender Organic Incense Sticks",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-oudh-incense-sticks",
@@ -6611,7 +6766,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Regal Agarwood Oudh Incense Sticks",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-chandan-dhoop-cups",
@@ -6664,7 +6821,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-guggul-dhoop-cups",
@@ -6716,7 +6875,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Sacred Guggul Dhoop Cups with Sambrani",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-rose-dhoop-cups",
@@ -6768,7 +6929,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Desi Gulab Rose Dhoop Cups with Sambrani",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-sandalwood-incense-sticks",
@@ -6836,7 +6999,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Vedic Sandalwood (Chandan) Incense Sticks",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-rose-incense-sticks",
@@ -6905,7 +7070,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Desi Gulab Indian Rose Incense Sticks",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-chandan-camphor-fly-cone",
@@ -6958,7 +7125,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Chandan & Camphor Organic Dhoop Cones",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-lavender-camphor-fly-cone",
@@ -7011,7 +7180,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Lavender & Camphor Organic Dhoop Cones",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-brass-dhoop-dani",
@@ -7062,7 +7233,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Traditional Brass Dhoop Dani Burner",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-brass-handle-dhoop",
@@ -7114,7 +7287,9 @@ export const PRODUCTS = [
     ],
     "hsn": "33074100",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Handled Brass Dhoop Dani & Camphor Burner",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-brass-bhog-thali",
@@ -7166,7 +7341,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Handcrafted Brass Bhog Thali Set",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-brass-puja-bell",
@@ -7217,7 +7394,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Classic Solid Brass Pooja Bell (Ghanti)",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-spiritual-engraved-bell",
@@ -7269,7 +7448,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Hand-Carved Spiritual Brass Pooja Bell",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-brass-diya-set5",
@@ -7321,7 +7502,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Handcrafted Brass Diya (Set of 5)",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-carved-brass-diya",
@@ -7373,7 +7556,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Hand-Carved Traditional Brass Diya",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-brass-cup-deepak",
@@ -7426,7 +7611,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Heavy Brass Cup Deepak Diya",
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-peacock-brass-stand-diya",
@@ -7522,7 +7709,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Mayur Peacock Brass Stand Diya (Kutthu Vilakku)",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-spire-brass-stand-diya",
@@ -7618,7 +7807,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Classic Spire Brass Stand Diya (Kutthu Vilakku)",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-stainless-steel-dibbi",
@@ -7669,7 +7860,8 @@ export const PRODUCTS = [
     ],
     "hsn": "73239390",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-brass-footprints",
@@ -7720,7 +7912,8 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-silver-footprints",
@@ -7772,7 +7965,8 @@ export const PRODUCTS = [
     ],
     "hsn": "71179090",
     "taxRate": 12,
-    "taxCode": "GST_12"
+    "taxCode": "GST_12",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-diamond-akhand-jyot",
@@ -7824,7 +8018,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Diamond Cut Glass Brass Akhand Jyot Diya",
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-crystal-glass-akhand-jyot",
@@ -7876,7 +8072,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Crystal Glass Brass Akhand Jyot Deepak",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-lotus-brass-akhand-jyot",
@@ -7928,7 +8126,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Lotus Petal Brass Akhand Jyot Diya",
+    "imageBackground": "photo"
   },
   {
     "id": "shraviko-om-top-glass-akhand-jyot",
@@ -7980,7 +8180,9 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "name": "Shraviko Sacred OM Glass Chimney Brass Akhand Jyot",
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-brass-glass-akhand-jyot-cover",
@@ -8033,7 +8235,8 @@ export const PRODUCTS = [
     ],
     "hsn": "74181021",
     "taxRate": 5,
-    "taxCode": "GST_5"
+    "taxCode": "GST_5",
+    "imageBackground": "photo"
   }
 ];
 
@@ -8112,3 +8315,4 @@ export const TESTIMONIALS = [
     productPurchased: 'Griha Pravesh Luxury Pooja Hamper'
   },
 ];
+

@@ -84,23 +84,23 @@ export function ProductReviewsSection({ productId = 'ALL', productName = 'Shravi
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-[#E8DFC7]">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F5EFE0] border border-[#DAB97B] text-[#5C420D] text-[11px] font-cinzel tracking-widest uppercase font-bold mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-[#8C6D27]" />
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FBEAE5] border border-[#57324F]/15 text-[#57324F] text-[11px] font-manrope font-semibold tracking-wide mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-[#57324F]" />
               <span>Devotee Experiences</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-cinzel font-bold text-[#1C140F]">
-              Customer Reviews & Ratings
+            <h3 className="text-2xl sm:text-3xl font-fraunces font-bold text-[#2C2623]">
+              Customer Reviews &amp; Ratings
             </h3>
-            <p className="text-xs sm:text-sm text-[#3D2E24] font-medium mt-1">
-              Real, permanent feedback from verified buyers of {productName}
+            <p className="text-xs sm:text-sm text-[#7A6B5D] font-manrope mt-1">
+              Real feedback from verified buyers of {productName}
             </p>
           </div>
 
           <button
             onClick={() => setShowForm(!showForm)}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] font-cinzel font-bold text-xs uppercase tracking-widest rounded-xl shadow-md transition-all active:scale-95 self-start sm:self-auto"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#57324F] hover:bg-[#42253C] active:bg-[#351C30] text-white font-manrope font-semibold text-xs rounded-xl shadow-xs transition-all active:scale-95 self-start sm:self-auto min-h-[46px]"
           >
-            <MessageSquare className="w-4 h-4 text-[#E5C378]" />
+            <MessageSquare className="w-4 h-4 text-white" />
             <span>Write a Review</span>
           </button>
         </div>
@@ -213,17 +213,17 @@ export function ProductReviewsSection({ productId = 'ALL', productName = 'Shravi
                   <button
                     type="button"
                     onClick={() => setShowForm(false)}
-                    className="px-5 py-2.5 border border-[#B89B67] text-[#1C140F] text-xs font-cinzel font-bold uppercase rounded-xl hover:bg-gray-100"
+                    className="px-5 py-2.5 border border-[#EAE0CD] text-[#2C2623] text-xs font-manrope font-semibold rounded-xl hover:bg-[#FAF7F2]"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] text-xs font-cinzel font-bold uppercase tracking-widest rounded-xl disabled:opacity-60 shadow-sm"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#57324F] hover:bg-[#42253C] active:bg-[#351C30] text-white text-xs font-manrope font-semibold rounded-xl disabled:opacity-60 shadow-xs"
                   >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>{submitting ? 'Saving Review…' : 'Submit Review Permanently'}</span>
+                    <Send className="w-3.5 h-3.5 text-white" />
+                    <span>{submitting ? 'Saving Review…' : 'Submit Review'}</span>
                   </button>
                 </div>
               </form>

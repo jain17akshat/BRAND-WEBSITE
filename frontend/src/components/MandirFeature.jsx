@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { PRODUCTS } from '../data/products';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SafeImage } from './SafeImage';
 
-// Products to hide from the moving catalog
+// Products to hide from the catalog
 const EXCLUDED_IDS = [
   'essentials-brass-chawar-whisk',
   'mandir-jap-bag-gaumukhi',
@@ -11,34 +11,27 @@ const EXCLUDED_IDS = [
 ];
 
 export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
+  const scrollRef = useRef(null);
+
   const essentialsProducts = PRODUCTS.filter(
     p => p.category === 'mandir-essentials' && !EXCLUDED_IDS.includes(p.id) && !p.isComingSoon
   );
-  // Duplicate array 3x for seamless infinite marquee loop
-  const marqueeItems = [...essentialsProducts, ...essentialsProducts, ...essentialsProducts];
+
+  const handleScroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === 'left' ? -300 : 300;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section className="py-12 sm:py-16 bg-[#FBF9F5] border-b border-[#EAE0CD] overflow-hidden">
-      <style>{`
-        @keyframes mandirMarquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-33.333%); }
-        }
-        .animate-mandir-marquee {
-          display: flex;
-          width: max-content;
-          animation: mandirMarquee 38s linear infinite;
-        }
-        .animate-mandir-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
+    <section className="py-12 sm:py-16 bg-[#FAF7F2] border-b border-[#EAE0CD] overflow-hidden">
 
       {/* ── 1. LANDSCAPE FEATURE BANNER ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        <div className="relative rounded-2xl overflow-hidden shadow-md border border-[#EAE0CD] bg-[#1C140F]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="relative rounded-3xl overflow-hidden shadow-lg border border-[#EAE0CD] bg-[#1C140F]">
           {/* Landscape Background Image */}
-          <div className="relative w-full h-[300px] sm:h-[360px] lg:h-[400px] overflow-hidden">
+          <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[420px] overflow-hidden">
             {/* Mobile View Image */}
             <div className="block sm:hidden absolute inset-0 w-full h-full">
               <SafeImage
@@ -47,7 +40,7 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
                 fallbackSrc="/pooja essentials.webp"
                 dark={true}
                 containerClassName="w-full h-full"
-                className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
+                className="w-full h-full object-cover object-center"
               />
             </div>
             {/* Desktop View Image */}
@@ -58,7 +51,7 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
                 fallbackSrc="/Pooja esentials.webp"
                 dark={true}
                 containerClassName="w-full h-full"
-                className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
+                className="w-full h-full object-cover object-center"
               />
             </div>
             {/* Dark Landscape Gradient Overlay */}
@@ -68,23 +61,23 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
 
           {/* Banner Text Content Overlay */}
           <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-12 lg:p-16 max-w-2xl text-white z-10">
-            <p className="text-[10px] sm:text-xs font-cinzel tracking-[0.35em] text-[#C5A059] uppercase mb-2 sm:mb-3 font-semibold">
+            <span className="text-xs font-manrope font-semibold tracking-wider text-[#FBEAE5] uppercase mb-2">
               Collection Spotlight
-            </p>
+            </span>
             <h2
-              className="font-cinzel font-bold text-white leading-tight mb-3 sm:mb-4 drop-shadow"
-              style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}
+              className="font-fraunces font-bold text-white leading-tight mb-3 drop-shadow"
+              style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
             >
               Mandir Essentials
             </h2>
-            <p className="text-xs sm:text-sm text-[#D4C3A3]/90 font-light leading-relaxed mb-6 max-w-xl">
+            <p className="text-xs sm:text-sm text-[#EAE0CD] font-manrope font-light leading-relaxed mb-6 max-w-xl">
               Thoughtfully curated sacred essentials for everyday prayer, meditation &amp; devotion — handcrafted malas, mala counters, gaumukhi bags, wooden chowkis &amp; brass dhoopdanis.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
               <button
                 onClick={onExplore}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#C5A059] text-[#1C140F] text-xs font-cinzel font-bold tracking-widest uppercase rounded-full hover:bg-[#E5C378] transition-all duration-300 active:scale-95 shadow-lg group"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#57324F] hover:bg-[#42253C] active:bg-[#351C30] text-white text-xs font-manrope font-semibold rounded-xl transition-all duration-200 active:scale-95 shadow-md group min-h-[48px]"
               >
                 <span>Explore Full Collection</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -94,59 +87,86 @@ export const MandirFeature = ({ onExplore, onSelectProduct, onAddToCart }) => {
         </div>
       </div>
 
-      {/* ── 2. CONTINUOUS MANDIR ESSENTIALS MARQUEE (RIGHT TO LEFT) ── */}
-      <div className="relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
-            <h3 className="text-xs font-cinzel font-bold tracking-[0.2em] uppercase text-[#6B5840]">
-              Mandir Essentials
+      {/* ── 2. FLUID SNAP-SCROLL CATALOG ROW (User controlled, no dizzy continuous marquee) ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <span className="text-xs font-manrope font-semibold text-[#57324F] uppercase tracking-wider block">Featured Essentials</span>
+            <h3 className="font-fraunces text-xl sm:text-2xl font-bold text-[#2C2623]">
+              Curated Puja Essentials
             </h3>
           </div>
-          <span className="text-[10px] font-cinzel text-[#9B7E52] uppercase tracking-wider hidden sm:inline">
-            (Hover to Pause)
-          </span>
+
+          {/* Scroll Navigation Buttons */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => handleScroll('left')}
+              aria-label="Scroll left"
+              className="w-10 h-10 rounded-xl bg-white border border-[#EAE0CD] hover:border-[#57324F] flex items-center justify-center text-[#2C2623] hover:text-[#57324F] transition-all shadow-xs"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => handleScroll('right')}
+              aria-label="Scroll right"
+              className="w-10 h-10 rounded-xl bg-white border border-[#EAE0CD] hover:border-[#57324F] flex items-center justify-center text-[#2C2623] hover:text-[#57324F] transition-all shadow-xs"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
-        {/* Outer scrolling marquee container */}
-        <div className="overflow-hidden py-2">
-          <div className="animate-mandir-marquee gap-4 sm:gap-6 px-4">
-            {marqueeItems.map((product, idx) => (
-              <div
-                key={`${product.id}-${idx}`}
-                onClick={() => onSelectProduct && onSelectProduct(product)}
-                className="group flex-none w-[200px] sm:w-[240px] rounded-xl overflow-hidden bg-white border border-[#EAE0CD] hover:border-[#C5A059] hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col"
-              >
-                {/* Product Image */}
-                <div className="relative aspect-square overflow-hidden bg-[#F9F5EE]">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
-                  />
-                </div>
+        {/* Scroll Container */}
+        <div
+          ref={scrollRef}
+          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 scrollbar-none"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {essentialsProducts.map((product) => (
+            <div
+              key={product.id}
+              onClick={() => onSelectProduct && onSelectProduct(product)}
+              className="group flex-none w-[220px] sm:w-[260px] snap-start rounded-2xl overflow-hidden bg-white border border-[#EAE0CD] hover:border-[#57324F]/30 hover:shadow-md transition-all duration-200 cursor-pointer flex flex-col"
+            >
+              {/* Product Image */}
+              <div className={`relative aspect-square overflow-hidden rounded-t-[17px] ${
+                product.imageBackground === 'white'
+                  ? 'bg-white'
+                  : product.imageBackground === 'transparent'
+                  ? 'bg-[#FAF6EC]'
+                  : 'bg-[#FAF7F2]'
+              }`}>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className={`w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300 ${
+                    product.imageBackground === 'transparent'
+                      ? 'drop-shadow-[0_8px_16px_rgba(42,34,30,0.14)]'
+                      : ''
+                  }`}
+                  onError={(e) => { e.target.src = '/assets/Incense cover.jpg'; }}
+                />
+              </div>
 
-                {/* Info */}
-                <div className="p-3 flex flex-col justify-between flex-1 gap-2">
-                  <h4 className="text-xs font-cinzel font-semibold text-[#2C2623] line-clamp-2 leading-snug group-hover:text-[#C5A059] transition-colors">
-                    {product.name}
-                  </h4>
-                  <div className="flex items-center justify-between pt-2 border-t border-[#EAE0CD]">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
-                      <span className="text-xs font-cinzel font-bold text-[#2C2623]">
-                        ₹{(product.price || product.weightVariants?.[0]?.price || 0).toLocaleString('en-IN')}
-                      </span>
-                    </div>
-                    <span className="text-[10px] font-cinzel font-bold text-[#C5A059] uppercase tracking-widest group-hover:translate-x-0.5 transition-transform">
-                      View →
+              {/* Info */}
+              <div className="p-4 flex flex-col justify-between flex-1 gap-2.5">
+                <h4 className="text-xs sm:text-sm font-manrope font-semibold text-[#2C2623] line-clamp-2 leading-snug group-hover:text-[#57324F] transition-colors">
+                  {product.name}
+                </h4>
+                <div className="flex items-center justify-between pt-2 border-t border-[#FAF7F2]">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-[11px] font-manrope text-[#7A6B5D]">from</span>
+                    <span className="text-sm font-manrope font-bold text-[#2C2623]">
+                      ₹{(product.price || product.weightVariants?.[0]?.price || 0).toLocaleString('en-IN')}
                     </span>
                   </div>
+                  <span className="text-xs font-manrope font-semibold text-[#57324F] group-hover:translate-x-0.5 transition-transform">
+                    View →
+                  </span>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 

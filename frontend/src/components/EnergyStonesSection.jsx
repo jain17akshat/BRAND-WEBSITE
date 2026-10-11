@@ -247,12 +247,12 @@ export const EnergyStonesSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 rounded-xl bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] text-xs font-cinzel font-bold uppercase tracking-widest shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 border border-[#E5C378]/40 disabled:opacity-50"
+                  className="w-full py-3.5 rounded-xl bg-[#57324F] hover:bg-[#42253C] active:bg-[#351C30] text-white text-xs font-manrope font-semibold uppercase tracking-wider shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[48px] disabled:opacity-50"
                 >
                   {isSubmitting ? (
-                    <Hourglass className="w-4 h-4 animate-spin text-[#E5C378]" />
+                    <Hourglass className="w-4 h-4 animate-spin text-white" />
                   ) : (
-                    <Bell className="w-4 h-4" />
+                    <Bell className="w-4 h-4 text-white" />
                   )}
                   <span>{isSubmitting ? 'Registering...' : 'Notify Me On Launch'}</span>
                 </button>

@@ -75,32 +75,32 @@ export const RitualFinder = ({ onAddToCart }) => {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-[#F6F1E7] border-b border-[#EAE0CD]">
+    <section className="py-14 sm:py-20 bg-[#FAF7F2] border-b border-[#EAE0CD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF0D9] border border-[#DAB97B]/40 text-[#755722] text-xs font-cinzel tracking-widest uppercase mb-2">
-            <Compass className="w-3.5 h-3.5 text-[#C5A059]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FBEAE5] border border-[#57324F]/15 text-[#57324F] text-xs font-manrope font-semibold tracking-wide mb-3">
+            <Compass className="w-3.5 h-3.5 text-[#57324F]" />
             <span>Interactive Finder</span>
           </div>
-          <h2 className="text-3xl font-cinzel font-bold text-[#2C2623]">
+          <h2 className="text-2xl sm:text-4xl font-fraunces font-bold text-[#2C2623]">
             Curate Your Sacred Sanctuary
           </h2>
-          <p className="text-xs sm:text-sm font-sans text-[#4A4441] mt-1 font-light">
+          <p className="text-xs sm:text-sm font-manrope text-[#5C4A3E] mt-1 font-light">
             Answer 2 quick questions to discover the ideal harmonized ritual bundle for your home.
           </p>
         </div>
 
         {/* Quiz & Recommendation Container */}
-        <div className="bg-[#FBF9F5] rounded-2xl p-4 sm:p-6 lg:p-10 border border-[#EAE0CD] shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start lg:items-center">
+        <div className="bg-white rounded-3xl p-5 sm:p-8 lg:p-12 border border-[#EAE0CD] shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-start lg:items-center">
           
           {/* Left Column: Questions */}
           <div className="lg:col-span-7 space-y-6">
             
             {/* Step 1 */}
             <div>
-              <label className="text-xs font-cinzel tracking-wider uppercase font-semibold text-[#8C6929] block mb-3">
+              <label className="text-xs font-manrope tracking-wider uppercase font-bold text-[#57324F] block mb-3">
                 1. What is your primary intent?
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -108,14 +108,14 @@ export const RitualFinder = ({ onAddToCart }) => {
                   <button
                     key={item.id}
                     onClick={() => setIntent(item.id)}
-                    className={`p-3.5 rounded-lg border text-left text-xs transition-all flex items-center gap-3 ${
+                    className={`p-3.5 rounded-2xl border text-left text-xs transition-all flex items-center gap-3 ${
                       intent === item.id
-                        ? 'bg-[#231E1C] text-[#E5C378] border-[#C5A059] shadow-md font-semibold'
-                        : 'bg-white text-[#2C2623] border-[#EAE0CD] hover:border-[#C5A059]'
+                        ? 'bg-[#57324F] text-white border-[#57324F] shadow-sm font-semibold'
+                        : 'bg-[#FAF7F2] text-[#2C2623] border-[#EAE0CD] hover:border-[#57324F]/40'
                     }`}
                   >
-                    <span className="text-base">{item.icon}</span>
-                    <span className="font-sans leading-tight">{item.label}</span>
+                    <span className="text-lg">{item.icon}</span>
+                    <span className="font-manrope leading-tight">{item.label}</span>
                   </button>
                 ))}
               </div>
@@ -123,18 +123,18 @@ export const RitualFinder = ({ onAddToCart }) => {
 
             {/* Step 2 */}
             <div>
-              <label className="text-xs font-cinzel tracking-wider uppercase font-semibold text-[#8C6929] block mb-3">
+              <label className="text-xs font-manrope tracking-wider uppercase font-bold text-[#57324F] block mb-3">
                 2. Where will this ritual setup be placed?
               </label>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2.5">
                 {spaces.map((sp) => (
                   <button
                     key={sp.id}
                     onClick={() => setSpace(sp.id)}
-                    className={`px-4 py-2.5 rounded-lg border text-xs font-sans transition-all ${
+                    className={`px-4 py-2.5 rounded-xl border text-xs font-manrope transition-all ${
                       space === sp.id
-                        ? 'bg-[#FAF0D9] text-[#755722] border-[#C5A059] font-semibold'
-                        : 'bg-white text-[#4A4441] border-[#EAE0CD] hover:border-[#C5A059]'
+                        ? 'bg-[#57324F] text-white border-[#57324F] font-semibold shadow-xs'
+                        : 'bg-[#FAF7F2] text-[#5C4A3E] border-[#EAE0CD] hover:border-[#57324F]/40'
                     }`}
                   >
                     {sp.label}
@@ -147,20 +147,20 @@ export const RitualFinder = ({ onAddToCart }) => {
 
           {/* Right Column: Recommendation Card */}
           <div className="lg:col-span-5">
-            <div className="bg-[#231E1C] text-[#F9F5EC] p-6 rounded-xl border border-[#C5A059]/40 shadow-xl space-y-4">
+            <div className="bg-[#FAF7F2] text-[#2C2623] p-6 sm:p-7 rounded-3xl border border-[#EAE0CD] shadow-sm space-y-4">
               
-              <div className="flex items-center justify-between border-b border-[#3A3431] pb-3">
-                <span className="text-[10px] font-cinzel uppercase tracking-widest text-[#E5C378]">Recommended Bundle</span>
-                <span className="text-[10px] bg-[#C5A059] text-[#171312] font-bold px-2 py-0.5 rounded">
+              <div className="flex items-center justify-between border-b border-[#EAE0CD] pb-3">
+                <span className="text-xs font-manrope uppercase tracking-wider text-[#57324F] font-semibold">Recommended Bundle</span>
+                <span className="text-[11px] bg-[#FBEAE5] text-[#57324F] font-bold px-2.5 py-1 rounded-full border border-[#57324F]/15">
                   Save ₹{rec.savings}
                 </span>
               </div>
 
               <div>
-                <h3 className="font-cinzel text-lg font-bold text-[#F9F5EC]">
+                <h3 className="font-fraunces text-xl font-bold text-[#2C2623]">
                   {rec.title}
                 </h3>
-                <p className="text-[11px] text-gray-400 font-sans mt-0.5">
+                <p className="text-xs text-[#7A6B5D] font-manrope mt-0.5">
                   Curated for your selected sanctuary space.
                 </p>
               </div>
@@ -168,32 +168,32 @@ export const RitualFinder = ({ onAddToCart }) => {
               {/* Items included list */}
               <div className="space-y-2 py-2">
                 {rec.items.map((it, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-xs text-[#EAE0CD]">
-                    <Check className="w-3.5 h-3.5 text-[#C5A059]" />
+                  <div key={idx} className="flex items-center gap-2 text-xs font-manrope text-[#2C2623]">
+                    <Check className="w-4 h-4 text-[#57324F]" />
                     <span>{it}</span>
                   </div>
                 ))}
               </div>
 
               {/* Bundle Price & Add to Cart */}
-              <div className="pt-3 border-t border-[#3A3431] flex items-center justify-between">
+              <div className="pt-4 border-t border-[#EAE0CD] flex items-center justify-between">
                 <div>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-xl font-cinzel font-bold text-[#E5C378]">
+                    <span className="text-xl font-manrope font-bold text-[#57324F]">
                       ₹{rec.bundlePrice.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-xs text-gray-400 line-through">
+                    <span className="text-xs text-[#7A6B5D] line-through font-manrope">
                       ₹{rec.originalPrice.toLocaleString('en-IN')}
                     </span>
                   </div>
-                  <span className="text-[9px] text-emerald-400">Bundle Discount Applied</span>
+                  <span className="text-[11px] text-emerald-700 font-manrope font-medium">Bundle Discount Applied</span>
                 </div>
 
                 <button
                   onClick={handleAddBundle}
-                  className="px-4 py-2.5 bg-[#C5A059] text-[#171312] font-cinzel text-xs uppercase font-bold tracking-wider rounded hover:bg-[#E5C378] transition-all flex items-center gap-1.5 shadow"
+                  className="px-5 py-3 bg-[#57324F] hover:bg-[#42253C] active:bg-[#351C30] text-white font-manrope text-xs font-semibold rounded-xl transition-all flex items-center gap-2 shadow-sm min-h-[46px]"
                 >
-                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <ShoppingBag className="w-4 h-4" />
                   <span>Get Bundle</span>
                 </button>
               </div>

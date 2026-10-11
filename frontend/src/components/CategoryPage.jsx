@@ -4,6 +4,7 @@ import { IncenseShowcase } from './IncenseShowcase';
 import { CategoryPageSkeleton } from './Skeleton';
 import { SafeImage } from './SafeImage';
 import { ProductImage } from './ProductImage';
+import { ProductCard } from './ProductCard';
 import { IncenseWisdomSection } from './IncenseWisdomSection';
 
 export const CategoryPage = ({
@@ -334,10 +335,10 @@ export const CategoryPage = ({
         {/* Category Title — centred in full viewport, offset for fixed navbar */}
         <div className="absolute inset-0 flex items-center justify-center px-6 pointer-events-none" style={{ paddingTop: '70px' }}>
           <h1
-            className="font-cinzel font-bold text-white tracking-wider uppercase text-center leading-tight"
+            className="font-fraunces font-medium text-white tracking-tight text-center leading-tight"
             style={{
-              fontSize: 'clamp(1.75rem, 8vw, 5rem)',
-              textShadow: '0 4px 24px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)'
+              fontSize: 'clamp(2rem, 8vw, 4.5rem)',
+              textShadow: '0 4px 24px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6)'
             }}
           >
             {category.title || category.name}
@@ -350,15 +351,15 @@ export const CategoryPage = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <button
           onClick={onBackToHome}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-[#231E1C] hover:bg-[#3A3431] text-[#E5C378] font-cinzel text-xs font-bold uppercase tracking-wider rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] shadow-md transition-all active:scale-95 group"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-[#FBEAE5] text-[#57324F] font-manrope text-xs font-semibold tracking-wide rounded-[12px] border border-[#57324F]/30 hover:border-[#57324F] shadow-xs transition-all active:scale-95 group cursor-pointer"
         >
-          <ArrowLeft className="w-4 h-4 text-[#E5C378] group-hover:-translate-x-1 transition-transform" />
+          <ArrowLeft className="w-4 h-4 text-[#57324F] group-hover:-translate-x-1 transition-transform" />
           <span>Back to Home</span>
         </button>
       </div>
 
       {/* Main Content Area */}
-      <div id="category-products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <div id="category-products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 font-manrope">
           {/* Subcategory Visual Filter Pills */}
           {subcategoryVisualCards && subcategoryVisualCards.length > 0 && (
             <div className="mb-6 flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
@@ -376,16 +377,16 @@ export const CategoryPage = ({
                         window.scrollTo({ top: y, behavior: 'smooth' });
                       }
                     }}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-cinzel font-semibold transition-all whitespace-nowrap border cursor-pointer ${
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-manrope font-semibold transition-all whitespace-nowrap border cursor-pointer ${
                       isActive
-                        ? 'active-category bg-[#FAF5EB] text-[#2C1F06] border-[#C5A059] font-bold shadow-xs scale-[1.02]'
-                        : 'bg-white text-[#5A4D41] border-[#EAE0CD] hover:border-[#C5A059]/50 hover:bg-[#FAF5EB]/50'
+                        ? 'active-category bg-[#57324F] text-white border-[#57324F] shadow-xs'
+                        : 'bg-white text-[#4A3E39] border-[#EAE0CD] hover:border-[#57324F]/40 hover:bg-[#FBEAE5]/30'
                     }`}
                   >
                     <span>{card.title}</span>
                     {card.badge && (
-                      <span className={`text-[9px] px-2 py-0.5 rounded-full font-sans font-medium ${
-                        isActive ? 'bg-[#C5A059]/20 text-[#2C1F06]' : 'bg-[#FAF5EB] text-[#8C7A6B]'
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-manrope font-medium ${
+                        isActive ? 'bg-white/20 text-white' : 'bg-[#FAF7F2] text-[#8C7A70]'
                       }`}>
                         {card.badge}
                       </span>
@@ -400,18 +401,18 @@ export const CategoryPage = ({
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#EAE0CD]">
 
             <div className="flex items-center gap-2">
-              <span className="text-xs font-cinzel font-bold text-[#2C2623] uppercase tracking-wider">
-                Showing: <span className="text-[#C5A059] font-bold">{selectedSubcategory === 'all' ? 'All Items' : selectedSubcategory}</span>
+              <span className="text-xs font-manrope font-semibold text-[#6B5E57] uppercase tracking-wider">
+                Showing: <span className="text-[#2C221E] font-bold">{selectedSubcategory === 'all' ? 'All Items' : selectedSubcategory}</span>
               </span>
             </div>
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2 self-end sm:self-auto">
-              <span className="text-xs font-cinzel font-semibold text-[#755722] uppercase tracking-wider">Sort By:</span>
+              <span className="text-xs font-manrope font-semibold text-[#6B5E57] uppercase tracking-wider">Sort By:</span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-white border border-[#EAE0CD] text-xs font-cinzel font-semibold text-[#2C2623] px-3.5 py-2 rounded-lg shadow-sm focus:outline-none focus:border-[#C5A059]"
+                className="bg-white border border-[#EAE0CD] text-xs font-manrope font-semibold text-[#2C221E] px-3.5 py-2 rounded-[12px] shadow-xs focus:outline-none focus:border-[#57324F] cursor-pointer"
               >
                 <option value="featured">Featured Items</option>
                 <option value="price-low">Price: Low to High</option>
@@ -458,183 +459,6 @@ export const CategoryPage = ({
   );
 };
 
-// Internal Clean Product Card
-const CategoryProductCard = ({
-  product,
-  category,
-  isWishlisted,
-  priority = false,
-  onAddToCart,
-  onToggleWishlist,
-  onOpenQuickView,
-  onSelectProduct
-}) => {
-  const discountPercent = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-    : null;
+// Forward to canonical boutique ProductCard
+const CategoryProductCard = (props) => <ProductCard {...props} />;
 
-  const handleClickCard = () => {
-    if (onSelectProduct) {
-      onSelectProduct(product);
-    } else if (onOpenQuickView) {
-      onOpenQuickView(product);
-    }
-  };
-
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full"
-    >
-      {/* Image Header with Hover Quick Add Overlay */}
-      <div
-        className="product-card-image-wrapper aspect-square overflow-hidden cursor-pointer bg-[#F9F6F0]"
-        onClick={handleClickCard}
-      >
-        <ProductImage
-          src={product.image}
-          images={product.images}
-          alt={product.name}
-          artType={product.artType}
-          fitMode={product.fitMode}
-          aspect="aspect-square"
-          priority={priority}
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
-        />
-
-        {/* Coming Soon Badge */}
-        {product.isComingSoon && (
-          <div className="absolute top-3 left-3 z-10 bg-[#2C1F06]/90 text-[#E5C378] text-[9px] sm:text-[10px] font-cinzel font-bold tracking-widest uppercase px-2.5 py-1 rounded-full border border-[#E5C378]/40 shadow-lg backdrop-blur-md">
-            Coming Soon
-          </div>
-        )}
-
-        {/* Top Right Wishlist & Quick View Buttons */}
-        <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleWishlist && onToggleWishlist(product);
-            }}
-            className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md backdrop-blur-md transition-all ${isWishlisted
-              ? 'bg-red-500 text-white'
-              : 'bg-white/80 hover:bg-white text-[#2C2623]'
-              }`}
-            aria-label="Wishlist"
-          >
-            <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
-          </button>
-        </div>
-
-        {/* Hover Quick Add Action Bar Overlay */}
-        <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-2 z-10">
-          {product.isComingSoon ? (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onOpenQuickView && onOpenQuickView(product);
-              }}
-              className="w-full py-2 px-3 rounded-lg bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] text-xs font-semibold font-cinzel flex items-center justify-center gap-1.5 shadow-lg border border-[#E5C378]/30"
-            >
-              <Eye className="w-3.5 h-3.5" />
-              <span>Coming Soon • Preview</span>
-            </button>
-          ) : (
-            <>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAddToCart && onAddToCart(product);
-                }}
-                className="flex-1 py-2 px-3 rounded-lg bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] text-xs font-semibold shadow-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95 border border-[#E5C378]/30"
-              >
-                <ShoppingBag className="w-3.5 h-3.5" />
-                <span>Quick Add</span>
-              </button>
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onOpenQuickView && onOpenQuickView(product);
-                }}
-                className="p-2 rounded-lg bg-white/90 hover:bg-white text-[#2C2623] text-xs font-medium shadow-lg transition-transform active:scale-95"
-                title="Quick View"
-              >
-                <Eye className="w-4 h-4" />
-              </button>
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* Body Details */}
-      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between">
-        <div>
-          {/* Subtle Category/Art Tag if available */}
-          <p className="text-[9px] sm:text-[10px] font-cinzel tracking-[0.25em] text-[#9B7E52] uppercase mb-1 font-medium min-h-[16px] flex items-center">
-            {product.categoryName || '\u00A0'}
-          </p>
-          {/* Elegant Product Title */}
-          <h3
-            onClick={handleClickCard}
-            className="font-cinzel font-semibold text-xs sm:text-[15px] text-[#2C2623] hover:text-[#C5A059] transition-colors cursor-pointer line-clamp-2 leading-snug tracking-tight min-h-[2.25rem] sm:min-h-[2.625rem] flex items-start"
-          >
-            {product.name}
-          </h3>
-        </div>
-
-        {/* Price & Add to Cart Footer */}
-        <div className="pt-2.5 border-t border-[#EAE0CD] flex items-center justify-between gap-2 mt-auto">
-          {!product.isComingSoon ? (
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              {product.weightVariants && product.weightVariants[0]?.price ? (
-                <div className="flex items-baseline gap-1">
-                  <span className="text-[10px] font-sans text-[#8C7A6B] font-light lowercase">from</span>
-                  <span className="text-sm sm:text-base font-cinzel font-bold text-[#2C2623]">
-                    ₹{product.weightVariants[0].price.toLocaleString('en-IN')}
-                  </span>
-                </div>
-              ) : product.price ? (
-                <span className="text-sm sm:text-base font-cinzel font-bold text-[#2C2623]">
-                  ₹{product.price.toLocaleString('en-IN')}
-                </span>
-              ) : null}
-              {product.originalPrice && (
-                <span className="text-[10px] sm:text-xs text-stone-600 line-through font-sans font-medium">
-                  ₹{product.originalPrice.toLocaleString('en-IN')}
-                </span>
-              )}
-            </div>
-          ) : (
-            <span className="text-xs sm:text-sm font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
-              Launching Soon
-            </span>
-          )}
-
-          {product.isComingSoon ? (
-            <span className="px-2.5 py-1.5 rounded-lg bg-[#C5A059]/15 text-[#9B7E52] font-cinzel font-bold text-[10px] sm:text-xs tracking-wider uppercase border border-[#C5A059]/30">
-              Coming Soon
-            </span>
-          ) : (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleClickCard();
-              }}
-              className="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] font-medium text-[11px] sm:text-xs tracking-wide transition-all shadow-md flex items-center justify-center gap-1.5 active:scale-95 border border-[#E5C378]/20"
-              title="View product details"
-            >
-              <span>Details</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          )}
-        </div>
-
-      </div>
-
-    </div>
-  );
-};

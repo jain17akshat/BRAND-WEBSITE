@@ -542,11 +542,13 @@
       "originalPrice": 888,
       "category": "brass",
       "categoryName": "Brass Articles",
-      "image": "/assets/akhand jyot/akhand jyot 2.webp",
+      "image": "/assets/akhand jyot/618c8df0-e6c0-46e8-95c6-c261e80bc847.webp",
       "images": [
+        "/assets/akhand jyot/618c8df0-e6c0-46e8-95c6-c261e80bc847.webp",
         "/assets/akhand jyot/akhand jyot 2.webp",
         "/assets/akhand jyot/akhand jyot 1.webp",
-        "/assets/akhand jyot/akhand jyot 3.webp"
+        "/assets/akhand jyot/akhand jyot 3.webp",
+        "/assets/akhand jyot/akhand jyot  size.webp"
       ],
       "description": "Bring a timeless element of Indian tradition to your sacred space with the Shraviko Brass Akhand Jyot Diya. Crafted from brass and finished with traditional detailing, this diya is designed for daily puja, Akhand Jyot, meditation and festive worship. Features a protective decorative cover that reduces the effect of air movement on the flame, an elegant Om finial, detailed cutwork, and a stable brass base.",
       "purity": "Premium Brass Construction with Om Finial",
@@ -4631,8 +4633,9 @@
       "originalPrice": 499,
       "category": "mandir-essentials",
       "categoryName": "Mandir Essentials",
-      "image": "/assets/KumKum/KumKum1.webp",
+      "image": "/assets/KumKum/1c39226d-9e81-44a4-b89a-145aa3a11c4e.webp",
       "images": [
+        "/assets/KumKum/1c39226d-9e81-44a4-b89a-145aa3a11c4e.webp",
         "/assets/KumKum/KumKum1.webp",
         "/assets/KumKum/KumKum2.webp",
         "/assets/KumKum/Kumkum3.webp",

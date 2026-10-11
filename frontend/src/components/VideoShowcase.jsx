@@ -49,19 +49,19 @@ export const VideoShowcase = () => {
           {/* Left arrow */}
           <button
             onClick={() => handleScroll('left')}
-            className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-[#1C1715]/85 hover:bg-[#C5A059] text-white hover:text-black border border-[#C5A059]/50 shadow-xl backdrop-blur-md flex items-center justify-center transition-all duration-300 active:scale-95 cursor-pointer opacity-90 group-hover:opacity-100"
+            className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-xl bg-white hover:bg-[#FBEAE5] text-[#2C2623] hover:text-[#57324F] border border-[#EAE0CD] hover:border-[#57324F]/40 shadow-md flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
             aria-label="Scroll Left"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
           {/* Right arrow */}
           <button
             onClick={() => handleScroll('right')}
-            className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-[#1C1715]/85 hover:bg-[#C5A059] text-white hover:text-black border border-[#C5A059]/50 shadow-xl backdrop-blur-md flex items-center justify-center transition-all duration-300 active:scale-95 cursor-pointer opacity-90 group-hover:opacity-100"
+            className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-xl bg-white hover:bg-[#FBEAE5] text-[#2C2623] hover:text-[#57324F] border border-[#EAE0CD] hover:border-[#57324F]/40 shadow-md flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
             aria-label="Scroll Right"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Horizontal reel slider */}

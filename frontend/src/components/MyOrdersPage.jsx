@@ -384,22 +384,22 @@ export function MyOrdersPage({ onBackToHome }) {
           <div className="flex justify-start mb-4 sm:mb-6">
             <button
               onClick={onBackToHome}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#2C211C] hover:bg-[#3D2E27] text-[#E5C378] border border-[#C5A059]/50 shadow-md font-cinzel text-xs font-bold uppercase tracking-wider transition-all active:scale-95 group cursor-pointer z-20"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-[#FBEAE5] border border-white/20 shadow-xs font-manrope text-xs font-semibold uppercase tracking-wider transition-all active:scale-95 group cursor-pointer z-20"
             >
-              <ArrowLeft className="w-4 h-4 text-[#E5C378] group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft className="w-4 h-4 text-[#FBEAE5] group-hover:-translate-x-1 transition-transform" />
               <span>Back to Home</span>
             </button>
           </div>
 
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2C211C] border border-[#C5A059]/40 text-[#E5C378] text-xs font-cinzel tracking-widest uppercase mb-3">
-              <Package className="w-4 h-4 text-[#C5A059]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#FBEAE5] text-xs font-manrope font-semibold tracking-wide mb-3">
+              <Package className="w-4 h-4 text-[#FBEAE5]" />
               <span>Customer Portal</span>
             </div>
-            <h1 className="font-cinzel font-bold text-white leading-tight mb-3" style={{ fontSize: 'clamp(1.6rem, 4vw, 3rem)' }}>
+            <h1 className="font-fraunces font-bold text-white leading-tight mb-3" style={{ fontSize: 'clamp(1.6rem, 4vw, 3rem)' }}>
               My Orders &amp; Returns
             </h1>
-            <p className="text-xs sm:text-sm text-white/70 font-light max-w-md mx-auto leading-relaxed">
+            <p className="text-xs sm:text-sm text-white/80 font-manrope font-light max-w-md mx-auto leading-relaxed">
               Track live dispatch, view order details, initiate easy returns, or submit bank account details for refunds.
             </p>
           </div>
@@ -407,7 +407,7 @@ export function MyOrdersPage({ onBackToHome }) {
       </div>
 
       {/* Sticky Tab Bar — Fully Phone Responsive */}
-      <div className="bg-white border-b border-[#E8DFC7] sticky top-0 z-30 shadow-sm">
+      <div className="bg-white border-b border-[#EAE0CD] sticky top-0 z-30 shadow-xs">
         <div className="max-w-4xl mx-auto px-2 sm:px-6">
           <div className="flex items-center justify-start sm:justify-start gap-1 sm:gap-3 overflow-x-auto scrollbar-none py-1.5 sm:py-0 w-full">
             {[
@@ -418,13 +418,13 @@ export function MyOrdersPage({ onBackToHome }) {
               <button
                 key={key}
                 onClick={() => setActiveTab(key)}
-                className={`flex items-center gap-2 px-3.5 sm:px-6 py-3.5 text-[11px] sm:text-xs font-cinzel tracking-wider uppercase border-b-2 transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`flex items-center gap-2 px-3.5 sm:px-6 py-3.5 text-xs font-manrope tracking-wide border-b-2 transition-all duration-200 whitespace-nowrap shrink-0 cursor-pointer ${
                   activeTab === key
-                    ? 'border-[#C5A059] text-[#8C6D27] font-bold bg-[#FAF6EE] rounded-t-xl'
-                    : 'border-transparent text-gray-500 hover:text-[#2C2623]'
+                    ? 'border-[#57324F] text-[#57324F] font-bold bg-[#FBEAE5]/40 rounded-t-xl'
+                    : 'border-transparent text-[#7A6B5D] hover:text-[#2C2623]'
                 }`}
               >
-                <Icon className="w-4 h-4 text-[#B8860B] shrink-0" />
+                <Icon className={`w-4 h-4 ${activeTab === key ? 'text-[#57324F]' : 'text-[#7A6B5D]'} shrink-0`} />
                 <span>{label}</span>
               </button>
             ))}
@@ -489,13 +489,13 @@ export function MyOrdersPage({ onBackToHome }) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3.5 px-6 bg-[#2C1F06] hover:bg-[#3D2B0A] text-[#E5C378] font-cinzel font-bold text-xs uppercase tracking-widest rounded-xl shadow-md transition-all duration-300 active:scale-98 flex items-center justify-center gap-2 disabled:opacity-60"
+                  className="w-full py-3.5 px-6 bg-[#57324F] hover:bg-[#42253C] active:bg-[#351C30] text-white font-manrope font-semibold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all duration-200 active:scale-98 flex items-center justify-center gap-2 min-h-[50px] disabled:opacity-60"
                 >
                   {loading ? (
-                    <RefreshCw className="w-4 h-4 animate-spin text-[#E5C378]" />
+                    <RefreshCw className="w-4 h-4 animate-spin text-white" />
                   ) : (
                     <>
-                      <Search className="w-4 h-4" />
+                      <Search className="w-4 h-4 text-white" />
                       <span>Track Package Now</span>
                     </>
                   )}

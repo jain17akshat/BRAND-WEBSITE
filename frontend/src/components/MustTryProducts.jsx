@@ -28,52 +28,44 @@ export const MustTryProducts = ({
   const marqueeItems = [...itemsToDisplay, ...itemsToDisplay];
 
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-b from-[#FAF6EE] via-[#F4EFE6] to-[#FAF6EE] overflow-hidden border-b border-[#EAE0CD] relative select-none">
+    <section className="py-12 sm:py-16 bg-[#F8F3E6]/60 overflow-hidden border-b border-[#EAE0CD]/80 relative select-none">
       
-      {/* Background Decorative Radial Glows */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-[#B8860B]/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Background Subtle Pastel Glow */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-[#FBEAE5]/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-[#EBF2EB]/40 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header Title Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-12 relative z-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF0D9] border border-[#E0CEAA] mb-3">
-          <Flame className="w-3.5 h-3.5 text-[#B8860B] animate-pulse" />
-          <span className="text-[11px] font-cinzel font-bold text-[#755722] uppercase tracking-[0.2em]">
-            Handpicked Devotional Treasures
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-10 relative z-10">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF7F2] border border-[#EAE0CD] mb-3">
+          <Sparkles className="w-3.5 h-3.5 text-[#57324F]" />
+          <span className="text-[11px] font-manrope font-semibold text-[#57324F] uppercase tracking-[0.18em]">
+            Curated Artisanal Treasures
           </span>
-          <Sparkles className="w-3.5 h-3.5 text-[#B8860B]" />
         </div>
 
-        <h2 className="font-cinzel font-bold text-2xl sm:text-4xl text-[#2C1F06] tracking-wide uppercase drop-shadow-xs">
-          Must-Try Sacred Products
+        <h2 className="font-fraunces font-medium text-2xl sm:text-4xl text-[#2C221E] tracking-tight">
+          Must-Try Sacred Pieces
         </h2>
 
-        <div className="flex items-center justify-center gap-3 mt-3">
-          <div className="h-[1px] w-12 sm:w-20 bg-gradient-to-r from-transparent to-[#C5A059]" />
-          <span className="text-[#C5A059] text-xs font-serif italic">Pure Vedic Quality</span>
-          <div className="h-[1px] w-12 sm:w-20 bg-gradient-to-l from-transparent to-[#C5A059]" />
-        </div>
+        <p className="mt-2 text-sm text-[#6B5E57] font-manrope max-w-md mx-auto">
+          Handcrafted brassware and pure temple fragrances loved across homes.
+        </p>
       </div>
 
-      {/* Infinite Right-to-Left Sliding Marquee Track */}
-      <div className="relative w-full overflow-hidden py-2">
-        
-        {/* Left & Right Gradient Shadows for Seamless Fade Edge */}
-        <div className="absolute top-0 bottom-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#FAF6EE] to-transparent z-20 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#FAF6EE] to-transparent z-20 pointer-events-none" />
-
-        {/* Sliding Flex Container */}
-        <div className="animate-marquee-rtl flex items-center gap-4 sm:gap-6 px-4 hover:[animation-play-state:paused] transition-all">
-          {marqueeItems.map((product, idx) => (
-            <MustTryCard
-              key={`${product.id}-${idx}`}
-              product={product}
-              isWishlisted={wishlistIds.includes(product.id)}
-              onAddToCart={onAddToCart}
-              onSelectProduct={onSelectProduct}
-              onOpenQuickView={onOpenQuickView}
-              onToggleWishlist={onToggleWishlist}
-            />
+      {/* Fluid Horizontal Scroll Track with Snapping */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-stretch gap-4 sm:gap-6 overflow-x-auto pb-4 pt-1 scroll-smooth snap-x snap-mandatory scrollbar-none">
+          {itemsToDisplay.map((product) => (
+            <div key={product.id} className="snap-start shrink-0">
+              <MustTryCard
+                product={product}
+                isWishlisted={wishlistIds.includes(product.id)}
+                onAddToCart={onAddToCart}
+                onSelectProduct={onSelectProduct}
+                onOpenQuickView={onOpenQuickView}
+                onToggleWishlist={onToggleWishlist}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -139,25 +131,33 @@ const MustTryCard = ({
   return (
     <div
       onClick={() => (onSelectProduct ? onSelectProduct(product) : onOpenQuickView && onOpenQuickView(product))}
-      className="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#C5A059]/60 transition-all duration-300 group cursor-pointer flex flex-col justify-between h-full"
+      className="w-[250px] sm:w-[280px] flex-shrink-0 bg-white rounded-2xl border border-[#EAE0CD] overflow-hidden shadow-xs hover:shadow-lg hover:border-[#57324F]/30 transition-all duration-250 group cursor-pointer flex flex-col justify-between h-full"
     >
       {/* Product Image Area */}
-      <div className="product-card-image-wrapper aspect-square overflow-hidden bg-[#F9F6F0]">
+      <div className={`product-card-image-wrapper aspect-square overflow-hidden rounded-t-[17px] relative ${
+        product.imageBackground === 'white'
+          ? 'bg-white'
+          : product.imageBackground === 'transparent'
+          ? 'bg-[#FAF6EC]'
+          : 'bg-[#FAF7F2]'
+      }`}>
         <ProductImage
           src={product.image}
           images={product.images}
           alt={product.name}
           artType={product.artType}
-          fitMode={product.fitMode}
+          fitMode={product.fitMode || 'contain'}
           aspect="aspect-square"
           sizes="280px"
+          imageBackground={product.imageBackground}
+          silhouetteShadow={product.imageBackground === 'transparent'}
+          className="transition-transform duration-300 ease-out group-hover:scale-103"
         />
 
         {/* MUST TRY Badge */}
-        <span className="absolute top-2.5 left-2.5 z-20 bg-[#2C1F06] text-[#E5C378] text-[9px] font-cinzel font-bold tracking-widest uppercase px-2.5 py-1 rounded-full border border-[#C5A059]/40 shadow-sm">
-          MUST TRY
+        <span className="absolute top-3 left-3 z-20 bg-[#FAF7F2] text-[#57324F] text-[10px] font-manrope font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full border border-[#57324F]/20 shadow-xs">
+          Must-Try
         </span>
-
 
         {/* Wishlist Button */}
         <button
@@ -166,8 +166,10 @@ const MustTryCard = ({
             onToggleWishlist && onToggleWishlist(product);
           }}
           aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-          className={`absolute bottom-2.5 right-2.5 z-20 w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-md transition-all shadow-md ${
-            isWishlisted ? 'bg-rose-500 text-white' : 'bg-white/90 text-[#3D2B1F] hover:bg-white hover:text-[#B8860B]'
+          className={`absolute bottom-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-xs ${
+            isWishlisted
+              ? 'bg-[#57324F] text-white'
+              : 'bg-white/90 text-[#4A3E39] hover:bg-[#FBEAE5] hover:text-[#57324F]'
           }`}
           title="Save to Wishlist"
         >
@@ -179,24 +181,24 @@ const MustTryCard = ({
       <div className="p-4 flex flex-col flex-1 justify-between bg-white">
         <div>
           {/* Category */}
-          <p className="text-[10px] font-cinzel font-bold text-[#7A5B1D] uppercase tracking-wider mb-1 min-h-[16px] flex items-center truncate">
-            {product.categoryName || product.category || 'Sacred Item'}
+          <p className="text-[10px] font-manrope font-semibold text-[#8C7A70] uppercase tracking-wider mb-1 min-h-[16px] flex items-center truncate">
+            {product.categoryName || product.category || 'Sacred Collection'}
           </p>
 
           {/* Product Name */}
-          <h3 className="font-cinzel font-semibold text-xs sm:text-sm text-[#2C1F06] line-clamp-2 leading-snug group-hover:text-[#B8860B] transition-colors min-h-[2.25rem] sm:min-h-[2.5rem] flex items-start">
+          <h3 className="font-manrope font-medium text-xs sm:text-sm text-[#2C221E] line-clamp-2 leading-snug group-hover:text-[#57324F] transition-colors min-h-[2.25rem] sm:min-h-[2.5rem] flex items-start">
             {product.name}
           </h3>
         </div>
 
         {/* Price & Add To Cart Button */}
-        <div className="pt-2 border-t border-[#F4EFE6] flex items-center justify-between gap-2 mt-auto">
+        <div className="pt-2.5 border-t border-[#F4EFE6] flex items-center justify-between gap-2 mt-auto">
           <div>
-            <span className="text-xs sm:text-sm font-bold text-[#2C1F06]">
+            <span className="text-sm font-manrope font-bold text-[#2C221E]">
               ₹{product.price?.toLocaleString('en-IN')}
             </span>
             {product.originalPrice && (
-              <span className="text-[10px] text-stone-600 line-through ml-1.5 font-sans font-medium">
+              <span className="text-[11px] text-[#8C7A70] line-through ml-1.5 font-manrope font-normal">
                 ₹{product.originalPrice?.toLocaleString('en-IN')}
               </span>
             )}
@@ -204,10 +206,11 @@ const MustTryCard = ({
 
           <button
             onClick={handleQuickAdd}
-            className={`px-3 py-1.5 rounded-xl text-[10px] font-cinzel font-bold tracking-wider uppercase transition-all flex items-center gap-1.5 active:scale-95 ${
+            aria-label={addedToast ? `Added ${product.name} to cart` : `Add ${product.name} to cart`}
+            className={`min-w-[76px] h-9 px-3 rounded-[12px] text-xs font-manrope font-semibold tracking-wide transition-all flex items-center justify-center gap-1.5 active:scale-95 ${
               addedToast
-                ? 'bg-emerald-600 text-white'
-                : 'bg-[#FAF5EB] text-[#755722] hover:bg-[#C5A059] hover:text-white border border-[#E0CEAA]'
+                ? 'bg-emerald-700 text-white'
+                : 'bg-[#57324F] text-white hover:bg-[#42253C] shadow-xs'
             }`}
           >
             {addedToast ? (

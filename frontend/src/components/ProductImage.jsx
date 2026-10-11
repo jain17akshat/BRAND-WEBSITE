@@ -20,9 +20,12 @@ export const ProductImage = ({
   artType = 'brass',
   className = '',
   aspect = 'aspect-square',
-  fitMode = 'cover',
+  fitMode = 'contain',
   priority = false,
-  sizes
+  sizes,
+  imageBackground = 'photo',
+  silhouetteShadow = false,
+  wrapperBg = 'bg-transparent',
 }) => {
   const [imgError, setImgError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -66,7 +69,7 @@ export const ProductImage = ({
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`product-card-image-wrapper ${aspect} ${className} bg-[#F9F6F0]`}
+        className={`product-card-image-wrapper ${aspect} ${className} ${wrapperBg}`}
       >
         {/* Skeleton shimmer — visible only until primary image loads */}
         {!primaryLoaded && (
@@ -94,7 +97,11 @@ export const ProductImage = ({
             }}
             onError={() => setImgError(true)}
             className={`product-card-image ${
-              isCover ? 'object-cover' : 'object-contain p-2 sm:p-3'
+              isCover ? 'object-cover' : 'object-contain'
+            } ${
+              silhouetteShadow || imageBackground === 'transparent'
+                ? 'drop-shadow-[0_8px_16px_rgba(42,34,30,0.14)] drop-shadow-[0_2px_4px_rgba(42,34,30,0.08)] group-hover:drop-shadow-[0_12px_22px_rgba(42,34,30,0.18)]'
+                : ''
             } transition-opacity duration-400 ${
               priority || primaryLoaded ? 'opacity-100' : 'opacity-0'
             } ${

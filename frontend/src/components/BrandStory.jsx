@@ -1,56 +1,73 @@
 import React from 'react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { SafeImage } from './SafeImage';
+import { Button } from './Button';
 
 export const BrandStory = ({ onDiscover }) => {
   return (
-    <section className="py-16 sm:py-24 bg-[#FBF9F5] border-b border-[#EAE0CD] overflow-hidden">
+    <section className="py-16 sm:py-24 bg-[#FBEAE5]/40 border-b border-[#EAE2D7] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
-          {/* Layered / Overlapping Imagery Composition */}
+          {/* Left: Asymmetric Warm Editorial Image */}
           <div 
             onClick={onDiscover}
-            className="relative layered-composition-container scroll-reveal-left cursor-pointer group"
+            className="lg:col-span-6 relative cursor-pointer group"
           >
-            {/* Background Gold Frame Accent */}
-            <div className="layered-gold-accent-frame" />
+            {/* Pastel Sage Decorative Backdrop */}
+            <div className="absolute -top-3 -left-3 w-full h-full rounded-2xl bg-[#EBF2EB] -z-10 transition-transform duration-300 group-hover:-translate-x-1 group-hover:-translate-y-1" />
 
-            {/* Main Primary Image */}
-            <div className="layered-composition-main img-reveal-curtain overflow-hidden rounded-xl shadow-md border border-[#EAE0CD]" style={{ aspectRatio: '4/3' }}>
+            {/* Main Stage Image Frame with 16px soft corners */}
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-[0_8px_24px_rgba(42,34,30,0.08)] border border-[#EAE2D7] bg-white">
               <SafeImage
                 src="/Outside images/brasshero.webp"
-                alt="Shraviko — Handcrafted in India"
+                alt="Shraviko Artisanal Heritage"
                 fallbackSrc="/assets/brasscover.webp"
                 containerClassName="w-full h-full"
-                className="w-full h-full object-cover hero-image-crisp transform group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
                 style={{ objectPosition: 'center 60%' }}
               />
             </div>
+
+            {/* Small Floating Craftsmanship Pill */}
+            <div className="absolute -bottom-4 right-4 bg-white/95 backdrop-blur-xs border border-[#EAE2D7] rounded-xl px-4 py-2 shadow-sm flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#57324F]" />
+              <span className="font-manrope text-xs font-semibold text-[#2A221E]">
+                Artisanal Udaipur Metalsmiths
+              </span>
+            </div>
           </div>
 
-          {/* Content — Slide Right Reveal */}
-          <div className="flex flex-col justify-center scroll-reveal-right">
-            <p className="text-[10px] font-cinzel tracking-[0.3em] text-[#9B7E52] uppercase mb-4">
-              Our Story
+          {/* Right: Editorial Narrative */}
+          <div className="lg:col-span-6 flex flex-col justify-center">
+            <p className="text-[11px] sm:text-xs font-manrope font-semibold tracking-[0.18em] text-[#8C7D75] uppercase mb-2">
+              Our Heritage &amp; Vow
             </p>
             <h2
-              className="font-cinzel font-bold text-[#2C2623] leading-tight mb-6 heading-gold-line cursor-pointer"
+              className="font-fraunces font-semibold text-[#2A221E] leading-tight mb-5 cursor-pointer text-2xl sm:text-3xl lg:text-4xl"
               onClick={onDiscover}
-              style={{ fontSize: 'clamp(1.6rem, 3.2vw, 2.75rem)' }}
             >
-              Rooted in Tradition.<br />Made for Today.
+              Rooted in Devotion.<br />
+              Crafted for Modern Sanctuaries.
             </h2>
-            <p className="text-sm sm:text-base text-[#6B5840] font-light leading-relaxed mb-8 max-w-md">
-              Born from a local shop in Udaipur with a vision to elevate Indian ritual craftsmanship to the next stage, Shraviko creates sacred objects for worship, luxury gifting, and spiritual living.
+            <p className="text-sm sm:text-base text-[#685951] font-manrope leading-relaxed mb-4">
+              Born in Udaipur, Rajasthan, with a sacred vision to revive timeless Vedic metalcraft, SHRAVIKO creates heirloom pooja essentials for daily devotional worship, mindful gifting, and peaceful living.
+            </p>
+            <p className="text-xs sm:text-sm text-[#8C7D75] font-manrope leading-relaxed mb-8">
+              Every brass bell, copper vessel, and hand-rolled stick of organic agarbatti is fashioned by master generational artisans without compromise.
             </p>
 
-            <button
-              onClick={onDiscover}
-              className="self-start inline-flex items-center gap-2 text-sm font-cinzel font-semibold text-[#2C2623] border-b border-[#2C2623] pb-0.5 hover:text-[#9B7E52] hover:border-[#9B7E52] transition-all duration-300 magnetic-hover group tracking-wide cursor-pointer"
-            >
-              Discover Our Story
-              <span className="transform group-hover:translate-x-1.5 transition-transform">→</span>
-            </button>
+            <div className="flex items-center gap-4">
+              <Button
+                variant="secondary"
+                size="md"
+                onClick={onDiscover}
+                icon={<ArrowRight className="w-4 h-4" />}
+                iconPosition="right"
+              >
+                Discover Our Story
+              </Button>
+            </div>
           </div>
 
         </div>

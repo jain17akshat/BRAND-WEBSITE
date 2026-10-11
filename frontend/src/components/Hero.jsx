@@ -379,32 +379,27 @@ export const Hero = ({ onExploreClick, onRitualsClick, onVideoSlideChange }) => 
 
       {/* HERO CONTENT — Centered floating Shop Collection button (Hidden on hero-launch slide) */}
       {heroSlides[activeSlide]?.id !== 'hero-launch' && (
-        <div className="absolute inset-0 z-10 flex items-end justify-center pb-14 sm:pb-16 lg:pb-20">
+        <div className="absolute inset-0 z-10 flex items-end justify-center pb-12 sm:pb-16 lg:pb-20">
           <button
             onClick={onExploreClick}
-            style={{
-              animation: 'heroFloat 3s ease-in-out infinite',
-            }}
             className="
-              min-h-[48px]
-              rounded-full
-              bg-white/90
-              backdrop-blur-sm
+              min-h-[50px]
+              rounded-xl
+              bg-[#57324F]
+              hover:bg-[#42253C]
+              active:bg-[#351C30]
               px-8 py-3.5
-              text-xs
-              font-cinzel
-              font-bold
-              tracking-[0.2em]
-              uppercase
-              text-[#2C1F06]
-              shadow-2xl
-              border border-white/60
+              text-sm sm:text-base
+              font-manrope
+              font-semibold
+              text-white
+              shadow-[0_8px_24px_rgba(87,50,79,0.35)]
+              border border-[#7A4C71]/40
               transition-all
-              duration-300
-              hover:bg-white
-              magnetic-hover
-              hover:shadow-[0_8px_40px_rgba(197,160,89,0.4)]
-              active:scale-95
+              duration-200
+              hover:scale-102
+              active:scale-98
+              cursor-pointer
             "
           >
             Shop Collection

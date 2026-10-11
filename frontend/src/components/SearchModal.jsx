@@ -33,24 +33,24 @@ export const SearchModal = ({
       />
 
       {/* Container */}
-      <div className="relative bg-[#FBF9F5] rounded-2xl max-w-2xl w-full border border-[#C5A059]/40 shadow-2xl overflow-hidden z-10 animate-slide-up max-h-[85vh] flex flex-col">
+      <div className="relative bg-[#FAF7F2] rounded-2xl max-w-2xl w-full border border-[#EAE0CD] shadow-2xl overflow-hidden z-10 animate-slide-up max-h-[85vh] flex flex-col font-manrope">
         
         {/* Search Bar Input Header */}
-        <div className="p-4 sm:p-6 bg-[#231E1C] text-white border-b border-[#3A3431] flex items-center gap-3">
-          <Search className="w-5 h-5 text-[#C5A059] shrink-0" />
+        <div className="p-4 sm:p-5 bg-white text-[#2C221E] border-b border-[#EAE0CD] flex items-center gap-3">
+          <Search className="w-5 h-5 text-[#57324F] shrink-0" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search brass diyas, copper pitchers, temple incense..."
             autoFocus
-            className="w-full bg-transparent text-sm font-sans text-[#F9F5EC] placeholder-gray-400 focus:outline-none"
+            className="w-full bg-transparent text-sm font-manrope text-[#2C221E] placeholder-[#8C7A70] focus:outline-none"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
               aria-label="Clear search input"
-              className="text-xs text-gray-400 hover:text-white"
+              className="text-xs text-[#8C7A70] hover:text-[#2C221E]"
             >
               Clear
             </button>
@@ -58,25 +58,25 @@ export const SearchModal = ({
           <button
             onClick={onClose}
             aria-label="Close search modal"
-            className="p-1 text-gray-400 hover:text-white transition-colors"
+            className="p-1 text-[#8C7A70] hover:text-[#2C221E] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content Body */}
-        <div className="p-6 max-h-[60vh] overflow-y-auto">
+        <div className="p-5 sm:p-6 max-h-[60vh] overflow-y-auto">
           {query.trim() === '' ? (
-            <div className="space-y-4">
-              <span className="text-xs font-cinzel tracking-wider uppercase text-[#8C6929] font-semibold block">
-                Popular Sacred Searches
+            <div className="space-y-3.5">
+              <span className="text-xs font-manrope tracking-wider uppercase text-[#57324F] font-semibold block">
+                Popular Searches
               </span>
               <div className="flex flex-wrap gap-2">
                 {suggestions.map((sug, idx) => (
                   <button
                     key={idx}
                     onClick={() => setQuery(sug)}
-                    className="px-3.5 py-1.5 rounded-full bg-[#FAF0D9] text-[#755722] border border-[#EAD7AF] text-xs font-sans hover:border-[#C5A059] transition-colors"
+                    className="px-3.5 py-1.5 rounded-full bg-white text-[#4A3E39] border border-[#EAE0CD] text-xs font-manrope font-medium hover:border-[#57324F]/40 hover:bg-[#FBEAE5]/30 transition-colors"
                   >
                     {sug}
                   </button>
@@ -85,18 +85,18 @@ export const SearchModal = ({
             </div>
           ) : results.length === 0 ? (
             <div className="py-10 text-center space-y-2">
-              <p className="text-sm font-cinzel text-[#2C2623] font-semibold">No ritual items found matching "{query}"</p>
-              <p className="text-xs text-gray-500 font-sans">Try searching for "brass", "copper", "incense", or "thali".</p>
+              <p className="text-base font-fraunces text-[#2C221E] font-medium">No sacred items found matching "{query}"</p>
+              <p className="text-xs text-[#6B5E57] font-manrope">Try searching for "brass", "copper", "incense", or "thali".</p>
             </div>
           ) : (
             <div className="space-y-3">
-              <span className="text-xs font-cinzel text-[#8C6929] uppercase tracking-wider block font-semibold">
-                Matching Sacred Items
+              <span className="text-xs font-manrope text-[#57324F] uppercase tracking-wider block font-semibold">
+                Matching Items ({results.length})
               </span>
               {results.map((product) => (
                 <div
                   key={product.id}
-                  className="p-3 rounded-lg bg-white border border-[#EAE0CD] hover:border-[#C5A059] flex items-center justify-between gap-3 shadow-xs transition-colors"
+                  className="p-3 rounded-2xl bg-white border border-[#EAE0CD] hover:border-[#57324F]/40 flex items-center justify-between gap-3 shadow-xs transition-colors"
                 >
                   <div
                     onClick={() => {
@@ -105,7 +105,7 @@ export const SearchModal = ({
                     }}
                     className="flex items-center gap-3 cursor-pointer flex-1"
                   >
-                    <div className="w-14 h-14 rounded overflow-hidden shrink-0">
+                    <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-[#FAF7F2]">
                       <ProductImage
                         src={product.image}
                         alt={product.name}
@@ -114,18 +114,18 @@ export const SearchModal = ({
                       />
                     </div>
                     <div>
-                      <h4 className="font-cinzel text-xs font-semibold text-[#2C2623] hover:text-[#967433]">
+                      <h4 className="font-manrope text-xs sm:text-sm font-semibold text-[#2C221E] hover:text-[#57324F] line-clamp-1">
                         {product.name}
                       </h4>
-                      <span className="text-[10px] text-[#8C6929] font-sans block">
+                      <span className="text-[11px] text-[#8C7A70] font-manrope block">
                         {product.purity} {product.isComingSoon ? '• Coming Soon' : (product.price || product.weightVariants?.[0]?.price) ? `• ₹${(product.price || product.weightVariants?.[0]?.price).toLocaleString('en-IN')}` : ''}
                       </span>
                     </div>
                   </div>
 
                   {product.isComingSoon ? (
-                    <span className="px-2.5 py-1 rounded bg-[#C5A059]/15 text-[#9B7E52] text-[10px] font-cinzel font-bold uppercase shrink-0">
-                      Coming Soon
+                    <span className="px-2.5 py-1 rounded-[12px] bg-[#FAF7F2] text-[#8C7A70] text-[10px] font-manrope font-semibold uppercase shrink-0 border border-[#EAE0CD]">
+                      Soon
                     </span>
                   ) : (
                     <button
@@ -133,7 +133,7 @@ export const SearchModal = ({
                         onAddToCart(product);
                         onClose();
                       }}
-                      className="px-3 py-1.5 bg-[#231E1C] text-[#E5C378] text-[11px] font-cinzel uppercase font-semibold rounded hover:bg-[#3A3431] shrink-0"
+                      className="px-3.5 py-1.5 bg-[#57324F] hover:bg-[#42253C] text-white text-xs font-manrope font-semibold rounded-[12px] shrink-0 transition-colors shadow-xs"
                     >
                       + Add
                     </button>

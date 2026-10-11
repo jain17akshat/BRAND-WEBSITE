@@ -18,6 +18,7 @@ export const QuickViewModal = ({
     : null;
 
   const [selectedVariant, setSelectedVariant] = useState(defaultVariant);
+  const [addedFeedback, setAddedFeedback] = useState(false);
 
   React.useEffect(() => {
     if (product) {
@@ -54,6 +55,8 @@ export const QuickViewModal = ({
     } else {
       onAddToCart(product, quantity);
     }
+    setAddedFeedback(true);
+    setTimeout(() => setAddedFeedback(false), 2000);
   };
 
   return (
@@ -65,13 +68,13 @@ export const QuickViewModal = ({
       />
 
       {/* Modal Container */}
-      <div className="relative bg-[#FBF9F5] rounded-2xl max-w-3xl w-full border border-[#C5A059]/40 shadow-2xl overflow-hidden z-10 animate-slide-up my-4 sm:my-8 max-h-[92vh] overflow-y-auto">
+      <div className="relative bg-[#FAF7F2] rounded-2xl max-w-3xl w-full border border-[#EAE0CD] shadow-2xl overflow-hidden z-10 animate-slide-up my-4 sm:my-8 max-h-[92vh] overflow-y-auto font-manrope">
         
         {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-[#231E1C] text-[#E5C378] hover:bg-[#3A3431] flex items-center justify-center transition-colors shadow"
+          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-white text-[#57324F] hover:bg-[#FBEAE5] border border-[#EAE0CD] flex items-center justify-center transition-colors shadow-xs"
         >
           <X className="w-4 h-4" />
         </button>
@@ -79,14 +82,22 @@ export const QuickViewModal = ({
         <div className="grid grid-cols-1 md:grid-cols-2">
           
           {/* Product Image Frame */}
-          <div className="p-6 bg-[#F6F1E7] border-b md:border-b-0 md:border-r border-[#EAE0CD] flex flex-col items-center justify-center space-y-4">
-            <div className="w-full max-w-xs aspect-square rounded-xl overflow-hidden shadow-md relative bg-white">
+          <div className="p-6 bg-white border-b md:border-b-0 md:border-r border-[#EAE0CD] flex flex-col items-center justify-center space-y-4">
+            <div className={`w-full max-w-xs aspect-square rounded-2xl overflow-hidden shadow-xs relative ${
+              product.imageBackground === 'white'
+                ? 'bg-white'
+                : product.imageBackground === 'transparent'
+                ? 'bg-[#FAF6EC]'
+                : 'bg-[#FAF7F2]'
+            }`}>
               <ProductImage
                 src={selectedImg}
                 alt={product.name}
                 artType={product.artType}
-                fitMode={product.fitMode}
+                fitMode={product.fitMode || 'contain'}
                 aspect="aspect-square"
+                imageBackground={product.imageBackground}
+                silhouetteShadow={product.imageBackground === 'transparent'}
               />
             </div>
 
@@ -98,11 +109,11 @@ export const QuickViewModal = ({
                     key={idx}
                     onClick={() => setSelectedImg(img)}
                     aria-label={`View image ${idx + 1}`}
-                    className={`w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
-                      selectedImg === img ? 'border-[#C5A059] scale-105 shadow-md' : 'border-[#EAE0CD] opacity-70 hover:opacity-100'
+                    className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all p-0.5 bg-white ${
+                      selectedImg === img ? 'border-[#57324F] scale-105 shadow-xs' : 'border-[#EAE0CD] opacity-70 hover:opacity-100'
                     }`}
                   >
-                    <img src={img} alt={`View ${idx + 1}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`View ${idx + 1}`} className="w-full h-full object-contain" />
                   </button>
                 ))}
               </div>
@@ -110,33 +121,31 @@ export const QuickViewModal = ({
           </div>
 
           {/* Product Info & Actions */}
-          <div className="p-6 sm:p-8 flex flex-col justify-between space-y-5">
+          <div className="p-6 sm:p-8 flex flex-col justify-between space-y-5 bg-[#FAF7F2]">
             <div>
               <div className="mb-1">
-                <span className="text-[10px] font-cinzel uppercase tracking-widest text-[#8C6929] font-medium">
+                <span className="text-[10px] font-manrope uppercase tracking-wider text-[#8C7A70] font-semibold">
                   {product.categoryName}
                 </span>
               </div>
 
-              <h2 className="font-cinzel text-xl font-bold text-[#2C2623] leading-snug">
+              <h2 className="font-fraunces text-xl sm:text-2xl font-medium text-[#2C221E] leading-snug">
                 {product.name}
               </h2>
-
-
 
               {/* Price */}
               <div className="mt-3 flex items-baseline gap-3">
                 {product.isComingSoon ? (
-                  <span className="text-xl font-cinzel font-bold text-[#8C6D2D] uppercase tracking-wider">
+                  <span className="text-xl font-fraunces font-medium text-[#57324F]">
                     Coming Soon
                   </span>
                 ) : (
                   <>
-                    <span className="text-2xl font-cinzel font-bold text-[#2C2623]">
+                    <span className="text-2xl font-manrope font-bold text-[#2C221E]">
                       ₹{(currentPrice || 0).toLocaleString('en-IN')}
                     </span>
                     {currentOrigPrice && (
-                      <span className="text-sm text-gray-600 line-through font-medium">
+                      <span className="text-sm text-[#8C7A70] line-through font-manrope font-normal">
                         ₹{currentOrigPrice.toLocaleString('en-IN')}
                       </span>
                     )}
@@ -144,9 +153,33 @@ export const QuickViewModal = ({
                 )}
               </div>
 
-
-
-
+              {/* Variant chips if available */}
+              {product.weightVariants && product.weightVariants.length > 0 && !product.isComingSoon && (
+                <div className="mt-4 space-y-2">
+                  <span className="text-xs font-manrope font-semibold text-[#6B5E57] uppercase tracking-wider block">
+                    Option: <span className="text-[#2C221E] font-bold">{selectedVariant?.weight}</span>
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {product.weightVariants.map((v, i) => {
+                      const isSel = selectedVariant?.weight === v.weight;
+                      return (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => setSelectedVariant(v)}
+                          className={`px-3 py-1.5 rounded-[12px] text-xs font-manrope font-semibold border transition-all ${
+                            isSel
+                              ? 'bg-[#57324F] text-white border-[#57324F]'
+                              : 'bg-white text-[#2C221E] border-[#EAE0CD] hover:border-[#57324F]/40'
+                          }`}
+                        >
+                          {v.weight}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Actions */}
@@ -154,7 +187,7 @@ export const QuickViewModal = ({
               {product.isComingSoon ? (
                 <button
                   disabled
-                  className="w-full py-3.5 bg-[#C5A059]/20 text-[#8C6D2D] font-cinzel text-xs uppercase font-bold tracking-widest rounded-md cursor-not-allowed border border-[#C5A059]/40 text-center"
+                  className="w-full py-3.5 bg-white text-[#8C7A70] font-manrope text-xs font-semibold rounded-[12px] cursor-not-allowed border border-[#EAE0CD] text-center"
                 >
                   Collection Launching Soon
                 </button>
@@ -162,19 +195,19 @@ export const QuickViewModal = ({
                 <>
                   <div className="flex items-center gap-3">
                     {/* Quantity selector */}
-                    <div className="flex items-center border border-[#EAE0CD] rounded bg-white px-2 py-1">
+                    <div className="flex items-center border border-[#EAE0CD] rounded-[12px] bg-white px-2 py-1">
                       <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
                         aria-label="Decrease quantity"
-                        className="px-2 text-sm text-[#2C2623]"
+                        className="px-2 text-sm text-[#2C221E] font-bold"
                       >
                         -
                       </button>
-                      <span className="px-3 text-xs font-bold text-[#2C2623]">{quantity}</span>
+                      <span className="px-3 text-xs font-manrope font-bold text-[#2C221E]">{quantity}</span>
                       <button
                         onClick={() => setQuantity(quantity + 1)}
                         aria-label="Increase quantity"
-                        className="px-2 text-sm text-[#2C2623]"
+                        className="px-2 text-sm text-[#2C221E] font-bold"
                       >
                         +
                       </button>
@@ -184,25 +217,42 @@ export const QuickViewModal = ({
                     <button
                       onClick={() => onToggleWishlist(product)}
                       aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-                      className="p-2.5 rounded border border-[#EAE0CD] hover:border-[#A63A2B] text-[#2C2623] transition-colors"
+                      className={`p-2.5 rounded-[12px] border transition-colors ${
+                        isWishlisted
+                          ? 'bg-[#57324F] border-[#57324F] text-white'
+                          : 'border-[#EAE0CD] bg-white text-[#2C221E] hover:bg-[#FBEAE5]'
+                      }`}
                     >
-                      <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-[#A63A2B] text-[#A63A2B]' : ''}`} />
+                      <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
                     </button>
                   </div>
 
                   {/* Add to Cart button */}
                   <button
                     onClick={handleAdd}
-                    className="w-full py-3.5 bg-[#231E1C] text-[#E5C378] font-cinzel text-xs uppercase font-bold tracking-widest rounded-md hover:bg-[#3A3431] shadow-lg transition-all flex items-center justify-center gap-2 border border-[#C5A059]/40"
+                    className={`w-full min-h-[48px] py-3 text-white font-manrope text-xs uppercase font-semibold tracking-wider rounded-[12px] transition-all flex items-center justify-center gap-2 active:scale-98 ${
+                      addedFeedback
+                        ? 'bg-emerald-700'
+                        : 'bg-[#57324F] hover:bg-[#42253C] shadow-xs'
+                    }`}
                   >
-                    <ShoppingBag className="w-4 h-4 text-[#C5A059]" />
-                    <span>Add to Cart — ₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
+                    {addedFeedback ? (
+                      <>
+                        <Check className="w-4 h-4 text-white" />
+                        <span>Added to Cart!</span>
+                      </>
+                    ) : (
+                      <>
+                        <ShoppingBag className="w-4 h-4 text-white" />
+                        <span>Add to Cart — ₹{((currentPrice || 0) * quantity).toLocaleString('en-IN')}</span>
+                      </>
+                    )}
                   </button>
                 </>
               )}
 
-              <div className="flex items-center justify-center gap-2 text-[10px] text-gray-500 pt-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
+              <div className="flex items-center justify-center gap-2 text-[10px] text-[#8C7A70] pt-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#57324F]" />
                 <span>In Stock • Ready for Pan-India Dispatch</span>
               </div>
             </div>
