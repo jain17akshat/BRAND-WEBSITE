@@ -48,6 +48,7 @@ export const Navbar = ({
     { label: 'Copper Vessels', category: 'copper' },
     { label: 'Mandir Essentials', category: 'mandir-essentials' },
     { label: 'Incense & Dhoop', category: 'incense' },
+    { label: 'Vastu & Spiritual', category: 'vastu' },
     { label: 'Energy Stones', category: 'energy-stones' },
     { label: 'Corporate Gifting', category: 'kits' },
   ];
@@ -95,14 +96,14 @@ export const Navbar = ({
             </div>
 
             {/* CENTER — Navigation Links in Manrope */}
-            <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 mx-2 flex-1">
+            <nav className="hidden lg:flex items-center justify-center gap-0.5 xl:gap-1.5 2xl:gap-2 mx-1 xl:mx-2 flex-1 min-w-0">
               {navLinks.map((link) => {
                 const isActive = activeCategory === link.category;
                 return (
                   <button
                     key={link.category}
                     onClick={() => onSelectCategory(link.category)}
-                    className={`text-xs xl:text-[13px] tracking-normal font-manrope transition-all py-1.5 px-2.5 xl:px-3 rounded-full whitespace-nowrap cursor-pointer ${
+                    className={`text-[11.5px] xl:text-xs 2xl:text-[13px] tracking-normal font-manrope transition-all py-1.5 px-2 xl:px-2.5 2xl:px-3 rounded-full whitespace-nowrap cursor-pointer ${
                       isActive
                         ? 'text-white font-semibold bg-[#57324F] shadow-xs'
                         : 'text-[#2A221E] hover:text-[#57324F] font-medium hover:bg-[#FBEAE5]'

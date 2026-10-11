@@ -6,12 +6,12 @@ export const CATEGORIES = [
   {
     "id": "metalware",
     "name": "Metalware",
-    "count": 21
+    "count": 36
   },
   {
     "id": "brass",
     "name": "Brass Articles",
-    "count": 17
+    "count": 32
   },
   {
     "id": "copper",
@@ -21,7 +21,7 @@ export const CATEGORIES = [
   {
     "id": "mandir-essentials",
     "name": "Mandir Essentials",
-    "count": 20
+    "count": 25
   },
   {
     "id": "energy-stones",
@@ -32,12 +32,12 @@ export const CATEGORIES = [
   {
     "id": "incense",
     "name": "Incense & Dhoop",
-    "count": 16
+    "count": 13
   },
   {
     "id": "vastu",
     "name": "Vastu & Spiritual",
-    "count": 9
+    "count": 19
   },
   {
     "id": "yantras",
@@ -60,8 +60,9 @@ export const PRODUCTS = [
     "tag": "Garuda Finial",
     "artType": "bell",
     "fitMode": "contain",
-    "image": "/assets/garud bell/garduda 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/GARUD BELL.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/GARUD BELL.webp",
       "/assets/garud bell/garduda 1.webp",
       "/assets/garud bell/garuda 2.webp",
       "/assets/garud bell/garud 3.webp",
@@ -154,7 +155,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Garud Headed Brass Pooja Bell",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-bell-nandi",
@@ -169,8 +170,9 @@ export const PRODUCTS = [
     "tag": "Nandi Finial",
     "artType": "bell",
     "fitMode": "contain",
-    "image": "/assets/nandi bell/nandi bell 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/NANDI BELL.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/NANDI BELL.webp",
       "/assets/nandi bell/nandi bell 1.webp",
       "/assets/nandi bell/nandi bell 2.webp",
       "/assets/nandi bell/nandi bell 3.webp",
@@ -264,7 +266,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Nandi Headed Brass Pooja Bell",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-bell-simple",
@@ -279,8 +281,9 @@ export const PRODUCTS = [
     "tag": "Classic Design",
     "artType": "bell",
     "fitMode": "contain",
-    "image": "/assets/simple bell/simple bell 5.webp",
+    "image": "/assets/ALL PRODUCT WHITE/WOODEN BELL.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/WOODEN BELL.webp",
       "/assets/simple bell/simple bell 5.webp",
       "/assets/simple bell/simple bell 1.webp",
       "/assets/simple bell/simple bell 3.webp",
@@ -373,7 +376,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Traditional Brass Pooja Bell",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-bell-carved",
@@ -388,8 +391,9 @@ export const PRODUCTS = [
     "tag": "Ganesh Finial",
     "artType": "bell",
     "fitMode": "contain",
-    "image": "/assets/commonbell/brass bell 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/MAYURI BELL.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/MAYURI BELL.webp",
       "/assets/commonbell/brass bell 1.webp",
       "/assets/commonbell/brass bell 2.webp",
       "/assets/commonbell/brass bell 3.webp",
@@ -483,7 +487,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Brass Ganesh Ghanti",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-puja-thali-set",
@@ -498,8 +502,9 @@ export const PRODUCTS = [
     "tag": "Engraved Floral",
     "artType": "thali",
     "fitMode": "contain",
-    "image": "/assets/Brass thali/thali 2.webp",
+    "image": "/assets/ALL PRODUCT WHITE/BRASS THALI.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/BRASS THALI.webp",
       "/assets/Brass thali/thali 2.webp",
       "/assets/Brass thali/thali 1.webp",
       "/assets/Brass thali/Brass thali.webp",
@@ -601,7 +606,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Pure Brass Pooja Thali",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-aarti-kapoor-diya",
@@ -616,8 +621,9 @@ export const PRODUCTS = [
     "tag": "5-Wick Panchmukhi",
     "artType": "aarti",
     "fitMode": "contain",
-    "image": "/assets/Brass aarti/arrittti1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/PUNCHMUKHI AARTI.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/PUNCHMUKHI AARTI.webp",
       "/assets/Brass aarti/arrittti1.webp",
       "/assets/Brass aarti/Aarti1.webp",
       "/assets/Brass aarti/aarti2.webp",
@@ -731,7 +737,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Panchmukhi Aarti Diya",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-akhand-jyot-deepak",
@@ -746,8 +752,9 @@ export const PRODUCTS = [
     "tag": "Akhand Jyot",
     "artType": "jyot",
     "fitMode": "contain",
-    "image": "/assets/akhand jyot/618c8df0-e6c0-46e8-95c6-c261e80bc847.webp",
+    "image": "/assets/ALL PRODUCT WHITE/AKHAND JYOT.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/AKHAND JYOT.webp",
       "/assets/akhand jyot/618c8df0-e6c0-46e8-95c6-c261e80bc847.webp",
       "/assets/akhand jyot/akhand jyot 2.webp",
       "/assets/akhand jyot/akhand jyot 1.webp",
@@ -846,7 +853,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Brass Akhand Jyot Diya with Protective Cover",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-cup-jyot-diya",
@@ -861,8 +868,9 @@ export const PRODUCTS = [
     "tag": "Akhand Deepak",
     "artType": "jyot",
     "fitMode": "contain",
-    "image": "/assets/Cup jyot/cup66.webp",
+    "image": "/assets/ALL PRODUCT WHITE/AKHAND DIYA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/AKHAND DIYA.webp",
       "/assets/Cup jyot/cup66.webp",
       "/assets/Cup jyot/cup 2.webp",
       "/assets/Cup jyot/akhand jyot cup 1.webp",
@@ -988,7 +996,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Brass Akhand Jyot Deepak",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-kamandal-holy-water-pot",
@@ -1473,8 +1481,9 @@ export const PRODUCTS = [
     "tag": "Brass Singhasan",
     "artType": "singhasan",
     "fitMode": "contain",
-    "image": "/assets/singhasan/sighasan 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/SINGHASAN.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/SINGHASAN.webp",
       "/assets/singhasan/sighasan 1.webp",
       "/assets/singhasan/sighasan 2.webp",
       "/assets/singhasan/singhasan 3.webp"
@@ -1579,7 +1588,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "God Singhasan / Pooja Chowki",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-ladoo-gopal-statue",
@@ -1594,8 +1603,9 @@ export const PRODUCTS = [
     "tag": "Laddu Gopal Idol",
     "artType": "brass",
     "fitMode": "contain",
-    "image": "/assets/ladoo gopal/ladoogopal 2.webp",
+    "image": "/assets/ALL PRODUCT WHITE/LADOO GOPAL.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/LADOO GOPAL.webp",
       "/assets/ladoo gopal/ladoogopal 2.webp",
       "/assets/ladoo gopal/ladoogopal4.webp",
       "/assets/ladoo gopal/ladoogpal3.webp",
@@ -1701,7 +1711,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Devotional Idol",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-kalash-pooja-vessel",
@@ -1716,8 +1726,9 @@ export const PRODUCTS = [
     "tag": "Pure Brass Kalash",
     "artType": "kalash",
     "fitMode": "contain",
-    "image": "/assets/brass kalash/kalash1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/BRASS KALASH.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/BRASS KALASH.webp",
       "/assets/brass kalash/kalash1.webp",
       "/assets/brass kalash/kalash2.webp",
       "/assets/brass kalash/kalash3.webp",
@@ -1819,7 +1830,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Pooja Kalash Lota",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-design-thali-set",
@@ -1834,8 +1845,9 @@ export const PRODUCTS = [
     "tag": "Peacock Thali",
     "artType": "thali",
     "fitMode": "contain",
-    "image": "/assets/brassdesign thali/design1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/bef8fc19-c836-4b05-9df5-ba4c8c9f0b7b.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/bef8fc19-c836-4b05-9df5-ba4c8c9f0b7b.webp",
       "/assets/brassdesign thali/design1.webp",
       "/assets/brassdesign thali/design 2.webp",
       "/assets/brassdesign thali/design3.webp",
@@ -1950,7 +1962,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Brass Peacock Pooja Thali",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "copper-panchpatra-pali-set",
@@ -1965,8 +1977,9 @@ export const PRODUCTS = [
     "tag": "Panchpatra Set",
     "artType": "panchapatra",
     "fitMode": "contain",
-    "image": "/assets/pancpatra set/patra 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/PANCHPATRA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/PANCHPATRA.webp",
       "/assets/pancpatra set/patra 1.webp",
       "/assets/pancpatra set/patra 2.webp",
       "/assets/pancpatra set/patra3.webp",
@@ -2078,7 +2091,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Pure Copper Panchpatra Udharini Set",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "copper-puja-thali-set",
@@ -2093,8 +2106,9 @@ export const PRODUCTS = [
     "tag": "Pure Copper Thali",
     "artType": "thali",
     "fitMode": "contain",
-    "image": "/assets/Copper thali/copper thali 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/COPPER THALI.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/COPPER THALI.webp",
       "/assets/Copper thali/copper thali 1.webp",
       "/assets/Copper thali/copperthali6.webp",
       "/assets/Copper thali/copper thali 1.webp",
@@ -2204,7 +2218,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Pure Copper Pooja Thali",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "copper-hawan-kund-pyre",
@@ -2219,8 +2233,9 @@ export const PRODUCTS = [
     "tag": "Copper Hawan Kund",
     "artType": "hawankund",
     "fitMode": "contain",
-    "image": "/assets/hawankund/hawan1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/HAWAN KUND.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/HAWAN KUND.webp",
       "/assets/hawankund/hawan1.webp",
       "/assets/hawankund/kund 2.webp",
       "/assets/hawankund/kund 3.webp",
@@ -2328,7 +2343,7 @@ export const PRODUCTS = [
     "hsn": "74181010",
     "taxRate": 5,
     "taxCode": "GST_5",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "copper-kalash-pooja-vessel",
@@ -2343,8 +2358,9 @@ export const PRODUCTS = [
     "tag": "Pure Copper Kalash",
     "artType": "kalash",
     "fitMode": "contain",
-    "image": "/assets/Copperkalsh/copperkalsh1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/COPPER KALASH.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/COPPER KALASH.webp",
       "/assets/Copperkalsh/copperkalsh1.webp",
       "/assets/Copperkalsh/copperkalash2.webp",
       "/assets/Copperkalsh/copperkalsh3.webp",
@@ -2451,7 +2467,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Pure Copper Kalash",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "vastu-ganesh-siddha-yantra",
@@ -2466,8 +2482,9 @@ export const PRODUCTS = [
     "tag": "Ganesh Yantra",
     "artType": "yantra",
     "fitMode": "contain",
-    "image": "/assets/Ganeshyantra/Ganesh 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/GANESH YANTRA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/GANESH YANTRA.webp",
       "/assets/Ganeshyantra/Ganesh 1.webp",
       "/assets/Ganeshyantra/Ganesh2.webp",
       "/assets/Ganeshyantra/ganesh 3.webp",
@@ -2595,8 +2612,9 @@ export const PRODUCTS = [
     "tag": "Kuber Yantra",
     "artType": "yantra",
     "fitMode": "contain",
-    "image": "/assets/Kuber yantra/kuber 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/KUBER YANTRA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/KUBER YANTRA.webp",
       "/assets/Kuber yantra/kuber 1.webp",
       "/assets/Kuber yantra/kuber 2.webp",
       "/assets/Kuber yantra/kuber 3.webp",
@@ -2715,7 +2733,7 @@ export const PRODUCTS = [
     "taxRate": 12,
     "taxCode": "GST_12",
     "name": "Kuber Yantra",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "vastu-laxmi-siddha-yantra",
@@ -2730,8 +2748,9 @@ export const PRODUCTS = [
     "tag": "Mahalakshmi Yantra",
     "artType": "yantra",
     "fitMode": "contain",
-    "image": "/assets/luxmiyantra/laxmi1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/SHREE YANTRA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/SHREE YANTRA.webp",
       "/assets/luxmiyantra/laxmi1.webp",
       "/assets/luxmiyantra/laxmi 2.webp",
       "/assets/luxmiyantra/luxmi3.webp",
@@ -2850,7 +2869,7 @@ export const PRODUCTS = [
     "taxRate": 12,
     "taxCode": "GST_12",
     "name": "Lakshmi Kuber Yantra",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "vastu-shani-siddha-yantra",
@@ -2865,8 +2884,9 @@ export const PRODUCTS = [
     "tag": "Shani Yantra",
     "artType": "yantra",
     "fitMode": "contain",
-    "image": "/assets/shani yantra/shanimain.webp",
+    "image": "/assets/ALL PRODUCT WHITE/SHANI YANTRA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/SHANI YANTRA.webp",
       "/assets/shani yantra/shanimain.webp",
       "/assets/shani yantra/shani1.webp",
       "/assets/shani yantra/shani3.webp",
@@ -2985,7 +3005,7 @@ export const PRODUCTS = [
     "taxRate": 12,
     "taxCode": "GST_12",
     "name": "Shree Shani Yantra",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "vastu-crystal-glass-yantra",
@@ -3125,8 +3145,9 @@ export const PRODUCTS = [
     "tag": "Vastu Energy",
     "artType": "pyramid",
     "fitMode": "contain",
-    "image": "/assets/pyramid/pyramid4.webp",
+    "image": "/assets/ALL PRODUCT WHITE/BRASS PYRAMID.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/BRASS PYRAMID.webp",
       "/assets/pyramid/pyramid4.webp",
       "/assets/pyramid/pyramid1.webp",
       "/assets/pyramid/pyramid2.webp",
@@ -3214,7 +3235,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Vastu Brass Pyramid",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "vastu-crystal-glass-turtle",
@@ -3229,8 +3250,9 @@ export const PRODUCTS = [
     "tag": "Vastu Kurma",
     "artType": "yantra",
     "fitMode": "contain",
-    "image": "/assets/glassturtle/glass main.webp",
+    "image": "/assets/ALL PRODUCT WHITE/GLASS TURTLE.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/GLASS TURTLE.webp",
       "/assets/glassturtle/glass main.webp",
       "/assets/glassturtle/Glass turtle 1.webp",
       "/assets/glassturtle/glass turtle 2.webp",
@@ -3323,7 +3345,7 @@ export const PRODUCTS = [
     "taxRate": 18,
     "taxCode": "GST_18",
     "name": "Crystal Turtle with Glass Plate",
-    "imageBackground": "transparent"
+    "imageBackground": "white"
   },
   {
     "id": "brass-kamdhenu-cow-statue",
@@ -3459,8 +3481,9 @@ export const PRODUCTS = [
     "tag": "Handcrafted Brass",
     "artType": "brass",
     "fitMode": "contain",
-    "image": "/assets/ganeshji/brassganesh4.webp",
+    "image": "/assets/ALL PRODUCT WHITE/BRASS GANESH JI.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/BRASS GANESH JI.webp",
       "/assets/ganeshji/brassganesh4.webp",
       "/assets/ganeshji/brassganesh1.webp",
       "/assets/ganeshji/brass ganesh2.webp",
@@ -3553,7 +3576,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Lord Ganesha Idol",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "brass-radha-krishna-statue",
@@ -3568,8 +3591,9 @@ export const PRODUCTS = [
     "tag": "Handcrafted Brass",
     "artType": "brass",
     "fitMode": "contain",
-    "image": "/assets/radhakrishna/krishna1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/KRISHNA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/KRISHNA.webp",
       "/assets/radhakrishna/krishna1.webp",
       "/assets/radhakrishna/krishna2.webp",
       "/assets/radhakrishna/krishna3.webp",
@@ -3661,7 +3685,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Radha Krishna Idol",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "vastu-crystal-glass-shivling",
@@ -3788,8 +3812,9 @@ export const PRODUCTS = [
     "tag": "Rudraksha Mala",
     "artType": "mala",
     "fitMode": "contain",
-    "image": "/assets/Rudraksh Mala/rudraksh mala 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/RUDRAKKS MALA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/RUDRAKKS MALA.webp",
       "/assets/Rudraksh Mala/rudraksh mala 1.webp",
       "/assets/Rudraksh Mala/rudraksh 2.webp",
       "/assets/Rudraksh Mala/rudraksh 6.webp",
@@ -3894,7 +3919,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Rudraksha Jaap Mala",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "mandir-sphatik-mala",
@@ -3909,8 +3934,10 @@ export const PRODUCTS = [
     "tag": "Sphatik Mala",
     "artType": "mala",
     "fitMode": "contain",
-    "image": "/assets/Sphatik mala/sphatik 2.webp",
+    "image": "/assets/ALL PRODUCT WHITE/SPHATUK MALA1.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/SPHATUK MALA1.webp",
+      "/assets/ALL PRODUCT WHITE/SPHATIK MALA.webp",
       "/assets/Sphatik mala/sphatik 2.webp",
       "/assets/Sphatik mala/sphatik 1.webp",
       "/assets/Sphatik mala/sphatik 3.webp",
@@ -4016,7 +4043,7 @@ export const PRODUCTS = [
     "taxRate": 3,
     "taxCode": "GST_3",
     "name": "Sphatik Jaap Mala",
-    "imageBackground": "transparent"
+    "imageBackground": "white"
   },
   {
     "id": "mandir-tulsi-mala",
@@ -4278,8 +4305,9 @@ export const PRODUCTS = [
     "tag": "Karungali Mala",
     "artType": "mala",
     "fitMode": "contain",
-    "image": "/assets/Karungali mala/kali1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/KARUNGALI MALA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/KARUNGALI MALA.webp",
       "/assets/Karungali mala/kali1.webp",
       "/assets/Karungali mala/kali2.webp",
       "/assets/Karungali mala/karungali 5.webp",
@@ -4393,7 +4421,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Karungali Jaap Mala",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "mandir-lal-chandan",
@@ -4408,8 +4436,9 @@ export const PRODUCTS = [
     "tag": "Red Sandalwood",
     "artType": "chandan",
     "fitMode": "contain",
-    "image": "/assets/Lal Chanda/Lal1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/LAL CHANDAN.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/LAL CHANDAN.webp",
       "/assets/Lal Chanda/Lal1.webp",
       "/assets/Lal Chanda/LAl2.webp",
       "/assets/Lal Chanda/Lal3.webp",
@@ -4474,7 +4503,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Pure Lal Chandan / Rakta Chandan Powder",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "mandir-pure-camphor",
@@ -4647,8 +4676,9 @@ export const PRODUCTS = [
     "tag": "Pure Sandalwood",
     "artType": "chandan",
     "fitMode": "contain",
-    "image": "/assets/Safed Chandan/SAfed 111.webp",
+    "image": "/assets/ALL PRODUCT WHITE/SAFED CHANDAN.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/SAFED CHANDAN.webp",
       "/assets/Safed Chandan/SAfed 111.webp",
       "/assets/Safed Chandan/Safed 1.webp",
       "/assets/Safed Chandan/Safed2.webp",
@@ -4722,7 +4752,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Pure Safed Chandan Powder",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "wooden-chowki-carved-01",
@@ -4737,8 +4767,9 @@ export const PRODUCTS = [
     "tag": "Pooja Chowki",
     "artType": "chowki",
     "fitMode": "contain",
-    "image": "/assets/Wooden Choki/chowki1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/WOODEN CHOWKI.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/WOODEN CHOWKI.webp",
       "/assets/Wooden Choki/chowki1.webp",
       "/assets/Wooden Choki/chowki 2.webp",
       "/assets/Wooden Choki/chowki333.webp",
@@ -4838,7 +4869,7 @@ export const PRODUCTS = [
     "taxRate": 12,
     "taxCode": "GST_12",
     "name": "Wooden Pooja Chowki",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "wooden-chowki-large-15x15",
@@ -5191,8 +5222,9 @@ export const PRODUCTS = [
     "tag": "7-in-1 Pooja Box",
     "artType": "box",
     "fitMode": "contain",
-    "image": "/assets/Pooja box/Pooja2.webp",
+    "image": "/assets/ALL PRODUCT WHITE/POOJA BOX.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/POOJA BOX.webp",
       "/assets/Pooja box/Pooja2.webp",
       "/assets/Pooja box/Poojafront.webp",
       "/assets/Pooja box/poojabox1.webp",
@@ -5296,7 +5328,7 @@ export const PRODUCTS = [
     "taxRate": 12,
     "taxCode": "GST_12",
     "name": "Stainless Steel Pooja Box",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "mandir-wooden-damru-shiva",
@@ -5311,8 +5343,9 @@ export const PRODUCTS = [
     "tag": "Wooden Damru",
     "artType": "damru",
     "fitMode": "contain",
-    "image": "/assets/Damru/damru1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/DAMRU.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/DAMRU.webp",
       "/assets/Damru/damru1.webp",
       "/assets/Damru/damru2.webp",
       "/assets/Damru/damru3.webp",
@@ -5409,7 +5442,7 @@ export const PRODUCTS = [
     "taxRate": 12,
     "taxCode": "GST_12",
     "name": "Wooden Damru / Damaru",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "essentials-brass-chawar-whisk",
@@ -5967,8 +6000,9 @@ export const PRODUCTS = [
     "tag": "Spiritual Yantra",
     "artType": "yantra",
     "fitMode": "contain",
-    "image": "/assets/Sarpyoh/mainimage.webp",
+    "image": "/assets/ALL PRODUCT WHITE/KAL SARPYOG YANTRA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/KAL SARPYOG YANTRA.webp",
       "/assets/Sarpyoh/mainimage.webp",
       "/assets/Sarpyoh/image1.webp",
       "/assets/Sarpyoh/image2.webp",
@@ -6020,7 +6054,7 @@ export const PRODUCTS = [
     "taxRate": 12,
     "taxCode": "GST_12",
     "name": "Kaal Sarp Yog Dosh Nivaran Yantra",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "yantra-mangal",
@@ -6035,8 +6069,9 @@ export const PRODUCTS = [
     "tag": "Spiritual Yantra",
     "artType": "yantra",
     "fitMode": "contain",
-    "image": "/assets/Mangal yantra/image3.webp",
+    "image": "/assets/ALL PRODUCT WHITE/MANGAL YANTRA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/MANGAL YANTRA.webp",
       "/assets/Mangal yantra/image3.webp",
       "/assets/Mangal yantra/image1.webp",
       "/assets/Mangal yantra/image2.webp",
@@ -6088,7 +6123,7 @@ export const PRODUCTS = [
     "taxRate": 12,
     "taxCode": "GST_12",
     "name": "Mangal Yantra",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "yantra-sarv-karya",
@@ -6312,8 +6347,9 @@ export const PRODUCTS = [
     "tag": "51 Sacred Herbs",
     "artType": "hawan",
     "fitMode": "contain",
-    "image": "/assets/Hawan Samgri/hawannn2.webp",
+    "image": "/assets/ALL PRODUCT WHITE/HAWAN SAMGRI.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/HAWAN SAMGRI.webp",
       "/assets/Hawan Samgri/hawannn2.webp",
       "/assets/Hawan Samgri/Hawan1.webp",
       "/assets/Hawan Samgri/Hawan2.webp",
@@ -6383,7 +6419,7 @@ export const PRODUCTS = [
     "hsn": "33074900",
     "taxRate": 5,
     "taxCode": "GST_5",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "yantra-maha-mrityunjay",
@@ -6398,8 +6434,9 @@ export const PRODUCTS = [
     "tag": "Copper Yantra",
     "artType": "yantra",
     "fitMode": "contain",
-    "image": "/assets/MahaMrityunjay/mahamritunjay.webp",
+    "image": "/assets/ALL PRODUCT WHITE/MAHAMRTIYUNJAY YANTRA.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/MAHAMRTIYUNJAY YANTRA.webp",
       "/assets/MahaMrityunjay/mahamritunjay.webp"
     ],
     "weightVariants": [
@@ -6454,7 +6491,7 @@ export const PRODUCTS = [
     "taxRate": 12,
     "taxCode": "GST_12",
     "name": "Shri Mahamrityunjay Yantra",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "mandir-pure-kumkum",
@@ -6511,8 +6548,9 @@ export const PRODUCTS = [
     "tag": "Natural Loban",
     "artType": "dhoop",
     "fitMode": "contain",
-    "image": "/assets/Loban/Loban1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/LOBAN.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/LOBAN.webp",
       "/assets/Loban/Loban1.webp",
       "/assets/Loban/Loban2.webp",
       "/assets/Loban/Loban3.webp",
@@ -6547,7 +6585,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Natural Pure Sambrani Loban Resin",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-bakhoor-incense-sticks",
@@ -6562,8 +6600,9 @@ export const PRODUCTS = [
     "tag": "Arabic Aroma",
     "artType": "incense",
     "fitMode": "contain",
-    "image": "/assets/Gulab/bakhoor incense.webp",
+    "image": "/assets/ALL PRODUCT WHITE/BAKHOOR.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/BAKHOOR.webp",
       "/assets/Gulab/bakhoor incense.webp",
       "/assets/Bakhoor sticks/bakhoormain.webp",
       "/assets/Bakhoor sticks/Bakhoor3.webp",
@@ -6603,7 +6642,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-kesar-incense-sticks",
@@ -6618,8 +6657,9 @@ export const PRODUCTS = [
     "tag": "Saffron Fragrance",
     "artType": "incense",
     "fitMode": "contain",
-    "image": "/assets/Gulab/kesarincnese.webp",
+    "image": "/assets/ALL PRODUCT WHITE/KESAR.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/KESAR.webp",
       "/assets/Gulab/kesarincnese.webp",
       "/assets/Kesar sticks/Kesar1.webp",
       "/assets/Kesar sticks/11a6d1ca-fb66-4ffa-80a0-5607d00b6e00.webp",
@@ -6657,7 +6697,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Kesar Chandan Saffron Incense Sticks",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-lavender-incense-sticks",
@@ -6672,8 +6712,9 @@ export const PRODUCTS = [
     "tag": "Soothing Aroma",
     "artType": "incense",
     "fitMode": "contain",
-    "image": "/assets/Gulab/lavenderincne.webp",
+    "image": "/assets/ALL PRODUCT WHITE/LAVENDER.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/LAVENDER.webp",
       "/assets/Gulab/lavenderincne.webp",
       "/assets/Lavender sticks/Lavender 1.webp",
       "/assets/Lavender sticks/Lavender 2.webp",
@@ -6713,7 +6754,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko French Lavender Organic Incense Sticks",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-oudh-incense-sticks",
@@ -6728,8 +6769,9 @@ export const PRODUCTS = [
     "tag": "Royal Fragrance",
     "artType": "incense",
     "fitMode": "contain",
-    "image": "/assets/Gulab/oudhincsense.webp",
+    "image": "/assets/ALL PRODUCT WHITE/OUDH.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/OUDH.webp",
       "/assets/Gulab/oudhincsense.webp",
       "/assets/Oudh sticks/Oudh1.webp",
       "/assets/Oudh sticks/Oudh2.webp",
@@ -6768,7 +6810,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Regal Agarwood Oudh Incense Sticks",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-chandan-dhoop-cups",
@@ -6783,8 +6825,9 @@ export const PRODUCTS = [
     "tag": "Pure Sandalwood",
     "artType": "incense",
     "fitMode": "contain",
-    "image": "/assets/Chandan Cup/ChandanCup1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/CHANDAN CUP.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/CHANDAN CUP.webp",
       "/assets/Chandan Cup/ChandanCup1.webp",
       "/assets/Chandan Cup/ChandanCup2.webp",
       "/assets/Chandan Cup/Chandan3.webp",
@@ -6823,7 +6866,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-guggul-dhoop-cups",
@@ -6838,8 +6881,9 @@ export const PRODUCTS = [
     "tag": "Sacred Guggul",
     "artType": "incense",
     "fitMode": "contain",
-    "image": "/assets/Guggl Cup/Cup11.webp",
+    "image": "/assets/ALL PRODUCT WHITE/GUGUL CUP.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/GUGUL CUP.webp",
       "/assets/Guggl Cup/Cup11.webp",
       "/assets/Guggl Cup/Cup2.webp",
       "/assets/Guggl Cup/Cup3.webp",
@@ -6877,7 +6921,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Sacred Guggul Dhoop Cups with Sambrani",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-rose-dhoop-cups",
@@ -6892,8 +6936,9 @@ export const PRODUCTS = [
     "tag": "Fresh Rose",
     "artType": "incense",
     "fitMode": "contain",
-    "image": "/assets/Gulab Cups/Gulab1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/GULAB CUP.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/GULAB CUP.webp",
       "/assets/Gulab Cups/Gulab1.webp",
       "/assets/Gulab Cups/Gulab2.webp",
       "/assets/Gulab Cups/Gulab3.webp",
@@ -6931,7 +6976,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Desi Gulab Rose Dhoop Cups with Sambrani",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-sandalwood-incense-sticks",
@@ -6946,8 +6991,9 @@ export const PRODUCTS = [
     "tag": "Pure Chandan",
     "artType": "incense",
     "fitMode": "contain",
-    "image": "/assets/Sandal/sandal main.webp",
+    "image": "/assets/ALL PRODUCT WHITE/CHANDAN.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/CHANDAN.webp",
       "/assets/Sandal/sandal main.webp",
       "/assets/Sandal/0fc63376-4b6d-447c-9009-8af0cebf81e5.webp",
       "/assets/Sandal/302cf94e-af09-4fb7-bc59-2505f510f220.webp",
@@ -7001,7 +7047,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Vedic Sandalwood (Chandan) Incense Sticks",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-rose-incense-sticks",
@@ -7016,8 +7062,9 @@ export const PRODUCTS = [
     "tag": "Desi Gulab",
     "artType": "incense",
     "fitMode": "contain",
-    "image": "/assets/Gulab/gulabmain.webp",
+    "image": "/assets/ALL PRODUCT WHITE/ROSE INCENSE.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/ROSE INCENSE.webp",
       "/assets/Gulab/gulabmain.webp",
       "/assets/Gulab/in hand.webp",
       "/assets/Gulab/rose 3.webp",
@@ -7072,7 +7119,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Desi Gulab Indian Rose Incense Sticks",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-chandan-camphor-fly-cone",
@@ -7197,8 +7244,9 @@ export const PRODUCTS = [
     "tag": "Solid Brass",
     "artType": "diffuser",
     "fitMode": "contain",
-    "image": "/assets/Brass dhoop dani/a3efb112-77c8-4e72-b8f3-4f8c27247174.webp",
+    "image": "/assets/ALL PRODUCT WHITE/BRASS DHOP DANI.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/BRASS DHOP DANI.webp",
       "/assets/Brass dhoop dani/a3efb112-77c8-4e72-b8f3-4f8c27247174.webp",
       "/assets/Brass dhoop dani/0b1b19be-fb02-45fd-bad2-bfbe7a87e59b.webp",
       "/assets/Brass dhoop dani/17e5d263-fb71-4aa0-ba11-923f64069f9e.webp",
@@ -7235,7 +7283,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Traditional Brass Dhoop Dani Burner",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-brass-handle-dhoop",
@@ -7250,8 +7298,9 @@ export const PRODUCTS = [
     "tag": "Handled Burner",
     "artType": "diffuser",
     "fitMode": "contain",
-    "image": "/assets/Brasshandle dhoop/14337c71-2e35-4a53-aa8d-85a9d74465c9.webp",
+    "image": "/assets/ALL PRODUCT WHITE/WOOD HANDEL DHOOP DANI.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/WOOD HANDEL DHOOP DANI.webp",
       "/assets/Brasshandle dhoop/14337c71-2e35-4a53-aa8d-85a9d74465c9.webp",
       "/assets/Brasshandle dhoop/2fe6aebb-ad87-41a2-9499-2711b38b4ba5.webp",
       "/assets/Brasshandle dhoop/a568d74e-8da8-4ab8-8b94-a5f2e9643306.webp",
@@ -7289,7 +7338,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Handled Brass Dhoop Dani & Camphor Burner",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-brass-bhog-thali",
@@ -7304,8 +7353,9 @@ export const PRODUCTS = [
     "tag": "Bhog Thali Set",
     "artType": "thali",
     "fitMode": "contain",
-    "image": "/assets/Bhoog thali/thali2.webp",
+    "image": "/assets/ALL PRODUCT WHITE/BHOOG THALI.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/BHOOG THALI.webp",
       "/assets/Bhoog thali/thali2.webp",
       "/assets/Bhoog thali/bhog 1.webp",
       "/assets/Bhoog thali/bhog 3.webp",
@@ -7343,7 +7393,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Handcrafted Brass Bhog Thali Set",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-brass-puja-bell",
@@ -7358,8 +7408,9 @@ export const PRODUCTS = [
     "tag": "Classic Ghanti",
     "artType": "bell",
     "fitMode": "contain",
-    "image": "/assets/brass bells/brass bell 1.webp",
+    "image": "/assets/ALL PRODUCT WHITE/ROUND BELL.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/ROUND BELL.webp",
       "/assets/brass bells/brass bell 1.webp",
       "/assets/brass bells/brass bell 2.webp",
       "/assets/brass bells/brass bell 3.webp",
@@ -7396,7 +7447,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Classic Solid Brass Pooja Bell (Ghanti)",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-spiritual-engraved-bell",
@@ -7465,8 +7516,9 @@ export const PRODUCTS = [
     "tag": "Diya Set",
     "artType": "diya",
     "fitMode": "contain",
-    "image": "/assets/Brass diyass set5/2fb03d7d-6b3d-4aad-bbad-2b9baf43988d.webp",
+    "image": "/assets/ALL PRODUCT WHITE/BRASS DIYA 5 SET.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/BRASS DIYA 5 SET.webp",
       "/assets/Brass diyass set5/2fb03d7d-6b3d-4aad-bbad-2b9baf43988d.webp",
       "/assets/Brass diyass set5/53034a68-cc44-436e-829e-6fac61d5cd63.webp",
       "/assets/Brass diyass set5/6f4d42dd-6e3b-4d83-8b47-05de24a9f368.webp",
@@ -7504,7 +7556,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Handcrafted Brass Diya (Set of 5)",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-carved-brass-diya",
@@ -7519,8 +7571,9 @@ export const PRODUCTS = [
     "tag": "Carved Diya",
     "artType": "diya",
     "fitMode": "contain",
-    "image": "/assets/Brass diyasss/139dc239-65e6-42ae-bb05-e866e519bed8.webp",
+    "image": "/assets/ALL PRODUCT WHITE/BRASS DIYA 5.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/BRASS DIYA 5.webp",
       "/assets/Brass diyasss/139dc239-65e6-42ae-bb05-e866e519bed8.webp",
       "/assets/Brass diyasss/1dac21f4-ce81-4875-ab10-8ad4adc02312.webp",
       "/assets/Brass diyasss/205984c2-9ee8-4d4a-9037-7b4364c44753.webp",
@@ -7558,7 +7611,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Hand-Carved Traditional Brass Diya",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-brass-cup-deepak",
@@ -7726,8 +7779,9 @@ export const PRODUCTS = [
     "tag": "Spire Finial",
     "artType": "diya",
     "fitMode": "contain",
-    "image": "/assets/Stand diyas/507ac811-895e-43e7-8ffd-0330cdb4f6ed.webp",
+    "image": "/assets/ALL PRODUCT WHITE/KERELA DIYA STAND.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/KERELA DIYA STAND.webp",
       "/assets/Stand diyas/507ac811-895e-43e7-8ffd-0330cdb4f6ed.webp",
       "/assets/Stand diyas/bb7748c1-7aa8-4623-979d-eef6f242d734.webp",
       "/assets/Stand diyas/8479b7a9-a59f-4e81-89e5-610aaec86b79.webp",
@@ -7809,7 +7863,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Classic Spire Brass Stand Diya (Kutthu Vilakku)",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-stainless-steel-dibbi",
@@ -7876,8 +7930,9 @@ export const PRODUCTS = [
     "tag": "Lakshmi Charan",
     "artType": "symbol",
     "fitMode": "contain",
-    "image": "/assets/footprints/1e8d07fc-efda-4a39-b89c-301f5b250a1c.webp",
+    "image": "/assets/ALL PRODUCT WHITE/LAXMI FOOTPRINT.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/LAXMI FOOTPRINT.webp",
       "/assets/footprints/1e8d07fc-efda-4a39-b89c-301f5b250a1c.webp",
       "/assets/footprints/3b461aeb-0c2b-4b42-affb-b4a8d8147e8c.webp",
       "/assets/footprints/b6dbd6fe-882d-4267-bb9c-af08f09a3205.webp",
@@ -7913,7 +7968,7 @@ export const PRODUCTS = [
     "hsn": "74181021",
     "taxRate": 5,
     "taxCode": "GST_5",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-silver-footprints",
@@ -7928,8 +7983,9 @@ export const PRODUCTS = [
     "tag": "Silver Plated",
     "artType": "symbol",
     "fitMode": "contain",
-    "image": "/assets/Silver Footprints/0907a81a-5fdb-42d5-8145-cf993e04f332.webp",
+    "image": "/assets/ALL PRODUCT WHITE/GERMAN SILVER FOOTPRINTS.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/GERMAN SILVER FOOTPRINTS.webp",
       "/assets/Silver Footprints/0907a81a-5fdb-42d5-8145-cf993e04f332.webp",
       "/assets/Silver Footprints/5925b180-9243-4357-99b2-724b1edf3cb4.webp",
       "/assets/Silver Footprints/98c5835c-5ef8-4b40-9269-7fdf2c9159b3.webp",
@@ -7966,7 +8022,7 @@ export const PRODUCTS = [
     "hsn": "71179090",
     "taxRate": 12,
     "taxCode": "GST_12",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-diamond-akhand-jyot",
@@ -7981,8 +8037,9 @@ export const PRODUCTS = [
     "tag": "Diamond Cut Glass",
     "artType": "diya",
     "fitMode": "contain",
-    "image": "/assets/Daimon akhand jyot/112f3e84-07dd-4bee-88eb-18c269b5cb6d.webp",
+    "image": "/assets/ALL PRODUCT WHITE/CRYSTAL AKHAND JYOT.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/CRYSTAL AKHAND JYOT.webp",
       "/assets/Daimon akhand jyot/112f3e84-07dd-4bee-88eb-18c269b5cb6d.webp",
       "/assets/Daimon akhand jyot/6b68aa13-98f7-49d4-b63d-21727db2d533.webp",
       "/assets/Daimon akhand jyot/6c2b206f-9719-40ba-b610-ed28baf399c8.webp",
@@ -8035,8 +8092,9 @@ export const PRODUCTS = [
     "tag": "Akhand Jyot",
     "artType": "diya",
     "fitMode": "contain",
-    "image": "/assets/Glass Akhjand Jyot/5005c08c-2040-4bef-bbfb-e18712832834.webp",
+    "image": "/assets/ALL PRODUCT WHITE/GLASS AKHAND JYOT.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/GLASS AKHAND JYOT.webp",
       "/assets/Glass Akhjand Jyot/5005c08c-2040-4bef-bbfb-e18712832834.webp",
       "/assets/Glass Akhjand Jyot/627c05ea-585f-442c-be85-3c2aa4cd2995.webp",
       "/assets/Glass Akhjand Jyot/9ab57cb8-8a89-4a58-aadb-697f8a75d59b.webp",
@@ -8074,7 +8132,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Crystal Glass Brass Akhand Jyot Deepak",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-lotus-brass-akhand-jyot",
@@ -8089,8 +8147,9 @@ export const PRODUCTS = [
     "tag": "Lotus Design",
     "artType": "diya",
     "fitMode": "contain",
-    "image": "/assets/Lotus Akhand jyot/0d5b513f-97f0-4517-9064-0d0d4c0aa651.webp",
+    "image": "/assets/ALL PRODUCT WHITE/LOTUS DIYA STAND.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/LOTUS DIYA STAND.webp",
       "/assets/Lotus Akhand jyot/0d5b513f-97f0-4517-9064-0d0d4c0aa651.webp",
       "/assets/Lotus Akhand jyot/744f894f-b4e6-487c-9385-a14457885e49.webp",
       "/assets/Lotus Akhand jyot/774ad976-146f-489a-9f2d-bb5b338b46f2.webp",
@@ -8128,7 +8187,7 @@ export const PRODUCTS = [
     "taxRate": 5,
     "taxCode": "GST_5",
     "name": "Shraviko Lotus Petal Brass Akhand Jyot Diya",
-    "imageBackground": "photo"
+    "imageBackground": "white"
   },
   {
     "id": "shraviko-om-top-glass-akhand-jyot",
@@ -8143,8 +8202,9 @@ export const PRODUCTS = [
     "tag": "OM Engraved",
     "artType": "diya",
     "fitMode": "contain",
-    "image": "/assets/OMtop Glass akhand jyot/16f3e0e9-7740-4d83-ad47-312b36b3ac4e.webp",
+    "image": "/assets/ALL PRODUCT WHITE/AKHAND JYOT WTH CLASS AND OM COVER.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/AKHAND JYOT WTH CLASS AND OM COVER.webp",
       "/assets/OMtop Glass akhand jyot/16f3e0e9-7740-4d83-ad47-312b36b3ac4e.webp",
       "/assets/OMtop Glass akhand jyot/5f40e272-18fa-42bb-86e9-9c96ffe921e9.webp",
       "/assets/OMtop Glass akhand jyot/652e0444-2e94-43a9-8ad6-d5379d9471ea.webp",
@@ -8197,8 +8257,9 @@ export const PRODUCTS = [
     "tag": "Glass Cover",
     "artType": "diya",
     "fitMode": "contain",
-    "image": "/assets/GlassAkahnd/27c54221-f212-4e31-a093-5f2caff456e4.webp",
+    "image": "/assets/ALL PRODUCT WHITE/GLASSS AKHAND JYOT.webp",
     "images": [
+      "/assets/ALL PRODUCT WHITE/GLASSS AKHAND JYOT.webp",
       "/assets/GlassAkahnd/27c54221-f212-4e31-a093-5f2caff456e4.webp",
       "/assets/GlassAkahnd/2ac727c0-8cbf-46a2-b895-e742683f660a.webp",
       "/assets/GlassAkahnd/3a251c51-c10f-485f-97ae-4568b61eb659.webp",
@@ -8236,83 +8297,626 @@ export const PRODUCTS = [
     "hsn": "74181021",
     "taxRate": 5,
     "taxCode": "GST_5",
-    "imageBackground": "photo"
+    "imageBackground": "white"
+  },
+  {
+    "id": "shraviko-brass-puja-dibbi",
+    "name": "Shraviko Solid Brass Puja Container Dibbi",
+    "sku": "LSTDBBHRUFN99A3K1RN61DZC8",
+    "category": "mandir-essentials",
+    "categoryName": "Mandir Essentials",
+    "subcategory": "Puja Accessories",
+    "price": 349,
+    "originalPrice": 699,
+    "rating": 4.97,
+    "reviewsCount": 88,
+    "tag": "Pure Brass Dibbi",
+    "artType": "container",
+    "fitMode": "contain",
+    "imageBackground": "white",
+    "image": "/assets/ALL PRODUCT WHITE/BRASS DABI.webp",
+    "images": [
+      "/assets/ALL PRODUCT WHITE/BRASS DABI.webp"
+    ],
+    "weightVariants": [
+      {
+        "weight": "Medium (60 g)",
+        "price": 349,
+        "originalPrice": 699,
+        "default": true
+      }
+    ],
+    "purity": "100% Solid Pure Virgin Brass",
+    "inStock": true,
+    "description": "Keep sacred kumkum, sindoor, chandan, and akshat preserved with Shraviko Solid Brass Puja Container Dibbi. Expertly turned from virgin brass with a snug-fitting airtight brass lid, this timeless container protects sacred ingredients from moisture while adding golden luster to your daily puja tray.",
+    "shortDescription": "Traditional solid brass container dibbi with tight-fitting lid for storing sacred kumkum, chandan, roli, and puja ingredients.",
+    "seoTitle": "Pure Brass Puja Container Dibbi | Kumkum & Sindoor Box | Shraviko",
+    "metaDescription": "Shop Shraviko Solid Brass Puja Container Dibbi. Handcrafted pure brass container with airtight lid for storing kumkum, sindoor, and sacred offerings.",
+    "specifications": [
+      {
+        "label": "Material",
+        "value": "100% Pure Solid Brass"
+      },
+      {
+        "label": "Finish",
+        "value": "High-Gloss Mirror Brass Polish"
+      },
+      {
+        "label": "Usage",
+        "value": "Storing Kumkum, Sindoor, Chandan, Roli & Akshat"
+      },
+      {
+        "label": "Lid Type",
+        "value": "Airtight Friction-Fit Brass Lid"
+      },
+      {
+        "label": "Country of Origin",
+        "value": "Made in India"
+      }
+    ],
+    "keyFeatures": [
+      "Crafted from premium heavy-gauge solid brass",
+      "Snug airtight lid shields sacred offerings from moisture",
+      "Smooth polished interior and exterior for easy cleaning",
+      "Fits gracefully on any home mandir thali or pooja altar"
+    ],
+    "careInstructions": [
+      "Wipe clean with a dry or lightly damp soft cotton cloth",
+      "Use brass cleaning powder (Pitambari) periodically to restore brilliant shine",
+      "Keep away from acidic substances when not in use"
+    ],
+    "faqs": [
+      {
+        "q": "What can be stored in this brass dibbi?",
+        "a": "It is perfect for storing puja ingredients including roli, kumkum, pure chandan paste, camphor tablets, and akshat."
+      },
+      {
+        "q": "Is the lid airtight?",
+        "a": "Yes, it features a precision-machined friction lid that keeps contents safe and dry."
+      }
+    ],
+    "hsn": "74181021",
+    "taxRate": 5,
+    "taxCode": "GST_5"
+  },
+  {
+    "id": "shraviko-mogra-incense-sticks",
+    "name": "Shraviko Bela Mogra (Jasmine) Organic Incense Sticks",
+    "sku": "LSTINSHRMOGRA88XVEVBHD7M",
+    "category": "incense",
+    "categoryName": "Incense & Dhoop",
+    "subcategory": "Incense Sticks",
+    "price": 249,
+    "originalPrice": 499,
+    "rating": 4.96,
+    "reviewsCount": 104,
+    "tag": "Charcoal-Free Mogra",
+    "artType": "incense",
+    "fitMode": "contain",
+    "imageBackground": "white",
+    "image": "/assets/ALL PRODUCT WHITE/MOGRA.webp",
+    "images": [
+      "/assets/ALL PRODUCT WHITE/MOGRA.webp"
+    ],
+    "weightVariants": [
+      {
+        "weight": "Pack of 1 (100 g - approx. 40 sticks)",
+        "price": 249,
+        "originalPrice": 499,
+        "default": true
+      }
+    ],
+    "purity": "100% Charcoal-Free Natural Temple Flower Extract",
+    "inStock": true,
+    "description": "Fill your sacred prayer sanctuary with the intoxicating sweetness of fresh night-blooming jasmine with Shraviko Bela Mogra Organic Incense Sticks. Handcrafted from recycled sacred temple flowers, natural essential flower extracts, and wood powders without charcoal or synthetic chemical fixatives.",
+    "shortDescription": "Pure charcoal-free Bela Mogra incense sticks with a calming, sweet jasmine floral aroma that burns cleanly for up to 45 minutes.",
+    "seoTitle": "Bela Mogra Organic Incense Sticks | Charcoal-Free Jasmine Agarbatti | Shraviko",
+    "metaDescription": "Shop Shraviko Bela Mogra Organic Incense Sticks. 100% charcoal-free, non-toxic jasmine agarbatti crafted from sacred temple blossoms for daily puja and meditation.",
+    "specifications": [
+      {
+        "label": "Fragrance",
+        "value": "Pure Bela Mogra (Indian Night Jasmine)"
+      },
+      {
+        "label": "Composition",
+        "value": "Temple Flowers, Natural Resins, Wood Powder"
+      },
+      {
+        "label": "Burn Time",
+        "value": "Approx. 40-45 Minutes per stick"
+      },
+      {
+        "label": "Smoke Type",
+        "value": "Low-Smoke, Zero Black Soot, 100% Charcoal Free"
+      },
+      {
+        "label": "Country of Origin",
+        "value": "Made in India"
+      }
+    ],
+    "keyFeatures": [
+      "Infused with authentic Indian Bela Mogra natural oils",
+      "Zero charcoal and zero synthetic burning accelerants",
+      "Gentle on eyes and throat, safe for sensitive indoor air",
+      "Ideal for evening Aarti, meditation, and devotional relaxation"
+    ],
+    "careInstructions": [
+      "Store in a cool, dry place sealed inside its protective pouch",
+      "Light tip of stick until flame catches, blow out gently and place in holder",
+      "Keep burning sticks away from flammable curtains and materials"
+    ],
+    "faqs": [
+      {
+        "q": "Do these incense sticks produce black smoke?",
+        "a": "No, our sticks are 100% charcoal-free and produce gentle, soothing white aromatic mist."
+      },
+      {
+        "q": "How long does one stick burn?",
+        "a": "Each hand-rolled stick burns steadily for approximately 40 to 45 minutes."
+      }
+    ],
+    "hsn": "33074100",
+    "taxRate": 5,
+    "taxCode": "GST_5"
+  },
+  {
+    "id": "shraviko-musk-incense-sticks",
+    "name": "Shraviko Royal Kasturi Musk Organic Incense Sticks",
+    "sku": "LSTINSHRMUSK77YVEVBHD8K",
+    "category": "incense",
+    "categoryName": "Incense & Dhoop",
+    "subcategory": "Incense Sticks",
+    "price": 249,
+    "originalPrice": 499,
+    "rating": 4.98,
+    "reviewsCount": 119,
+    "tag": "Royal Kasturi",
+    "artType": "incense",
+    "fitMode": "contain",
+    "imageBackground": "white",
+    "image": "/assets/ALL PRODUCT WHITE/MUSK.webp",
+    "images": [
+      "/assets/ALL PRODUCT WHITE/MUSK.webp"
+    ],
+    "weightVariants": [
+      {
+        "weight": "Pack of 1 (100 g - approx. 40 sticks)",
+        "price": 249,
+        "originalPrice": 499,
+        "default": true
+      }
+    ],
+    "purity": "100% Charcoal-Free Natural Botanical Musk Extracts",
+    "inStock": true,
+    "description": "Evoke royalty, ancient temple sanctums, and timeless Vedic spirituality with Shraviko Royal Kasturi Musk Organic Incense Sticks. Blended with cruelty-free plant-based botanical musk seeds (Ambrette), rare resins, and aromatic wood powders, releasing a warm, grounding, and mystical scent.",
+    "shortDescription": "Traditional charcoal-free Royal Kasturi Musk incense sticks delivering an earthy, deep devotional aroma for meditation and temple rituals.",
+    "seoTitle": "Royal Kasturi Musk Organic Incense Sticks | Vegan Musk Agarbatti | Shraviko",
+    "metaDescription": "Buy Shraviko Royal Kasturi Musk Incense Sticks. Cruelty-free, charcoal-free organic agarbatti crafted for deep meditation and divine atmosphere.",
+    "specifications": [
+      {
+        "label": "Fragrance",
+        "value": "Warm Earthy Kasturi Musk (Botanical Cruelty-Free)"
+      },
+      {
+        "label": "Burn Time",
+        "value": "Approx. 40-45 Minutes"
+      },
+      {
+        "label": "Ingredients",
+        "value": "Ambrette Seed, Halmaddi Resin, Wood Bark, Essential Oils"
+      },
+      {
+        "label": "Smoke Type",
+        "value": "Zero Charcoal, Low Smoke"
+      },
+      {
+        "label": "Country of Origin",
+        "value": "Made in India"
+      }
+    ],
+    "keyFeatures": [
+      "Deep, rich, and mystical aroma that purifies indoor atmosphere",
+      "Charcoal-free formulation crafted from pure natural botanicals",
+      "Cruelty-free botanical musk alternative honoring sacred traditions",
+      "Enhances mental concentration during japa and meditation"
+    ],
+    "careInstructions": [
+      "Keep moisture away by storing in dry pouch",
+      "Place on heat-resistant incense stand when burning",
+      "Ensure good air circulation in prayer room"
+    ],
+    "faqs": [
+      {
+        "q": "Is animal musk used in this product?",
+        "a": "Never. Shraviko uses 100% cruelty-free, plant-based botanical Kasturi derived from sacred Ambrette seeds and herbs."
+      },
+      {
+        "q": "Can it be used for daily meditation?",
+        "a": "Yes, its grounding woody note calms restless thoughts and deepens breath awareness."
+      }
+    ],
+    "hsn": "33074100",
+    "taxRate": 5,
+    "taxCode": "GST_5"
+  },
+  {
+    "id": "yantra-navgraha",
+    "name": "Sacred Pure Copper Shri Navgraha Chowki Yantra",
+    "sku": "LSTYNTNAVGRAHA999CC49RN6",
+    "category": "vastu",
+    "categoryName": "Vastu & Spiritual",
+    "subcategory": "Sacred Yantras",
+    "price": 599,
+    "originalPrice": 1199,
+    "rating": 4.99,
+    "reviewsCount": 142,
+    "tag": "9 Planets Protection",
+    "artType": "yantra",
+    "fitMode": "contain",
+    "imageBackground": "white",
+    "image": "/assets/ALL PRODUCT WHITE/NAVGRHA YANTRA.webp",
+    "images": [
+      "/assets/ALL PRODUCT WHITE/NAVGRHA YANTRA.webp"
+    ],
+    "weightVariants": [
+      {
+        "weight": "3 × 3 Inches (Heavy Copper Plate)",
+        "price": 599,
+        "originalPrice": 1199,
+        "default": true
+      }
+    ],
+    "purity": "100% Pure Solid Copper with Vedic Encodings",
+    "inStock": true,
+    "description": "Balance the celestial energies of all nine planets with the Shraviko Pure Copper Shri Navgraha Yantra. Intricately etched with the geometry, beej mantras, and sacred numeric grids of Surya, Chandra, Mangal, Budh, Guru, Shukra, Shani, Rahu, and Ketu. Helps pacify planetary doshas, remove obstacles, and restore harmony.",
+    "shortDescription": "Sacred heavy-gauge pure copper plate engraved with the 9 planetary grids and beej mantras for Navgraha dosha nivaran.",
+    "seoTitle": "Pure Copper Shri Navgraha Yantra | 9 Planets Dosh Nivaran Plate | Shraviko",
+    "metaDescription": "Order Shraviko Pure Copper Shri Navgraha Yantra. Energized copper plate etched with nine planetary deities and sacred Vedic yantras for peace and prosperity.",
+    "specifications": [
+      {
+        "label": "Material",
+        "value": "100% Pure Electrolytic Copper"
+      },
+      {
+        "label": "Dimensions",
+        "value": "3 Inches × 3 Inches (approx. 7.6 × 7.6 cm)"
+      },
+      {
+        "label": "Deities Engraved",
+        "value": "Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu & Ketu"
+      },
+      {
+        "label": "Placement Direction",
+        "value": "East or North-East Facing Mandir / Work Desk"
+      },
+      {
+        "label": "Country of Origin",
+        "value": "Made in India"
+      }
+    ],
+    "keyFeatures": [
+      "Precision acid-etched geometric yantras for all 9 cosmic planets",
+      "Pure solid copper plate conductively aligned with cosmic energies",
+      "Helps eliminate planetary afflictions and harmonize domestic environment",
+      "Compact sacred plaque fits neatly in mandir or puja altar"
+    ],
+    "careInstructions": [
+      "Clean gently using lemon juice and salt or Pitambari powder",
+      "Rinse with clean water and dry thoroughly with soft cloth",
+      "Apply chandan or kumkum tilak on daily auspicious occasions"
+    ],
+    "faqs": [
+      {
+        "q": "Where should the Navgraha Yantra be placed?",
+        "a": "Place in the North-East (Ishanya) or East direction of your home altar so the planets face the devotee during morning prayer."
+      },
+      {
+        "q": "Is this yantra suitable for all horoscopes?",
+        "a": "Yes, the Navgraha Yantra is universally harmonizing and benefits anyone seeking balance across all planetary aspects of life."
+      }
+    ],
+    "hsn": "74199990",
+    "taxRate": 18,
+    "taxCode": "GST_18"
+  },
+  {
+    "id": "mandir-orange-sindoor",
+    "name": "Shraviko Pure Hanuman Orange Sindoor (Chola Roli)",
+    "sku": "LSTRNGSNDR99HANU01RN6",
+    "category": "mandir-essentials",
+    "categoryName": "Mandir Essentials",
+    "subcategory": "Pooja Ingredients & Samagri",
+    "price": 199,
+    "originalPrice": 399,
+    "rating": 4.98,
+    "reviewsCount": 165,
+    "tag": "Hanuman Chola",
+    "artType": "ingredient",
+    "fitMode": "contain",
+    "imageBackground": "white",
+    "image": "/assets/ALL PRODUCT WHITE/ORANGE SINDOO.webp",
+    "images": [
+      "/assets/ALL PRODUCT WHITE/ORANGE SINDOO.webp"
+    ],
+    "weightVariants": [
+      {
+        "weight": "100 g Jar",
+        "price": 199,
+        "originalPrice": 399,
+        "default": true
+      }
+    ],
+    "purity": "100% Pure Natural Auspicious Orange Vermilion",
+    "inStock": true,
+    "description": "Offer sacred devotion to Lord Hanuman and Shri Ganesh with Shraviko Pure Auspicious Orange Sindoor. Finely ground from traditional herbal minerals and auspicious pigments, this vibrant saffron-orange vermilion is used for Hanuman Ji chola, Tuesday puja, Ganesha tilak, and spiritual ceremonies.",
+    "shortDescription": "Traditional pure vibrant orange sindoor formulated specifically for Lord Hanuman chola, Tuesday puja, and Ganesh tilak.",
+    "seoTitle": "Pure Hanuman Orange Sindoor (Chola Roli) | Auspicious Orange Sindur | Shraviko",
+    "metaDescription": "Buy Shraviko Pure Hanuman Orange Sindoor. Fine quality saffron-orange sindur for Lord Hanuman Chola, Tuesday puja, Ganesha worship, and temple ceremonies.",
+    "specifications": [
+      {
+        "label": "Color",
+        "value": "Auspicious Sacred Saffron-Orange"
+      },
+      {
+        "label": "Form",
+        "value": "Ultra-Fine Sacred Vermilion Powder"
+      },
+      {
+        "label": "Quantity",
+        "value": "100 Grams"
+      },
+      {
+        "label": "Primary Deity",
+        "value": "Lord Hanuman, Lord Ganesha, Bhairav Baba"
+      },
+      {
+        "label": "Country of Origin",
+        "value": "Made in India"
+      }
+    ],
+    "keyFeatures": [
+      "Authentic bright orange hue ideal for Hanuman Ji chola offering",
+      "Blends smoothly with pure jasmine oil (chameli tel) or ghee",
+      "Skin-friendly traditional formulation free from harmful lead chemicals",
+      "Airtight hygienic packaging keeps powder fresh and clump-free"
+    ],
+    "careInstructions": [
+      "Store in a cool, dry place tightly sealed",
+      "Mix with pure chameli (jasmine) oil when applying chola to Hanuman idol",
+      "Use clean dry spoons or fingers for offering"
+    ],
+    "faqs": [
+      {
+        "q": "How is Hanuman chola prepared with this sindoor?",
+        "a": "Mix the orange sindoor with pure Chameli (Jasmine) oil to form a smooth paste and apply gently to the idol from feet to head."
+      },
+      {
+        "q": "Can this be used for daily tilak?",
+        "a": "Yes, a sacred orange tilak on the forehead symbolizes courage, protection, and devotion to Sankat Mochan."
+      }
+    ],
+    "hsn": "33049990",
+    "taxRate": 5,
+    "taxCode": "GST_5"
+  },
+  {
+    "id": "yantra-saraswati",
+    "name": "Sacred Pure Copper Shri Saraswati Yantra",
+    "sku": "LSTYNTSRSWTI888CC49RN7",
+    "category": "vastu",
+    "categoryName": "Vastu & Spiritual",
+    "subcategory": "Sacred Yantras",
+    "price": 499,
+    "originalPrice": 999,
+    "rating": 4.99,
+    "reviewsCount": 110,
+    "tag": "Wisdom & Knowledge",
+    "artType": "yantra",
+    "fitMode": "contain",
+    "imageBackground": "white",
+    "image": "/assets/ALL PRODUCT WHITE/SARASWATI YANTRA.webp",
+    "images": [
+      "/assets/ALL PRODUCT WHITE/SARASWATI YANTRA.webp"
+    ],
+    "weightVariants": [
+      {
+        "weight": "3 × 3 Inches (Pure Copper Plate)",
+        "price": 499,
+        "originalPrice": 999,
+        "default": true
+      }
+    ],
+    "purity": "100% Pure Solid Copper with Sacred Saraswati Mantras",
+    "inStock": true,
+    "description": "Invoke the divine grace of Goddess Saraswati for supreme wisdom, intellectual brilliance, creativity, memory power, and expressive speech with the Shraviko Pure Copper Shri Saraswati Yantra. Engraved with the sacred star hexagram, lotus petals, and the powerful Saraswati Beej Mantra 'Om Vad Vad Vagvaadini Swaha'.",
+    "shortDescription": "Pure copper etched plate featuring the sacred Saraswati Yantra geometry for students, artists, scholars, and intellect enhancement.",
+    "seoTitle": "Pure Copper Shri Saraswati Yantra | Vidya & Knowledge Yantra | Shraviko",
+    "metaDescription": "Shop Shraviko Pure Copper Shri Saraswati Yantra. Auspicious energized copper plate for academic success, creative focus, wisdom, and exams.",
+    "specifications": [
+      {
+        "label": "Material",
+        "value": "100% Pure Solid Copper"
+      },
+      {
+        "label": "Dimensions",
+        "value": "3 Inches × 3 Inches"
+      },
+      {
+        "label": "Central Mantra",
+        "value": "Om Vad Vad Vagvaadini Swaha"
+      },
+      {
+        "label": "Ideal For",
+        "value": "Students, Teachers, Writers, Musicians, Knowledge Seekers"
+      },
+      {
+        "label": "Country of Origin",
+        "value": "Made in India"
+      }
+    ],
+    "keyFeatures": [
+      "Precision-engraved Vedic geometry and Saraswati Beej Mantras",
+      "Solid heavy-gauge pure copper plate with protective gloss coating",
+      "Fosters mental clarity, retention power, and creative inspiration",
+      "Perfect for student study tables, musical instruments, and home mandir"
+    ],
+    "careInstructions": [
+      "Wipe clean with a soft dry cloth",
+      "Clean periodically with pitambari or lemon to preserve copper shine",
+      "Place with reverence on an altar or study desk"
+    ],
+    "faqs": [
+      {
+        "q": "Where should the Saraswati Yantra be placed?",
+        "a": "Place facing East on your study desk, music station, library shelf, or within the home prayer altar."
+      },
+      {
+        "q": "Who benefits most from this yantra?",
+        "a": "Students preparing for exams, teachers, researchers, musicians, artists, and anyone seeking enhanced focus and memory."
+      }
+    ],
+    "hsn": "74199990",
+    "taxRate": 18,
+    "taxCode": "GST_18"
+  },
+  {
+    "id": "shraviko-stainless-steel-incense-holder",
+    "name": "Shraviko Stainless Steel Agarbatti Tower Stand & Burner",
+    "sku": "LSTSTLTWRAGB99SS4K9RN8",
+    "category": "mandir-essentials",
+    "categoryName": "Mandir Essentials",
+    "subcategory": "Puja Accessories",
+    "price": 299,
+    "originalPrice": 599,
+    "rating": 4.95,
+    "reviewsCount": 92,
+    "tag": "Tower Incense Stand",
+    "artType": "holder",
+    "fitMode": "contain",
+    "imageBackground": "white",
+    "image": "/assets/ALL PRODUCT WHITE/STAINLESS STELL HOLDER.webp",
+    "images": [
+      "/assets/ALL PRODUCT WHITE/STAINLESS STELL HOLDER.webp"
+    ],
+    "weightVariants": [
+      {
+        "weight": "Standard 10 Inch Tower",
+        "price": 299,
+        "originalPrice": 599,
+        "default": true
+      }
+    ],
+    "purity": "High Grade Mirror-Polished Stainless Steel",
+    "inStock": true,
+    "description": "Burn incense sticks safely with zero messy ash spills using the Shraviko Stainless Steel Agarbatti Tower Stand. Designed with a cylindrical perforated column and a detachable heavy base, all burning ash falls cleanly inside the tower while fragrance flows through the circular vents.",
+    "shortDescription": "Cylindrical stainless steel agarbatti tower burner with internal ash catcher and perforated smoke vents for safe, clean incense burning.",
+    "seoTitle": "Stainless Steel Agarbatti Tower Stand | Vertical Incense Burner | Shraviko",
+    "metaDescription": "Shop Shraviko Stainless Steel Agarbatti Tower Stand. Elegant vertical incense stick holder with perforated design and ash catcher for home and mandir.",
+    "specifications": [
+      {
+        "label": "Material",
+        "value": "Rust-Proof Heavy Stainless Steel"
+      },
+      {
+        "label": "Design",
+        "value": "Vertical Tower with Perforated Lattice"
+      },
+      {
+        "label": "Base Type",
+        "value": "Stable Detachable Ash-Catcher Tray"
+      },
+      {
+        "label": "Capacity",
+        "value": "Holds up to 5 Agarbatti Sticks simultaneously"
+      },
+      {
+        "label": "Country of Origin",
+        "value": "Made in India"
+      }
+    ],
+    "keyFeatures": [
+      "Complete ash collection: zero falling ash on table or altar cloth",
+      "Multi-hole lattice allows uniform 360-degree fragrance distribution",
+      "Fire-safe enclosed design shields flame and sparks from pets and children",
+      "Rust-resistant and easily washable under running tap water"
+    ],
+    "careInstructions": [
+      "Unscrew or lift tower to empty collected ash after burning",
+      "Wash with mild dish soap and sponge, dry with soft towel",
+      "Ensure base is seated firmly on a flat surface before lighting sticks"
+    ],
+    "faqs": [
+      {
+        "q": "Does this prevent ash from flying on the floor?",
+        "a": "Yes, 100% of the burnt ash drops straight down into the enclosed steel base plate."
+      },
+      {
+        "q": "How many sticks can it hold?",
+        "a": "The base features multiple slots to hold up to 5 standard incense sticks at once."
+      }
+    ],
+    "hsn": "73239390",
+    "taxRate": 12,
+    "taxCode": "GST_12"
   }
 ];
 
-const PRODUCT_TITLE_FALLBACKS = {
-  'mandir-pure-kumkum': 'Pure Shuddh Roli Kumkum',
-  'mandir-pure-loban': 'Natural Pure Sambrani Loban Resin',
-  'shraviko-bakhoor-incense-sticks': 'Shraviko Royal Bakhoor Oudh Incense Sticks',
-  'shraviko-kesar-incense-sticks': 'Shraviko Kesar Chandan Saffron Incense Sticks',
-  'shraviko-lavender-incense-sticks': 'Shraviko French Lavender Organic Incense Sticks',
-  'shraviko-oudh-incense-sticks': 'Shraviko Regal Agarwood Oudh Incense Sticks',
-  'shraviko-chandan-dhoop-cups': 'Shraviko Pure Chandan Dhoop Cups with Sambrani',
-  'shraviko-guggul-dhoop-cups': 'Shraviko Sacred Guggul Dhoop Cups with Sambrani',
-  'shraviko-rose-dhoop-cups': 'Shraviko Desi Gulab Rose Dhoop Cups with Sambrani',
-  'shraviko-sandalwood-incense-sticks': 'Shraviko Vedic Sandalwood (Chandan) Incense Sticks',
-  'shraviko-rose-incense-sticks': 'Shraviko Desi Gulab Indian Rose Incense Sticks',
-  'shraviko-chandan-camphor-fly-cone': 'Shraviko Chandan & Camphor Organic Dhoop Cones',
-  'shraviko-lavender-camphor-fly-cone': 'Shraviko Lavender & Camphor Organic Dhoop Cones',
-  'shraviko-brass-dhoop-dani': 'Shraviko Traditional Brass Dhoop Dani Burner',
-  'shraviko-brass-handle-dhoop': 'Shraviko Handled Brass Dhoop Dani & Camphor Burner',
-  'shraviko-brass-bhog-thali': 'Shraviko Handcrafted Brass Bhog Thali Set',
-  'shraviko-brass-puja-bell': 'Shraviko Classic Solid Brass Pooja Bell (Ghanti)',
-  'shraviko-spiritual-engraved-bell': 'Shraviko Hand-Carved Spiritual Brass Pooja Bell',
-  'shraviko-brass-diya-set5': 'Shraviko Handcrafted Brass Diya (Set of 5)',
-  'shraviko-carved-brass-diya': 'Shraviko Hand-Carved Traditional Brass Diya',
-  'shraviko-brass-cup-deepak': 'Shraviko Heavy Brass Cup Deepak Diya',
-  'shraviko-diamond-akhand-jyot': 'Shraviko Diamond Cut Glass Brass Akhand Jyot Diya',
-  'shraviko-crystal-glass-akhand-jyot': 'Shraviko Crystal Glass Brass Akhand Jyot Deepak',
-  'shraviko-lotus-brass-akhand-jyot': 'Shraviko Lotus Petal Brass Akhand Jyot Diya',
-  'shraviko-om-top-glass-akhand-jyot': 'Shraviko Sacred OM Glass Chimney Brass Akhand Jyot',
-};
-
-// Guarantee clean, descriptive product name across all components & SEO tools
-PRODUCTS.forEach((p) => {
-  if (!p.name) {
-    const specName = p.specifications?.find((s) => ['Product', 'Product Name', 'Item', 'Product Title', 'Product Type'].includes(s.label))?.value;
-    p.name = specName || PRODUCT_TITLE_FALLBACKS[p.id] || p.id.replace(/^shraviko-/, '').split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-  }
-});
-
 export const FRAGRANCE_SAMPLERS = [
-  { id: 'f1', name: 'Temple Sandalwood', notes: 'Woody • Warm • Sacred', desc: 'Sourced from Mysore groves, calming for deep meditation.' },
-  { id: 'f2', name: 'Kashmir White Mogra', notes: 'Floral • Sweet • Serene', desc: 'Wild jasmine flowers harvested at midnight under full moon.' },
-  { id: 'f3', name: 'Assam Royal Oudh', notes: 'Deep • Smoky • Luxurious', desc: 'Resinous agarwood creating an opulent spiritual atmosphere.' },
-  { id: 'f4', name: 'Vedic Sambrani & Guggal', notes: 'Earthy • Herbal • Cleansing', desc: 'Ancient tree resins traditionally burned for home energy purification.' }
+  {
+    "id": "f1",
+    "name": "Temple Sandalwood",
+    "notes": "Woody • Warm • Sacred",
+    "desc": "Sourced from Mysore groves, calming for deep meditation."
+  },
+  {
+    "id": "f2",
+    "name": "Kashmir White Mogra",
+    "notes": "Floral • Sweet • Serene",
+    "desc": "Wild jasmine flowers harvested at midnight under full moon."
+  },
+  {
+    "id": "f3",
+    "name": "Assam Royal Oudh",
+    "notes": "Deep • Smoky • Luxurious",
+    "desc": "Resinous agarwood creating an opulent spiritual atmosphere."
+  },
+  {
+    "id": "f4",
+    "name": "Vedic Sambrani & Guggal",
+    "notes": "Earthy • Herbal • Cleansing",
+    "desc": "Ancient tree resins traditionally burned for home energy purification."
+  }
 ];
 
 export const TESTIMONIALS = [
   {
-    id: 1,
-    name: 'Ananya Deshmukh',
-    location: 'Mumbai, Maharashtra',
-    rating: 5,
-    title: 'Breathtaking Craftsmanship & Weight!',
-    review: 'I ordered the Astha Lakshmi Brass Pooja Thali for our new apartment. The solid weight, hand-etched details, and warm luster are beyond anything available in regular markets. It feels like an heirloom piece.',
-    verified: true,
-    productPurchased: 'Royal Astha Lakshmi Brass Pooja Thali Set'
+    "id": 1,
+    "name": "Ananya Deshmukh",
+    "location": "Mumbai, Maharashtra",
+    "rating": 5,
+    "title": "Breathtaking Craftsmanship & Weight!",
+    "review": "I ordered the Astha Lakshmi Brass Pooja Thali for our new apartment. The solid weight, hand-etched details, and warm luster are beyond anything available in regular markets. It feels like an heirloom piece.",
+    "verified": true,
+    "productPurchased": "Royal Astha Lakshmi Brass Pooja Thali Set"
   },
   {
-    id: 2,
-    name: 'Vikram & Radhika Sharma',
-    location: 'Bengaluru, Karnataka',
-    rating: 5,
-    title: 'The Incense is Truly Zero Smoke',
-    review: 'Most commercial agarbattis give me headaches due to synthetic perfume and charcoal. Shraviko’s Temple Sandalwood incense has a gentle, soothing aroma that lingers softly without filling the room with black smoke.',
-    verified: true,
-    productPurchased: 'Vedic Sandalwood & Sacred Lotus Incense'
+    "id": 2,
+    "name": "Vikram & Radhika Sharma",
+    "location": "Bengaluru, Karnataka",
+    "rating": 5,
+    "title": "The Incense is Truly Zero Smoke",
+    "review": "Most commercial agarbattis give me headaches due to synthetic perfume and charcoal. Shraviko’s Temple Sandalwood incense has a gentle, soothing aroma that lingers softly without filling the room with black smoke.",
+    "verified": true,
+    "productPurchased": "Vedic Sandalwood & Sacred Lotus Incense"
   },
   {
-    id: 3,
-    name: 'Priya Sundaram',
-    location: 'Chennai, Tamil Nadu',
-    rating: 5,
-    title: 'Exquisite Gift Packaging',
-    review: 'Sent the Griha Pravesh hamper to my brother in Delhi for his housewarming. He was stunned by the velvet presentation box and the purity of the pure brass diya and copper items.',
-    verified: true,
-    productPurchased: 'Griha Pravesh Luxury Pooja Hamper'
-  },
+    "id": 3,
+    "name": "Priya Sundaram",
+    "location": "Chennai, Tamil Nadu",
+    "rating": 5,
+    "title": "Exquisite Gift Packaging",
+    "review": "Sent the Griha Pravesh hamper to my brother in Delhi for his housewarming. He was stunned by the velvet presentation box and the purity of the pure brass diya and copper items.",
+    "verified": true,
+    "productPurchased": "Griha Pravesh Luxury Pooja Hamper"
+  }
 ];
-

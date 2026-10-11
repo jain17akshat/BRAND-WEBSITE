@@ -25,6 +25,14 @@ try {
 
 
 const catalog = {
+  'shraviko-brass-puja-dibbi': 349,
+  'shraviko-mogra-incense-sticks': 249,
+  'shraviko-musk-incense-sticks': 249,
+  'yantra-navgraha': 599,
+  'mandir-orange-sindoor': 199,
+  'yantra-saraswati': 499,
+  'shraviko-stainless-steel-incense-holder': 299,
+
   'mandir-pure-loban': 249,
   'mandir-pure-kumkum': 199,
   // Brass Articles
