@@ -316,7 +316,30 @@ function calculateCartSubtotal(cart) {
  */
 function enrichCartItemWithTax(item, customerState) {
   const rawId = String(item.id || item.productId || item.sku || '').trim();
-  const taxInfo = productsTaxMap[rawId];
+  let taxInfo = productsTaxMap[rawId];
+
+  // Fallback 1: check item.productId
+  if (!taxInfo && item.productId) {
+    taxInfo = productsTaxMap[item.productId];
+  }
+
+  // Fallback 2: check item.sku
+  if (!taxInfo && item.sku) {
+    taxInfo = productsTaxMap[item.sku];
+  }
+
+  // Fallback 3: strip variant suffix (e.g. 'mandir-bhimseni-kapoor-100gPack' -> 'mandir-bhimseni-kapoor')
+  if (!taxInfo) {
+    const parts = rawId.split('-');
+    while (parts.length > 1 && !taxInfo) {
+      parts.pop();
+      const candidate = parts.join('-');
+      if (productsTaxMap[candidate]) {
+        taxInfo = productsTaxMap[candidate];
+        break;
+      }
+    }
+  }
 
   // Some items might be explicitly tax-exempt, but for this project, all items MUST have a mapping.
   if (!taxInfo || !taxInfo.hsn || taxInfo.tax === undefined || taxInfo.tax === null) {
