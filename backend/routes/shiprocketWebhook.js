@@ -73,6 +73,15 @@ router.post('*', async (req, res) => {
           reason,
         }).catch(() => {});
       }
+
+      // Send alert to seller / merchant
+      const { sendCancellationNotificationToAdmin } = require('../services/emailService');
+      sendCancellationNotificationToAdmin({
+        orderId,
+        customerName: name,
+        email,
+        reason,
+      }).catch(err => console.error('Failed to send admin cancellation alert:', err));
     } 
     // 2. Order delivered (DELIVERED, status_code === 7 or 8)
     // For COD orders, this is when the invoice is generated (payment collected on delivery).
@@ -153,6 +162,18 @@ router.post('*', async (req, res) => {
           }
 
           console.log(`✅ Order status updated to DELIVERED for Order #${orderId}`);
+
+          // Send delivery alert to seller / merchant
+          const { sendDeliveryNotificationToAdmin } = require('../services/emailService');
+          sendDeliveryNotificationToAdmin({
+            orderId,
+            customerName: order.customer_name || name,
+            phone: order.customer_phone,
+            email: order.customer_email || email,
+            paymentMethod: order.payment_method,
+            totalAmount: order.total_amount,
+            deliveredAt: new Date(),
+          }).catch(err => console.error('Failed to send admin delivery alert:', err));
         }
       }
     }

@@ -217,12 +217,18 @@ async function sendOrderConfirmationEmail({ to, customerName, orderId, items, to
           </div>
 
           <!-- Shipping Address Box -->
-          <div style="background-color: #FAF8F5; border: 1px solid #EAE3D2; border-radius: 6px; padding: 16px; margin-bottom: 28px;">
+          <div style="background-color: #FAF8F5; border: 1px solid #EAE3D2; border-radius: 6px; padding: 16px; margin-bottom: 24px;">
             <div style="font-size: 11px; font-weight: 700; color: #8C847D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Delivery Address</div>
             <div style="font-size: 13px; color: #1C1715; font-weight: 600; margin-bottom: 4px;">${safeName}</div>
             <div style="font-size: 13px; color: #554F4A; line-height: 1.5; margin-bottom: 8px;">${safeAddress}</div>
             <div style="font-size: 12px; color: #8C847D;">Contact Phone: <span style="color: #1C1715; font-weight: 600;">${safePhone}</span></div>
           </div>
+
+          ${invoiceBuffer ? `
+          <!-- Invoice Attachment Note -->
+          <div style="background-color: #FAF6EE; border: 1px solid #E5D9C3; border-radius: 6px; padding: 12px 16px; margin-bottom: 24px; text-align: center;">
+            <span style="color: #7C5E24; font-size: 13px; font-weight: 600;">📄 Your official Tax Invoice (${escapeHtml(invoiceNumber || cleanId)}) is attached to this email.</span>
+          </div>` : ''}
 
           <!-- CTA Button -->
           <div style="text-align: center; margin-bottom: 12px;">
@@ -353,12 +359,18 @@ async function sendPrepaidPaymentReceivedEmail({ to, customerName, orderId, paym
           </div>
 
           <!-- Shipping Address Box -->
-          <div style="background-color: #FAF8F5; border: 1px solid #EAE3D2; border-radius: 6px; padding: 16px; margin-bottom: 28px;">
+          <div style="background-color: #FAF8F5; border: 1px solid #EAE3D2; border-radius: 6px; padding: 16px; margin-bottom: 24px;">
             <div style="font-size: 11px; font-weight: 700; color: #8C847D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Delivery Address</div>
             <div style="font-size: 13px; color: #1C1715; font-weight: 600; margin-bottom: 4px;">${safeName}</div>
             <div style="font-size: 13px; color: #554F4A; line-height: 1.5; margin-bottom: 8px;">${safeAddress}</div>
             <div style="font-size: 12px; color: #8C847D;">Contact Phone: <span style="color: #1C1715; font-weight: 600;">${safePhone}</span></div>
           </div>
+
+          ${invoiceBuffer ? `
+          <!-- Invoice Attachment Note -->
+          <div style="background-color: #F0F7F4; border: 1px solid #C6E2D5; border-radius: 6px; padding: 12px 16px; margin-bottom: 24px; text-align: center;">
+            <span style="color: #1F6F4C; font-size: 13px; font-weight: 600;">📄 Your official Tax Invoice (${escapeHtml(invoiceNumber || cleanId)}) is attached to this email.</span>
+          </div>` : ''}
 
           <!-- CTA Button -->
           <div style="text-align: center; margin-bottom: 12px;">
@@ -931,6 +943,350 @@ async function sendBusinessInvoiceEmail({ orderId, invoiceNumber, invoiceBuffer,
   }
 }
 
+/**
+ * 10. sendNewOrderNotificationToAdmin — Merchant / Seller Alert on Order Placement
+ */
+async function sendNewOrderNotificationToAdmin({
+  orderId,
+  customer,
+  items,
+  totalAmount,
+  paymentMethod,
+  paymentId,
+  shiprocketOrderId,
+  shipmentId,
+  invoiceBuffer,
+  invoiceNumber,
+}) {
+  const transporter = getTransporter();
+  const adminEmail = config.email.adminEmail || 'shraviko@gmail.com';
+  const cleanId = orderId || `ORD_${Date.now()}`;
+  const safeCustomerName = escapeHtml(customer?.name || 'Customer');
+  const safeCustomerEmail = escapeHtml(customer?.email || 'N/A');
+  const safeCustomerPhone = escapeHtml(customer?.phone || 'N/A');
+  const safeAddress = escapeHtml(
+    typeof customer?.address === 'string'
+      ? `${customer.address}${customer.city ? ', ' + customer.city : ''}${customer.state ? ', ' + customer.state : ''}${customer.pincode ? ' - ' + customer.pincode : ''}`
+      : (customer?.shipping_address || 'N/A')
+  );
+  const methodLabel = paymentMethod || 'Online Payment';
+  const srOrderText = shiprocketOrderId ? `#${escapeHtml(shiprocketOrderId)}` : 'Sync Pending / N/A';
+  const srShipmentText = shipmentId ? `#${escapeHtml(shipmentId)}` : 'N/A';
+  const formattedToday = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
+
+  const htmlTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>New Order Alert #${cleanId}</title>
+    </head>
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #FAF8F5; margin: 0; padding: 20px 10px; color: #1C1715;">
+      <div style="max-width: 600px; margin: 0 auto; background: #FFFFFF; border: 1px solid #EAE3D2; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+        ${renderEmailHeader()}
+        
+        <div style="padding: 0 28px;">
+          <!-- Banner -->
+          <div style="background-color: #1C1715; border-radius: 6px; padding: 14px 18px; margin-bottom: 24px; text-align: center;">
+            <span style="color: #C5A059; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">🚨 NEW ORDER RECEIVED</span>
+          </div>
+
+          <div style="font-size: 15px; color: #1C1715; line-height: 1.6; margin-bottom: 20px;">
+            A new order has been placed on <strong>Shraviko.com</strong>.
+          </div>
+
+          <!-- Order Overview Box -->
+          <div style="background-color: #FAF8F5; border: 1px solid #EAE3D2; border-radius: 6px; padding: 18px; margin-bottom: 24px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #554F4A;">
+              <tr>
+                <td style="padding-bottom: 8px; color: #8C847D;">Order ID:</td>
+                <td style="padding-bottom: 8px; text-align: right; font-weight: 700; color: #1C1715;">#${cleanId}</td>
+              </tr>
+              <tr>
+                <td style="padding-bottom: 8px; color: #8C847D;">Placed On:</td>
+                <td style="padding-bottom: 8px; text-align: right; color: #1C1715;">${formattedToday}</td>
+              </tr>
+              <tr>
+                <td style="padding-bottom: 8px; color: #8C847D;">Payment Mode:</td>
+                <td style="padding-bottom: 8px; text-align: right; font-weight: 600; color: #1C1715;">${escapeHtml(methodLabel)}</td>
+              </tr>
+              ${paymentId ? `
+              <tr>
+                <td style="padding-bottom: 8px; color: #8C847D;">Payment Ref:</td>
+                <td style="padding-bottom: 8px; text-align: right; font-family: monospace; color: #1C1715;">${escapeHtml(paymentId)}</td>
+              </tr>` : ''}
+              <tr>
+                <td style="padding-bottom: 8px; color: #8C847D;">Shiprocket Order ID:</td>
+                <td style="padding-bottom: 8px; text-align: right; font-weight: 600; color: #7C5E24;">${srOrderText}</td>
+              </tr>
+              ${shipmentId ? `
+              <tr>
+                <td style="padding-bottom: 8px; color: #8C847D;">Shipment ID:</td>
+                <td style="padding-bottom: 8px; text-align: right; color: #7C5E24;">${srShipmentText}</td>
+              </tr>` : ''}
+              ${invoiceNumber ? `
+              <tr>
+                <td style="padding-bottom: 8px; color: #8C847D;">Invoice Number:</td>
+                <td style="padding-bottom: 8px; text-align: right; font-weight: 600; color: #1C1715;">${escapeHtml(invoiceNumber)}</td>
+              </tr>` : ''}
+              <tr style="border-top: 1px dashed #D9D2C2;">
+                <td style="padding-top: 10px; font-weight: 700; color: #1C1715; font-size: 14px;">Total Amount:</td>
+                <td style="padding-top: 10px; text-align: right; font-weight: 700; color: #7C5E24; font-size: 16px;">₹${Number(totalAmount || 0).toLocaleString('en-IN')}</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Customer & Shipping Details -->
+          <div style="background-color: #FFFFFF; border: 1px solid #EAE3D2; border-radius: 6px; padding: 18px; margin-bottom: 24px;">
+            <div style="font-size: 12px; color: #8C847D; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px;">Customer &amp; Delivery Details</div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #554F4A;">
+              <tr>
+                <td style="padding-bottom: 6px; color: #8C847D; width: 110px;">Name:</td>
+                <td style="padding-bottom: 6px; font-weight: 600; color: #1C1715;">${safeCustomerName}</td>
+              </tr>
+              <tr>
+                <td style="padding-bottom: 6px; color: #8C847D;">Phone:</td>
+                <td style="padding-bottom: 6px; color: #1C1715;"><a href="tel:${safeCustomerPhone}" style="color: #7C5E24; text-decoration: none; font-weight: 600;">${safeCustomerPhone}</a></td>
+              </tr>
+              <tr>
+                <td style="padding-bottom: 6px; color: #8C847D;">Email:</td>
+                <td style="padding-bottom: 6px; color: #1C1715;"><a href="mailto:${safeCustomerEmail}" style="color: #7C5E24; text-decoration: none;">${safeCustomerEmail}</a></td>
+              </tr>
+              <tr>
+                <td style="vertical-align: top; padding-top: 4px; color: #8C847D;">Address:</td>
+                <td style="vertical-align: top; padding-top: 4px; color: #1C1715; line-height: 1.5;">${safeAddress}</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Ordered Items Table -->
+          <div style="margin-bottom: 24px;">
+            <div style="font-size: 12px; color: #8C847D; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px;">Ordered Items</div>
+            ${renderItemsTable(items)}
+          </div>
+        </div>
+
+        ${renderEmailFooter()}
+      </div>
+    </body>
+    </html>
+  `;
+
+  if (!transporter) {
+    console.log(`\n📧 [EMAIL MOCK] Admin New Order Alert generated for ${adminEmail}:`);
+    console.log(`   Order: ${cleanId} | Total: ₹${totalAmount} | Customer: ${safeCustomerName} (${safeCustomerPhone})\n`);
+    return { success: true, mock: true };
+  }
+
+  try {
+    const attachments = [];
+    if (invoiceBuffer) {
+      attachments.push({
+        filename: `Invoice_${invoiceNumber || cleanId}.pdf`,
+        content: invoiceBuffer,
+        contentType: 'application/pdf',
+      });
+    }
+
+    const info = await transporter.sendMail({
+      from: `"Shraviko Orders" <${config.email.user || process.env.EMAIL_USER}>`,
+      to: adminEmail,
+      subject: `🚨 [NEW ORDER] #${sanitizeHeader(cleanId)} — ₹${Number(totalAmount || 0).toLocaleString('en-IN')} (${sanitizeHeader(methodLabel)}) from ${sanitizeHeader(safeCustomerName)}`,
+      html: htmlTemplate,
+      attachments,
+    });
+    console.log(`✅ Admin new order alert sent to ${adminEmail}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err) {
+    console.error(`❌ Admin new order alert failed: ${err.message}`);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * 11. sendDeliveryNotificationToAdmin — Merchant Alert on Successful Delivery
+ */
+async function sendDeliveryNotificationToAdmin({ orderId, customerName, phone, email, paymentMethod, totalAmount, deliveredAt }) {
+  const transporter = getTransporter();
+  const adminEmail = config.email.adminEmail || 'shraviko@gmail.com';
+  const cleanId = orderId || 'UNKNOWN';
+  const safeName = escapeHtml(customerName || 'Customer');
+  const safePhone = escapeHtml(phone || 'N/A');
+  const safeEmail = escapeHtml(email || 'N/A');
+  const methodLabel = paymentMethod || 'N/A';
+  const formattedTime = new Date(deliveredAt || Date.now()).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
+
+  const htmlTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #FAF8F5; margin: 0; padding: 20px 10px; color: #1C1715;">
+      <div style="max-width: 580px; margin: 0 auto; background: #FFFFFF; border: 1px solid #EAE3D2; border-radius: 8px; overflow: hidden;">
+        ${renderEmailHeader()}
+        <div style="padding: 0 28px;">
+          <div style="background-color: #F0F7F4; border: 1px solid #C6E2D5; border-radius: 6px; padding: 14px 18px; margin-bottom: 24px; text-align: center;">
+            <span style="color: #1F6F4C; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">📦 ORDER DELIVERED</span>
+          </div>
+          <p style="font-size: 15px; line-height: 1.6; color: #1C1715;">Order <strong>#${cleanId}</strong> has been successfully delivered to the customer.</p>
+          <div style="background-color: #FAF8F5; border: 1px solid #EAE3D2; border-radius: 6px; padding: 18px; margin-bottom: 24px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #554F4A;">
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Order ID:</td><td style="padding-bottom: 8px; text-align: right; font-weight: 700; color: #1C1715;">#${cleanId}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Customer:</td><td style="padding-bottom: 8px; text-align: right; color: #1C1715; font-weight: 600;">${safeName}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Contact:</td><td style="padding-bottom: 8px; text-align: right; color: #7C5E24;">${safePhone} | ${safeEmail}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Payment Mode:</td><td style="padding-bottom: 8px; text-align: right; color: #1C1715;">${escapeHtml(methodLabel)}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Total Amount:</td><td style="padding-bottom: 8px; text-align: right; font-weight: 700; color: #1F6F4C;">₹${Number(totalAmount || 0).toLocaleString('en-IN')}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Delivered On:</td><td style="padding-bottom: 8px; text-align: right; color: #1C1715;">${formattedTime}</td></tr>
+            </table>
+          </div>
+        </div>
+        ${renderEmailFooter()}
+      </div>
+    </body>
+    </html>
+  `;
+
+  if (!transporter) {
+    console.log(`\n📦 [DELIVERY ALERT MOCK] Order ${cleanId} delivered to ${safeName}\n`);
+    return { success: true, mock: true };
+  }
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"Shraviko Tracking" <${config.email.user || process.env.EMAIL_USER}>`,
+      to: adminEmail,
+      subject: `📦 [ORDER DELIVERED] #${sanitizeHeader(cleanId)} — Delivered to ${sanitizeHeader(safeName)}`,
+      html: htmlTemplate,
+    });
+    console.log(`✅ Admin delivery alert sent to ${adminEmail}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err) {
+    console.error(`❌ Admin delivery alert failed: ${err.message}`);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * 12. sendRefundNotificationToAdmin — Merchant Alert on Processed Refund
+ */
+async function sendRefundNotificationToAdmin({ orderId, refundId, paymentId, amount, reason, customerName, email }) {
+  const transporter = getTransporter();
+  const adminEmail = config.email.adminEmail || 'shraviko@gmail.com';
+  const cleanId = orderId || 'UNKNOWN';
+  const safeName = escapeHtml(customerName || 'Customer');
+  const safeRefundId = escapeHtml(refundId || 'N/A');
+  const safePaymentId = escapeHtml(paymentId || 'N/A');
+  const safeReason = escapeHtml(reason || 'Customer request');
+  const formattedToday = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
+
+  const htmlTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #FAF8F5; margin: 0; padding: 20px 10px; color: #1C1715;">
+      <div style="max-width: 580px; margin: 0 auto; background: #FFFFFF; border: 1px solid #EAE3D2; border-radius: 8px; overflow: hidden;">
+        ${renderEmailHeader()}
+        <div style="padding: 0 28px;">
+          <div style="background-color: #FAF6EE; border: 1px solid #E5D9C3; border-radius: 6px; padding: 14px 18px; margin-bottom: 24px; text-align: center;">
+            <span style="color: #7C5E24; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">💳 REFUND PROCESSED</span>
+          </div>
+          <p style="font-size: 15px; line-height: 1.6; color: #1C1715;">A refund of <strong>₹${Number(amount || 0).toLocaleString('en-IN')}</strong> has been executed.</p>
+          <div style="background-color: #FAF8F5; border: 1px solid #EAE3D2; border-radius: 6px; padding: 18px; margin-bottom: 24px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #554F4A;">
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Order ID:</td><td style="padding-bottom: 8px; text-align: right; font-weight: 700; color: #1C1715;">#${cleanId}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Refund Reference:</td><td style="padding-bottom: 8px; text-align: right; font-family: monospace; color: #1C1715;">${safeRefundId}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Payment ID:</td><td style="padding-bottom: 8px; text-align: right; font-family: monospace; color: #1C1715;">${safePaymentId}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Customer:</td><td style="padding-bottom: 8px; text-align: right; color: #1C1715;">${safeName} (${escapeHtml(email || 'N/A')})</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Refund Reason:</td><td style="padding-bottom: 8px; text-align: right; color: #1C1715;">${safeReason}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Processed On:</td><td style="padding-bottom: 8px; text-align: right; color: #1C1715;">${formattedToday}</td></tr>
+              <tr style="border-top: 1px dashed #D9D2C2;"><td style="padding-top: 10px; font-weight: 700; color: #1C1715; font-size: 14px;">Refunded Amount:</td><td style="padding-top: 10px; text-align: right; font-weight: 700; color: #7C5E24; font-size: 16px;">₹${Number(amount || 0).toLocaleString('en-IN')}</td></tr>
+            </table>
+          </div>
+        </div>
+        ${renderEmailFooter()}
+      </div>
+    </body>
+    </html>
+  `;
+
+  if (!transporter) {
+    console.log(`\n💳 [REFUND ALERT MOCK] Order ${cleanId} refund ₹${amount}\n`);
+    return { success: true, mock: true };
+  }
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"Shraviko Finance" <${config.email.user || process.env.EMAIL_USER}>`,
+      to: adminEmail,
+      subject: `💳 [REFUND PROCESSED] #${sanitizeHeader(cleanId)} — ₹${Number(amount || 0).toLocaleString('en-IN')} (${sanitizeHeader(safeName)})`,
+      html: htmlTemplate,
+    });
+    console.log(`✅ Admin refund alert sent to ${adminEmail}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err) {
+    console.error(`❌ Admin refund alert failed: ${err.message}`);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * 13. sendCancellationNotificationToAdmin — Merchant Alert on Order Cancellation
+ */
+async function sendCancellationNotificationToAdmin({ orderId, customerName, email, reason }) {
+  const transporter = getTransporter();
+  const adminEmail = config.email.adminEmail || 'shraviko@gmail.com';
+  const cleanId = orderId || 'UNKNOWN';
+  const safeName = escapeHtml(customerName || 'Customer');
+  const safeReason = escapeHtml(reason || 'Cancelled');
+  const formattedToday = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
+
+  const htmlTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #FAF8F5; margin: 0; padding: 20px 10px; color: #1C1715;">
+      <div style="max-width: 580px; margin: 0 auto; background: #FFFFFF; border: 1px solid #EAE3D2; border-radius: 8px; overflow: hidden;">
+        ${renderEmailHeader()}
+        <div style="padding: 0 28px;">
+          <div style="background-color: #FDEDED; border: 1px solid #F5C6CB; border-radius: 6px; padding: 14px 18px; margin-bottom: 24px; text-align: center;">
+            <span style="color: #721C24; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">❌ ORDER CANCELLED</span>
+          </div>
+          <p style="font-size: 15px; line-height: 1.6; color: #1C1715;">Order <strong>#${cleanId}</strong> has been cancelled.</p>
+          <div style="background-color: #FAF8F5; border: 1px solid #EAE3D2; border-radius: 6px; padding: 18px; margin-bottom: 24px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #554F4A;">
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Order ID:</td><td style="padding-bottom: 8px; text-align: right; font-weight: 700; color: #1C1715;">#${cleanId}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Customer:</td><td style="padding-bottom: 8px; text-align: right; color: #1C1715;">${safeName} (${escapeHtml(email || 'N/A')})</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Cancellation Reason:</td><td style="padding-bottom: 8px; text-align: right; color: #721C24; font-weight: 600;">${safeReason}</td></tr>
+              <tr><td style="padding-bottom: 8px; color: #8C847D;">Date:</td><td style="padding-bottom: 8px; text-align: right; color: #1C1715;">${formattedToday}</td></tr>
+            </table>
+          </div>
+        </div>
+        ${renderEmailFooter()}
+      </div>
+    </body>
+    </html>
+  `;
+
+  if (!transporter) {
+    console.log(`\n❌ [CANCEL ALERT MOCK] Order ${cleanId} cancelled (${safeReason})\n`);
+    return { success: true, mock: true };
+  }
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"Shraviko Orders" <${config.email.user || process.env.EMAIL_USER}>`,
+      to: adminEmail,
+      subject: `❌ [ORDER CANCELLED] #${sanitizeHeader(cleanId)} — ${sanitizeHeader(safeReason)}`,
+      html: htmlTemplate,
+    });
+    console.log(`✅ Admin cancellation alert sent to ${adminEmail}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (err) {
+    console.error(`❌ Admin cancellation alert failed: ${err.message}`);
+    return { success: false, error: err.message };
+  }
+}
+
 module.exports = {
   sendOrderConfirmationEmail,
   sendPrepaidPaymentReceivedEmail,
@@ -941,4 +1297,8 @@ module.exports = {
   sendCorporateEnquiryNotificationToAdmin,
   sendReviewRequestEmail,
   sendBusinessInvoiceEmail,
+  sendNewOrderNotificationToAdmin,
+  sendDeliveryNotificationToAdmin,
+  sendRefundNotificationToAdmin,
+  sendCancellationNotificationToAdmin,
 };

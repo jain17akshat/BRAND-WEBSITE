@@ -487,16 +487,134 @@ router.post(
           inventory_deducted: true,
           invoice_number: invoiceNumber,
           invoice_date: invoiceDate,
-          // Email is only PENDING when invoice document is confirmed saved to disk
-          customer_email_status: (invoiceDocumentReady) ? 'PENDING' : 'NONE',
-          business_email_status: (invoiceDocumentReady) ? 'PENDING' : 'NONE',
+          // Email is marked PENDING for immediate dispatch and queue retry
+          customer_email_status: customer?.email ? 'PENDING' : 'NONE',
+          business_email_status: 'PENDING',
         });
 
-        // Trigger email queue only when invoice document is confirmed ready
-        if (invoiceDocumentReady) {
-          const emailQueue = require('../services/emailQueue');
-          emailQueue.triggerImmediate(internalOrderId);
-        }
+        // Non-blocking immediate email dispatch to customer and seller
+        setImmediate(async () => {
+          try {
+            const emailService = require('../services/emailService');
+            const { updateEmailStatus } = require('../services/orderStore');
+            const fs = require('fs');
+
+            let invoiceBuffer = null;
+            if (invoiceDocumentReady) {
+              try {
+                const { getInvoicePath } = require('../services/invoiceService');
+                const invPath = getInvoicePath(internalOrderId);
+                if (invPath && fs.existsSync(invPath)) {
+                  invoiceBuffer = fs.readFileSync(invPath);
+                }
+              } catch (pdfReadErr) {
+                console.warn(`⚠️ Could not read invoice PDF for order ${internalOrderId}:`, pdfReadErr.message);
+              }
+            }
+
+            // 1. Dispatch Customer Order Confirmation Email
+            if (customer?.email) {
+              try {
+                let custResult;
+                if (isCOD) {
+                  custResult = await emailService.sendOrderConfirmationEmail({
+                    to: customer.email,
+                    customerName: customer.name,
+                    orderId: internalOrderId,
+                    items: sanitizedCart,
+                    totalAmount,
+                    shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
+                    phone: customer.phone,
+                    paymentMethod: 'Cash on Delivery (COD)',
+                    invoiceBuffer,
+                    invoiceNumber,
+                  });
+                } else {
+                  custResult = await emailService.sendPrepaidPaymentReceivedEmail({
+                    to: customer.email,
+                    customerName: customer.name,
+                    orderId: internalOrderId,
+                    paymentId: razorpay_payment_id || 'Online Payment',
+                    items: sanitizedCart,
+                    totalAmount,
+                    shippingAddress: `${customer.address || ''}, ${customer.city || ''}, ${customer.state || ''} - ${customer.pincode || ''}`,
+                    phone: customer.phone,
+                    invoiceBuffer,
+                    invoiceNumber,
+                    isInvoiceEmail: !!invoiceBuffer,
+                  });
+                }
+
+                if (custResult?.success) {
+                  await updateEmailStatus(internalOrderId, 'customer', {
+                    status: 'SENT',
+                    sent_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                    error: null,
+                  });
+                  console.log(`✅ Customer confirmation email dispatched immediately for ${internalOrderId}`);
+                } else {
+                  await updateEmailStatus(internalOrderId, 'customer', {
+                    status: 'FAILED',
+                    error: custResult?.error || 'Email dispatch returned failure',
+                    retry_count: 1,
+                  });
+                }
+              } catch (custEmailErr) {
+                console.error(`❌ Error dispatching customer email for ${internalOrderId}:`, custEmailErr.message);
+                await updateEmailStatus(internalOrderId, 'customer', {
+                  status: 'FAILED',
+                  error: custEmailErr.message,
+                  retry_count: 1,
+                });
+              }
+            }
+
+            // 2. Dispatch Merchant / Seller Alert Email to Admin (shraviko@gmail.com)
+            try {
+              const adminResult = await emailService.sendNewOrderNotificationToAdmin({
+                orderId: internalOrderId,
+                customer,
+                items: sanitizedCart,
+                totalAmount,
+                paymentMethod: shiprocketPaymentMethod,
+                paymentId: razorpay_payment_id || null,
+                shiprocketOrderId: srOrderId,
+                shipmentId: srShipmentId,
+                invoiceBuffer,
+                invoiceNumber,
+              });
+
+              if (adminResult?.success) {
+                await updateEmailStatus(internalOrderId, 'business', {
+                  status: 'SENT',
+                  sent_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                  error: null,
+                });
+                console.log(`✅ Admin new order alert dispatched immediately for ${internalOrderId}`);
+              } else {
+                await updateEmailStatus(internalOrderId, 'business', {
+                  status: 'FAILED',
+                  error: adminResult?.error || 'Admin email dispatch returned failure',
+                  retry_count: 1,
+                });
+              }
+            } catch (adminEmailErr) {
+              console.error(`❌ Error dispatching admin order alert for ${internalOrderId}:`, adminEmailErr.message);
+              await updateEmailStatus(internalOrderId, 'business', {
+                status: 'FAILED',
+                error: adminEmailErr.message,
+                retry_count: 1,
+              });
+            }
+
+          } catch (bgErr) {
+            console.error(`❌ Background email task error for ${internalOrderId}:`, bgErr.message);
+          }
+        });
+
+        // Trigger email queue sweep as secondary safety net
+        const emailQueue = require('../services/emailQueue');
+        emailQueue.triggerImmediate(internalOrderId);
 
         const sanitizedResponse = {
           success:             true,
@@ -652,6 +770,18 @@ router.post(
           reason,
         }).catch(err => console.error('Failed to send refund email:', err));
       }
+
+      // Send refund alert to seller / merchant
+      const { sendRefundNotificationToAdmin } = require('../services/emailService');
+      sendRefundNotificationToAdmin({
+        orderId: order_id || targetOrder?.order_id,
+        refundId: razorpayRefundId || internalRefundId,
+        paymentId: payment_id,
+        amount,
+        reason,
+        customerName: req.body.customerName || targetOrder?.customer_name,
+        email: req.body.email || targetOrder?.customer_email,
+      }).catch(err => console.error('Failed to send admin refund alert:', err));
 
       res.json({
         success: true,

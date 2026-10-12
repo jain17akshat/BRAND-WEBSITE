@@ -496,7 +496,26 @@ async function claimEmailJobAtomic(orderId, type) {
  */
 async function getPendingEmails() {
   const pool = getPool();
-  if (!pool) return [];
+  if (!pool) {
+    const fallbackPending = [];
+    for (const ord of recentOrders.values()) {
+      const needsCust = (ord.customer_email_status === 'PENDING' || ord.customer_email_status === 'FAILED') && (ord.customer_email_retry_count || 0) < 3;
+      const needsBiz = (ord.business_email_status === 'PENDING' || ord.business_email_status === 'FAILED') && (ord.business_email_retry_count || 0) < 3;
+      if (needsCust || needsBiz) {
+        fallbackPending.push({
+          order_id: ord.order_id || ord.id,
+          invoice_number: ord.invoice_number,
+          customer_email_status: ord.customer_email_status,
+          customer_email_retry_count: ord.customer_email_retry_count || 0,
+          customer_email_next_retry_at: ord.customer_email_next_retry_at,
+          business_email_status: ord.business_email_status,
+          business_email_retry_count: ord.business_email_retry_count || 0,
+          business_email_next_retry_at: ord.business_email_next_retry_at,
+        });
+      }
+    }
+    return fallbackPending;
+  }
 
   try {
     const [rows] = await pool.query(`
@@ -509,7 +528,6 @@ async function getPendingEmails() {
         OR
         (business_email_status IN ('PENDING', 'FAILED') AND business_email_retry_count < 3 AND (business_email_next_retry_at IS NULL OR business_email_next_retry_at <= NOW()))
       )
-      AND invoice_number IS NOT NULL
       ORDER BY id ASC
       LIMIT 50
     `);

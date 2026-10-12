@@ -45,13 +45,17 @@ async function processCustomerEmail(row) {
       return;
     }
 
-    const invoicePath = await getOrGenerateInvoicePath(order);
-    if (!invoicePath || !fs.existsSync(invoicePath)) {
-      throw new Error('Invoice PDF not available on disk');
-    }
-    const invoiceBuffer = fs.readFileSync(invoicePath);
-    if (!invoiceBuffer || invoiceBuffer.length < 100 || !invoiceBuffer.toString('utf8', 0, 4).startsWith('%PDF')) {
-      throw new Error('Invoice PDF buffer is invalid or corrupted');
+    let invoiceBuffer = null;
+    try {
+      const invoicePath = await getOrGenerateInvoicePath(order);
+      if (invoicePath && fs.existsSync(invoicePath)) {
+        const buf = fs.readFileSync(invoicePath);
+        if (buf && buf.length >= 100 && buf.toString('utf8', 0, 4).startsWith('%PDF')) {
+          invoiceBuffer = buf;
+        }
+      }
+    } catch (invErr) {
+      console.warn(`⚠️ Invoice PDF not available for customer email ${row.order_id}:`, invErr.message);
     }
 
     let result;
@@ -80,7 +84,7 @@ async function processCustomerEmail(row) {
         phone: order.customer_phone,
         invoiceBuffer,
         invoiceNumber: row.invoice_number,
-        isInvoiceEmail: true,
+        isInvoiceEmail: !!invoiceBuffer,
       });
     }
 
@@ -90,7 +94,7 @@ async function processCustomerEmail(row) {
         sent_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
         error: null
       });
-      console.log(`✅ Customer invoice email marked SENT for ${row.order_id}`);
+      console.log(`✅ Customer confirmation email marked SENT for ${row.order_id}`);
     } else {
       throw new Error(result.error || 'Unknown email service error');
     }
@@ -131,20 +135,37 @@ async function processBusinessEmail(row) {
       return;
     }
 
-    const invoicePath = await getOrGenerateInvoicePath(order);
-    if (!invoicePath || !fs.existsSync(invoicePath)) {
-      throw new Error('Invoice PDF not available on disk');
-    }
-    const invoiceBuffer = fs.readFileSync(invoicePath);
-    if (!invoiceBuffer || invoiceBuffer.length < 100 || !invoiceBuffer.toString('utf8', 0, 4).startsWith('%PDF')) {
-      throw new Error('Invoice PDF buffer is invalid or corrupted');
+    let invoiceBuffer = null;
+    try {
+      const invoicePath = await getOrGenerateInvoicePath(order);
+      if (invoicePath && fs.existsSync(invoicePath)) {
+        const buf = fs.readFileSync(invoicePath);
+        if (buf && buf.length >= 100 && buf.toString('utf8', 0, 4).startsWith('%PDF')) {
+          invoiceBuffer = buf;
+        }
+      }
+    } catch (invErr) {
+      console.warn(`⚠️ Invoice PDF not available for admin email ${row.order_id}:`, invErr.message);
     }
 
-    const result = await emailService.sendBusinessInvoiceEmail({
+    const result = await emailService.sendNewOrderNotificationToAdmin({
       orderId: row.order_id,
-      invoiceNumber: row.invoice_number,
-      invoiceBuffer,
+      customer: {
+        name: order.customer_name,
+        email: order.customer_email,
+        phone: order.customer_phone,
+        address: order.shipping_address,
+        city: order.city,
+        state: order.state,
+        pincode: order.pincode,
+      },
+      items: order.items_raw || order.items,
       totalAmount: order.total_amount,
+      paymentMethod: order.payment_method,
+      shiprocketOrderId: order.shiprocket_order_id,
+      shipmentId: order.shipment_id,
+      invoiceBuffer,
+      invoiceNumber: row.invoice_number,
     });
 
     if (result.success) {
@@ -153,7 +174,7 @@ async function processBusinessEmail(row) {
         sent_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
         error: null
       });
-      console.log(`✅ Business invoice email marked SENT for ${row.order_id}`);
+      console.log(`✅ Business new order notification email marked SENT for ${row.order_id}`);
     } else {
       throw new Error(result.error || 'Unknown email service error');
     }
