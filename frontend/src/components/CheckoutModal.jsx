@@ -14,6 +14,8 @@ export const CheckoutModal = ({
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentError, setPaymentError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [validationError, setValidationError] = useState('');
+  const [invalidField, setInvalidField] = useState(null);
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState('');
   const isSubmittingRef = useRef(false);
@@ -81,12 +83,20 @@ export const CheckoutModal = ({
     },
   ];
 
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (validationError) setValidationError('');
+    if (invalidField === field) setInvalidField(null);
+  };
+
   const handleExecutePayment = async (e) => {
     if (e) e.preventDefault();
     if (isSubmittingRef.current || isProcessing) return;
 
     setPaymentError(false);
     setErrorMessage('');
+    setValidationError('');
+    setInvalidField(null);
 
     // Client-side input validation & normalization
     const cleanPhone = String(formData.phone || '').replace(/\D/g, '').slice(-10);
@@ -95,39 +105,39 @@ export const CheckoutModal = ({
     const PINCODE_RE = /^\d{6}$/;
 
     if (!formData.name || formData.name.trim().length === 0) {
-      setErrorMessage('Please enter your full name.');
-      setPaymentError(true);
+      setValidationError('Please enter your full name.');
+      setInvalidField('name');
       return;
     }
 
     if (!cleanPhone || !PHONE_RE.test(cleanPhone)) {
-      setErrorMessage('Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.');
-      setPaymentError(true);
+      setValidationError('Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.');
+      setInvalidField('phone');
       return;
     }
 
     if (!formData.email || !EMAIL_RE.test(formData.email.trim())) {
-      setErrorMessage('Please enter a valid email address.');
-      setPaymentError(true);
+      setValidationError('Please enter a valid email address (e.g. yourname@gmail.com).');
+      setInvalidField('email');
       return;
     }
 
     if (!formData.address || formData.address.trim().length < 5) {
-      setErrorMessage('Please enter your complete delivery address (at least 5 characters).');
-      setPaymentError(true);
+      setValidationError('Please enter your complete delivery address (at least 5 characters).');
+      setInvalidField('address');
       return;
     }
 
     if (!formData.city || formData.city.trim().length === 0) {
-      setErrorMessage('Please enter your city.');
-      setPaymentError(true);
+      setValidationError('Please enter your city.');
+      setInvalidField('city');
       return;
     }
 
     const cleanPincode = String(formData.pincode || '').replace(/\D/g, '');
     if (!cleanPincode || !PINCODE_RE.test(cleanPincode)) {
-      setErrorMessage('Please enter a valid 6-digit PIN code.');
-      setPaymentError(true);
+      setValidationError('Please enter a valid 6-digit PIN code.');
+      setInvalidField('pincode');
       return;
     }
 
@@ -364,10 +374,13 @@ export const CheckoutModal = ({
                 </button>
 
                 <button
-                  onClick={() => setPaymentError(false)}
+                  onClick={() => {
+                    setPaymentError(false);
+                    setErrorMessage('');
+                  }}
                   className="w-full py-3 bg-white text-[#2C221E] border border-[#EAE0CD] font-manrope text-xs font-semibold uppercase tracking-wider rounded-[12px] hover:bg-[#FBEAE5] transition-all min-h-[48px]"
                 >
-                  Change Payment Method
+                  Return to Checkout Details
                 </button>
               </div>
             </div>
@@ -414,10 +427,12 @@ export const CheckoutModal = ({
                       type="text"
                       value={formData.name}
                       maxLength={100}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
                       placeholder="Full Name *"
                       required
-                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-[12px] focus:border-[#57324F] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
+                      className={`w-full p-3 sm:p-2.5 bg-white border rounded-[12px] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs transition-colors ${
+                        invalidField === 'name' ? 'border-red-500 ring-1 ring-red-500' : 'border-[#EAE0CD] focus:border-[#57324F]'
+                      }`}
                     />
                   </div>
                   <div>
@@ -425,10 +440,12 @@ export const CheckoutModal = ({
                       type="tel"
                       value={formData.phone}
                       maxLength={15}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
                       placeholder="10-Digit Phone Number *"
                       required
-                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-[12px] focus:border-[#57324F] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
+                      className={`w-full p-3 sm:p-2.5 bg-white border rounded-[12px] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs transition-colors ${
+                        invalidField === 'phone' ? 'border-red-500 ring-1 ring-red-500' : 'border-[#EAE0CD] focus:border-[#57324F]'
+                      }`}
                     />
                   </div>
                   <div className="sm:col-span-2">
@@ -436,10 +453,12 @@ export const CheckoutModal = ({
                       type="email"
                       value={formData.email}
                       maxLength={254}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="Email Address *"
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      placeholder="Email Address (e.g. yourname@gmail.com) *"
                       required
-                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-[12px] focus:border-[#57324F] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
+                      className={`w-full p-3 sm:p-2.5 bg-white border rounded-[12px] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs transition-colors ${
+                        invalidField === 'email' ? 'border-red-500 ring-1 ring-red-500' : 'border-[#EAE0CD] focus:border-[#57324F]'
+                      }`}
                     />
                   </div>
                   <div className="sm:col-span-2">
@@ -447,10 +466,12 @@ export const CheckoutModal = ({
                       type="text"
                       value={formData.address}
                       maxLength={250}
-                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                      onChange={(e) => handleInputChange('address', e.target.value)}
                       placeholder="Flat / House No. / Building / Street Address *"
                       required
-                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-[12px] focus:border-[#57324F] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
+                      className={`w-full p-3 sm:p-2.5 bg-white border rounded-[12px] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs transition-colors ${
+                        invalidField === 'address' ? 'border-red-500 ring-1 ring-red-500' : 'border-[#EAE0CD] focus:border-[#57324F]'
+                      }`}
                     />
                   </div>
                   <div>
@@ -458,10 +479,12 @@ export const CheckoutModal = ({
                       type="text"
                       value={formData.city}
                       maxLength={100}
-                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                      onChange={(e) => handleInputChange('city', e.target.value)}
                       placeholder="City *"
                       required
-                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-[12px] focus:border-[#57324F] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
+                      className={`w-full p-3 sm:p-2.5 bg-white border rounded-[12px] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs transition-colors ${
+                        invalidField === 'city' ? 'border-red-500 ring-1 ring-red-500' : 'border-[#EAE0CD] focus:border-[#57324F]'
+                      }`}
                     />
                   </div>
                   <div>
@@ -469,10 +492,12 @@ export const CheckoutModal = ({
                       type="text"
                       value={formData.pincode}
                       maxLength={6}
-                      onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
+                      onChange={(e) => handleInputChange('pincode', e.target.value)}
                       placeholder="Pincode *"
                       required
-                      className="w-full p-3 sm:p-2.5 bg-white border border-[#EAE0CD] rounded-[12px] focus:border-[#57324F] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs"
+                      className={`w-full p-3 sm:p-2.5 bg-white border rounded-[12px] focus:outline-none min-h-[46px] sm:min-h-[42px] text-sm sm:text-xs transition-colors ${
+                        invalidField === 'pincode' ? 'border-red-500 ring-1 ring-red-500' : 'border-[#EAE0CD] focus:border-[#57324F]'
+                      }`}
                     />
                   </div>
                 </div>
@@ -580,6 +605,13 @@ export const CheckoutModal = ({
 
               {/* 3. PAYMENT BUTTON */}
               <div className="space-y-3 pt-1">
+                {validationError && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-[12px] text-red-700 text-xs flex items-center gap-2 animate-fade-in shadow-xs">
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
+                    <span className="font-semibold">{validationError}</span>
+                  </div>
+                )}
+
                 <div className="flex justify-center">
                   <PaymentLogos dark={false} className="w-full sm:w-auto" />
                 </div>

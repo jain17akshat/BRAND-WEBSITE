@@ -6,7 +6,6 @@ import { SafeImage } from './SafeImage';
 // Products to hide from the catalog
 const EXCLUDED_IDS = [
   'essentials-brass-chawar-whisk',
-  'mandir-jap-bag-gaumukhi',
   'mandir-royal-velvet-asan-mat',
 ];
 

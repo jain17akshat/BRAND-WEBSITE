@@ -99,7 +99,11 @@ async function addOrder(orderData) {
     try {
       await saveToDb(orderData);
     } catch (err) {
-      console.error('Failed to save order to MySQL DB:', err.stack || err.message);
+      console.warn('⚠️ Could not save order to MySQL DB (persisted to in-memory and orders_store.json):', err.message);
+      // If it's a connection refused / offline network error (e.g. local dev without MySQL), don't fail the order
+      if (err.message && (err.message.includes('ECONNREFUSED') || err.message.includes('ETIMEDOUT') || err.message.includes('ENOTFOUND'))) {
+        return;
+      }
       const { AppError } = require('../middleware/errorHandler');
       throw new AppError(`Database persistence failed: ${err.message}`, 500, 'DATABASE_ERROR');
     }

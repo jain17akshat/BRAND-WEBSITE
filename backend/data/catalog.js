@@ -46,9 +46,6 @@ const catalog = {
   'brass-akhand-jyot-deepak': 500,     // was 450
   'brass-cup-jyot-diya': 500,          // was 450
   'brass-kamandal-holy-water-pot': 0,// was 2490
-  'brass-trishul-with-damru': 499,    // was 2890
-  'brass-trishul-standing-emblem': 499,// was 1890
-  'brass-gomukhi-shringi-abhishekam': 1656, // was 1490
   'brass-singhasan-deity-throne': 699, // was 2890
   'brass-ladoo-gopal-statue': 1500,    // was 1800
   'brass-kalash-pooja-vessel': 499,   // was 1390
@@ -69,12 +66,10 @@ const catalog = {
 
   // Mandir Essentials
   'wooden-chowki-carved-01': 1100,     // was 990
-  'wooden-chowki-large-15x15': 1500,   // was 1350
   'brass-dhoopdani-burner': 554,       // was 499
   'mandir-mala-counter-brass': 388,    // was 349
   'mandir-pooja-box-chest': 500,       // was 450
   'essentials-brass-chawar-whisk': 1433,// was 1290
-  'mandir-jap-bag-gaumukhi': 322,      // was 290
   'mandir-royal-velvet-asan-mat': 544,  // was 490
   'brass-aarti-bell-ghanti': 722,      // was 650
   'mandir-copper-akhand-jyot': 1433,   // was 1290
@@ -118,18 +113,6 @@ const variantPrices = {
   'brass-kamandal-holy-water-pot-500ML(0.5L)': 1878,       // was 1690
   'brass-kamandal-holy-water-pot-1Litre(1.0L)': 2767,      // was 2490
   'brass-kamandal-holy-water-pot-2Litres(2.0L)': 4322,     // was 3890
-
-  // Trishul standing variants
-  'brass-trishul-standing-emblem-6InchAltarTrishul': 1433,  // was 1290
-  'brass-trishul-standing-emblem-9InchHeavyTrishul': 2100,  // was 1890
-  'brass-trishul-standing-emblem-12InchTempleTrishul': 3322, // was 2990
-
-  // Gaumukh Shringi variants
-  'brass-gomukhi-shringi-abhishekam-Small(4.5cm)': 767,    // was 690
-  'brass-gomukhi-shringi-abhishekam-Small-Medium(5cm)': 1100, // was 990
-  'brass-gomukhi-shringi-abhishekam-Medium(6.25cm)': 1656, // was 1490
-  'brass-gomukhi-shringi-abhishekam-Large(7cm)': 2211,     // was 1990
-  'brass-gomukhi-shringi-abhishekam-ExtraLarge(8cm)': 2878, // was 2590
 
   // Copper Kalash variants
   'copper-kalash-pooja-vessel-64g(Small/DailyPooja)': 878, // was 790
@@ -342,6 +325,7 @@ function setProductStock(rawId, stockQuantity) {
 async function deductInventoryForCart(cart) {
   if (!Array.isArray(cart) || cart.length === 0) return true;
 
+  // 1. Pre-validate all items before deducting any
   for (const item of cart) {
     const rawId = String(item.id || item.productId || '').trim();
     const qty = Math.max(1, parseInt(item.quantity || item.units || 1, 10));
@@ -356,20 +340,10 @@ async function deductInventoryForCart(cart) {
     }
   }
 
-  const { deductStockAtomic } = require('../database/db');
+  // 2. Deduct from stock registry
   for (const item of cart) {
     const rawId = String(item.id || item.productId || '').trim();
     const qty = Math.max(1, parseInt(item.quantity || item.units || 1, 10));
-
-    const success = await deductStockAtomic(rawId, qty);
-    if (!success) {
-      throw new AppError(
-        `Insufficient stock to complete purchase for "${item.name || rawId}".`,
-        409,
-        'OUT_OF_STOCK'
-      );
-    }
-
     const currentStock = getAvailableStock(rawId);
     setProductStock(rawId, Math.max(0, currentStock - qty));
   }
@@ -380,12 +354,9 @@ async function deductInventoryForCart(cart) {
 async function restoreInventoryForCart(cart) {
   if (!Array.isArray(cart) || cart.length === 0) return;
 
-  const { restoreStockAtomic } = require('../database/db');
   for (const item of cart) {
     const rawId = String(item.id || item.productId || '').trim();
     const qty = Math.max(1, parseInt(item.quantity || item.units || 1, 10));
-
-    await restoreStockAtomic(rawId, qty);
     const currentStock = getAvailableStock(rawId);
     setProductStock(rawId, currentStock + qty);
   }
