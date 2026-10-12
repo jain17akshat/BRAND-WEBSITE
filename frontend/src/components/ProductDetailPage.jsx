@@ -14,6 +14,7 @@ export const ProductDetailPage = ({
   onAddToCart,
   onToggleWishlist,
   isWishlisted,
+  wishlistIds = [],
   showToast,
   onSelectProduct
 }) => {
@@ -275,7 +276,7 @@ export const ProductDetailPage = ({
 
               {/* Wishlist Button */}
               <button
-                onClick={() => onToggleWishlist(product)}
+                onClick={() => onToggleWishlist && onToggleWishlist(product)}
                 aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                 className={`absolute top-4 right-4 z-10 w-10 h-10 rounded-full flex items-center justify-center shadow-lg backdrop-blur-md transition-all ${
                   isWishlisted
@@ -725,6 +726,8 @@ export const ProductDetailPage = ({
           }
         }}
         onAddToCart={onAddToCart}
+        onToggleWishlist={onToggleWishlist}
+        wishlistIds={wishlistIds}
       />
 
       {/* Mobile Sticky Bottom Purchase Bar */}
@@ -748,7 +751,14 @@ export const ProductDetailPage = ({
 };
 
 /* ─── Related Products Sub-Component ───────────────────────────────────── */
-const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddToCart }) => {
+const RelatedProducts = ({
+  currentProduct,
+  allProducts,
+  onSelectProduct,
+  onAddToCart,
+  onToggleWishlist,
+  wishlistIds = []
+}) => {
   const [added, setAdded] = useState(null);
 
   const related = useMemo(() => {
@@ -783,8 +793,9 @@ const RelatedProducts = ({ currentProduct, allProducts, onSelectProduct, onAddTo
               key={prod.id}
               product={prod}
               onSelectProduct={onSelectProduct}
-              onAddToCart={(p) => onAddToCart(p, 1)}
+              onAddToCart={(p) => onAddToCart && onAddToCart(p, 1)}
               onToggleWishlist={onToggleWishlist}
+              wishlistIds={wishlistIds}
               priority={idx < 2}
             />
           ))}

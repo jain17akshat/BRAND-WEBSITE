@@ -673,6 +673,7 @@ export function App() {
                 onAddToCart={handleAddToCart}
                 onToggleWishlist={handleToggleWishlist}
                 isWishlisted={selectedProduct && wishlistIds.includes(selectedProduct.id)}
+                wishlistIds={wishlistIds}
                 showToast={showToast}
               />
             </>
