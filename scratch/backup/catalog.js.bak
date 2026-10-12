@@ -1,0 +1,377 @@
+/**
+ * backend/data/catalog.js
+ * ─────────────────────────────────────────────────────────
+ * Authoritative Server-Side Product Catalog.
+ * Enforces price integrity across payment creation, verification, and order processing.
+ *
+ * PRICING STRATEGY (applied 2026-09-12):
+ *   All selling prices are set so that a 10% WELCOME10 coupon brings
+ *   the customer's payable amount back to the original intended price.
+ *   Formula: displayPrice = Math.round(originalPrice / 0.90)
+ *   This is a ~11.11% markup that the coupon exactly reverses.
+ *
+ *   DO NOT re-run this calculation on already-adjusted prices.
+ *   These values are final and should only be changed manually.
+ */
+
+const fs = require('fs');
+const path = require('path');
+let productsTaxMap = {};
+try {
+  productsTaxMap = JSON.parse(fs.readFileSync(path.join(__dirname, 'products_tax.json'), 'utf8'));
+} catch (err) {
+  console.warn('⚠️ Could not load products_tax.json. Invoice tax calculation will fail if products are not found.', err.message);
+}
+
+
+const catalog = {
+  'shraviko-brass-puja-dibbi': 349,
+  'shraviko-mogra-incense-sticks': 249,
+  'shraviko-musk-incense-sticks': 249,
+  'yantra-navgraha': 599,
+  'mandir-orange-sindoor': 199,
+  'yantra-saraswati': 499,
+  'shraviko-stainless-steel-incense-holder': 299,
+
+  'mandir-pure-loban': 249,
+  'mandir-pure-kumkum': 199,
+  // Brass Articles
+  'brass-bell-garuda': 722,            // was 650
+  'SHR-GB-05IN-001': 722,              // SKU alias for Brass Garuda Head Bell
+  'brass-bell-nandi': 722,             // was 650
+  'brass-bell-simple': 722,            // was 650
+  'brass-bell-carved': 722,            // was 650
+  'brass-puja-thali-set': 554,         // was 499
+  'brass-aarti-kapoor-diya': 449,     // was 1690
+  'brass-akhand-jyot-deepak': 500,     // was 450
+  'brass-cup-jyot-diya': 500,          // was 450
+  'brass-kamandal-holy-water-pot': 0,// was 2490
+  'brass-singhasan-deity-throne': 699, // was 2890
+  'brass-ladoo-gopal-statue': 1500,    // was 1800
+  'brass-kalash-pooja-vessel': 499,   // was 1390
+  'brass-design-thali-set': 611,       // was 550
+
+  // Copper Articles
+  'copper-panchpatra-pali-set': 333,   // was 300
+  'copper-puja-thali-set': 1499,       // was 1200
+  'copper-hawan-kund-pyre': 2444,      // was 2200
+  'copper-kalash-pooja-vessel': 799,  // was 1490
+
+  // Incense & Dhoop
+  'incense-no-bamboo': 166,            // was 149
+  'incense-with-bamboo': 143,          // was 129
+  'dhoop-cones': 199,                  // was 179
+  'dhoop-sticks': 277,                 // was 249
+  'sambrani-cups': 221,                // was 199
+
+  // Mandir Essentials
+  'wooden-chowki-carved-01': 1100,     // was 990
+  'brass-dhoopdani-burner': 554,       // was 499
+  'mandir-mala-counter-brass': 388,    // was 349
+  'mandir-pooja-box-chest': 500,       // was 450
+  'essentials-brass-chawar-whisk': 1433,// was 1290
+  'mandir-royal-velvet-asan-mat': 544,  // was 490
+  'brass-aarti-bell-ghanti': 722,      // was 650
+  'mandir-copper-akhand-jyot': 1433,   // was 1290
+  'mandir-safed-chandan': 199,
+  'mandir-lal-chandan': 199,
+  'mandir-pure-camphor': 249,
+  'mandir-bhimseni-kapoor': 249,
+  'mandir-cow-dung-cake': 249,
+  'mandir-hawan-samagri': 199,
+
+  // Vastu & Spiritual
+  'vastu-ganesh-siddha-yantra': 388,   // was 349
+  'vastu-kuber-dhan-prapti-yantra': 388,// was 349
+  'vastu-laxmi-siddha-yantra': 388,    // was 349
+  'vastu-shani-siddha-yantra': 388,    // was 349
+  'vastu-crystal-glass-yantra': 1767,  // was 1590
+  'SHR-SYC-GL-04-1P': 1767,            // SKU for Glass Shree Yantra Cone
+  'vastu-brass-pyramid-multitier': 443, // was 399
+  'vastu-crystal-glass-turtle': 388,   // was 349
+  'brass-kamdhenu-cow-statue': 649,   // was 2490
+  'SHR-KA-001': 2767,                  // SKU alias for Brass Kamdhenu Cow Statue
+  'yantra-kaal-sarp': 388,
+  'SHR-KSY-01': 388,                   // SKU for Kaal Sarp Yog Dosh Nivaran Yantra
+  'brass-ganesh-ji-statue': 649,      // was 2290
+  'brass-radha-krishna-statue': 649,  // was 2890
+  'vastu-crystal-glass-shivling': 411, // was 370
+
+  // Malas
+  'mandir-rudraksh-mala': 777,         // was 699
+  'mandir-sphatik-mala': 1599,         // was 1699
+  'mandir-tulsi-mala': 2,              // Test order price ₹2
+  'mandir-vaijanti-mala': 278,         // was 250
+
+  'mandir-karungali-mala': 278,        // was 250
+  'mandir-wooden-damru-shiva': 433,    // was 390
+};
+
+// Map of variant-specific pricing for items with multiple options
+const variantPrices = {
+  // Kamandal variants
+  'brass-kamandal-holy-water-pot-500ML(0.5L)': 1878,       // was 1690
+  'brass-kamandal-holy-water-pot-1Litre(1.0L)': 2767,      // was 2490
+  'brass-kamandal-holy-water-pot-2Litres(2.0L)': 4322,     // was 3890
+
+  // Copper Kalash variants
+  'copper-kalash-pooja-vessel-64g(Small/DailyPooja)': 878, // was 790
+  'copper-kalash-pooja-vessel-240g(Large/Sthapana&Ceremonies)': 1656, // was 1490
+
+  // Kamdhenu variants
+  'brass-kamdhenu-cow-statue-Compact(7×3×5cm-70G)': 1656,  // was 1490
+  'brass-kamdhenu-cow-statue-Medium(450G-5Inch)': 2767,    // was 2490
+  'brass-kamdhenu-cow-statue-RoyalLarge(850G-7Inch)': 4322, // was 3890
+
+  // Incense variants
+  'incense-no-bamboo-50SticksPack': 166,                   // was 149
+  'incense-no-bamboo-80SticksPack': 243,                   // was 219
+  'incense-no-bamboo-100SticksPack': 299,                  // was 269
+
+  'incense-with-bamboo-50SticksPack': 143,                 // was 129
+  'incense-with-bamboo-80SticksPack': 210,                 // was 189
+  'incense-with-bamboo-100SticksPack': 254,                // was 229
+
+  'dhoop-cones-12ConesTrialPack': 110,                     // was 99
+  'dhoop-cones-24ConesSmallPack': 199,                     // was 179
+  'dhoop-cones-40ConesTwinPack(80Cones)': 332,             // was 299
+  'dhoop-cones-50ConesRetailPack': 388,                    // was 349
+  'dhoop-cones-100ConesValueBox': 666,                     // was 599
+  'dhoop-cones-200ConesFamilyTinBox': 1110,                // was 999
+
+  'dhoop-sticks-20SticksPack': 132,                        // was 119
+  'dhoop-sticks-50SticksPack': 277,                        // was 249
+  'dhoop-sticks-100SticksValueBox': 499,                   // was 449
+};
+
+// ─── Coupon Definitions ───────────────────────────────────
+const COUPONS = {
+  WELCOME10: {
+    discountPercent: 10,
+    description: '10% off your order',
+    stackable: false,
+    appliesToShipping: false,
+  },
+};
+
+/**
+ * Validate a coupon code and calculate the discount amount.
+ * @param {string} code  — the coupon code (case-insensitive)
+ * @param {number} subtotal — the eligible product subtotal (before discount)
+ * @returns {{ valid: boolean, discountAmount: number, reason?: string }}
+ */
+function validateCoupon(code, subtotal) {
+  if (!code || typeof code !== 'string') {
+    return { valid: false, discountAmount: 0, reason: 'No coupon code provided' };
+  }
+
+  const cleaned = code.trim().toUpperCase();
+  const coupon = COUPONS[cleaned];
+
+  if (!coupon) {
+    return { valid: false, discountAmount: 0, reason: `Unknown coupon code: "${cleaned}"` };
+  }
+
+  if (typeof subtotal !== 'number' || subtotal <= 0) {
+    return { valid: false, discountAmount: 0, reason: 'Subtotal must be a positive number' };
+  }
+
+  const discountAmount = Math.round(subtotal * (coupon.discountPercent / 100));
+
+  return {
+    valid: true,
+    discountAmount,
+    discountPercent: coupon.discountPercent,
+    code: cleaned,
+  };
+}
+
+const { AppError } = require('../middleware/errorHandler');
+
+/**
+ * Get authoritative server-side price for a product item or variant
+ */
+function getProductPrice(item) {
+  if (!item) {
+    throw new AppError('Product item details are required', 400, 'UNKNOWN_PRODUCT');
+  }
+
+  const rawId = String(item.id || item.productId || '').trim();
+
+  // 1. Check exact item variant ID
+  if (variantPrices[rawId] !== undefined) {
+    return variantPrices[rawId];
+  }
+
+  // 2. Check if item has weight/variant field attached
+  if (item.weight) {
+    const variantId = `${rawId}-${String(item.weight).replace(/\s+/g, '')}`;
+    if (variantPrices[variantId] !== undefined) {
+      return variantPrices[variantId];
+    }
+  }
+
+  // 3. Check base catalog ID
+  if (catalog[rawId] !== undefined) {
+    return catalog[rawId];
+  }
+
+  // 4. Extract base ID if rawId contains variant suffix (e.g., 'brass-bell-garuda-90g')
+  const baseId = rawId.split('-').slice(0, -1).join('-');
+  if (baseId && catalog[baseId] !== undefined) {
+    return catalog[baseId];
+  }
+
+  // Reject unknown product IDs
+  throw new AppError(`Unknown or uncatalogued product ID: "${rawId || 'empty'}"`, 400, 'UNKNOWN_PRODUCT');
+}
+
+/**
+ * Recompute total amount for a cart based on authoritative catalog prices
+ */
+function calculateCartSubtotal(cart) {
+  if (!Array.isArray(cart)) return 0;
+  return cart.reduce((subtotal, item) => {
+    const unitPrice = getProductPrice(item);
+    const qty = Math.max(1, parseInt(item.quantity || item.units || 1, 10));
+    return subtotal + (unitPrice * qty);
+  }, 0);
+}
+
+/**
+ * Validates and enriches a cart item with HSN, GST rate, and reverse-calculated taxable values.
+ * Assumes the authoritative selling price is GST inclusive.
+ */
+function enrichCartItemWithTax(item, customerState) {
+  const rawId = String(item.id || item.productId || item.sku || '').trim();
+  const taxInfo = productsTaxMap[rawId];
+
+  // Some items might be explicitly tax-exempt, but for this project, all items MUST have a mapping.
+  if (!taxInfo || !taxInfo.hsn || taxInfo.tax === undefined || taxInfo.tax === null) {
+    throw new AppError(`Missing HSN or GST mapping for product "${item.name || rawId}". Order cannot be finalized without tax data.`, 400, 'MISSING_TAX_DATA');
+  }
+
+  // Verification step for unverified or ambiguous tax mappings (e.g. GST_Old_12_New_5 or **Verify**)
+  if (typeof taxInfo.tax === 'string' && (
+      taxInfo.tax.includes('Verify') || 
+      taxInfo.tax.includes('GST_Old') || 
+      taxInfo.tax.includes('Unresolved') ||
+      isNaN(parseFloat(taxInfo.tax))
+  )) {
+    throw new AppError(`GST rate for product "${item.name || rawId}" requires manual verification before invoice generation. Tax Code: ${taxInfo.tax}`, 400, 'UNVERIFIED_TAX_DATA');
+  }
+
+  const authoritativePrice = getProductPrice(item); // inclusive of GST
+  const qty = Math.max(1, parseInt(item.quantity || item.units || 1, 10));
+  const gstRatePercent = parseFloat(taxInfo.tax);
+
+  if (isNaN(gstRatePercent)) {
+    throw new AppError(`Invalid GST rate for product "${item.name || rawId}".`, 400, 'INVALID_TAX_DATA');
+  }
+
+  // Reverse calculate taxable value
+  // Formula: Taxable Value = Inclusive Price / (1 + GST_Rate / 100)
+  const taxableValuePerUnit = authoritativePrice / (1 + (gstRatePercent / 100));
+  const totalTaxableValue = taxableValuePerUnit * qty;
+  const totalItemAmount = authoritativePrice * qty; // Total inclusive
+  const totalGstAmount = totalItemAmount - totalTaxableValue;
+
+  // Determine intra-state vs inter-state
+  // Seller State: Rajasthan (from GST image)
+  const isIntraState = customerState && customerState.trim().toLowerCase() === 'rajasthan';
+
+  let cgst = 0, sgst = 0, igst = 0;
+  if (isIntraState) {
+    cgst = totalGstAmount / 2;
+    sgst = totalGstAmount / 2;
+  } else {
+    igst = totalGstAmount;
+  }
+
+  return {
+    ...item,
+    sku: rawId,
+    name: taxInfo.title || item.name, // prefer master name if available
+    hsn: taxInfo.hsn,
+    gst_rate: gstRatePercent,
+    price: authoritativePrice, // inclusive
+    taxable_value: parseFloat(totalTaxableValue.toFixed(2)),
+    taxable_value_per_unit: parseFloat(taxableValuePerUnit.toFixed(2)),
+    cgst: parseFloat(cgst.toFixed(2)),
+    sgst: parseFloat(sgst.toFixed(2)),
+    igst: parseFloat(igst.toFixed(2)),
+    total_tax_amount: parseFloat(totalGstAmount.toFixed(2)),
+    total_item_amount: totalItemAmount,
+    quantity: qty,
+    units: qty
+  };
+}
+
+// ── In-Memory Stock Control (Initial Documented Default: 100 units/item) ──
+const stockRegistry = new Map();
+
+function getAvailableStock(itemOrId) {
+  const rawId = typeof itemOrId === 'string' ? itemOrId : String(itemOrId?.id || itemOrId?.productId || '').trim();
+  if (stockRegistry.has(rawId)) {
+    return stockRegistry.get(rawId);
+  }
+  return 100; // Documented initial default stock
+}
+
+function setProductStock(rawId, stockQuantity) {
+  stockRegistry.set(rawId, Math.max(0, parseInt(stockQuantity, 10) || 0));
+}
+
+async function deductInventoryForCart(cart) {
+  if (!Array.isArray(cart) || cart.length === 0) return true;
+
+  // 1. Pre-validate all items before deducting any
+  for (const item of cart) {
+    const rawId = String(item.id || item.productId || '').trim();
+    const qty = Math.max(1, parseInt(item.quantity || item.units || 1, 10));
+    const currentStock = getAvailableStock(rawId);
+
+    if (currentStock < qty) {
+      throw new AppError(
+        `Product "${item.name || rawId}" is out of stock. Requested: ${qty}, Available: ${currentStock}.`,
+        409,
+        'OUT_OF_STOCK'
+      );
+    }
+  }
+
+  // 2. Deduct from stock registry
+  for (const item of cart) {
+    const rawId = String(item.id || item.productId || '').trim();
+    const qty = Math.max(1, parseInt(item.quantity || item.units || 1, 10));
+    const currentStock = getAvailableStock(rawId);
+    setProductStock(rawId, Math.max(0, currentStock - qty));
+  }
+
+  return true;
+}
+
+async function restoreInventoryForCart(cart) {
+  if (!Array.isArray(cart) || cart.length === 0) return;
+
+  for (const item of cart) {
+    const rawId = String(item.id || item.productId || '').trim();
+    const qty = Math.max(1, parseInt(item.quantity || item.units || 1, 10));
+    const currentStock = getAvailableStock(rawId);
+    setProductStock(rawId, currentStock + qty);
+  }
+}
+
+module.exports = {
+  catalog,
+  variantPrices,
+  COUPONS,
+  getProductPrice,
+  calculateCartSubtotal,
+  validateCoupon,
+  getAvailableStock,
+  setProductStock,
+  deductInventoryForCart,
+  restoreInventoryForCart,
+  enrichCartItemWithTax,
+};

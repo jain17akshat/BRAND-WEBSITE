@@ -25,123 +25,195 @@ try {
 
 
 const catalog = {
+  'brass-bell-garuda': 715,
+  'brass-bell-nandi': 715,
+  'brass-bell-simple': 600,
+  'brass-bell-carved': 999,
+  'brass-puja-thali-set': 599,
+  'brass-aarti-kapoor-diya': 449,
+  'brass-akhand-jyot-deepak': 450,
+  'brass-cup-jyot-diya': 500,
+  'brass-singhasan-deity-throne': 699,
+  'brass-ladoo-gopal-statue': 999,
+  'brass-kalash-pooja-vessel': 449,
+  'brass-design-thali-set': 599,
+  'copper-panchpatra-pali-set': 270,
+  'copper-puja-thali-set': 699,
+  'copper-hawan-kund-pyre': 2350,
+  'copper-kalash-pooja-vessel': 799,
+  'vastu-ganesh-siddha-yantra': 380,
+  'vastu-kuber-dhan-prapti-yantra': 370,
+  'vastu-laxmi-siddha-yantra': 360,
+  'vastu-shani-siddha-yantra': 350,
+  'vastu-crystal-glass-yantra': 350,
+  'vastu-brass-pyramid-multitier': 400,
+  'vastu-crystal-glass-turtle': 350,
+  'brass-kamdhenu-cow-statue': 649,
+  'brass-ganesh-ji-statue': 549,
+  'brass-radha-krishna-statue': 449,
+  'vastu-crystal-glass-shivling': 450,
+  'mandir-rudraksh-mala': 299,
+  'mandir-sphatik-mala': 999,
+  'mandir-tulsi-mala': 249,
+  'mandir-vaijanti-mala': 269,
+  'mandir-karungali-mala': 249,
+  'mandir-lal-chandan': 220,
+  'mandir-pure-camphor': 280,
+  'mandir-bhimseni-kapoor': 399,
+  'mandir-safed-chandan': 280,
+  'wooden-chowki-carved-01': 650,
+  'brass-dhoopdani-burner': 999,
+  'mandir-mala-counter-brass': 269,
+  'mandir-pooja-box-chest': 495,
+  'mandir-wooden-damru-shiva': 278,
+  'yantra-kaal-sarp': 350,
+  'yantra-mangal': 360,
+  'yantra-sarv-karya': 250,
+  'yantra-baglamukhi': 999,
+  'mandir-cow-dung-cake': 320,
+  'mandir-hawan-samagri': 380,
+  'yantra-maha-mrityunjay': 350,
+  'mandir-pure-kumkum': 230,
+  'mandir-pure-loban': 239,
+  'shraviko-bakhoor-incense-sticks': 240,
+  'shraviko-kesar-incense-sticks': 249,
+  'shraviko-lavender-incense-sticks': 220,
+  'shraviko-oudh-incense-sticks': 230,
+  'shraviko-chandan-dhoop-cups': 220,
+  'shraviko-guggul-dhoop-cups': 239,
+  'shraviko-rose-dhoop-cups': 229,
+  'shraviko-sandalwood-incense-sticks': 220,
+  'shraviko-rose-incense-sticks': 220,
+  'shraviko-chandan-camphor-fly-cone': 260,
+  'shraviko-lavender-camphor-fly-cone': 260,
+  'shraviko-brass-dhoop-dani': 988,
+  'shraviko-brass-handle-dhoop': 799,
+  'shraviko-brass-bhog-thali': 279,
+  'shraviko-brass-puja-bell': 499,
+  'shraviko-spiritual-engraved-bell': 649,
+  'shraviko-brass-diya-set5': 399,
+  'shraviko-carved-brass-diya': 499,
+  'shraviko-brass-cup-deepak': 899,
+  'shraviko-peacock-brass-stand-diya': 999,
+  'shraviko-spire-brass-stand-diya': 1399,
+  'shraviko-stainless-steel-dibbi': 249,
+  'shraviko-brass-footprints': 249,
+  'shraviko-silver-footprints': 699,
+  'shraviko-diamond-akhand-jyot': 849,
+  'shraviko-crystal-glass-akhand-jyot': 799,
+  'shraviko-lotus-brass-akhand-jyot': 599,
+  'shraviko-om-top-glass-akhand-jyot': 849,
+  'shraviko-brass-glass-akhand-jyot-cover': 1899,
   'shraviko-brass-puja-dibbi': 349,
   'shraviko-mogra-incense-sticks': 249,
-  'shraviko-musk-incense-sticks': 249,
-  'yantra-navgraha': 599,
+  'shraviko-musk-incense-sticks': 299,
+  'yantra-navgraha': 350,
   'mandir-orange-sindoor': 199,
   'yantra-saraswati': 499,
   'shraviko-stainless-steel-incense-holder': 299,
-
-  'mandir-pure-loban': 249,
-  'mandir-pure-kumkum': 199,
-  // Brass Articles
-  'brass-bell-garuda': 722,            // was 650
-  'SHR-GB-05IN-001': 722,              // SKU alias for Brass Garuda Head Bell
-  'brass-bell-nandi': 722,             // was 650
-  'brass-bell-simple': 722,            // was 650
-  'brass-bell-carved': 722,            // was 650
-  'brass-puja-thali-set': 554,         // was 499
-  'brass-aarti-kapoor-diya': 449,     // was 1690
-  'brass-akhand-jyot-deepak': 500,     // was 450
-  'brass-cup-jyot-diya': 500,          // was 450
-  'brass-kamandal-holy-water-pot': 0,// was 2490
-  'brass-singhasan-deity-throne': 699, // was 2890
-  'brass-ladoo-gopal-statue': 1500,    // was 1800
-  'brass-kalash-pooja-vessel': 499,   // was 1390
-  'brass-design-thali-set': 611,       // was 550
-
-  // Copper Articles
-  'copper-panchpatra-pali-set': 333,   // was 300
-  'copper-puja-thali-set': 1499,       // was 1200
-  'copper-hawan-kund-pyre': 2444,      // was 2200
-  'copper-kalash-pooja-vessel': 799,  // was 1490
-
-  // Incense & Dhoop
-  'incense-no-bamboo': 166,            // was 149
-  'incense-with-bamboo': 143,          // was 129
-  'dhoop-cones': 199,                  // was 179
-  'dhoop-sticks': 277,                 // was 249
-  'sambrani-cups': 221,                // was 199
-
-  // Mandir Essentials
-  'wooden-chowki-carved-01': 1100,     // was 990
-  'brass-dhoopdani-burner': 554,       // was 499
-  'mandir-mala-counter-brass': 388,    // was 349
-  'mandir-pooja-box-chest': 500,       // was 450
-  'essentials-brass-chawar-whisk': 1433,// was 1290
-  'mandir-royal-velvet-asan-mat': 544,  // was 490
-  'brass-aarti-bell-ghanti': 722,      // was 650
-  'mandir-copper-akhand-jyot': 1433,   // was 1290
-  'mandir-safed-chandan': 199,
-  'mandir-lal-chandan': 199,
-  'mandir-pure-camphor': 249,
-  'mandir-bhimseni-kapoor': 249,
-  'mandir-cow-dung-cake': 249,
-  'mandir-hawan-samagri': 199,
-
-  // Vastu & Spiritual
-  'vastu-ganesh-siddha-yantra': 388,   // was 349
-  'vastu-kuber-dhan-prapti-yantra': 388,// was 349
-  'vastu-laxmi-siddha-yantra': 388,    // was 349
-  'vastu-shani-siddha-yantra': 388,    // was 349
-  'vastu-crystal-glass-yantra': 1767,  // was 1590
-  'SHR-SYC-GL-04-1P': 1767,            // SKU for Glass Shree Yantra Cone
-  'vastu-brass-pyramid-multitier': 443, // was 399
-  'vastu-crystal-glass-turtle': 388,   // was 349
-  'brass-kamdhenu-cow-statue': 649,   // was 2490
-  'SHR-KA-001': 2767,                  // SKU alias for Brass Kamdhenu Cow Statue
-  'yantra-kaal-sarp': 388,
-  'SHR-KSY-01': 388,                   // SKU for Kaal Sarp Yog Dosh Nivaran Yantra
-  'brass-ganesh-ji-statue': 649,      // was 2290
-  'brass-radha-krishna-statue': 649,  // was 2890
-  'vastu-crystal-glass-shivling': 411, // was 370
-
-  // Malas
-  'mandir-rudraksh-mala': 777,         // was 699
-  'mandir-sphatik-mala': 1599,         // was 1699
-  'mandir-tulsi-mala': 2,              // Test order price ₹2
-  'mandir-vaijanti-mala': 278,         // was 250
-
-  'mandir-karungali-mala': 278,        // was 250
-  'mandir-wooden-damru-shiva': 433,    // was 390
+  'SHR-GB-05IN-001': 715,
+  'SHR-SYC-GL-04-1P': 350,
+  'SHR-KA-001': 649,
+  'SHR-KSY-01': 350,
+  'incense-no-bamboo': 166,
+  'incense-with-bamboo': 143,
+  'dhoop-cones': 499,
+  'dhoop-sticks': 277,
+  'sambrani-cups': 221,
 };
 
-// Map of variant-specific pricing for items with multiple options
 const variantPrices = {
-  // Kamandal variants
-  'brass-kamandal-holy-water-pot-500ML(0.5L)': 1878,       // was 1690
-  'brass-kamandal-holy-water-pot-1Litre(1.0L)': 2767,      // was 2490
-  'brass-kamandal-holy-water-pot-2Litres(2.0L)': 4322,     // was 3890
-
-  // Copper Kalash variants
-  'copper-kalash-pooja-vessel-64g(Small/DailyPooja)': 878, // was 790
-  'copper-kalash-pooja-vessel-240g(Large/Sthapana&Ceremonies)': 1656, // was 1490
-
-  // Kamdhenu variants
-  'brass-kamdhenu-cow-statue-Compact(7×3×5cm-70G)': 1656,  // was 1490
-  'brass-kamdhenu-cow-statue-Medium(450G-5Inch)': 2767,    // was 2490
-  'brass-kamdhenu-cow-statue-RoyalLarge(850G-7Inch)': 4322, // was 3890
-
-  // Incense variants
-  'incense-no-bamboo-50SticksPack': 166,                   // was 149
-  'incense-no-bamboo-80SticksPack': 243,                   // was 219
-  'incense-no-bamboo-100SticksPack': 299,                  // was 269
-
-  'incense-with-bamboo-50SticksPack': 143,                 // was 129
-  'incense-with-bamboo-80SticksPack': 210,                 // was 189
-  'incense-with-bamboo-100SticksPack': 254,                // was 229
-
-  'dhoop-cones-12ConesTrialPack': 110,                     // was 99
-  'dhoop-cones-24ConesSmallPack': 199,                     // was 179
-  'dhoop-cones-40ConesTwinPack(80Cones)': 332,             // was 299
-  'dhoop-cones-50ConesRetailPack': 388,                    // was 349
-  'dhoop-cones-100ConesValueBox': 666,                     // was 599
-  'dhoop-cones-200ConesFamilyTinBox': 1110,                // was 999
-
-  'dhoop-sticks-20SticksPack': 132,                        // was 119
-  'dhoop-sticks-50SticksPack': 277,                        // was 249
-  'dhoop-sticks-100SticksValueBox': 499,                   // was 449
+  'incense-no-bamboo-50SticksPack': 166,
+  'incense-no-bamboo-80SticksPack': 243,
+  'incense-no-bamboo-100SticksPack': 299,
+  'incense-with-bamboo-50SticksPack': 143,
+  'incense-with-bamboo-80SticksPack': 210,
+  'incense-with-bamboo-100SticksPack': 254,
+  'dhoop-cones-12ConesTrialPack': 110,
+  'dhoop-cones-24ConesSmallPack': 199,
+  'dhoop-cones-40ConesTwinPack(80Cones)': 332,
+  'dhoop-cones-50ConesRetailPack': 388,
+  'dhoop-cones-100ConesValueBox': 666,
+  'dhoop-cones-200ConesFamilyTinBox': 1110,
+  'dhoop-sticks-20SticksPack': 132,
+  'dhoop-sticks-50SticksPack': 277,
+  'dhoop-sticks-100SticksValueBox': 499,
+  'brass-bell-garuda-90g': 715,
+  'brass-bell-nandi-90g': 715,
+  'brass-bell-simple-90g': 600,
+  'brass-bell-carved-90g': 999,
+  'brass-puja-thali-set-6Inch(80g)': 599,
+  'brass-aarti-kapoor-diya-L14cm×B12cm×H6Inch(150g)': 449,
+  'brass-akhand-jyot-deepak-L13cm×B24cm×H13cm(120g)': 450,
+  'brass-cup-jyot-diya-L13cm×B24cm×H13cm(120g)': 500,
+  'brass-singhasan-deity-throne-L18cm×B13cm×H23cm(280g)': 699,
+  'brass-ladoo-gopal-statue-L13cm×B13cm×H10cm(800g)': 999,
+  'brass-kalash-pooja-vessel-Size4Inch(100g)': 449,
+  'brass-design-thali-set-19×19×19cm(10g)': 599,
+  'copper-panchpatra-pali-set-L10cm×B10cm×H10cm(20g)': 270,
+  'copper-puja-thali-set-11Inch(360g)': 699,
+  'copper-hawan-kund-pyre-L25cm×B25cm×H10cm(540g)': 2350,
+  'copper-kalash-pooja-vessel-64g(Small/DailyPooja)': 499,
+  'copper-kalash-pooja-vessel-240g(Large/Sthapana&Ceremonies)': 799,
+  'vastu-ganesh-siddha-yantra-3×3Inches(20g)': 380,
+  'vastu-kuber-dhan-prapti-yantra-3×3Inches(20g)': 370,
+  'vastu-laxmi-siddha-yantra-3×3Inches(20g)': 360,
+  'vastu-shani-siddha-yantra-3×3Inches(20g)': 350,
+  'vastu-crystal-glass-yantra-5×4×5cm(70gMeru)': 350,
+  'vastu-brass-pyramid-multitier-L10cm×B10cm×H8cm(15g)': 400,
+  'vastu-crystal-glass-turtle-L35cm×B15cm×H15cm(300g)': 350,
+  'brass-kamdhenu-cow-statue-Compact(7×3×5cm-70G)': 499,
+  'brass-kamdhenu-cow-statue-Medium(450G-5Inch)': 649,
+  'brass-kamdhenu-cow-statue-RoyalLarge(850G-7Inch)': 1299,
+  'brass-ganesh-ji-statue-L8cm×B5cm×H7cm(130g)': 549,
+  'brass-radha-krishna-statue-L8cm×B5cm×H8cm(130g)': 449,
+  'vastu-crystal-glass-shivling-L6cm×B6cm×H6cm(90g)': 450,
+  'mandir-rudraksh-mala-Length12cm(20g)': 299,
+  'mandir-sphatik-mala-Length34cm(30g)': 999,
+  'mandir-tulsi-mala-Length40cm(20g)': 249,
+  'mandir-vaijanti-mala-Length32cm(30g)': 269,
+  'mandir-karungali-mala-Length42cm(26g)': 249,
+  'mandir-lal-chandan-100gPack': 220,
+  'mandir-lal-chandan-250gValuePack': 299,
+  'mandir-pure-camphor-100gJar': 280,
+  'mandir-pure-camphor-250gJar': 389,
+  'mandir-bhimseni-kapoor-100gPack': 399,
+  'mandir-bhimseni-kapoor-500gPack': 959,
+  'mandir-safed-chandan-100gPack': 280,
+  'mandir-safed-chandan-250gValuePack': 379,
+  'wooden-chowki-carved-01-L38cm×B12cm×H5cm(350g)': 650,
+  'brass-dhoopdani-burner-L25cm×B12cm×H16cm(300g)': 999,
+  'mandir-mala-counter-brass-L10cm×B10cm×H10cm(25g)': 269,
+  'mandir-pooja-box-chest-L15cm×B15cm×H2cm(300g)': 495,
+  'mandir-wooden-damru-shiva-Size5Inch(60g)': 278,
+  'yantra-kaal-sarp-Standard': 350,
+  'yantra-mangal-Standard': 360,
+  'yantra-sarv-karya-Standard': 250,
+  'yantra-baglamukhi-Standard': 999,
+  'mandir-cow-dung-cake-Packof6Cakes': 320,
+  'mandir-hawan-samagri-100gPack': 380,
+  'mandir-hawan-samagri-250gPack': 569,
+  'mandir-hawan-samagri-1kgPack': 1139,
+  'yantra-maha-mrityunjay-Standard3x3InchCopperYantra': 350,
+  'mandir-pure-kumkum-250gPack': 230,
+  'mandir-pure-loban-100gPack': 239,
+  'mandir-pure-loban-500gPack': 429,
+  'mandir-pure-loban-1kgPack': 569,
+  'shraviko-sandalwood-incense-sticks-Packof1Box(approx.50sticks)': 220,
+  'shraviko-sandalwood-incense-sticks-Packof3Boxes(approx.150sticks)': 579,
+  'shraviko-rose-incense-sticks-Packof1Box(approx.50sticks)': 220,
+  'shraviko-rose-incense-sticks-Packof3Boxes(approx.150sticks)': 549,
+  'shraviko-peacock-brass-stand-diya-SingleDiya(12Inch/~750g)': 999,
+  'shraviko-peacock-brass-stand-diya-Pairof2Diyas(12Inch/~1.5kg)': 1839,
+  'shraviko-spire-brass-stand-diya-SingleDiya(12Inch/~700g)': 1399,
+  'shraviko-spire-brass-stand-diya-Pairof2Diyas(12Inch/~1.4kg)': 2569,
+  'shraviko-brass-puja-dibbi-Medium(60g)': 349,
+  'shraviko-mogra-incense-sticks-Packof1(100g-approx.40sticks)': 249,
+  'shraviko-musk-incense-sticks-Packof1(100g-approx.40sticks)': 299,
+  'yantra-navgraha-3×3Inches(HeavyCopperPlate)': 350,
+  'mandir-orange-sindoor-100gJar': 199,
+  'yantra-saraswati-3×3Inches(PureCopperPlate)': 499,
+  'shraviko-stainless-steel-incense-holder-Standard10InchTower': 299,
 };
 
 // ─── Coupon Definitions ───────────────────────────────────

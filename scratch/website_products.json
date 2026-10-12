@@ -1,0 +1,1249 @@
+[
+  {
+    "id": "brass-bell-garuda",
+    "name": "Garud Headed Brass Pooja Bell",
+    "category": "brass",
+    "price": 722,
+    "originalPrice": 1389,
+    "weightVariants": [
+      {
+        "weight": "90 g",
+        "price": 722,
+        "originalPrice": 1389,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-bell-nandi",
+    "name": "Nandi Headed Brass Pooja Bell",
+    "category": "brass",
+    "price": 722,
+    "originalPrice": 1389,
+    "weightVariants": [
+      {
+        "weight": "90 g",
+        "price": 722,
+        "originalPrice": 1389,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-bell-simple",
+    "name": "Traditional Brass Pooja Bell",
+    "category": "brass",
+    "price": 722,
+    "originalPrice": 1389,
+    "weightVariants": [
+      {
+        "weight": "90 g",
+        "price": 722,
+        "originalPrice": 1389,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-bell-carved",
+    "name": "Brass Ganesh Ghanti",
+    "category": "brass",
+    "price": 722,
+    "originalPrice": 1389,
+    "weightVariants": [
+      {
+        "weight": "90 g",
+        "price": 722,
+        "originalPrice": 1389,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-puja-thali-set",
+    "name": "Pure Brass Pooja Thali",
+    "category": "brass",
+    "price": 554,
+    "originalPrice": 888,
+    "weightVariants": [
+      {
+        "weight": "6 Inch (80 g)",
+        "price": 554,
+        "originalPrice": 888,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-aarti-kapoor-diya",
+    "name": "Panchmukhi Aarti Diya",
+    "category": "brass",
+    "price": 449,
+    "originalPrice": 799,
+    "weightVariants": [
+      {
+        "weight": "L 14 cm × B 12 cm × H 6 Inch (150 g)",
+        "price": 449,
+        "originalPrice": 799,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-akhand-jyot-deepak",
+    "name": "Brass Akhand Jyot Diya with Protective Cover",
+    "category": "brass",
+    "price": 500,
+    "originalPrice": 888,
+    "weightVariants": [
+      {
+        "weight": "L 13 cm × B 24 cm × H 13 cm (120 g)",
+        "price": 500,
+        "originalPrice": 888,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-cup-jyot-diya",
+    "name": "Brass Akhand Jyot Deepak",
+    "category": "brass",
+    "price": 500,
+    "originalPrice": 888,
+    "weightVariants": [
+      {
+        "weight": "L 13 cm × B 24 cm × H 13 cm (120 g)",
+        "price": 500,
+        "originalPrice": 888,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-kamandal-holy-water-pot",
+    "name": "Brass Kamandal with Lid",
+    "category": "brass",
+    "weightVariants": [
+      {
+        "weight": "500 ML (0.5 L)"
+      },
+      {
+        "weight": "1 Litre (1.0 L)",
+        "default": true
+      },
+      {
+        "weight": "2 Litres (2.0 L)"
+      }
+    ]
+  },
+  {
+    "id": "brass-singhasan-deity-throne",
+    "name": "God Singhasan / Pooja Chowki",
+    "category": "brass",
+    "price": 699,
+    "originalPrice": 1199,
+    "weightVariants": [
+      {
+        "weight": "L 18 cm × B 13 cm × H 23 cm (280 g)",
+        "price": 699,
+        "originalPrice": 1199,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-ladoo-gopal-statue",
+    "name": "Devotional Idol",
+    "category": "brass",
+    "price": 1500,
+    "originalPrice": 1999,
+    "weightVariants": [
+      {
+        "weight": "L 13 cm × B 13 cm × H 10 cm (800 g)",
+        "price": 1500,
+        "originalPrice": 1999,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-kalash-pooja-vessel",
+    "name": "Pooja Kalash Lota",
+    "category": "brass",
+    "price": 499,
+    "originalPrice": 799,
+    "weightVariants": [
+      {
+        "weight": "Size 4 Inch (100 g)",
+        "price": 499,
+        "originalPrice": 799,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-design-thali-set",
+    "name": "Brass Peacock Pooja Thali",
+    "category": "brass",
+    "price": 611,
+    "originalPrice": 999,
+    "weightVariants": [
+      {
+        "weight": "19 × 19 × 19 cm (10 g)",
+        "price": 611,
+        "originalPrice": 999,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "copper-panchpatra-pali-set",
+    "name": "Pure Copper Panchpatra Udharini Set",
+    "category": "copper",
+    "price": 333,
+    "originalPrice": 554,
+    "weightVariants": [
+      {
+        "weight": "L 10 cm × B 10 cm × H 10 cm (20 g)",
+        "price": 333,
+        "originalPrice": 554,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "copper-puja-thali-set",
+    "name": "Pure Copper Pooja Thali",
+    "category": "copper",
+    "price": 1499,
+    "originalPrice": 1999,
+    "weightVariants": [
+      {
+        "weight": "11 Inch (360 g)",
+        "price": 1499,
+        "originalPrice": 1999,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "copper-hawan-kund-pyre",
+    "name": "Shraviko Pure Copper Hawan Kund with Dual Handles",
+    "category": "copper",
+    "price": 2444,
+    "originalPrice": 3332,
+    "weightVariants": [
+      {
+        "weight": "L 25 cm × B 25 cm × H 10 cm (540 g)",
+        "price": 2444,
+        "originalPrice": 3332,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "copper-kalash-pooja-vessel",
+    "name": "Pure Copper Kalash",
+    "category": "copper",
+    "price": 799,
+    "originalPrice": 1299,
+    "weightVariants": [
+      {
+        "weight": "64 g (Small / Daily Pooja)",
+        "price": 499,
+        "originalPrice": 799
+      },
+      {
+        "weight": "240 g (Large / Sthapana & Ceremonies)",
+        "price": 799,
+        "originalPrice": 1299,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "vastu-ganesh-siddha-yantra",
+    "name": "Ganesh Yantra",
+    "category": "vastu",
+    "price": 388,
+    "originalPrice": 1100,
+    "weightVariants": [
+      {
+        "weight": "3 × 3 Inches (20 g)",
+        "price": 388,
+        "originalPrice": 1100,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "vastu-kuber-dhan-prapti-yantra",
+    "name": "Kuber Yantra",
+    "category": "vastu",
+    "price": 388,
+    "originalPrice": 1100,
+    "weightVariants": [
+      {
+        "weight": "3 × 3 Inches (20 g)",
+        "price": 388,
+        "originalPrice": 1100,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "vastu-laxmi-siddha-yantra",
+    "name": "Lakshmi Kuber Yantra",
+    "category": "vastu",
+    "price": 388,
+    "originalPrice": 1100,
+    "weightVariants": [
+      {
+        "weight": "3 × 3 Inches (20 g)",
+        "price": 388,
+        "originalPrice": 1100,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "vastu-shani-siddha-yantra",
+    "name": "Shree Shani Yantra",
+    "category": "vastu",
+    "price": 388,
+    "originalPrice": 1100,
+    "weightVariants": [
+      {
+        "weight": "3 × 3 Inches (20 g)",
+        "price": 388,
+        "originalPrice": 1100,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "vastu-crystal-glass-yantra",
+    "name": "Shree Yantra Cone Meru",
+    "category": "vastu",
+    "price": 450,
+    "originalPrice": 799,
+    "weightVariants": [
+      {
+        "weight": "5 × 4 × 5 cm (70 g Meru)",
+        "price": 450,
+        "originalPrice": 799,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "vastu-brass-pyramid-multitier",
+    "name": "Vastu Brass Pyramid",
+    "category": "vastu",
+    "price": 443,
+    "originalPrice": 999,
+    "weightVariants": [
+      {
+        "weight": "L 10 cm × B 10 cm × H 8 cm (15 g)",
+        "price": 443,
+        "originalPrice": 999,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "vastu-crystal-glass-turtle",
+    "name": "Crystal Turtle with Glass Plate",
+    "category": "vastu",
+    "price": 388,
+    "originalPrice": 777,
+    "weightVariants": [
+      {
+        "weight": "L 35 cm × B 15 cm × H 15 cm (300 g)",
+        "price": 388,
+        "originalPrice": 777,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-kamdhenu-cow-statue",
+    "name": "Shraviko Brass Kamdhenu Cow with Calf Idol",
+    "category": "yantras",
+    "price": 649,
+    "originalPrice": 999,
+    "weightVariants": [
+      {
+        "weight": "Compact (7 × 3 × 5 cm - 70 G)",
+        "price": 499,
+        "originalPrice": 799
+      },
+      {
+        "weight": "Medium (450 G - 5 Inch)",
+        "price": 649,
+        "originalPrice": 999,
+        "default": true
+      },
+      {
+        "weight": "Royal Large (850 G - 7 Inch)",
+        "price": 1299,
+        "originalPrice": 1899
+      }
+    ]
+  },
+  {
+    "id": "brass-ganesh-ji-statue",
+    "name": "Lord Ganesha Idol",
+    "category": "yantras",
+    "price": 649,
+    "originalPrice": 999,
+    "weightVariants": [
+      {
+        "weight": "L 8 cm × B 5 cm × H 7 cm (130 g)",
+        "price": 649,
+        "originalPrice": 999,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-radha-krishna-statue",
+    "name": "Radha Krishna Idol",
+    "category": "yantras",
+    "price": 649,
+    "originalPrice": 999,
+    "weightVariants": [
+      {
+        "weight": "L 8 cm × B 5 cm × H 8 cm (130 g)",
+        "price": 649,
+        "originalPrice": 999,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "vastu-crystal-glass-shivling",
+    "name": "Sphatik Shivling",
+    "category": "vastu",
+    "price": 411,
+    "originalPrice": 999,
+    "weightVariants": [
+      {
+        "weight": "L 6 cm × B 6 cm × H 6 cm (90 g)",
+        "price": 411,
+        "originalPrice": 999,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-rudraksh-mala",
+    "name": "Rudraksha Jaap Mala",
+    "category": "mandir-essentials",
+    "price": 777,
+    "originalPrice": 1110,
+    "weightVariants": [
+      {
+        "weight": "Length 12 cm (20 g)",
+        "price": 777,
+        "originalPrice": 1110,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-sphatik-mala",
+    "name": "Sphatik Jaap Mala",
+    "category": "mandir-essentials",
+    "price": 1599,
+    "originalPrice": 1999,
+    "weightVariants": [
+      {
+        "weight": "Length 34 cm (30 g)",
+        "price": 1599,
+        "originalPrice": 1999,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-tulsi-mala",
+    "name": "Tulsi Jaap Mala",
+    "category": "mandir-essentials",
+    "price": 2,
+    "originalPrice": 443,
+    "weightVariants": [
+      {
+        "weight": "Length 40 cm (20 g)",
+        "price": 2,
+        "originalPrice": 443,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-vaijanti-mala",
+    "name": "Vaijanti Jaap Mala",
+    "category": "mandir-essentials",
+    "price": 278,
+    "originalPrice": 554,
+    "weightVariants": [
+      {
+        "weight": "Length 32 cm (30 g)",
+        "price": 278,
+        "originalPrice": 554,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-karungali-mala",
+    "name": "Karungali Jaap Mala",
+    "category": "mandir-essentials",
+    "price": 278,
+    "originalPrice": 554,
+    "weightVariants": [
+      {
+        "weight": "Length 42 cm (26 g)",
+        "price": 278,
+        "originalPrice": 554,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-lal-chandan",
+    "name": "Pure Lal Chandan / Rakta Chandan Powder",
+    "category": "mandir-essentials",
+    "price": 199,
+    "originalPrice": 299,
+    "weightVariants": [
+      {
+        "weight": "100 g Pack",
+        "price": 199,
+        "originalPrice": 299,
+        "default": true
+      },
+      {
+        "weight": "250 g Value Pack",
+        "price": 269,
+        "originalPrice": 499
+      }
+    ]
+  },
+  {
+    "id": "mandir-pure-camphor",
+    "name": "Pure Shuddh Camphor Tablets",
+    "category": "mandir-essentials",
+    "price": 249,
+    "originalPrice": 399,
+    "weightVariants": [
+      {
+        "weight": "100 g Jar",
+        "price": 249,
+        "originalPrice": 399,
+        "default": true
+      },
+      {
+        "weight": "250 g Jar",
+        "price": 349,
+        "originalPrice": 499
+      }
+    ]
+  },
+  {
+    "id": "mandir-bhimseni-kapoor",
+    "name": "Shraviko Organic Bhimseni Kapoor (Natural Crystal Camphor)",
+    "category": "mandir-essentials",
+    "price": 249,
+    "originalPrice": 399,
+    "weightVariants": [
+      {
+        "weight": "100 g Pack",
+        "price": 249,
+        "originalPrice": 399,
+        "default": true
+      },
+      {
+        "weight": "500 g Pack",
+        "price": 599,
+        "originalPrice": 999
+      }
+    ]
+  },
+  {
+    "id": "mandir-safed-chandan",
+    "name": "Pure Safed Chandan Powder",
+    "category": "mandir-essentials",
+    "price": 199,
+    "originalPrice": 299,
+    "weightVariants": [
+      {
+        "weight": "100 g Pack",
+        "price": 199,
+        "originalPrice": 299,
+        "default": true
+      },
+      {
+        "weight": "250 g Value Pack",
+        "price": 269,
+        "originalPrice": 499
+      }
+    ]
+  },
+  {
+    "id": "wooden-chowki-carved-01",
+    "name": "Wooden Pooja Chowki",
+    "category": "mandir-essentials",
+    "price": 554,
+    "originalPrice": 1110,
+    "weightVariants": [
+      {
+        "weight": "L 38 cm × B 12 cm × H 5 cm (350 g)",
+        "price": 554,
+        "originalPrice": 1110,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "brass-dhoopdani-burner",
+    "name": "Metal Dhoop Dani",
+    "category": "brass",
+    "price": 554,
+    "originalPrice": 1110,
+    "weightVariants": [
+      {
+        "weight": "L 25 cm × B 12 cm × H 16 cm (300 g)",
+        "price": 554,
+        "originalPrice": 1110,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-mala-counter-brass",
+    "name": "Digital Japa Counter",
+    "category": "mandir-essentials",
+    "price": 388,
+    "originalPrice": 888,
+    "weightVariants": [
+      {
+        "weight": "L 10 cm × B 10 cm × H 10 cm (25 g)",
+        "price": 388,
+        "originalPrice": 888,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-pooja-box-chest",
+    "name": "Stainless Steel Pooja Box",
+    "category": "mandir-essentials",
+    "price": 500,
+    "originalPrice": 888,
+    "weightVariants": [
+      {
+        "weight": "L 15 cm × B 15 cm × H 2 cm (300 g)",
+        "price": 500,
+        "originalPrice": 888,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-wooden-damru-shiva",
+    "name": "Wooden Damru / Damaru",
+    "category": "mandir-essentials",
+    "price": 278,
+    "originalPrice": 554,
+    "weightVariants": [
+      {
+        "weight": "Size 5 Inch (60 g)",
+        "price": 278,
+        "originalPrice": 554,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "essentials-brass-chawar-whisk",
+    "name": "Shraviko Premium Temple Chawar Sahib",
+    "category": "mandir-essentials",
+    "weightVariants": [
+      {
+        "weight": "Small (12 Inch)"
+      },
+      {
+        "weight": "Medium (18 Inch)",
+        "default": true
+      },
+      {
+        "weight": "Royal Large (24 Inch)"
+      }
+    ]
+  },
+  {
+    "id": "mandir-royal-velvet-asan-mat",
+    "name": "Shraviko Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3",
+    "category": "mandir-essentials",
+    "weightVariants": [
+      {
+        "weight": "Pack of 3 (14 × 26 Inch)",
+        "default": true
+      },
+      {
+        "weight": "Pack of 6 (14 × 26 Inch)"
+      }
+    ]
+  },
+  {
+    "id": "mandir-dakshinavarti-shankh",
+    "name": "Shraviko Natural Dakshinavarti Shankh",
+    "category": "vastu",
+    "weightVariants": [
+      {
+        "weight": "Small (3 - 4 Inch)"
+      },
+      {
+        "weight": "Medium (5 - 6 Inch)",
+        "default": true
+      },
+      {
+        "weight": "Royal Large (7 - 8 Inch)"
+      }
+    ]
+  },
+  {
+    "id": "mandir-vamavarti-shankh",
+    "name": "Shraviko Vamavarti Blowing Shankh",
+    "category": "vastu",
+    "weightVariants": [
+      {
+        "weight": "Small Blowing (5 Inch)"
+      },
+      {
+        "weight": "Loud Resonance Medium (7 Inch)",
+        "default": true
+      },
+      {
+        "weight": "Temple Master Large (9 Inch)"
+      }
+    ]
+  },
+  {
+    "id": "yantra-kaal-sarp",
+    "name": "Kaal Sarp Yog Dosh Nivaran Yantra",
+    "category": "vastu",
+    "price": 999,
+    "originalPrice": 1499,
+    "weightVariants": [
+      {
+        "weight": "Standard",
+        "price": 999,
+        "originalPrice": 1499,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "yantra-mangal",
+    "name": "Mangal Yantra",
+    "category": "vastu",
+    "price": 999,
+    "originalPrice": 1499,
+    "weightVariants": [
+      {
+        "weight": "Standard",
+        "price": 999,
+        "originalPrice": 1499,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "yantra-sarv-karya",
+    "name": "Sarv Karya Siddhi Yantra",
+    "category": "vastu",
+    "price": 999,
+    "originalPrice": 1499,
+    "weightVariants": [
+      {
+        "weight": "Standard",
+        "price": 999,
+        "originalPrice": 1499,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "yantra-baglamukhi",
+    "name": "Shri Baglamukhi Mahayantra",
+    "category": "vastu",
+    "price": 999,
+    "originalPrice": 1499,
+    "weightVariants": [
+      {
+        "weight": "Standard",
+        "price": 999,
+        "originalPrice": 1499,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-cow-dung-cake",
+    "name": "Desi Cow Dung Cakes (Gau Upla)",
+    "category": "mandir-essentials",
+    "price": 249,
+    "originalPrice": 399,
+    "weightVariants": [
+      {
+        "weight": "Pack of 6 Cakes",
+        "price": 249,
+        "originalPrice": 399,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-hawan-samagri",
+    "name": "Shraviko Sacred Ayurvedic Hawan Samagri (51 Herbs Blend)",
+    "category": "mandir-essentials",
+    "price": 199,
+    "originalPrice": 299,
+    "weightVariants": [
+      {
+        "weight": "100 g Pack",
+        "price": 199,
+        "originalPrice": 299,
+        "default": true
+      },
+      {
+        "weight": "250 g Pack",
+        "price": 299,
+        "originalPrice": 499
+      },
+      {
+        "weight": "1 kg Pack",
+        "price": 599,
+        "originalPrice": 799
+      }
+    ]
+  },
+  {
+    "id": "yantra-maha-mrityunjay",
+    "name": "Shri Mahamrityunjay Yantra",
+    "category": "vastu",
+    "price": 499,
+    "originalPrice": 899,
+    "weightVariants": [
+      {
+        "weight": "Standard 3x3 Inch Copper Yantra",
+        "price": 499,
+        "originalPrice": 899,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-pure-kumkum",
+    "name": "Pure Shuddh Roli Kumkum",
+    "category": "mandir-essentials",
+    "price": 199,
+    "originalPrice": 499,
+    "weightVariants": [
+      {
+        "weight": "250 g Pack",
+        "price": 199,
+        "originalPrice": 499,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-pure-loban",
+    "name": "Natural Pure Sambrani Loban Resin",
+    "category": "mandir-essentials",
+    "price": 249,
+    "originalPrice": 499,
+    "weightVariants": [
+      {
+        "weight": "100 g Pack",
+        "price": 249,
+        "originalPrice": 499,
+        "default": true
+      },
+      {
+        "weight": "500 g Pack",
+        "price": 449,
+        "originalPrice": 799
+      },
+      {
+        "weight": "1 kg Pack",
+        "price": 599,
+        "originalPrice": 999
+      }
+    ]
+  },
+  {
+    "id": "shraviko-bakhoor-incense-sticks",
+    "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
+    "category": "incense",
+    "price": 249,
+    "originalPrice": 499
+  },
+  {
+    "id": "shraviko-kesar-incense-sticks",
+    "name": "Shraviko Kesar Chandan Saffron Incense Sticks",
+    "category": "incense",
+    "price": 229,
+    "originalPrice": 449
+  },
+  {
+    "id": "shraviko-lavender-incense-sticks",
+    "name": "Shraviko French Lavender Organic Incense Sticks",
+    "category": "incense",
+    "price": 219,
+    "originalPrice": 399
+  },
+  {
+    "id": "shraviko-oudh-incense-sticks",
+    "name": "Shraviko Regal Agarwood Oudh Incense Sticks",
+    "category": "incense",
+    "price": 269,
+    "originalPrice": 549
+  },
+  {
+    "id": "shraviko-chandan-dhoop-cups",
+    "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
+    "category": "incense",
+    "price": 299,
+    "originalPrice": 599
+  },
+  {
+    "id": "shraviko-guggul-dhoop-cups",
+    "name": "Shraviko Sacred Guggul Dhoop Cups with Sambrani",
+    "category": "incense",
+    "price": 299,
+    "originalPrice": 599
+  },
+  {
+    "id": "shraviko-rose-dhoop-cups",
+    "name": "Shraviko Desi Gulab Rose Dhoop Cups with Sambrani",
+    "category": "incense",
+    "price": 299,
+    "originalPrice": 599
+  },
+  {
+    "id": "shraviko-sandalwood-incense-sticks",
+    "name": "Shraviko Vedic Sandalwood (Chandan) Incense Sticks",
+    "category": "incense",
+    "price": 229,
+    "originalPrice": 449,
+    "weightVariants": [
+      {
+        "weight": "Pack of 1 Box (approx. 50 sticks)",
+        "price": 229,
+        "originalPrice": 449,
+        "default": true
+      },
+      {
+        "weight": "Pack of 3 Boxes (approx. 150 sticks)",
+        "price": 599,
+        "originalPrice": 1199
+      }
+    ]
+  },
+  {
+    "id": "shraviko-rose-incense-sticks",
+    "name": "Shraviko Desi Gulab Indian Rose Incense Sticks",
+    "category": "incense",
+    "price": 219,
+    "originalPrice": 429,
+    "weightVariants": [
+      {
+        "weight": "Pack of 1 Box (approx. 50 sticks)",
+        "price": 219,
+        "originalPrice": 429,
+        "default": true
+      },
+      {
+        "weight": "Pack of 3 Boxes (approx. 150 sticks)",
+        "price": 549,
+        "originalPrice": 1099
+      }
+    ]
+  },
+  {
+    "id": "shraviko-chandan-camphor-fly-cone",
+    "name": "Shraviko Chandan & Camphor Organic Dhoop Cones",
+    "category": "incense",
+    "price": 349,
+    "originalPrice": 699
+  },
+  {
+    "id": "shraviko-lavender-camphor-fly-cone",
+    "name": "Shraviko Lavender & Camphor Organic Dhoop Cones",
+    "category": "incense",
+    "price": 349,
+    "originalPrice": 699
+  },
+  {
+    "id": "shraviko-brass-dhoop-dani",
+    "name": "Shraviko Traditional Brass Dhoop Dani Burner",
+    "category": "brass",
+    "price": 899,
+    "originalPrice": 1799
+  },
+  {
+    "id": "shraviko-brass-handle-dhoop",
+    "name": "Shraviko Handled Brass Dhoop Dani & Camphor Burner",
+    "category": "brass",
+    "price": 799,
+    "originalPrice": 1499
+  },
+  {
+    "id": "shraviko-brass-bhog-thali",
+    "name": "Shraviko Handcrafted Brass Bhog Thali Set",
+    "category": "brass",
+    "price": 699,
+    "originalPrice": 1299
+  },
+  {
+    "id": "shraviko-brass-puja-bell",
+    "name": "Shraviko Classic Solid Brass Pooja Bell (Ghanti)",
+    "category": "brass",
+    "price": 549,
+    "originalPrice": 999
+  },
+  {
+    "id": "shraviko-spiritual-engraved-bell",
+    "name": "Shraviko Hand-Carved Spiritual Brass Pooja Bell",
+    "category": "brass",
+    "price": 649,
+    "originalPrice": 1199
+  },
+  {
+    "id": "shraviko-brass-diya-set5",
+    "name": "Shraviko Handcrafted Brass Diya (Set of 5)",
+    "category": "brass",
+    "price": 749,
+    "originalPrice": 1399
+  },
+  {
+    "id": "shraviko-carved-brass-diya",
+    "name": "Shraviko Hand-Carved Traditional Brass Diya",
+    "category": "brass",
+    "price": 499,
+    "originalPrice": 899
+  },
+  {
+    "id": "shraviko-brass-cup-deepak",
+    "name": "Shraviko Heavy Brass Cup Deepak Diya",
+    "category": "brass",
+    "price": 599,
+    "originalPrice": 1099
+  },
+  {
+    "id": "shraviko-peacock-brass-stand-diya",
+    "name": "Mayur Peacock Brass Stand Diya (Kutthu Vilakku)",
+    "category": "brass",
+    "price": 1299,
+    "originalPrice": 2499,
+    "weightVariants": [
+      {
+        "weight": "Single Diya (12 Inch / ~750 g)",
+        "price": 1299,
+        "originalPrice": 2499,
+        "default": true
+      },
+      {
+        "weight": "Pair of 2 Diyas (12 Inch / ~1.5 kg)",
+        "price": 2399,
+        "originalPrice": 4799
+      }
+    ]
+  },
+  {
+    "id": "shraviko-spire-brass-stand-diya",
+    "name": "Classic Spire Brass Stand Diya (Kutthu Vilakku)",
+    "category": "brass",
+    "price": 1199,
+    "originalPrice": 2299,
+    "weightVariants": [
+      {
+        "weight": "Single Diya (12 Inch / ~700 g)",
+        "price": 1199,
+        "originalPrice": 2299,
+        "default": true
+      },
+      {
+        "weight": "Pair of 2 Diyas (12 Inch / ~1.4 kg)",
+        "price": 2199,
+        "originalPrice": 4399
+      }
+    ]
+  },
+  {
+    "id": "shraviko-stainless-steel-dibbi",
+    "name": "Shraviko Pure Stainless Steel Puja Container Dibbi",
+    "category": "mandir-essentials",
+    "price": 199,
+    "originalPrice": 349
+  },
+  {
+    "id": "shraviko-brass-footprints",
+    "name": "Shraviko Sacred Brass Lakshmi Charan Paduka Footprints",
+    "category": "vastu",
+    "price": 499,
+    "originalPrice": 899
+  },
+  {
+    "id": "shraviko-silver-footprints",
+    "name": "Shraviko Pure Silver Plated Goddess Lakshmi Charan Paduka",
+    "category": "vastu",
+    "price": 799,
+    "originalPrice": 1499
+  },
+  {
+    "id": "shraviko-diamond-akhand-jyot",
+    "name": "Shraviko Diamond Cut Glass Brass Akhand Jyot Diya",
+    "category": "brass",
+    "price": 849,
+    "originalPrice": 1599
+  },
+  {
+    "id": "shraviko-crystal-glass-akhand-jyot",
+    "name": "Shraviko Crystal Glass Brass Akhand Jyot Deepak",
+    "category": "brass",
+    "price": 799,
+    "originalPrice": 1499
+  },
+  {
+    "id": "shraviko-lotus-brass-akhand-jyot",
+    "name": "Shraviko Lotus Petal Brass Akhand Jyot Diya",
+    "category": "brass",
+    "price": 899,
+    "originalPrice": 1699
+  },
+  {
+    "id": "shraviko-om-top-glass-akhand-jyot",
+    "name": "Shraviko Sacred OM Glass Chimney Brass Akhand Jyot",
+    "category": "brass",
+    "price": 849,
+    "originalPrice": 1599
+  },
+  {
+    "id": "shraviko-brass-glass-akhand-jyot-cover",
+    "name": "Shraviko Pure Brass Akhand Jyot Deepak with Protective Glass Cover",
+    "category": "brass",
+    "price": 799,
+    "originalPrice": 1499
+  },
+  {
+    "id": "shraviko-brass-puja-dibbi",
+    "name": "Shraviko Solid Brass Puja Container Dibbi",
+    "category": "mandir-essentials",
+    "price": 349,
+    "originalPrice": 699,
+    "weightVariants": [
+      {
+        "weight": "Medium (60 g)",
+        "price": 349,
+        "originalPrice": 699,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "shraviko-mogra-incense-sticks",
+    "name": "Shraviko Bela Mogra (Jasmine) Organic Incense Sticks",
+    "category": "incense",
+    "price": 249,
+    "originalPrice": 499,
+    "weightVariants": [
+      {
+        "weight": "Pack of 1 (100 g - approx. 40 sticks)",
+        "price": 249,
+        "originalPrice": 499,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "shraviko-musk-incense-sticks",
+    "name": "Shraviko Royal Kasturi Musk Organic Incense Sticks",
+    "category": "incense",
+    "price": 249,
+    "originalPrice": 499,
+    "weightVariants": [
+      {
+        "weight": "Pack of 1 (100 g - approx. 40 sticks)",
+        "price": 249,
+        "originalPrice": 499,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "yantra-navgraha",
+    "name": "Sacred Pure Copper Shri Navgraha Chowki Yantra",
+    "category": "vastu",
+    "price": 599,
+    "originalPrice": 1199,
+    "weightVariants": [
+      {
+        "weight": "3 × 3 Inches (Heavy Copper Plate)",
+        "price": 599,
+        "originalPrice": 1199,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "mandir-orange-sindoor",
+    "name": "Shraviko Pure Hanuman Orange Sindoor (Chola Roli)",
+    "category": "mandir-essentials",
+    "price": 199,
+    "originalPrice": 399,
+    "weightVariants": [
+      {
+        "weight": "100 g Jar",
+        "price": 199,
+        "originalPrice": 399,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "yantra-saraswati",
+    "name": "Sacred Pure Copper Shri Saraswati Yantra",
+    "category": "vastu",
+    "price": 499,
+    "originalPrice": 999,
+    "weightVariants": [
+      {
+        "weight": "3 × 3 Inches (Pure Copper Plate)",
+        "price": 499,
+        "originalPrice": 999,
+        "default": true
+      }
+    ]
+  },
+  {
+    "id": "shraviko-stainless-steel-incense-holder",
+    "name": "Shraviko Stainless Steel Agarbatti Tower Stand & Burner",
+    "category": "mandir-essentials",
+    "price": 299,
+    "originalPrice": 599,
+    "weightVariants": [
+      {
+        "weight": "Standard 10 Inch Tower",
+        "price": 299,
+        "originalPrice": 599,
+        "default": true
+      }
+    ]
+  }
+]

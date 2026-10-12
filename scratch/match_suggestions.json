@@ -1,0 +1,2237 @@
+[
+  {
+    "index": 1,
+    "sku": "SHR-SS-01",
+    "price": 499,
+    "title": "Hawan Samidha Sticks 1 Kg for Havan, Yagna, Pooja and Traditional Hindu Rituals",
+    "topMatches": [
+      {
+        "id": "copper-hawan-kund-pyre",
+        "name": "Shraviko Pure Copper Hawan Kund with Dual Handles",
+        "price": 2444,
+        "score": 10
+      },
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 9
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 8
+      }
+    ]
+  },
+  {
+    "index": 2,
+    "sku": "SHR-BK-01",
+    "price": 399,
+    "title": "SHRAVIKO Bheemseni Kapoor for Pooja, Aarti & Home Fragrance | Traditional Camphor for Daily Worship and Aromatic Home Use",
+    "topMatches": [
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 13
+      },
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 12
+      },
+      {
+        "id": "mandir-bhimseni-kapoor",
+        "name": "Shraviko Organic Bhimseni Kapoor (Natural Crystal Camphor)",
+        "price": 249,
+        "score": 12
+      }
+    ]
+  },
+  {
+    "index": 3,
+    "sku": "SHR-AS-01",
+    "price": 299,
+    "title": "SHRAVIKO Stainless Steel Incense Stand with Perforated Body and Lid for Agarbatti, Dhoop, Pooja Room, Mandir and Home",
+    "topMatches": [
+      {
+        "id": "shraviko-stainless-steel-incense-holder",
+        "name": "Shraviko Stainless Steel Agarbatti Tower Stand & Burner",
+        "price": 299,
+        "score": 24
+      },
+      {
+        "id": "mandir-pooja-box-chest",
+        "name": "Stainless Steel Pooja Box",
+        "price": 500,
+        "score": 17
+      },
+      {
+        "id": "shraviko-stainless-steel-dibbi",
+        "name": "Shraviko Pure Stainless Steel Puja Container Dibbi",
+        "price": 199,
+        "score": 13
+      }
+    ]
+  },
+  {
+    "index": 4,
+    "sku": "SHR-DC-01",
+    "price": 499,
+    "title": "SHRAVIKO 4-in-1 Bamboo-Less Jumbo Dry Dhoop Cones, Assorted Fragrances for Pooja, Aarti, Meditation & Home Fragrance",
+    "topMatches": [
+      {
+        "id": "mandir-pooja-box-chest",
+        "name": "Stainless Steel Pooja Box",
+        "price": 500,
+        "score": 10
+      },
+      {
+        "id": "shraviko-brass-handle-dhoop",
+        "name": "Shraviko Handled Brass Dhoop Dani & Camphor Burner",
+        "price": 799,
+        "score": 9
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 8
+      }
+    ]
+  },
+  {
+    "index": 5,
+    "sku": "SHR-MU-01",
+    "price": 299,
+    "title": "SHRAVIKO Musk Bamboo-Less Premium Dhoop Sticks for Pooja, Meditation & Home Fragrance | Traditional Kasturi-Inspired Aroma",
+    "topMatches": [
+      {
+        "id": "shraviko-musk-incense-sticks",
+        "name": "Shraviko Royal Kasturi Musk Organic Incense Sticks",
+        "price": 249,
+        "score": 18
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 11
+      },
+      {
+        "id": "shraviko-bakhoor-incense-sticks",
+        "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
+        "price": 249,
+        "score": 11
+      }
+    ]
+  },
+  {
+    "index": 6,
+    "sku": "SHR-KO-02",
+    "price": 199,
+    "title": "SHRAVIKO Kesar Oil 15 ml for Pooja & Religious Ceremonies | Saffron Fragrance Oil for Tilak, Abhishek & Devotional Rituals",
+    "topMatches": [
+      {
+        "id": "shraviko-kesar-incense-sticks",
+        "name": "Shraviko Kesar Chandan Saffron Incense Sticks",
+        "price": 229,
+        "score": 12
+      },
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 11
+      },
+      {
+        "id": "brass-bell-garuda",
+        "name": "Garud Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 7
+      }
+    ]
+  },
+  {
+    "index": 7,
+    "sku": "SHR-CO-01",
+    "price": 199,
+    "title": "SHRAVIKO Chandan Oil 15 ml for Pooja & Religious Ceremonies | Sandalwood Fragrance Oil for Tilak, Abhishek & Devotional Rituals",
+    "topMatches": [
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 11
+      },
+      {
+        "id": "mandir-safed-chandan",
+        "name": "Pure Safed Chandan Powder",
+        "price": 199,
+        "score": 11
+      },
+      {
+        "id": "shraviko-sandalwood-incense-sticks",
+        "name": "Shraviko Vedic Sandalwood (Chandan) Incense Sticks",
+        "price": 229,
+        "score": 10
+      }
+    ]
+  },
+  {
+    "index": 8,
+    "sku": "SHR-SI-01",
+    "price": 199,
+    "title": "SHRAVIKO Orange Sindoor Powder for Pooja, Tilak & Traditional Rituals | Fine Orange Sindoor for Festive & Devotional Use",
+    "topMatches": [
+      {
+        "id": "mandir-orange-sindoor",
+        "name": "Shraviko Pure Hanuman Orange Sindoor (Chola Roli)",
+        "price": 199,
+        "score": 28
+      },
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 11
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 10
+      }
+    ]
+  },
+  {
+    "index": 9,
+    "sku": "SHR-NK-1",
+    "price": 799,
+    "title": "SHRAVIKO Navratri Pooja Kit Complete Puja Samagri Set with Diya, Batti, Dhoop & Kumkum Prayer Kit",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-diya-set5",
+        "name": "Shraviko Handcrafted Brass Diya (Set of 5)",
+        "price": 749,
+        "score": 13
+      },
+      {
+        "id": "brass-puja-thali-set",
+        "name": "Pure Brass Pooja Thali",
+        "price": 554,
+        "score": 11
+      },
+      {
+        "id": "copper-puja-thali-set",
+        "name": "Pure Copper Pooja Thali",
+        "price": 1499,
+        "score": 11
+      }
+    ]
+  },
+  {
+    "index": 10,
+    "sku": "SHR-MG-01",
+    "price": 249,
+    "title": "SHRAVIKO Mogra Incense Sticks | Bamboo-Free Jasmine Fragrance for Puja, Aarti, Meditation & Home | Long-Lasting Floral Aroma",
+    "topMatches": [
+      {
+        "id": "shraviko-mogra-incense-sticks",
+        "name": "Shraviko Bela Mogra (Jasmine) Organic Incense Sticks",
+        "price": 249,
+        "score": 22
+      },
+      {
+        "id": "shraviko-bakhoor-incense-sticks",
+        "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
+        "price": 249,
+        "score": 16
+      },
+      {
+        "id": "shraviko-sandalwood-incense-sticks",
+        "name": "Shraviko Vedic Sandalwood (Chandan) Incense Sticks",
+        "price": 229,
+        "score": 16
+      }
+    ]
+  },
+  {
+    "index": 11,
+    "sku": "SHR-GF-01",
+    "price": 699,
+    "title": "SHRAVIKO German Silver Charan Paduka Pair with Om, Shri & Swastik Design for Pooja Mandir, Chowki & Festive Decor",
+    "topMatches": [
+      {
+        "id": "wooden-chowki-carved-01",
+        "name": "Wooden Pooja Chowki",
+        "price": 554,
+        "score": 14
+      },
+      {
+        "id": "shraviko-silver-footprints",
+        "name": "Shraviko Pure Silver Plated Goddess Lakshmi Charan Paduka",
+        "price": 799,
+        "score": 14
+      },
+      {
+        "id": "mandir-pooja-box-chest",
+        "name": "Stainless Steel Pooja Box",
+        "price": 500,
+        "score": 11
+      }
+    ]
+  },
+  {
+    "index": 12,
+    "sku": "SHR-CD-00",
+    "price": null,
+    "title": "Shraviko Brass Akhand Diya with Glass Cover | Akhand Jyot Deepak with Wick Holder for Pooja, Home Mandir & Temple | Traditional Oil Lamp for Aarti, Diwali & Gifting",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-glass-akhand-jyot-cover",
+        "name": "Shraviko Pure Brass Akhand Jyot Deepak with Protective Glass Cover",
+        "price": 799,
+        "score": 42
+      },
+      {
+        "id": "brass-cup-jyot-diya",
+        "name": "Brass Akhand Jyot Deepak",
+        "price": 500,
+        "score": 36
+      },
+      {
+        "id": "brass-akhand-jyot-deepak",
+        "name": "Brass Akhand Jyot Diya with Protective Cover",
+        "price": 500,
+        "score": 35
+      }
+    ]
+  },
+  {
+    "index": 13,
+    "sku": "SHR-SD-02",
+    "price": 1399,
+    "title": "Shraviko 10 Inch Brass Kerala Diya | Traditional Vilakku Oil Lamp Stand for Pooja, Home Mandir & Temple | Golden Deepam for Aarti, Diwali & Gifting",
+    "topMatches": [
+      {
+        "id": "shraviko-peacock-brass-stand-diya",
+        "name": "Mayur Peacock Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1299,
+        "score": 28
+      },
+      {
+        "id": "shraviko-spire-brass-stand-diya",
+        "name": "Classic Spire Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1199,
+        "score": 27
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 18
+      }
+    ]
+  },
+  {
+    "index": 14,
+    "sku": "SHR-KD-01",
+    "price": 999,
+    "title": "Shraviko 12 Inch Brass Kerala Samai Diya | Peacock Kutthu Vilakku Oil Lamp for Pooja, Home Mandir & Temple | Traditional Standing Deepam for Aarti, Diwali & Gifting",
+    "topMatches": [
+      {
+        "id": "shraviko-peacock-brass-stand-diya",
+        "name": "Mayur Peacock Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1299,
+        "score": 33
+      },
+      {
+        "id": "shraviko-spire-brass-stand-diya",
+        "name": "Classic Spire Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1199,
+        "score": 26
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 18
+      }
+    ]
+  },
+  {
+    "index": 15,
+    "sku": "SHR-SB-01",
+    "price": 999,
+    "title": "Shraviko Kansa Pooja Bell 6 Inch | Handcrafted Bronze Ghanti for Home Mandir, Aarti, Havan & Daily Puja | Traditional Hand Bell for Temple, Pooja Room & Gifting",
+    "topMatches": [
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 31
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 29
+      },
+      {
+        "id": "shraviko-brass-puja-bell",
+        "name": "Shraviko Classic Solid Brass Pooja Bell (Ghanti)",
+        "price": 549,
+        "score": 28
+      }
+    ]
+  },
+  {
+    "index": 16,
+    "sku": "HT-MQTG-1RH9",
+    "price": null,
+    "title": "Brass Glass Oil Lamp for Pooja, Akhand Diya for Mandir, Home & Diwali Decor",
+    "topMatches": [
+      {
+        "id": "shraviko-diamond-akhand-jyot",
+        "name": "Shraviko Diamond Cut Glass Brass Akhand Jyot Diya",
+        "price": 849,
+        "score": 19
+      },
+      {
+        "id": "shraviko-brass-glass-akhand-jyot-cover",
+        "name": "Shraviko Pure Brass Akhand Jyot Deepak with Protective Glass Cover",
+        "price": 799,
+        "score": 19
+      },
+      {
+        "id": "shraviko-om-top-glass-akhand-jyot",
+        "name": "Shraviko Sacred OM Glass Chimney Brass Akhand Jyot",
+        "price": 849,
+        "score": 18
+      }
+    ]
+  },
+  {
+    "index": 17,
+    "sku": "SHR-LA-02",
+    "price": 599,
+    "title": "Brass Lotus Diya Stand for Pooja, Oil Lamp for Home & Diwali Decor",
+    "topMatches": [
+      {
+        "id": "shraviko-peacock-brass-stand-diya",
+        "name": "Mayur Peacock Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1299,
+        "score": 21
+      },
+      {
+        "id": "shraviko-spire-brass-stand-diya",
+        "name": "Classic Spire Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1199,
+        "score": 20
+      },
+      {
+        "id": "shraviko-brass-diya-set5",
+        "name": "Shraviko Handcrafted Brass Diya (Set of 5)",
+        "price": 749,
+        "score": 16
+      }
+    ]
+  },
+  {
+    "index": 18,
+    "sku": "SHR-AJ-01",
+    "price": 1899,
+    "title": "Brass Glass Diya Akhand Jyot | Oil Lamp with Perforated Dome for Mandir",
+    "topMatches": [
+      {
+        "id": "shraviko-diamond-akhand-jyot",
+        "name": "Shraviko Diamond Cut Glass Brass Akhand Jyot Diya",
+        "price": 849,
+        "score": 25
+      },
+      {
+        "id": "shraviko-crystal-glass-akhand-jyot",
+        "name": "Shraviko Crystal Glass Brass Akhand Jyot Deepak",
+        "price": 799,
+        "score": 24
+      },
+      {
+        "id": "shraviko-om-top-glass-akhand-jyot",
+        "name": "Shraviko Sacred OM Glass Chimney Brass Akhand Jyot",
+        "price": 849,
+        "score": 24
+      }
+    ]
+  },
+  {
+    "index": 19,
+    "sku": "SHR-MB-01",
+    "price": 499,
+    "title": "Brass Pooja Bell | Decorative Hand Bell with Laddu Gopal Design for Aarti",
+    "topMatches": [
+      {
+        "id": "brass-bell-garuda",
+        "name": "Garud Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 25
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 25
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 24
+      }
+    ]
+  },
+  {
+    "index": 20,
+    "sku": "SH-DI-01",
+    "price": 299,
+    "title": "Crystal Lotus Diya | Decorative Oil Lamp for Puja, Diwali & Home Décor",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-diya-set5",
+        "name": "Shraviko Handcrafted Brass Diya (Set of 5)",
+        "price": 749,
+        "score": 10
+      },
+      {
+        "id": "shraviko-lotus-brass-akhand-jyot",
+        "name": "Shraviko Lotus Petal Brass Akhand Jyot Diya",
+        "price": 899,
+        "score": 10
+      },
+      {
+        "id": "shraviko-peacock-brass-stand-diya",
+        "name": "Mayur Peacock Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1299,
+        "score": 9
+      }
+    ]
+  },
+  {
+    "index": 21,
+    "sku": "SHR-GA-01",
+    "price": 2299,
+    "title": "Copper Garba Deepam for Navratri | Garbha Jyot with Oil Pot & Spoon",
+    "topMatches": [
+      {
+        "id": "brass-cup-jyot-diya",
+        "name": "Brass Akhand Jyot Deepak",
+        "price": 500,
+        "score": 7
+      },
+      {
+        "id": "copper-panchpatra-pali-set",
+        "name": "Pure Copper Panchpatra Udharini Set",
+        "price": 333,
+        "score": 7
+      },
+      {
+        "id": "copper-kalash-pooja-vessel",
+        "name": "Pure Copper Kalash",
+        "price": 799,
+        "score": 7
+      }
+    ]
+  },
+  {
+    "index": 22,
+    "sku": "SHR-DD-01",
+    "price": 399,
+    "title": "SHRAVIKO Brass Diya Set of 5 | Oil Lamp with Cotton Wick Holder",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-diya-set5",
+        "name": "Shraviko Handcrafted Brass Diya (Set of 5)",
+        "price": 749,
+        "score": 21
+      },
+      {
+        "id": "shraviko-peacock-brass-stand-diya",
+        "name": "Mayur Peacock Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1299,
+        "score": 15
+      },
+      {
+        "id": "shraviko-spire-brass-stand-diya",
+        "name": "Classic Spire Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1199,
+        "score": 14
+      }
+    ]
+  },
+  {
+    "index": 23,
+    "sku": "SHR-BD-01",
+    "price": 999,
+    "title": "Brass Dhoop Dani | Loban, Sambrani & Guggal Burner with Wooden Handle",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-handle-dhoop",
+        "name": "Shraviko Handled Brass Dhoop Dani & Camphor Burner",
+        "price": 799,
+        "score": 25
+      },
+      {
+        "id": "shraviko-brass-dhoop-dani",
+        "name": "Shraviko Traditional Brass Dhoop Dani Burner",
+        "price": 899,
+        "score": 23
+      },
+      {
+        "id": "brass-dhoopdani-burner",
+        "name": "Metal Dhoop Dani",
+        "price": 554,
+        "score": 20
+      }
+    ]
+  },
+  {
+    "index": 24,
+    "sku": "SHR-C-01",
+    "price": 899,
+    "title": "SHRAVIKO Brass Deepak Diya | Wick Holder Oil Lamp for Pooja & Diwali",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-cup-deepak",
+        "name": "Shraviko Heavy Brass Cup Deepak Diya",
+        "price": 599,
+        "score": 18
+      },
+      {
+        "id": "brass-cup-jyot-diya",
+        "name": "Brass Akhand Jyot Deepak",
+        "price": 500,
+        "score": 17
+      },
+      {
+        "id": "shraviko-brass-diya-set5",
+        "name": "Shraviko Handcrafted Brass Diya (Set of 5)",
+        "price": 749,
+        "score": 16
+      }
+    ]
+  },
+  {
+    "index": 25,
+    "sku": "SHR-DH-01",
+    "price": 988,
+    "title": "Brass Dhoop Dani with Lid & Handle| Loban Sambrani Burner for Pooja & Home",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-handle-dhoop",
+        "name": "Shraviko Handled Brass Dhoop Dani & Camphor Burner",
+        "price": 799,
+        "score": 26
+      },
+      {
+        "id": "shraviko-brass-dhoop-dani",
+        "name": "Shraviko Traditional Brass Dhoop Dani Burner",
+        "price": 899,
+        "score": 23
+      },
+      {
+        "id": "brass-dhoopdani-burner",
+        "name": "Metal Dhoop Dani",
+        "price": 554,
+        "score": 22
+      }
+    ]
+  },
+  {
+    "index": 26,
+    "sku": "SHR-H-01",
+    "price": 380,
+    "title": "Havan Samagri | Traditional Hawan Samagri for Puja, Yagya & Homa",
+    "topMatches": [
+      {
+        "id": "mandir-hawan-samagri",
+        "name": "Shraviko Sacred Ayurvedic Hawan Samagri (51 Herbs Blend)",
+        "price": 199,
+        "score": 19
+      },
+      {
+        "id": "copper-hawan-kund-pyre",
+        "name": "Shraviko Pure Copper Hawan Kund with Dual Handles",
+        "price": 2444,
+        "score": 9
+      },
+      {
+        "id": "shraviko-brass-puja-dibbi",
+        "name": "Shraviko Solid Brass Puja Container Dibbi",
+        "price": 349,
+        "score": 6
+      }
+    ]
+  },
+  {
+    "index": 27,
+    "sku": "SH-LAL-003",
+    "price": 220,
+    "title": "Lal Chandan Tilak | Red Sandalwood Chandan Tika for Pooja & Worship",
+    "topMatches": [
+      {
+        "id": "mandir-lal-chandan",
+        "name": "Pure Lal Chandan / Rakta Chandan Powder",
+        "price": 199,
+        "score": 21
+      },
+      {
+        "id": "mandir-safed-chandan",
+        "name": "Pure Safed Chandan Powder",
+        "price": 199,
+        "score": 16
+      },
+      {
+        "id": "shraviko-sandalwood-incense-sticks",
+        "name": "Shraviko Vedic Sandalwood (Chandan) Incense Sticks",
+        "price": 229,
+        "score": 16
+      }
+    ]
+  },
+  {
+    "index": 28,
+    "sku": "SH-KU-01",
+    "price": 230,
+    "title": "Red Kumkum Powder | Sindoor for Pooja, Tilak, Aarti & Religious Events",
+    "topMatches": [
+      {
+        "id": "mandir-pure-kumkum",
+        "name": "Pure Shuddh Roli Kumkum",
+        "price": 199,
+        "score": 9
+      },
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 8
+      },
+      {
+        "id": "mandir-pooja-box-chest",
+        "name": "Stainless Steel Pooja Box",
+        "price": 500,
+        "score": 8
+      }
+    ]
+  },
+  {
+    "index": 29,
+    "sku": "SHR-CAM-09",
+    "price": 280,
+    "title": "Camphor Kapoor 100g | Pure Camphor Tablets for Pooja, Havan & Aarti",
+    "topMatches": [
+      {
+        "id": "mandir-pure-camphor",
+        "name": "Pure Shuddh Camphor Tablets",
+        "price": 249,
+        "score": 24
+      },
+      {
+        "id": "mandir-bhimseni-kapoor",
+        "name": "Shraviko Organic Bhimseni Kapoor (Natural Crystal Camphor)",
+        "price": 249,
+        "score": 15
+      },
+      {
+        "id": "shraviko-lavender-camphor-fly-cone",
+        "name": "Shraviko Lavender & Camphor Organic Dhoop Cones",
+        "price": 349,
+        "score": 13
+      }
+    ]
+  },
+  {
+    "index": 30,
+    "sku": "SHR-SF-04",
+    "price": 280,
+    "title": "Safed Chandan Tilak | White Sandalwood Chandan Powder for Pooja & Tilak",
+    "topMatches": [
+      {
+        "id": "mandir-safed-chandan",
+        "name": "Pure Safed Chandan Powder",
+        "price": 199,
+        "score": 26
+      },
+      {
+        "id": "mandir-lal-chandan",
+        "name": "Pure Lal Chandan / Rakta Chandan Powder",
+        "price": 199,
+        "score": 17
+      },
+      {
+        "id": "shraviko-chandan-dhoop-cups",
+        "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 14
+      }
+    ]
+  },
+  {
+    "index": 31,
+    "sku": "SHR-CO-99",
+    "price": 320,
+    "title": "Cow Dung Cakes Pack of 10 | Gobar Upla Kanda for Havan, Yajna & Pooja",
+    "topMatches": [
+      {
+        "id": "mandir-cow-dung-cake",
+        "name": "Desi Cow Dung Cakes (Gau Upla)",
+        "price": 249,
+        "score": 20
+      },
+      {
+        "id": "mandir-royal-velvet-asan-mat",
+        "name": "Shraviko Red Velvet Pooja Aasan Cloth with Golden Border – Pack of 3",
+        "score": 8
+      },
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 7
+      }
+    ]
+  },
+  {
+    "index": 32,
+    "sku": "SHR-FC-01",
+    "price": 260,
+    "title": "Chandan Camphor Cone | Air Freshener for Car, Wardrobe, Office & Bathroom",
+    "topMatches": [
+      {
+        "id": "shraviko-chandan-camphor-fly-cone",
+        "name": "Shraviko Chandan & Camphor Organic Dhoop Cones",
+        "price": 349,
+        "score": 19
+      },
+      {
+        "id": "shraviko-lavender-camphor-fly-cone",
+        "name": "Shraviko Lavender & Camphor Organic Dhoop Cones",
+        "price": 349,
+        "score": 14
+      },
+      {
+        "id": "mandir-lal-chandan",
+        "name": "Pure Lal Chandan / Rakta Chandan Powder",
+        "price": 199,
+        "score": 7
+      }
+    ]
+  },
+  {
+    "index": 33,
+    "sku": "SHR-LFC-01",
+    "price": 260,
+    "title": "SHRAVIKO Lavender Camphor Cone - 100% Natural | Air Freshener for Car, Wardrobe, Office Cabin, Drawers, Travel Bag & Bathroom",
+    "topMatches": [
+      {
+        "id": "shraviko-lavender-camphor-fly-cone",
+        "name": "Shraviko Lavender & Camphor Organic Dhoop Cones",
+        "price": 349,
+        "score": 21
+      },
+      {
+        "id": "shraviko-chandan-camphor-fly-cone",
+        "name": "Shraviko Chandan & Camphor Organic Dhoop Cones",
+        "price": 349,
+        "score": 14
+      },
+      {
+        "id": "mandir-bhimseni-kapoor",
+        "name": "Shraviko Organic Bhimseni Kapoor (Natural Crystal Camphor)",
+        "price": 249,
+        "score": 8
+      }
+    ]
+  },
+  {
+    "index": 34,
+    "sku": "SHR-RO-1",
+    "price": 229,
+    "title": "Rose Dhoop Cups | Rose Fragrance Sambrani for Puja, Aarti & Havan",
+    "topMatches": [
+      {
+        "id": "shraviko-rose-dhoop-cups",
+        "name": "Shraviko Desi Gulab Rose Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 27
+      },
+      {
+        "id": "shraviko-chandan-dhoop-cups",
+        "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 18
+      },
+      {
+        "id": "shraviko-guggul-dhoop-cups",
+        "name": "Shraviko Sacred Guggul Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 16
+      }
+    ]
+  },
+  {
+    "index": 35,
+    "sku": "SH-G-15",
+    "price": 239,
+    "title": "Guggul Sambrani Cups | Guggul Dhoop for Puja, Havan, Aarti & Home Mandir",
+    "topMatches": [
+      {
+        "id": "shraviko-guggul-dhoop-cups",
+        "name": "Shraviko Sacred Guggul Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 28
+      },
+      {
+        "id": "shraviko-chandan-dhoop-cups",
+        "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 17
+      },
+      {
+        "id": "shraviko-rose-dhoop-cups",
+        "name": "Shraviko Desi Gulab Rose Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 15
+      }
+    ]
+  },
+  {
+    "index": 36,
+    "sku": "SHR-OU-01",
+    "price": 230,
+    "title": "Premium Oudh Incense Sticks Agarbatti | Woody Oud Fragrance for Pooja",
+    "topMatches": [
+      {
+        "id": "shraviko-oudh-incense-sticks",
+        "name": "Shraviko Regal Agarwood Oudh Incense Sticks",
+        "price": 269,
+        "score": 24
+      },
+      {
+        "id": "shraviko-bakhoor-incense-sticks",
+        "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
+        "price": 249,
+        "score": 20
+      },
+      {
+        "id": "shraviko-rose-incense-sticks",
+        "name": "Shraviko Desi Gulab Indian Rose Incense Sticks",
+        "price": 219,
+        "score": 14
+      }
+    ]
+  },
+  {
+    "index": 37,
+    "sku": "SHR-BA-01",
+    "price": 240,
+    "title": "Premium Bakhoor Incense Sticks |Luxury Agarbatti for Pooja & Meditation Use",
+    "topMatches": [
+      {
+        "id": "shraviko-bakhoor-incense-sticks",
+        "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
+        "price": 249,
+        "score": 20
+      },
+      {
+        "id": "shraviko-kesar-incense-sticks",
+        "name": "Shraviko Kesar Chandan Saffron Incense Sticks",
+        "price": 229,
+        "score": 13
+      },
+      {
+        "id": "shraviko-oudh-incense-sticks",
+        "name": "Shraviko Regal Agarwood Oudh Incense Sticks",
+        "price": 269,
+        "score": 13
+      }
+    ]
+  },
+  {
+    "index": 38,
+    "sku": "SHR-RSE-4",
+    "price": 220,
+    "title": "SHRAVIKO Rose Agarbatti Incense Sticks | Soothing Floral Fragrance for Pooja, Meditation & Home",
+    "topMatches": [
+      {
+        "id": "shraviko-rose-incense-sticks",
+        "name": "Shraviko Desi Gulab Indian Rose Incense Sticks",
+        "price": 219,
+        "score": 23
+      },
+      {
+        "id": "shraviko-lavender-incense-sticks",
+        "name": "Shraviko French Lavender Organic Incense Sticks",
+        "price": 219,
+        "score": 15
+      },
+      {
+        "id": "shraviko-bakhoor-incense-sticks",
+        "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
+        "price": 249,
+        "score": 14
+      }
+    ]
+  },
+  {
+    "index": 39,
+    "sku": "SHR-PCS-SH01-70",
+    "price": 270,
+    "title": "Pure Copper Panchpatra Udharini Set | Copper Kalash for Puja|Shraviko",
+    "topMatches": [
+      {
+        "id": "copper-panchpatra-pali-set",
+        "name": "Pure Copper Panchpatra Udharini Set",
+        "price": 333,
+        "score": 32
+      },
+      {
+        "id": "copper-kalash-pooja-vessel",
+        "name": "Pure Copper Kalash",
+        "price": 799,
+        "score": 23
+      },
+      {
+        "id": "copper-puja-thali-set",
+        "name": "Pure Copper Pooja Thali",
+        "price": 1499,
+        "score": 21
+      }
+    ]
+  },
+  {
+    "index": 40,
+    "sku": "SHR-CHN6",
+    "price": 220,
+    "title": "SHRAVIKO Chandan Sandalwood Bamboo-Free Incense Sticks | Natural Woody Fragrance for Puja, Aarti, Meditation & Home",
+    "topMatches": [
+      {
+        "id": "shraviko-sandalwood-incense-sticks",
+        "name": "Shraviko Vedic Sandalwood (Chandan) Incense Sticks",
+        "price": 229,
+        "score": 26
+      },
+      {
+        "id": "shraviko-kesar-incense-sticks",
+        "name": "Shraviko Kesar Chandan Saffron Incense Sticks",
+        "price": 229,
+        "score": 19
+      },
+      {
+        "id": "shraviko-bakhoor-incense-sticks",
+        "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
+        "price": 249,
+        "score": 17
+      }
+    ]
+  },
+  {
+    "index": 41,
+    "sku": "SHR-LAV-01",
+    "price": 220,
+    "title": "SHRAVIKO Lavender Agarbatti | Bamboo-Less Incense Sticks for Puja & Aarti",
+    "topMatches": [
+      {
+        "id": "shraviko-lavender-incense-sticks",
+        "name": "Shraviko French Lavender Organic Incense Sticks",
+        "price": 219,
+        "score": 18
+      },
+      {
+        "id": "shraviko-stainless-steel-incense-holder",
+        "name": "Shraviko Stainless Steel Agarbatti Tower Stand & Burner",
+        "price": 299,
+        "score": 14
+      },
+      {
+        "id": "shraviko-sandalwood-incense-sticks",
+        "name": "Shraviko Vedic Sandalwood (Chandan) Incense Sticks",
+        "price": 229,
+        "score": 13
+      }
+    ]
+  },
+  {
+    "index": 42,
+    "sku": "SHR-CH-011",
+    "price": 220,
+    "title": "SHRAVIKO Chandan Dhoop Cups | Sandalwood Dhoop for Puja & Havan",
+    "topMatches": [
+      {
+        "id": "shraviko-chandan-dhoop-cups",
+        "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 26
+      },
+      {
+        "id": "shraviko-guggul-dhoop-cups",
+        "name": "Shraviko Sacred Guggul Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 18
+      },
+      {
+        "id": "shraviko-rose-dhoop-cups",
+        "name": "Shraviko Desi Gulab Rose Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 18
+      }
+    ]
+  },
+  {
+    "index": 43,
+    "sku": "SHR-KE-01",
+    "price": 249,
+    "title": "SHRAVIKO Kesar Incense Sticks 100 g | Bamboo-Free Saffron Fragrance for Puja, Aarti, Meditation & Home",
+    "topMatches": [
+      {
+        "id": "shraviko-kesar-incense-sticks",
+        "name": "Shraviko Kesar Chandan Saffron Incense Sticks",
+        "price": 229,
+        "score": 23
+      },
+      {
+        "id": "shraviko-bakhoor-incense-sticks",
+        "name": "Shraviko Royal Bakhoor Oudh Incense Sticks",
+        "price": 249,
+        "score": 15
+      },
+      {
+        "id": "shraviko-rose-incense-sticks",
+        "name": "Shraviko Desi Gulab Indian Rose Incense Sticks",
+        "price": 219,
+        "score": 15
+      }
+    ]
+  },
+  {
+    "index": 44,
+    "sku": "SHR-SM-1",
+    "price": 249,
+    "title": "SHRAVIKO Stainless Steel Mandir Dabbi with Glass Lid | Pooja Box,Mandir",
+    "topMatches": [
+      {
+        "id": "mandir-pooja-box-chest",
+        "name": "Stainless Steel Pooja Box",
+        "price": 500,
+        "score": 26
+      },
+      {
+        "id": "shraviko-stainless-steel-dibbi",
+        "name": "Shraviko Pure Stainless Steel Puja Container Dibbi",
+        "price": 199,
+        "score": 13
+      },
+      {
+        "id": "shraviko-stainless-steel-incense-holder",
+        "name": "Shraviko Stainless Steel Agarbatti Tower Stand & Burner",
+        "price": 299,
+        "score": 12
+      }
+    ]
+  },
+  {
+    "index": 45,
+    "sku": "SHR-FP-1",
+    "price": 249,
+    "title": "SHRAVIKO Lakshmi Charan Paduka|Brass Laxmi Footprints for Pooja&Home Temple",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-footprints",
+        "name": "Shraviko Sacred Brass Lakshmi Charan Paduka Footprints",
+        "price": 499,
+        "score": 24
+      },
+      {
+        "id": "shraviko-silver-footprints",
+        "name": "Shraviko Pure Silver Plated Goddess Lakshmi Charan Paduka",
+        "price": 799,
+        "score": 14
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 12
+      }
+    ]
+  },
+  {
+    "index": 46,
+    "sku": "SHR-BH-01",
+    "price": 279,
+    "title": "SHRAVIKO Bhog Thali Set|Traditional Pooja Bhog Plate for Mandir,Prasad&Puja",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-bhog-thali",
+        "name": "Shraviko Handcrafted Brass Bhog Thali Set",
+        "price": 699,
+        "score": 26
+      },
+      {
+        "id": "copper-puja-thali-set",
+        "name": "Pure Copper Pooja Thali",
+        "price": 1499,
+        "score": 18
+      },
+      {
+        "id": "brass-puja-thali-set",
+        "name": "Pure Brass Pooja Thali",
+        "price": 554,
+        "score": 17
+      }
+    ]
+  },
+  {
+    "index": 47,
+    "sku": "SHR-DB-01",
+    "price": 349,
+    "title": "SHRAVIKO Brass Mandir Dabbi |Traditional Pooja Box for Mandir & Daily Pooja",
+    "topMatches": [
+      {
+        "id": "mandir-pooja-box-chest",
+        "name": "Stainless Steel Pooja Box",
+        "price": 500,
+        "score": 24
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 20
+      },
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 19
+      }
+    ]
+  },
+  {
+    "index": 48,
+    "sku": "SHR-DI-001",
+    "price": 399,
+    "title": "SHRAVIKO Brass Diya Set of 5 | Traditional Oil Lamps for Pooja,Home Temple",
+    "topMatches": [
+      {
+        "id": "shraviko-brass-diya-set5",
+        "name": "Shraviko Handcrafted Brass Diya (Set of 5)",
+        "price": 749,
+        "score": 22
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 17
+      },
+      {
+        "id": "shraviko-carved-brass-diya",
+        "name": "Shraviko Hand-Carved Traditional Brass Diya",
+        "price": 499,
+        "score": 17
+      }
+    ]
+  },
+  {
+    "index": 49,
+    "sku": "SHR-RDM-5M-108-GMB",
+    "price": 299,
+    "title": "SHRAVIKO 5 Mukhi Rudraksha Mala | Jaap, Meditation, Pooja & Prayer",
+    "topMatches": [
+      {
+        "id": "mandir-rudraksh-mala",
+        "name": "Rudraksha Jaap Mala",
+        "price": 777,
+        "score": 17
+      },
+      {
+        "id": "mandir-sphatik-mala",
+        "name": "Sphatik Jaap Mala",
+        "price": 1599,
+        "score": 13
+      },
+      {
+        "id": "mandir-vaijanti-mala",
+        "name": "Vaijanti Jaap Mala",
+        "price": 278,
+        "score": 13
+      }
+    ]
+  },
+  {
+    "index": 50,
+    "sku": "SHR-SPM-108-78",
+    "price": 999,
+    "title": "SHRAVIKO Sphatik Mala|Crystal Stone Jaap Mala for Meditation,Pooja & Prayer",
+    "topMatches": [
+      {
+        "id": "mandir-sphatik-mala",
+        "name": "Sphatik Jaap Mala",
+        "price": 1599,
+        "score": 26
+      },
+      {
+        "id": "mandir-rudraksh-mala",
+        "name": "Rudraksha Jaap Mala",
+        "price": 777,
+        "score": 18
+      },
+      {
+        "id": "mandir-tulsi-mala",
+        "name": "Tulsi Jaap Mala",
+        "price": 2,
+        "score": 18
+      }
+    ]
+  },
+  {
+    "index": 51,
+    "sku": "SHR-KGM-108-08",
+    "price": 249,
+    "title": "SHRAVIKO Natural Karungali Wood Mala Jaap Mala for Meditation, Pooja",
+    "topMatches": [
+      {
+        "id": "mandir-karungali-mala",
+        "name": "Karungali Jaap Mala",
+        "price": 278,
+        "score": 26
+      },
+      {
+        "id": "mandir-tulsi-mala",
+        "name": "Tulsi Jaap Mala",
+        "price": 2,
+        "score": 20
+      },
+      {
+        "id": "mandir-sphatik-mala",
+        "name": "Sphatik Jaap Mala",
+        "price": 1599,
+        "score": 19
+      }
+    ]
+  },
+  {
+    "index": 52,
+    "sku": "SHR-VJM-108-RD-36",
+    "price": 269,
+    "title": "SHRAVIKO Wooden Beads Necklace | Traditional Mala for Prayer & Meditation",
+    "topMatches": [
+      {
+        "id": "mandir-rudraksh-mala",
+        "name": "Rudraksha Jaap Mala",
+        "price": 777,
+        "score": 10
+      },
+      {
+        "id": "mandir-sphatik-mala",
+        "name": "Sphatik Jaap Mala",
+        "price": 1599,
+        "score": 10
+      },
+      {
+        "id": "mandir-karungali-mala",
+        "name": "Karungali Jaap Mala",
+        "price": 278,
+        "score": 10
+      }
+    ]
+  },
+  {
+    "index": 53,
+    "sku": "SHR-BR-TRI-DMR-10CM-001",
+    "price": 499,
+    "title": "SHRAVIKO Brass Trishul with Damru & Stand Decorative Showpiece - 20 cm",
+    "topMatches": [
+      {
+        "id": "shraviko-peacock-brass-stand-diya",
+        "name": "Mayur Peacock Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1299,
+        "score": 12
+      },
+      {
+        "id": "shraviko-spire-brass-stand-diya",
+        "name": "Classic Spire Brass Stand Diya (Kutthu Vilakku)",
+        "price": 1199,
+        "score": 12
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 7
+      }
+    ]
+  },
+  {
+    "index": 54,
+    "sku": "SHR-RKI-BR-03X02X03-1P",
+    "price": 449,
+    "title": "SHRAVIKO Brass Radha Krishna Idol | Murti for Pooja & Home Temple | 8 cm",
+    "topMatches": [
+      {
+        "id": "brass-radha-krishna-statue",
+        "name": "Radha Krishna Idol",
+        "price": 649,
+        "score": 21
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 12
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 12
+      }
+    ]
+  },
+  {
+    "index": 55,
+    "sku": "QH-Z85W-AUFO",
+    "price": 249,
+    "title": "SHRAVIKO Tulsi Mala | Traditional Tulsi Bead Necklace for Prayer & Pooja",
+    "topMatches": [
+      {
+        "id": "mandir-tulsi-mala",
+        "name": "Tulsi Jaap Mala",
+        "price": 2,
+        "score": 21
+      },
+      {
+        "id": "mandir-sphatik-mala",
+        "name": "Sphatik Jaap Mala",
+        "price": 1599,
+        "score": 10
+      },
+      {
+        "id": "mandir-rudraksh-mala",
+        "name": "Rudraksha Jaap Mala",
+        "price": 777,
+        "score": 9
+      }
+    ]
+  },
+  {
+    "index": 56,
+    "sku": "SHR-BRS-KLS-LTA",
+    "price": 449,
+    "title": "SHRAVIKO Brass Pooja Kalash | Brass Kalash for Pooja, Mandir, Home Temple",
+    "topMatches": [
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 33
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 23
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 23
+      }
+    ]
+  },
+  {
+    "index": 57,
+    "sku": "SHR-GI-BR-055-1P",
+    "price": 549,
+    "title": "SHRAVIKO Brass Ganesha Idol Ganpati Murti for Pooja, Home Temple, Mandir",
+    "topMatches": [
+      {
+        "id": "brass-ganesh-ji-statue",
+        "name": "Lord Ganesha Idol",
+        "price": 649,
+        "score": 15
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 13
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 13
+      }
+    ]
+  },
+  {
+    "index": 58,
+    "sku": "SHR-CM-01",
+    "price": 239,
+    "title": "SHRAVIKO Loban Resin | Pure Loban Dhoop for Puja, Pooja, Havan & Aarti",
+    "topMatches": [
+      {
+        "id": "mandir-pure-loban",
+        "name": "Natural Pure Sambrani Loban Resin",
+        "price": 249,
+        "score": 22
+      },
+      {
+        "id": "brass-puja-thali-set",
+        "name": "Pure Brass Pooja Thali",
+        "price": 554,
+        "score": 12
+      },
+      {
+        "id": "shraviko-chandan-dhoop-cups",
+        "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 11
+      }
+    ]
+  },
+  {
+    "index": 59,
+    "sku": "SHR-LGI-BR-06-1P",
+    "price": 999,
+    "title": "SHRAVIKO Brass Laddu Gopal Idol Bal Gopal Krishna for Pooja, Home Temple",
+    "topMatches": [
+      {
+        "id": "brass-ladoo-gopal-statue",
+        "name": "Devotional Idol",
+        "price": 1500,
+        "score": 19
+      },
+      {
+        "id": "brass-radha-krishna-statue",
+        "name": "Radha Krishna Idol",
+        "price": 649,
+        "score": 14
+      },
+      {
+        "id": "brass-singhasan-deity-throne",
+        "name": "God Singhasan / Pooja Chowki",
+        "price": 699,
+        "score": 13
+      }
+    ]
+  },
+  {
+    "index": 60,
+    "sku": "SHR-NMY-COP-003",
+    "price": 250,
+    "title": "SHRAVIKO SarvKarya Siddhi Yantra | Pooja Yantra Copper Yantra",
+    "topMatches": [
+      {
+        "id": "yantra-sarv-karya",
+        "name": "Sarv Karya Siddhi Yantra",
+        "price": 999,
+        "score": 22
+      },
+      {
+        "id": "yantra-navgraha",
+        "name": "Sacred Pure Copper Shri Navgraha Chowki Yantra",
+        "price": 599,
+        "score": 22
+      },
+      {
+        "id": "yantra-saraswati",
+        "name": "Sacred Pure Copper Shri Saraswati Yantra",
+        "price": 499,
+        "score": 22
+      }
+    ]
+  },
+  {
+    "index": 61,
+    "sku": "LS-7I44-IZBV",
+    "price": 250,
+    "title": "SHRAVIKO Gulab Dhoop Cups | Rose Dhoop for Puja,Aarti & Havan",
+    "topMatches": [
+      {
+        "id": "shraviko-rose-dhoop-cups",
+        "name": "Shraviko Desi Gulab Rose Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 28
+      },
+      {
+        "id": "shraviko-chandan-dhoop-cups",
+        "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 19
+      },
+      {
+        "id": "shraviko-guggul-dhoop-cups",
+        "name": "Shraviko Sacred Guggul Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 18
+      }
+    ]
+  },
+  {
+    "index": 62,
+    "sku": "SHR-CH-01",
+    "price": 250,
+    "title": "SHRAVIKO Chandan Dhoop Cups | Sandalwood Dhoop for Puja,Aarti & Havan",
+    "topMatches": [
+      {
+        "id": "shraviko-chandan-dhoop-cups",
+        "name": "Shraviko Pure Chandan Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 26
+      },
+      {
+        "id": "shraviko-guggul-dhoop-cups",
+        "name": "Shraviko Sacred Guggul Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 18
+      },
+      {
+        "id": "shraviko-rose-dhoop-cups",
+        "name": "Shraviko Desi Gulab Rose Dhoop Cups with Sambrani",
+        "price": 299,
+        "score": 18
+      }
+    ]
+  },
+  {
+    "index": 63,
+    "sku": "SHR-TC-COMP-WG-01",
+    "price": 269,
+    "title": "Digital Tally Counter with Compass Digital Tally Counter",
+    "topMatches": [
+      {
+        "id": "mandir-mala-counter-brass",
+        "name": "Digital Japa Counter",
+        "price": 388,
+        "score": 20
+      },
+      {
+        "id": "vastu-kuber-dhan-prapti-yantra",
+        "name": "Kuber Yantra",
+        "price": 388,
+        "score": 2
+      },
+      {
+        "id": "vastu-laxmi-siddha-yantra",
+        "name": "Lakshmi Kuber Yantra",
+        "price": 388,
+        "score": 2
+      }
+    ]
+  },
+  {
+    "index": 64,
+    "sku": "SHR-SKSY-01",
+    "price": 350,
+    "title": "SHRAVIKO Sarv Karya Siddhi Yantra for Puja, Vastu & Spiritual Use",
+    "topMatches": [
+      {
+        "id": "yantra-sarv-karya",
+        "name": "Sarv Karya Siddhi Yantra",
+        "price": 999,
+        "score": 24
+      },
+      {
+        "id": "vastu-laxmi-siddha-yantra",
+        "name": "Lakshmi Kuber Yantra",
+        "price": 388,
+        "score": 10
+      },
+      {
+        "id": "vastu-kuber-dhan-prapti-yantra",
+        "name": "Kuber Yantra",
+        "price": 388,
+        "score": 9
+      }
+    ]
+  },
+  {
+    "index": 65,
+    "sku": "SHR-MMY-01",
+    "price": 350,
+    "title": "SHRAVIKO Mahamrityunjaya Maha Yantra for Puja, Vastu & Meditation",
+    "topMatches": [
+      {
+        "id": "yantra-maha-mrityunjay",
+        "name": "Shri Mahamrityunjay Yantra",
+        "price": 499,
+        "score": 12
+      },
+      {
+        "id": "yantra-baglamukhi",
+        "name": "Shri Baglamukhi Mahayantra",
+        "price": 999,
+        "score": 11
+      },
+      {
+        "id": "vastu-shani-siddha-yantra",
+        "name": "Shree Shani Yantra",
+        "price": 388,
+        "score": 9
+      }
+    ]
+  },
+  {
+    "index": 66,
+    "sku": "IH-99GG-CHFF",
+    "price": 350,
+    "title": "SHRAVIKO Kaal Sarp YOG Dosh Nivaran Yantra for Puja & Vastu | 3X 3",
+    "topMatches": [
+      {
+        "id": "yantra-kaal-sarp",
+        "name": "Kaal Sarp Yog Dosh Nivaran Yantra",
+        "price": 999,
+        "score": 30
+      },
+      {
+        "id": "vastu-ganesh-siddha-yantra",
+        "name": "Ganesh Yantra",
+        "price": 388,
+        "score": 8
+      },
+      {
+        "id": "vastu-kuber-dhan-prapti-yantra",
+        "name": "Kuber Yantra",
+        "price": 388,
+        "score": 8
+      }
+    ]
+  },
+  {
+    "index": 67,
+    "sku": "SHR-MY-01",
+    "price": 360,
+    "title": "SHRAVIKO Mangal Yantra for Mangal Graha Puja, Vastu & Spiritual Use",
+    "topMatches": [
+      {
+        "id": "yantra-mangal",
+        "name": "Mangal Yantra",
+        "price": 999,
+        "score": 20
+      },
+      {
+        "id": "yantra-navgraha",
+        "name": "Sacred Pure Copper Shri Navgraha Chowki Yantra",
+        "price": 599,
+        "score": 14
+      },
+      {
+        "id": "vastu-laxmi-siddha-yantra",
+        "name": "Lakshmi Kuber Yantra",
+        "price": 388,
+        "score": 10
+      }
+    ]
+  },
+  {
+    "index": 68,
+    "sku": "SHR-AJD-BR-1324-01",
+    "price": 450,
+    "title": "SHRAVIKO Brass Akhand Jyot Diya with Protective Cover | Om Finial",
+    "topMatches": [
+      {
+        "id": "brass-akhand-jyot-deepak",
+        "name": "Brass Akhand Jyot Diya with Protective Cover",
+        "price": 500,
+        "score": 31
+      },
+      {
+        "id": "shraviko-brass-glass-akhand-jyot-cover",
+        "name": "Shraviko Pure Brass Akhand Jyot Deepak with Protective Glass Cover",
+        "price": 799,
+        "score": 28
+      },
+      {
+        "id": "shraviko-lotus-brass-akhand-jyot",
+        "name": "Shraviko Lotus Petal Brass Akhand Jyot Diya",
+        "price": 899,
+        "score": 21
+      }
+    ]
+  },
+  {
+    "index": 69,
+    "sku": "SHR-GS-SL-635-01",
+    "price": 450,
+    "title": "SHRAVIKO Glass Shivling |Crystal-Style Shiva Lingam for Home Temple & Pooja",
+    "topMatches": [
+      {
+        "id": "vastu-crystal-glass-shivling",
+        "name": "Sphatik Shivling",
+        "price": 411,
+        "score": 15
+      },
+      {
+        "id": "vastu-crystal-glass-turtle",
+        "name": "Crystal Turtle with Glass Plate",
+        "price": 388,
+        "score": 12
+      },
+      {
+        "id": "shraviko-crystal-glass-akhand-jyot",
+        "name": "Shraviko Crystal Glass Brass Akhand Jyot Deepak",
+        "price": 799,
+        "score": 12
+      }
+    ]
+  },
+  {
+    "index": 70,
+    "sku": "SHR-PB-7C-15CM-01",
+    "price": 495,
+    "title": "SHRAVIKO Stainless Steel Pooja Box",
+    "topMatches": [
+      {
+        "id": "mandir-pooja-box-chest",
+        "name": "Stainless Steel Pooja Box",
+        "price": 500,
+        "score": 20
+      },
+      {
+        "id": "shraviko-stainless-steel-dibbi",
+        "name": "Shraviko Pure Stainless Steel Puja Container Dibbi",
+        "price": 199,
+        "score": 12
+      },
+      {
+        "id": "shraviko-stainless-steel-incense-holder",
+        "name": "Shraviko Stainless Steel Agarbatti Tower Stand & Burner",
+        "price": 299,
+        "score": 12
+      }
+    ]
+  },
+  {
+    "index": 71,
+    "sku": "SHR-CT-GP-15CM-01",
+    "price": 350,
+    "title": "SHRAVIKO Crystal Turtle with Glass Plate | Vastu Feng Shui Showpiece",
+    "topMatches": [
+      {
+        "id": "vastu-crystal-glass-turtle",
+        "name": "Crystal Turtle with Glass Plate",
+        "price": 388,
+        "score": 27
+      },
+      {
+        "id": "shraviko-crystal-glass-akhand-jyot",
+        "name": "Shraviko Crystal Glass Brass Akhand Jyot Deepak",
+        "price": 799,
+        "score": 12
+      },
+      {
+        "id": "vastu-crystal-glass-shivling",
+        "name": "Sphatik Shivling",
+        "price": 411,
+        "score": 7
+      }
+    ]
+  },
+  {
+    "index": 72,
+    "sku": "SHR-PC-12X08",
+    "price": 650,
+    "title": "SHRAVIKO Wooden Pooja Chowki|Mandir Bajot for God Idol, Kalash & Puja Items",
+    "topMatches": [
+      {
+        "id": "wooden-chowki-carved-01",
+        "name": "Wooden Pooja Chowki",
+        "price": 554,
+        "score": 20
+      },
+      {
+        "id": "brass-singhasan-deity-throne",
+        "name": "God Singhasan / Pooja Chowki",
+        "price": 699,
+        "score": 13
+      },
+      {
+        "id": "brass-kalash-pooja-vessel",
+        "name": "Pooja Kalash Lota",
+        "price": 499,
+        "score": 13
+      }
+    ]
+  },
+  {
+    "index": 73,
+    "sku": "IE-SL9W-JF2Z",
+    "price": 2350,
+    "title": "SHRAVIKO Copper Hawan Kund with Dual Handles| Square Havan Kund for Yagya",
+    "topMatches": [
+      {
+        "id": "copper-hawan-kund-pyre",
+        "name": "Shraviko Pure Copper Hawan Kund with Dual Handles",
+        "price": 2444,
+        "score": 34
+      },
+      {
+        "id": "copper-kalash-pooja-vessel",
+        "name": "Pure Copper Kalash",
+        "price": 799,
+        "score": 7
+      },
+      {
+        "id": "copper-panchpatra-pali-set",
+        "name": "Pure Copper Panchpatra Udharini Set",
+        "price": 333,
+        "score": 6
+      }
+    ]
+  },
+  {
+    "index": 74,
+    "sku": "SHR-SYC-05",
+    "price": 350,
+    "title": "SHRAVIKO Shree Yantra Cone | Glass Yantra | 2 inch | Pooja & Home Temple",
+    "topMatches": [
+      {
+        "id": "vastu-crystal-glass-yantra",
+        "name": "Shree Yantra Cone Meru",
+        "price": 450,
+        "score": 25
+      },
+      {
+        "id": "vastu-shani-siddha-yantra",
+        "name": "Shree Shani Yantra",
+        "price": 388,
+        "score": 20
+      },
+      {
+        "id": "vastu-laxmi-siddha-yantra",
+        "name": "Lakshmi Kuber Yantra",
+        "price": 388,
+        "score": 16
+      }
+    ]
+  },
+  {
+    "index": 75,
+    "sku": "SHR-KY-04",
+    "price": 380,
+    "title": "SHRAVIKO Copper Ganesh Yantra | 3 × 3 Inch | Pooja & Home Temple",
+    "topMatches": [
+      {
+        "id": "vastu-ganesh-siddha-yantra",
+        "name": "Ganesh Yantra",
+        "price": 388,
+        "score": 16
+      },
+      {
+        "id": "copper-puja-thali-set",
+        "name": "Pure Copper Pooja Thali",
+        "price": 1499,
+        "score": 12
+      },
+      {
+        "id": "copper-kalash-pooja-vessel",
+        "name": "Pure Copper Kalash",
+        "price": 799,
+        "score": 11
+      }
+    ]
+  },
+  {
+    "index": 76,
+    "sku": "SHR-KY-03",
+    "price": 370,
+    "title": "SHRAVIKO Copper Kuber Yantra | 3 × 3 Inch | Pooja & Home Temple",
+    "topMatches": [
+      {
+        "id": "vastu-kuber-dhan-prapti-yantra",
+        "name": "Kuber Yantra",
+        "price": 388,
+        "score": 15
+      },
+      {
+        "id": "vastu-laxmi-siddha-yantra",
+        "name": "Lakshmi Kuber Yantra",
+        "price": 388,
+        "score": 14
+      },
+      {
+        "id": "copper-puja-thali-set",
+        "name": "Pure Copper Pooja Thali",
+        "price": 1499,
+        "score": 12
+      }
+    ]
+  },
+  {
+    "index": 77,
+    "sku": "SHR-SY-03",
+    "price": 360,
+    "title": "SHRAVIKO Shri Lakshmi Yantra Copper Plate for Pooja | 3 × 3 Inch (7.6 cm) | Traditional Lakshmi Yantra for Home Temple, Pooja Ghar & Devotional Use",
+    "topMatches": [
+      {
+        "id": "vastu-laxmi-siddha-yantra",
+        "name": "Lakshmi Kuber Yantra",
+        "price": 388,
+        "score": 28
+      },
+      {
+        "id": "vastu-shani-siddha-yantra",
+        "name": "Shree Shani Yantra",
+        "price": 388,
+        "score": 20
+      },
+      {
+        "id": "yantra-navgraha",
+        "name": "Sacred Pure Copper Shri Navgraha Chowki Yantra",
+        "price": 599,
+        "score": 20
+      }
+    ]
+  },
+  {
+    "index": 78,
+    "sku": "SHR-NY-03",
+    "price": 350,
+    "title": "SHRAVIKO Copper Navgrah Yantra for Pooja, Home Temple & Meditation",
+    "topMatches": [
+      {
+        "id": "yantra-navgraha",
+        "name": "Sacred Pure Copper Shri Navgraha Chowki Yantra",
+        "price": 599,
+        "score": 16
+      },
+      {
+        "id": "copper-puja-thali-set",
+        "name": "Pure Copper Pooja Thali",
+        "price": 1499,
+        "score": 12
+      },
+      {
+        "id": "vastu-shani-siddha-yantra",
+        "name": "Shree Shani Yantra",
+        "price": 388,
+        "score": 11
+      }
+    ]
+  },
+  {
+    "index": 79,
+    "sku": "SHR-SHN-03",
+    "price": 350,
+    "title": "SHRAVIKO Copper Shani Yantra for Pooja, 3x3 Inch",
+    "topMatches": [
+      {
+        "id": "vastu-shani-siddha-yantra",
+        "name": "Shree Shani Yantra",
+        "price": 388,
+        "score": 15
+      },
+      {
+        "id": "yantra-navgraha",
+        "name": "Sacred Pure Copper Shri Navgraha Chowki Yantra",
+        "price": 599,
+        "score": 11
+      },
+      {
+        "id": "copper-puja-thali-set",
+        "name": "Pure Copper Pooja Thali",
+        "price": 1499,
+        "score": 10
+      }
+    ]
+  },
+  {
+    "index": 80,
+    "sku": "SHR-PPT-01",
+    "price": 599,
+    "title": "SHRAVIKO Brass Peacock Pooja Thali | Aarti Plate for Pooja & Mandir",
+    "topMatches": [
+      {
+        "id": "brass-design-thali-set",
+        "name": "Brass Peacock Pooja Thali",
+        "price": 611,
+        "score": 25
+      },
+      {
+        "id": "brass-puja-thali-set",
+        "name": "Pure Brass Pooja Thali",
+        "price": 554,
+        "score": 21
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 16
+      }
+    ]
+  },
+  {
+    "index": 81,
+    "sku": "SHR-VP-3L",
+    "price": 400,
+    "title": "SHRAVIKO Brass Vastu Pyramid | 3 Layer Decor for Home, Office & Pooja",
+    "topMatches": [
+      {
+        "id": "vastu-brass-pyramid-multitier",
+        "name": "Vastu Brass Pyramid",
+        "price": 443,
+        "score": 23
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 11
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 11
+      }
+    ]
+  },
+  {
+    "index": 82,
+    "sku": "SH-GARUDA-BELL-04",
+    "price": 715,
+    "title": "Shraviko Brass Garuda Head Pooja Bell for Home Temple and Mandir",
+    "topMatches": [
+      {
+        "id": "brass-bell-garuda",
+        "name": "Garud Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 23
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 23
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 19
+      }
+    ]
+  },
+  {
+    "index": 83,
+    "sku": "SHR-PB-ROUND-04",
+    "price": 600,
+    "title": "SHRAVIKO Pure Brass Pooja Bell | 4 Inch Traditional Temple Ghanti for Aarti",
+    "topMatches": [
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 23
+      },
+      {
+        "id": "brass-bell-garuda",
+        "name": "Garud Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 20
+      },
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 20
+      }
+    ]
+  },
+  {
+    "index": 84,
+    "sku": "SHR-PB-NANDI-04",
+    "price": 715,
+    "title": "SHRAVIKO Pure Brass Nandi Pooja Bell | 4 Inch Temple Ghanti for Aarti",
+    "topMatches": [
+      {
+        "id": "brass-bell-nandi",
+        "name": "Nandi Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 25
+      },
+      {
+        "id": "shraviko-brass-puja-bell",
+        "name": "Shraviko Classic Solid Brass Pooja Bell (Ghanti)",
+        "price": 549,
+        "score": 20
+      },
+      {
+        "id": "brass-bell-garuda",
+        "name": "Garud Headed Brass Pooja Bell",
+        "price": 722,
+        "score": 19
+      }
+    ]
+  },
+  {
+    "index": 85,
+    "sku": "SHR-BR-PT-06",
+    "price": 599,
+    "title": "SHRAVIKO Pure Brass Pooja Thali 6\"|Traditional Brass Aarti Plate for Puja",
+    "topMatches": [
+      {
+        "id": "brass-puja-thali-set",
+        "name": "Pure Brass Pooja Thali",
+        "price": 554,
+        "score": 31
+      },
+      {
+        "id": "brass-design-thali-set",
+        "name": "Brass Peacock Pooja Thali",
+        "price": 611,
+        "score": 24
+      },
+      {
+        "id": "brass-bell-simple",
+        "name": "Traditional Brass Pooja Bell",
+        "price": 722,
+        "score": 22
+      }
+    ]
+  },
+  {
+    "index": 86,
+    "sku": "L5-8YAV-16OD",
+    "price": 699,
+    "title": "SHRAVIKO Pure Copper Pooja Thali |Polished Aarti Plate Aarti, Prasad|6 Inch",
+    "topMatches": [
+      {
+        "id": "copper-puja-thali-set",
+        "name": "Pure Copper Pooja Thali",
+        "price": 1499,
+        "score": 21
+      },
+      {
+        "id": "brass-puja-thali-set",
+        "name": "Pure Brass Pooja Thali",
+        "price": 554,
+        "score": 17
+      },
+      {
+        "id": "brass-design-thali-set",
+        "name": "Brass Peacock Pooja Thali",
+        "price": 611,
+        "score": 13
+      }
+    ]
+  }
+]

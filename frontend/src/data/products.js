@@ -53,7 +53,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Bells",
-    "price": 722,
+    "price": 715,
     "originalPrice": 1389,
     "rating": 4.98,
     "reviewsCount": 148,
@@ -71,7 +71,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "90 g",
-        "price": 722,
+        "price": 715,
         "originalPrice": 1389,
         "default": true
       }
@@ -163,7 +163,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Bells",
-    "price": 722,
+    "price": 715,
     "originalPrice": 1389,
     "rating": 4.96,
     "reviewsCount": 132,
@@ -182,7 +182,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "90 g",
-        "price": 722,
+        "price": 715,
         "originalPrice": 1389,
         "default": true
       }
@@ -274,8 +274,8 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Bells",
-    "price": 722,
-    "originalPrice": 1389,
+    "price": 600,
+    "originalPrice": 869,
     "rating": 4.92,
     "reviewsCount": 165,
     "tag": "Classic Design",
@@ -292,8 +292,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "90 g",
-        "price": 722,
-        "originalPrice": 1389,
+        "price": 600,
+        "originalPrice": 869,
         "default": true
       }
     ],
@@ -384,7 +384,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Bells",
-    "price": 722,
+    "price": 999,
     "originalPrice": 1389,
     "rating": 4.99,
     "reviewsCount": 190,
@@ -403,7 +403,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "90 g",
-        "price": 722,
+        "price": 999,
         "originalPrice": 1389,
         "default": true
       }
@@ -495,7 +495,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Puja Thali",
-    "price": 554,
+    "price": 599,
     "originalPrice": 888,
     "rating": 4.99,
     "reviewsCount": 195,
@@ -514,7 +514,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "6 Inch (80 g)",
-        "price": 554,
+        "price": 599,
         "originalPrice": 888,
         "default": true
       }
@@ -745,7 +745,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Akhand Jyot",
-    "price": 500,
+    "price": 450,
     "originalPrice": 888,
     "rating": 4.99,
     "reviewsCount": 178,
@@ -764,7 +764,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 13 cm × B 24 cm × H 13 cm (120 g)",
-        "price": 500,
+        "price": 450,
         "originalPrice": 888,
         "default": true
       }
@@ -1239,7 +1239,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Idols",
-    "price": 1500,
+    "price": 999,
     "originalPrice": 1999,
     "rating": 4.99,
     "reviewsCount": 192,
@@ -1257,7 +1257,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 13 cm × B 13 cm × H 10 cm (800 g)",
-        "price": 1500,
+        "price": 999,
         "originalPrice": 1999,
         "default": true
       }
@@ -1362,7 +1362,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Kalash",
-    "price": 499,
+    "price": 449,
     "originalPrice": 799,
     "rating": 4.98,
     "reviewsCount": 145,
@@ -1380,7 +1380,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Size 4 Inch (100 g)",
-        "price": 499,
+        "price": 449,
         "originalPrice": 799,
         "default": true
       }
@@ -1481,7 +1481,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Puja Thali",
-    "price": 611,
+    "price": 599,
     "originalPrice": 999,
     "rating": 4.99,
     "reviewsCount": 152,
@@ -1499,7 +1499,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "19 × 19 × 19 cm (10 g)",
-        "price": 611,
+        "price": 599,
         "originalPrice": 999,
         "default": true
       }
@@ -1613,7 +1613,7 @@ export const PRODUCTS = [
     "category": "copper",
     "categoryName": "Copper Articles",
     "subcategory": "Copper Vessels",
-    "price": 333,
+    "price": 270,
     "originalPrice": 554,
     "rating": 4.99,
     "reviewsCount": 184,
@@ -1632,7 +1632,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 10 cm × B 10 cm × H 10 cm (20 g)",
-        "price": 333,
+        "price": 270,
         "originalPrice": 554,
         "default": true
       }
@@ -1742,8 +1742,8 @@ export const PRODUCTS = [
     "category": "copper",
     "categoryName": "Copper Articles",
     "subcategory": "Copper Puja Thali",
-    "price": 1499,
-    "originalPrice": 1999,
+    "price": 699,
+    "originalPrice": 1009,
     "rating": 4.98,
     "reviewsCount": 164,
     "tag": "Pure Copper Thali",
@@ -1762,8 +1762,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "11 Inch (360 g)",
-        "price": 1499,
-        "originalPrice": 1999,
+        "price": 699,
+        "originalPrice": 1009,
         "default": true
       }
     ],
@@ -1869,7 +1869,7 @@ export const PRODUCTS = [
     "category": "copper",
     "categoryName": "Copper Articles",
     "subcategory": "Sacred Homa Vessels",
-    "price": 2444,
+    "price": 2350,
     "originalPrice": 3332,
     "rating": 4.99,
     "reviewsCount": 172,
@@ -1887,7 +1887,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 25 cm × B 25 cm × H 10 cm (540 g)",
-        "price": 2444,
+        "price": 2350,
         "originalPrice": 3332,
         "default": true
       }
@@ -2118,8 +2118,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Vastu Yantras",
-    "price": 388,
-    "originalPrice": 1100,
+    "price": 380,
+    "originalPrice": 549,
     "rating": 4.99,
     "reviewsCount": 185,
     "tag": "Ganesh Yantra",
@@ -2136,8 +2136,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "3 × 3 Inches (20 g)",
-        "price": 388,
-        "originalPrice": 1100,
+        "price": 380,
+        "originalPrice": 549,
         "default": true
       }
     ],
@@ -2248,8 +2248,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Wealth Yantras",
-    "price": 388,
-    "originalPrice": 1100,
+    "price": 370,
+    "originalPrice": 539,
     "rating": 5,
     "reviewsCount": 230,
     "tag": "Kuber Yantra",
@@ -2267,8 +2267,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "3 × 3 Inches (20 g)",
-        "price": 388,
-        "originalPrice": 1100,
+        "price": 370,
+        "originalPrice": 539,
         "default": true
       }
     ],
@@ -2384,8 +2384,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Mahalakshmi Yantras",
-    "price": 388,
-    "originalPrice": 1100,
+    "price": 360,
+    "originalPrice": 519,
     "rating": 5,
     "reviewsCount": 214,
     "tag": "Mahalakshmi Yantra",
@@ -2403,8 +2403,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "3 × 3 Inches (20 g)",
-        "price": 388,
-        "originalPrice": 1100,
+        "price": 360,
+        "originalPrice": 519,
         "default": true
       }
     ],
@@ -2520,8 +2520,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Shani Yantras",
-    "price": 388,
-    "originalPrice": 1100,
+    "price": 350,
+    "originalPrice": 509,
     "rating": 5,
     "reviewsCount": 184,
     "tag": "Shani Yantra",
@@ -2539,8 +2539,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "3 × 3 Inches (20 g)",
-        "price": 388,
-        "originalPrice": 1100,
+        "price": 350,
+        "originalPrice": 509,
         "default": true
       }
     ],
@@ -2656,8 +2656,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Vastu Glass Yantras",
-    "price": 450,
-    "originalPrice": 799,
+    "price": 350,
+    "originalPrice": 509,
     "rating": 4.98,
     "reviewsCount": 162,
     "tag": "Shree Yantra",
@@ -2673,8 +2673,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "5 × 4 × 5 cm (70 g Meru)",
-        "price": 450,
-        "originalPrice": 799,
+        "price": 350,
+        "originalPrice": 509,
         "default": true
       }
     ],
@@ -2781,8 +2781,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Vastu Pyramids",
-    "price": 443,
-    "originalPrice": 999,
+    "price": 400,
+    "originalPrice": 579,
     "rating": 4.98,
     "reviewsCount": 148,
     "tag": "Vastu Energy",
@@ -2799,8 +2799,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 10 cm × B 10 cm × H 8 cm (15 g)",
-        "price": 443,
-        "originalPrice": 999,
+        "price": 400,
+        "originalPrice": 579,
         "default": true
       }
     ],
@@ -2886,8 +2886,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Vastu Energy Items",
-    "price": 388,
-    "originalPrice": 777,
+    "price": 350,
+    "originalPrice": 509,
     "rating": 4.97,
     "reviewsCount": 178,
     "tag": "Vastu Kurma",
@@ -2905,8 +2905,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 35 cm × B 15 cm × H 15 cm (300 g)",
-        "price": 388,
-        "originalPrice": 777,
+        "price": 350,
+        "originalPrice": 509,
         "default": true
       }
     ],
@@ -3117,7 +3117,7 @@ export const PRODUCTS = [
     "category": "yantras",
     "categoryName": "Custom & Handcrafted",
     "subcategory": "Handcrafted Idols",
-    "price": 649,
+    "price": 549,
     "originalPrice": 999,
     "rating": 5,
     "reviewsCount": 210,
@@ -3136,7 +3136,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 8 cm × B 5 cm × H 7 cm (130 g)",
-        "price": 649,
+        "price": 549,
         "originalPrice": 999,
         "default": true
       }
@@ -3227,8 +3227,8 @@ export const PRODUCTS = [
     "category": "yantras",
     "categoryName": "Custom & Handcrafted",
     "subcategory": "Handcrafted Idols",
-    "price": 649,
-    "originalPrice": 999,
+    "price": 449,
+    "originalPrice": 649,
     "rating": 5,
     "reviewsCount": 248,
     "tag": "Handcrafted Brass",
@@ -3245,8 +3245,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 8 cm × B 5 cm × H 8 cm (130 g)",
-        "price": 649,
-        "originalPrice": 999,
+        "price": 449,
+        "originalPrice": 649,
         "default": true
       }
     ],
@@ -3336,8 +3336,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Vastu Energy Items",
-    "price": 411,
-    "originalPrice": 999,
+    "price": 450,
+    "originalPrice": 649,
     "rating": 4.99,
     "reviewsCount": 175,
     "tag": "Sphatik Shivling",
@@ -3353,8 +3353,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 6 cm × B 6 cm × H 6 cm (90 g)",
-        "price": 411,
-        "originalPrice": 999,
+        "price": 450,
+        "originalPrice": 649,
         "default": true
       }
     ],
@@ -3448,8 +3448,8 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Sacred Malas & Rosaries",
-    "price": 777,
-    "originalPrice": 1110,
+    "price": 299,
+    "originalPrice": 429,
     "rating": 4.99,
     "reviewsCount": 245,
     "tag": "Rudraksha Mala",
@@ -3466,8 +3466,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Length 12 cm (20 g)",
-        "price": 777,
-        "originalPrice": 1110,
+        "price": 299,
+        "originalPrice": 429,
         "default": true
       }
     ],
@@ -3570,7 +3570,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Sacred Malas & Rosaries",
-    "price": 1599,
+    "price": 999,
     "originalPrice": 1999,
     "rating": 4.98,
     "reviewsCount": 198,
@@ -3591,7 +3591,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Length 34 cm (30 g)",
-        "price": 1599,
+        "price": 999,
         "originalPrice": 1999,
         "default": true
       }
@@ -3694,7 +3694,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Sacred Malas & Rosaries",
-    "price": 2,
+    "price": 249,
     "originalPrice": 443,
     "rating": 5,
     "reviewsCount": 310,
@@ -3712,7 +3712,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Length 40 cm (20 g)",
-        "price": 2,
+        "price": 249,
         "originalPrice": 443,
         "default": true
       }
@@ -3820,7 +3820,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Sacred Malas & Rosaries",
-    "price": 278,
+    "price": 269,
     "originalPrice": 554,
     "rating": 4.97,
     "reviewsCount": 162,
@@ -3837,7 +3837,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Length 32 cm (30 g)",
-        "price": 278,
+        "price": 269,
         "originalPrice": 554,
         "default": true
       }
@@ -3941,8 +3941,8 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Sacred Malas & Rosaries",
-    "price": 278,
-    "originalPrice": 554,
+    "price": 249,
+    "originalPrice": 359,
     "rating": 4.99,
     "reviewsCount": 215,
     "tag": "Karungali Mala",
@@ -3959,8 +3959,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Length 42 cm (26 g)",
-        "price": 278,
-        "originalPrice": 554,
+        "price": 249,
+        "originalPrice": 359,
         "default": true
       }
     ],
@@ -4072,7 +4072,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Pooja Ingredients & Samagri",
-    "price": 199,
+    "price": 220,
     "originalPrice": 299,
     "rating": 4.96,
     "reviewsCount": 74,
@@ -4091,13 +4091,13 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "100 g Pack",
-        "price": 199,
+        "price": 220,
         "originalPrice": 299,
         "default": true
       },
       {
         "weight": "250 g Value Pack",
-        "price": 269,
+        "price": 299,
         "originalPrice": 499
       }
     ],
@@ -4154,7 +4154,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Pooja Ingredients & Samagri",
-    "price": 249,
+    "price": 280,
     "originalPrice": 399,
     "rating": 4.98,
     "reviewsCount": 112,
@@ -4171,13 +4171,13 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "100 g Jar",
-        "price": 249,
+        "price": 280,
         "originalPrice": 399,
         "default": true
       },
       {
         "weight": "250 g Jar",
-        "price": 349,
+        "price": 389,
         "originalPrice": 499
       }
     ],
@@ -4233,8 +4233,8 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Pooja Ingredients & Samagri",
-    "price": 249,
-    "originalPrice": 399,
+    "price": 399,
+    "originalPrice": 579,
     "rating": 4.99,
     "reviewsCount": 135,
     "tag": "Organic Bhimseni",
@@ -4251,14 +4251,14 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "100 g Pack",
-        "price": 249,
-        "originalPrice": 399,
+        "price": 399,
+        "originalPrice": 579,
         "default": true
       },
       {
         "weight": "500 g Pack",
-        "price": 599,
-        "originalPrice": 999
+        "price": 959,
+        "originalPrice": 1389
       }
     ],
     "purity": "100% Edible-Grade Natural Bhimseni Flakes",
@@ -4312,8 +4312,8 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Pooja Ingredients & Samagri",
-    "price": 199,
-    "originalPrice": 299,
+    "price": 280,
+    "originalPrice": 409,
     "rating": 4.97,
     "reviewsCount": 88,
     "tag": "Pure Sandalwood",
@@ -4331,13 +4331,13 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "100 g Pack",
-        "price": 199,
-        "originalPrice": 299,
+        "price": 280,
+        "originalPrice": 409,
         "default": true
       },
       {
         "weight": "250 g Value Pack",
-        "price": 269,
+        "price": 379,
         "originalPrice": 499
       }
     ],
@@ -4403,7 +4403,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Wooden Chowki",
-    "price": 554,
+    "price": 650,
     "originalPrice": 1110,
     "rating": 4.98,
     "reviewsCount": 124,
@@ -4421,7 +4421,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 38 cm × B 12 cm × H 5 cm (350 g)",
-        "price": 554,
+        "price": 650,
         "originalPrice": 1110,
         "default": true
       }
@@ -4520,8 +4520,8 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Puja Accessories",
-    "price": 554,
-    "originalPrice": 1110,
+    "price": 999,
+    "originalPrice": 1449,
     "rating": 4.96,
     "reviewsCount": 185,
     "tag": "Dhoop Dani",
@@ -4538,8 +4538,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 25 cm × B 12 cm × H 16 cm (300 g)",
-        "price": 554,
-        "originalPrice": 1110,
+        "price": 999,
+        "originalPrice": 1449,
         "default": true
       }
     ],
@@ -4638,8 +4638,8 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Mala Counters",
-    "price": 388,
-    "originalPrice": 888,
+    "price": 269,
+    "originalPrice": 389,
     "rating": 4.98,
     "reviewsCount": 182,
     "tag": "Digital Counter",
@@ -4655,8 +4655,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 10 cm × B 10 cm × H 10 cm (25 g)",
-        "price": 388,
-        "originalPrice": 888,
+        "price": 269,
+        "originalPrice": 389,
         "default": true
       }
     ],
@@ -4747,7 +4747,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Pooja Storage & Chests",
-    "price": 500,
+    "price": 495,
     "originalPrice": 888,
     "rating": 4.99,
     "reviewsCount": 196,
@@ -4768,7 +4768,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "L 15 cm × B 15 cm × H 2 cm (300 g)",
-        "price": 500,
+        "price": 495,
         "originalPrice": 888,
         "default": true
       }
@@ -5407,8 +5407,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Yantras",
-    "price": 999,
-    "originalPrice": 1499,
+    "price": 350,
+    "originalPrice": 509,
     "rating": 4.9,
     "reviewsCount": 15,
     "tag": "Spiritual Yantra",
@@ -5426,8 +5426,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Standard",
-        "price": 999,
-        "originalPrice": 1499,
+        "price": 350,
+        "originalPrice": 509,
         "default": true
       }
     ],
@@ -5476,8 +5476,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Yantras",
-    "price": 999,
-    "originalPrice": 1499,
+    "price": 360,
+    "originalPrice": 519,
     "rating": 4.9,
     "reviewsCount": 12,
     "tag": "Spiritual Yantra",
@@ -5495,8 +5495,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Standard",
-        "price": 999,
-        "originalPrice": 1499,
+        "price": 360,
+        "originalPrice": 519,
         "default": true
       }
     ],
@@ -5545,8 +5545,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Yantras",
-    "price": 999,
-    "originalPrice": 1499,
+    "price": 250,
+    "originalPrice": 359,
     "rating": 4.8,
     "reviewsCount": 18,
     "tag": "Success & Accomplishment",
@@ -5562,8 +5562,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Standard",
-        "price": 999,
-        "originalPrice": 1499,
+        "price": 250,
+        "originalPrice": 359,
         "default": true
       }
     ],
@@ -5679,8 +5679,8 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Pooja Ingredients & Samagri",
-    "price": 249,
-    "originalPrice": 399,
+    "price": 320,
+    "originalPrice": 459,
     "rating": 4.95,
     "reviewsCount": 96,
     "tag": "Desi Gau Upla",
@@ -5697,8 +5697,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Pack of 6 Cakes",
-        "price": 249,
-        "originalPrice": 399,
+        "price": 320,
+        "originalPrice": 459,
         "default": true
       }
     ],
@@ -5754,8 +5754,8 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Pooja Ingredients & Samagri",
-    "price": 199,
-    "originalPrice": 299,
+    "price": 380,
+    "originalPrice": 549,
     "rating": 4.98,
     "reviewsCount": 142,
     "tag": "51 Sacred Herbs",
@@ -5775,19 +5775,19 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "100 g Pack",
-        "price": 199,
-        "originalPrice": 299,
+        "price": 380,
+        "originalPrice": 549,
         "default": true
       },
       {
         "weight": "250 g Pack",
-        "price": 299,
-        "originalPrice": 499
+        "price": 569,
+        "originalPrice": 829
       },
       {
         "weight": "1 kg Pack",
-        "price": 599,
-        "originalPrice": 799
+        "price": 1139,
+        "originalPrice": 1649
       }
     ],
     "purity": "100% Natural Ayurvedic Herbal Blend",
@@ -5841,8 +5841,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Sacred Yantras",
-    "price": 499,
-    "originalPrice": 899,
+    "price": 350,
+    "originalPrice": 509,
     "rating": 4.98,
     "reviewsCount": 114,
     "tag": "Copper Yantra",
@@ -5856,8 +5856,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Standard 3x3 Inch Copper Yantra",
-        "price": 499,
-        "originalPrice": 899,
+        "price": 350,
+        "originalPrice": 509,
         "default": true
       }
     ],
@@ -5913,7 +5913,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Pooja Ingredients & Samagri",
-    "price": 199,
+    "price": 230,
     "originalPrice": 499,
     "rating": 4.98,
     "reviewsCount": 112,
@@ -5932,7 +5932,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "250 g Pack",
-        "price": 199,
+        "price": 230,
         "originalPrice": 499,
         "default": true
       }
@@ -5955,7 +5955,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Pooja Ingredients & Samagri",
-    "price": 249,
+    "price": 239,
     "originalPrice": 499,
     "rating": 4.97,
     "reviewsCount": 145,
@@ -5974,18 +5974,18 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "100 g Pack",
-        "price": 249,
+        "price": 239,
         "originalPrice": 499,
         "default": true
       },
       {
         "weight": "500 g Pack",
-        "price": 449,
+        "price": 429,
         "originalPrice": 799
       },
       {
         "weight": "1 kg Pack",
-        "price": 599,
+        "price": 569,
         "originalPrice": 999
       }
     ],
@@ -6007,7 +6007,7 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Incense Sticks",
-    "price": 249,
+    "price": 240,
     "originalPrice": 499,
     "rating": 4.95,
     "reviewsCount": 86,
@@ -6064,7 +6064,7 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Incense Sticks",
-    "price": 229,
+    "price": 249,
     "originalPrice": 449,
     "rating": 4.96,
     "reviewsCount": 94,
@@ -6119,7 +6119,7 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Incense Sticks",
-    "price": 219,
+    "price": 220,
     "originalPrice": 399,
     "rating": 4.92,
     "reviewsCount": 72,
@@ -6176,8 +6176,8 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Incense Sticks",
-    "price": 269,
-    "originalPrice": 549,
+    "price": 230,
+    "originalPrice": 329,
     "rating": 4.97,
     "reviewsCount": 110,
     "tag": "Royal Fragrance",
@@ -6232,8 +6232,8 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Dhoop Cups",
-    "price": 299,
-    "originalPrice": 599,
+    "price": 220,
+    "originalPrice": 319,
     "rating": 4.98,
     "reviewsCount": 124,
     "tag": "Pure Sandalwood",
@@ -6288,8 +6288,8 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Dhoop Cups",
-    "price": 299,
-    "originalPrice": 599,
+    "price": 239,
+    "originalPrice": 349,
     "rating": 4.97,
     "reviewsCount": 115,
     "tag": "Sacred Guggul",
@@ -6343,8 +6343,8 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Dhoop Cups",
-    "price": 299,
-    "originalPrice": 599,
+    "price": 229,
+    "originalPrice": 329,
     "rating": 4.94,
     "reviewsCount": 89,
     "tag": "Fresh Rose",
@@ -6398,7 +6398,7 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Incense Sticks",
-    "price": 229,
+    "price": 220,
     "originalPrice": 449,
     "rating": 4.97,
     "reviewsCount": 112,
@@ -6417,13 +6417,13 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Pack of 1 Box (approx. 50 sticks)",
-        "price": 229,
+        "price": 220,
         "originalPrice": 449,
         "default": true
       },
       {
         "weight": "Pack of 3 Boxes (approx. 150 sticks)",
-        "price": 599,
+        "price": 579,
         "originalPrice": 1199
       }
     ],
@@ -6469,7 +6469,7 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Incense Sticks",
-    "price": 219,
+    "price": 220,
     "originalPrice": 429,
     "rating": 4.96,
     "reviewsCount": 98,
@@ -6489,7 +6489,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Pack of 1 Box (approx. 50 sticks)",
-        "price": 219,
+        "price": 220,
         "originalPrice": 429,
         "default": true
       },
@@ -6541,8 +6541,8 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Camphor Cones",
-    "price": 349,
-    "originalPrice": 699,
+    "price": 260,
+    "originalPrice": 379,
     "rating": 4.99,
     "reviewsCount": 142,
     "tag": "Camphor & Chandan",
@@ -6596,8 +6596,8 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Camphor Cones",
-    "price": 349,
-    "originalPrice": 699,
+    "price": 260,
+    "originalPrice": 379,
     "rating": 4.98,
     "reviewsCount": 138,
     "tag": "Camphor & Lavender",
@@ -6651,7 +6651,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Puja Accessories",
-    "price": 899,
+    "price": 988,
     "originalPrice": 1799,
     "rating": 4.96,
     "reviewsCount": 104,
@@ -6760,8 +6760,8 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Thali",
-    "price": 699,
-    "originalPrice": 1299,
+    "price": 279,
+    "originalPrice": 399,
     "rating": 4.97,
     "reviewsCount": 96,
     "tag": "Bhog Thali Set",
@@ -6815,7 +6815,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Bells",
-    "price": 549,
+    "price": 499,
     "originalPrice": 999,
     "rating": 4.95,
     "reviewsCount": 78,
@@ -6923,8 +6923,8 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Diyas",
-    "price": 749,
-    "originalPrice": 1399,
+    "price": 399,
+    "originalPrice": 579,
     "rating": 4.96,
     "reviewsCount": 91,
     "tag": "Diya Set",
@@ -7033,8 +7033,8 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Diyas",
-    "price": 599,
-    "originalPrice": 1099,
+    "price": 899,
+    "originalPrice": 1299,
     "rating": 4.95,
     "reviewsCount": 82,
     "tag": "Cup Diya",
@@ -7088,8 +7088,8 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Standing Diyas",
-    "price": 1299,
-    "originalPrice": 2499,
+    "price": 999,
+    "originalPrice": 1449,
     "rating": 4.98,
     "reviewsCount": 164,
     "tag": "Peacock Finial",
@@ -7106,14 +7106,14 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Single Diya (12 Inch / ~750 g)",
-        "price": 1299,
-        "originalPrice": 2499,
+        "price": 999,
+        "originalPrice": 1449,
         "default": true
       },
       {
         "weight": "Pair of 2 Diyas (12 Inch / ~1.5 kg)",
-        "price": 2399,
-        "originalPrice": 4799
+        "price": 1839,
+        "originalPrice": 2669
       }
     ],
     "purity": "100% Solid Heavy Brass",
@@ -7186,7 +7186,7 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Standing Diyas",
-    "price": 1199,
+    "price": 1399,
     "originalPrice": 2299,
     "rating": 4.97,
     "reviewsCount": 148,
@@ -7205,13 +7205,13 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Single Diya (12 Inch / ~700 g)",
-        "price": 1199,
+        "price": 1399,
         "originalPrice": 2299,
         "default": true
       },
       {
         "weight": "Pair of 2 Diyas (12 Inch / ~1.4 kg)",
-        "price": 2199,
+        "price": 2569,
         "originalPrice": 4399
       }
     ],
@@ -7285,7 +7285,7 @@ export const PRODUCTS = [
     "category": "mandir-essentials",
     "categoryName": "Mandir Essentials",
     "subcategory": "Puja Accessories",
-    "price": 199,
+    "price": 249,
     "originalPrice": 349,
     "rating": 4.9,
     "reviewsCount": 65,
@@ -7337,8 +7337,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Sacred Symbols",
-    "price": 499,
-    "originalPrice": 899,
+    "price": 249,
+    "originalPrice": 359,
     "rating": 4.98,
     "reviewsCount": 135,
     "tag": "Lakshmi Charan",
@@ -7390,7 +7390,7 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Sacred Symbols",
-    "price": 799,
+    "price": 699,
     "originalPrice": 1499,
     "rating": 4.99,
     "reviewsCount": 160,
@@ -7554,8 +7554,8 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Akhand Jyot",
-    "price": 899,
-    "originalPrice": 1699,
+    "price": 599,
+    "originalPrice": 869,
     "rating": 4.99,
     "reviewsCount": 152,
     "tag": "Lotus Design",
@@ -7664,8 +7664,8 @@ export const PRODUCTS = [
     "category": "brass",
     "categoryName": "Brass Articles",
     "subcategory": "Brass Diyas",
-    "price": 799,
-    "originalPrice": 1499,
+    "price": 1899,
+    "originalPrice": 2749,
     "rating": 4.98,
     "reviewsCount": 115,
     "tag": "Glass Cover",
@@ -7880,7 +7880,7 @@ export const PRODUCTS = [
     "category": "incense",
     "categoryName": "Incense & Dhoop",
     "subcategory": "Incense Sticks",
-    "price": 249,
+    "price": 299,
     "originalPrice": 499,
     "rating": 4.98,
     "reviewsCount": 119,
@@ -7895,7 +7895,7 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "Pack of 1 (100 g - approx. 40 sticks)",
-        "price": 249,
+        "price": 299,
         "originalPrice": 499,
         "default": true
       }
@@ -7960,8 +7960,8 @@ export const PRODUCTS = [
     "category": "vastu",
     "categoryName": "Vastu & Spiritual",
     "subcategory": "Sacred Yantras",
-    "price": 599,
-    "originalPrice": 1199,
+    "price": 350,
+    "originalPrice": 509,
     "rating": 4.99,
     "reviewsCount": 142,
     "tag": "9 Planets Protection",
@@ -7975,8 +7975,8 @@ export const PRODUCTS = [
     "weightVariants": [
       {
         "weight": "3 × 3 Inches (Heavy Copper Plate)",
-        "price": 599,
-        "originalPrice": 1199,
+        "price": 350,
+        "originalPrice": 509,
         "default": true
       }
     ],
